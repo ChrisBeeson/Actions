@@ -7,14 +7,21 @@
 //
 
 import Cocoa
+import CCNStatusItem
 
 @NSApplicationMain
+
 class AppDelegate: NSObject, NSApplicationDelegate {
 
 
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        // Insert code here to initialize your application
+        
+     //   let contentView = ViewController().
+        CCNStatusItem.sharedInstance().presentStatusItemWithImage(NSImage(named: "SystemTrayIcon"), contentViewController: nil)
+        
+        
+        
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
