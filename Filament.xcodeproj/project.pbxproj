@@ -29,6 +29,7 @@
 		83F6B9641B994652002A5AAF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83F6B9621B994652002A5AAF /* Main.storyboard */; };
 		83F6B9701B994652002A5AAF /* FilamentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F6B96F1B994652002A5AAF /* FilamentTests.swift */; };
 		83F6B97A1B995683002A5AAF /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 83F6B9791B995683002A5AAF /* Podfile */; };
+		83F9E92B1BA18739006282B5 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 83F9E92A1BA18739006282B5 /* .gitignore */; settings = {ASSET_TAGS = (); }; };
 		A434260737AE2B1831E7CA6A /* Pods_Filament.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87F8CB0AFDC603CD8046EEF /* Pods_Filament.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -106,6 +107,7 @@
 		83F6B96E1B994652002A5AAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83F6B96F1B994652002A5AAF /* FilamentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilamentTests.swift; sourceTree = "<group>"; };
 		83F6B9791B995683002A5AAF /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		83F9E92A1BA18739006282B5 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		B87F8CB0AFDC603CD8046EEF /* Pods_Filament.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Filament.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C075D0CB800B65E1F4626723 /* Pods-Filament.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Filament.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Filament/Pods-Filament.debug.xcconfig"; sourceTree = "<group>"; };
 		F197F4F4D9D4E30D0139E7DB /* Pods-Filament.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Filament.release.xcconfig"; path = "Pods/Target Support Files/Pods-Filament/Pods-Filament.release.xcconfig"; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 		83F6B94E1B994652002A5AAF = {
 			isa = PBXGroup;
 			children = (
+				83F9E92A1BA18739006282B5 /* .gitignore */,
 				83F6B9791B995683002A5AAF /* Podfile */,
 				83F6B9591B994652002A5AAF /* Filament OSX */,
 				473574561B9A687400493CA0 /* FilamentKit */,
@@ -455,6 +458,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83F9E92B1BA18739006282B5 /* .gitignore in Resources */,
 				83F6B97A1B995683002A5AAF /* Podfile in Resources */,
 				83DDAA4F1B997C9A001A4DBE /* SystemTrayMenu.xib in Resources */,
 				83F6B9611B994652002A5AAF /* Images.xcassets in Resources */,
