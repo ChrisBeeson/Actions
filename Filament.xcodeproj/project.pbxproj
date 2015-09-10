@@ -207,9 +207,9 @@
 		4735747D1B9A915800493CA0 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				4735747E1B9A919500493CA0 /* SequencePresenter.swift */,
 				473574811B9A91A200493CA0 /* SequencePresenterDelegate.swift */,
 				473574821B9A91A200493CA0 /* SequencePresenterType.swift */,
-				4735747E1B9A919500493CA0 /* SequencePresenter.swift */,
 				473574881B9A91BE00493CA0 /* Presenter Helpers */,
 			);
 			name = Presenter;

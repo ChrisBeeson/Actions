@@ -1,10 +1,9 @@
-/*
-    Copyright (C) 2015 Apple Inc. All Rights Reserved.
-    See LICENSE.txt for this sample’s licensing information
-    
-    Abstract:
-    The implementation for the `AllNodesPresenter` type. This class is responsible for managing how a list is presented in the iOS and OS X apps.
-*/
+//
+//  Filament
+//
+//  Created by Chris Beeson on 5/09/2015.
+//  Copyright (c) 2015 Andris Ltd. All rights reserved.
+//
 
 import Foundation
 
@@ -33,22 +32,18 @@ final public class SequencePresenter: NSObject, SequencePresenterType {
         }
     }
     
+    
     public var archiveableSequence: Sequence {
         
-        // The list is already in archiveable form since we're updating it directly.
         return sequence!
     }
     
-    public var presentedNodes:[Node] {
+    
+    public var presentedNodes:[Node]? {
         
-        // TODO:  Need to return Action and transistion Nodes for UI
-        // Should be something like: 
+        precondition(sequence!.validSequence(), "Trying to present a sequence that is not Valid")
         
-        // return sequence.allNodes
-        
-        // + create private function to validate first.
-        
-        return sequence!.actionNodes
+        return sequence!.allNodes()
     }
     
 
@@ -64,19 +59,22 @@ final public class SequencePresenter: NSObject, SequencePresenterType {
 
     public func insertNode(node: Node, index: Int?) {
         
+        if sequence == nil {return}
+        
         delegate?.sequencePresenterWillChangeNodeLayout(self, isInitialLayout:false)
         
-        unsafeInsertNode(node,index: index)
+        sequence!.insertActionNode(node, index: index)
         
         delegate?.sequencePresenterDidChangeNodeLayout(self, isInitialLayout:false)
         
         // Undo
-        undoManager?.prepareWithInvocationTarget(self).removeNode(node)
+      //  undoManager?.prepareWithInvocationTarget(self).removeNode(node)
         
         let undoActionName = NSLocalizedString("Remove Node", comment: "")
         undoManager?.setActionName(undoActionName)
     }
     
+    /*
     public func insertNodes(nodes:[Node]) {
         
         if nodes.isEmpty { return }
@@ -99,7 +97,7 @@ final public class SequencePresenter: NSObject, SequencePresenterType {
 
     @objc public func removeNode(node: Node) {
         
-        let nodeIndex = presentedNodes.indexOf(node)
+        let nodeIndex = presentedNodes?.indexOf(node)
         
         if nodeIndex == nil {
             preconditionFailure("A list item was requested to be removed that isn't in the list.")
@@ -131,7 +129,8 @@ final public class SequencePresenter: NSObject, SequencePresenterType {
         var removedIndexes = [Int]()
         
         for node in nodes {
-            if let nodeIndex = presentedNodes.indexOf(node) {
+            
+            if let nodeIndex = presentedNodes?.indexOf(node) {
                 
                 sequence!.actionNodes.removeAtIndex(nodeIndex)
                 
@@ -157,12 +156,12 @@ final public class SequencePresenter: NSObject, SequencePresenterType {
     
     @objc public func updateNode(node: Node, withText newText: String) {
         
-        precondition(presentedNodes.contains(node), "A list item can only be updated if it already exists in the list.")
+        precondition((presentedNodes?.contains(node))!, "A list item can only be updated if it already exists in the list.")
         
         // If the text is the same, it's a no op.
         if node.text == newText { return }
         
-        let index = presentedNodes.indexOf(node)!
+        let index = presentedNodes!.indexOf(node)!
         
         let oldText = node.text
         
@@ -203,7 +202,7 @@ final public class SequencePresenter: NSObject, SequencePresenterType {
     
 
 
-
+*/
     
     /**
         Returns the list items at each index in `indexes` within the `presentedNodes` array.
@@ -213,6 +212,7 @@ final public class SequencePresenter: NSObject, SequencePresenterType {
         - returns:  The list items that are located at each index in `indexes` within `presentedNodes`.
     */
     
+    /*
     public func nodesAtIndexes(indexes: NSIndexSet) -> [Node] {
         
         var nodes = [Node]()
@@ -220,11 +220,13 @@ final public class SequencePresenter: NSObject, SequencePresenterType {
         nodes.reserveCapacity(indexes.count)
         
         for idx in indexes {
-            nodes += [self.presentedNodes[idx]]
+            nodes += [self.presentedNodes?[idx]]
         }
         
         return nodes
     }
+
+*/
     
     // MARK: Undo Helper Methods
 
@@ -238,6 +240,8 @@ final public class SequencePresenter: NSObject, SequencePresenterType {
         - parameter nodes: The list items to insert.
         - parameter indexes: The indexes at which to insert `nodes` into.
     */
+    
+    /*
     @objc private func insertNodesForUndo(nodes: [Node], atIndexes indexes: [Int]) {
         
         precondition(nodes.count == indexes.count, "`nodes` must have as many elements as `indexes`.")
@@ -255,6 +259,7 @@ final public class SequencePresenter: NSObject, SequencePresenterType {
         delegate?.sequencePresenterDidChangeNodeLayout(self, isInitialLayout: false)
         
         // Undo
+        
         undoManager?.prepareWithInvocationTarget(self).removeNodes(nodes)
         
         let undoActionName = NSLocalizedString("Remove", comment: "")
@@ -269,24 +274,21 @@ final public class SequencePresenter: NSObject, SequencePresenterType {
     
     private func unsafeInsertNode(node: Node, index:Int? = nil) {
         
-        precondition(!presentedNodes.contains(node), "A list item was requested to be added that is already in the list.")
+        precondition((presentedNodes?.contains(node))!, "A list item was requested to be added that is already in the list.")
         
-        if let indexToInsertNode = index {
-            sequence!.actionNodes.insert(node, atIndex:indexToInsertNode)
-            delegate?.sequencePresenter(self, didInsertNode: node, atIndex:indexToInsertNode)
-        } else {
-            
-            sequence!.actionNodes.insert(node, atIndex:sequence!.actionNodes.count)
-            delegate?.sequencePresenter(self, didInsertNode: node, atIndex:sequence!.actionNodes.count)
-        }
+        let indexToInsertNode = index ?? sequence!.actionNodes.count
+        
+        sequence!.actionNodes.insert(node, atIndex:indexToInsertNode)
+        delegate?.sequencePresenter(self, didInsertNode: node, atIndex:indexToInsertNode)
+
     }
     
 
     private func unsafeMoveNode(node: Node, toIndex: Int) -> Int {
         
-        precondition(presentedNodes.contains(node), "A list item can only be moved if it already exists in the presented list items.")
+        precondition((presentedNodes?.contains(node))!, "A list item can only be moved if it already exists in the presented list items.")
         
-        let fromIndex = presentedNodes.indexOf(node)!
+        let fromIndex = presentedNodes!.indexOf(node)!
 
         sequence!.actionNodes.removeAtIndex(fromIndex)
         sequence!.actionNodes.insert(node, atIndex: toIndex)
@@ -296,5 +298,6 @@ final public class SequencePresenter: NSObject, SequencePresenterType {
         return fromIndex
     }
 
+*/
 
 }

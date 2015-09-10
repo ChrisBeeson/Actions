@@ -104,7 +104,8 @@ public class Node: NSObject, NSCoding, NSCopying {
     
     // MARK: Equality
     
-    override public func isEqual(object: AnyObject?) -> Bool {
+    /*
+    override public func isEqual(object: AnyObject) -> Bool {
         
         if let node = object as? Node {
             if text != node.text || type != node.type  {
@@ -116,4 +117,5 @@ public class Node: NSObject, NSCoding, NSCopying {
         
         return false
     }
+*/
 }
