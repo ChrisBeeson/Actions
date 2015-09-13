@@ -76,6 +76,14 @@ class SequenceTests: XCTestCase {
         XCTAssert(sequence!.validSequence() == false)
     }
     
+    func testDelete () {
+        
+        let nodeToDelete = sequence!.allNodes()[2]
+        // let index = sequence!.allNodes().indexOf(nodeToDelete)
+        sequence!.removeActionNode(nodeToDelete)
+         sequence!.logAllNodes()
+        XCTAssert(sequence!.validSequence() == true)
+    }
     /*
     func testPerformanceExample() {
         // This is an example of a performance test case.

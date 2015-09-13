@@ -13,9 +13,9 @@ public class Sequence: NSObject, NSCopying, NSCoding {
     
     // MARK: Properties
     
-    public var name: String
-    private var actionNodes = [Node]()
-    private var transistionNodes = [Node]()
+    public var name: String = ""
+    public var actionNodes = [Node]()
+    public var transitionNodes = [Node]()
     public var instances = [SequenceInstance]()
     
     
@@ -39,14 +39,18 @@ public class Sequence: NSObject, NSCopying, NSCoding {
         
         static let name = "name"
         static let actionNodes = "actionNodes"
-        static let transistionNodes = "transistionNodes"
+        static let transitionNodes = "transitionNodes"
         static let instances = "instances"
+    }
+    
+    override public init () {
+        
     }
     
     public required init?(coder aDecoder: NSCoder) {
         
         actionNodes = aDecoder.decodeObjectForKey(SerializationKeys.actionNodes) as! [Node]
-        transistionNodes = aDecoder.decodeObjectForKey(SerializationKeys.transistionNodes) as! [Node]
+        transitionNodes = aDecoder.decodeObjectForKey(SerializationKeys.transitionNodes) as! [Node]
         name = aDecoder.decodeObjectForKey(SerializationKeys.name) as! String
         instances = aDecoder.decodeObjectForKey(SerializationKeys.instances) as! [SequenceInstance]
     }
@@ -54,7 +58,7 @@ public class Sequence: NSObject, NSCopying, NSCoding {
     public func encodeWithCoder(aCoder: NSCoder) {
         
         aCoder.encodeObject(actionNodes, forKey: SerializationKeys.actionNodes)
-        aCoder.encodeObject(transistionNodes, forKey: SerializationKeys.transistionNodes)
+        aCoder.encodeObject(transitionNodes, forKey: SerializationKeys.transitionNodes)
         aCoder.encodeObject(name, forKey: SerializationKeys.name)
         aCoder.encodeObject(instances, forKey: SerializationKeys.instances)
     }
@@ -64,7 +68,61 @@ public class Sequence: NSObject, NSCopying, NSCoding {
     
     public func copyWithZone(zone: NSZone) -> AnyObject  {
         
-        return Sequence(name:name, actionNodes:actionNodes)
+        let clone = Sequence()
+        clone.name = name.copy() as! String
+        clone.actionNodes =  NSArray(array:actionNodes, copyItems: true) as! [Node]
+        clone.transitionNodes = NSArray(array:transitionNodes, copyItems: true) as! [Node]
+        clone.instances = NSArray(array:instances, copyItems: true) as! [SequenceInstance]
+        
+        return clone
+    }
+    
+    
+    public func instance(name:String) -> SequenceInstance {
+        
+        let clone = SequenceInstance()
+        clone.name = name
+        //   clone.actionNodes =  NSArray(array:actionNodes, copyItems: true) as! [Node]
+        clone.transitionNodes = NSArray(array:transitionNodes, copyItems: true) as! [Node]
+        clone.instances = NSArray(array:instances, copyItems: true) as! [SequenceInstance]
+        
+        for node in actionNodes {
+            
+            let nodeCopy = node.copy() as! Node
+            
+            if nodeCopy.leftTransitionNode != nil {
+        
+                if let lefty = nodeForNode(nodeCopy.leftTransitionNode!, fromArray:clone.transitionNodes) {
+                    nodeCopy.leftTransitionNode = lefty
+                } else {
+                    fatalError()
+                }
+            }
+            
+            if nodeCopy.rightTransitionNode != nil {
+                
+                if let lefty = nodeForNode(nodeCopy.rightTransitionNode!, fromArray:clone.transitionNodes) {
+                    nodeCopy.rightTransitionNode = lefty
+                } else {
+                    fatalError()
+                }
+            }
+            
+            clone.actionNodes.append(nodeCopy)
+        }
+        
+        return clone
+    }
+    
+    
+    private func nodeForNode(node:Node, fromArray:[Node]) -> Node? {
+        
+        for n in fromArray {
+            
+            if n.isEqual(node) { return n }
+        }
+        
+        return nil
     }
     
     
@@ -126,15 +184,41 @@ public class Sequence: NSObject, NSCopying, NSCoding {
     }
     
     public func removeActionNode(node:Node) {
-
-        precondition(actionNodes.indexOf(node) != nil, "Cannot remove Node because it doesn't exist in the sequence.")
+        
+        let index = actionNodes.indexOf(node)
     
+        precondition(index != nil, "Cannot remove Node because it doesn't exist in the sequence.")
+            
+        actionNodes.removeObject(node)
+
+        // it was the only node
+        
+        if actionNodes.count == 0 { return }
+        
+        //it was the first one in the array - so remove transistion to the left of it
+        
+        if index! == 0 {
+            transitionNodes.removeObject(actionNodes[0].leftTransitionNode!)
+            actionNodes[0].leftTransitionNode = nil
+            return
+        }
+        
+        // it was the last
+        
+        if index! == actionNodes.count - 2 {
+            transitionNodes.removeObject(actionNodes[0].rightTransitionNode!)
+            return
+        }
+        
+        // it's in the middle of two others
+        
+        addTransistionNodeToActionNodes(actionNodes[index!-1], right: actionNodes[index!])
     }
     
     
     public func logAllNodes() {
         
-        for node in allNodes() { NSLog(node.type.description + ": " + node.text) }
+        for node in allNodes() { print (String(node.type) + ": " + node.text) }
         
         validSequence() ? NSLog("Sequence is Valid") : NSLog("Sequence is NOT Valid")
     }
@@ -167,8 +251,8 @@ public class Sequence: NSObject, NSCopying, NSCoding {
         // we need to delete transition node from array if we break any transitions
         // Could return the deleted ones if we need to be notified about that...
         
-        if left.rightTransitionNode != nil { transistionNodes.removeObject(left.rightTransitionNode!) }
-        if right.leftTransitionNode != nil { transistionNodes.removeObject(right.leftTransitionNode!) }
+        if left.rightTransitionNode != nil { transitionNodes.removeObject(left.rightTransitionNode!) }
+        if right.leftTransitionNode != nil { transitionNodes.removeObject(right.leftTransitionNode!) }
         
         let name = left.text + " -> " + right.text
         let transitionNode = Node(text: name, type: .Transition, rules: nil)
@@ -176,7 +260,7 @@ public class Sequence: NSObject, NSCopying, NSCoding {
         left.rightTransitionNode = transitionNode
         right.leftTransitionNode = transitionNode
         
-        transistionNodes.append(transitionNode)
+        transitionNodes.append(transitionNode)
     }
 }
 
