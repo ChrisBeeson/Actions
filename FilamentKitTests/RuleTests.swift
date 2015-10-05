@@ -34,11 +34,15 @@ class RuleTests: XCTestCase {
         
         // There are two actions
         
+        /*
+        
         let instance = sequence.instance("Instance 1")
         
         instance.startDate = NSDate(timeIntervalSinceNow: 0)
  
         instance.process()
+
+*/
         
     }
 }

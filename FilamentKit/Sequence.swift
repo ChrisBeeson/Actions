@@ -16,10 +16,15 @@ public class Sequence: NSObject, NSCopying, NSCoding {
     public var name: String = ""
     public var actionNodes = [Node]()
     public var transitionNodes = [Node]()
-    public var instances = [SequenceInstance]()
+    public var instances = [Instance]()
     
     
     // MARK: Initializers
+    
+    override public init () {
+        
+        super.init()
+    }
     
     public init(name:String, actionNodes:[Node]? = []) {
         
@@ -43,16 +48,12 @@ public class Sequence: NSObject, NSCopying, NSCoding {
         static let instances = "instances"
     }
     
-    override public init () {
-        
-    }
-    
     public required init?(coder aDecoder: NSCoder) {
         
         actionNodes = aDecoder.decodeObjectForKey(SerializationKeys.actionNodes) as! [Node]
         transitionNodes = aDecoder.decodeObjectForKey(SerializationKeys.transitionNodes) as! [Node]
         name = aDecoder.decodeObjectForKey(SerializationKeys.name) as! String
-        instances = aDecoder.decodeObjectForKey(SerializationKeys.instances) as! [SequenceInstance]
+        instances = aDecoder.decodeObjectForKey(SerializationKeys.instances) as! [Instance]
     }
     
     public func encodeWithCoder(aCoder: NSCoder) {
@@ -72,58 +73,10 @@ public class Sequence: NSObject, NSCopying, NSCoding {
         clone.name = name.copy() as! String
         clone.actionNodes =  NSArray(array:actionNodes, copyItems: true) as! [Node]
         clone.transitionNodes = NSArray(array:transitionNodes, copyItems: true) as! [Node]
-        clone.instances = NSArray(array:instances, copyItems: true) as! [SequenceInstance]
-        
+        clone.instances = NSArray(array:instances, copyItems: true) as! [Instance]
         return clone
     }
     
-    
-    public func instance(name:String) -> SequenceInstance {
-        
-        let clone = SequenceInstance()
-        clone.name = name
-        //   clone.actionNodes =  NSArray(array:actionNodes, copyItems: true) as! [Node]
-        clone.transitionNodes = NSArray(array:transitionNodes, copyItems: true) as! [Node]
-        clone.instances = NSArray(array:instances, copyItems: true) as! [SequenceInstance]
-        
-        for node in actionNodes {
-            
-            let nodeCopy = node.copy() as! Node
-            
-            if nodeCopy.leftTransitionNode != nil {
-        
-                if let lefty = nodeForNode(nodeCopy.leftTransitionNode!, fromArray:clone.transitionNodes) {
-                    nodeCopy.leftTransitionNode = lefty
-                } else {
-                    fatalError()
-                }
-            }
-            
-            if nodeCopy.rightTransitionNode != nil {
-                
-                if let lefty = nodeForNode(nodeCopy.rightTransitionNode!, fromArray:clone.transitionNodes) {
-                    nodeCopy.rightTransitionNode = lefty
-                } else {
-                    fatalError()
-                }
-            }
-            
-            clone.actionNodes.append(nodeCopy)
-        }
-        
-        return clone
-    }
-    
-    
-    private func nodeForNode(node:Node, fromArray:[Node]) -> Node? {
-        
-        for n in fromArray {
-            
-            if n.isEqual(node) { return n }
-        }
-        
-        return nil
-    }
     
     
     // MARK: Methods
@@ -219,8 +172,17 @@ public class Sequence: NSObject, NSCopying, NSCoding {
     public func logAllNodes() {
         
         for node in allNodes() { print (String(node.type) + ": " + node.text) }
-        
         validSequence() ? NSLog("Sequence is Valid") : NSLog("Sequence is NOT Valid")
+    }
+    
+    
+    public func newInstance(startDate: NSDate) -> Instance {
+        
+        let instance = Instance(startDate: startDate, sequence: self)
+        instances.append(instance)
+        instance.update()
+        
+        return instance
     }
     
     

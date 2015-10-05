@@ -8,14 +8,14 @@
 
 import Foundation
 
+public enum NodeType: Int { case Action = 0, Transition, All, None }
+
 public class Node: NSObject, NSCoding, NSCopying {
-    
-    public enum NodeType: Int { case Action = 0, Transition, All, None }
     
     // MARK: Properties
     
     public var text = ""
-    public var rules = [Rule]()
+    public var rules = [RuleType]?()
     public var type = NodeType.Action
     public var leftTransitionNode: Node?
     public var rightTransitionNode: Node?
@@ -24,22 +24,15 @@ public class Node: NSObject, NSCoding, NSCopying {
     
     // MARK: Initializers
     
-    public init(text: String, type: NodeType = .Action, rules:[Rule]?) {
+    public init(text: String, type: NodeType = .Action, rules:[RuleType]?) {
         
         self.text = text
         self.type = type
-        
-        if let incomingRules = rules {
-            
-            self.rules = incomingRules.map { $0.copy() as! Rule }
-        }
-        
-        if type == .Action {
-            self.rules.append(DurationRule())
-        }
+        self.rules = rules
         
         super.init()
     }
+    
     
     public override init() {
         
@@ -60,7 +53,7 @@ public class Node: NSObject, NSCoding, NSCopying {
     public required init?(coder aDecoder: NSCoder) {
         
         text = aDecoder.decodeObjectForKey(SerializationKeys.text) as! String
-        rules = aDecoder.decodeObjectForKey(SerializationKeys.rules) as! [Rule]
+        rules = aDecoder.decodeObjectForKey(SerializationKeys.rules) as? [RuleType]
         type = NodeType(rawValue: aDecoder.decodeIntegerForKey(SerializationKeys.type))!
         UUID = aDecoder.decodeObjectForKey(SerializationKeys.uuid) as! NSUUID
         leftTransitionNode = aDecoder.decodeObjectForKey(SerializationKeys.leftTransitionNode) as? Node
@@ -70,7 +63,7 @@ public class Node: NSObject, NSCoding, NSCopying {
     public func encodeWithCoder(encoder: NSCoder) {
         
         encoder.encodeObject(text, forKey: SerializationKeys.text)
-        encoder.encodeObject(rules, forKey: SerializationKeys.rules)
+        //   encoder.encodeObject(rules!, forKey: SerializationKeys.rules)
         encoder.encodeInteger(type.rawValue, forKey: SerializationKeys.type)
         encoder.encodeObject(UUID, forKey: SerializationKeys.uuid)
         encoder.encodeObject(leftTransitionNode, forKey: SerializationKeys.leftTransitionNode)
@@ -81,34 +74,23 @@ public class Node: NSObject, NSCoding, NSCopying {
     // MARK: NSCopying
     
     public func copyWithZone(zone: NSZone) -> AnyObject  {
+        
         return Node(text: text, type: type, rules: rules)
     }
     
-    public func instance(name: String) -> NodeInstance {
-        
-        let instance =  NodeInstance()
-        instance.text = text
-        instance.type = type
-        instance.rules =  NSArray(array:rules, copyItems: true) as! [Rule]
-        instance.UUID = UUID
-        
-        return instance
-    }
     
     // MARK: Equality
-    
     
     override public func isEqual(object: AnyObject?) -> Bool {
         
         if let node = object as? Node {
-            if UUID != node.UUID  {
-                return false
+            if UUID == node.UUID  {
+                return true
             }
             
-            return rules == node.rules
+            return false
         }
         
         return false
     }
-    
 }

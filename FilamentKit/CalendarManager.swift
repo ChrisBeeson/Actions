@@ -8,15 +8,38 @@
 
 import Foundation
 import EventKit
+import DateTools
 
 public class CalendarManager: NSObject {
     
     static let sharedInstance = CalendarManager()
     
-    private static let store = EKEventStore()
+    private let store = EKEventStore()
     
-    override init() {
+    
+    func calendars() -> [EKCalendar] {
         
+        return store.calendarsForEntityType(.Event)
     }
     
+    
+    func events(timePeriod: DTTimePeriod, calendars: [EKCalendar]) -> [EKEvent]? {
+        
+        let predicate = store.predicateForEventsWithStartDate(timePeriod.StartDate, endDate: timePeriod.EndDate, calendars: calendars)
+        
+        return store.eventsMatchingPredicate(predicate)
+    }
+    
+    
+    func publishEvent(event:EKEvent) {
+        
+        do {
+            
+        try store.saveEvent(event, span: .ThisEvent, commit: true)
+            
+        } catch let error as NSError {
+        
+            NSLog("Unresolved error \(error), \(error.userInfo)")
+        }
+    }
 }
