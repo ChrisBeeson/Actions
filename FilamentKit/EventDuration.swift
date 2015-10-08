@@ -9,16 +9,14 @@
 import Foundation
 import DateTools
 
-public struct EventDuration: RuleType {
+public struct EventDuration: Rule {
     
     // This rule sits the duration of an event.
     // It allows the event to be shortened to a minimum duration if required.
     
-    
-    public var name: String { return "[<->]" }
+    public var name: String { return "Event Duration" }
     public var availableToNodeType:NodeType { return .Action}
-    public var conflictingRules: [RuleType]? { return nil }
-    
+    public var conflictingRules: [Rule]? { return nil }
     public var inputDate: NSDate?
     
     public init(inputDate: NSDate) {
@@ -33,17 +31,9 @@ public struct EventDuration: RuleType {
     public var minDuration = TimeSize(unit: .Minute, amount: 15)
     
     
-    // Rule protocol requirements
-    
-    public var eventStartTimeWindow: DTTimePeriod? { get { return nil } }
-    
-    public var eventPreferedStartDate: NSDate? { get { return nil } }
-    
+    // Rule out values
     
     public var eventMaxDuration: TimeSize? { get { return duration } }
     public var eventMinDuration: TimeSize? { get { return minDuration } }
     public var eventPreferedDuration: TimeSize? { get { return duration } }
-    
-    public var avoidPeriods: [DTTimePeriod]? { get { return nil } }
-    
 }

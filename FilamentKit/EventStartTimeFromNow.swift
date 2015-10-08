@@ -9,7 +9,7 @@
 import Foundation
 import DateTools
 
-public struct EventStartTimeFromNow: RuleType {
+public struct EventStartTimeFromNow: Rule {
     
     // This rule creates a window of available time for the event to sit in.
     // User specifies a time period, and can pick a variance size.
@@ -18,7 +18,7 @@ public struct EventStartTimeFromNow: RuleType {
 
     public var name: String { return "~>" }
     public var availableToNodeType:NodeType { return NodeType.Transition }
-    public var conflictingRules: [RuleType]? { return nil }
+    public var conflictingRules: [Rule]? { return nil }
     
     public var inputDate: NSDate?
     
@@ -53,9 +53,4 @@ public struct EventStartTimeFromNow: RuleType {
         
         }
     }
-    
-    public var eventMaxDuration: TimeSize? { get { return nil } }
-    public var eventMinDuration: TimeSize? { get { return nil } }
-    public var eventPreferedDuration: TimeSize? { get { return nil } }
-    public var avoidPeriods: [DTTimePeriod]? { get { return nil } }
 }

@@ -27,7 +27,7 @@ class DateToolExtensionsTests: XCTestCase {
     }
     
     
-    func testFlatten() {
+    func testFlattenAndVoidPeriods() {
         
         // Create Periods
         
@@ -69,6 +69,10 @@ class DateToolExtensionsTests: XCTestCase {
         let flat = collection.flatten()
         
         XCTAssert(flat?.periods()!.count == 2 , "Fail")
+        
+        
+        let void = flat.voidPeriods()
+        
     }
     
     

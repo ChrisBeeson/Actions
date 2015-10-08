@@ -10,7 +10,7 @@
 		471420D61BA3CB2A00EDF32D /* Pods_Filament.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 471420D51BA3CB2A00EDF32D /* Pods_Filament.framework */; };
 		472465191BBFD0DA004DE4DE /* DateToolsExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472465171BBFD0DA004DE4DE /* DateToolsExtensionsTests.swift */; settings = {ASSET_TAGS = (); }; };
 		4724651B1BBFE595004DE4DE /* DateToolsExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9531BB5464C000CAC61 /* DateToolsExtenstions.swift */; settings = {ASSET_TAGS = (); }; };
-		4724651C1BBFE610004DE4DE /* RuleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574781B9A68BE00493CA0 /* RuleType.swift */; settings = {ASSET_TAGS = (); }; };
+		4724651C1BBFE610004DE4DE /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574781B9A68BE00493CA0 /* Rule.swift */; settings = {ASSET_TAGS = (); }; };
 		4724651D1BBFE623004DE4DE /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574741B9A689B00493CA0 /* Node.swift */; settings = {ASSET_TAGS = (); }; };
 		4724651E1BBFE647004DE4DE /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473EAEE01BA3A7D200AFEA2A /* CalendarManager.swift */; settings = {ASSET_TAGS = (); }; };
 		4724651F1BBFE64B004DE4DE /* Solver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F2FBC31BA8CFEE0041B291 /* Solver.swift */; settings = {ASSET_TAGS = (); }; };
@@ -27,7 +27,7 @@
 		4735746D1B9A687400493CA0 /* FilamentKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 473574551B9A687400493CA0 /* FilamentKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		473574751B9A689B00493CA0 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574741B9A689B00493CA0 /* Node.swift */; };
 		473574771B9A68AC00493CA0 /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574761B9A68AC00493CA0 /* Sequence.swift */; };
-		473574791B9A68BE00493CA0 /* RuleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574781B9A68BE00493CA0 /* RuleType.swift */; };
+		473574791B9A68BE00493CA0 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574781B9A68BE00493CA0 /* Rule.swift */; };
 		4735747F1B9A919500493CA0 /* SequencePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735747E1B9A919500493CA0 /* SequencePresenter.swift */; };
 		473574841B9A91A200493CA0 /* ListPresenterAlgorithms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574801B9A91A200493CA0 /* ListPresenterAlgorithms.swift */; };
 		473574851B9A91A200493CA0 /* SequencePresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574811B9A91A200493CA0 /* SequencePresenterDelegate.swift */; };
@@ -111,7 +111,7 @@
 		473574681B9A687400493CA0 /* FilamentKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilamentKitTests.swift; sourceTree = "<group>"; };
 		473574741B9A689B00493CA0 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		473574761B9A68AC00493CA0 /* Sequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sequence.swift; sourceTree = "<group>"; };
-		473574781B9A68BE00493CA0 /* RuleType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleType.swift; sourceTree = "<group>"; };
+		473574781B9A68BE00493CA0 /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
 		4735747E1B9A919500493CA0 /* SequencePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencePresenter.swift; sourceTree = "<group>"; };
 		473574801B9A91A200493CA0 /* ListPresenterAlgorithms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListPresenterAlgorithms.swift; sourceTree = "<group>"; };
 		473574811B9A91A200493CA0 /* SequencePresenterDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencePresenterDelegate.swift; sourceTree = "<group>"; };
@@ -196,7 +196,6 @@
 		473574561B9A687400493CA0 /* FilamentKit */ = {
 			isa = PBXGroup;
 			children = (
-				47ACA9551BB54658000CAC61 /* Helpers */,
 				473EAEE01BA3A7D200AFEA2A /* CalendarManager.swift */,
 				8343519B1BA2973C0094428B /* Rules */,
 				4735747A1B9A692F00493CA0 /* Models */,
@@ -288,8 +287,9 @@
 		8343519B1BA2973C0094428B /* Rules */ = {
 			isa = PBXGroup;
 			children = (
+				47ACA9551BB54658000CAC61 /* Helpers */,
 				47F2FBC31BA8CFEE0041B291 /* Solver.swift */,
-				473574781B9A68BE00493CA0 /* RuleType.swift */,
+				473574781B9A68BE00493CA0 /* Rule.swift */,
 				8343519C1BA297650094428B /* EventStartTimeFromNow.swift */,
 				47ACA9561BB54B82000CAC61 /* EventDuration.swift */,
 				47ACA9581BB54EEA000CAC61 /* AvoidCalendarEvents.swift */,
@@ -596,7 +596,7 @@
 				473574851B9A91A200493CA0 /* SequencePresenterDelegate.swift in Sources */,
 				473574751B9A689B00493CA0 /* Node.swift in Sources */,
 				83900D591BA785FA004838FD /* Event.swift in Sources */,
-				473574791B9A68BE00493CA0 /* RuleType.swift in Sources */,
+				473574791B9A68BE00493CA0 /* Rule.swift in Sources */,
 				47ACA9541BB5464C000CAC61 /* DateToolsExtenstions.swift in Sources */,
 				47ACA9591BB54EEA000CAC61 /* AvoidCalendarEvents.swift in Sources */,
 				473EAEE11BA3A7D200AFEA2A /* CalendarManager.swift in Sources */,
@@ -614,7 +614,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				473EAEE61BA3AD0300AFEA2A /* RuleTests.swift in Sources */,
-				4724651C1BBFE610004DE4DE /* RuleType.swift in Sources */,
+				4724651C1BBFE610004DE4DE /* Rule.swift in Sources */,
 				4724651F1BBFE64B004DE4DE /* Solver.swift in Sources */,
 				472465211BBFE656004DE4DE /* EventDuration.swift in Sources */,
 				472465251BBFE66B004DE4DE /* Event.swift in Sources */,

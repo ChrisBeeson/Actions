@@ -10,15 +10,14 @@ import Foundation
 import DateTools
 import EventKit
 
-public struct AvoidCalendarEvents: RuleType {
+public struct AvoidCalendarEvents: Rule {
     
     // This rule sits the duration of an event.
     // It allows the event to be shortened to a minimum duration if required.
     
-    
     public var name: String { return "!!!" }
     public var availableToNodeType:NodeType { return .None}
-    public var conflictingRules: [RuleType]? { return nil }
+    public var conflictingRules: [Rule]? { return nil }
     
     public var inputDate: NSDate?
     
@@ -31,15 +30,6 @@ public struct AvoidCalendarEvents: RuleType {
         self.calendars = calendars
     }
     
-    
-    // Rule protocol requirements
-    
-    public var eventStartTimeWindow: DTTimePeriod? { get { return nil } }
-    public var eventPreferedStartDate: NSDate? { get { return nil } }
-    
-    public var eventMaxDuration: TimeSize? { get { return nil } }
-    public var eventMinDuration: TimeSize? { get { return nil} }
-    public var eventPreferedDuration: TimeSize? { get { return nil } }
     
     public var avoidPeriods: [DTTimePeriod]? {
         
@@ -66,5 +56,4 @@ public struct AvoidCalendarEvents: RuleType {
             return periods
         }
     }
-    
 }

@@ -15,7 +15,7 @@ public class Node: NSObject, NSCoding, NSCopying {
     // MARK: Properties
     
     public var text = ""
-    public var rules = [RuleType]?()
+    public var rules = [Rule]?()
     public var type = NodeType.Action
     public var leftTransitionNode: Node?
     public var rightTransitionNode: Node?
@@ -24,7 +24,7 @@ public class Node: NSObject, NSCoding, NSCopying {
     
     // MARK: Initializers
     
-    public init(text: String, type: NodeType = .Action, rules:[RuleType]?) {
+    public init(text: String, type: NodeType = .Action, rules:[Rule]?) {
         
         self.text = text
         self.type = type
@@ -53,7 +53,7 @@ public class Node: NSObject, NSCoding, NSCopying {
     public required init?(coder aDecoder: NSCoder) {
         
         text = aDecoder.decodeObjectForKey(SerializationKeys.text) as! String
-        rules = aDecoder.decodeObjectForKey(SerializationKeys.rules) as? [RuleType]
+        rules = aDecoder.decodeObjectForKey(SerializationKeys.rules) as? [Rule]
         type = NodeType(rawValue: aDecoder.decodeIntegerForKey(SerializationKeys.type))!
         UUID = aDecoder.decodeObjectForKey(SerializationKeys.uuid) as! NSUUID
         leftTransitionNode = aDecoder.decodeObjectForKey(SerializationKeys.leftTransitionNode) as? Node

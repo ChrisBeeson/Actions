@@ -86,19 +86,29 @@ extension DTTimePeriodCollection {
     }
 }
 
-/*
+
 extension DTTimePeriodChain {
     
     func voidPeriods() -> [DTTimePeriod]? {
         
+        let periods = self.periods()!
+        if periods.count < 2 { return nil }
         
-        if self.periods.count < 2 { return nil }
+        var voidPeriods = [DTTimePeriod]()
         
-        
-        for period in self.periods {
+        for var i = 0 ; i < periods.count ; ++i {
             
+            if i < (periods.count - 1) {
+                
+                if period[i].endDate!.isEarlierThan(period[i+1]) {
+                    
+                    let voidPeriod:DTTimePeriod()
+                    voidPeriod.StartDate = per
+                    
+                }
+                
+            }
             
         }
     }
 }
-*/
