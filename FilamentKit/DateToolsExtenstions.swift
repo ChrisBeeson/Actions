@@ -42,52 +42,46 @@ extension DTTimePeriodGroup {
 
 extension DTTimePeriodCollection {
     
-    func flatten() -> DTTimePeriodChain? {
+    func flatten() -> DTTimePeriodCollection? {
         
         self.sortByStartAscending()
         
-        guard var periods = self.periods() else { return nil }
+        guard let periods = self.periods() else { return nil }
         if periods.count < 1 { return nil}
     
         var flattenedPeriods = [DTTimePeriod]()
         let flatdate = DTTimePeriod()
-
-        flatdate.StartDate = periods[0].StartDate!
-        flatdate.EndDate = periods[0].EndDate!
         
-        periods.removeAtIndex(0)
+        // flatdate.StartDate = periods[0].StartDate!
+        //flatdate.EndDate = periods[0].EndDate!
         
         for period in periods {
             
-            // print("StartDate: (/period.startDate) EndDate: (/period.startDate)")
+            guard let periodStart = period.StartDate, let periodEnd = period.EndDate else { continue }
+
+            if !flatdate.hasStartDate() { flatdate.StartDate = periodStart }
+            if !flatdate.hasEndDate() { flatdate.EndDate = periodEnd }
             
-            // This isn't working cos the dates are equal!
-            
-            
-            if period.StartDate!.isEarlierThan(flatdate.EndDate) && period.EndDate!.isGreaterThan(flatdate.EndDate) {
+            if periodStart.isEarlierThanOrEqualTo(flatdate.EndDate) && periodEnd.isGreaterThanOrEqualTo(flatdate.EndDate) {
                 
-                flatdate.EndDate = period.EndDate
+                flatdate.EndDate = periodEnd
                 
             } else {
                 
-                flattenedPeriods.append(flatdate.copy())    //copy?
-            
-                flatdate.StartDate = period.StartDate!
-                flatdate.EndDate = period.EndDate!
+                flattenedPeriods.append(flatdate.copy())
+                flatdate.StartDate = periodStart
+                flatdate.EndDate = periodEnd
             }
         }
         
         flattenedPeriods.append(flatdate.copy())
         
-        let chain = DTTimePeriodChain()
+        let chain = DTTimePeriodCollection()
         for flat in flattenedPeriods { chain.addTimePeriod(flat) }
         
         return chain
     }
-}
 
-
-extension DTTimePeriodChain {
     
     func voidPeriods() -> [DTTimePeriod]? {
         
@@ -100,15 +94,17 @@ extension DTTimePeriodChain {
             
             if i < (periods.count - 1) {
                 
-                if period[i].endDate!.isEarlierThan(period[i+1]) {
+                if periods[i].EndDate!.isEarlierThan(periods[i+1].StartDate!) {
                     
-                    let voidPeriod:DTTimePeriod()
-                    voidPeriod.StartDate = per
+                    let voidPeriod = DTTimePeriod()
+                    voidPeriod.StartDate = periods[i].EndDate!.dateByAddingSeconds(1)
+                    voidPeriod.EndDate = periods[i+1].StartDate!.dateBySubtractingSeconds(1)
                     
+                    voidPeriods.append(voidPeriod)
                 }
-                
             }
-            
         }
+        
+        return voidPeriods
     }
 }

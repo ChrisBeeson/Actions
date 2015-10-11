@@ -34,7 +34,7 @@ class DateToolExtensionsTests: XCTestCase {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
-        // create 1 event from 3 overlaps
+        // Create 1 event from 3 overlaps
         
         let p1 = DTTimePeriod()
         p1.StartDate = dateFormatter.dateFromString("2015-1-1 10:00:00")
@@ -58,23 +58,41 @@ class DateToolExtensionsTests: XCTestCase {
         p5.StartDate = dateFormatter.dateFromString("2015-1-1 10:05:10")
         p5.EndDate = dateFormatter.dateFromString("2015-1-1 10:07:00")
         
+        // a lone period
+        
+        let p6 = DTTimePeriod()
+        p6.StartDate = dateFormatter.dateFromString("2015-1-2 12:00:00")
+        p6.EndDate = dateFormatter.dateFromString("2015-1-2 13:00:00")
+        
+        // just another overlap for good luck
+        
+        let p7 = DTTimePeriod()
+        p7.StartDate = dateFormatter.dateFromString("2015-10-2 12:00:00")
+        p7.EndDate = dateFormatter.dateFromString("2015-10-2 13:00:00")
+        
+        let p8 = DTTimePeriod()
+        p7.StartDate = dateFormatter.dateFromString("2015-10-2 12:10:00")
+        p7.EndDate = dateFormatter.dateFromString("2015-10-2 13:40:00")
+        
+        
         let collection = DTTimePeriodCollection()
         collection.addTimePeriod(p1)
         collection.addTimePeriod(p2)
         collection.addTimePeriod(p3)
         collection.addTimePeriod(p4)
         collection.addTimePeriod(p5)
-        collection.updateVariables()
+        collection.addTimePeriod(p6)
+        collection.addTimePeriod(p7)
+        collection.addTimePeriod(p8)
         
         let flat = collection.flatten()
+        print(flat?.periods()!)
         
-        XCTAssert(flat?.periods()!.count == 2 , "Fail")
+        XCTAssert(flat?.periods()!.count == 4 , "Fail Timespans Flatten")
         
-        
-        let void = flat.voidPeriods()
-        
+        let void = flat!.voidPeriods()
+        XCTAssert(void!.count == 3 , "Failed find void periods")
     }
-    
     
     
     func testExample() {
