@@ -42,12 +42,12 @@ extension DTTimePeriodGroup {
 
 extension DTTimePeriodCollection {
     
-    func flatten() -> DTTimePeriodCollection? {
+    func flatten() {
         
         self.sortByStartAscending()
         
-        guard let periods = self.periods() else { return nil }
-        if periods.count < 1 { return nil}
+        guard let periods = self.periods() else { return }
+        if periods.count < 1 { return }
     
         var flattenedPeriods = [DTTimePeriod]()
         let flatdate = DTTimePeriod()
@@ -76,10 +76,11 @@ extension DTTimePeriodCollection {
         
         flattenedPeriods.append(flatdate.copy())
         
-        let chain = DTTimePeriodCollection()
-        for flat in flattenedPeriods { chain.addTimePeriod(flat) }
+        // delete all periods
+        for var i = 0 ; i < periods.count ; i++ { self.removeTimePeriodAtIndex(0) }
         
-        return chain
+        // add flattened periods to self
+        for flat in flattenedPeriods { self.addTimePeriod(flat) }
     }
 
     

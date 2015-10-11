@@ -41,10 +41,10 @@ public class Solver {
         var averageMaxDuration: TimeSize?
         var averageMinDuration: TimeSize?
         var preferedDuration: TimeSize?
-        var avoidPeriods = [DTTimePeriod]()
+        var avoidPeriods = DTTimePeriodCollection()
         
         
-        // Step 1. Average out all the rules
+        // Step 1. Average out / Combine all the rules
         
         for var rule in rules {
         
@@ -80,11 +80,29 @@ public class Solver {
             
             // Avoid periods
             
-            if rule.avoidPeriods != nil { for avoidPeriod in rule.avoidPeriods! { avoidPeriods.append (avoidPeriod) } }
+            if rule.avoidPeriods != nil { for avoidPeriod in rule.avoidPeriods! { avoidPeriods.addTimePeriod(avoidPeriod) } }
          }
         
         
-        //
+        //  Step 2. Invert the avoid periods to free times.
+        
+        avoidPeriods.flatten()
+        
+        let freePeriods = avoidPeriods.voidPeriods()
+        
+        if freePeriods == nil || freePeriods!.count == 0 { return (false, nil) }
+        
+        // Remove any periods that are less then a Min duration (using the ave startDate in the start window)
+        
+        
+        
+        
+        
+        
+        
+        // let freeTimePeriods = avoidPeriods.
+        
+        
         
         
         // Step 2. Convert all avoid periods into a collection

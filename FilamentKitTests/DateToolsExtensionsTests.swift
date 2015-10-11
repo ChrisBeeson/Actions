@@ -85,13 +85,11 @@ class DateToolExtensionsTests: XCTestCase {
         collection.addTimePeriod(p7)
         collection.addTimePeriod(p8)
         
-        let flat = collection.flatten()
-        print(flat?.periods()!)
+        collection.flatten()
+        XCTAssert(collection.periods()!.count == 4 , "Failed Flattening Timespans")
         
-        XCTAssert(flat?.periods()!.count == 4 , "Fail Timespans Flatten")
-        
-        let void = flat!.voidPeriods()
-        XCTAssert(void!.count == 3 , "Failed find void periods")
+        let void = collection.voidPeriods()
+        XCTAssert(void!.count == 3 , "Failed find the correct amount of Void Periods")
     }
     
     
