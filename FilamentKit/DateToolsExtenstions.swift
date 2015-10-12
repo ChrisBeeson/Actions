@@ -24,6 +24,28 @@ extension NSDate {
         case .Year:return self.dateByAddingYears(size.amount)
         }
     }
+    
+    func dateBySubtractingTimeSize(size: TimeSize) -> NSDate {
+        
+        switch size.unit {
+            
+        case .Second: return self.dateBySubtractingSeconds(size.amount)
+        case .Minute: return self.dateBySubtractingMinutes(size.amount)
+        case .Hour: return self.dateBySubtractingHours(size.amount)
+        case .Day: return self.dateBySubtractingDays(size.amount)
+        case .Week: return self.dateBySubtractingWeeks(size.amount)
+        case .Month: return self.dateBySubtractingMonths(size.amount)
+        case .Year:return self.dateBySubtractingYears(size.amount)
+        }
+    }
+    
+    class func dateFromString(string: String) -> NSDate {
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.timeZone = NSTimeZone(name: "UTC")
+        return dateFormatter.dateFromString(string)!
+    }
 }
 
 
@@ -51,9 +73,6 @@ extension DTTimePeriodCollection {
     
         var flattenedPeriods = [DTTimePeriod]()
         let flatdate = DTTimePeriod()
-        
-        // flatdate.StartDate = periods[0].StartDate!
-        //flatdate.EndDate = periods[0].EndDate!
         
         for period in periods {
             
@@ -84,12 +103,12 @@ extension DTTimePeriodCollection {
     }
 
     
-    func voidPeriods() -> [DTTimePeriod]? {
+    func voidPeriods() -> DTTimePeriodCollection? {
         
-        let periods = self.periods()!
+        guard let periods = self.periods() else { return nil }
         if periods.count < 2 { return nil }
         
-        var voidPeriods = [DTTimePeriod]()
+        let voidPeriods = DTTimePeriodCollection()
         
         for var i = 0 ; i < periods.count ; ++i {
             
@@ -101,7 +120,7 @@ extension DTTimePeriodCollection {
                     voidPeriod.StartDate = periods[i].EndDate!.dateByAddingSeconds(1)
                     voidPeriod.EndDate = periods[i+1].StartDate!.dateBySubtractingSeconds(1)
                     
-                    voidPeriods.append(voidPeriod)
+                    voidPeriods.addTimePeriod(voidPeriod)
                 }
             }
         }

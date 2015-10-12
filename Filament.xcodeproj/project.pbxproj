@@ -14,7 +14,7 @@
 		4724651D1BBFE623004DE4DE /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574741B9A689B00493CA0 /* Node.swift */; settings = {ASSET_TAGS = (); }; };
 		4724651E1BBFE647004DE4DE /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473EAEE01BA3A7D200AFEA2A /* CalendarManager.swift */; settings = {ASSET_TAGS = (); }; };
 		4724651F1BBFE64B004DE4DE /* Solver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F2FBC31BA8CFEE0041B291 /* Solver.swift */; settings = {ASSET_TAGS = (); }; };
-		472465201BBFE652004DE4DE /* EventStartTimeFromNow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8343519C1BA297650094428B /* EventStartTimeFromNow.swift */; settings = {ASSET_TAGS = (); }; };
+		472465201BBFE652004DE4DE /* EventStartsInTimeFromNow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8343519C1BA297650094428B /* EventStartsInTimeFromNow.swift */; settings = {ASSET_TAGS = (); }; };
 		472465211BBFE656004DE4DE /* EventDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9561BB54B82000CAC61 /* EventDuration.swift */; settings = {ASSET_TAGS = (); }; };
 		472465221BBFE65D004DE4DE /* AvoidCalendarEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9581BB54EEA000CAC61 /* AvoidCalendarEvents.swift */; settings = {ASSET_TAGS = (); }; };
 		472465231BBFE665004DE4DE /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574761B9A68AC00493CA0 /* Sequence.swift */; settings = {ASSET_TAGS = (); }; };
@@ -41,7 +41,7 @@
 		47ACA9591BB54EEA000CAC61 /* AvoidCalendarEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9581BB54EEA000CAC61 /* AvoidCalendarEvents.swift */; settings = {ASSET_TAGS = (); }; };
 		47D6165B1B9C1FAA00F72155 /* SequenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D6165A1B9C1FAA00F72155 /* SequenceTests.swift */; };
 		47F2FBC41BA8CFEE0041B291 /* Solver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F2FBC31BA8CFEE0041B291 /* Solver.swift */; settings = {ASSET_TAGS = (); }; };
-		8343519D1BA297650094428B /* EventStartTimeFromNow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8343519C1BA297650094428B /* EventStartTimeFromNow.swift */; settings = {ASSET_TAGS = (); }; };
+		8343519D1BA297650094428B /* EventStartsInTimeFromNow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8343519C1BA297650094428B /* EventStartsInTimeFromNow.swift */; settings = {ASSET_TAGS = (); }; };
 		83900D561BA6398F004838FD /* Instance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83900D551BA6398F004838FD /* Instance.swift */; settings = {ASSET_TAGS = (); }; };
 		83900D591BA785FA004838FD /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83900D581BA785FA004838FD /* Event.swift */; settings = {ASSET_TAGS = (); }; };
 		83DDAA4F1B997C9A001A4DBE /* SystemTrayMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83DDAA4E1B997C9A001A4DBE /* SystemTrayMenu.xib */; };
@@ -52,6 +52,7 @@
 		83F6B9701B994652002A5AAF /* FilamentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F6B96F1B994652002A5AAF /* FilamentTests.swift */; };
 		83F6B97A1B995683002A5AAF /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 83F6B9791B995683002A5AAF /* Podfile */; };
 		83F9E92B1BA18739006282B5 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 83F9E92A1BA18739006282B5 /* .gitignore */; settings = {ASSET_TAGS = (); }; };
+		83FE26051BCB8FC200AC20B5 /* SolverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FE26031BCB8FB700AC20B5 /* SolverTests.swift */; settings = {ASSET_TAGS = (); }; };
 		A434260737AE2B1831E7CA6A /* Pods_Filament.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87F8CB0AFDC603CD8046EEF /* Pods_Filament.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -125,7 +126,7 @@
 		47ACA9581BB54EEA000CAC61 /* AvoidCalendarEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvoidCalendarEvents.swift; sourceTree = "<group>"; };
 		47D6165A1B9C1FAA00F72155 /* SequenceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceTests.swift; sourceTree = "<group>"; };
 		47F2FBC31BA8CFEE0041B291 /* Solver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Solver.swift; sourceTree = "<group>"; };
-		8343519C1BA297650094428B /* EventStartTimeFromNow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventStartTimeFromNow.swift; sourceTree = "<group>"; };
+		8343519C1BA297650094428B /* EventStartsInTimeFromNow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventStartsInTimeFromNow.swift; sourceTree = "<group>"; };
 		83900D551BA6398F004838FD /* Instance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instance.swift; sourceTree = "<group>"; };
 		83900D581BA785FA004838FD /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		83DDAA4A1B9978CF001A4DBE /* Filament-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Filament-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -141,6 +142,7 @@
 		83F6B96F1B994652002A5AAF /* FilamentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilamentTests.swift; sourceTree = "<group>"; };
 		83F6B9791B995683002A5AAF /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		83F9E92A1BA18739006282B5 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		83FE26031BCB8FB700AC20B5 /* SolverTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolverTests.swift; sourceTree = "<group>"; };
 		B87F8CB0AFDC603CD8046EEF /* Pods_Filament.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Filament.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C075D0CB800B65E1F4626723 /* Pods-Filament.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Filament.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Filament/Pods-Filament.debug.xcconfig"; sourceTree = "<group>"; };
 		F197F4F4D9D4E30D0139E7DB /* Pods-Filament.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Filament.release.xcconfig"; path = "Pods/Target Support Files/Pods-Filament/Pods-Filament.release.xcconfig"; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 		473574651B9A687400493CA0 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				83FE26031BCB8FB700AC20B5 /* SolverTests.swift */,
 				472465171BBFD0DA004DE4DE /* DateToolsExtensionsTests.swift */,
 				473EAEE41BA3AD0300AFEA2A /* RuleTests.swift */,
 				47D6165A1B9C1FAA00F72155 /* SequenceTests.swift */,
@@ -290,7 +293,7 @@
 				47ACA9551BB54658000CAC61 /* Helpers */,
 				47F2FBC31BA8CFEE0041B291 /* Solver.swift */,
 				473574781B9A68BE00493CA0 /* Rule.swift */,
-				8343519C1BA297650094428B /* EventStartTimeFromNow.swift */,
+				8343519C1BA297650094428B /* EventStartsInTimeFromNow.swift */,
 				47ACA9561BB54B82000CAC61 /* EventDuration.swift */,
 				47ACA9581BB54EEA000CAC61 /* AvoidCalendarEvents.swift */,
 			);
@@ -605,7 +608,7 @@
 				473574841B9A91A200493CA0 /* ListPresenterAlgorithms.swift in Sources */,
 				47F2FBC41BA8CFEE0041B291 /* Solver.swift in Sources */,
 				83900D561BA6398F004838FD /* Instance.swift in Sources */,
-				8343519D1BA297650094428B /* EventStartTimeFromNow.swift in Sources */,
+				8343519D1BA297650094428B /* EventStartsInTimeFromNow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,11 +626,12 @@
 				47D6165B1B9C1FAA00F72155 /* SequenceTests.swift in Sources */,
 				472465231BBFE665004DE4DE /* Sequence.swift in Sources */,
 				472465221BBFE65D004DE4DE /* AvoidCalendarEvents.swift in Sources */,
+				83FE26051BCB8FC200AC20B5 /* SolverTests.swift in Sources */,
 				473574691B9A687400493CA0 /* FilamentKitTests.swift in Sources */,
 				4724651E1BBFE647004DE4DE /* CalendarManager.swift in Sources */,
 				472465191BBFD0DA004DE4DE /* DateToolsExtensionsTests.swift in Sources */,
 				4724651D1BBFE623004DE4DE /* Node.swift in Sources */,
-				472465201BBFE652004DE4DE /* EventStartTimeFromNow.swift in Sources */,
+				472465201BBFE652004DE4DE /* EventStartsInTimeFromNow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

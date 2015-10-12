@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import DateTools
 import FilamentKit
 
 class RuleTests: XCTestCase {
@@ -19,9 +20,11 @@ class RuleTests: XCTestCase {
         
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
+        /*
         let actionNodes = [Node(text: "Action 1", type: .Action, rules: nil), Node(text: "Action 2", type: .Action, rules: nil)]
         
         sequence = Sequence(name: "Sequence Test", actionNodes: actionNodes)
+*/
     }
     
     override func tearDown() {
@@ -30,19 +33,18 @@ class RuleTests: XCTestCase {
     }
     
     
-    func testFixedDurationRule() {
-        
-        // There are two actions
-        
-        /*
-        
-        let instance = sequence.instance("Instance 1")
-        
-        instance.startDate = NSDate(timeIntervalSinceNow: 0)
- 
-        instance.process()
 
-*/
+    
+    func testEventStartsInTimeFromNow() {
         
+        // Event starts in 1 hour, give or take 15 min
+        
+        var rule = EventStartsInTimeFromNow()
+        rule.inputDate = NSDate.dateFromString("2015-1-1 10:00:00")
+        XCTAssert(rule.eventPreferedStartDate!.isEqualToDate(NSDate.dateFromString("2015-1-1 11:00:00")))
+        
+        let window = rule.eventStartTimeWindow!
+        XCTAssert(window.StartDate.isEqualToDate(NSDate.dateFromString("2015-1-1 10:45:00")))
+        XCTAssert(window.EndDate.isEqualToDate(NSDate.dateFromString("2015-1-1 11:15:00")))
     }
 }

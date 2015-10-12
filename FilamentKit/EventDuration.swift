@@ -19,11 +19,6 @@ public struct EventDuration: Rule {
     public var conflictingRules: [Rule]? { return nil }
     public var inputDate: NSDate?
     
-    public init(inputDate: NSDate) {
-        
-        self.inputDate = inputDate;
-    }
-    
     
     // Specific user controls
     

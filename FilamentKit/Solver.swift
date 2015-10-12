@@ -34,21 +34,21 @@ Timeslot found                         |----|
 
 public class Solver {
     
-    public func calcuateEventPeriod(startingDate: NSDate, rules:[Rule]) -> (solved: Bool, period:DTTimePeriod?) {
+    public class func calculateEventPeriod(inputDate: NSDate, rules:[Rule]) -> (solved: Bool, period:DTTimePeriod?) {
         
         var averageStartWindow: DTTimePeriod?
         var preferedStartTime: NSDate?
         var averageMaxDuration: TimeSize?
         var averageMinDuration: TimeSize?
         var preferedDuration: TimeSize?
-        var avoidPeriods = DTTimePeriodCollection()
+        let avoidPeriods = DTTimePeriodCollection()
         
         
         // Step 1. Average out / Combine all the rules
         
         for var rule in rules {
         
-            rule.inputDate = startingDate
+            rule.inputDate = inputDate
             
             // Average event durations
             
@@ -75,10 +75,10 @@ public class Solver {
             //TODO: Average dates & durations
             
             if (rule.eventPreferedStartDate != nil) { preferedStartTime = rule.eventPreferedStartDate! }
-            if (rule.eventPreferedStartDate != nil) {preferedDuration = rule.eventPreferedDuration }
+            if (rule.eventPreferedStartDate != nil) { preferedDuration = rule.eventPreferedDuration }
             
             
-            // Avoid periods
+            // Combine Avoid periods
             
             if rule.avoidPeriods != nil { for avoidPeriod in rule.avoidPeriods! { avoidPeriods.addTimePeriod(avoidPeriod) } }
          }
@@ -88,61 +88,34 @@ public class Solver {
         
         avoidPeriods.flatten()
         
-        let freePeriods = avoidPeriods.voidPeriods()
+        var freePeriods = avoidPeriods.voidPeriods()
         
-        if freePeriods == nil || freePeriods!.count == 0 { return (false, nil) }
-        
-        // Remove any periods that are less then a Min duration (using the ave startDate in the start window)
+        if freePeriods == nil { freePeriods = DTTimePeriodCollection() }
         
         
+        // Lets go the easy way first: does our preferred window fit into a free period?
         
+        if preferedStartTime != nil && preferedDuration != nil {
         
-        
-        
-        
-        // let freeTimePeriods = avoidPeriods.
-        
-        
-        
-        
-        // Step 2. Convert all avoid periods into a collection
-        
-        //let avoids = DTTimePeriodCollection().addPeriods(avoidPeriods)
-        
-        
-        // Step 3. See if prefered Start-time and duration does not insect with any avoid periods.  If it doesn't Great!  Thats it.
+            let endDate = preferedStartTime?.dateByAddTimeSize(preferedDuration!)
+            let preferedPeriod = DTTimePeriod(startDate: preferedStartTime!, endDate: endDate)
+            
+            if let pref = freePeriods?.periodsIntersectedByPeriod(preferedPeriod) {
+            
+                if pref.count() == 1 { return (true, preferedPeriod) }  // Woot!
+            }
+        }
         
         
         
-        /*
-        let perferedPeriod = DTTimePeriod(size: preferedDuration, startingAt: preferedStartTime)
-        var collidingperiods = avoids.periodsInside(preferedPeriod)
+        // Ok so it's more complicated...
         
-        if collidingperiods.count == 0  { return (true, preferedPeriod) }
-        */
+        // First, lets remove any periods that are less then Min duration (using the ave startDate in the start window)
         
-        
-        
-        // Lets find out what periods are free...
-        
-        
-        // DTTimePeriodCollection.voidPeriods
-        
-        
-        
-        // Remove periods that are two small, or out of our window.
-        
-        // Then find the period that is closest to our perfered startdate.
-        
-        
-        
-        
-        
-        
-        
-        // Step 4. Else Switch through - trying to solve simple issues, such as if it was 10 mins later it would fit without intercepting..
-        
-        // Step 4. Doesn't fit around the prefered time at all.. Find the closest hole to fit it in from the preferred Start time, working from the beginning of the window.
+        for (index, free) in freePeriods!.periods()!.enumerate() {
+            
+            if Int(free.durationInSeconds()) < averageMinDuration?.inSeconds() { freePeriods!.removeTimePeriodAtIndex(index) }
+        }
         
         
         return (false,nil)
@@ -174,7 +147,6 @@ public class Solver {
                 
                 
             }
-            
         }
         
         return false
