@@ -10,12 +10,12 @@ import Foundation
 
 public enum NodeType: Int { case Action = 0, Transition, All, None }
 
-public class Node: NSObject, NSCoding, NSCopying {
+public class Node: NSObject {
     
     // MARK: Properties
     
     public var text = ""
-    public var rules = [Rule]?()
+    public var rules = [Rule]()
     public var type = NodeType.Action
     public var leftTransitionNode: Node?
     public var rightTransitionNode: Node?
@@ -28,14 +28,24 @@ public class Node: NSObject, NSCoding, NSCopying {
         
         self.text = text
         self.type = type
-        self.rules = rules
+        
+        if let incomingRules = rules {
+             for rule in incomingRules { self.rules.append(rule) }
+        }
+        
+        // Add default rules
+        
+        switch type {
+            case .Action: self.rules.append(EventDuration())
+            case .Transition: self.rules.append(EventStartsInTimeFromNow())
+            default: break
+        }
         
         super.init()
     }
     
     
     public override init() {
-        
         super.init()
     }
     
@@ -50,16 +60,17 @@ public class Node: NSObject, NSCoding, NSCopying {
         static let rightTransitionNode = "rightTransitionNode"
     }
     
+    /*
     public required init?(coder aDecoder: NSCoder) {
         
         text = aDecoder.decodeObjectForKey(SerializationKeys.text) as! String
-        rules = aDecoder.decodeObjectForKey(SerializationKeys.rules) as? [Rule]
+        rules = aDecoder.decodeObjectForKey(SerializationKeys.rules) as! [Rule]
         type = NodeType(rawValue: aDecoder.decodeIntegerForKey(SerializationKeys.type))!
         UUID = aDecoder.decodeObjectForKey(SerializationKeys.uuid) as! NSUUID
         leftTransitionNode = aDecoder.decodeObjectForKey(SerializationKeys.leftTransitionNode) as? Node
         rightTransitionNode = aDecoder.decodeObjectForKey(SerializationKeys.rightTransitionNode) as? Node
     }
-    
+    */
     public func encodeWithCoder(encoder: NSCoder) {
         
         encoder.encodeObject(text, forKey: SerializationKeys.text)
