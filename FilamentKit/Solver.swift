@@ -127,7 +127,7 @@ public class Solver {
                 return (true, preferedPeriod)
             }
             
-
+            
             // ok so the free period is wider than the min spec.
             // is it eariler (left) or after (right)? the prefered date...
             
@@ -246,18 +246,12 @@ public class Solver {
         
         switch index {
             
-        case 0:
-            result = .StartingAction
-            
-        case let x where x == events.count-1:
-            result = .EndingAction
-            
-        case let x where x.isEven():
-            result = .Action
-            
-        default:
-            result = .Transition
+        case 0: result = .StartingAction
+        case let x where x == events.count-1: result = .EndingAction
+        case let x where x.isEven(): result = .Action
+        default: result = .Transition
         }
+        
         return result
     }
 }

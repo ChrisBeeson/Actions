@@ -11,8 +11,7 @@ import EventKit
 
 public class Event: NSObject {
     
-    public var node: Node
-    
+    private var parentNode: Node?
     private var caledarEvent: EKEvent?
     
     public var startDate: NSDate? {
@@ -22,9 +21,9 @@ public class Event: NSObject {
     
     public var endDate: NSDate?
     
-    public init(node: Node) {
+    public init(parentNode: Node?, startDate:NSDate, endDate:NSDate) {
         
-        self.node = node
+        self.parentNode = parentNode
     }
     
     public func update() {

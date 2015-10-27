@@ -10,7 +10,6 @@ import Foundation
 
 public class Sequence: NSObject, NSCopying, NSCoding {
     
-    
     // MARK: Properties
     
     public var name: String = ""
@@ -22,7 +21,6 @@ public class Sequence: NSObject, NSCopying, NSCoding {
     // MARK: Initializers
     
     override public init () {
-        
         super.init()
     }
     
@@ -176,12 +174,10 @@ public class Sequence: NSObject, NSCopying, NSCoding {
     }
     
     
-    public func newInstance(startDate: NSDate) -> Instance {
+    public func newInstance(startDate: NSDate) -> Instance {    // Sequence owns this.. The name is confusing.
         
         let instance = Instance(startDate: startDate, sequence: self)
         instances.append(instance)
-        instance.update()
-        
         return instance
     }
     

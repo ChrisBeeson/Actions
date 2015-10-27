@@ -18,22 +18,37 @@ public class Instance: NSObject {
     
     private var events = [Event]()
     
+
+    
     public init(startDate: NSDate, sequence: Sequence) {
         
         self.startDate = startDate
         self.sequence = sequence
         super.init()
-        
-        update()
     }
     
-    public func update() {
+    
+    public func getEvents() -> [Event]  {
+        
+        update()
+        
+        return self.events
+    }
+    
+    
+    
+    private func update() {
         
         precondition(sequence.validSequence(), "Trying to process an instance of a sequence that is not valid")
         
         // 1. make sure events[] == sequence array.
         
-        validateEvents()
+        //validateEvents()
+        
+        // for now lets just generate Events for 
+        
+        
+        
         
         
         

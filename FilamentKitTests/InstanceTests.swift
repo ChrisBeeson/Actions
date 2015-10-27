@@ -22,15 +22,16 @@ class InstanceTests: XCTestCase {
 
     func simpleEventGeneration() {
         
-        // Build Sequence
-        
-        let Action1 = Node(text: "Action 1", type: .Action, rules: nil)  // Actions come with default duration
-        
-        
+        // We just use the default rules for all actions and transistions.
         
         let actionNodes = [Node(text: "Action 1", type: .Action, rules: nil), Node(text: "Action 2", type: .Action, rules: nil), Node(text: "Action 3", type: .Action, rules: nil)]
         
-        sequence = Sequence(name: "Sequence Test", actionNodes: actionNodes)
+        let sequence = Sequence(name: "Sequence Test", actionNodes: actionNodes)
+        let instance = sequence.newInstance(NSDate.dateFromString("2015-1-1 10:00:00"))
+        let events = instance.getEvents()
+        
+        
+        
         
         
         // This is an example of a functional test case.
