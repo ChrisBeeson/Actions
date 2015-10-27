@@ -48,21 +48,22 @@ public protocol Rule {
     
     var eventStartTimeWindow: DTTimePeriod? {get}
     var eventPreferedStartDate: NSDate? {get}
-    
-    var eventMaxDuration: TimeSize? {get}
+    var eventDuration: TimeSize? {get}
     var eventMinDuration: TimeSize? {get}
-    var eventPreferedDuration: TimeSize? {get}
     
     var avoidPeriods: [DTTimePeriod]? {get}
 }
 
 extension Rule {
     
+    public var name: String {get {return ""} }
+    public var availableToNodeType:NodeType {get {return NodeType.All} }
+    public var conflictingRules: [Rule]? {get {return nil} }
+    
     public var eventStartTimeWindow: DTTimePeriod? {get {return nil} }
     public var eventPreferedStartDate: NSDate? {get {return nil} }
-    public var eventMaxDuration: TimeSize? { get { return nil } }
+    public var eventDuration: TimeSize? { get { return nil } }
     public var eventMinDuration: TimeSize? { get { return nil } }
-    public var eventPreferedDuration: TimeSize? { get { return nil } }
     public var avoidPeriods: [DTTimePeriod]? { get { return nil } }
 }
 

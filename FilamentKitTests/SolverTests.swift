@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import DateTools
 
 class SolverTests: XCTestCase {
 
@@ -22,32 +23,74 @@ class SolverTests: XCTestCase {
 
     func testCalculateEventPeriod() {
         
-        // Simple
+        // Simple Just fits in the hole
         // Event starts in 1 hour, give or take 15 min
         // Event Dur is 30, min 15
         
-        let rules:[Rule] = [EventDuration(), EventStartsInTimeFromNow()]
+        var rules:[Rule] = [EventDuration(), EventStartsInTimeFromNow()]
         
-        let output = Solver.calculateEventPeriod(NSDate.dateFromString("2015-1-1 10:00:00"), rules: rules)
+        var output = Solver.calculateEventPeriod(NSDate.dateFromString("2015-1-1 10:00:00"), rules: rules)
         XCTAssert(output.solved)
-        XCTAssert(output.period!.StartDate!.isEqualToDate(NSDate.dateFromString("2015-1-1 10:00:00")))
-        XCTAssert(output.period!.EndDate!.isEqualToDate(NSDate.dateFromString("2015-1-1 10:30:00")))
+        XCTAssert(output.period!.StartDate!.isEqualToDate(NSDate.dateFromString("2015-1-1 11:00:00")))
+        XCTAssert(output.period!.EndDate!.isEqualToDate(NSDate.dateFromString("2015-1-1 11:30:00")))
+        
+        // Harder there is something right at our prefered period, but still will fit the average size
+        
+        var avoid = DummyAvoids()
+        avoid.avoidPeriods = [DTTimePeriod(startDate: NSDate.dateFromString("2015-1-1 11:00:00"), endDate: NSDate.dateFromString("2015-1-1 11:10:00"))]
+        rules.append(avoid)
+        
+        output = Solver.calculateEventPeriod(NSDate.dateFromString("2015-1-1 10:00:00"), rules: rules)
+        XCTAssert(output.solved)
+        XCTAssert(output.period!.StartDate!.isEqualToDate(NSDate.dateFromString("2015-1-1 11:10:00")))
+        XCTAssert(output.period!.EndDate!.isEqualToDate(NSDate.dateFromString("2015-1-1 11:40:00")))
+        
+        
+        // even harder
+        
+        var avoid2 = DummyAvoids()
+        avoid2.avoidPeriods = [DTTimePeriod(startDate: NSDate.dateFromString("2015-1-1 11:25:00"), endDate: NSDate.dateFromString("2015-1-1 11:30:00"))]
+        rules.append(avoid2)
+        
+        output = Solver.calculateEventPeriod(NSDate.dateFromString("2015-1-1 10:00:00"), rules: rules)
+        XCTAssert(output.solved)
+        XCTAssert(output.period!.StartDate!.isEqualToDate(NSDate.dateFromString("2015-1-1 11:10:00")))
+        XCTAssert(output.period!.EndDate!.isEqualToDate(NSDate.dateFromString("2015-1-1 11:25:00")))
+        
+        // impossible
+        
+        var avoid3 = DummyAvoids(), avoid4 = DummyAvoids(), avoid5 = DummyAvoids()
+        avoid3.avoidPeriods = [DTTimePeriod(startDate: NSDate.dateFromString("2015-1-1 11:35:00"), endDate: NSDate.dateFromString("2015-1-1 11:38:00"))]
+        rules.append(avoid3)
+
+        avoid4.avoidPeriods = [DTTimePeriod(startDate: NSDate.dateFromString("2015-1-1 10:50:00"), endDate: NSDate.dateFromString("2015-1-1 10:52:00"))]
+        rules.append(avoid4)
+        
+        avoid5.avoidPeriods = [DTTimePeriod(startDate: NSDate.dateFromString("2015-1-1 11:15:00"), endDate: NSDate.dateFromString("2015-1-1 11:20:00"))]
+        rules.append(avoid5)
+        
+        output = Solver.calculateEventPeriod(NSDate.dateFromString("2015-1-1 10:00:00"), rules: rules)
+        XCTAssert(output.solved == false)
     }
 
+    /*
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measureBlock {
             // Put the code you want to measure the time of here.
         }
     }
+*/
 
 }
 
-/*
+
 
 public struct DummyAvoids: Rule {
 
     public var avoidPeriods: [DTTimePeriod]?
     
+    public var inputDate: NSDate? {get { return NSDate.distantPast() } set {  }}
+    
 }
-*/
+

@@ -28,7 +28,6 @@ public struct EventDuration: Rule {
     
     // Rule out values
     
-    public var eventMaxDuration: TimeSize? { get { return duration } }
     public var eventMinDuration: TimeSize? { get { return minDuration } }
-    public var eventPreferedDuration: TimeSize? { get { return duration } }
+    public var eventDuration: TimeSize? { get { return duration } }
 }

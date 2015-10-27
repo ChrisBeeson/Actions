@@ -14,7 +14,6 @@ extension NSDate {
     func dateByAddTimeSize(size: TimeSize) -> NSDate {
         
         switch size.unit {
-            
         case .Second: return self.dateByAddingSeconds(size.amount)
         case .Minute: return self.dateByAddingMinutes(size.amount)
         case .Hour: return self.dateByAddingHours(size.amount)
@@ -28,7 +27,6 @@ extension NSDate {
     func dateBySubtractingTimeSize(size: TimeSize) -> NSDate {
         
         switch size.unit {
-            
         case .Second: return self.dateBySubtractingSeconds(size.amount)
         case .Minute: return self.dateBySubtractingMinutes(size.amount)
         case .Hour: return self.dateBySubtractingHours(size.amount)
@@ -48,6 +46,10 @@ extension NSDate {
     }
 }
 
+extension DTTimePeriod {
+    
+    public override var description: String { return "\(StartDate) ->  \(EndDate)"}
+}
 
 extension DTTimePeriodGroup {
     
@@ -67,14 +69,15 @@ extension DTTimePeriodCollection {
     func flatten() {
         
         self.sortByStartAscending()
-        
-        guard let periods = self.periods() else { return }
-        if periods.count < 1 { return }
     
+        guard let periods = self.periods() else { return }
+
         var flattenedPeriods = [DTTimePeriod]()
         let flatdate = DTTimePeriod()
-        
+    
         for period in periods {
+            
+            // print(period.debugDescription)
             
             guard let periodStart = period.StartDate, let periodEnd = period.EndDate else { continue }
 
@@ -99,16 +102,46 @@ extension DTTimePeriodCollection {
         for var i = 0 ; i < periods.count ; i++ { self.removeTimePeriodAtIndex(0) }
         
         // add flattened periods to self
-        for flat in flattenedPeriods { self.addTimePeriod(flat) }
+        
+         print("Flattened to:")
+        for flat in flattenedPeriods {
+              print(flat.description)
+            self.addTimePeriod(flat)
+        }
     }
 
     
-    func voidPeriods() -> DTTimePeriodCollection? {
+    func voidPeriods(inPeriod: DTTimePeriod) -> DTTimePeriodCollection {
         
-        guard let periods = self.periods() else { return nil }
-        if periods.count < 2 { return nil }
+        if self.periods() == nil || self.periods()!.count == 0 {
+            
+            let samePeriod = DTTimePeriodCollection()
+            samePeriod.addTimePeriod(inPeriod.copy())
+            return samePeriod
+        }
         
+        let periods = self.periods()!
         let voidPeriods = DTTimePeriodCollection()
+        
+        // First gaps between the edges of the window of interest.
+        
+        if inPeriod.StartDate.isEarlierThan(periods[0].StartDate) {
+            
+            let newVoidPeriod = DTTimePeriod()
+            newVoidPeriod.StartDate = inPeriod.StartDate
+            newVoidPeriod.EndDate = periods[0].StartDate
+            voidPeriods.addTimePeriod(newVoidPeriod)
+        }
+        
+        if periods[periods.count-1].EndDate.isEarlierThan(inPeriod.EndDate) {
+            
+            let newVoidPeriod = DTTimePeriod()
+            newVoidPeriod.StartDate = periods[periods.count-1].EndDate
+            newVoidPeriod.EndDate = inPeriod.EndDate
+            voidPeriods.addTimePeriod(newVoidPeriod)
+        }
+    
+        // void periods in between the periods
         
         for var i = 0 ; i < periods.count ; ++i {
             
@@ -117,14 +150,31 @@ extension DTTimePeriodCollection {
                 if periods[i].EndDate!.isEarlierThan(periods[i+1].StartDate!) {
                     
                     let voidPeriod = DTTimePeriod()
-                    voidPeriod.StartDate = periods[i].EndDate!.dateByAddingSeconds(1)
-                    voidPeriod.EndDate = periods[i+1].StartDate!.dateBySubtractingSeconds(1)
-                    
+                    //  voidPeriod.StartDate = periods[i].EndDate!.dateByAddingSeconds(1)
+                    //  voidPeriod.EndDate = periods[i+1].StartDate!.dateBySubtractingSeconds(1)
+                    voidPeriod.StartDate = periods[i].EndDate!
+                    voidPeriod.EndDate = periods[i+1].StartDate!
                     voidPeriods.addTimePeriod(voidPeriod)
                 }
             }
         }
         
+        voidPeriods.sortByStartAscending()
+        
         return voidPeriods
+    }
+    
+    public override var description: String {
+        
+        var string = String()
+        
+        guard let periods = self.periods() else { return "No Periods" }
+        
+        for period in periods {
+            
+            string.appendContentsOf(period.description + "\n")
+        }
+        
+        return string
     }
 }

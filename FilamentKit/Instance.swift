@@ -44,14 +44,14 @@ public class Instance: NSObject {
        // print(result)
         
         
-    
+     /*
         
         for (index, node) in sequence.allNodes().enumerate() {
             
             
         }
         
-        /*
+       
         
             // create event if it doesn't exist
             

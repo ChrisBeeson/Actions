@@ -71,25 +71,28 @@ class DateToolExtensionsTests: XCTestCase {
         p7.EndDate = dateFormatter.dateFromString("2015-10-2 13:00:00")
         
         let p8 = DTTimePeriod()
-        p7.StartDate = dateFormatter.dateFromString("2015-10-2 12:10:00")
-        p7.EndDate = dateFormatter.dateFromString("2015-10-2 13:40:00")
-        
+        p8.StartDate = dateFormatter.dateFromString("2015-10-2 12:10:00")
+        p8.EndDate = dateFormatter.dateFromString("2015-10-2 13:40:00")
         
         let collection = DTTimePeriodCollection()
         collection.addTimePeriod(p1)
-        collection.addTimePeriod(p2)
-        collection.addTimePeriod(p3)
-        collection.addTimePeriod(p4)
-        collection.addTimePeriod(p5)
         collection.addTimePeriod(p6)
-        collection.addTimePeriod(p7)
+        collection.addTimePeriod(p3)
+        collection.addTimePeriod(p2)
         collection.addTimePeriod(p8)
-        
+        collection.addTimePeriod(p4)
+        collection.addTimePeriod(p7)
+        collection.addTimePeriod(p5)
         collection.flatten()
         XCTAssert(collection.periods()!.count == 4 , "Failed Flattening Timespans")
         
-        let void = collection.voidPeriods()
-        XCTAssert(void!.count() == 3 , "Failed find the correct amount of Void Periods")
+        let interestPeriod = DTTimePeriod(startDate: NSDate.dateFromString("2014-11-30 09:00:00"), endDate: NSDate.dateFromString("2015-11-2 14:00:00"))
+        print(" \n Interest Period \(interestPeriod.description)")
+        
+        let void = collection.voidPeriods(interestPeriod)
+        print("Void Periods: \n \(void.description)")
+        
+        XCTAssert(void.count() == 5 , "Failed find the correct amount of Void Periods - got \(void.count())")
     }
     
     
