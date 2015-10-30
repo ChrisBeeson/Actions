@@ -8,7 +8,7 @@
 
 import XCTest
 
-class InstanceTests: XCTestCase {
+class EventLogicTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
@@ -27,8 +27,8 @@ class InstanceTests: XCTestCase {
         let actionNodes = [Node(text: "Action 1", type: .Action, rules: nil), Node(text: "Action 2", type: .Action, rules: nil), Node(text: "Action 3", type: .Action, rules: nil)]
         
         let sequence = Sequence(name: "Sequence Test", actionNodes: actionNodes)
-        let instance = sequence.newInstance(NSDate.dateFromString("2015-1-1 10:00:00"))
-        let events = instance.getEvents()
+        //let instance = sequence.newInstance(NSDate.dateFromString("2015-1-1 10:00:00"))
+        //let events = instance.getEvents()
         
         
         

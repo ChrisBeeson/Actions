@@ -9,33 +9,6 @@
 import Foundation
 import DateTools
 
-
-public struct TimeSize {
-    
-    var unit: DTTimePeriodSize
-    var amount: Int
-    
-    public init (unit:DTTimePeriodSize, amount:Int) {
-        
-        self.unit = unit
-        self.amount = amount
-    }
-    
-    public func inSeconds() -> Int {
-        
-        switch unit {
-        case .Second: return self.amount
-        case .Minute: return self.amount*60
-        case .Hour: return  self.amount*60*60
-        case .Day: return self.amount*60*60*24
-        case .Week: return self.amount*60*60*24*7
-        case .Month: return self.amount*60*60*24*7*(365/12)
-        case .Year:return self.amount*60*60*24*7*52
-        }
-    }
-}
-
-
 public protocol Rule {
     
     var name: String {get}
@@ -67,3 +40,28 @@ extension Rule {
     public var avoidPeriods: [DTTimePeriod]? { get { return nil } }
 }
 
+
+public struct TimeSize {
+    
+    var unit: DTTimePeriodSize
+    var amount: Int
+    
+    public init (unit:DTTimePeriodSize, amount:Int) {
+        
+        self.unit = unit
+        self.amount = amount
+    }
+    
+    public func inSeconds() -> Int {
+        
+        switch unit {
+        case .Second: return self.amount
+        case .Minute: return self.amount*60
+        case .Hour: return  self.amount*60*60
+        case .Day: return self.amount*60*60*24
+        case .Week: return self.amount*60*60*24*7
+        case .Month: return self.amount*60*60*24*7*(365/12)
+        case .Year:return self.amount*60*60*24*7*52
+        }
+    }
+}

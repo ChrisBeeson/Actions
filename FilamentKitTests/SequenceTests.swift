@@ -36,7 +36,7 @@ class SequenceTests: XCTestCase {
         
         sequence!.logAllNodes()
         
-         XCTAssert(sequence!.validSequence() == true)
+        XCTAssert(sequence!.validSequence() == true)
     }
     
     
@@ -61,7 +61,7 @@ class SequenceTests: XCTestCase {
         XCTAssert(sequence!.validSequence() == false)
     }
     
-
+    
     func testValidSequence2() {
         
         let nodes = sequence!.allNodes()
@@ -81,16 +81,36 @@ class SequenceTests: XCTestCase {
         let nodeToDelete = sequence!.allNodes()[2]
         // let index = sequence!.allNodes().indexOf(nodeToDelete)
         sequence!.removeActionNode(nodeToDelete)
-         sequence!.logAllNodes()
+        sequence!.logAllNodes()
         XCTAssert(sequence!.validSequence() == true)
     }
+    
+    
+    
+    /// Events
+    
+    func testEventCreation() {
+        
+        let actionNodes = [Node(text: "Action 1", type: .Action, rules: nil), Node(text: "Action 2", type: .Action, rules: nil), Node(text: "Action 3", type: .Action, rules: nil)]
+        
+        sequence = Sequence(name: "Sequence Test", actionNodes: actionNodes)
+        
+        sequence!.startDate = NSDate()
+        
+        // here goes!
+        
+        sequence!.UpdateEvents()
+        
+    }
+    
+    
     /*
     func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
-        }
+    // This is an example of a performance test case.
+    self.measureBlock() {
+    // Put the code you want to measure the time of here.
     }
-*/
+    }
+    */
     
 }

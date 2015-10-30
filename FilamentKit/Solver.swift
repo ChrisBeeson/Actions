@@ -32,16 +32,17 @@ Timeslot found                         |----|
 */
 
 
+public typealias SolvedPeriod = (solved: Bool, period:DTTimePeriod?)
+
 public class Solver {
-    
-    public class func calculateEventPeriod(inputDate: NSDate, rules:[Rule]) -> (solved: Bool, period:DTTimePeriod?) {
+
+    public class func calculateEventPeriod(inputDate: NSDate, rules:[Rule]) -> SolvedPeriod {
         
         var averageStartWindow: DTTimePeriod?
         var preferedStartTime: NSDate?
         var averageDuration: TimeSize?
         var averageMinDuration: TimeSize?
         let avoidPeriods = DTTimePeriodCollection()
-        
         
         // Step 1. Average out / Combine all the rules
         
@@ -103,7 +104,6 @@ public class Solver {
         
         
         // The Main Algorythm
-        // The best period is selcted by the startTime being closest to the perfered time.
         
         print("\n\n--------------------------------------------------")
         print("prefered Period: \(preferedPeriod.debugDescription)")
@@ -112,7 +112,6 @@ public class Solver {
         print("--------------------------------------------------")
         
         var bestPeriod: DTTimePeriod?
-        
         
         for free in freePeriods.periods()! {
             
@@ -127,12 +126,10 @@ public class Solver {
                 return (true, preferedPeriod)
             }
             
-            
             // ok so the free period is wider than the min spec.
             // is it eariler (left) or after (right)? the prefered date...
             
             var possiblePeriod: DTTimePeriod?
-            
             
             //  after (right) the prefered date...
             
@@ -204,55 +201,6 @@ public class Solver {
         
         if bestPeriod != nil { return (true, bestPeriod) }
         else { return (false,nil) }
-    }
-    
-    /*
-    
-    public func solveEvents(events:[Event], startDate:NSDate, avoidCalendars:[EKCalendar]?) -> (Bool) {
-    
-    var currentDate = startDate
-    
-    for (index, node) in events.enumerate() {
-    
-    switch postion(index, events:events) {
-    
-    case .StartingAction: break
-    
-    // Easy - just need to calc  it's duration
-    
-    //   var window = durationForNode(node:node)
-    
-    case .Transition: break
-    
-    case .Action: break
-    
-    case .EndingAction: break
-    
-    
-    }
-    }
-    
-    return false
-    }
-    */
-    
-    
-    
-    public enum NodePostion: Int { case StartingAction = 0, Transition, Action, EndingAction }
-    
-    internal func postion(index: Int, events:[Event]) -> NodePostion {
-        
-        var result: NodePostion
-        
-        switch index {
-            
-        case 0: result = .StartingAction
-        case let x where x == events.count-1: result = .EndingAction
-        case let x where x.isEven(): result = .Action
-        default: result = .Transition
-        }
-        
-        return result
     }
 }
 

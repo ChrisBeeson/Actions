@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import EventKit
 
 public enum NodeType: Int { case Action = 0, Transition, All, None }
 
@@ -14,19 +15,20 @@ public class Node: NSObject {
     
     // MARK: Properties
     
-    public var text = ""
+    public var title = ""
     public var rules = [Rule]()
     public var type = NodeType.Action
     public var leftTransitionNode: Node?
     public var rightTransitionNode: Node?
     public var UUID = NSUUID()
+    public var event: EKEvent?
     
     
     // MARK: Initializers
     
     public init(text: String, type: NodeType = .Action, rules:[Rule]?) {
         
-        self.text = text
+        self.title = text
         self.type = type
         
         /*
@@ -58,7 +60,7 @@ public class Node: NSObject {
     // MARK: NSCoding
     
     private struct SerializationKeys {
-        static let text = "text"
+        static let title = "title"
         static let rules = "rules"
         static let type = "type"
         static let uuid = "uuid"
@@ -79,7 +81,7 @@ public class Node: NSObject {
     */
     public func encodeWithCoder(encoder: NSCoder) {
         
-        encoder.encodeObject(text, forKey: SerializationKeys.text)
+        encoder.encodeObject(title, forKey: SerializationKeys.title)
         //   encoder.encodeObject(rules!, forKey: SerializationKeys.rules)
         encoder.encodeInteger(type.rawValue, forKey: SerializationKeys.type)
         encoder.encodeObject(UUID, forKey: SerializationKeys.uuid)
@@ -92,7 +94,7 @@ public class Node: NSObject {
     
     public func copyWithZone(zone: NSZone) -> AnyObject  {
         
-        return Node(text: text, type: type, rules: rules)
+        return Node(text: title, type: type, rules: rules)
     }
     
     

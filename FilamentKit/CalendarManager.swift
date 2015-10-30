@@ -13,8 +13,15 @@ import DateTools
 public class CalendarManager: NSObject {
     
     static let sharedInstance = CalendarManager()
+    public let store = EKEventStore()
+    public var applicationCalendar: EKCalendar?
     
-    private let store = EKEventStore()
+    override init() {
+        
+        super.init()
+        verifyUserEventAuthorization()
+        retrieveApplicationCalendar()
+    }
     
     
     func calendars() -> [EKCalendar] {
@@ -26,20 +33,63 @@ public class CalendarManager: NSObject {
     func events(timePeriod: DTTimePeriod, calendars: [EKCalendar]) -> [EKEvent]? {
         
         let predicate = store.predicateForEventsWithStartDate(timePeriod.StartDate, endDate: timePeriod.EndDate, calendars: calendars)
-        
         return store.eventsMatchingPredicate(predicate)
     }
     
     
-    func publishEvent(event:EKEvent) {
+    func retrieveApplicationCalendar() {
         
-        do {
+        if applicationCalendar == nil {
             
-        try store.saveEvent(event, span: .ThisEvent, commit: true)
+            let calendars = store.calendarsForEntityType(EKEntityType.Event)
             
-        } catch let error as NSError {
-        
-            NSLog("Unresolved error \(error), \(error.userInfo)")
+            for calendar in calendars {
+                
+                if calendar.title ==  AppConfiguration.defaultFilamentCalendarName as String {
+                    applicationCalendar = calendar
+                    break
+                }
+            }
+            
+            if applicationCalendar == nil {
+                
+                applicationCalendar = EKCalendar(forEntityType: EKEntityType.Event, eventStore:store)
+                applicationCalendar!.title = AppConfiguration.defaultFilamentCalendarName as String
+                applicationCalendar!.source = store.defaultCalendarForNewEvents.source
+                
+                do {
+                    
+                    try store.saveCalendar(applicationCalendar!, commit: true)
+                    
+                } catch let error as NSError {
+                    
+                    print("Unresolved error \(error), \(error.userInfo)")
+                }
+            }
         }
     }
+    
+    
+    func verifyUserEventAuthorization() {
+        
+        switch EKEventStore.authorizationStatusForEntityType(EKEntityType.Event) {
+            
+        case .NotDetermined:
+            
+            store.requestAccessToEntityType(.Event, completion: { granted, error in
+                
+                switch granted {
+                    
+                case true: print("Granted Access to calendar")
+                case false: print("NOT Granted Access to calendar")
+                }
+            })
+            
+        case .Authorized: print("Access to calendar is Authorized")
+        case .Denied: print("Access to calendar is denied")
+        case .Restricted: print("Access to calendar is Restricted")
+        }
+    }
+    
+    
 }

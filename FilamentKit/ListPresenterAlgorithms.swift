@@ -38,7 +38,7 @@ func findNodesWithUpdatedText(initialNodes initialNodes: [Node], changedNodes: [
         if let indexOfChangedNodeInInitialNodes = initialNodes.indexOf(changedNode) {
             let initialNode = initialNodes[indexOfChangedNodeInInitialNodes]
 
-            if initialNode.text != changedNode.text {
+            if initialNode.title != changedNode.title {
                 return true
             }
         }
