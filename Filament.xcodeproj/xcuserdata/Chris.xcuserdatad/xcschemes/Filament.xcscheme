@@ -62,6 +62,16 @@
                ReferencedContainer = "container:Filament.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "470EF59C1BE426CA009D1342"
+               BuildableName = "FilamentKit(OS X)Tests.xctest"
+               BlueprintName = "FilamentKit(OS X)Tests"
+               ReferencedContainer = "container:Filament.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

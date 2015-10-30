@@ -10,7 +10,7 @@ import Foundation
 import DateTools
 import EventKit
 
-public struct AvoidCalendarEvents: Rule {
+public class AvoidCalendarEvents: NSObject, Rule {
     
     // This rule sits the duration of an event.
     // It allows the event to be shortened to a minimum duration if required.

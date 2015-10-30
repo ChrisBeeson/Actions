@@ -9,7 +9,7 @@
 import Foundation
 import DateTools
 
-public struct EventDuration: Rule {
+public class EventDuration: NSObject, Rule {
     
     // This rule sits the duration of an event.
     // It allows the event to be shortened to a minimum duration if required.

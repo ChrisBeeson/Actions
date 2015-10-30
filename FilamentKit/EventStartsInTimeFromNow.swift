@@ -9,7 +9,7 @@
 import Foundation
 import DateTools
 
-public struct EventStartsInTimeFromNow: Rule {
+public classs EventStartsInTimeFromNow: NSObject, Rule {
     
     // This rule creates a window of available time for the event to sit in.
     // User specifies a time period, and can pick a variance size.

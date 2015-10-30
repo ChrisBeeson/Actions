@@ -9,7 +9,9 @@
 import Foundation
 import DateTools
 
-public struct WorkingWeekRule: Rule {
+//TODO: Working Week
+
+public class WorkingWeekRule: NSObject, Rule {
     
     // This rule sits the duration of an event.
     // It allows the event to be shortened to a minimum duration if required.

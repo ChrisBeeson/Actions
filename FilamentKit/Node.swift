@@ -66,9 +66,9 @@ public class Node: NSObject {
         static let uuid = "uuid"
         static let leftTransitionNode = "leftTransitionNode"
         static let rightTransitionNode = "rightTransitionNode"
+        static let event = "event"
     }
     
-    /*
     public required init?(coder aDecoder: NSCoder) {
         
         text = aDecoder.decodeObjectForKey(SerializationKeys.text) as! String
@@ -77,16 +77,18 @@ public class Node: NSObject {
         UUID = aDecoder.decodeObjectForKey(SerializationKeys.uuid) as! NSUUID
         leftTransitionNode = aDecoder.decodeObjectForKey(SerializationKeys.leftTransitionNode) as? Node
         rightTransitionNode = aDecoder.decodeObjectForKey(SerializationKeys.rightTransitionNode) as? Node
+        event = aDecoder.decodeObjectForKey(SerializationKeys.event) as? EKEvent
     }
-    */
+
     public func encodeWithCoder(encoder: NSCoder) {
         
         encoder.encodeObject(title, forKey: SerializationKeys.title)
-        //   encoder.encodeObject(rules!, forKey: SerializationKeys.rules)
+        encoder.encodeObject(rules!, forKey: SerializationKeys.rules)
         encoder.encodeInteger(type.rawValue, forKey: SerializationKeys.type)
         encoder.encodeObject(UUID, forKey: SerializationKeys.uuid)
         encoder.encodeObject(leftTransitionNode, forKey: SerializationKeys.leftTransitionNode)
         encoder.encodeObject(rightTransitionNode, forKey: SerializationKeys.rightTransitionNode)
+        encoder.encodeObject(event, forKey: SerializationKeys.event)
     }
     
     

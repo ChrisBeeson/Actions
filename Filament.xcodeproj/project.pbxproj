@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		470EF5971BE426CA009D1342 /* FilamentKit(OS X).h in Headers */ = {isa = PBXBuildFile; fileRef = 470EF5961BE426CA009D1342 /* FilamentKit(OS X).h */; settings = {ATTRIBUTES = (Public, ); }; };
+		470EF59E1BE426CB009D1342 /* FilamentKit(OS X).framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 470EF5941BE426CA009D1342 /* FilamentKit(OS X).framework */; settings = {ASSET_TAGS = (); }; };
+		470EF5A51BE426CB009D1342 /* FilamentKit_OS_X_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470EF5A41BE426CB009D1342 /* FilamentKit_OS_X_Tests.swift */; };
+		470EF5A91BE426CB009D1342 /* FilamentKit(OS X).framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 470EF5941BE426CA009D1342 /* FilamentKit(OS X).framework */; };
+		470EF5AA1BE426CB009D1342 /* FilamentKit(OS X).framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 470EF5941BE426CA009D1342 /* FilamentKit(OS X).framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		471420D61BA3CB2A00EDF32D /* Pods_Filament.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 471420D51BA3CB2A00EDF32D /* Pods_Filament.framework */; };
 		472465191BBFD0DA004DE4DE /* DateToolsExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472465171BBFD0DA004DE4DE /* DateToolsExtensionsTests.swift */; settings = {ASSET_TAGS = (); }; };
 		4724651B1BBFE595004DE4DE /* DateToolsExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9531BB5464C000CAC61 /* DateToolsExtenstions.swift */; settings = {ASSET_TAGS = (); }; };
@@ -19,7 +24,6 @@
 		472465221BBFE65D004DE4DE /* AvoidCalendarEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9581BB54EEA000CAC61 /* AvoidCalendarEvents.swift */; settings = {ASSET_TAGS = (); }; };
 		472465231BBFE665004DE4DE /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574761B9A68AC00493CA0 /* Sequence.swift */; settings = {ASSET_TAGS = (); }; };
 		472465241BBFE668004DE4DE /* Instance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83900D551BA6398F004838FD /* Instance.swift */; settings = {ASSET_TAGS = (); }; };
-		472465251BBFE66B004DE4DE /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83900D581BA785FA004838FD /* Event.swift */; settings = {ASSET_TAGS = (); }; };
 		4735745A1B9A687400493CA0 /* FilamentKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 473574591B9A687400493CA0 /* FilamentKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		473574601B9A687400493CA0 /* FilamentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 473574551B9A687400493CA0 /* FilamentKit.framework */; };
 		473574691B9A687400493CA0 /* FilamentKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574681B9A687400493CA0 /* FilamentKitTests.swift */; };
@@ -37,6 +41,7 @@
 		473EAEE31BA3A91400AFEA2A /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 473EAEE21BA3A91400AFEA2A /* EventKit.framework */; };
 		473EAEE61BA3AD0300AFEA2A /* RuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473EAEE41BA3AD0300AFEA2A /* RuleTests.swift */; settings = {ASSET_TAGS = (); }; };
 		4753D3AF1BE378720071DB59 /* WorkingWeekRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4753D3AE1BE378720071DB59 /* WorkingWeekRule.swift */; settings = {ASSET_TAGS = (); }; };
+		479944A21BE427A600B25C8C /* ListDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479944A11BE427A600B25C8C /* ListDocument.swift */; settings = {ASSET_TAGS = (); }; };
 		47ACA9541BB5464C000CAC61 /* DateToolsExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9531BB5464C000CAC61 /* DateToolsExtenstions.swift */; settings = {ASSET_TAGS = (); }; };
 		47ACA9571BB54B82000CAC61 /* EventDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9561BB54B82000CAC61 /* EventDuration.swift */; settings = {ASSET_TAGS = (); }; };
 		47ACA9591BB54EEA000CAC61 /* AvoidCalendarEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9581BB54EEA000CAC61 /* AvoidCalendarEvents.swift */; settings = {ASSET_TAGS = (); }; };
@@ -51,7 +56,6 @@
 		47F2FBC41BA8CFEE0041B291 /* Solver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F2FBC31BA8CFEE0041B291 /* Solver.swift */; settings = {ASSET_TAGS = (); }; };
 		8343519D1BA297650094428B /* EventStartsInTimeFromNow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8343519C1BA297650094428B /* EventStartsInTimeFromNow.swift */; settings = {ASSET_TAGS = (); }; };
 		83900D561BA6398F004838FD /* Instance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83900D551BA6398F004838FD /* Instance.swift */; settings = {ASSET_TAGS = (); }; };
-		83900D591BA785FA004838FD /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83900D581BA785FA004838FD /* Event.swift */; settings = {ASSET_TAGS = (); }; };
 		83C73E0D1BE31C4F0045973C /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C73E0B1BE31BF20045973C /* AppConfiguration.swift */; settings = {ASSET_TAGS = (); }; };
 		83C73E0E1BE31C4F0045973C /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C73E0B1BE31BF20045973C /* AppConfiguration.swift */; settings = {ASSET_TAGS = (); }; };
 		83DDAA4F1B997C9A001A4DBE /* SystemTrayMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83DDAA4E1B997C9A001A4DBE /* SystemTrayMenu.xib */; };
@@ -67,6 +71,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		470EF59F1BE426CB009D1342 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83F6B94F1B994652002A5AAF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 470EF5931BE426CA009D1342;
+			remoteInfo = "FilamentKit(OS X)";
+		};
+		470EF5A11BE426CB009D1342 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83F6B94F1B994652002A5AAF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 83F6B9561B994652002A5AAF;
+			remoteInfo = Filament;
+		};
+		470EF5A71BE426CB009D1342 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83F6B94F1B994652002A5AAF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 470EF5931BE426CA009D1342;
+			remoteInfo = "FilamentKit(OS X)";
+		};
 		473574611B9A687400493CA0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83F6B94F1B994652002A5AAF /* Project object */;
@@ -104,6 +129,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				470EF5AA1BE426CB009D1342 /* FilamentKit(OS X).framework in Embed Frameworks */,
 				4735746D1B9A687400493CA0 /* FilamentKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -112,6 +138,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		470EF5941BE426CA009D1342 /* FilamentKit(OS X).framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "FilamentKit(OS X).framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		470EF5961BE426CA009D1342 /* FilamentKit(OS X).h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FilamentKit(OS X).h"; sourceTree = "<group>"; };
+		470EF5981BE426CA009D1342 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		470EF59D1BE426CA009D1342 /* FilamentKit(OS X)Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FilamentKit(OS X)Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		470EF5A41BE426CB009D1342 /* FilamentKit_OS_X_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilamentKit_OS_X_Tests.swift; sourceTree = "<group>"; };
+		470EF5A61BE426CB009D1342 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		471420D51BA3CB2A00EDF32D /* Pods_Filament.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Filament.framework; path = Pods/../build/Release/Pods_Filament.framework; sourceTree = "<group>"; };
 		472465171BBFD0DA004DE4DE /* DateToolsExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateToolsExtensionsTests.swift; sourceTree = "<group>"; };
 		473574551B9A687400493CA0 /* FilamentKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FilamentKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,6 +164,7 @@
 		473EAEE21BA3A91400AFEA2A /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		473EAEE41BA3AD0300AFEA2A /* RuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleTests.swift; sourceTree = "<group>"; };
 		4753D3AE1BE378720071DB59 /* WorkingWeekRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkingWeekRule.swift; sourceTree = "<group>"; };
+		479944A11BE427A600B25C8C /* ListDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListDocument.swift; path = ../../../../../Downloads/ListerforwatchOSiOSandOSX/Swift/ListerKitOSX/ListDocument.swift; sourceTree = "<group>"; };
 		47ACA9531BB5464C000CAC61 /* DateToolsExtenstions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateToolsExtenstions.swift; sourceTree = "<group>"; };
 		47ACA9561BB54B82000CAC61 /* EventDuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDuration.swift; sourceTree = "<group>"; };
 		47ACA9581BB54EEA000CAC61 /* AvoidCalendarEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvoidCalendarEvents.swift; sourceTree = "<group>"; };
@@ -143,7 +176,6 @@
 		47F2FBC31BA8CFEE0041B291 /* Solver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Solver.swift; sourceTree = "<group>"; };
 		8343519C1BA297650094428B /* EventStartsInTimeFromNow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventStartsInTimeFromNow.swift; sourceTree = "<group>"; };
 		83900D551BA6398F004838FD /* Instance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instance.swift; sourceTree = "<group>"; };
-		83900D581BA785FA004838FD /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		83C73E0B1BE31BF20045973C /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		83DDAA4A1B9978CF001A4DBE /* Filament-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Filament-Bridging-Header.h"; sourceTree = "<group>"; };
 		83DDAA4E1B997C9A001A4DBE /* SystemTrayMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SystemTrayMenu.xib; sourceTree = "<group>"; };
@@ -165,6 +197,21 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		470EF5901BE426CA009D1342 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		470EF59A1BE426CA009D1342 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				470EF59E1BE426CB009D1342 /* FilamentKit(OS X).framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		473574511B9A687400493CA0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -188,6 +235,7 @@
 			files = (
 				A434260737AE2B1831E7CA6A /* Pods_Filament.framework in Frameworks */,
 				4735746C1B9A687400493CA0 /* FilamentKit.framework in Frameworks */,
+				470EF5A91BE426CB009D1342 /* FilamentKit(OS X).framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,15 +259,35 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		470EF5951BE426CA009D1342 /* FilamentKit(OS X) */ = {
+			isa = PBXGroup;
+			children = (
+				479944A01BE4278900B25C8C /* Document Architecture */,
+				470EF5A31BE426CB009D1342 /* FilamentKit(OS X)Tests */,
+				470EF5961BE426CA009D1342 /* FilamentKit(OS X).h */,
+				470EF5981BE426CA009D1342 /* Info.plist */,
+			);
+			path = "FilamentKit(OS X)";
+			sourceTree = "<group>";
+		};
+		470EF5A31BE426CB009D1342 /* FilamentKit(OS X)Tests */ = {
+			isa = PBXGroup;
+			children = (
+				470EF5A41BE426CB009D1342 /* FilamentKit_OS_X_Tests.swift */,
+				470EF5A61BE426CB009D1342 /* Info.plist */,
+			);
+			path = "FilamentKit(OS X)Tests";
+			sourceTree = SOURCE_ROOT;
+		};
 		473574561B9A687400493CA0 /* FilamentKit */ = {
 			isa = PBXGroup;
 			children = (
+				473574591B9A687400493CA0 /* FilamentKit.h */,
 				83C73E081BE2E35A0045973C /* Configuration */,
 				473EAEE01BA3A7D200AFEA2A /* CalendarManager.swift */,
 				8343519B1BA2973C0094428B /* Rules */,
 				4735747A1B9A692F00493CA0 /* Models */,
 				4735747D1B9A915800493CA0 /* Presenter */,
-				473574591B9A687400493CA0 /* FilamentKit.h */,
 				473574651B9A687400493CA0 /* Tests */,
 				473574571B9A687400493CA0 /* Supporting Files */,
 			);
@@ -265,7 +333,6 @@
 				47CD21C01BDF7A2600AF25BE /* Sequence+NodeLogic.swift */,
 				47CD21C51BDF807900AF25BE /* Sequence+EventLogic.swift */,
 				83900D551BA6398F004838FD /* Instance.swift */,
-				83900D581BA785FA004838FD /* Event.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -288,6 +355,14 @@
 				473574831B9A91A200493CA0 /* ListPresenterUtilities.swift */,
 			);
 			name = "Presenter Helpers";
+			sourceTree = "<group>";
+		};
+		479944A01BE4278900B25C8C /* Document Architecture */ = {
+			isa = PBXGroup;
+			children = (
+				479944A11BE427A600B25C8C /* ListDocument.swift */,
+			);
+			name = "Document Architecture";
 			sourceTree = "<group>";
 		};
 		47ACA9551BB54658000CAC61 /* Helpers */ = {
@@ -337,6 +412,7 @@
 				83F6B9791B995683002A5AAF /* Podfile */,
 				83F6B9591B994652002A5AAF /* Filament OSX */,
 				473574561B9A687400493CA0 /* FilamentKit */,
+				470EF5951BE426CA009D1342 /* FilamentKit(OS X) */,
 				83F6B9581B994652002A5AAF /* Products */,
 				69793A9D031B4179C7761969 /* Pods */,
 				2C67F5FA6327C1354E5ACE59 /* Frameworks */,
@@ -350,6 +426,8 @@
 				83F6B9691B994652002A5AAF /* FilamentTests.xctest */,
 				473574551B9A687400493CA0 /* FilamentKit.framework */,
 				4735745F1B9A687400493CA0 /* FilamentKitTests.xctest */,
+				470EF5941BE426CA009D1342 /* FilamentKit(OS X).framework */,
+				470EF59D1BE426CA009D1342 /* FilamentKit(OS X)Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -399,6 +477,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		470EF5911BE426CA009D1342 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				470EF5971BE426CA009D1342 /* FilamentKit(OS X).h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		473574521B9A687400493CA0 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -410,6 +496,43 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		470EF5931BE426CA009D1342 /* FilamentKit(OS X) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 470EF5AF1BE426CB009D1342 /* Build configuration list for PBXNativeTarget "FilamentKit(OS X)" */;
+			buildPhases = (
+				470EF58F1BE426CA009D1342 /* Sources */,
+				470EF5901BE426CA009D1342 /* Frameworks */,
+				470EF5911BE426CA009D1342 /* Headers */,
+				470EF5921BE426CA009D1342 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "FilamentKit(OS X)";
+			productName = "FilamentKit(OS X)";
+			productReference = 470EF5941BE426CA009D1342 /* FilamentKit(OS X).framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		470EF59C1BE426CA009D1342 /* FilamentKit(OS X)Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 470EF5B01BE426CB009D1342 /* Build configuration list for PBXNativeTarget "FilamentKit(OS X)Tests" */;
+			buildPhases = (
+				470EF5991BE426CA009D1342 /* Sources */,
+				470EF59A1BE426CA009D1342 /* Frameworks */,
+				470EF59B1BE426CA009D1342 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				470EF5A01BE426CB009D1342 /* PBXTargetDependency */,
+				470EF5A21BE426CB009D1342 /* PBXTargetDependency */,
+			);
+			name = "FilamentKit(OS X)Tests";
+			productName = "FilamentKit(OS X)Tests";
+			productReference = 470EF59D1BE426CA009D1342 /* FilamentKit(OS X)Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		473574541B9A687400493CA0 /* FilamentKit */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4735746E1B9A687400493CA0 /* Build configuration list for PBXNativeTarget "FilamentKit" */;
@@ -463,6 +586,7 @@
 			);
 			dependencies = (
 				4735746B1B9A687400493CA0 /* PBXTargetDependency */,
+				470EF5A81BE426CB009D1342 /* PBXTargetDependency */,
 			);
 			name = Filament;
 			productName = Filament;
@@ -497,6 +621,13 @@
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Andris Ltd";
 				TargetAttributes = {
+					470EF5931BE426CA009D1342 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					470EF59C1BE426CA009D1342 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = 83F6B9561B994652002A5AAF;
+					};
 					473574541B9A687400493CA0 = {
 						CreatedOnToolsVersion = 6.4;
 					};
@@ -530,11 +661,27 @@
 				83F6B9681B994652002A5AAF /* FilamentTests */,
 				473574541B9A687400493CA0 /* FilamentKit */,
 				4735745E1B9A687400493CA0 /* FilamentKitTests */,
+				470EF5931BE426CA009D1342 /* FilamentKit(OS X) */,
+				470EF59C1BE426CA009D1342 /* FilamentKit(OS X)Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		470EF5921BE426CA009D1342 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		470EF59B1BE426CA009D1342 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		473574531B9A687400493CA0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -619,6 +766,22 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		470EF58F1BE426CA009D1342 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				479944A21BE427A600B25C8C /* ListDocument.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		470EF5991BE426CA009D1342 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				470EF5A51BE426CB009D1342 /* FilamentKit_OS_X_Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		473574501B9A687400493CA0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -629,7 +792,6 @@
 				4753D3AF1BE378720071DB59 /* WorkingWeekRule.swift in Sources */,
 				473574851B9A91A200493CA0 /* SequencePresenterDelegate.swift in Sources */,
 				473574751B9A689B00493CA0 /* Node.swift in Sources */,
-				83900D591BA785FA004838FD /* Event.swift in Sources */,
 				83C73E0E1BE31C4F0045973C /* AppConfiguration.swift in Sources */,
 				473574791B9A68BE00493CA0 /* Rule.swift in Sources */,
 				47CD21C31BDF7B0900AF25BE /* Sequence+NodeLogic.swift in Sources */,
@@ -656,7 +818,6 @@
 				4724651C1BBFE610004DE4DE /* Rule.swift in Sources */,
 				4724651F1BBFE64B004DE4DE /* Solver.swift in Sources */,
 				472465211BBFE656004DE4DE /* EventDuration.swift in Sources */,
-				472465251BBFE66B004DE4DE /* Event.swift in Sources */,
 				472465241BBFE668004DE4DE /* Instance.swift in Sources */,
 				4724651B1BBFE595004DE4DE /* DateToolsExtenstions.swift in Sources */,
 				47CD21C21BDF7B0400AF25BE /* Sequence+NodeLogic.swift in Sources */,
@@ -695,6 +856,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		470EF5A01BE426CB009D1342 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 470EF5931BE426CA009D1342 /* FilamentKit(OS X) */;
+			targetProxy = 470EF59F1BE426CB009D1342 /* PBXContainerItemProxy */;
+		};
+		470EF5A21BE426CB009D1342 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 83F6B9561B994652002A5AAF /* Filament */;
+			targetProxy = 470EF5A11BE426CB009D1342 /* PBXContainerItemProxy */;
+		};
+		470EF5A81BE426CB009D1342 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 470EF5931BE426CA009D1342 /* FilamentKit(OS X) */;
+			targetProxy = 470EF5A71BE426CB009D1342 /* PBXContainerItemProxy */;
+		};
 		473574621B9A687400493CA0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 473574541B9A687400493CA0 /* FilamentKit */;
@@ -729,6 +905,87 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		470EF5AB1BE426CB009D1342 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "FilamentKit(OS X)/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.andris.FilamentKit-OS-X-";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		470EF5AC1BE426CB009D1342 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "FilamentKit(OS X)/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.andris.FilamentKit-OS-X-";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		470EF5AD1BE426CB009D1342 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "FilamentKit(OS X)Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.andris.FilamentKit-OS-X-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Filament.app/Contents/MacOS/Filament";
+			};
+			name = Debug;
+		};
+		470EF5AE1BE426CB009D1342 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "FilamentKit(OS X)Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.andris.FilamentKit-OS-X-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Filament.app/Contents/MacOS/Filament";
+			};
+			name = Release;
+		};
 		4735746F1B9A687400493CA0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -917,6 +1174,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_EMPTY_BODY = NO;
 				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				INFOPLIST_FILE = Filament/Info.plist;
@@ -937,6 +1195,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_EMPTY_BODY = NO;
 				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				INFOPLIST_FILE = Filament/Info.plist;
@@ -988,6 +1247,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		470EF5AF1BE426CB009D1342 /* Build configuration list for PBXNativeTarget "FilamentKit(OS X)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				470EF5AB1BE426CB009D1342 /* Debug */,
+				470EF5AC1BE426CB009D1342 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		470EF5B01BE426CB009D1342 /* Build configuration list for PBXNativeTarget "FilamentKit(OS X)Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				470EF5AD1BE426CB009D1342 /* Debug */,
+				470EF5AE1BE426CB009D1342 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4735746E1B9A687400493CA0 /* Build configuration list for PBXNativeTarget "FilamentKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
