@@ -46,6 +46,9 @@ public class Solver {
         
         // Step 1. Average out / Combine all the rules
         
+        
+        // first average out all start and duration
+        
         for var rule in rules {
             
             rule.inputDate = inputDate
@@ -76,11 +79,6 @@ public class Solver {
             
             if (rule.eventPreferedStartDate != nil) { preferedStartTime = rule.eventPreferedStartDate! }
             if (rule.eventDuration != nil) { averageDuration = rule.eventDuration }
-            
-            
-            // Combine Avoid periods
-            
-            if rule.avoidPeriods != nil { for avoidPeriod in rule.avoidPeriods! { avoidPeriods.addTimePeriod(avoidPeriod) } }
         }
         
         // Step 2. Make sure we have the Basic Requirements
@@ -91,11 +89,35 @@ public class Solver {
         }
         
         
+        // Find the window of interest, and then go through all the rules again and see if theres any avoids.
+        
+        let windowOfinterest = DTTimePeriod(startDate: averageStartWindow!.StartDate!, endDate: averageStartWindow!.EndDate!.dateByAddTimeSize(averageDuration!))
+        
+        for var rule in rules {
+            
+            if rule.options.contains(RoleOptions.RequiresInterestWindow) {
+            
+            rule.interestPeriod = windowOfinterest
+                
+            }
+            
+            // Combine Avoid periods
+            
+            if rule.avoidPeriods != nil {
+                
+                for avoidPeriod in rule.avoidPeriods! {
+                    
+                    avoidPeriods.addTimePeriod(avoidPeriod)
+                }
+            }
+        }
+        
+        
         //  Step 3. Invert the avoid periods to free times
         
         avoidPeriods.flatten()
         
-        let windowOfinterest = DTTimePeriod(startDate: averageStartWindow!.StartDate!, endDate: averageStartWindow!.EndDate!.dateByAddTimeSize(averageDuration!))
+        
         let freePeriods = avoidPeriods.voidPeriods(windowOfinterest)
         let preferedPeriod = DTTimePeriod(startDate: preferedStartTime!, endDate: preferedStartTime?.dateByAddTimeSize(averageDuration!))
         

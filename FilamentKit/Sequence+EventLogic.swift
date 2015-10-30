@@ -21,33 +21,38 @@ extension Sequence {
             
             var solvedPeriod: SolvedPeriod?
             
+            // Add Generic Rules
+            
+            var rules = node.rules
+            
+            // Avoid filament calendar
+            
+            rules.append(AvoidCalendarEvents(calendars: [CalendarManager.sharedInstance.applicationCalendar!]))
+            
+            // TODO: app generic rules
+            
+            
             switch postion(node) {
                 
             case .StartingAction:
                 
-                var newRules = node.rules
                 var startRule = EventStartsInTimeFromNow()
                 startRule.eventStartsInDuration = TimeSize(unit: .Hour, amount: 0)
-                newRules.append(startRule)
+                rules.append(startRule)
                 
-                solvedPeriod = Solver.calculateEventPeriod(time, rules:newRules)
+                solvedPeriod = Solver.calculateEventPeriod(time, rules:rules)
+                
                 
             case .Action, .EndingAction:   // add the left hand transistion rules to the rules.
                 
-                var rules = node.rules
-                
                 if let transistionRules = node.leftTransitionNode?.rules {
-                    
                     for rule in transistionRules {
-                
                         rules.append(rule) }
                 }
                 
                 solvedPeriod = Solver.calculateEventPeriod(time, rules:rules)
                 
-            default:
-                
-                break
+            default: break
                 
             }
             
@@ -56,7 +61,6 @@ extension Sequence {
                 //TODO: delete all events this node onwards
                 
                 return (false, node)
-                
             }
             
             time = solvedPeriod!.period!.EndDate
@@ -88,7 +92,7 @@ extension Sequence {
                 
             } catch let error as NSError {
                 
-                NSLog("Unresolved error \(error), \(error.userInfo)")
+                print("Unresolved error deleting Event \(error), \(error.userInfo)")
             }
             
             node.event = nil

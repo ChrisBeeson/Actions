@@ -20,24 +20,4 @@ class EventLogicTests: XCTestCase {
         super.tearDown()
     }
 
-    func simpleEventGeneration() {
-        
-        // We just use the default rules for all actions and transistions.
-        
-        let actionNodes = [Node(text: "Action 1", type: .Action, rules: nil), Node(text: "Action 2", type: .Action, rules: nil), Node(text: "Action 3", type: .Action, rules: nil)]
-        
-        let sequence = Sequence(name: "Sequence Test", actionNodes: actionNodes)
-        //let instance = sequence.newInstance(NSDate.dateFromString("2015-1-1 10:00:00"))
-        //let events = instance.getEvents()
-        
-        
-        
-        
-        
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-
-
 }

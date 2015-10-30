@@ -14,10 +14,14 @@ public protocol Rule {
     var name: String {get}
     var availableToNodeType:NodeType {get}
     var conflictingRules: [Rule]? {get}
+    var options: RoleOptions { get }
     
-    // --
+    // Inputs
     
     var inputDate: NSDate? {get set}
+    var interestPeriod: DTTimePeriod? {get set}
+    
+    // Outputs
     
     var eventStartTimeWindow: DTTimePeriod? {get}
     var eventPreferedStartDate: NSDate? {get}
@@ -32,6 +36,9 @@ extension Rule {
     public var name: String {get {return ""} }
     public var availableToNodeType:NodeType {get {return NodeType.All} }
     public var conflictingRules: [Rule]? {get {return nil} }
+    public var options: RoleOptions {get { return RoleOptions.None } }
+    
+    public var interestPeriod: DTTimePeriod? { get { return nil }  set {}}
     
     public var eventStartTimeWindow: DTTimePeriod? {get {return nil} }
     public var eventPreferedStartDate: NSDate? {get {return nil} }
@@ -39,6 +46,23 @@ extension Rule {
     public var eventMinDuration: TimeSize? { get { return nil } }
     public var avoidPeriods: [DTTimePeriod]? { get { return nil } }
 }
+
+
+public struct RoleOptions : OptionSetType {
+    
+    public init(rawValue:Int) {
+        
+        self.rawValue = rawValue
+    }
+    
+    public let rawValue: Int
+    
+    static let None                    = RoleOptions(rawValue: 0)
+    static let RequiresInterestWindow  = RoleOptions(rawValue: 1 << 0)
+    //  static let SecondOption = RoleOptions(rawValue: 1 << 1)
+    //  static let ThirdOption  = RoleOptions(rawValue: 1 << 2)
+}
+
 
 
 public struct TimeSize {
@@ -65,3 +89,19 @@ public struct TimeSize {
         }
     }
 }
+
+
+
+/*
+
+let singleOption = MyOptions.FirstOption
+let multipleOptions: MyOptions = [.FirstOption, .SecondOption]
+if multipleOptions.contains(.SecondOption) {
+print("multipleOptions has SecondOption")
+}
+let allOptions = MyOptions(rawValue: 7)
+if allOptions.contains(.ThirdOption) {
+print("allOptions has ThirdOption")
+}
+
+*/

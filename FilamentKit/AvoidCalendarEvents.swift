@@ -18,15 +18,18 @@ public struct AvoidCalendarEvents: Rule {
     public var name: String { return "!!!" }
     public var availableToNodeType:NodeType { return .None}
     public var conflictingRules: [Rule]? { return nil }
+    public var options: RoleOptions { get { return RoleOptions.RequiresInterestWindow } }
     
+    // Rule inputs
     public var inputDate: NSDate?
+    public var interestPeriod: DTTimePeriod?
     
-    public var interestPeriod: DTTimePeriod
+    
+    // Custom Vars
     public var calendars: [EKCalendar]
     
-    public init(interestPeriod: DTTimePeriod, calendars:[EKCalendar]) {
+    public init(calendars:[EKCalendar]) {
         
-        self.interestPeriod = interestPeriod
         self.calendars = calendars
     }
     
@@ -35,9 +38,11 @@ public struct AvoidCalendarEvents: Rule {
         
         get {
             
+            if interestPeriod == nil { return nil }
+            
             // 1. Find the calendar events for the time period.
           
-            guard let events = CalendarManager.sharedInstance.events(interestPeriod, calendars: calendars) else {
+            guard let events = CalendarManager.sharedInstance.events(interestPeriod!, calendars: calendars) else {
                 
                  return nil
             }
