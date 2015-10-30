@@ -36,6 +36,7 @@
 		473EAEE11BA3A7D200AFEA2A /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473EAEE01BA3A7D200AFEA2A /* CalendarManager.swift */; settings = {ASSET_TAGS = (); }; };
 		473EAEE31BA3A91400AFEA2A /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 473EAEE21BA3A91400AFEA2A /* EventKit.framework */; };
 		473EAEE61BA3AD0300AFEA2A /* RuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473EAEE41BA3AD0300AFEA2A /* RuleTests.swift */; settings = {ASSET_TAGS = (); }; };
+		4753D3AF1BE378720071DB59 /* WorkingWeekRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4753D3AE1BE378720071DB59 /* WorkingWeekRule.swift */; settings = {ASSET_TAGS = (); }; };
 		47ACA9541BB5464C000CAC61 /* DateToolsExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9531BB5464C000CAC61 /* DateToolsExtenstions.swift */; settings = {ASSET_TAGS = (); }; };
 		47ACA9571BB54B82000CAC61 /* EventDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9561BB54B82000CAC61 /* EventDuration.swift */; settings = {ASSET_TAGS = (); }; };
 		47ACA9591BB54EEA000CAC61 /* AvoidCalendarEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9581BB54EEA000CAC61 /* AvoidCalendarEvents.swift */; settings = {ASSET_TAGS = (); }; };
@@ -130,6 +131,7 @@
 		473EAEE01BA3A7D200AFEA2A /* CalendarManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
 		473EAEE21BA3A91400AFEA2A /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		473EAEE41BA3AD0300AFEA2A /* RuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleTests.swift; sourceTree = "<group>"; };
+		4753D3AE1BE378720071DB59 /* WorkingWeekRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkingWeekRule.swift; sourceTree = "<group>"; };
 		47ACA9531BB5464C000CAC61 /* DateToolsExtenstions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateToolsExtenstions.swift; sourceTree = "<group>"; };
 		47ACA9561BB54B82000CAC61 /* EventDuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDuration.swift; sourceTree = "<group>"; };
 		47ACA9581BB54EEA000CAC61 /* AvoidCalendarEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvoidCalendarEvents.swift; sourceTree = "<group>"; };
@@ -212,7 +214,6 @@
 		473574561B9A687400493CA0 /* FilamentKit */ = {
 			isa = PBXGroup;
 			children = (
-				83C73E0B1BE31BF20045973C /* AppConfiguration.swift */,
 				83C73E081BE2E35A0045973C /* Configuration */,
 				473EAEE01BA3A7D200AFEA2A /* CalendarManager.swift */,
 				8343519B1BA2973C0094428B /* Rules */,
@@ -316,6 +317,7 @@
 				8343519C1BA297650094428B /* EventStartsInTimeFromNow.swift */,
 				47ACA9561BB54B82000CAC61 /* EventDuration.swift */,
 				47ACA9581BB54EEA000CAC61 /* AvoidCalendarEvents.swift */,
+				4753D3AE1BE378720071DB59 /* WorkingWeekRule.swift */,
 			);
 			name = Rules;
 			sourceTree = "<group>";
@@ -323,6 +325,7 @@
 		83C73E081BE2E35A0045973C /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
+				83C73E0B1BE31BF20045973C /* AppConfiguration.swift */,
 			);
 			name = Configuration;
 			sourceTree = "<group>";
@@ -623,6 +626,7 @@
 				47ACA9571BB54B82000CAC61 /* EventDuration.swift in Sources */,
 				473574861B9A91A200493CA0 /* SequencePresenterType.swift in Sources */,
 				4735747F1B9A919500493CA0 /* SequencePresenter.swift in Sources */,
+				4753D3AF1BE378720071DB59 /* WorkingWeekRule.swift in Sources */,
 				473574851B9A91A200493CA0 /* SequencePresenterDelegate.swift in Sources */,
 				473574751B9A689B00493CA0 /* Node.swift in Sources */,
 				83900D591BA785FA004838FD /* Event.swift in Sources */,
