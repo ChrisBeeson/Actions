@@ -10,13 +10,11 @@ import Foundation
 
 public class Sequence: NSObject, NSCopying, NSCoding {
     
-    public var name: String = ""
+    public var title: String = ""
     public var actionNodes = [Node]()
     public var transitionNodes = [Node]()
     public var startDate: NSDate?
-    
-    private var events = [Event]()
-    
+
     // public var calendarsToAvoid = [EKCalendar]()
     
     
@@ -28,7 +26,7 @@ public class Sequence: NSObject, NSCopying, NSCoding {
     
     public init(name:String, actionNodes:[Node]? = []) {
         
-        self.name = name
+        self.title = name
         super.init()
         
         if let nodes = actionNodes {
@@ -42,23 +40,28 @@ public class Sequence: NSObject, NSCopying, NSCoding {
     
     private struct SerializationKeys {
         
-        static let name = "name"
+        static let title = "title"
         static let actionNodes = "actionNodes"
         static let transitionNodes = "transitionNodes"
+        static let startDate = "startDate"
+        static let events = "events"
     }
     
     public required init?(coder aDecoder: NSCoder) {
         
+        title = aDecoder.decodeObjectForKey(SerializationKeys.title) as! String
         actionNodes = aDecoder.decodeObjectForKey(SerializationKeys.actionNodes) as! [Node]
         transitionNodes = aDecoder.decodeObjectForKey(SerializationKeys.transitionNodes) as! [Node]
-        name = aDecoder.decodeObjectForKey(SerializationKeys.name) as! String
+        startDate = aDecoder.decodeObjectForKey(SerializationKeys.startDate) as! NSDate
+        
     }
     
     public func encodeWithCoder(aCoder: NSCoder) {
         
+        aCoder.encodeObject(title, forKey: SerializationKeys.title)
         aCoder.encodeObject(actionNodes, forKey: SerializationKeys.actionNodes)
         aCoder.encodeObject(transitionNodes, forKey: SerializationKeys.transitionNodes)
-        aCoder.encodeObject(name, forKey: SerializationKeys.name)
+        aCoder.encodeObject(startDate, forKey: SerializationKeys.startDate)
     }
     
     
@@ -67,7 +70,7 @@ public class Sequence: NSObject, NSCopying, NSCoding {
     public func copyWithZone(zone: NSZone) -> AnyObject  {
         
         let clone = Sequence()
-        clone.name = name.copy() as! String
+        clone.title = title.copy() as! String
         clone.actionNodes =  NSArray(array:actionNodes, copyItems: true) as! [Node]
         clone.transitionNodes = NSArray(array:transitionNodes, copyItems: true) as! [Node]
         return clone
