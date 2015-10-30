@@ -63,6 +63,17 @@ public struct RoleOptions : OptionSetType {
     //  static let ThirdOption  = RoleOptions(rawValue: 1 << 2)
 }
 
+/*
+let singleOption = MyOptions.FirstOption
+let multipleOptions: MyOptions = [.FirstOption, .SecondOption]
+if multipleOptions.contains(.SecondOption) {
+print("multipleOptions has SecondOption")
+}
+let allOptions = MyOptions(rawValue: 7)
+if allOptions.contains(.ThirdOption) {
+print("allOptions has ThirdOption")
+}
+*/
 
 
 public struct TimeSize {
@@ -92,16 +103,4 @@ public struct TimeSize {
 
 
 
-/*
 
-let singleOption = MyOptions.FirstOption
-let multipleOptions: MyOptions = [.FirstOption, .SecondOption]
-if multipleOptions.contains(.SecondOption) {
-print("multipleOptions has SecondOption")
-}
-let allOptions = MyOptions(rawValue: 7)
-if allOptions.contains(.ThirdOption) {
-print("allOptions has ThirdOption")
-}
-
-*/
