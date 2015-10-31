@@ -62,5 +62,4 @@ public class ListDocument: NSDocument {
             NSLocalizedFailureReasonErrorKey: NSLocalizedString("No list presenter was available for the document", comment: "")
             ])
     }
-    
 }
