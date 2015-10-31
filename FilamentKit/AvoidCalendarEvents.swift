@@ -10,31 +10,33 @@ import Foundation
 import DateTools
 import EventKit
 
-public class AvoidCalendarEvents: NSObject, Rule {
+public class AvoidCalendarEvents: Rule, NSCoding {
     
     // This rule sits the duration of an event.
     // It allows the event to be shortened to a minimum duration if required.
     
-    public var name: String { return "!!!" }
-    public var availableToNodeType:NodeType { return .None}
-    public var conflictingRules: [Rule]? { return nil }
-    public var options: RoleOptions { get { return RoleOptions.RequiresInterestWindow } }
-    
-    // Rule inputs
-    public var inputDate: NSDate?
-    public var interestPeriod: DTTimePeriod?
+    public override var name: String { return "!!!" }
+    public override var availableToNodeType:NodeType { return .None}
+    public override var conflictingRules: [Rule]? { return nil }
+    public override var options: RoleOptions { get { return RoleOptions.RequiresInterestWindow } }
     
     
     // Custom Vars
-    public var calendars: [EKCalendar]
+    
+    public var calendars = [EKCalendar]()
+    
     
     public init(calendars:[EKCalendar]) {
         
         self.calendars = calendars
     }
     
+    public override init() {
+        super.init()
+    }
     
-    public var avoidPeriods: [DTTimePeriod]? {
+    
+    public override var avoidPeriods: [DTTimePeriod]? {
         
         get {
             
@@ -60,5 +62,26 @@ public class AvoidCalendarEvents: NSObject, Rule {
             
             return periods
         }
+        
+        set {
+            self.avoidPeriods = newValue
+        }
+    }
+    
+    // MARK: NSCoding
+    
+    private struct SerializationKeys {
+        static let duration = "duration"
+        static let minDuration = "minDuration"
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        
+       calendars = aDecoder.decodeObjectForKey("calendars") as! [EKCalendar]
+    }
+    
+    public func encodeWithCoder(aCoder: NSCoder) {
+        
+        aCoder.encodeObject(calendars, forKey:"calendars")
     }
 }

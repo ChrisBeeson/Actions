@@ -49,7 +49,7 @@ public class Solver {
         
         // first average out all start and duration
         
-        for var rule in rules {
+        for rule in rules {
             
             rule.inputDate = inputDate
             
@@ -93,7 +93,7 @@ public class Solver {
         
         let windowOfinterest = DTTimePeriod(startDate: averageStartWindow!.StartDate!, endDate: averageStartWindow!.EndDate!.dateByAddTimeSize(averageDuration!))
         
-        for var rule in rules {
+        for rule in rules {
             
             if rule.options.contains(RoleOptions.RequiresInterestWindow) {
             

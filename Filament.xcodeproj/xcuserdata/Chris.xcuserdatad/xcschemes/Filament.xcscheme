@@ -67,8 +67,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "470EF59C1BE426CA009D1342"
-               BuildableName = "FilamentKit(OS X)Tests.xctest"
-               BlueprintName = "FilamentKit(OS X)Tests"
+               BuildableName = "FilamentKit OSXTests.xctest"
+               BlueprintName = "FilamentKit OSXTests"
                ReferencedContainer = "container:Filament.xcodeproj">
             </BuildableReference>
          </TestableReference>

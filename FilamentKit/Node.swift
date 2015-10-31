@@ -11,7 +11,7 @@ import EventKit
 
 public enum NodeType: Int { case Action = 0, Transition, All, None }
 
-public class Node: NSObject {
+public class Node: NSObject, NSCoding {
     
     // MARK: Properties
     
@@ -71,7 +71,7 @@ public class Node: NSObject {
     
     public required init?(coder aDecoder: NSCoder) {
         
-        text = aDecoder.decodeObjectForKey(SerializationKeys.text) as! String
+        title = aDecoder.decodeObjectForKey(SerializationKeys.title) as! String
         rules = aDecoder.decodeObjectForKey(SerializationKeys.rules) as! [Rule]
         type = NodeType(rawValue: aDecoder.decodeIntegerForKey(SerializationKeys.type))!
         UUID = aDecoder.decodeObjectForKey(SerializationKeys.uuid) as! NSUUID
@@ -83,7 +83,7 @@ public class Node: NSObject {
     public func encodeWithCoder(encoder: NSCoder) {
         
         encoder.encodeObject(title, forKey: SerializationKeys.title)
-        encoder.encodeObject(rules!, forKey: SerializationKeys.rules)
+        encoder.encodeObject(rules, forKey: SerializationKeys.rules)
         encoder.encodeInteger(type.rawValue, forKey: SerializationKeys.type)
         encoder.encodeObject(UUID, forKey: SerializationKeys.uuid)
         encoder.encodeObject(leftTransitionNode, forKey: SerializationKeys.leftTransitionNode)
@@ -113,5 +113,12 @@ public class Node: NSObject {
         }
         
         return false
+    }
+    
+    // Description
+
+    public override var description: String {
+        
+        return " \(self.title) type: \(type) \n Rules: \n \(rules)"
     }
 }

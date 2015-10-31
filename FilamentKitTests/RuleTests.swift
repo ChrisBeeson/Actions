@@ -39,7 +39,7 @@ class RuleTests: XCTestCase {
         
         // Event starts in 1 hour, give or take 15 min
         
-        var rule = EventStartsInTimeFromNow()
+        let rule = EventStartsInTimeFromNow()
         rule.inputDate = NSDate.dateFromString("2015-1-1 10:00:00")
         XCTAssert(rule.eventPreferedStartDate!.isEqualToDate(NSDate.dateFromString("2015-1-1 11:00:00")))
         

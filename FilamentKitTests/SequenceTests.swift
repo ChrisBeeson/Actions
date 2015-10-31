@@ -88,7 +88,7 @@ class SequenceTests: XCTestCase {
     
     
     /// Events
-    
+   /*
     func testEventCreation() {
         
         let actionNodes = [Node(text: "Action 1", type: .Action, rules: nil), Node(text: "Action 2", type: .Action, rules: nil), Node(text: "Action 3", type: .Action, rules: nil)]
@@ -101,6 +101,28 @@ class SequenceTests: XCTestCase {
         
         sequence!.UpdateEvents()
         
+    }
+    */
+    
+    func testEncodingSequence() {
+        
+        let archivedSequenceData = NSKeyedArchiver.archivedDataWithRootObject(sequence!)
+        
+        XCTAssertTrue(archivedSequenceData.length > 0)
+    }
+    
+    func testDecodingSequence() {
+        
+        let archivedSequenceData = NSKeyedArchiver.archivedDataWithRootObject(sequence!)
+        let unarchivedSequence = NSKeyedUnarchiver.unarchiveObjectWithData(archivedSequenceData) as? Sequence
+        
+        XCTAssertNotNil(unarchivedSequence)
+        
+        
+        if unarchivedSequence  != nil {
+            XCTAssertEqual(sequence, unarchivedSequence)
+        }
+
     }
     
     

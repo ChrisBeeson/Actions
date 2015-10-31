@@ -9,7 +9,7 @@
 import Foundation
 import DateTools
 
-public protocol Rule {
+public protocol RuleType {
     
     var name: String {get}
     var availableToNodeType:NodeType {get}
@@ -28,23 +28,24 @@ public protocol Rule {
     var eventDuration: TimeSize? {get}
     var eventMinDuration: TimeSize? {get}
     
-    var avoidPeriods: [DTTimePeriod]? {get}
+    var avoidPeriods: [DTTimePeriod]? {get set}
 }
 
-extension Rule {
+public class Rule: NSObject, RuleType {
     
     public var name: String {get {return ""} }
     public var availableToNodeType:NodeType {get {return NodeType.All} }
     public var conflictingRules: [Rule]? {get {return nil} }
     public var options: RoleOptions {get { return RoleOptions.None } }
     
-    public var interestPeriod: DTTimePeriod? { get { return nil }  set {}}
+    public var inputDate: NSDate? { get { return nil }  set { self.inputDate = newValue}}
+    public var interestPeriod: DTTimePeriod? { get { return nil }  set { self.interestPeriod = newValue }}
     
     public var eventStartTimeWindow: DTTimePeriod? {get {return nil} }
     public var eventPreferedStartDate: NSDate? {get {return nil} }
     public var eventDuration: TimeSize? { get { return nil } }
     public var eventMinDuration: TimeSize? { get { return nil } }
-    public var avoidPeriods: [DTTimePeriod]? { get { return nil } }
+    public var avoidPeriods: [DTTimePeriod]? { get { return nil } set { self.avoidPeriods = newValue }} // set required for testing
 }
 
 
@@ -76,7 +77,7 @@ print("allOptions has ThirdOption")
 */
 
 
-public struct TimeSize {
+public class TimeSize: NSObject, NSCoding  {
     
     var unit: DTTimePeriodSize
     var amount: Int
@@ -85,6 +86,7 @@ public struct TimeSize {
         
         self.unit = unit
         self.amount = amount
+        super.init()
     }
     
     public func inSeconds() -> Int {
@@ -98,6 +100,18 @@ public struct TimeSize {
         case .Month: return self.amount*60*60*24*7*(365/12)
         case .Year:return self.amount*60*60*24*7*52
         }
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        
+        unit = DTTimePeriodSize(rawValue: UInt(aDecoder.decodeIntegerForKey("unit")))!
+        amount = aDecoder.decodeIntegerForKey("amount")
+    }
+    
+    public func encodeWithCoder(aCoder: NSCoder) {
+        
+        aCoder.encodeInteger(Int(unit.rawValue), forKey: "unit")
+        aCoder.encodeInteger(amount, forKey: "amount")
     }
 }
 

@@ -9,29 +9,29 @@
 import Foundation
 import DateTools
 
-public classs EventStartsInTimeFromNow: NSObject, Rule {
+public class EventStartsInTimeFromNow: Rule, NSCoding {
     
     // This rule creates a window of available time for the event to sit in.
     // User specifies a time period, and can pick a variance size.
     // Eg Next event should happen in 5 hours, give or take 30mins
     
-    public var name: String { return "~>" }
-    public var availableToNodeType:NodeType { return NodeType.Transition }
-    public var conflictingRules: [Rule]? { return nil }
+    public override var name: String { return "~>" }
+    public override var availableToNodeType:NodeType { return NodeType.Transition }
+    public override var conflictingRules: [Rule]? { return nil }
     
-    public var inputDate: NSDate?
-    
-    
-    // Specific user controls
-    // Default: Event starts in 1 hour, give or take 15 min
+    // Rule user input
     
     public var eventStartsInDuration = TimeSize(unit: .Hour, amount: 1)
     public var variance = TimeSize(unit: .Minute, amount: 15)
     
     
-    // Rule protocol requirements
+    public override init() {
+        super.init()
+    }
     
-    public var eventStartTimeWindow: DTTimePeriod? { get {
+    // Rule output
+    
+    public override var eventStartTimeWindow: DTTimePeriod? { get {
         
         if  inputDate != nil {
             
@@ -42,10 +42,31 @@ public classs EventStartsInTimeFromNow: NSObject, Rule {
         }
     }
     
-    public var eventPreferedStartDate: NSDate? { get {
+    public override var eventPreferedStartDate: NSDate? { get {
         
         return inputDate?.dateByAddTimeSize(eventStartsInDuration)
         
         }
+    }
+    
+    
+    // MARK: NSCoding
+    
+    private struct SerializationKeys {
+        
+        static let eventStartsInDuration = "eventStartsInDuration"
+        static let variance = "variance"
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        
+        eventStartsInDuration = aDecoder.decodeObjectForKey(SerializationKeys.eventStartsInDuration) as! TimeSize
+        variance = aDecoder.decodeObjectForKey(SerializationKeys.variance) as! TimeSize
+    }
+    
+    public func encodeWithCoder(aCoder: NSCoder) {
+        
+        aCoder.encodeObject(eventStartsInDuration, forKey:SerializationKeys.eventStartsInDuration)
+        aCoder.encodeObject(variance, forKey:SerializationKeys.variance)
     }
 }

@@ -36,7 +36,7 @@ class SolverTests: XCTestCase {
         
         // Harder there is something right at our prefered period, but still will fit the average size
         
-        var avoid = DummyAvoids()
+        let avoid = DummyAvoids()
         avoid.avoidPeriods = [DTTimePeriod(startDate: NSDate.dateFromString("2015-1-1 11:00:00"), endDate: NSDate.dateFromString("2015-1-1 11:10:00"))]
         rules.append(avoid)
         
@@ -48,7 +48,7 @@ class SolverTests: XCTestCase {
         
         // even harder
         
-        var avoid2 = DummyAvoids()
+        let avoid2 = DummyAvoids()
         avoid2.avoidPeriods = [DTTimePeriod(startDate: NSDate.dateFromString("2015-1-1 11:25:00"), endDate: NSDate.dateFromString("2015-1-1 11:30:00"))]
         rules.append(avoid2)
         
@@ -59,7 +59,7 @@ class SolverTests: XCTestCase {
         
         // impossible
         
-        var avoid3 = DummyAvoids(), avoid4 = DummyAvoids(), avoid5 = DummyAvoids()
+        let avoid3 = DummyAvoids(), avoid4 = DummyAvoids(), avoid5 = DummyAvoids()
         avoid3.avoidPeriods = [DTTimePeriod(startDate: NSDate.dateFromString("2015-1-1 11:35:00"), endDate: NSDate.dateFromString("2015-1-1 11:38:00"))]
         rules.append(avoid3)
 
@@ -86,11 +86,11 @@ class SolverTests: XCTestCase {
 
 
 
-public struct DummyAvoids: Rule {
+public class DummyAvoids: Rule {
 
-    public var avoidPeriods: [DTTimePeriod]?
+    // public override var avoidPeriods: [DTTimePeriod]?
     
-    public var inputDate: NSDate? {get { return NSDate.distantPast() } set {  }}
+    public override var inputDate: NSDate? {get { return NSDate.distantPast() } set {  }}
     
 }
 

@@ -24,11 +24,11 @@ final public class SequencePresenter: NSObject, SequencePresenterType {
     public var name: String {
         
         get {
-            return sequence!.name
+            return sequence!.title
         }
 
         set {
-            sequence!.name = newValue
+            sequence!.title = newValue
         }
     }
     
