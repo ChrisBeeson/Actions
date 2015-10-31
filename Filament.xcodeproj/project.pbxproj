@@ -38,6 +38,7 @@
 		47ACA9541BB5464C000CAC61 /* DateToolsExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9531BB5464C000CAC61 /* DateToolsExtenstions.swift */; settings = {ASSET_TAGS = (); }; };
 		47ACA9571BB54B82000CAC61 /* EventDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9561BB54B82000CAC61 /* EventDuration.swift */; settings = {ASSET_TAGS = (); }; };
 		47ACA9591BB54EEA000CAC61 /* AvoidCalendarEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9581BB54EEA000CAC61 /* AvoidCalendarEvents.swift */; settings = {ASSET_TAGS = (); }; };
+		47B3F1511BE4A67B002B2574 /* SequenceDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B3F1501BE4A67B002B2574 /* SequenceDocument.swift */; settings = {ASSET_TAGS = (); }; };
 		47CD21BD1BDF373A00AF25BE /* Sequence+EventLogicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CD21BC1BDF373A00AF25BE /* Sequence+EventLogicTests.swift */; settings = {ASSET_TAGS = (); }; };
 		47CD21BF1BDF797B00AF25BE /* GeneralExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CD21BE1BDF797B00AF25BE /* GeneralExtensions.swift */; settings = {ASSET_TAGS = (); }; };
 		47CD21C21BDF7B0400AF25BE /* Sequence+NodeLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CD21C01BDF7A2600AF25BE /* Sequence+NodeLogic.swift */; settings = {ASSET_TAGS = (); }; };
@@ -128,10 +129,10 @@
 		473EAEE21BA3A91400AFEA2A /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		473EAEE41BA3AD0300AFEA2A /* RuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleTests.swift; sourceTree = "<group>"; };
 		4753D3AE1BE378720071DB59 /* WorkingWeekRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkingWeekRule.swift; sourceTree = "<group>"; };
-		479944A11BE427A600B25C8C /* ListDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListDocument.swift; path = ../../../../../Downloads/ListerforwatchOSiOSandOSX/Swift/ListerKitOSX/ListDocument.swift; sourceTree = "<group>"; };
 		47ACA9531BB5464C000CAC61 /* DateToolsExtenstions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateToolsExtenstions.swift; sourceTree = "<group>"; };
 		47ACA9561BB54B82000CAC61 /* EventDuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDuration.swift; sourceTree = "<group>"; };
 		47ACA9581BB54EEA000CAC61 /* AvoidCalendarEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvoidCalendarEvents.swift; sourceTree = "<group>"; };
+		47B3F1501BE4A67B002B2574 /* SequenceDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SequenceDocument.swift; path = FilamentKit/SequenceDocument.swift; sourceTree = SOURCE_ROOT; };
 		47CD21BC1BDF373A00AF25BE /* Sequence+EventLogicTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sequence+EventLogicTests.swift"; sourceTree = "<group>"; };
 		47CD21BE1BDF797B00AF25BE /* GeneralExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralExtensions.swift; sourceTree = "<group>"; };
 		47CD21C01BDF7A2600AF25BE /* Sequence+NodeLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sequence+NodeLogic.swift"; sourceTree = "<group>"; };
@@ -280,7 +281,7 @@
 		479944A01BE4278900B25C8C /* Document Architecture */ = {
 			isa = PBXGroup;
 			children = (
-				479944A11BE427A600B25C8C /* ListDocument.swift */,
+				47B3F1501BE4A67B002B2574 /* SequenceDocument.swift */,
 			);
 			name = "Document Architecture";
 			path = "FilamentKit(OS X)";
@@ -647,6 +648,7 @@
 				4735747F1B9A919500493CA0 /* SequencePresenter.swift in Sources */,
 				4753D3AF1BE378720071DB59 /* WorkingWeekRule.swift in Sources */,
 				473574851B9A91A200493CA0 /* SequencePresenterDelegate.swift in Sources */,
+				47B3F1511BE4A67B002B2574 /* SequenceDocument.swift in Sources */,
 				473574751B9A689B00493CA0 /* Node.swift in Sources */,
 				83C73E0E1BE31C4F0045973C /* AppConfiguration.swift in Sources */,
 				473574791B9A68BE00493CA0 /* Rule.swift in Sources */,

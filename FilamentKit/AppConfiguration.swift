@@ -15,6 +15,14 @@ public class AppConfiguration: NSObject {
         return NSLocalizedString("Filament", comment: "")
     }
     
+    public class var filamentFileExtension: String {
+        return "fil"
+    }
+    
+    public class var defaultFilamentDraftName: String {
+        return NSLocalizedString("Filament", comment: "")
+    }
+    
     
     
 }
