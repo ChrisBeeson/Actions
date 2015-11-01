@@ -92,12 +92,13 @@ public class AppConfiguration: NSObject {
     public var storageOption: Storage {
         
         get {
-            
-            let value = applicationUserDefaults.integerForKey(Defaults.storageOptionKey)
-            return Storage(rawValue: value)!
-        }
+                let value = applicationUserDefaults.integerForKey(Defaults.storageOptionKey)
+                return Storage(rawValue: value)!
+            }
         
-        set { applicationUserDefaults.setInteger(newValue.rawValue, forKey: Defaults.storageOptionKey) }
+        set {
+                applicationUserDefaults.setInteger(newValue.rawValue, forKey: Defaults.storageOptionKey)
+            }
     }
     
     
@@ -123,8 +124,8 @@ public class AppConfiguration: NSObject {
         let currentNotEqualStored = currentToken != nil && storedToken != nil && !currentToken!.isEqual(storedToken!)
         
         if currentTokenNilStoredNonNil || storedTokenNilCurrentNonNil || currentNotEqualStored {
-            persistAccount()
             
+            persistAccount()
             hasChanged = true
         }
         
