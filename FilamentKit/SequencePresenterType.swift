@@ -31,7 +31,7 @@ public protocol SequencePresenterType: class {
         presenter (color, list items, etc.). If a presenter has changes that are not yet applied to the list,
         the list returned here should have those changes applied.
     */
-    var archiveableSequence: Sequence { get }
+    var archiveableSeq: Sequence { get }
     
     /**
         The presented list items that should be displayed in order. Adopters of the `SequencePresenterType` protocol

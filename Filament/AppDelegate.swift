@@ -7,28 +7,21 @@
 //
 
 import Cocoa
-import CCNStatusItem
+//import CCNStatusItem
+import FilamentKit
 
 @NSApplicationMain
 
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-
-
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         
-     //   let contentView = ViewController().
-        /*
-        CCNStatusItem.sharedInstance().presentStatusItemWithImage(NSImage(named: "SystemTrayIcon"), contentViewController: nil)
-        */
-        
-        
+        //   CCNStatusItem.sharedInstance().presentStatusItemWithImage(NSImage(named: "SystemTrayIcon"), contentViewController: nil)
     }
 
+    
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
     }
-
-
 }
 

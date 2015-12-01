@@ -8,7 +8,7 @@
 import Foundation
 
 
-final public class SequencePresenter: NSObject, SequencePresenterType {
+public class SequencePresenter: NSObject, SequencePresenterType {
     
     // MARK: Properties
     
@@ -33,7 +33,7 @@ final public class SequencePresenter: NSObject, SequencePresenterType {
     }
     
     
-    public var archiveableSequence: Sequence {
+    public var archiveableSeq: Sequence {
         
         return sequence!
     }

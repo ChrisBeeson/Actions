@@ -19,25 +19,36 @@ public class AppConfiguration: NSObject {
         return Singleton.sharedAppConfiguration
     }
     
+    override init() {
+        super.init()
+    }
+    
     // Names
     
     private struct Defaults {
-        
         static let firstLaunchKey = "FilamentConfiguration.Defaults.firstLaunchKey"
         static let storageOptionKey = "FilamentConfiguration.Defaults.storageOptionKey"
         static let storedUbiquityIdentityToken = "FilamentConfiguration.Defaults.storedUbiquityIdentityToken"
     }
     
+    
     public class var defaultFilamentCalendarName:NSString {
         return NSLocalizedString("Filament", comment: "")
     }
+    
     
     public class var filamentFileExtension: String {
         return "fil"
     }
     
+    
+    public class var localizedDocumentFolderName: String {
+        return NSLocalizedString("Filament", comment: "The name of the documents folder")
+    }
+    
+    
     public class var defaultFilamentDraftName: String {
-        return NSLocalizedString("Filament", comment: "")
+        return NSLocalizedString("Untitled", comment: "")
     }
     
     
@@ -50,7 +61,6 @@ public class AppConfiguration: NSObject {
     public private(set) var isFirstLaunch: Bool {
         get {
             registerDefaults()
-            
             return applicationUserDefaults.boolForKey(Defaults.firstLaunchKey)
         }
         set {
@@ -81,35 +91,61 @@ public class AppConfiguration: NSObject {
     // Storage
     
     public enum Storage: Int { case NotSet = 0, Local, Cloud }
-    public typealias StorageState = (storageOption: AppConfiguration.Storage, accountDidChange: Bool, cloudAvailable: Bool)
-    
-    public var storageState: StorageState {
-        
-        return (storageOption, hasAccountChanged(), isCloudAvailable)
-    }
-    
-    
     public var storageOption: Storage {
         
         get {
-                let value = applicationUserDefaults.integerForKey(Defaults.storageOptionKey)
-                return Storage(rawValue: value)!
-            }
+            return .Local
+            //  let value = applicationUserDefaults.integerForKey(Defaults.storageOptionKey)
+            //    return Storage(rawValue: value)!
+        }
         
         set {
-                applicationUserDefaults.setInteger(newValue.rawValue, forKey: Defaults.storageOptionKey)
-            }
+            //   applicationUserDefaults.setInteger(newValue.rawValue, forKey: Defaults.storageOptionKey)
+        }
     }
     
     
     public var isCloudAvailable: Bool {
-        
         return NSFileManager.defaultManager().ubiquityIdentityToken != nil
     }
     
     
-    // MARK: Ubiquity Identity Token Handling (Account Change Info)
+    public var storageDirectory: NSURL {
+        
+        switch storageOption {
+            
+        case .Local:
+            var documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+            documentsPath.appendContentsOf("/"+AppConfiguration.localizedDocumentFolderName)
+            
+            // create folder if required
+            
+            do {
+                try NSFileManager.defaultManager().createDirectoryAtPath(documentsPath, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                print(error)
+            }
+            
+            return NSURL(fileURLWithPath: documentsPath)
+            
+        case .Cloud:
+            if let url = NSFileManager.defaultManager().URLForUbiquityContainerIdentifier(nil) {
+                return url
+            } else {
+                assertionFailure("iCloud Storage url is Nil")
+            }
+            
+        default:
+            assertionFailure("No storage option")
+        }
+        return NSURL()
+    }
+
     
+    // MARK: Ubiquity Identity Token Handling (Account Change Info)
+
+/*
+
     public func hasAccountChanged() -> Bool {
         
         var hasChanged = false
@@ -165,8 +201,8 @@ public class AppConfiguration: NSObject {
         return storedToken
     }
     
-    
-    
+    */
+
     // Bundle
     
     /*

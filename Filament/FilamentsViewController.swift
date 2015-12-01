@@ -7,8 +7,19 @@
 //
 
 import Cocoa
-import FilamentKit
+//import FilamentKit
 
 class FilamentsViewController:  NSViewController {
 
+    @IBOutlet weak var stackView: NSStackView!
+    
+    override func viewWillAppear() {
+        
+        populateStackView()
+    }
+    
+    
+    func populateStackView() {
+        
+    }
 }
