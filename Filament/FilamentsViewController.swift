@@ -7,7 +7,7 @@
 //
 
 import Cocoa
-//import FilamentKit
+import FilamentKit
 
 class FilamentsViewController:  NSViewController {
 
@@ -21,5 +21,7 @@ class FilamentsViewController:  NSViewController {
     
     func populateStackView() {
         
+        let documents = SequenceDocumentsController.sharedController.documents()
+        print(documents)
     }
 }

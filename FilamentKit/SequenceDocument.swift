@@ -1,5 +1,5 @@
 //
-//  FilamentDocument.swift
+//  SequenceDocument.swift
 //  Filament
 //
 //  Created by Chris Beeson on 7/11/2015.
@@ -9,7 +9,7 @@
 
 import Cocoa
 
-public class FilamentDocument: NSDocument {
+public class SequenceDocument: NSDocument {
 
     // MARK: Properties
     

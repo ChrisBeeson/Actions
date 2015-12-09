@@ -10,7 +10,6 @@ import Cocoa
 
 class MainWindowController: NSWindowController {
     
-    @IBOutlet weak var segmentedControl: NSSegmentedControl!
     
     override func awakeFromNib() {
         

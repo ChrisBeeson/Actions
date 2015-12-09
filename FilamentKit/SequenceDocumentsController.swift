@@ -8,9 +8,9 @@
 
 import Foundation
 
-public class FilamentsController {
+public class SequenceDocumentsController {
     
-    public static let sharedController = FilamentsController()
+    public static let sharedController = SequenceDocumentsController()
     let fileManager : NSFileManager
     
     init() {
@@ -18,7 +18,8 @@ public class FilamentsController {
     }
     
     
-    class func documentURLs() -> ([NSURL]?) {
+    
+    public class func documentURLs() -> ([NSURL]?) {
         
         let fileManager = NSFileManager.defaultManager()
         let storageDir = AppConfiguration.sharedConfiguration.storageDirectory
@@ -33,10 +34,30 @@ public class FilamentsController {
         }
     }
     
-    
-    func NewFilamentDocument(title: String) {
+    public func documents() -> [SequenceDocument]? {
         
-        let newDoc = FilamentDocument()
+        guard let urls = SequenceDocumentsController.documentURLs() else {
+            return nil
+        }
+        
+        var docs = [SequenceDocument]()
+        
+        for url in urls {
+            do {
+               let doc = try SequenceDocument(contentsOfURL: url, ofType:"fil")
+                docs.append(doc)
+
+            } catch {
+                print(error)
+            }
+        }
+        return docs
+    }
+    
+    
+    public func newSequenceDocument(title: String) {
+        
+        let newDoc = SequenceDocument()
         let sequence = Sequence()
         sequence.title = title
         newDoc.unarchivedSequence = sequence
