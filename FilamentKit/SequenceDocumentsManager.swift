@@ -8,15 +8,15 @@
 
 import Foundation
 
-public class SequenceDocumentsController {
+public class SequenceDocumentsManager {
     
-    public static let sharedController = SequenceDocumentsController()
+    public static let sharedManager = SequenceDocumentsManager()
+    
     let fileManager : NSFileManager
     
     init() {
         fileManager = NSFileManager.defaultManager()
     }
-    
     
     
     public class func documentURLs() -> ([NSURL]?) {
@@ -36,7 +36,7 @@ public class SequenceDocumentsController {
     
     public func documents() -> [SequenceDocument]? {
         
-        guard let urls = SequenceDocumentsController.documentURLs() else {
+        guard let urls = SequenceDocumentsManager.documentURLs() else {
             return nil
         }
         
@@ -71,7 +71,7 @@ public class SequenceDocumentsController {
             if Err != nil {
                 print(Err!.localizedDescription)
             } else {
-                print ("saved")
+                print ("Created new Sequence: \(title)")
             }
         })
     }

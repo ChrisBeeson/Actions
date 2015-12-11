@@ -25,9 +25,7 @@ public class AvoidCalendarEvents: Rule, NSCoding {
     
     public var calendars = [EKCalendar]()
     
-    
     public init(calendars:[EKCalendar]) {
-        
         self.calendars = calendars
     }
     
@@ -45,7 +43,6 @@ public class AvoidCalendarEvents: Rule, NSCoding {
             // 1. Find the calendar events for the time period.
           
             guard let events = CalendarManager.sharedInstance.events(interestPeriod!, calendars: calendars) else {
-                
                  return nil
             }
             
@@ -76,12 +73,10 @@ public class AvoidCalendarEvents: Rule, NSCoding {
     }
     
     public required init?(coder aDecoder: NSCoder) {
-        
        calendars = aDecoder.decodeObjectForKey("calendars") as! [EKCalendar]
     }
     
     public func encodeWithCoder(aCoder: NSCoder) {
-        
         aCoder.encodeObject(calendars, forKey:"calendars")
     }
 }

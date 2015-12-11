@@ -30,13 +30,12 @@
 		4735747F1B9A919500493CA0 /* SequencePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735747E1B9A919500493CA0 /* SequencePresenter.swift */; };
 		473574841B9A91A200493CA0 /* ListPresenterAlgorithms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574801B9A91A200493CA0 /* ListPresenterAlgorithms.swift */; };
 		473574851B9A91A200493CA0 /* SequencePresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574811B9A91A200493CA0 /* SequencePresenterDelegate.swift */; };
-		473574861B9A91A200493CA0 /* SequencePresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574821B9A91A200493CA0 /* SequencePresenterType.swift */; };
 		473574871B9A91A200493CA0 /* ListPresenterUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574831B9A91A200493CA0 /* ListPresenterUtilities.swift */; };
 		473EAEE11BA3A7D200AFEA2A /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473EAEE01BA3A7D200AFEA2A /* CalendarManager.swift */; };
 		473EAEE31BA3A91400AFEA2A /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 473EAEE21BA3A91400AFEA2A /* EventKit.framework */; };
 		473EAEE61BA3AD0300AFEA2A /* RuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473EAEE41BA3AD0300AFEA2A /* RuleTests.swift */; };
 		4753D3AF1BE378720071DB59 /* WorkingWeekRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4753D3AE1BE378720071DB59 /* WorkingWeekRule.swift */; };
-		477212061BED699500D5E988 /* SequenceDocumentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477212051BED699500D5E988 /* SequenceDocumentsController.swift */; };
+		477212061BED699500D5E988 /* SequenceDocumentsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477212051BED699500D5E988 /* SequenceDocumentsManager.swift */; };
 		47ACA9541BB5464C000CAC61 /* DateToolsExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9531BB5464C000CAC61 /* DateToolsExtenstions.swift */; };
 		47ACA9571BB54B82000CAC61 /* EventDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9561BB54B82000CAC61 /* EventDuration.swift */; };
 		47ACA9591BB54EEA000CAC61 /* AvoidCalendarEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9581BB54EEA000CAC61 /* AvoidCalendarEvents.swift */; };
@@ -129,13 +128,12 @@
 		4735747E1B9A919500493CA0 /* SequencePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencePresenter.swift; sourceTree = "<group>"; };
 		473574801B9A91A200493CA0 /* ListPresenterAlgorithms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListPresenterAlgorithms.swift; sourceTree = "<group>"; };
 		473574811B9A91A200493CA0 /* SequencePresenterDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencePresenterDelegate.swift; sourceTree = "<group>"; };
-		473574821B9A91A200493CA0 /* SequencePresenterType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencePresenterType.swift; sourceTree = "<group>"; };
 		473574831B9A91A200493CA0 /* ListPresenterUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListPresenterUtilities.swift; sourceTree = "<group>"; };
 		473EAEE01BA3A7D200AFEA2A /* CalendarManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
 		473EAEE21BA3A91400AFEA2A /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		473EAEE41BA3AD0300AFEA2A /* RuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleTests.swift; sourceTree = "<group>"; };
 		4753D3AE1BE378720071DB59 /* WorkingWeekRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkingWeekRule.swift; sourceTree = "<group>"; };
-		477212051BED699500D5E988 /* SequenceDocumentsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceDocumentsController.swift; sourceTree = "<group>"; };
+		477212051BED699500D5E988 /* SequenceDocumentsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceDocumentsManager.swift; sourceTree = "<group>"; };
 		477212071BED9DCB00D5E988 /* Filament.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Filament.entitlements; path = Filament/Filament.entitlements; sourceTree = "<group>"; };
 		47ACA9531BB5464C000CAC61 /* DateToolsExtenstions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateToolsExtenstions.swift; sourceTree = "<group>"; };
 		47ACA9561BB54B82000CAC61 /* EventDuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDuration.swift; sourceTree = "<group>"; };
@@ -221,7 +219,7 @@
 		47181F2E1C0C3D90006FD38E /* Document Architecture */ = {
 			isa = PBXGroup;
 			children = (
-				477212051BED699500D5E988 /* SequenceDocumentsController.swift */,
+				477212051BED699500D5E988 /* SequenceDocumentsManager.swift */,
 				83861F2A1BEEA25F00A44122 /* SequenceDocument.swift */,
 				47181F311C0E487B006FD38E /* SequenceView.swift */,
 			);
@@ -283,7 +281,6 @@
 			children = (
 				4735747E1B9A919500493CA0 /* SequencePresenter.swift */,
 				473574811B9A91A200493CA0 /* SequencePresenterDelegate.swift */,
-				473574821B9A91A200493CA0 /* SequencePresenterType.swift */,
 				473574881B9A91BE00493CA0 /* Presenter Helpers */,
 			);
 			name = Presenter;
@@ -310,10 +307,11 @@
 		47AFF8531BE497D700514857 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				83C73E081BE2E35A0045973C /* Configuration */,
 				47181F2E1C0C3D90006FD38E /* Document Architecture */,
+				4735747D1B9A915800493CA0 /* Presenter */,
 				473574591B9A687400493CA0 /* FilamentKit.h */,
 				473EAEE01BA3A7D200AFEA2A /* CalendarManager.swift */,
-				83C73E081BE2E35A0045973C /* Configuration */,
 				8343519B1BA2973C0094428B /* Rules */,
 				4735747A1B9A692F00493CA0 /* Models */,
 				473574651B9A687400493CA0 /* Tests */,
@@ -345,7 +343,6 @@
 		831BF9E71C16B554007B4CD5 /* Old */ = {
 			isa = PBXGroup;
 			children = (
-				4735747D1B9A915800493CA0 /* Presenter */,
 			);
 			name = Old;
 			sourceTree = "<group>";
@@ -680,7 +677,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				47ACA9571BB54B82000CAC61 /* EventDuration.swift in Sources */,
-				473574861B9A91A200493CA0 /* SequencePresenterType.swift in Sources */,
 				4735747F1B9A919500493CA0 /* SequencePresenter.swift in Sources */,
 				4753D3AF1BE378720071DB59 /* WorkingWeekRule.swift in Sources */,
 				47181F321C0E487B006FD38E /* SequenceView.swift in Sources */,
@@ -694,7 +690,7 @@
 				473EAEE11BA3A7D200AFEA2A /* CalendarManager.swift in Sources */,
 				473574871B9A91A200493CA0 /* ListPresenterUtilities.swift in Sources */,
 				47CD21BF1BDF797B00AF25BE /* GeneralExtensions.swift in Sources */,
-				477212061BED699500D5E988 /* SequenceDocumentsController.swift in Sources */,
+				477212061BED699500D5E988 /* SequenceDocumentsManager.swift in Sources */,
 				47CD21C61BDF807900AF25BE /* Sequence+EventLogic.swift in Sources */,
 				473574771B9A68AC00493CA0 /* Sequence.swift in Sources */,
 				473574841B9A91A200493CA0 /* ListPresenterAlgorithms.swift in Sources */,

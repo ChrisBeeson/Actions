@@ -53,19 +53,16 @@ public class EventStartsInTimeFromNow: Rule, NSCoding {
     // MARK: NSCoding
     
     private struct SerializationKeys {
-        
         static let eventStartsInDuration = "eventStartsInDuration"
         static let variance = "variance"
     }
     
     public required init?(coder aDecoder: NSCoder) {
-        
         eventStartsInDuration = aDecoder.decodeObjectForKey(SerializationKeys.eventStartsInDuration) as! TimeSize
         variance = aDecoder.decodeObjectForKey(SerializationKeys.variance) as! TimeSize
     }
     
     public func encodeWithCoder(aCoder: NSCoder) {
-        
         aCoder.encodeObject(eventStartsInDuration, forKey:SerializationKeys.eventStartsInDuration)
         aCoder.encodeObject(variance, forKey:SerializationKeys.variance)
     }

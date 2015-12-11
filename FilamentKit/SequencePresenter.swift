@@ -8,25 +8,18 @@
 import Foundation
 
 
-public class SequencePresenter: NSObject, SequencePresenterType {
+public class SequencePresenter: NSObject {
     
     // MARK: Properties
     
     private var sequence: Sequence?
-    private var isInitialSequence = true
     public var undoManager: NSUndoManager?
-    
-    
-    // MARK: SequencePresenterType
+    public weak var delegate: SequencePresenterDelegate? // Controller
 
-    public weak var delegate: SequencePresenterDelegate?
-
-    public var name: String {
-        
+    public var title: String {
         get {
             return sequence!.title
         }
-
         set {
             sequence!.title = newValue
         }
@@ -34,21 +27,17 @@ public class SequencePresenter: NSObject, SequencePresenterType {
     
     
     public var archiveableSeq: Sequence {
-        
         return sequence!
     }
     
     
-    public var presentedNodes:[Node]? {
-        
+    public var nodes:[Node]? {
         precondition(sequence!.validSequence(), "Trying to present a sequence that is not Valid")
-        
         return sequence!.allNodes()
     }
     
 
     public func setSequence(sequence: Sequence) {
-
             self.sequence = sequence
             delegate?.sequencePresenterDidRefreshCompleteLayout(self)
     }
@@ -56,7 +45,7 @@ public class SequencePresenter: NSObject, SequencePresenterType {
     
     // MARK: Methods
 
-
+/*
     public func insertNode(node: Node, index: Int?) {
         
         if sequence == nil {return}
@@ -73,6 +62,8 @@ public class SequencePresenter: NSObject, SequencePresenterType {
         let undoActionName = NSLocalizedString("Remove Node", comment: "")
         undoManager?.setActionName(undoActionName)
     }
+
+*/
     
     /*
     public func insertNodes(nodes:[Node]) {
