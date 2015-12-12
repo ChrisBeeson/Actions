@@ -738,17 +738,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <scrollView autohidesScrollers="YES" horizontalLineScroll="122" horizontalPageScroll="10" verticalLineScroll="122" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nmd-ka-rWP">
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="120" horizontalPageScroll="10" verticalLineScroll="120" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nmd-ka-rWP">
                                 <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="gkJ-4N-H0Y">
                                     <rect key="frame" x="1" y="1" width="448" height="298"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView focusRingType="exterior" appearanceType="aqua" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="120" viewBased="YES" id="8Qp-fL-QNJ">
+                                        <tableView focusRingType="exterior" appearanceType="aqua" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="120" viewBased="YES" id="8Qp-fL-QNJ">
                                             <rect key="frame" x="0.0" y="0.0" width="448" height="298"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <animations/>
-                                            <size key="intercellSpacing" width="3" height="2"/>
+                                            <size key="intercellSpacing" width="3" height="0.0"/>
                                             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                                             <color key="gridColor" white="0.80000000000000004" alpha="0.0" colorSpace="deviceWhite"/>
                                             <tableColumns>
@@ -766,13 +766,13 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="SequenceCellView" wantsLayer="YES" focusRingType="exterior" id="FDm-hf-wGf" customClass="SequenceTableCellView" customModule="Filament" customModuleProvider="target">
-                                                            <rect key="frame" x="1" y="1" width="445" height="120"/>
+                                                            <rect key="frame" x="1" y="0.0" width="445" height="120"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="bTc-Dp-Ybh">
                                                                     <rect key="frame" x="8" y="3" width="428" height="109"/>
                                                                     <subviews>
-                                                                        <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BeT-IN-UXD">
+                                                                        <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="BeT-IN-UXD">
                                                                             <rect key="frame" x="12" y="88" width="408" height="17"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="17" id="xYs-u0-aAY"/>
@@ -788,6 +788,11 @@
                                                                             </connections>
                                                                         </textField>
                                                                     </subviews>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="trailing" secondItem="BeT-IN-UXD" secondAttribute="trailing" constant="10" id="bh1-dc-zyG"/>
+                                                                        <constraint firstItem="BeT-IN-UXD" firstAttribute="leading" secondItem="bTc-Dp-Ybh" secondAttribute="leading" constant="14" id="nAD-e5-FSb"/>
+                                                                        <constraint firstItem="BeT-IN-UXD" firstAttribute="top" secondItem="bTc-Dp-Ybh" secondAttribute="top" constant="4" id="nmh-Tk-lRC"/>
+                                                                    </constraints>
                                                                     <shadow key="shadow" blurRadius="4">
                                                                         <color key="color" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
                                                                     </shadow>

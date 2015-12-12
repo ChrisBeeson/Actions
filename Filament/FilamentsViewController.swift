@@ -19,7 +19,7 @@ class FilamentsViewController:  NSViewController, NSTableViewDataSource, NSTable
     override func viewDidLoad() {
         populateDocuments()
     }
-
+    
     override func viewDidAppear() {
         tableView!.reloadData()
     }
@@ -43,11 +43,24 @@ class FilamentsViewController:  NSViewController, NSTableViewDataSource, NSTable
         
         let cellView = tableView.makeViewWithIdentifier("SequenceCellView", owner: self) as! SequenceTableCellView
         cellView.presenter = documents![row].sequencePresenter
-
+        
         return cellView
     }
     
     func tableView(tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
+        
+        if tableView.selectedRow == row { return false }
+        
+        if let cellView = tableView.viewAtColumn(0, row: row, makeIfNecessary: false) as? SequenceTableCellView {
+            cellView.selected = true
+        }
+        
+        if tableView.selectedRow != -1 {
+            if let currentSelection = tableView.viewAtColumn(0, row: tableView.selectedRow, makeIfNecessary: false)  as? SequenceTableCellView {
+                currentSelection.selected = false
+            }
+        }
+        
         return true
     }
 }

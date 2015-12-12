@@ -11,52 +11,62 @@ import FilamentKit
 
 public class SequenceTableCellView: NSTableCellView, SequencePresenterDelegate {
     
+    // UI Properties
+    @IBOutlet weak var backgroundView: NSView!
+    @IBOutlet weak var titleTextField: NSTextField!
+
     public var presenter: SequencePresenter? {
         didSet {
             presenter!.delegate = self
-            populateInterface()
+            updateCellView()
         }
     }
     
+    public var selected: Bool {
+        didSet {
+            updateCellView()
+    }
+}
     
-    // UI Properties
-    @IBOutlet weak var backgroundView: NSView!
+    // MARK: Methods
     
-    @IBOutlet weak var titleTextField: NSTextField!
+    required public init?(coder: NSCoder) {
+        selected = false
+        super.init(coder: coder)
+    }
+    
+
+    func updateCellView() {
+        
+        backgroundView.backgroundColor = NSColor.whiteColor()
+
+        if presenter != nil {
+            titleTextField.stringValue = presenter!.title
+        }
+        
+        switch selected {
+        case true:
+            backgroundView.layer?.borderWidth = 3
+            backgroundView.layer?.borderColor = NSColor(red: 0.6, green: 0.75, blue: 0.9, alpha: 1.0).CGColor
+            titleTextField.editable = true
+            
+        case false:
+            backgroundView.layer?.borderWidth = 0
+            titleTextField.editable = false
+        }
+    }
+    
     
     @IBAction func titleTextFieldDidChange(sender: NSTextField) {
         
     }
     
-    
-    func populateInterface() {
-        
-        backgroundView.backgroundColor = NSColor.whiteColor()
-        outline(true)
-        
-        if presenter != nil {
-            titleTextField.stringValue = presenter!.title
-        }
-    }
-    
-    public func outline(visible: Bool) {
-        
-        switch visible {
-        case true:
-            backgroundView.layer?.borderWidth = 3
-            backgroundView.layer?.borderColor = NSColor(red: 0.6, green: 0.75, blue: 0.9, alpha: 1.0).CGColor
-            
-        case false:
-            backgroundView.layer?.borderWidth = 0
-        }
-    }
-    
-    
+
     // MARK: Presenter Delegate
     
     public func sequencePresenterDidRefreshCompleteLayout(sequencePresenter: SequencePresenter) {
         
-        populateInterface()
+        updateCellView()
     }
 }
 
