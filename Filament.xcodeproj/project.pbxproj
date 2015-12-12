@@ -36,6 +36,7 @@
 		473EAEE61BA3AD0300AFEA2A /* RuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473EAEE41BA3AD0300AFEA2A /* RuleTests.swift */; };
 		4753D3AF1BE378720071DB59 /* WorkingWeekRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4753D3AE1BE378720071DB59 /* WorkingWeekRule.swift */; };
 		477212061BED699500D5E988 /* SequenceDocumentsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477212051BED699500D5E988 /* SequenceDocumentsManager.swift */; };
+		479CD2861C1B8AE700C8D1D6 /* SequenceTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479CD2851C1B8AE700C8D1D6 /* SequenceTableCellView.swift */; };
 		47ACA9541BB5464C000CAC61 /* DateToolsExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9531BB5464C000CAC61 /* DateToolsExtenstions.swift */; };
 		47ACA9571BB54B82000CAC61 /* EventDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9561BB54B82000CAC61 /* EventDuration.swift */; };
 		47ACA9591BB54EEA000CAC61 /* AvoidCalendarEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9581BB54EEA000CAC61 /* AvoidCalendarEvents.swift */; };
@@ -135,6 +136,7 @@
 		4753D3AE1BE378720071DB59 /* WorkingWeekRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkingWeekRule.swift; sourceTree = "<group>"; };
 		477212051BED699500D5E988 /* SequenceDocumentsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceDocumentsManager.swift; sourceTree = "<group>"; };
 		477212071BED9DCB00D5E988 /* Filament.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Filament.entitlements; path = Filament/Filament.entitlements; sourceTree = "<group>"; };
+		479CD2851C1B8AE700C8D1D6 /* SequenceTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SequenceTableCellView.swift; path = FilamentKit/SequenceTableCellView.swift; sourceTree = SOURCE_ROOT; };
 		47ACA9531BB5464C000CAC61 /* DateToolsExtenstions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateToolsExtenstions.swift; sourceTree = "<group>"; };
 		47ACA9561BB54B82000CAC61 /* EventDuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDuration.swift; sourceTree = "<group>"; };
 		47ACA9581BB54EEA000CAC61 /* AvoidCalendarEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvoidCalendarEvents.swift; sourceTree = "<group>"; };
@@ -295,6 +297,13 @@
 			name = "Presenter Helpers";
 			sourceTree = "<group>";
 		};
+		479CD2841C1B8AA300C8D1D6 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
 		47ACA9551BB54658000CAC61 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -307,6 +316,7 @@
 		47AFF8531BE497D700514857 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				479CD2841C1B8AA300C8D1D6 /* UI */,
 				83C73E081BE2E35A0045973C /* Configuration */,
 				47181F2E1C0C3D90006FD38E /* Document Architecture */,
 				4735747D1B9A915800493CA0 /* Presenter */,
@@ -324,8 +334,9 @@
 		47B696431BE5640800260C2A /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				47B696441BE5645400260C2A /* FilamentsViewController.swift */,
 				47B696461BE564DC00260C2A /* MainWindowController.swift */,
+				47B696441BE5645400260C2A /* FilamentsViewController.swift */,
+				479CD2851C1B8AE700C8D1D6 /* SequenceTableCellView.swift */,
 				47F5E82A1BF495D8004C0D16 /* AddFilamentViewController.swift */,
 			);
 			name = "View Controllers";
@@ -733,6 +744,7 @@
 				83F6B95F1B994652002A5AAF /* ViewController.swift in Sources */,
 				47B696471BE564DC00260C2A /* MainWindowController.swift in Sources */,
 				47F5E82B1BF495D8004C0D16 /* AddFilamentViewController.swift in Sources */,
+				479CD2861C1B8AE700C8D1D6 /* SequenceTableCellView.swift in Sources */,
 				83F6B95D1B994652002A5AAF /* AppDelegate.swift in Sources */,
 				47B696451BE5645400260C2A /* FilamentsViewController.swift in Sources */,
 			);
