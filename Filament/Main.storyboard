@@ -789,7 +789,7 @@
                                                                         </textField>
                                                                     </subviews>
                                                                     <shadow key="shadow" blurRadius="4">
-                                                                        <color key="color" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
+                                                                        <color key="color" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
                                                                     </shadow>
                                                                     <animations>
                                                                         <caTransition key="subviews">

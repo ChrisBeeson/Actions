@@ -48,7 +48,6 @@ public class SequenceTableCellView: NSTableCellView, SequencePresenterDelegate {
             
         case false:
             backgroundView.layer?.borderWidth = 0
-            
         }
     }
     
@@ -56,6 +55,7 @@ public class SequenceTableCellView: NSTableCellView, SequencePresenterDelegate {
     // MARK: Presenter Delegate
     
     public func sequencePresenterDidRefreshCompleteLayout(sequencePresenter: SequencePresenter) {
+        
         populateInterface()
     }
 }
