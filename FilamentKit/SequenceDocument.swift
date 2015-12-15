@@ -53,6 +53,12 @@ public class SequenceDocument: NSDocument {
     }
     */
     
+    public func storageURL() -> NSURL {
+        let storageDir = AppConfiguration.sharedConfiguration.storageDirectory
+        let url = storageDir.URLByAppendingPathComponent(unarchivedSequence!.filename)
+        return url
+    }
+    
     public class func newSequenceDocument(title: String) -> SequenceDocument {
         
         let newDoc = SequenceDocument()
@@ -62,7 +68,6 @@ public class SequenceDocument: NSDocument {
         
         let storageDir = AppConfiguration.sharedConfiguration.storageDirectory
         let url = storageDir.URLByAppendingPathComponent(sequence.filename)
-        print(url)
         
         newDoc.saveToURL(url, ofType: AppConfiguration.filamentFileExtension , forSaveOperation:.SaveOperation, completionHandler: { (Err: NSError?) -> Void in
             

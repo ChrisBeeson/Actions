@@ -36,11 +36,9 @@ public class Sequence: NSObject, NSCopying, NSCoding {
         }
     }
     
-    
     // MARK: NSCoding
     
     private struct SerializationKeys {
-        
         static let title = "title"
         static let actionNodes = "actionNodes"
         static let transitionNodes = "transitionNodes"
@@ -50,7 +48,6 @@ public class Sequence: NSObject, NSCopying, NSCoding {
     }
     
     public required init?(coder aDecoder: NSCoder) {
-        
         title = aDecoder.decodeObjectForKey(SerializationKeys.title) as! String
         actionNodes = aDecoder.decodeObjectForKey(SerializationKeys.actionNodes) as! [Node]
         transitionNodes = aDecoder.decodeObjectForKey(SerializationKeys.transitionNodes) as! [Node]
@@ -59,7 +56,6 @@ public class Sequence: NSObject, NSCopying, NSCoding {
     }
     
     public func encodeWithCoder(aCoder: NSCoder) {
-        
         aCoder.encodeObject(title, forKey: SerializationKeys.title)
         aCoder.encodeObject(actionNodes, forKey: SerializationKeys.actionNodes)
         aCoder.encodeObject(transitionNodes, forKey: SerializationKeys.transitionNodes)

@@ -83,10 +83,8 @@ public class FilamentsViewController:  NSViewController, NSTableViewDataSource, 
             
             if let cellView = tableView.viewAtColumn(0, row: tableView.selectedRow, makeIfNecessary: false) as? SequenceTableCellView {
                 
-                // SequenceDocumentsManager.sharedManager.deleteDocumentForSequence(cellView.sequence)
+                SequenceDocumentsManager.sharedManager.deleteDocumentForSequence(cellView.presenter!.archiveableSeq)
             }
-            
-            // delete.
             
         default: break
         }

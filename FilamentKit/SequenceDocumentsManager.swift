@@ -16,7 +16,6 @@ public class SequenceDocumentsManager {
     let fileManager : NSFileManager
     
     init() {
-        
         fileManager = NSFileManager.defaultManager()
         _documents = loadDocuments()
     }
@@ -42,15 +41,11 @@ public class SequenceDocumentsManager {
     }
     
     public func saveAllDocuments() {
-        
         if _documents == nil { return }
         
         for doc in _documents! {
-   
             let edited = doc.documentEdited
-            
             print("\(doc) has been edited: \(edited)")
-            
             doc.saveDocument(nil)
         }
     }
@@ -62,7 +57,6 @@ public class SequenceDocumentsManager {
     
     
      func documentURLs() -> ([NSURL]?) {
-        
         let fileManager = NSFileManager.defaultManager()
         let storageDir = AppConfiguration.sharedConfiguration.storageDirectory
         
@@ -78,16 +72,29 @@ public class SequenceDocumentsManager {
     
     public func deleteDocumentForSequence(sequence: Sequence) {
         
-        // need to search the documents, to find which one matches this sequence.
-        
-        /*
-        if let index = _documents!.indexOf(sequence) {
+        let document = _documents?.filter{$0.unarchivedSequence == sequence}.first
+        if document != nil {
             
-            itemList.removeAtIndex(index)
+            let title = document?.unarchivedSequence!.title
+            print("doc found to delete \(title)")
+            
+            _documents?.removeObject(document!)
+            permanentlyDeleteDocument(document!)
         }
-        */
     }
     
+        func permanentlyDeleteDocument(document: SequenceDocument) {
+            
+            let url = document.storageURL()
+            let fileManager = NSFileManager.defaultManager()
+            
+            do {
+                 try fileManager.removeItemAtURL(url)
+                
+            } catch {
+                print(error)
+            }
+        }
 }
 
 
