@@ -1,9 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Pec-jz-yQ8">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Pec-jz-yQ8">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
     </dependencies>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="jw0-hT-vgf">
+            <objects>
+                <viewController id="V04-Ff-GEc" sceneMemberID="viewController">
+                    <view key="view" id="o0E-DB-cWO">
+                        <rect key="frame" x="0.0" y="0.0" width="333" height="151"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tsv-iX-MTb">
+                                <rect key="frame" x="111" y="86" width="117" height="45"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Filament" id="7Qb-7x-W9F">
+                                    <font key="font" metaFont="system" size="27"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="LLE-ol-L7v" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="521.5" y="-1495.5"/>
+        </scene>
         <!--Application-->
         <scene sceneID="JPo-4y-FX3">
             <objects>
@@ -16,10 +39,10 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Filament" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="About Lister" id="5kV-Vb-QxS" userLabel="About Lister">
+                                        <menuItem title="About Filament" id="5kV-Vb-QxS" userLabel="About Lister">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
+                                                <segue destination="V04-Ff-GEc" kind="modal" id="oJm-8a-93m"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
@@ -30,7 +53,7 @@
                                             <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
-                                        <menuItem title="Hide Lister" keyEquivalent="h" id="Olw-nP-bQN">
+                                        <menuItem title="Hide Filament" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
                                                 <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
                                             </connections>
@@ -48,7 +71,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                                        <menuItem title="Quit Lister" keyEquivalent="q" id="4sb-4s-VLi">
+                                        <menuItem title="Quit Filament" keyEquivalent="q" id="4sb-4s-VLi">
                                             <connections>
                                                 <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
                                             </connections>
@@ -65,12 +88,11 @@
                                                 <action selector="newDocument:" target="Ady-hI-5gd" id="4Si-XN-c54"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Open…" keyEquivalent="o" id="IAo-SY-fd9">
+                                        <menuItem title="Open" keyEquivalent="o" id="IAo-SY-fd9">
                                             <connections>
                                                 <action selector="openDocument:" target="Ady-hI-5gd" id="bVn-NM-KNZ"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Open Today Document" keyEquivalent="t" id="J2B-9g-yNY"/>
                                         <menuItem title="Open Recent" id="tXI-mr-wws">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Open Recent" systemMenu="recentDocuments" id="oas-Oc-fiZ">
@@ -85,7 +107,7 @@
                                             </menu>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="m54-Is-iLE"/>
-                                        <menuItem title="Close" keyEquivalent="w" id="DVo-aG-piG">
+                                        <menuItem title="Export" keyEquivalent="w" id="DVo-aG-piG">
                                             <connections>
                                                 <action selector="performClose:" target="Ady-hI-5gd" id="HmO-Ls-i7Q"/>
                                             </connections>
@@ -102,9 +124,6 @@
                                         </menuItem>
                                         <menuItem title="Revert to Saved" id="KaW-ft-85H">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="revertDocumentToSaved:" target="Ady-hI-5gd" id="iJ3-Pv-kwq"/>
-                                            </connections>
                                         </menuItem>
                                     </items>
                                 </menu>
@@ -124,26 +143,9 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="ma0-no-apM"/>
-                                        <menuItem title="Complete All" keyEquivalent="C" id="SJl-4d-bhg">
-                                            <connections>
-                                                <action selector="markAllListItemsAsComplete:" target="Ady-hI-5gd" id="d2G-vM-2p3"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Incomplete All" keyEquivalent="I" id="72C-Se-Hgh">
-                                            <connections>
-                                                <action selector="markAllListItemsAsIncomplete:" target="Ady-hI-5gd" id="hJ2-QI-Pmu"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="WRV-NI-Exz"/>
-                                        <menuItem title="New List Item" keyEquivalent="n" id="Nq9-EH-Zqp">
-                                            <connections>
-                                                <action selector="showAddItemViewController:" target="Ady-hI-5gd" id="7V3-5j-tS8"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="aQn-LX-MFy"/>
                                         <menuItem title="Cut" keyEquivalent="x" id="uRl-iY-unG">
                                             <connections>
-                                                <action selector="cut:" target="Ady-hI-5gd" id="YJe-68-I9s"/>
+                                                <action selector="cut:" target="Ady-hI-5gd" id="rqA-P9-izB"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Copy" keyEquivalent="c" id="x3v-GG-iWU">
@@ -151,26 +153,14 @@
                                                 <action selector="copy:" target="Ady-hI-5gd" id="G1f-GL-Joy"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Paste" keyEquivalent="v" id="gVA-U4-sdL">
-                                            <connections>
-                                                <action selector="paste:" target="Ady-hI-5gd" id="UvS-8e-Qdg"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Paste and Match Style" keyEquivalent="V" id="WeT-3V-zwk">
-                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
-                                            <connections>
-                                                <action selector="pasteAsPlainText:" target="Ady-hI-5gd" id="cEh-KX-wJQ"/>
-                                            </connections>
-                                        </menuItem>
+                                        <menuItem title="Paste" keyEquivalent="v" id="gVA-U4-sdL"/>
                                         <menuItem title="Delete" id="pa3-QI-u2k">
+                                            <string key="keyEquivalent" base64-UTF8="YES">
+CA
+</string>
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="delete:" target="Ady-hI-5gd" id="0Mk-Ml-PaM"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Select All" keyEquivalent="a" id="Ruw-6m-B2m">
-                                            <connections>
-                                                <action selector="selectAll:" target="Ady-hI-5gd" id="VNm-Mi-diN"/>
+                                                <action selector="delete:" target="Ady-hI-5gd" id="fL0-qn-eHH"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="uyl-h8-XO2"/>
@@ -650,7 +640,7 @@
                     </connections>
                 </application>
             </objects>
-            <point key="canvasLocation" x="227.5" y="-1279"/>
+            <point key="canvasLocation" x="221" y="-1205"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="DSJ-kf-fjK">
@@ -666,7 +656,6 @@
                         <view key="contentView" id="4dl-LY-FNL">
                             <rect key="frame" x="0.0" y="0.0" width="450" height="200"/>
                             <autoresizingMask key="autoresizingMask"/>
-                            <animations/>
                         </view>
                         <toolbar key="toolbar" implicitIdentifier="A6F18C0C-925A-4A85-BF6F-1FE0777CC213" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconOnly" sizeMode="regular" id="aab-Bf-DFT">
                             <allowedToolbarItems>
@@ -678,7 +667,6 @@
                                     <segmentedControl key="view" verticalHuggingPriority="750" allowsExpansionToolTips="YES" springLoaded="YES" id="Wcx-wK-bYT">
                                         <rect key="frame" x="0.0" y="14" width="255" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <animations/>
                                         <segmentedCell key="cell" scrollable="YES" lineBreakMode="clipping" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="8mg-Ga-2zM">
                                             <font key="font" metaFont="system"/>
                                             <segments>
@@ -700,7 +688,6 @@
                                     <button key="view" verticalHuggingPriority="750" springLoaded="YES" id="NC8-ij-a88">
                                         <rect key="frame" x="0.0" y="14" width="36" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <animations/>
                                         <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSAddTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="cDG-Fc-MvC">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -728,7 +715,7 @@
                     </connections>
                 </windowController>
             </objects>
-            <point key="canvasLocation" x="232" y="-902"/>
+            <point key="canvasLocation" x="322" y="-716"/>
         </scene>
         <!--Filaments View Controller-->
         <scene sceneID="wKY-Q1-6mt">
@@ -738,16 +725,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <scrollView autohidesScrollers="YES" horizontalLineScroll="120" horizontalPageScroll="10" verticalLineScroll="120" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nmd-ka-rWP">
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="120" horizontalPageScroll="10" verticalLineScroll="120" verticalPageScroll="10" usesPredominantAxisScrolling="NO" scrollerKnobStyle="dark" translatesAutoresizingMaskIntoConstraints="NO" id="nmd-ka-rWP">
                                 <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="gkJ-4N-H0Y">
                                     <rect key="frame" x="1" y="1" width="448" height="298"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView focusRingType="exterior" appearanceType="aqua" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="120" viewBased="YES" id="8Qp-fL-QNJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="448" height="298"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="448" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <animations/>
                                             <size key="intercellSpacing" width="3" height="0.0"/>
                                             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                                             <color key="gridColor" white="0.80000000000000004" alpha="0.0" colorSpace="deviceWhite"/>
@@ -765,7 +751,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="SequenceCellView" wantsLayer="YES" focusRingType="exterior" id="FDm-hf-wGf" customClass="SequenceTableCellView" customModule="Filament" customModuleProvider="target">
+                                                        <tableCellView identifier="SequenceCellView" toolTip="Filament Sequence" wantsLayer="YES" focusRingType="exterior" id="FDm-hf-wGf" customClass="SequenceTableCellView" customModule="Filament" customModuleProvider="target">
                                                             <rect key="frame" x="1" y="0.0" width="445" height="120"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -773,11 +759,10 @@
                                                                     <rect key="frame" x="8" y="3" width="428" height="109"/>
                                                                     <subviews>
                                                                         <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="BeT-IN-UXD">
-                                                                            <rect key="frame" x="12" y="88" width="408" height="17"/>
+                                                                            <rect key="frame" x="17" y="88" width="402" height="17"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="height" constant="17" id="xYs-u0-aAY"/>
+                                                                                <constraint firstAttribute="height" constant="17" id="Wof-nb-hYy"/>
                                                                             </constraints>
-                                                                            <animations/>
                                                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" alignment="left" title="Western Blot - Tuesday" id="chR-lv-cWb">
                                                                                 <font key="font" metaFont="systemBold"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -787,11 +772,21 @@
                                                                                 <action selector="titleTextFieldDidChange:" target="FDm-hf-wGf" id="RrH-q7-QJw"/>
                                                                             </connections>
                                                                         </textField>
+                                                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Fx-qX-eXF">
+                                                                            <rect key="frame" x="-1" y="86" width="24" height="20"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="height" constant="20" id="QAD-dI-9I5"/>
+                                                                                <constraint firstAttribute="width" constant="24" id="Tqd-ZC-5x8"/>
+                                                                            </constraints>
+                                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusAvailable" id="64O-HU-9oq"/>
+                                                                        </imageView>
                                                                     </subviews>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="trailing" secondItem="BeT-IN-UXD" secondAttribute="trailing" constant="10" id="bh1-dc-zyG"/>
-                                                                        <constraint firstItem="BeT-IN-UXD" firstAttribute="leading" secondItem="bTc-Dp-Ybh" secondAttribute="leading" constant="14" id="nAD-e5-FSb"/>
-                                                                        <constraint firstItem="BeT-IN-UXD" firstAttribute="top" secondItem="bTc-Dp-Ybh" secondAttribute="top" constant="4" id="nmh-Tk-lRC"/>
+                                                                        <constraint firstItem="3Fx-qX-eXF" firstAttribute="leading" secondItem="bTc-Dp-Ybh" secondAttribute="leading" constant="-1" id="4pN-Zk-rhb"/>
+                                                                        <constraint firstItem="3Fx-qX-eXF" firstAttribute="top" secondItem="bTc-Dp-Ybh" secondAttribute="top" constant="3" id="B0E-QI-Bs6"/>
+                                                                        <constraint firstItem="BeT-IN-UXD" firstAttribute="top" secondItem="bTc-Dp-Ybh" secondAttribute="top" constant="4" id="HqR-C2-4BO"/>
+                                                                        <constraint firstItem="BeT-IN-UXD" firstAttribute="leading" secondItem="bTc-Dp-Ybh" secondAttribute="leading" constant="19" id="bIp-Zd-Ffz"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="BeT-IN-UXD" secondAttribute="trailing" constant="11" id="fCv-I8-Z8B"/>
                                                                     </constraints>
                                                                     <shadow key="shadow" blurRadius="4">
                                                                         <color key="color" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
@@ -817,7 +812,6 @@ AwEVARgBHQAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAEfA
                                                                 <constraint firstItem="bTc-Dp-Ybh" firstAttribute="leading" secondItem="FDm-hf-wGf" secondAttribute="leading" constant="8" id="ZX1-Jq-F3b"/>
                                                                 <constraint firstAttribute="trailing" secondItem="bTc-Dp-Ybh" secondAttribute="trailing" constant="9" id="ell-Va-XsV"/>
                                                             </constraints>
-                                                            <animations/>
                                                             <connections>
                                                                 <outlet property="backgroundView" destination="bTc-Dp-Ybh" id="RVm-3F-Rqz"/>
                                                                 <outlet property="textField" destination="BeT-IN-UXD" id="PVO-Gh-Ozv"/>
@@ -833,19 +827,15 @@ AwEVARgBHQAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAEfA
                                             </connections>
                                         </tableView>
                                     </subviews>
-                                    <animations/>
                                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                                 </clipView>
-                                <animations/>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="DJU-Eb-WNM">
-                                    <rect key="frame" x="1" y="-15" width="0.0" height="16"/>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="DJU-Eb-WNM">
+                                    <rect key="frame" x="1" y="283" width="448" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <animations/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="ZsI-Gg-9NC">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <animations/>
                                 </scroller>
                             </scrollView>
                         </subviews>
@@ -855,7 +845,6 @@ AwEVARgBHQAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAEfA
                             <constraint firstItem="nmd-ka-rWP" firstAttribute="leading" secondItem="onh-9G-uCj" secondAttribute="leading" id="eO2-mY-Cp1"/>
                             <constraint firstAttribute="bottom" secondItem="nmd-ka-rWP" secondAttribute="bottom" id="krg-fZ-XZN"/>
                         </constraints>
-                        <animations/>
                     </visualEffectView>
                     <connections>
                         <outlet property="tableView" destination="8Qp-fL-QNJ" id="dec-AZ-NQM"/>
@@ -863,7 +852,7 @@ AwEVARgBHQAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAEfA
                 </viewController>
                 <customObject id="RGD-8o-AaF" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1017" y="-1006"/>
+            <point key="canvasLocation" x="925" y="-741"/>
         </scene>
         <!--Add Filament View Controller-->
         <scene sceneID="25o-ws-mZY">
@@ -875,8 +864,7 @@ AwEVARgBHQAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAEfA
                         <subviews>
                             <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cAY-gV-D8k">
                                 <rect key="frame" x="9" y="11" width="257" height="22"/>
-                                <animations/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" focusRingType="none" alignment="left" placeholderString="Name" bezelStyle="round" id="FLD-Kx-VHa">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" focusRingType="none" alignment="left" placeholderString="Title" bezelStyle="round" id="FLD-Kx-VHa">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -886,15 +874,15 @@ AwEVARgBHQAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAEfA
                                 </connections>
                             </textField>
                         </subviews>
-                        <animations/>
                     </view>
                 </viewController>
                 <customObject id="7Qd-kM-6FJ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="898.5" y="-1267.5"/>
+            <point key="canvasLocation" x="837.5" y="-997.5"/>
         </scene>
     </scenes>
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>
+        <image name="NSStatusAvailable" width="16" height="16"/>
     </resources>
 </document>

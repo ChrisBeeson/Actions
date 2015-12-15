@@ -9,18 +9,18 @@
 import Cocoa
 import FilamentKit
 
-class FilamentsViewController:  NSViewController, NSTableViewDataSource, NSTableViewDelegate {
+public class FilamentsViewController:  NSViewController, NSTableViewDataSource, NSTableViewDelegate {
     
     @IBOutlet weak var tableView: NSTableView!
     
     var documents: [SequenceDocument]?
     
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         populateDocuments()
     }
     
-    override func viewDidAppear() {
+    override public func viewDidAppear() {
         tableView!.reloadData()
     }
     
@@ -31,7 +31,8 @@ class FilamentsViewController:  NSViewController, NSTableViewDataSource, NSTable
     
     // MARK: TableView DataSource
     
-    func numberOfRowsInTableView(tableView: NSTableView) -> Int {
+    
+    public func numberOfRowsInTableView(tableView: NSTableView) -> Int {
         if let docs = documents {
             return docs.count
         } else {
@@ -39,7 +40,7 @@ class FilamentsViewController:  NSViewController, NSTableViewDataSource, NSTable
         }
     }
     
-    func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
+    public func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
         let cellView = tableView.makeViewWithIdentifier("SequenceCellView", owner: self) as! SequenceTableCellView
         cellView.presenter = documents![row].sequencePresenter
@@ -47,7 +48,7 @@ class FilamentsViewController:  NSViewController, NSTableViewDataSource, NSTable
         return cellView
     }
     
-    func tableView(tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
+    public func tableView(tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
         
         if tableView.selectedRow == row { return false }
         
@@ -57,10 +58,53 @@ class FilamentsViewController:  NSViewController, NSTableViewDataSource, NSTable
         
         if tableView.selectedRow != -1 {
             if let currentSelection = tableView.viewAtColumn(0, row: tableView.selectedRow, makeIfNecessary: false)  as? SequenceTableCellView {
-                currentSelection.selected = false
+                  currentSelection.selected = false
             }
         }
-        
         return true
     }
+    
+    
+    /// MARK: Menu events
+    
+    public func delete(theEvent: NSEvent) {
+        
+        let alert = NSAlert()
+        alert.informativeText = "Are you sure you want to delete this Filament?"
+        alert.messageText = "Delete"
+        alert.showsHelp = false
+        alert.addButtonWithTitle("Delete")
+        alert.addButtonWithTitle("Cancel")
+        let response = alert.runModal()
+        
+        switch (response) {
+        case NSAlertFirstButtonReturn:
+            // find presenter for selected row
+            
+            if let cellView = tableView.viewAtColumn(0, row: tableView.selectedRow, makeIfNecessary: false) as? SequenceTableCellView {
+                
+                // SequenceDocumentsManager.sharedManager.deleteDocumentForSequence(cellView.sequence)
+            }
+            
+            // delete.
+            
+        default: break
+        }
+        
+    }
+    
+    /*
+    override public func keyDown(theEvent: NSEvent) {
+        Swift.print(theEvent)
+    }
+    */
+    
+    public func cut(event: NSEvent) {
+        Swift.print(event)
+    }
+    
+    public func undo(event: NSEvent) {
+         self.undoManager?.undo()
+    }
+    
 }

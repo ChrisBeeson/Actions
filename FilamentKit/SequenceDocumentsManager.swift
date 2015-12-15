@@ -11,15 +11,57 @@ import Foundation
 public class SequenceDocumentsManager {
     
     public static let sharedManager = SequenceDocumentsManager()
+    private var _documents : [SequenceDocument]?
     
     let fileManager : NSFileManager
     
     init() {
+        
         fileManager = NSFileManager.defaultManager()
+        _documents = loadDocuments()
     }
     
     
-    public class func documentURLs() -> ([NSURL]?) {
+    internal func loadDocuments() -> [SequenceDocument]? {
+        guard let urls = documentURLs() else {
+            return nil
+        }
+        
+        var docs = [SequenceDocument]()
+        
+        for url in urls {
+            do {
+                let doc = try SequenceDocument(contentsOfURL: url, ofType:"fil")
+                docs.append(doc)
+                
+            } catch {
+                print(error)
+            }
+        }
+        return docs
+    }
+    
+    public func saveAllDocuments() {
+        
+        if _documents == nil { return }
+        
+        for doc in _documents! {
+   
+            let edited = doc.documentEdited
+            
+            print("\(doc) has been edited: \(edited)")
+            
+            doc.saveDocument(nil)
+        }
+    }
+    
+    
+    public func documents() -> [SequenceDocument]? {
+        return _documents
+    }
+    
+    
+     func documentURLs() -> ([NSURL]?) {
         
         let fileManager = NSFileManager.defaultManager()
         let storageDir = AppConfiguration.sharedConfiguration.storageDirectory
@@ -34,47 +76,18 @@ public class SequenceDocumentsManager {
         }
     }
     
-    public func documents() -> [SequenceDocument]? {
+    public func deleteDocumentForSequence(sequence: Sequence) {
         
-        guard let urls = SequenceDocumentsManager.documentURLs() else {
-            return nil
-        }
+        // need to search the documents, to find which one matches this sequence.
         
-        var docs = [SequenceDocument]()
-        
-        for url in urls {
-            do {
-               let doc = try SequenceDocument(contentsOfURL: url, ofType:"fil")
-                docs.append(doc)
-
-            } catch {
-                print(error)
-            }
-        }
-        return docs
-    }
-    
-    
-    public func newSequenceDocument(title: String) {
-        
-        let newDoc = SequenceDocument()
-        let sequence = Sequence()
-        sequence.title = title
-        newDoc.unarchivedSequence = sequence
-        
-        let storageDir = AppConfiguration.sharedConfiguration.storageDirectory
-        let url = storageDir.URLByAppendingPathComponent(sequence.filename)
-        print(url)
-        
-        newDoc.saveToURL(url, ofType: AppConfiguration.filamentFileExtension , forSaveOperation:.SaveOperation, completionHandler: { (Err: NSError?) -> Void in
+        /*
+        if let index = _documents!.indexOf(sequence) {
             
-            if Err != nil {
-                print(Err!.localizedDescription)
-            } else {
-                print ("Created new Sequence: \(title)")
-            }
-        })
+            itemList.removeAtIndex(index)
+        }
+        */
     }
+    
 }
 
 

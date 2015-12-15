@@ -21,6 +21,7 @@ public class SequencePresenter: NSObject {
             return sequence!.title
         }
         set {
+            
             sequence!.title = newValue
         }
     }
@@ -37,12 +38,21 @@ public class SequencePresenter: NSObject {
     }
     
 
+    public func renameTitle(newTitle:String) {
+        
+        undoManager?.prepareWithInvocationTarget(self).renameTitle(title)
+        let undoActionName = NSLocalizedString("Rename", comment: "")
+        undoManager?.setActionName(undoActionName)
+        
+        title = newTitle
+    }
+    
     public func setSequence(sequence: Sequence) {
             self.sequence = sequence
             delegate?.sequencePresenterDidRefreshCompleteLayout(self)
     }
-
     
+
     // MARK: Methods
 
 /*

@@ -6,9 +6,7 @@
 //  Copyright © 2015 Andris Ltd. All rights reserved.
 //
 
-
 import Cocoa
-
 
 public class SequenceDocument: NSDocument {
     
@@ -24,6 +22,7 @@ public class SequenceDocument: NSDocument {
                 if _sequencePresenter == nil {
                     _sequencePresenter = SequencePresenter()
                     _sequencePresenter!.setSequence(seq)
+                    _sequencePresenter!.undoManager = self.undoManager
                 }
                 return _sequencePresenter
                 
@@ -33,61 +32,97 @@ public class SequenceDocument: NSDocument {
         }
     }
     
-        
-        // MARK: Auto Save and Versions
-        
-        override public class func autosavesInPlace() -> Bool {
-            return true
-        }
-        
-        // MARK: NSDocument Overrides
-        
-        /**
-        Create window controllers from a storyboard, if desired (based on `makesWindowControllers`).
-        The window controller that's used is the initial controller set in the storyboard.
-        */
-        
-        override public func defaultDraftName() -> String {
+    
+    // MARK: Auto Save and Versions
+    
+    override public class func autosavesInPlace() -> Bool {
+        return true
+    }
+    
+    // MARK: NSDocument Overrides
+    
+
+    override public func defaultDraftName() -> String {
         
         return AppConfiguration.defaultFilamentDraftName
-        }
+    }
+    
+    /*
+    override public func isDocumentEdited() -> Bool {
+        return true
+    }
+    */
+    
+    public class func newSequenceDocument(title: String) -> SequenceDocument {
         
+        let newDoc = SequenceDocument()
+        let sequence = Sequence()
+        sequence.title = title
+        newDoc.unarchivedSequence = sequence
         
+        let storageDir = AppConfiguration.sharedConfiguration.storageDirectory
+        let url = storageDir.URLByAppendingPathComponent(sequence.filename)
+        print(url)
         
-        // MARK: Serialization / Deserialization
+        newDoc.saveToURL(url, ofType: AppConfiguration.filamentFileExtension , forSaveOperation:.SaveOperation, completionHandler: { (Err: NSError?) -> Void in
+            
+            if Err != nil {
+                print(Err!.localizedDescription)
+            } else {
+                print ("Created new Sequence: \(title)")
+            }
+        })
         
-        override public func readFromData(data: NSData, ofType typeName: String) throws {
+        return newDoc
+    }
+    
+    public func save() {
+        
+        let storageDir = AppConfiguration.sharedConfiguration.storageDirectory
+        let url = storageDir.URLByAppendingPathComponent(_sequencePresenter!.archiveableSeq.filename)
+        
+        self.saveToURL(url, ofType: AppConfiguration.filamentFileExtension , forSaveOperation:.SaveOperation, completionHandler: { (Err: NSError?) -> Void in
+            
+            if Err != nil {
+                print(Err!.localizedDescription)
+            } else {
+                print ("Saved Sequence: \(self._sequencePresenter!.archiveableSeq.title)")
+            }
+        })
+    }
+    
+    
+    // MARK: Serialization / Deserialization
+    
+    override public func readFromData(data: NSData, ofType typeName: String) throws {
         
         unarchivedSequence = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? Sequence
         
         if let unarchivedSeq = unarchivedSequence {
-        sequencePresenter?.setSequence(unarchivedSeq)
-        return
+            sequencePresenter?.setSequence(unarchivedSeq)
+            return
         }
         
         throw NSError(domain: NSCocoaErrorDomain, code: NSFileReadCorruptFileError, userInfo: [
-        NSLocalizedDescriptionKey: NSLocalizedString("Could not read file.", comment: "Read error description"),
-        NSLocalizedFailureReasonErrorKey: NSLocalizedString("File was in an invalid format.", comment: "Read failure reason")
-        ])
+            NSLocalizedDescriptionKey: NSLocalizedString("Could not read file.", comment: "Read error description"),
+            NSLocalizedFailureReasonErrorKey: NSLocalizedString("File was in an invalid format.", comment: "Read failure reason")
+            ])
+    }
+    
+    
+    override public func dataOfType(typeName: String) throws -> NSData {
+        
+        if _sequencePresenter != nil {
+            print("Saving")
+            return NSKeyedArchiver.archivedDataWithRootObject(_sequencePresenter!.archiveableSeq)
+        } else if unarchivedSequence != nil {
+            print("Saving")
+            return NSKeyedArchiver.archivedDataWithRootObject(unarchivedSequence!)
         }
-        
-        
-        
-        
-        override public func dataOfType(typeName: String) throws -> NSData {
-        
-        if unarchivedSequence != nil {
-        return NSKeyedArchiver.archivedDataWithRootObject(unarchivedSequence!)
-        }
-        /*
-        if let archiveableSeq = SequencePresenter!. {
-        return NSKeyedArchiver.archivedDataWithRootObject(archiveableSeq)
-        }
-        */
         
         throw NSError(domain: "ListDocumentDomain", code: -1, userInfo: [
-        NSLocalizedDescriptionKey: NSLocalizedString("Could not archive list", comment: "Archive error description"),
-        NSLocalizedFailureReasonErrorKey: NSLocalizedString("No list presenter was available for the document", comment: "Archive failure reason")
-        ])
-        }
+            NSLocalizedDescriptionKey: NSLocalizedString("Could not archive list", comment: "Archive error description"),
+            NSLocalizedFailureReasonErrorKey: NSLocalizedString("No presenter was available for the document", comment: "Archive failure reason")
+            ])
+    }
 }

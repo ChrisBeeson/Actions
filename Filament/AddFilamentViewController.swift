@@ -16,7 +16,7 @@ class AddFilamentViewController: NSViewController {
         let cleansedString = textField.stringValue.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         
         if !cleansedString.isEmpty {
-            SequenceDocumentsManager.sharedManager.newSequenceDocument(cleansedString)
+            SequenceDocument.newSequenceDocument(cleansedString)
         }
         
         presentingViewController?.dismissViewController(self)

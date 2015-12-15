@@ -11,6 +11,8 @@ import FilamentKit
 
 public class SequenceTableCellView: NSTableCellView, SequencePresenterDelegate {
     
+    override public var acceptsFirstResponder: Bool { return true }
+    
     // UI Properties
     @IBOutlet weak var backgroundView: NSView!
     @IBOutlet weak var titleTextField: NSTextField!
@@ -37,7 +39,6 @@ public class SequenceTableCellView: NSTableCellView, SequencePresenterDelegate {
     
 
     func updateCellView() {
-        
         backgroundView.backgroundColor = NSColor.whiteColor()
 
         if presenter != nil {
@@ -49,26 +50,47 @@ public class SequenceTableCellView: NSTableCellView, SequencePresenterDelegate {
             backgroundView.layer?.borderWidth = 3
             backgroundView.layer?.borderColor = NSColor(red: 0.6, green: 0.75, blue: 0.9, alpha: 1.0).CGColor
             titleTextField.editable = true
+            //  self.becomeFirstResponder()
             
         case false:
             backgroundView.layer?.borderWidth = 0
             titleTextField.editable = false
+            //self.resignFirstResponder()
         }
     }
     
     
     @IBAction func titleTextFieldDidChange(sender: NSTextField) {
-        
+        presenter!.renameTitle(sender.stringValue)
     }
     
 
     // MARK: Presenter Delegate
     
     public func sequencePresenterDidRefreshCompleteLayout(sequencePresenter: SequencePresenter) {
-        
         updateCellView()
     }
+    
+    /*
+    public func performClose(sender: AnyObject) {
+        Swift.print("Export")
+    }
+    
+    public override func keyDown(theEvent: NSEvent) {
+        Swift.print(theEvent)
+    }
+    */
+
+    public override func mouseUp(theEvent: NSEvent) {
+        
+        Swift.print(self.window!.firstResponder)
+        self.nextResponder?.mouseDown(theEvent)
+        
+        // TODO: Context menu please
+        
+    }
 }
+
 
 extension NSView {
     var backgroundColor: NSColor? {
