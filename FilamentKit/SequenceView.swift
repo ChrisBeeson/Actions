@@ -10,7 +10,7 @@ import Foundation
 
 public class SequenceView : NSView {
     
-    public var sequence : Sequence! {
+    public var sequence : Sequence! {   /// should change this to presenter
         didSet {
             drawView()
         }
@@ -30,7 +30,7 @@ public class SequenceView : NSView {
         
         // date Node
         let dateView = DateNodeView()
-        dateView.setFrameOrigin(NSPoint(x: 0.0, y: ((self.frame.size.height/2) - (dateView.frame.size.height/2))))
+        dateView.setFrameOrigin(NSPoint(x: 10.0, y: ((self.frame.size.height/2) - (dateView.frame.size.height/2))))
         self.addSubview(dateView)
     }
 }

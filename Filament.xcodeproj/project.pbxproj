@@ -69,7 +69,7 @@
 		83F6B97A1B995683002A5AAF /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 83F6B9791B995683002A5AAF /* Podfile */; };
 		83F9E92B1BA18739006282B5 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 83F9E92A1BA18739006282B5 /* .gitignore */; };
 		83FE26051BCB8FC200AC20B5 /* SolverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FE26031BCB8FB700AC20B5 /* SolverTests.swift */; };
-		A434260737AE2B1831E7CA6A /* Pods_Filament.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87F8CB0AFDC603CD8046EEF /* Pods_Filament.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		A434260737AE2B1831E7CA6A /* Pods_Filament.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87F8CB0AFDC603CD8046EEF /* Pods_Filament.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */

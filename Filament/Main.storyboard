@@ -758,10 +758,13 @@ CA
                                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="bTc-Dp-Ybh">
                                                                     <rect key="frame" x="8" y="3" width="428" height="109"/>
                                                                     <subviews>
+                                                                        <customView ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8xT-2b-FKI" customClass="SequenceView" customModule="FilamentKit">
+                                                                            <rect key="frame" x="5" y="5" width="417" height="84"/>
+                                                                        </customView>
                                                                         <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="BeT-IN-UXD">
-                                                                            <rect key="frame" x="17" y="88" width="402" height="17"/>
+                                                                            <rect key="frame" x="5" y="90" width="421" height="17"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="height" constant="17" id="Wof-nb-hYy"/>
+                                                                                <constraint firstAttribute="height" constant="17" id="r2s-UQ-G0U"/>
                                                                             </constraints>
                                                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" alignment="left" title="Western Blot - Tuesday" id="chR-lv-cWb">
                                                                                 <font key="font" metaFont="systemBold"/>
@@ -772,28 +775,14 @@ CA
                                                                                 <action selector="titleTextFieldDidChange:" target="FDm-hf-wGf" id="RrH-q7-QJw"/>
                                                                             </connections>
                                                                         </textField>
-                                                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Fx-qX-eXF">
-                                                                            <rect key="frame" x="-1" y="86" width="24" height="20"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="height" constant="20" id="QAD-dI-9I5"/>
-                                                                                <constraint firstAttribute="width" constant="24" id="Tqd-ZC-5x8"/>
-                                                                            </constraints>
-                                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusAvailable" id="64O-HU-9oq"/>
-                                                                        </imageView>
-                                                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="8xT-2b-FKI" customClass="SequenceView" customModule="FilamentKit">
-                                                                            <rect key="frame" x="5" y="5" width="417" height="75"/>
-                                                                        </customView>
                                                                     </subviews>
                                                                     <constraints>
-                                                                        <constraint firstItem="3Fx-qX-eXF" firstAttribute="leading" secondItem="bTc-Dp-Ybh" secondAttribute="leading" constant="-1" id="4pN-Zk-rhb"/>
-                                                                        <constraint firstItem="8xT-2b-FKI" firstAttribute="top" secondItem="3Fx-qX-eXF" secondAttribute="bottom" constant="6" id="7WT-PQ-wne"/>
-                                                                        <constraint firstItem="3Fx-qX-eXF" firstAttribute="top" secondItem="bTc-Dp-Ybh" secondAttribute="top" constant="3" id="B0E-QI-Bs6"/>
-                                                                        <constraint firstAttribute="bottom" secondItem="8xT-2b-FKI" secondAttribute="bottom" constant="5" id="EXo-vw-cDx"/>
-                                                                        <constraint firstItem="BeT-IN-UXD" firstAttribute="top" secondItem="bTc-Dp-Ybh" secondAttribute="top" constant="4" id="HqR-C2-4BO"/>
-                                                                        <constraint firstAttribute="trailing" secondItem="8xT-2b-FKI" secondAttribute="trailing" constant="6" id="Nmc-Lf-AH9"/>
-                                                                        <constraint firstItem="BeT-IN-UXD" firstAttribute="leading" secondItem="bTc-Dp-Ybh" secondAttribute="leading" constant="19" id="bIp-Zd-Ffz"/>
-                                                                        <constraint firstAttribute="trailing" secondItem="BeT-IN-UXD" secondAttribute="trailing" constant="11" id="fCv-I8-Z8B"/>
-                                                                        <constraint firstItem="8xT-2b-FKI" firstAttribute="leading" secondItem="bTc-Dp-Ybh" secondAttribute="leading" constant="5" id="k8v-hF-HQc"/>
+                                                                        <constraint firstItem="8xT-2b-FKI" firstAttribute="leading" secondItem="bTc-Dp-Ybh" secondAttribute="leading" constant="5" id="9VA-Af-pjq"/>
+                                                                        <constraint firstItem="BeT-IN-UXD" firstAttribute="top" secondItem="bTc-Dp-Ybh" secondAttribute="top" constant="2" id="VUm-pA-5qJ"/>
+                                                                        <constraint firstItem="BeT-IN-UXD" firstAttribute="leading" secondItem="bTc-Dp-Ybh" secondAttribute="leading" constant="7" id="VWY-UQ-jkr"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="8xT-2b-FKI" secondAttribute="bottom" constant="5" id="e8O-sR-lVj"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="8xT-2b-FKI" secondAttribute="trailing" constant="6" id="rOc-jB-3Il"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="BeT-IN-UXD" secondAttribute="trailing" constant="4" id="zjR-x2-cug"/>
                                                                     </constraints>
                                                                     <shadow key="shadow" blurRadius="4">
                                                                         <color key="color" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
@@ -814,10 +803,10 @@ AwEVARgBHQAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAEfA
                                                                 </customView>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstAttribute="bottom" secondItem="bTc-Dp-Ybh" secondAttribute="bottom" constant="3" id="F7S-t8-zOZ"/>
-                                                                <constraint firstItem="bTc-Dp-Ybh" firstAttribute="top" secondItem="FDm-hf-wGf" secondAttribute="top" constant="8" id="GkH-18-xqB"/>
-                                                                <constraint firstItem="bTc-Dp-Ybh" firstAttribute="leading" secondItem="FDm-hf-wGf" secondAttribute="leading" constant="8" id="ZX1-Jq-F3b"/>
-                                                                <constraint firstAttribute="trailing" secondItem="bTc-Dp-Ybh" secondAttribute="trailing" constant="9" id="ell-Va-XsV"/>
+                                                                <constraint firstAttribute="bottom" secondItem="bTc-Dp-Ybh" secondAttribute="bottom" constant="3" id="9V9-GS-Nuk"/>
+                                                                <constraint firstAttribute="trailing" secondItem="bTc-Dp-Ybh" secondAttribute="trailing" constant="9" id="HJq-ui-Wa2"/>
+                                                                <constraint firstItem="bTc-Dp-Ybh" firstAttribute="leading" secondItem="FDm-hf-wGf" secondAttribute="leading" constant="8" id="gFG-W4-vHA"/>
+                                                                <constraint firstItem="bTc-Dp-Ybh" firstAttribute="top" secondItem="FDm-hf-wGf" secondAttribute="top" constant="8" id="u4d-dj-3rb"/>
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="backgroundView" destination="bTc-Dp-Ybh" id="RVm-3F-Rqz"/>
@@ -890,6 +879,5 @@ AwEVARgBHQAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAEfA
     </scenes>
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>
-        <image name="NSStatusAvailable" width="16" height="16"/>
     </resources>
 </document>
