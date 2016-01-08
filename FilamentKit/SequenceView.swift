@@ -10,4 +10,26 @@ import Foundation
 
 public class SequenceView : NSView {
     
+    public var sequence : Sequence! {
+        didSet {
+            drawView()
+        }
+    }
+    
+    
+    required public init(coder: NSCoder) {
+        super.init(coder: coder)!
+        Swift.print("drawing sequenceView")
+        drawView()
+    }
+    
+    
+    public func drawView() {        // date | Action 1 -> Action 2...  simple as that
+        
+        self.subviews.forEach({ $0.removeFromSuperview() })
+        
+        // date
+        let dateView = DateNodeView()
+        self.addSubview(dateView)
+    }
 }

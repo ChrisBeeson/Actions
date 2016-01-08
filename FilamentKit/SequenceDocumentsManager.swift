@@ -8,9 +8,16 @@
 
 import Foundation
 
+public protocol SequenceDocumentsDelegate : class  {
+    
+    func sequenceManagerDidUpdateContents(insertedURLs insertedURLs: [NSURL], removedURLs: [NSURL], updatedURLs: [NSURL])
+}
+
 public class SequenceDocumentsManager {
     
     public static let sharedManager = SequenceDocumentsManager()
+    public var delegate: SequenceDocumentsDelegate?
+    
     private var _documents : [SequenceDocument]?
     
     let fileManager : NSFileManager
@@ -21,7 +28,7 @@ public class SequenceDocumentsManager {
     }
     
     
-    internal func loadDocuments() -> [SequenceDocument]? {
+    func loadDocuments() -> [SequenceDocument]? {
         guard let urls = documentURLs() else {
             return nil
         }
@@ -71,13 +78,9 @@ public class SequenceDocumentsManager {
     }
     
     public func deleteDocumentForSequence(sequence: Sequence) {
-        
         let document = _documents?.filter{$0.unarchivedSequence == sequence}.first
+        
         if document != nil {
-            
-            let title = document?.unarchivedSequence!.title
-            print("doc found to delete \(title)")
-            
             _documents?.removeObject(document!)
             permanentlyDeleteDocument(document!)
         }
@@ -87,14 +90,57 @@ public class SequenceDocumentsManager {
             
             let url = document.storageURL()
             let fileManager = NSFileManager.defaultManager()
-            
             do {
                  try fileManager.removeItemAtURL(url)
-                
             } catch {
                 print(error)
             }
         }
+    
+    // MARK: DirectoryMonitorDelegate
+    
+    func directoryMonitorDidObserveChange(directoryMonitor: DirectoryMonitor) {
+        //  processChangeToLocalDocumentsDirectory()
+    }
+    
+    // MARK: Convenience
+    
+    /*
+    
+    func processChangeToLocalDocumentsDirectory() {
+        
+        let defaultQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+        
+        dispatch_async(defaultQueue) {
+            let fileManager = NSFileManager.defaultManager()
+            
+            do {
+                // Fetch the list documents from containerd documents directory.
+                let localDocumentURLs = try fileManager.contentsOfDirectoryAtURL(AppConfiguration.sharedConfiguration.storageDirectory, includingPropertiesForKeys: nil, options: .SkipsPackageDescendants)
+                
+                
+                let predicate = NSPredicate(format: "(pathExtension = %@)", argumentArray: [AppConfiguration.filamentFileExtension])
+                
+                let localListURLs = localDocumentURLs.filter { predicate.evaluateWithObject($0) }
+                
+                if !localListURLs.isEmpty {
+                    let insertedURLs = localListURLs.filter { !self.currentLocalContentsURLs.contains($0) }
+                    let removedURLs = self.currentLocalContentsURLs.filter { !localListURLs.contains($0) }
+                    
+                    self.delegate?.listCoordinatorDidUpdateContents(insertedURLs: insertedURLs, removedURLs: removedURLs)
+                    
+                    self.currentLocalContents = localListURLs
+                }
+            }
+            catch let error as NSError {
+                print("An error occurred accessing the contents of a directory. Domain: \(error.domain) Code: \(error.code)")
+            }
+                // Requiring an additional catch to satisfy exhaustivity is a known issue.
+            catch {}
+            
+        }
+    }
+*/
 }
 
 

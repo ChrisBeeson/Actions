@@ -57,6 +57,9 @@ public class SequenceTableCellView: NSTableCellView, SequencePresenterDelegate {
             titleTextField.editable = false
             //self.resignFirstResponder()
         }
+        
+
+        
     }
     
     

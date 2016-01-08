@@ -36,7 +36,11 @@
 		473EAEE61BA3AD0300AFEA2A /* RuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473EAEE41BA3AD0300AFEA2A /* RuleTests.swift */; };
 		4753D3AF1BE378720071DB59 /* WorkingWeekRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4753D3AE1BE378720071DB59 /* WorkingWeekRule.swift */; };
 		477212061BED699500D5E988 /* SequenceDocumentsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477212051BED699500D5E988 /* SequenceDocumentsManager.swift */; };
+		477C2CAE1C3D07700071467C /* DateNodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477C2CAD1C3D07700071467C /* DateNodeView.xib */; };
+		477C2CB01C3D12170071467C /* DateNodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477C2CAF1C3D12170071467C /* DateNodeView.swift */; };
+		477C2CB11C3FAD890071467C /* DateNodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477C2CAD1C3D07700071467C /* DateNodeView.xib */; };
 		479CD2861C1B8AE700C8D1D6 /* SequenceTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479CD2851C1B8AE700C8D1D6 /* SequenceTableCellView.swift */; };
+		47A14E811C21384F00B45F86 /* DirectoryMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A14E801C21384F00B45F86 /* DirectoryMonitor.swift */; };
 		47ACA9541BB5464C000CAC61 /* DateToolsExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9531BB5464C000CAC61 /* DateToolsExtenstions.swift */; };
 		47ACA9571BB54B82000CAC61 /* EventDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9561BB54B82000CAC61 /* EventDuration.swift */; };
 		47ACA9591BB54EEA000CAC61 /* AvoidCalendarEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9581BB54EEA000CAC61 /* AvoidCalendarEvents.swift */; };
@@ -136,7 +140,10 @@
 		4753D3AE1BE378720071DB59 /* WorkingWeekRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkingWeekRule.swift; sourceTree = "<group>"; };
 		477212051BED699500D5E988 /* SequenceDocumentsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceDocumentsManager.swift; sourceTree = "<group>"; };
 		477212071BED9DCB00D5E988 /* Filament.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Filament.entitlements; path = Filament/Filament.entitlements; sourceTree = "<group>"; };
+		477C2CAD1C3D07700071467C /* DateNodeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateNodeView.xib; sourceTree = "<group>"; };
+		477C2CAF1C3D12170071467C /* DateNodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateNodeView.swift; sourceTree = "<group>"; };
 		479CD2851C1B8AE700C8D1D6 /* SequenceTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SequenceTableCellView.swift; path = FilamentKit/SequenceTableCellView.swift; sourceTree = SOURCE_ROOT; };
+		47A14E801C21384F00B45F86 /* DirectoryMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectoryMonitor.swift; sourceTree = "<group>"; };
 		47ACA9531BB5464C000CAC61 /* DateToolsExtenstions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateToolsExtenstions.swift; sourceTree = "<group>"; };
 		47ACA9561BB54B82000CAC61 /* EventDuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDuration.swift; sourceTree = "<group>"; };
 		47ACA9581BB54EEA000CAC61 /* AvoidCalendarEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvoidCalendarEvents.swift; sourceTree = "<group>"; };
@@ -223,7 +230,7 @@
 			children = (
 				477212051BED699500D5E988 /* SequenceDocumentsManager.swift */,
 				83861F2A1BEEA25F00A44122 /* SequenceDocument.swift */,
-				47181F311C0E487B006FD38E /* SequenceView.swift */,
+				47A14E821C21385700B45F86 /* Local Filesystem Monitoring */,
 			);
 			name = "Document Architecture";
 			sourceTree = "<group>";
@@ -300,8 +307,19 @@
 		479CD2841C1B8AA300C8D1D6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				47181F311C0E487B006FD38E /* SequenceView.swift */,
+				477C2CAD1C3D07700071467C /* DateNodeView.xib */,
+				477C2CAF1C3D12170071467C /* DateNodeView.swift */,
 			);
 			name = UI;
+			sourceTree = "<group>";
+		};
+		47A14E821C21385700B45F86 /* Local Filesystem Monitoring */ = {
+			isa = PBXGroup;
+			children = (
+				47A14E801C21384F00B45F86 /* DirectoryMonitor.swift */,
+			);
+			name = "Local Filesystem Monitoring";
 			sourceTree = "<group>";
 		};
 		47ACA9551BB54658000CAC61 /* Helpers */ = {
@@ -603,6 +621,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				477C2CAE1C3D07700071467C /* DateNodeView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -621,6 +640,7 @@
 				47B6964B1BE5BC0B00260C2A /* Main.storyboard in Resources */,
 				83F6B97A1B995683002A5AAF /* Podfile in Resources */,
 				83DDAA4F1B997C9A001A4DBE /* SystemTrayMenu.xib in Resources */,
+				477C2CB11C3FAD890071467C /* DateNodeView.xib in Resources */,
 				83F6B9611B994652002A5AAF /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -688,6 +708,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				47ACA9571BB54B82000CAC61 /* EventDuration.swift in Sources */,
+				477C2CB01C3D12170071467C /* DateNodeView.swift in Sources */,
 				4735747F1B9A919500493CA0 /* SequencePresenter.swift in Sources */,
 				4753D3AF1BE378720071DB59 /* WorkingWeekRule.swift in Sources */,
 				47181F321C0E487B006FD38E /* SequenceView.swift in Sources */,
@@ -703,6 +724,7 @@
 				47CD21BF1BDF797B00AF25BE /* GeneralExtensions.swift in Sources */,
 				477212061BED699500D5E988 /* SequenceDocumentsManager.swift in Sources */,
 				47CD21C61BDF807900AF25BE /* Sequence+EventLogic.swift in Sources */,
+				47A14E811C21384F00B45F86 /* DirectoryMonitor.swift in Sources */,
 				473574771B9A68AC00493CA0 /* Sequence.swift in Sources */,
 				473574841B9A91A200493CA0 /* ListPresenterAlgorithms.swift in Sources */,
 				47F2FBC41BA8CFEE0041B291 /* Solver.swift in Sources */,
