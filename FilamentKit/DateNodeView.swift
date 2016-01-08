@@ -18,22 +18,15 @@ class DateNodeView: NSView {
     
     required init(coder: NSCoder) {
         super.init(coder: coder)!
-        NSBundle.mainBundle().loadNibNamed("DateNodeView", owner: self, topLevelObjects: nil)
-        self.addSubview(view)
     }
     
-    override init(frame frameRect: NSRect) {
-        super.init(frame: frameRect)
-        NSBundle.mainBundle().loadNibNamed("DateNodeView", owner: self, topLevelObjects: nil)
-        self.addSubview(view)
-    }
     
     init() {
         super.init(frame: NSRect(x: 0.0, y: 0.0, width: 53, height: 42))
         
         let frameworkBundle = NSBundle(forClass:object_getClass(self))
-        Swift.print(frameworkBundle.loadNibNamed("DateNodeView", owner: self, topLevelObjects: nil))
-        
+        assert(frameworkBundle.loadNibNamed("DateNodeView", owner: self, topLevelObjects: nil))
         self.addSubview(view)
     }
 }
+

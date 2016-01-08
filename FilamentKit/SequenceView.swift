@@ -19,7 +19,7 @@ public class SequenceView : NSView {
     
     required public init(coder: NSCoder) {
         super.init(coder: coder)!
-        Swift.print("drawing sequenceView")
+        
         drawView()
     }
     
@@ -28,8 +28,9 @@ public class SequenceView : NSView {
         
         self.subviews.forEach({ $0.removeFromSuperview() })
         
-        // date
+        // date Node
         let dateView = DateNodeView()
+        dateView.setFrameOrigin(NSPoint(x: 0.0, y: ((self.frame.size.height/2) - (dateView.frame.size.height/2))))
         self.addSubview(dateView)
     }
 }
