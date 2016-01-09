@@ -16,9 +16,11 @@ public class SequenceTableCellView: NSTableCellView, SequencePresenterDelegate {
     // UI Properties
     @IBOutlet weak var backgroundView: NSView!
     @IBOutlet weak var titleTextField: NSTextField!
-
+    @IBOutlet weak var sequenceView: SequenceView!
+    
     public var presenter: SequencePresenter? {
         didSet {
+            sequenceView.sequence = presenter!.archiveableSeq
             presenter!.delegate = self
             updateCellView()
         }

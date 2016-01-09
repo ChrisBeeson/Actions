@@ -810,6 +810,7 @@ AwEVARgBHQAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAEfA
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="backgroundView" destination="bTc-Dp-Ybh" id="RVm-3F-Rqz"/>
+                                                                <outlet property="sequenceView" destination="8xT-2b-FKI" id="Gm7-XV-bvB"/>
                                                                 <outlet property="textField" destination="BeT-IN-UXD" id="PVO-Gh-Ozv"/>
                                                                 <outlet property="titleTextField" destination="BeT-IN-UXD" id="ul7-YM-x7C"/>
                                                             </connections>

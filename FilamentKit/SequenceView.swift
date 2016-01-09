@@ -20,7 +20,7 @@ public class SequenceView : NSView {
     required public init(coder: NSCoder) {
         super.init(coder: coder)!
         
-        drawView()
+        //     drawView()
     }
     
     
@@ -28,9 +28,37 @@ public class SequenceView : NSView {
         
         self.subviews.forEach({ $0.removeFromSuperview() })
         
+        var xDrawPosition:CGFloat = 10.0
+        
         // date Node
         let dateView = DateNodeView()
-        dateView.setFrameOrigin(NSPoint(x: 10.0, y: ((self.frame.size.height/2) - (dateView.frame.size.height/2))))
+        dateView.setFrameOrigin(NSPoint(x: xDrawPosition, y: ((self.frame.size.height/2) - (dateView.frame.size.height/2))))
         self.addSubview(dateView)
+        
+        xDrawPosition += dateView.frame.size.width
+        
+        for node in sequence.allNodes() {
+            switch (node.type) {
+                
+            case .Action:
+                let actionNode = ActionNodeView()
+                actionNode.setFrameOrigin(NSPoint(x: xDrawPosition, y: ((self.frame.size.height/2) - (dateView.frame.size.height/2))))
+                self.addSubview(actionNode)
+                xDrawPosition += actionNode.frame.size.width
+                break
+                
+            case .Transition:
+                let transNode = TransitionNodeView()
+                transNode.setFrameOrigin(NSPoint(x: xDrawPosition, y: ((self.frame.size.height/2) - (dateView.frame.size.height/2))))
+                self.addSubview(transNode)
+                xDrawPosition += transNode.frame.size.width
+                
+                break
+            default:
+                break
+                
+            }
+        }
+        
     }
 }

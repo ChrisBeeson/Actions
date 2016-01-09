@@ -62,8 +62,12 @@ public class SequenceDocument: NSDocument {
     public class func newSequenceDocument(title: String) -> SequenceDocument {
         
         let newDoc = SequenceDocument()
-        let sequence = Sequence()
-        sequence.title = title
+        
+        let actionNodes = [Node(text: "Action 1", type: .Action, rules: nil), Node(text: "Action 2", type: .Action, rules: nil), Node(text: "Action 3", type: .Action, rules: nil)]
+        let sequence = Sequence(name: title, actionNodes: actionNodes)
+        
+        // sequence.title = title
+
         newDoc.unarchivedSequence = sequence
         
         let storageDir = AppConfiguration.sharedConfiguration.storageDirectory
