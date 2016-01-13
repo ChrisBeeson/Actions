@@ -802,8 +802,8 @@ CA
                                                                         <constraint firstAttribute="bottom" secondItem="bwc-IT-C4C" secondAttribute="bottom" id="aIS-36-gyU"/>
                                                                         <constraint firstItem="BeT-IN-UXD" firstAttribute="top" secondItem="bTc-Dp-Ybh" secondAttribute="top" constant="6" id="pcR-zQ-Jhh"/>
                                                                     </constraints>
-                                                                    <shadow key="shadow" blurRadius="4">
-                                                                        <color key="color" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
+                                                                    <shadow key="shadow" blurRadius="3">
+                                                                        <color key="color" white="0.0" alpha="0.29999999999999999" colorSpace="calibratedWhite"/>
                                                                     </shadow>
                                                                     <animations>
                                                                         <caTransition key="subviews">
