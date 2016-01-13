@@ -725,13 +725,13 @@ CA
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <scrollView autohidesScrollers="YES" horizontalLineScroll="120" horizontalPageScroll="10" verticalLineScroll="120" verticalPageScroll="10" usesPredominantAxisScrolling="NO" scrollerKnobStyle="dark" translatesAutoresizingMaskIntoConstraints="NO" id="nmd-ka-rWP">
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="95" horizontalPageScroll="10" verticalLineScroll="95" verticalPageScroll="10" usesPredominantAxisScrolling="NO" scrollerKnobStyle="dark" translatesAutoresizingMaskIntoConstraints="NO" id="nmd-ka-rWP">
                                 <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="gkJ-4N-H0Y">
                                     <rect key="frame" x="1" y="1" width="448" height="298"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView focusRingType="exterior" appearanceType="aqua" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="120" viewBased="YES" id="8Qp-fL-QNJ">
+                                        <tableView focusRingType="exterior" appearanceType="aqua" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="95" viewBased="YES" id="8Qp-fL-QNJ">
                                             <rect key="frame" x="0.0" y="0.0" width="448" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="0.0"/>
@@ -752,16 +752,36 @@ CA
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="SequenceCellView" toolTip="Filament Sequence" wantsLayer="YES" focusRingType="exterior" id="FDm-hf-wGf" customClass="SequenceTableCellView" customModule="Filament" customModuleProvider="target">
-                                                            <rect key="frame" x="1" y="0.0" width="445" height="120"/>
+                                                            <rect key="frame" x="1" y="0.0" width="445" height="95"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="bTc-Dp-Ybh">
-                                                                    <rect key="frame" x="10" y="3" width="421" height="109"/>
+                                                                    <rect key="frame" x="10" y="3" width="421" height="84"/>
                                                                     <subviews>
+                                                                        <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="bwc-IT-C4C">
+                                                                            <rect key="frame" x="6" y="0.0" width="415" height="58"/>
+                                                                            <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="cbN-UQ-g3L">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="415" height="58"/>
+                                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                                <subviews>
+                                                                                    <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aMV-h7-eWd">
+                                                                                        <rect key="frame" x="0.0" y="-36" width="181" height="94"/>
+                                                                                    </view>
+                                                                                </subviews>
+                                                                            </clipView>
+                                                                            <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="hMi-pv-RtY">
+                                                                                <rect key="frame" x="0.0" y="42" width="415" height="16"/>
+                                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                            </scroller>
+                                                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="fz6-K1-N9T">
+                                                                                <rect key="frame" x="-100" y="-100" width="15" height="76"/>
+                                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                            </scroller>
+                                                                        </scrollView>
                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="BeT-IN-UXD">
-                                                                            <rect key="frame" x="4" y="88" width="409" height="17"/>
+                                                                            <rect key="frame" x="8" y="61" width="395" height="17"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="height" constant="17" id="hXt-bh-Ndu"/>
+                                                                                <constraint firstAttribute="height" constant="17" id="GCe-GQ-TLx"/>
                                                                             </constraints>
                                                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="left" title="Western Blot - Tuesday" placeholderString="Title" id="chR-lv-cWb">
                                                                                 <font key="font" size="13" name="Helvetica-Bold"/>
@@ -772,35 +792,15 @@ CA
                                                                                 <action selector="titleTextFieldDidChange:" target="FDm-hf-wGf" id="RrH-q7-QJw"/>
                                                                             </connections>
                                                                         </textField>
-                                                                        <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bwc-IT-C4C">
-                                                                            <rect key="frame" x="6" y="7" width="408" height="76"/>
-                                                                            <clipView key="contentView" id="cbN-UQ-g3L">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="408" height="76"/>
-                                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                                                <subviews>
-                                                                                    <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aMV-h7-eWd">
-                                                                                        <rect key="frame" x="0.0" y="-18" width="181" height="94"/>
-                                                                                    </view>
-                                                                                </subviews>
-                                                                            </clipView>
-                                                                            <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="hMi-pv-RtY">
-                                                                                <rect key="frame" x="0.0" y="60" width="408" height="16"/>
-                                                                                <autoresizingMask key="autoresizingMask"/>
-                                                                            </scroller>
-                                                                            <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="fz6-K1-N9T">
-                                                                                <rect key="frame" x="393" y="0.0" width="15" height="76"/>
-                                                                                <autoresizingMask key="autoresizingMask"/>
-                                                                            </scroller>
-                                                                        </scrollView>
                                                                     </subviews>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="trailing" secondItem="BeT-IN-UXD" secondAttribute="trailing" constant="10" id="87r-rn-ZUp"/>
-                                                                        <constraint firstItem="BeT-IN-UXD" firstAttribute="top" secondItem="bTc-Dp-Ybh" secondAttribute="top" constant="4" id="KMD-0g-ZRc"/>
-                                                                        <constraint firstAttribute="trailing" secondItem="bwc-IT-C4C" secondAttribute="trailing" constant="7" id="Lzu-6Y-igR"/>
-                                                                        <constraint firstAttribute="bottom" secondItem="bwc-IT-C4C" secondAttribute="bottom" constant="7" id="gUJ-1w-oYu"/>
-                                                                        <constraint firstItem="bwc-IT-C4C" firstAttribute="top" secondItem="BeT-IN-UXD" secondAttribute="bottom" constant="5" id="h4e-IG-IZc"/>
-                                                                        <constraint firstItem="bwc-IT-C4C" firstAttribute="leading" secondItem="bTc-Dp-Ybh" secondAttribute="leading" constant="6" id="tAf-st-Bfn"/>
-                                                                        <constraint firstItem="BeT-IN-UXD" firstAttribute="leading" secondItem="bTc-Dp-Ybh" secondAttribute="leading" constant="6" id="ujX-SN-s3g"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="BeT-IN-UXD" secondAttribute="trailing" constant="20" id="9cN-DH-2ck"/>
+                                                                        <constraint firstItem="BeT-IN-UXD" firstAttribute="leading" secondItem="bTc-Dp-Ybh" secondAttribute="leading" constant="10" id="HHP-HO-8ig"/>
+                                                                        <constraint firstItem="bwc-IT-C4C" firstAttribute="leading" secondItem="bTc-Dp-Ybh" secondAttribute="leading" constant="6" id="HKq-mT-lbh"/>
+                                                                        <constraint firstItem="bwc-IT-C4C" firstAttribute="top" secondItem="BeT-IN-UXD" secondAttribute="bottom" constant="3" id="VAF-hx-aSK"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="bwc-IT-C4C" secondAttribute="trailing" id="WVJ-Y6-hIB"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="bwc-IT-C4C" secondAttribute="bottom" id="aIS-36-gyU"/>
+                                                                        <constraint firstItem="BeT-IN-UXD" firstAttribute="top" secondItem="bTc-Dp-Ybh" secondAttribute="top" constant="6" id="pcR-zQ-Jhh"/>
                                                                     </constraints>
                                                                     <shadow key="shadow" blurRadius="4">
                                                                         <color key="color" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
@@ -821,10 +821,10 @@ AwEVARgBHQAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAEfA
                                                                 </customView>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="bTc-Dp-Ybh" secondAttribute="trailing" constant="14" id="53K-qr-3Gn"/>
-                                                                <constraint firstItem="bTc-Dp-Ybh" firstAttribute="top" secondItem="FDm-hf-wGf" secondAttribute="top" constant="8" id="7Pv-CX-hyl"/>
-                                                                <constraint firstItem="bTc-Dp-Ybh" firstAttribute="leading" secondItem="FDm-hf-wGf" secondAttribute="leading" constant="10" id="bvB-fn-RUz"/>
-                                                                <constraint firstAttribute="bottom" secondItem="bTc-Dp-Ybh" secondAttribute="bottom" constant="3" id="div-7F-DQt"/>
+                                                                <constraint firstAttribute="bottom" secondItem="bTc-Dp-Ybh" secondAttribute="bottom" constant="3" id="5LH-wY-Eep"/>
+                                                                <constraint firstItem="bTc-Dp-Ybh" firstAttribute="leading" secondItem="FDm-hf-wGf" secondAttribute="leading" constant="10" id="J2m-23-rnw"/>
+                                                                <constraint firstItem="bTc-Dp-Ybh" firstAttribute="top" secondItem="FDm-hf-wGf" secondAttribute="top" constant="8" id="VVZ-A5-iPS"/>
+                                                                <constraint firstAttribute="trailing" secondItem="bTc-Dp-Ybh" secondAttribute="trailing" constant="14" id="WOa-jt-LLb"/>
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="backgroundView" destination="bTc-Dp-Ybh" id="RVm-3F-Rqz"/>

@@ -16,43 +16,43 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="47" height="42"/>
+            <rect key="frame" x="0.0" y="0.0" width="53" height="34"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hSr-NU-lXM">
-                    <rect key="frame" x="19" y="0.0" width="29" height="11"/>
+                    <rect key="frame" x="19" y="-1" width="29" height="11"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="JUN" id="yGL-H7-htS">
-                        <font key="font" metaFont="systemUltraLight" size="9"/>
+                        <font key="font" metaFont="systemUltraLight" size="7"/>
                         <color key="textColor" white="0.45538194444444446" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y6m-fx-SPN">
-                    <rect key="frame" x="-2" y="25" width="50" height="19"/>
+                    <rect key="frame" x="-2" y="15" width="50" height="19"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="8.30" id="UJV-EB-HNv">
-                        <font key="font" metaFont="systemMedium" size="14"/>
+                        <font key="font" metaFont="systemMedium" size="11"/>
                         <color key="textColor" white="0.25260416666666669" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3NW-1H-wgc">
-                    <rect key="frame" x="13" y="11" width="36" height="19"/>
+                    <rect key="frame" x="12" y="9" width="36" height="16"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="28" id="eFX-HN-w0A">
-                        <font key="font" metaFont="systemUltraLight" size="19"/>
+                        <font key="font" metaFont="systemUltraLight" size="15"/>
                         <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c4T-eg-6ow">
-                    <rect key="frame" x="-5" y="8" width="28" height="17"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="SAT" id="SHI-Nw-O1q">
-                        <font key="font" metaFont="system" size="10"/>
+                    <rect key="frame" x="2" y="10" width="28" height="11"/>
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="SAT" id="SHI-Nw-O1q">
+                        <font key="font" metaFont="system" size="9"/>
                         <color key="textColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
             </subviews>
-            <point key="canvasLocation" x="78.5" y="124"/>
+            <point key="canvasLocation" x="81.5" y="120"/>
         </customView>
     </objects>
 </document>

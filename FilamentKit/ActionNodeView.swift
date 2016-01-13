@@ -23,7 +23,7 @@ public class ActionNodeView: NSView {
     }
     
     override init(frame: NSRect) {
-        super.init(frame: NSRect(x: 0.0, y: 0.0, width: 100, height: 40))
+        super.init(frame: NSRect(x: 0.0, y: 0.0, width: 100, height: 38))
         updateView()
     }
     
@@ -31,8 +31,9 @@ public class ActionNodeView: NSView {
     func updateView() {
         
         if textField == nil {
-            textField = NSTextField(frame: NSRect(x: 5.0, y: self.frame.height/2 - (20.0/2) , width: self.frame.width * 0.80, height: 20.0))
-            textField!.font = NSFont.boldSystemFontOfSize(15.0)
+            textField = NSTextField(frame: NSRect(x: 10.0, y: self.frame.height/2 - (20.0/2) , width: self.frame.width * 0.80, height: 20.0))
+            textField!.font = NSFont.systemFontOfSize(15.0)
+            textField!.backgroundColor = NSColor.clearColor()
             self.addSubview(textField!)
             textField?.bordered = false
         }
@@ -44,11 +45,12 @@ public class ActionNodeView: NSView {
             
             for rule in node!.rules {
                 
-                let button = NSButton()
-                button.title = "Hello" // rule.name
-                // button.bezelStyle = .InlineBezelStyle
-                button.setFrameOrigin(NSPoint(x: xDrawPosition, y: self.frame.size.height/2))
-                self.addSubview(button)
+                let button = NSButton(frame: NSRect(origin: CGPoint.zero, size: CGSize(width: 45.0, height: 10.0)))
+                button.font = NSFont.systemFontOfSize(8.0)
+                button.title = rule.name
+                button.bezelStyle = .InlineBezelStyle
+                button.setFrameOrigin(NSPoint(x: xDrawPosition, y: self.frame.size.height-15))
+                //  self.addSubview(button)
                 
                 xDrawPosition += button.frame.size.width
             }
@@ -56,8 +58,9 @@ public class ActionNodeView: NSView {
     }
     
     override public func drawRect(dirtyRect: NSRect) {
-        let tailOff:CGFloat = 0.85   // 85% of the view consists of the triangle
-        let padding:CGFloat = 1.0
+        
+        let tailOff:CGFloat = 0.85   // 85% of the view consists of the tailing triangle
+        let padding:CGFloat = 2.0
         let frame = self.frame
         
         let path = NSBezierPath()
@@ -68,10 +71,10 @@ public class ActionNodeView: NSView {
         path.lineToPoint(NSPoint(x: frame.size.width , y:frame.size.height/2))
         path.lineToPoint(NSPoint(x: frame.size.width * tailOff , y: frame.size.height - padding))
         
-        NSColor.darkGrayColor().setStroke()
-        NSColor.whiteColor().setFill()
-        path.lineWidth = 0.5
-        path.lineJoinStyle = .MiterLineJoinStyle
+        NSColor(calibratedWhite:0.7, alpha:1.0).setStroke()
+        NSColor(calibratedWhite:0.9, alpha:1.0).setFill()
+
+        path.lineWidth = 0.1
         path.fill()
         path.stroke()
     }

@@ -26,7 +26,7 @@ class DateNodeView: NSView, MLCalendarViewDelegate {
     
     
     init() {
-        super.init(frame: NSRect(x: 0.0, y: 0.0, width: 53, height: 42))
+        super.init(frame: NSRect(x: 0.0, y: 0.0, width: 53, height: 34))
         
         let frameworkBundle = NSBundle(forClass:object_getClass(self))
         assert(frameworkBundle.loadNibNamed("DateNodeView", owner: self, topLevelObjects: nil))
