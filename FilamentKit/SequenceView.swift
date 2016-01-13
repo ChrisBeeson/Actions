@@ -18,9 +18,16 @@ public class SequenceView : NSView {
     
     
     required public init(coder: NSCoder) {
-        super.init(coder: coder)!
-        
-        //     drawView()
+         fatalError("This class does not support NSCoding")
+        //  super.init(coder: coder)!
+    }
+    
+    public override init(frame frameRect: NSRect) {
+        super.init(frame: frameRect)
+    }
+    
+    convenience init () {
+        self.init(frame:NSRect.zero)
     }
     
     
@@ -34,14 +41,15 @@ public class SequenceView : NSView {
         let dateView = DateNodeView()
         dateView.setFrameOrigin(NSPoint(x: xDrawPosition, y: ((self.frame.size.height/2) - (dateView.frame.size.height/2))))
         self.addSubview(dateView)
-        
         xDrawPosition += dateView.frame.size.width
         
         for node in sequence.allNodes() {
+            
             switch (node.type) {
                 
             case .Action:
                 let actionNode = ActionNodeView()
+                actionNode.node = node
                 actionNode.setFrameOrigin(NSPoint(x: xDrawPosition, y: ((self.frame.size.height/2) - (dateView.frame.size.height/2))))
                 self.addSubview(actionNode)
                 xDrawPosition += actionNode.frame.size.width
@@ -56,9 +64,33 @@ public class SequenceView : NSView {
                 break
             default:
                 break
-                
             }
         }
         
+        /*
+        
+        let scrollView = self.superview?.superview?.superview as! NSScrollView
+        
+        if scrollView.className == "NSScrollView" {
+            //   let sv = scrollView! as! NSScrollView
+            let size = NSSize(width: 5000, height: scrollView.frame.size.height)
+            scrollView.documentView!.setFrameSize(size)
+            // scrollView.contentView.setFrameSize(size)
+            
+            Swift.print(scrollView.contentView)
+            
+        } else {
+            Swift.print("Unable to find sequence View scrollView")
+        }
+        
+           Swift.print(NSStringFromRect(self.frame))
+*/
+        
+        
+     
+        
+        //self.translatesAutoresizingMaskIntoConstraints = false
+        
+        //    self.frame = NSRect(x: 0.0, y: self.frame.size.height, width: xDrawPosition, height: self.frame.size.height)
     }
 }

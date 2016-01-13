@@ -16,11 +16,14 @@ public class SequenceTableCellView: NSTableCellView, SequencePresenterDelegate {
     // UI Properties
     @IBOutlet weak var backgroundView: NSView!
     @IBOutlet weak var titleTextField: NSTextField!
-    @IBOutlet weak var sequenceView: SequenceView!
+    @IBOutlet weak var scrollView: NSScrollView!
+    
+    var sequenceView: SequenceView?
     
     public var presenter: SequencePresenter? {
         didSet {
-            sequenceView.sequence = presenter!.archiveableSeq
+            if sequenceView == nil { sequenceView = SequenceView() }
+            sequenceView!.sequence = presenter!.archiveableSeq
             presenter!.delegate = self
             updateCellView()
         }
@@ -52,16 +55,24 @@ public class SequenceTableCellView: NSTableCellView, SequencePresenterDelegate {
             backgroundView.layer?.borderWidth = 3
             backgroundView.layer?.borderColor = NSColor(red: 0.6, green: 0.75, blue: 0.9, alpha: 1.0).CGColor
             titleTextField.editable = true
-            //  self.becomeFirstResponder()
+            self.becomeFirstResponder()
             
         case false:
             backgroundView.layer?.borderWidth = 0
             titleTextField.editable = false
-            //self.resignFirstResponder()
+            self.resignFirstResponder()
         }
         
-
+        // update the scrollView
         
+        if sequenceView != nil {
+            
+            //  if scrollView.documentView == nil {
+               scrollView.documentView = sequenceView
+            //}
+            sequenceView!.frame = NSRect(origin: CGPoint.zero, size: scrollView.frame.size)
+            sequenceView?.setNeedsDisplayInRect(NSRect.infinite)
+        }
     }
     
     
@@ -69,9 +80,39 @@ public class SequenceTableCellView: NSTableCellView, SequencePresenterDelegate {
         presenter!.renameTitle(sender.stringValue)
     }
     
+    public func canBecomeFirstResponder() -> Bool {
+        return true
+    }
+    
+    /*
+    
+    Context Menu
+
+-(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
+if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+CGPoint p = [gestureRecognizer locationInView: self.tableView];
+NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
+if (indexPath != nil) {
+
+[self becomeFirstResponder];
+UIMenuItem *delete = [[UIMenuItem alloc] initWithTitle:@"Delete" action:@selector(customDelete:)];
+
+UIMenuController *menu = [UIMenuController sharedMenuController];
+[menu setMenuItems:[NSArray arrayWithObjects:delete, nil]];
+[menu setTargetRect:[self.tableView rectForRowAtIndexPath:indexPath] inView:self.tableView];
+[menu setMenuVisible:YES animated:YES];
+}
+}
+}
+
+- (void)customDelete:(id)sender {
+//
+}
+*/
+
 
     // MARK: Presenter Delegate
-    
+
     public func sequencePresenterDidRefreshCompleteLayout(sequencePresenter: SequencePresenter) {
         updateCellView()
     }
