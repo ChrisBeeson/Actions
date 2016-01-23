@@ -19,6 +19,7 @@
 		472465211BBFE656004DE4DE /* EventDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9561BB54B82000CAC61 /* EventDuration.swift */; };
 		472465221BBFE65D004DE4DE /* AvoidCalendarEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9581BB54EEA000CAC61 /* AvoidCalendarEvents.swift */; };
 		472465231BBFE665004DE4DE /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574761B9A68AC00493CA0 /* Sequence.swift */; };
+		4731AA471C466807001EB80A /* File in Resources */ = {isa = PBXBuildFile; fileRef = 4731AA461C466807001EB80A /* File */; };
 		4735745A1B9A687400493CA0 /* FilamentKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 473574591B9A687400493CA0 /* FilamentKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		473574601B9A687400493CA0 /* FilamentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 473574551B9A687400493CA0 /* FilamentKit.framework */; };
 		473574691B9A687400493CA0 /* FilamentKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574681B9A687400493CA0 /* FilamentKitTests.swift */; };
@@ -35,7 +36,7 @@
 		473EAEE31BA3A91400AFEA2A /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 473EAEE21BA3A91400AFEA2A /* EventKit.framework */; };
 		473EAEE61BA3AD0300AFEA2A /* RuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473EAEE41BA3AD0300AFEA2A /* RuleTests.swift */; };
 		4753D3AF1BE378720071DB59 /* WorkingWeekRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4753D3AE1BE378720071DB59 /* WorkingWeekRule.swift */; };
-		477212061BED699500D5E988 /* SequenceDocumentsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477212051BED699500D5E988 /* SequenceDocumentsManager.swift */; };
+		477212061BED699500D5E988 /* FilamentDocumentsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477212051BED699500D5E988 /* FilamentDocumentsManager.swift */; };
 		477C2CAE1C3D07700071467C /* DateNodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477C2CAD1C3D07700071467C /* DateNodeView.xib */; };
 		477C2CB01C3D12170071467C /* DateNodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477C2CAF1C3D12170071467C /* DateNodeView.swift */; };
 		477C2CB11C3FAD890071467C /* DateNodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477C2CAD1C3D07700071467C /* DateNodeView.xib */; };
@@ -123,6 +124,7 @@
 		471420D51BA3CB2A00EDF32D /* Pods_Filament.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Filament.framework; path = Pods/../build/Release/Pods_Filament.framework; sourceTree = "<group>"; };
 		47181F311C0E487B006FD38E /* SequenceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceView.swift; sourceTree = "<group>"; };
 		472465171BBFD0DA004DE4DE /* DateToolsExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateToolsExtensionsTests.swift; sourceTree = "<group>"; };
+		4731AA461C466807001EB80A /* File */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = File; sourceTree = "<group>"; };
 		473574551B9A687400493CA0 /* FilamentKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FilamentKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		473574581B9A687400493CA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		473574591B9A687400493CA0 /* FilamentKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilamentKit.h; sourceTree = "<group>"; };
@@ -140,7 +142,7 @@
 		473EAEE21BA3A91400AFEA2A /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		473EAEE41BA3AD0300AFEA2A /* RuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleTests.swift; sourceTree = "<group>"; };
 		4753D3AE1BE378720071DB59 /* WorkingWeekRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkingWeekRule.swift; sourceTree = "<group>"; };
-		477212051BED699500D5E988 /* SequenceDocumentsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceDocumentsManager.swift; sourceTree = "<group>"; };
+		477212051BED699500D5E988 /* FilamentDocumentsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilamentDocumentsManager.swift; sourceTree = "<group>"; };
 		477212071BED9DCB00D5E988 /* Filament.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Filament.entitlements; path = Filament/Filament.entitlements; sourceTree = "<group>"; };
 		477C2CAD1C3D07700071467C /* DateNodeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateNodeView.xib; sourceTree = "<group>"; };
 		477C2CAF1C3D12170071467C /* DateNodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateNodeView.swift; sourceTree = "<group>"; };
@@ -174,7 +176,7 @@
 		83F6B9691B994652002A5AAF /* FilamentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FilamentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F6B96E1B994652002A5AAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83F6B96F1B994652002A5AAF /* FilamentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilamentTests.swift; sourceTree = "<group>"; };
-		83F6B9791B995683002A5AAF /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		83F6B9791B995683002A5AAF /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		83F9E92A1BA18739006282B5 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		83FE26031BCB8FB700AC20B5 /* SolverTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolverTests.swift; sourceTree = "<group>"; };
 		B87F8CB0AFDC603CD8046EEF /* Pods_Filament.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Filament.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -232,7 +234,7 @@
 		47181F2E1C0C3D90006FD38E /* Document Architecture */ = {
 			isa = PBXGroup;
 			children = (
-				477212051BED699500D5E988 /* SequenceDocumentsManager.swift */,
+				477212051BED699500D5E988 /* FilamentDocumentsManager.swift */,
 				83861F2A1BEEA25F00A44122 /* SequenceDocument.swift */,
 				47A14E821C21385700B45F86 /* Local Filesystem Monitoring */,
 			);
@@ -407,6 +409,7 @@
 		83F6B94E1B994652002A5AAF = {
 			isa = PBXGroup;
 			children = (
+				4731AA461C466807001EB80A /* File */,
 				477212071BED9DCB00D5E988 /* Filament.entitlements */,
 				83F9E92A1BA18739006282B5 /* .gitignore */,
 				83F6B9791B995683002A5AAF /* Podfile */,
@@ -644,6 +647,7 @@
 			files = (
 				83F9E92B1BA18739006282B5 /* .gitignore in Resources */,
 				47B6964B1BE5BC0B00260C2A /* Main.storyboard in Resources */,
+				4731AA471C466807001EB80A /* File in Resources */,
 				83F6B97A1B995683002A5AAF /* Podfile in Resources */,
 				83DDAA4F1B997C9A001A4DBE /* SystemTrayMenu.xib in Resources */,
 				477C2CB11C3FAD890071467C /* DateNodeView.xib in Resources */,
@@ -729,7 +733,7 @@
 				473EAEE11BA3A7D200AFEA2A /* CalendarManager.swift in Sources */,
 				473574871B9A91A200493CA0 /* ListPresenterUtilities.swift in Sources */,
 				47CD21BF1BDF797B00AF25BE /* GeneralExtensions.swift in Sources */,
-				477212061BED699500D5E988 /* SequenceDocumentsManager.swift in Sources */,
+				477212061BED699500D5E988 /* FilamentDocumentsManager.swift in Sources */,
 				47CD21C61BDF807900AF25BE /* Sequence+EventLogic.swift in Sources */,
 				47A14E811C21384F00B45F86 /* DirectoryMonitor.swift in Sources */,
 				473574771B9A68AC00493CA0 /* Sequence.swift in Sources */,

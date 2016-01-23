@@ -32,8 +32,9 @@ public class ActionNodeView: NSView {
         
         if textField == nil {
             textField = NSTextField(frame: NSRect(x: 10.0, y: self.frame.height/2 - (20.0/2) , width: self.frame.width * 0.80, height: 20.0))
-            textField!.font = NSFont.systemFontOfSize(15.0)
+            textField!.font = NSFont.systemFontOfSize(14.0)
             textField!.backgroundColor = NSColor.clearColor()
+            textField?.selectable = false
             self.addSubview(textField!)
             textField?.bordered = false
         }
@@ -60,7 +61,7 @@ public class ActionNodeView: NSView {
     override public func drawRect(dirtyRect: NSRect) {
         
         let tailOff:CGFloat = 0.85   // 85% of the view consists of the tailing triangle
-        let padding:CGFloat = 2.0
+        let padding:CGFloat = 2.5
         let frame = self.frame
         
         let path = NSBezierPath()
@@ -71,11 +72,58 @@ public class ActionNodeView: NSView {
         path.lineToPoint(NSPoint(x: frame.size.width , y:frame.size.height/2))
         path.lineToPoint(NSPoint(x: frame.size.width * tailOff , y: frame.size.height - padding))
         
-        NSColor(calibratedWhite:0.7, alpha:1.0).setStroke()
+        NSColor(calibratedWhite:0.6, alpha:1.0).setStroke()
         NSColor(calibratedWhite:0.9, alpha:1.0).setFill()
 
-        path.lineWidth = 0.1
+        path.lineWidth = 0.2
         path.fill()
         path.stroke()
+        
+        // Selected
+        
+        
+        let selectedPath = NSBezierPath()
+        selectedPath.moveToPoint(NSPoint(x: frame.size.width * tailOff , y: frame.size.height))
+        selectedPath.lineToPoint(NSPoint(x: 0 , y:frame.size.height))
+        selectedPath.lineToPoint(NSPoint(x: 0 , y:padding))
+        selectedPath.lineToPoint(NSPoint(x: frame.size.width * tailOff , y:padding))
+        selectedPath.lineToPoint(NSPoint(x: frame.size.width , y:frame.size.height/2))
+        selectedPath.lineToPoint(NSPoint(x: frame.size.width * tailOff , y: frame.size.height))
+        
+        NSColor(calibratedWhite:0.6, alpha:1.0).setStroke()
+        NSColor(calibratedWhite:0.9, alpha:1.0).setFill()
+        
+        selectedPath.lineWidth = 0.2
+        selectedPath.fill()
+        selectedPath.stroke()
+        
+        
     }
+    
+    /*
+    
+    // -------------------- MOUSE EVENTS ------------------- \\
+    
+    - (BOOL) acceptsFirstMouse:(NSEvent *)e {
+    return YES;
+    }
+    
+    - (void)mouseDown:(NSEvent *) e {
+    
+    // Convert to superview's coordinate space
+    self.lastDragLocation = [[self superview] convertPoint:[e locationInWindow] fromView:nil];
+    
+    }
+    
+    - (void)mouseDragged:(NSEvent *)theEvent {
+    
+    // We're working only in the superview's coordinate space, so we always convert.
+    NSPoint newDragLocation = [[self superview] convertPoint:[theEvent locationInWindow] fromView:nil];
+    NSPoint thisOrigin = [self frame].origin;
+    thisOrigin.x += (-self.lastDragLocation.x + newDragLocation.x);
+    thisOrigin.y += (-self.lastDragLocation.y + newDragLocation.y);
+    [self setFrameOrigin:thisOrigin];
+    self.lastDragLocation = newDragLocation;
+    }
+    */
 }

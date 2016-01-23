@@ -9,11 +9,11 @@
 import Foundation
 
 /// A protocol that allows delegates of `DirectoryMonitor` to respond to changes in a directory.
-protocol DirectoryMonitorDelegate: class {
+public protocol DirectoryMonitorDelegate: class {
     func directoryMonitorDidObserveChange(directoryMonitor: DirectoryMonitor)
 }
 
-class DirectoryMonitor {
+public class DirectoryMonitor {
     // MARK: Properties
     
     /// The `DirectoryMonitor`'s delegate who is responsible for responding to `DirectoryMonitor` updates.

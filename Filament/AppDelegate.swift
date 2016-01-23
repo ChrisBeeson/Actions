@@ -22,7 +22,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationWillTerminate(aNotification: NSNotification) {
       
-        SequenceDocumentsManager.sharedManager.saveAllDocuments()
+        FilamentDocumentsManager.sharedManager.saveAllDocuments()
         
         // NSDocumentController.sharedDocumentController().saveAllDocuments(self)
     }

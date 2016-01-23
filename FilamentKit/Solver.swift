@@ -46,7 +46,6 @@ public class Solver {
         
         // Step 1. Average out / Combine all the rules
         
-        
         // first average out all start and duration
         
         for rule in rules {
@@ -88,7 +87,6 @@ public class Solver {
             return (false,nil)
         }
         
-        
         // Find the window of interest, and then go through all the rules again and see if theres any avoids.
         
         let windowOfinterest = DTTimePeriod(startDate: averageStartWindow!.StartDate!, endDate: averageStartWindow!.EndDate!.dateByAddTimeSize(averageDuration!))
@@ -96,17 +94,13 @@ public class Solver {
         for rule in rules {
             
             if rule.options.contains(RoleOptions.RequiresInterestWindow) {
-            
-            rule.interestPeriod = windowOfinterest
-                
+                rule.interestPeriod = windowOfinterest
             }
             
             // Combine Avoid periods
             
             if rule.avoidPeriods != nil {
-                
                 for avoidPeriod in rule.avoidPeriods! {
-                    
                     avoidPeriods.addTimePeriod(avoidPeriod)
                 }
             }
@@ -116,7 +110,6 @@ public class Solver {
         //  Step 3. Invert the avoid periods to free times
         
         avoidPeriods.flatten()
-        
         
         let freePeriods = avoidPeriods.voidPeriods(windowOfinterest)
         let preferedPeriod = DTTimePeriod(startDate: preferedStartTime!, endDate: preferedStartTime?.dateByAddTimeSize(averageDuration!))
