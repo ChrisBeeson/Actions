@@ -20,10 +20,8 @@
 		472465221BBFE65D004DE4DE /* AvoidCalendarEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9581BB54EEA000CAC61 /* AvoidCalendarEvents.swift */; };
 		472465231BBFE665004DE4DE /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574761B9A68AC00493CA0 /* Sequence.swift */; };
 		4731AA471C466807001EB80A /* File in Resources */ = {isa = PBXBuildFile; fileRef = 4731AA461C466807001EB80A /* File */; };
-		4735745A1B9A687400493CA0 /* FilamentKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 473574591B9A687400493CA0 /* FilamentKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		473574601B9A687400493CA0 /* FilamentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 473574551B9A687400493CA0 /* FilamentKit.framework */; };
 		473574691B9A687400493CA0 /* FilamentKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574681B9A687400493CA0 /* FilamentKitTests.swift */; };
-		4735746C1B9A687400493CA0 /* FilamentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 473574551B9A687400493CA0 /* FilamentKit.framework */; };
 		4735746D1B9A687400493CA0 /* FilamentKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 473574551B9A687400493CA0 /* FilamentKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		473574751B9A689B00493CA0 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574741B9A689B00493CA0 /* Node.swift */; };
 		473574771B9A68AC00493CA0 /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574761B9A68AC00493CA0 /* Sequence.swift */; };
@@ -37,6 +35,7 @@
 		473EAEE61BA3AD0300AFEA2A /* RuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473EAEE41BA3AD0300AFEA2A /* RuleTests.swift */; };
 		4753D3AF1BE378720071DB59 /* WorkingWeekRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4753D3AE1BE378720071DB59 /* WorkingWeekRule.swift */; };
 		477212061BED699500D5E988 /* FilamentDocumentsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477212051BED699500D5E988 /* FilamentDocumentsManager.swift */; };
+		477626951C53839B00C35599 /* FilamentKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 477626931C53823B00C35599 /* FilamentKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		477C2CAE1C3D07700071467C /* DateNodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477C2CAD1C3D07700071467C /* DateNodeView.xib */; };
 		477C2CB01C3D12170071467C /* DateNodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477C2CAF1C3D12170071467C /* DateNodeView.swift */; };
 		477C2CB11C3FAD890071467C /* DateNodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477C2CAD1C3D07700071467C /* DateNodeView.xib */; };
@@ -127,7 +126,6 @@
 		4731AA461C466807001EB80A /* File */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = File; sourceTree = "<group>"; };
 		473574551B9A687400493CA0 /* FilamentKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FilamentKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		473574581B9A687400493CA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		473574591B9A687400493CA0 /* FilamentKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilamentKit.h; sourceTree = "<group>"; };
 		4735745F1B9A687400493CA0 /* FilamentKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FilamentKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		473574671B9A687400493CA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		473574681B9A687400493CA0 /* FilamentKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilamentKitTests.swift; sourceTree = "<group>"; };
@@ -144,6 +142,7 @@
 		4753D3AE1BE378720071DB59 /* WorkingWeekRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkingWeekRule.swift; sourceTree = "<group>"; };
 		477212051BED699500D5E988 /* FilamentDocumentsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilamentDocumentsManager.swift; sourceTree = "<group>"; };
 		477212071BED9DCB00D5E988 /* Filament.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Filament.entitlements; path = Filament/Filament.entitlements; sourceTree = "<group>"; };
+		477626931C53823B00C35599 /* FilamentKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilamentKit.h; sourceTree = "<group>"; };
 		477C2CAD1C3D07700071467C /* DateNodeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateNodeView.xib; sourceTree = "<group>"; };
 		477C2CAF1C3D12170071467C /* DateNodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateNodeView.swift; sourceTree = "<group>"; };
 		477C2CB21C409C660071467C /* ActionNodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionNodeView.swift; sourceTree = "<group>"; };
@@ -207,7 +206,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A434260737AE2B1831E7CA6A /* Pods_Filament.framework in Frameworks */,
-				4735746C1B9A687400493CA0 /* FilamentKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,6 +242,7 @@
 		473574561B9A687400493CA0 /* FilamentKit */ = {
 			isa = PBXGroup;
 			children = (
+				477626931C53823B00C35599 /* FilamentKit.h */,
 				47AFF8531BE497D700514857 /* Shared */,
 			);
 			path = FilamentKit;
@@ -346,7 +345,6 @@
 				83C73E081BE2E35A0045973C /* Configuration */,
 				47181F2E1C0C3D90006FD38E /* Document Architecture */,
 				4735747D1B9A915800493CA0 /* Presenter */,
-				473574591B9A687400493CA0 /* FilamentKit.h */,
 				473EAEE01BA3A7D200AFEA2A /* CalendarManager.swift */,
 				8343519B1BA2973C0094428B /* Rules */,
 				4735747A1B9A692F00493CA0 /* Models */,
@@ -482,7 +480,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4735745A1B9A687400493CA0 /* FilamentKit.h in Headers */,
+				477626951C53839B00C35599 /* FilamentKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
