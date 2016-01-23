@@ -1,0 +1,16 @@
+PODS:
+  - CCNStatusItem (0.6.0)
+  - DateTools (1.7.0)
+  - MLCalendarView (0.1)
+
+DEPENDENCIES:
+  - CCNStatusItem (~> 0.5)
+  - DateTools (~> 1.7)
+  - MLCalendarView
+
+SPEC CHECKSUMS:
+  CCNStatusItem: 5b0e49dcfc21f65b530985ec838c737b1d2195ca
+  DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
+  MLCalendarView: f56e47b63357cd74d1fad155a20cc69cade0c0a2
+
+COCOAPODS: 0.39.0
