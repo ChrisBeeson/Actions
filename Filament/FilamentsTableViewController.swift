@@ -25,39 +25,38 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     // MARK: TableView DataSource
     
     public func numberOfRowsInTableView(tableView: NSTableView) -> Int {
+        
+        //TODO: SegmentView
 
         return FilamentDocumentsManager.sharedManager.documents.count
     }
     
     public func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
-        let cellView = tableView.makeViewWithIdentifier("SequenceCellView", owner: self) as! SequenceTableCellView
+        let cellView = tableView.makeViewWithIdentifier("FilamentCellView", owner: self) as! FilamentTableCellView
         let docs  = FilamentDocumentsManager.sharedManager.documents
         cellView.presenter = docs[row].sequencePresenter
         return cellView
     }
     
-    
-    public func tableView(tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
+    public func tableViewSelectionDidChange(notification: NSNotification) {
         
-        if tableView.selectedRow == row { return false }
-        
-        if let cellView = tableView.viewAtColumn(0, row: row, makeIfNecessary: false) as? SequenceTableCellView {
-            cellView.selected = true
-        }
-        
-        if tableView.selectedRow != -1 {
-            if let currentSelection = tableView.viewAtColumn(0, row: tableView.selectedRow, makeIfNecessary: false)  as? SequenceTableCellView {
-                  currentSelection.selected = false
+        for (var row = 0; row < tableView.numberOfRows ; row++)
+        {
+            if let cellView = tableView.viewAtColumn(0, row: row, makeIfNecessary: false) as? FilamentTableCellView {
+                cellView.selected = tableView.isRowSelected(row)
             }
         }
-        return true
     }
     
     
     // MARK: Filaments Manager Delegate
     
     public func filamentsDocumentsManagerDidUpdateContents(inserted inserted:[FilamentDocument], removed:[FilamentDocument]) {
+        
+        //TODO: UI - animate inserts & deletions
+        
+        // tableView.removeRowsAtIndexes(<#T##indexes: NSIndexSet##NSIndexSet#>, withAnimation: <#T##NSTableViewAnimationOptions#>)
         
         dispatch_async(dispatch_get_main_queue()) { [unowned self] in
             
@@ -75,7 +74,7 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
 
 extension FilamentsTableViewController {
     
-    public func delete(theEvent: NSEvent) {   // TODO: Delete Muliple
+    public func delete(theEvent: NSEvent) {   // TODO: Muliple
         
         let alert = NSAlert()
         alert.informativeText = "Are you sure you want to delete this Filament?"
@@ -88,7 +87,7 @@ extension FilamentsTableViewController {
             
         case NSAlertFirstButtonReturn:   // Delete
             
-            if let cellView = tableView.viewAtColumn(0, row: tableView.selectedRow, makeIfNecessary: false) as? SequenceTableCellView {
+            if let cellView = tableView.viewAtColumn(0, row: tableView.selectedRow, makeIfNecessary: false) as? FilamentTableCellView {
                 let docToDel = FilamentDocumentsManager.sharedManager.documentForSequence(cellView.presenter!.archiveableSeq)
                 FilamentDocumentsManager.permanentlyDeleteDocument(docToDel)
             }

@@ -41,7 +41,7 @@
 		477C2CB11C3FAD890071467C /* DateNodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477C2CAD1C3D07700071467C /* DateNodeView.xib */; };
 		477C2CB31C409C660071467C /* ActionNodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477C2CB21C409C660071467C /* ActionNodeView.swift */; };
 		477C2CB51C40B3AD0071467C /* TransitionNodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477C2CB41C40B3AD0071467C /* TransitionNodeView.swift */; };
-		479CD2861C1B8AE700C8D1D6 /* SequenceTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479CD2851C1B8AE700C8D1D6 /* SequenceTableCellView.swift */; };
+		479CD2861C1B8AE700C8D1D6 /* FilamentTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479CD2851C1B8AE700C8D1D6 /* FilamentTableCellView.swift */; };
 		47A14E811C21384F00B45F86 /* DirectoryMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A14E801C21384F00B45F86 /* DirectoryMonitor.swift */; };
 		47ACA9541BB5464C000CAC61 /* DateToolsExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9531BB5464C000CAC61 /* DateToolsExtenstions.swift */; };
 		47ACA9571BB54B82000CAC61 /* EventDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9561BB54B82000CAC61 /* EventDuration.swift */; };
@@ -146,7 +146,7 @@
 		477C2CAF1C3D12170071467C /* DateNodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateNodeView.swift; sourceTree = "<group>"; };
 		477C2CB21C409C660071467C /* ActionNodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionNodeView.swift; sourceTree = "<group>"; };
 		477C2CB41C40B3AD0071467C /* TransitionNodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionNodeView.swift; sourceTree = "<group>"; };
-		479CD2851C1B8AE700C8D1D6 /* SequenceTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SequenceTableCellView.swift; path = FilamentKit/SequenceTableCellView.swift; sourceTree = SOURCE_ROOT; };
+		479CD2851C1B8AE700C8D1D6 /* FilamentTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilamentTableCellView.swift; path = FilamentKit/FilamentTableCellView.swift; sourceTree = SOURCE_ROOT; };
 		47A14E801C21384F00B45F86 /* DirectoryMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectoryMonitor.swift; sourceTree = "<group>"; };
 		47ACA9531BB5464C000CAC61 /* DateToolsExtenstions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateToolsExtenstions.swift; sourceTree = "<group>"; };
 		47ACA9561BB54B82000CAC61 /* EventDuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDuration.swift; sourceTree = "<group>"; };
@@ -360,7 +360,7 @@
 				47B6964A1BE5BC0B00260C2A /* Main.storyboard */,
 				47B696461BE564DC00260C2A /* MainWindowController.swift */,
 				47B696441BE5645400260C2A /* FilamentsTableViewController.swift */,
-				479CD2851C1B8AE700C8D1D6 /* SequenceTableCellView.swift */,
+				479CD2851C1B8AE700C8D1D6 /* FilamentTableCellView.swift */,
 				47F5E82A1BF495D8004C0D16 /* AddFilamentViewController.swift */,
 			);
 			name = UI;
@@ -774,7 +774,7 @@
 			files = (
 				47B696471BE564DC00260C2A /* MainWindowController.swift in Sources */,
 				47F5E82B1BF495D8004C0D16 /* AddFilamentViewController.swift in Sources */,
-				479CD2861C1B8AE700C8D1D6 /* SequenceTableCellView.swift in Sources */,
+				479CD2861C1B8AE700C8D1D6 /* FilamentTableCellView.swift in Sources */,
 				83F6B95D1B994652002A5AAF /* AppDelegate.swift in Sources */,
 				47B696451BE5645400260C2A /* FilamentsTableViewController.swift in Sources */,
 			);

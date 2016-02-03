@@ -9,7 +9,7 @@
 import Cocoa
 import FilamentKit
 
-public class SequenceTableCellView: NSTableCellView, SequencePresenterDelegate {
+public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate {
     
     override public var acceptsFirstResponder: Bool { return true }
     
@@ -21,6 +21,7 @@ public class SequenceTableCellView: NSTableCellView, SequencePresenterDelegate {
     var sequenceView: SequenceView?
     
     public var presenter: SequencePresenter? {
+        
         didSet {
             if sequenceView == nil { sequenceView = SequenceView() }
             sequenceView!.sequence = presenter!.archiveableSeq
@@ -30,6 +31,7 @@ public class SequenceTableCellView: NSTableCellView, SequencePresenterDelegate {
     }
     
     public var selected: Bool {
+        
         didSet {
             updateCellView()
     }
@@ -38,12 +40,14 @@ public class SequenceTableCellView: NSTableCellView, SequencePresenterDelegate {
     // MARK: Methods
     
     required public init?(coder: NSCoder) {
+        
         selected = false
         super.init(coder: coder)
     }
     
 
     func updateCellView() {
+        
         backgroundView.backgroundColor = NSColor.whiteColor()
 
         if presenter != nil {
@@ -77,10 +81,12 @@ public class SequenceTableCellView: NSTableCellView, SequencePresenterDelegate {
     
     
     @IBAction func titleTextFieldDidChange(sender: NSTextField) {
+        
         presenter!.renameTitle(sender.stringValue)
     }
     
     public func canBecomeFirstResponder() -> Bool {
+        
         return true
     }
     
@@ -139,6 +145,7 @@ UIMenuController *menu = [UIMenuController sharedMenuController];
 
 
 extension NSView {
+    
     var backgroundColor: NSColor? {
         get {
             guard let layer = layer, backgroundColor = layer.backgroundColor else { return nil }
