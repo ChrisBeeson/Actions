@@ -1,5 +1,5 @@
 //
-//  SequenceDocument.swift
+//  FilamentDocument.swift
 //  Filament
 //
 //  Created by Chris Beeson on 7/11/2015.
@@ -8,7 +8,7 @@
 
 import Cocoa
 
-public class SequenceDocument: NSDocument {
+public class FilamentDocument: NSDocument {
     
     // MARK: Properties
     
@@ -59,9 +59,9 @@ public class SequenceDocument: NSDocument {
         return url
     }
     
-    public class func newSequenceDocument(title: String) -> SequenceDocument {
+    public class func newSequenceDocument(title: String) -> FilamentDocument {
         
-        let newDoc = SequenceDocument()
+        let newDoc = FilamentDocument()
         
         let actionNodes = [Node(text: "Action 1", type: .Action, rules: nil), Node(text: "Action 2", type: .Action, rules: nil), Node(text: "Action 3", type: .Action, rules: nil)]
         let sequence = Sequence(name: title, actionNodes: actionNodes)

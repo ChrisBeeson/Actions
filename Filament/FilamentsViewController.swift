@@ -81,7 +81,7 @@ public class FilamentsViewController:  NSViewController, NSTableViewDataSource, 
     
     // MARK: Filaments Manager Delegate
     
-    public func filamentsDocumentsManagerDidUpdateContents(inserted inserted:[SequenceDocument], removed:[SequenceDocument]) {
+    public func filamentsDocumentsManagerDidUpdateContents(inserted inserted:[FilamentDocument], removed:[FilamentDocument]) {
         
         dispatch_async(dispatch_get_main_queue()) { [unowned self] in
             

@@ -60,7 +60,7 @@
 		47F2FBC41BA8CFEE0041B291 /* Solver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F2FBC31BA8CFEE0041B291 /* Solver.swift */; };
 		47F5E82B1BF495D8004C0D16 /* AddFilamentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F5E82A1BF495D8004C0D16 /* AddFilamentViewController.swift */; };
 		8343519D1BA297650094428B /* EventStartsInTimeFromNow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8343519C1BA297650094428B /* EventStartsInTimeFromNow.swift */; };
-		83861F2B1BEEA25F00A44122 /* SequenceDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83861F2A1BEEA25F00A44122 /* SequenceDocument.swift */; };
+		83861F2B1BEEA25F00A44122 /* FilamentDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83861F2A1BEEA25F00A44122 /* FilamentDocument.swift */; };
 		83C73E0D1BE31C4F0045973C /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C73E0B1BE31BF20045973C /* AppConfiguration.swift */; };
 		83C73E0E1BE31C4F0045973C /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C73E0B1BE31BF20045973C /* AppConfiguration.swift */; };
 		83DDAA4F1B997C9A001A4DBE /* SystemTrayMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83DDAA4E1B997C9A001A4DBE /* SystemTrayMenu.xib */; };
@@ -163,7 +163,7 @@
 		47F2FBC31BA8CFEE0041B291 /* Solver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Solver.swift; sourceTree = "<group>"; };
 		47F5E82A1BF495D8004C0D16 /* AddFilamentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFilamentViewController.swift; sourceTree = "<group>"; };
 		8343519C1BA297650094428B /* EventStartsInTimeFromNow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventStartsInTimeFromNow.swift; sourceTree = "<group>"; };
-		83861F2A1BEEA25F00A44122 /* SequenceDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceDocument.swift; sourceTree = "<group>"; };
+		83861F2A1BEEA25F00A44122 /* FilamentDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilamentDocument.swift; sourceTree = "<group>"; };
 		83C73E0B1BE31BF20045973C /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		83DDAA4A1B9978CF001A4DBE /* Filament-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Filament-Bridging-Header.h"; sourceTree = "<group>"; };
 		83DDAA4E1B997C9A001A4DBE /* SystemTrayMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SystemTrayMenu.xib; sourceTree = "<group>"; };
@@ -233,7 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				477212051BED699500D5E988 /* FilamentDocumentsManager.swift */,
-				83861F2A1BEEA25F00A44122 /* SequenceDocument.swift */,
+				83861F2A1BEEA25F00A44122 /* FilamentDocument.swift */,
 				47A14E821C21385700B45F86 /* Local Filesystem Monitoring */,
 			);
 			name = "Document Architecture";
@@ -739,7 +739,7 @@
 				47F2FBC41BA8CFEE0041B291 /* Solver.swift in Sources */,
 				8343519D1BA297650094428B /* EventStartsInTimeFromNow.swift in Sources */,
 				477C2CB31C409C660071467C /* ActionNodeView.swift in Sources */,
-				83861F2B1BEEA25F00A44122 /* SequenceDocument.swift in Sources */,
+				83861F2B1BEEA25F00A44122 /* FilamentDocument.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

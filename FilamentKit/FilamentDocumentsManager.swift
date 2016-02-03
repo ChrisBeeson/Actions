@@ -10,7 +10,7 @@ import Foundation
 
 public protocol FilamentDocumentsManagerDelegate : class  {
     
-    func filamentsDocumentsManagerDidUpdateContents(inserted inserted:[SequenceDocument], removed:[SequenceDocument])
+    func filamentsDocumentsManagerDidUpdateContents(inserted inserted:[FilamentDocument], removed:[FilamentDocument])
 }
 
 
@@ -18,7 +18,7 @@ public class FilamentDocumentsManager : DirectoryMonitorDelegate {
     
     public static let sharedManager = FilamentDocumentsManager()
     public var delegate : FilamentDocumentsManagerDelegate?
-    public var documents : [SequenceDocument]                               //! All changes needs to happen through processChangeToLocalDocumentsDirectory
+    public var documents : [FilamentDocument]                               //! All changes needs to happen through processChangeToLocalDocumentsDirectory
     private var directoryMonitor: DirectoryMonitor
     private let fileManager = NSFileManager.defaultManager()
     
@@ -43,7 +43,7 @@ public class FilamentDocumentsManager : DirectoryMonitorDelegate {
     }
     
     
-    public func documentForSequence(sequence: Sequence) -> SequenceDocument {
+    public func documentForSequence(sequence: Sequence) -> FilamentDocument {
         
         return documents.filter{$0.unarchivedSequence! == sequence}.first!
     }
@@ -75,7 +75,7 @@ public class FilamentDocumentsManager : DirectoryMonitorDelegate {
             
             let removedURLs = oldURLS.filter { !newURLs.contains($0) }
             
-            var removedDocs = [SequenceDocument]()
+            var removedDocs = [FilamentDocument]()
             for url in removedURLs {
                 for doc in self.documents {
                     if doc.fileURL == url {
@@ -110,16 +110,16 @@ public extension FilamentDocumentsManager {
     }
     
     
-    class func documentsForURLs(urls: [NSURL]) -> [SequenceDocument] {
+    class func documentsForURLs(urls: [NSURL]) -> [FilamentDocument] {
         
-        var docs = [SequenceDocument]()
+        var docs = [FilamentDocument]()
         
         let predicate = NSPredicate(format: "(pathExtension = %@)", argumentArray: [AppConfiguration.filamentFileExtension])
         let filteredURLs = urls.filter { predicate.evaluateWithObject($0) }
         
         for url in filteredURLs {
             do {
-                let doc = try SequenceDocument(contentsOfURL: url, ofType:"fil")
+                let doc = try FilamentDocument(contentsOfURL: url, ofType:"fil")
                 docs.append(doc)
             } catch {
                 print(error)
@@ -128,7 +128,7 @@ public extension FilamentDocumentsManager {
         return docs
     }
     
-    public class func permanentlyDeleteDocument(document: SequenceDocument) {
+    public class func permanentlyDeleteDocument(document: FilamentDocument) {
         
         let url = document.storageURL()
         let fileManager = NSFileManager.defaultManager()
