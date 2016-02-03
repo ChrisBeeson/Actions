@@ -8,25 +8,26 @@
 
 import Foundation
 
-public protocol FilamentDocumentsDelegate : class  {
+public protocol FilamentDocumentsManagerDelegate : class  {
     
-    func filamentsDocumentsManagerDidUpdateContents(insertedURLs insertedURLs: [NSURL], removedURLs: [NSURL])
+    func filamentsDocumentsManagerDidUpdateContents(inserted inserted:[SequenceDocument], removed:[SequenceDocument])
 }
+
 
 public class FilamentDocumentsManager : DirectoryMonitorDelegate {
     
     public static let sharedManager = FilamentDocumentsManager()
-    public var delegate: FilamentDocumentsDelegate?
-    
-    private var _documents : [SequenceDocument]?
+    public var delegate : FilamentDocumentsManagerDelegate?
+    public var documents : [SequenceDocument]                               //! All changes needs to happen through processChangeToLocalDocumentsDirectory
     private var directoryMonitor: DirectoryMonitor
-    let fileManager : NSFileManager
+    private let fileManager = NSFileManager.defaultManager()
     
     init() {
-        fileManager = NSFileManager.defaultManager()
+        
+        documents = FilamentDocumentsManager.documentsForURLs(FilamentDocumentsManager.documentDirectoryList())
+        
         directoryMonitor = DirectoryMonitor(URL: AppConfiguration.sharedConfiguration.storageDirectory)
         directoryMonitor.delegate = self
-        _documents = loadDocuments()
         directoryMonitor.startMonitoring()
     }
     
@@ -34,75 +35,19 @@ public class FilamentDocumentsManager : DirectoryMonitorDelegate {
         directoryMonitor.stopMonitoring()
     }
     
-    func loadDocuments() -> [SequenceDocument]? {
-        
-        guard let urls = documentURLs() else { return nil }
-        
-        var docs = [SequenceDocument]()
-        
-        for url in urls {
-            do {
-                let doc = try SequenceDocument(contentsOfURL: url, ofType:"fil")
-                docs.append(doc)
-                
-            } catch {
-                print(error)
-            }
-        }
-        return docs
-    }
     
     public func saveAllDocuments() {
-        
-        if _documents == nil { return }
-        
-        for doc in _documents! {
-            let edited = doc.documentEdited
-            print("\(doc) has been edited: \(edited)")
+        for doc in documents {
             doc.saveDocument(nil)
         }
     }
     
     
-    public func documents() -> [SequenceDocument]? {
-        return _documents
+    public func documentForSequence(sequence: Sequence) -> SequenceDocument {
+        
+        return documents.filter{$0.unarchivedSequence! == sequence}.first!
     }
     
-    
-    func documentURLs() -> ([NSURL]?) {
-        
-        let fileManager = NSFileManager.defaultManager()
-        let storageDir = AppConfiguration.sharedConfiguration.storageDirectory
-        
-        do {
-            let contents = try fileManager.contentsOfDirectoryAtURL(storageDir, includingPropertiesForKeys: nil, options:NSDirectoryEnumerationOptions.SkipsHiddenFiles)
-            return contents
-        }
-        catch {
-            print(error)
-            return nil
-        }
-    }
-    
-    public func deleteDocumentForSequence(sequence: Sequence) {
-        let document = _documents?.filter{$0.unarchivedSequence == sequence}.first
-        
-        if document != nil {
-            //   _documents?.removeObject(document!)
-            permanentlyDeleteDocument(document!)
-        }
-    }
-    
-    func permanentlyDeleteDocument(document: SequenceDocument) {
-        
-        let url = document.storageURL()
-        let fileManager = NSFileManager.defaultManager()
-        do {
-            try fileManager.removeItemAtURL(url)
-        } catch {
-            print(error)
-        }
-    }
     
     // MARK: DirectoryMonitorDelegate
     
@@ -111,26 +56,87 @@ public class FilamentDocumentsManager : DirectoryMonitorDelegate {
     }
     
     
+    /** Ensures that documents[] == localDirectory **/
+    
     func processChangeToLocalDocumentsDirectory() {
         
-        let defaultQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-        dispatch_async(defaultQueue) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { [unowned self] in
             
-            var localDocumentURLs = self.documentURLs()
-            if localDocumentURLs == nil  { localDocumentURLs = [NSURL]() }
-            let predicate = NSPredicate(format: "(pathExtension = %@)", argumentArray: [AppConfiguration.filamentFileExtension])
-            let newURLs = localDocumentURLs!.filter { predicate.evaluateWithObject($0) }
-            let oldURLS = self._documents!.map ( {$0.fileURL! })
+            let newURLs = FilamentDocumentsManager.documentDirectoryList()
+            let oldURLS = self.documents.map ( {$0.fileURL! })
             
-            if !newURLs.isEmpty {
-                let insertedURLs = newURLs.filter { !oldURLS.contains($0) }
-                let removedURLs = oldURLS.filter { !newURLs.contains($0) }
-                self.delegate?.filamentsDocumentsManagerDidUpdateContents(insertedURLs: insertedURLs, removedURLs: removedURLs)
-                
-                // let docsToInsert = insertedURLs.map ({ SequenceDocument(contentsOfURL: $0, ofType:"fil") } )
-                
-                //_documents!.append (insertedURLs.map ( { SequenceDocument($0, ofType:"fil") } ))
+            // inserted Urls
+            
+            let insertedURLs = newURLs.filter { !oldURLS.contains($0) }
+            let insertedDocs = FilamentDocumentsManager.documentsForURLs(insertedURLs)
+            self.documents.appendContentsOf(insertedDocs)
+            
+            // removed Urls
+            
+            let removedURLs = oldURLS.filter { !newURLs.contains($0) }
+            
+            var removedDocs = [SequenceDocument]()
+            for url in removedURLs {
+                for doc in self.documents {
+                    if doc.fileURL == url {
+                        removedDocs.append(doc)
+                    }
+                }
             }
+            
+            self.documents.removeObjects(removedDocs)
+            
+            self.delegate?.filamentsDocumentsManagerDidUpdateContents(inserted:insertedDocs, removed:removedDocs)
+        }
+    }
+}
+
+
+// MARK: Filesystem Helpers
+
+public extension FilamentDocumentsManager {
+    
+    class func documentDirectoryList() -> ([NSURL]) {
+        
+        let fileManager = NSFileManager.defaultManager()
+        let storageDir = AppConfiguration.sharedConfiguration.storageDirectory
+        
+        do {
+            return try fileManager.contentsOfDirectoryAtURL(storageDir, includingPropertiesForKeys: nil, options:NSDirectoryEnumerationOptions.SkipsHiddenFiles)
+        }
+        catch {
+            fatalError(String(error))
+        }
+    }
+    
+    
+    class func documentsForURLs(urls: [NSURL]) -> [SequenceDocument] {
+        
+        var docs = [SequenceDocument]()
+        
+        let predicate = NSPredicate(format: "(pathExtension = %@)", argumentArray: [AppConfiguration.filamentFileExtension])
+        let filteredURLs = urls.filter { predicate.evaluateWithObject($0) }
+        
+        for url in filteredURLs {
+            do {
+                let doc = try SequenceDocument(contentsOfURL: url, ofType:"fil")
+                docs.append(doc)
+            } catch {
+                print(error)
+            }
+        }
+        return docs
+    }
+    
+    public class func permanentlyDeleteDocument(document: SequenceDocument) {
+        
+        let url = document.storageURL()
+        let fileManager = NSFileManager.defaultManager()
+        
+        do {
+            try fileManager.removeItemAtURL(url)
+        } catch {
+            print(error)
         }
     }
 }

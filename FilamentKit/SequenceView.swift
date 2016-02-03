@@ -16,7 +16,6 @@ public class SequenceView : NSView {
         }
     }
     
-    
     required public init(coder: NSCoder) {
          fatalError("This class does not support NSCoding")
         //  super.init(coder: coder)!

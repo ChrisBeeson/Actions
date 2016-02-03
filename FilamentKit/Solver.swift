@@ -118,7 +118,7 @@ public class Solver {
         //print("Preferred Period:",preferedPeriod.StartDate, preferedPeriod.EndDate!)
         
         
-        // The Main Algorythm
+        // The Main Algorithm
         
         print("\n\n--------------------------------------------------")
         print("prefered Period: \(preferedPeriod.debugDescription)")
