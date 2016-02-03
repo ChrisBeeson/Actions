@@ -40,11 +40,8 @@ public class CalendarManager: NSObject {
     func retrieveApplicationCalendar() {
         
         if applicationCalendar == nil {
-            
             let calendars = store.calendarsForEntityType(EKEntityType.Event)
-            
             for calendar in calendars {
-                
                 if calendar.title ==  AppConfiguration.defaultFilamentCalendarName as String {
                     applicationCalendar = calendar
                     break
@@ -52,17 +49,14 @@ public class CalendarManager: NSObject {
             }
             
             if applicationCalendar == nil {
-                
                 applicationCalendar = EKCalendar(forEntityType: EKEntityType.Event, eventStore:store)
                 applicationCalendar!.title = AppConfiguration.defaultFilamentCalendarName as String
                 applicationCalendar!.source = store.defaultCalendarForNewEvents.source
                 
                 do {
-                    
                     try store.saveCalendar(applicationCalendar!, commit: true)
-                    
-                } catch let error as NSError {
-                    
+                }
+                catch let error as NSError {
                     print("Unresolved error \(error), \(error.userInfo)")
                 }
             }
@@ -73,23 +67,16 @@ public class CalendarManager: NSObject {
     func verifyUserEventAuthorization() {
         
         switch EKEventStore.authorizationStatusForEntityType(EKEntityType.Event) {
-            
         case .NotDetermined:
-            
             store.requestAccessToEntityType(.Event, completion: { granted, error in
-                
                 switch granted {
-                    
                 case true: print("Granted Access to calendar")
                 case false: print("NOT Granted Access to calendar")
                 }
             })
-            
         case .Authorized: print("Access to calendar is Authorized")
         case .Denied: print("Access to calendar is denied")
         case .Restricted: print("Access to calendar is Restricted")
         }
     }
-    
-    
 }

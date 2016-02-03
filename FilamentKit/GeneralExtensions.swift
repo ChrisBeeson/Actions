@@ -23,3 +23,18 @@ extension IntegerType {
     func isEven() -> Bool { return self % 2 == 0 ? true : false }
     
 }
+
+extension Array where Element: Equatable {
+ 
+    mutating func removeObject(object: Element) {
+        if let index = self.indexOf(object) {
+            self.removeAtIndex(index)
+        }
+    }
+    
+    mutating func removeObjects(array: [Element]) {
+        for object in array {
+            self.removeObject(object)
+        }
+    }
+}

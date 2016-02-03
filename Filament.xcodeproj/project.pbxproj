@@ -333,7 +333,6 @@
 			isa = PBXGroup;
 			children = (
 				47ACA9531BB5464C000CAC61 /* DateToolsExtenstions.swift */,
-				47CD21BE1BDF797B00AF25BE /* GeneralExtensions.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -341,6 +340,7 @@
 		47AFF8531BE497D700514857 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				47CD21BE1BDF797B00AF25BE /* GeneralExtensions.swift */,
 				479CD2841C1B8AA300C8D1D6 /* UI */,
 				83C73E081BE2E35A0045973C /* Configuration */,
 				47181F2E1C0C3D90006FD38E /* Document Architecture */,
