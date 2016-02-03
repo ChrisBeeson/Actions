@@ -37,6 +37,7 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         return cellView
     }
     
+    
     public func tableView(tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
         
         if tableView.selectedRow == row { return false }
@@ -54,11 +55,27 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     }
     
     
-    // MARK: Menu events
+    // MARK: Filaments Manager Delegate
     
-    public func delete(theEvent: NSEvent) {
+    public func filamentsDocumentsManagerDidUpdateContents(inserted inserted:[FilamentDocument], removed:[FilamentDocument]) {
         
-        // ask for conformation of deletion
+        dispatch_async(dispatch_get_main_queue()) { [unowned self] in
+            
+            self.tableView.reloadData()
+        }
+    }
+}
+
+
+
+//
+// MARK: First Responder Events
+//
+
+
+extension FilamentsTableViewController {
+    
+    public func delete(theEvent: NSEvent) {   // TODO: Delete Muliple
         
         let alert = NSAlert()
         alert.informativeText = "Are you sure you want to delete this Filament?"
@@ -66,7 +83,7 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         alert.showsHelp = false
         alert.addButtonWithTitle("Delete")
         alert.addButtonWithTitle("Cancel")
-
+        
         switch (alert.runModal()) {
             
         case NSAlertFirstButtonReturn:   // Delete
@@ -79,19 +96,9 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         }
     }
     
-    // MARK: Filaments Manager Delegate
-    
-    public func filamentsDocumentsManagerDidUpdateContents(inserted inserted:[FilamentDocument], removed:[FilamentDocument]) {
-        
-        dispatch_async(dispatch_get_main_queue()) { [unowned self] in
-            
-            self.tableView.reloadData()
-        }
-    }
-    
     /*
     override public func keyDown(theEvent: NSEvent) {
-        Swift.print(theEvent)
+    Swift.print(theEvent)
     }
     */
     
@@ -100,7 +107,7 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     }
     
     public func undo(event: NSEvent) {
-         self.undoManager?.undo()
+        self.undoManager?.undo()
     }
     
     
@@ -114,4 +121,6 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
             tableView.deselectAll(nil)
         }
     }
+    
+    
 }
