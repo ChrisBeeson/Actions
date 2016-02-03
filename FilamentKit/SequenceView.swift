@@ -30,13 +30,14 @@ public class SequenceView : NSView {
     }
     
     
-    public func drawView() {        // date | Action 1 -> Action 2...  simple as that
+    public func drawView() {        // TODO: Convert to horz stackview
         
         self.subviews.forEach({ $0.removeFromSuperview() })
         
         var xDrawPosition:CGFloat = 10.0
         
         // date Node
+        
         let dateView = DateNodeView()
         dateView.setFrameOrigin(NSPoint(x: xDrawPosition, y: ((self.frame.size.height/2) - (dateView.frame.size.height/2))))
         self.addSubview(dateView)
@@ -64,27 +65,8 @@ public class SequenceView : NSView {
             }
         }
         
-        /*
-        
-        let scrollView = self.superview?.superview?.superview as! NSScrollView
-        
-        if scrollView.className == "NSScrollView" {
-            //   let sv = scrollView! as! NSScrollView
-            let size = NSSize(width: 5000, height: scrollView.frame.size.height)
-            scrollView.documentView!.setFrameSize(size)
-            // scrollView.contentView.setFrameSize(size)
-            
-            Swift.print(scrollView.contentView)
-            
-        } else {
-            Swift.print("Unable to find sequence View scrollView")
-        }
-        
-           Swift.print(NSStringFromRect(self.frame))
-*/
-        
-        
-     
+        self.frame.size = NSSize(width: xDrawPosition, height: self.frame.size.height)
+    
         
         //self.translatesAutoresizingMaskIntoConstraints = false
         

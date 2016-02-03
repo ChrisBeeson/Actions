@@ -9,7 +9,7 @@
 import Cocoa
 import FilamentKit
 
-public class FilamentsViewController:  NSViewController, NSTableViewDataSource, NSTableViewDelegate,FilamentDocumentsManagerDelegate {
+public class FilamentsTableViewController:  NSViewController, NSTableViewDataSource, NSTableViewDelegate,FilamentDocumentsManagerDelegate {
     
     @IBOutlet weak var tableView: NSTableView!
     
