@@ -10,7 +10,12 @@ import Foundation
 
 public class ActionNodeView: NSView {
     
-    var textField:NSTextField?
+    var textField : NSTextField?
+    var selected = true {
+        didSet {
+            self.setNeedsDisplayInRect(self.frame)
+        }
+    }
     
     public var node : Node? {
         didSet {
@@ -61,7 +66,7 @@ public class ActionNodeView: NSView {
     override public func drawRect(dirtyRect: NSRect) {
         
         let tailOff:CGFloat = 0.85   // 85% of the view consists of the tailing triangle
-        let padding:CGFloat = 2.5
+        let padding:CGFloat = 2
         let frame = self.frame
         
         let path = NSBezierPath()
@@ -69,19 +74,25 @@ public class ActionNodeView: NSView {
         path.lineToPoint(NSPoint(x: padding , y:frame.size.height - padding))
         path.lineToPoint(NSPoint(x: padding , y:padding))
         path.lineToPoint(NSPoint(x: frame.size.width * tailOff , y:padding))
-        path.lineToPoint(NSPoint(x: frame.size.width , y:frame.size.height/2))
+        path.lineToPoint(NSPoint(x: frame.size.width-1 , y:frame.size.height/2))
         path.lineToPoint(NSPoint(x: frame.size.width * tailOff , y: frame.size.height - padding))
         
-        NSColor(calibratedWhite:0.6, alpha:1.0).setStroke()
-        NSColor(calibratedWhite:0.9, alpha:1.0).setFill()
+        if selected {
+            path.lineWidth = 1.5
+            NSColor(red: 0.6, green: 0.75, blue: 0.9, alpha: 1.0).setStroke()
+        } else {
+            path.lineWidth = 0.2
+             NSColor(calibratedWhite:0.6, alpha:1.0).setStroke()
+        }
+        
+        NSColor(calibratedWhite:0.95, alpha:1.0).setFill()
 
-        path.lineWidth = 0.2
         path.fill()
         path.stroke()
         
         // Selected
         
-        
+        /*
         let selectedPath = NSBezierPath()
         selectedPath.moveToPoint(NSPoint(x: frame.size.width * tailOff , y: frame.size.height))
         selectedPath.lineToPoint(NSPoint(x: 0 , y:frame.size.height))
@@ -97,7 +108,7 @@ public class ActionNodeView: NSView {
         selectedPath.fill()
         selectedPath.stroke()
         
-        
+        */
     }
     
     /*

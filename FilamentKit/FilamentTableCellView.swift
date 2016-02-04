@@ -56,7 +56,7 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate {
         
         switch selected {
         case true:
-            backgroundView.layer?.borderWidth = 3
+            backgroundView.layer?.borderWidth = 2
             backgroundView.layer?.borderColor = NSColor(red: 0.6, green: 0.75, blue: 0.9, alpha: 1.0).CGColor
             titleTextField.editable = true
             self.becomeFirstResponder()

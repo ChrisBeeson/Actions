@@ -9,7 +9,7 @@
 import Cocoa
 import FilamentKit
 
-public class FilamentsTableViewController:  NSViewController, NSTableViewDataSource, NSTableViewDelegate,FilamentDocumentsManagerDelegate {
+public class FilamentsTableViewController:  NSViewController, NSTableViewDataSource, NSTableViewDelegate, FilamentDocumentsManagerDelegate {
     
     @IBOutlet weak var tableView: NSTableView!
     
@@ -26,8 +26,8 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     
     public func numberOfRowsInTableView(tableView: NSTableView) -> Int {
         
-        //TODO: SegmentView
-
+        //TODO: Presenter to facilitate segmented control selection?
+        
         return FilamentDocumentsManager.sharedManager.documents.count
     }
     
