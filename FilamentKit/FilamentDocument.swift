@@ -39,6 +39,10 @@ public class FilamentDocument: NSDocument {
         return true
     }
     
+    public override class func preservesVersions() -> Bool {
+     return false
+    }
+    
     // MARK: NSDocument Overrides
     
 
