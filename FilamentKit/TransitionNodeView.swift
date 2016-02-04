@@ -12,7 +12,13 @@ public class TransitionNodeView: NSView {
     
     var text = "Wash Cells"
     var textField:NSTextField?
-    
+    var selected = true {
+    didSet {
+    self.setNeedsDisplayInRect(self.frame)
+    }
+}
+
+
     required public init?(coder: NSCoder) {
         super.init(coder: coder)!
     }
@@ -38,14 +44,19 @@ public class TransitionNodeView: NSView {
     override public func drawRect(dirtyRect: NSRect) {
         
         let frame = self.frame
-
         let path = NSBezierPath()
-        path.moveToPoint(NSPoint(x: 0.0 , y: frame.size.height/2))
-        path.lineToPoint(NSPoint(x: frame.size.width , y:frame.size.height/2))
         
-        NSColor(calibratedWhite:0.6, alpha:1.0).setStroke()
-        path.lineWidth = 0.3
-        path.lineJoinStyle = .MiterLineJoinStyle
+        if selected {
+            path.lineWidth = 1.5
+            AppConfiguration.Palette.selectionBlue.setStroke()
+            
+        } else {
+            AppConfiguration.Palette.outlineGray.setStroke()
+            path.lineWidth = 0.5
+        }
+
+        path.moveToPoint(NSPoint(x: 0.0 , y: (frame.size.height/2)-(path.lineWidth/2)))
+        path.lineToPoint(NSPoint(x: frame.size.width , y:(frame.size.height/2)-(path.lineWidth/2)))
         path.stroke()
     }
 }

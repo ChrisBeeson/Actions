@@ -25,6 +25,7 @@ public class ActionNodeView: NSView {
     
     required public init?(coder: NSCoder) {
         super.init(coder: coder)!
+
     }
     
     override init(frame: NSRect) {
@@ -38,6 +39,7 @@ public class ActionNodeView: NSView {
         if textField == nil {
             textField = NSTextField(frame: NSRect(x: 10.0, y: self.frame.height/2 - (20.0/2) , width: self.frame.width * 0.80, height: 20.0))
             textField!.font = NSFont.systemFontOfSize(14.0)
+            // textField!.font = NSFont.systemFontOfSize(14.0, weight: 1.0)
             textField!.backgroundColor = NSColor.clearColor()
             textField?.selectable = false
             self.addSubview(textField!)
@@ -79,36 +81,16 @@ public class ActionNodeView: NSView {
         
         if selected {
             path.lineWidth = 1.5
-            NSColor(red: 0.6, green: 0.75, blue: 0.9, alpha: 1.0).setStroke()
+            AppConfiguration.Palette.selectionBlue.setStroke()
         } else {
-            path.lineWidth = 0.2
-             NSColor(calibratedWhite:0.6, alpha:1.0).setStroke()
+            path.lineWidth = 0.5
+             AppConfiguration.Palette.outlineGray.setStroke()
         }
         
-        NSColor(calibratedWhite:0.95, alpha:1.0).setFill()
+        AppConfiguration.Palette.filledGray.setFill()
 
         path.fill()
         path.stroke()
-        
-        // Selected
-        
-        /*
-        let selectedPath = NSBezierPath()
-        selectedPath.moveToPoint(NSPoint(x: frame.size.width * tailOff , y: frame.size.height))
-        selectedPath.lineToPoint(NSPoint(x: 0 , y:frame.size.height))
-        selectedPath.lineToPoint(NSPoint(x: 0 , y:padding))
-        selectedPath.lineToPoint(NSPoint(x: frame.size.width * tailOff , y:padding))
-        selectedPath.lineToPoint(NSPoint(x: frame.size.width , y:frame.size.height/2))
-        selectedPath.lineToPoint(NSPoint(x: frame.size.width * tailOff , y: frame.size.height))
-        
-        NSColor(calibratedWhite:0.6, alpha:1.0).setStroke()
-        NSColor(calibratedWhite:0.9, alpha:1.0).setFill()
-        
-        selectedPath.lineWidth = 0.2
-        selectedPath.fill()
-        selectedPath.stroke()
-        
-        */
     }
     
     /*

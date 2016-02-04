@@ -224,7 +224,6 @@ public class AppConfiguration: NSObject {
     
     #if os(OSX)
     public struct App {
-        
         public static let bundleIdentifier = "\(Bundle.prefix).FilamentOSX"
     }
     #endif
@@ -232,5 +231,14 @@ public class AppConfiguration: NSObject {
     struct ApplicationGroups {
         
         static let primary = "group.\(Bundle.prefix).Filament.Documents"
+    }
+    
+    
+    // Colours 
+    
+    public struct Palette {
+        static let selectionBlue = NSColor(red: 0.6, green: 0.75, blue: 0.9, alpha: 1.0)
+        static let outlineGray = NSColor(calibratedWhite:0.6, alpha:1.0)
+        static let filledGray = NSColor(calibratedWhite:0.95, alpha:1.0)
     }
 }

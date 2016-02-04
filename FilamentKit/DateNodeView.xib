@@ -20,9 +20,9 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hSr-NU-lXM">
-                    <rect key="frame" x="19" y="-1" width="29" height="11"/>
+                    <rect key="frame" x="19" y="1" width="29" height="11"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="JUN" id="yGL-H7-htS">
-                        <font key="font" size="7" name=".HelveticaNeueDeskInterface-UltraLightP2"/>
+                        <font key="font" size="8" name=".HelveticaNeueDeskInterface-UltraLightP2"/>
                         <color key="textColor" white="0.45538194444444446" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
