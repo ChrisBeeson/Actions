@@ -38,7 +38,6 @@
 		477626951C53839B00C35599 /* FilamentKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 477626931C53823B00C35599 /* FilamentKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4778C0A81C656B2500F5A259 /* DateNodeCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4778C0A71C656B2500F5A259 /* DateNodeCollectionViewItem.swift */; };
 		4778C0AA1C657D8F00F5A259 /* ActionNodeCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4778C0A91C657D8F00F5A259 /* ActionNodeCollectionViewItem.swift */; };
-		477C2CAE1C3D07700071467C /* DateNodeCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477C2CAD1C3D07700071467C /* DateNodeCollectionViewItem.xib */; };
 		477C2CB01C3D12170071467C /* DateNodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477C2CAF1C3D12170071467C /* DateNodeView.swift */; };
 		477C2CB31C409C660071467C /* ActionNodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477C2CB21C409C660071467C /* ActionNodeView.swift */; };
 		477C2CB51C40B3AD0071467C /* TransitionNodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477C2CB41C40B3AD0071467C /* TransitionNodeView.swift */; };
@@ -62,6 +61,7 @@
 		47F2FBC41BA8CFEE0041B291 /* Solver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F2FBC31BA8CFEE0041B291 /* Solver.swift */; };
 		47F5E82B1BF495D8004C0D16 /* AddFilamentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F5E82A1BF495D8004C0D16 /* AddFilamentViewController.swift */; };
 		8329DE9B1C63DF10001B3A2F /* SequenceCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8329DE9A1C63DF10001B3A2F /* SequenceCollectionView.swift */; };
+		833AE32E1C67E463002F35C1 /* DateNodeCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 833AE32D1C67E463002F35C1 /* DateNodeCollectionViewItem.xib */; };
 		8343519D1BA297650094428B /* EventStartsInTimeFromNow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8343519C1BA297650094428B /* EventStartsInTimeFromNow.swift */; };
 		83861F2B1BEEA25F00A44122 /* FilamentDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83861F2A1BEEA25F00A44122 /* FilamentDocument.swift */; };
 		83C73E0D1BE31C4F0045973C /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C73E0B1BE31BF20045973C /* AppConfiguration.swift */; };
@@ -147,7 +147,6 @@
 		477626931C53823B00C35599 /* FilamentKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilamentKit.h; sourceTree = "<group>"; };
 		4778C0A71C656B2500F5A259 /* DateNodeCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateNodeCollectionViewItem.swift; sourceTree = "<group>"; };
 		4778C0A91C657D8F00F5A259 /* ActionNodeCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionNodeCollectionViewItem.swift; sourceTree = "<group>"; };
-		477C2CAD1C3D07700071467C /* DateNodeCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateNodeCollectionViewItem.xib; sourceTree = "<group>"; };
 		477C2CAF1C3D12170071467C /* DateNodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateNodeView.swift; sourceTree = "<group>"; };
 		477C2CB21C409C660071467C /* ActionNodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionNodeView.swift; sourceTree = "<group>"; };
 		477C2CB41C40B3AD0071467C /* TransitionNodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionNodeView.swift; sourceTree = "<group>"; };
@@ -168,6 +167,7 @@
 		47F2FBC31BA8CFEE0041B291 /* Solver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Solver.swift; sourceTree = "<group>"; };
 		47F5E82A1BF495D8004C0D16 /* AddFilamentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFilamentViewController.swift; sourceTree = "<group>"; };
 		8329DE9A1C63DF10001B3A2F /* SequenceCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceCollectionView.swift; sourceTree = "<group>"; };
+		833AE32D1C67E463002F35C1 /* DateNodeCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateNodeCollectionViewItem.xib; sourceTree = "<group>"; };
 		8343519C1BA297650094428B /* EventStartsInTimeFromNow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventStartsInTimeFromNow.swift; sourceTree = "<group>"; };
 		83861F2A1BEEA25F00A44122 /* FilamentDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilamentDocument.swift; sourceTree = "<group>"; };
 		83C73E0B1BE31BF20045973C /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
@@ -318,6 +318,7 @@
 		4778C0AB1C657F6500F5A259 /* SequenceCollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				833AE32D1C67E463002F35C1 /* DateNodeCollectionViewItem.xib */,
 				8329DE9A1C63DF10001B3A2F /* SequenceCollectionView.swift */,
 				4778C0A71C656B2500F5A259 /* DateNodeCollectionViewItem.swift */,
 				4778C0A91C657D8F00F5A259 /* ActionNodeCollectionViewItem.swift */,
@@ -331,7 +332,6 @@
 			isa = PBXGroup;
 			children = (
 				47181F311C0E487B006FD38E /* SequenceView.swift */,
-				477C2CAD1C3D07700071467C /* DateNodeCollectionViewItem.xib */,
 				477C2CAF1C3D12170071467C /* DateNodeView.swift */,
 				477C2CB21C409C660071467C /* ActionNodeView.swift */,
 				477C2CB41C40B3AD0071467C /* TransitionNodeView.swift */,
@@ -654,7 +654,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				477C2CAE1C3D07700071467C /* DateNodeCollectionViewItem.xib in Resources */,
+				833AE32E1C67E463002F35C1 /* DateNodeCollectionViewItem.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

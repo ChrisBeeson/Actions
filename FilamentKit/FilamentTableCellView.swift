@@ -9,7 +9,7 @@
 import Cocoa
 import FilamentKit
 
-public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate,NSCollectionViewDataSource, NSCollectionViewDelegate {
+public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate {
     
     override public var acceptsFirstResponder: Bool { return true }
     
@@ -50,6 +50,7 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate,N
         
         selected = false
         super.init(coder: coder)
+        // collectionView.dataSource = self
 
         
     }
@@ -58,48 +59,45 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate,N
     
     
     //MARK: Datasource
-    
+/*
     public func collectionView(collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 1
-        
-        //  if sequence == nil { return 0 }
-        //  return sequence!.allNodes().count+1
+        // assert(sequence != nil)
+        let count = presenter!.archiveableSeq.allNodes().count+1
+        return count
     }
     
     
     public func collectionView(collectionView: NSCollectionView, itemForRepresentedObjectAtIndexPath indexPath: NSIndexPath) -> NSCollectionViewItem {
-        /*
-        Swift.print("loading item")
         
-        assert(sequence != nil)
-        
-        let item = ActionNodeCollectionViewItem(node: sequence!.allNodes()[0])
-        return item
-        */
+        let item : NSCollectionViewItem
         
         if indexPath.item == 0 {
             
-            let item = NSCollectionViewItem(nibName: "ItemView", bundle: NSBundle(identifier:"com.andris.FilamentKit"))
+            item = DateNodeCollectionViewItem(nibName: "DateNodeCollectionViewItem", bundle: NSBundle(identifier:"com.andris.FilamentKit"))!
+            item.representedObject = Sequence()
             
-            //let item = self.makeItemWithIdentifier("DateNodeCollectionViewItem", forIndexPath: indexPath)
+        } else {
             
-            //let item = DateNodeCollectionViewItem(nibName: "DateNodeCollectionViewItem", bundle: NSBundle(identifier:"com.andris.FilamentKit"))
+            let node = presenter!.archiveableSeq.allNodes()[indexPath.item-1]
             
-            // assert(item != nil)
-            
-            //    item!.representedObject = Sequence()
-            return item!
+            switch node.type {
+            case .Action:
+                item = ActionNodeCollectionViewItem(node: node)
+                
+            case .Transition:
+                item = TransitionNodeCollectionViewItem(node: node)
+                
+            default:
+                item = NSCollectionViewItem()
+            }
         }
-        
-        return NSCollectionViewItem()
+        item.loadView()
+        // Swift.print(item)
+        return item
     }
-    
-    
-    
-    
-    
-    
+  */
+
     
     func updateCellView() {
         

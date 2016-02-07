@@ -16,8 +16,10 @@ class ActionNodeCollectionViewItem : NSCollectionViewItem {
         self.representedObject = node
     }
     
+    
     override func loadView() {
         
+        print ("Loadview")
         assert(self.representedObject != nil)
         
         view = ActionNodeView(node: representedObject as! Node)

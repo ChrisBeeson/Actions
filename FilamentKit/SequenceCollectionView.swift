@@ -29,9 +29,21 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
     }
     
     func commonInit() {
+        
+        let gridLayout = NSCollectionViewGridLayout()
+        gridLayout.minimumItemSize = NSSize(width: 20, height: 35)
+        gridLayout.maximumItemSize = NSSize(width: 175, height: 35)
+        gridLayout.minimumInteritemSpacing = 0
+        gridLayout.margins = NSEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        self.collectionViewLayout = gridLayout
+        
         self.dataSource = self
         self.delegate = self
+        
+        let nib = NSNib(nibNamed: "DateNodeCollectionViewItem", bundle: NSBundle(identifier:"com.andris.FilamentKit"))
+        self.registerNib(nib, forItemWithIdentifier: "DateNodeCollectionViewItem")
     }
+
     
     
     //MARK: Datasource
@@ -40,7 +52,6 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
     
         assert(sequence != nil)
         let count = sequence!.allNodes().count+1
-        Swift.print("There are \(count) items in the collectionView")
         return count
     }
 
@@ -49,10 +60,12 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
         
         let item : NSCollectionViewItem
 
-        if indexPath.item == 0 {
+        if indexPath.item != -1 {
             
-            item = DateNodeCollectionViewItem(nibName: "DateNodeCollectionViewItem", bundle: NSBundle(identifier:"com.andris.FilamentKit"))!
-            item.representedObject = Sequence()
+            item = makeItemWithIdentifier("DateNodeCollectionViewItem", forIndexPath: indexPath)
+            
+            // item = DateNodeCollectionViewItem(nibName: "DateNodeCollectionViewItem", bundle: NSBundle(identifier:"com.andris.FilamentKit"))!
+            //   item.representedObject = Sequence()
             
         } else {
             
@@ -69,19 +82,28 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
                 item = NSCollectionViewItem()
             }
         }
-        
-        Swift.print(item)
+
+        //  item.loadView()
+        // Swift.print(item)
         return item
     }
     
     //MARK: Delegate
     
     public func collectionView(collectionView: NSCollectionView, willDisplayItem item: NSCollectionViewItem, forRepresentedObjectAtIndexPath indexPath: NSIndexPath) {
-        
+        Swift.print("will display")
+        ///   let frame = frameForItemAtIndex(indexPath.item)
+        // item.view.frame = frame
     }
+    
+   
     
     public func collectionView(collectionView: NSCollectionView, canDragItemsAtIndexPaths indexPaths: Set<NSIndexPath>, withEvent event: NSEvent) -> Bool {
         
         return true
     }
+    
+    
+    
+    
 }

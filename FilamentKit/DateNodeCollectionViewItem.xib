@@ -5,21 +5,22 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="NSCollectionViewItem" customModule="FilamentKit">
-            <connections>
-                <outlet property="view" destination="c22-O7-iKe" id="5Kg-wR-shS"/>
-            </connections>
-        </customObject>
+        <customObject id="-2" userLabel="File's Owner" customClass="DateNodeCollectionViewItem" customModule="FilamentKit"/>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <collectionViewItem id="9IM-3f-SrT" customClass="DateNodeCollectionViewItem" customModule="FilamentKit" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="c22-O7-iKe" id="4TB-Bs-wwP"/>
+            </connections>
+        </collectionViewItem>
         <customView id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="53" height="33"/>
+            <rect key="frame" x="0.0" y="0.0" width="48" height="33"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hSr-NU-lXM">
                     <rect key="frame" x="19" y="0.0" width="29" height="11"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="11" id="pNt-Q8-F0Q"/>
+                        <constraint firstAttribute="height" constant="11" id="eDX-ZG-ghk"/>
                     </constraints>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="JUN" id="yGL-H7-htS">
                         <font key="font" size="8" name=".HelveticaNeueDeskInterface-UltraLightP2"/>
@@ -53,27 +54,22 @@
                 </textField>
             </subviews>
             <constraints>
-                <constraint firstItem="y6m-fx-SPN" firstAttribute="trailing" secondItem="3NW-1H-wgc" secondAttribute="trailing" id="2je-0z-Hdy"/>
-                <constraint firstItem="3NW-1H-wgc" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="5Db-2c-Flv"/>
-                <constraint firstItem="hSr-NU-lXM" firstAttribute="top" secondItem="y6m-fx-SPN" secondAttribute="bottom" constant="3" id="68E-r9-ati"/>
-                <constraint firstItem="y6m-fx-SPN" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="7Il-W8-TzR"/>
-                <constraint firstItem="hSr-NU-lXM" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="21" id="NAL-K6-ib3"/>
-                <constraint firstItem="c4T-eg-6ow" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="13" id="PJ0-bt-ZjS"/>
-                <constraint firstAttribute="trailing" secondItem="y6m-fx-SPN" secondAttribute="trailing" constant="7" id="Qq9-g5-ctO"/>
-                <constraint firstItem="y6m-fx-SPN" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="Rl4-RM-xRW"/>
-                <constraint firstAttribute="bottom" secondItem="hSr-NU-lXM" secondAttribute="bottom" id="SSl-ew-PXW"/>
-                <constraint firstItem="c4T-eg-6ow" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="4" id="Zvh-lB-Yfq"/>
-                <constraint firstItem="3NW-1H-wgc" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="9" id="o3n-Bf-JRY"/>
-                <constraint firstAttribute="trailing" secondItem="c4T-eg-6ow" secondAttribute="trailing" constant="25" id="r9M-3q-ZQh"/>
-                <constraint firstItem="hSr-NU-lXM" firstAttribute="trailing" secondItem="3NW-1H-wgc" secondAttribute="trailing" id="rrD-a0-k3Q"/>
-                <constraint firstItem="3NW-1H-wgc" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="14" id="yC4-Kq-IYY"/>
+                <constraint firstItem="hSr-NU-lXM" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="21" id="4iX-FZ-o0c"/>
+                <constraint firstItem="c4T-eg-6ow" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="4" id="7qx-1x-nvX"/>
+                <constraint firstItem="hSr-NU-lXM" firstAttribute="trailing" secondItem="3NW-1H-wgc" secondAttribute="trailing" id="Ax5-pf-YGp"/>
+                <constraint firstItem="y6m-fx-SPN" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="AxW-ka-Z6Z"/>
+                <constraint firstItem="3NW-1H-wgc" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="9" id="Bqa-By-9UA"/>
+                <constraint firstItem="y6m-fx-SPN" firstAttribute="trailing" secondItem="3NW-1H-wgc" secondAttribute="trailing" id="Cvh-1L-rpw"/>
+                <constraint firstItem="y6m-fx-SPN" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="D4d-7Z-IMO"/>
+                <constraint firstItem="3NW-1H-wgc" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="14" id="KbW-0p-tT0"/>
+                <constraint firstAttribute="trailing" secondItem="y6m-fx-SPN" secondAttribute="trailing" constant="2" id="Nfi-E3-0yx"/>
+                <constraint firstAttribute="bottom" secondItem="hSr-NU-lXM" secondAttribute="bottom" id="RnC-gb-97j"/>
+                <constraint firstAttribute="trailing" secondItem="c4T-eg-6ow" secondAttribute="trailing" constant="20" symbolic="YES" id="UQH-yd-j9y"/>
+                <constraint firstItem="3NW-1H-wgc" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="aEf-p7-rn5"/>
+                <constraint firstItem="hSr-NU-lXM" firstAttribute="top" secondItem="y6m-fx-SPN" secondAttribute="bottom" constant="3" id="c9W-U8-aey"/>
+                <constraint firstItem="c4T-eg-6ow" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="13" id="dVe-Xr-eJZ"/>
             </constraints>
-            <point key="canvasLocation" x="81.5" y="120.5"/>
+            <point key="canvasLocation" x="-120" y="-13.5"/>
         </customView>
-        <collectionViewItem identifier="DateNodeCollectionViewItem" id="u2o-fH-QMG">
-            <connections>
-                <outlet property="view" destination="c22-O7-iKe" id="ndd-NO-2eO"/>
-            </connections>
-        </collectionViewItem>
     </objects>
 </document>
