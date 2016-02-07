@@ -10,13 +10,7 @@ import Foundation
 import MLCalendarView
 
 class DateNodeView: NSView, MLCalendarViewDelegate {
-    
-    @IBOutlet weak var view: NSView!
-    @IBOutlet weak var month: NSTextField!
-    @IBOutlet weak var day: NSTextField!
-    @IBOutlet weak var dayString: NSTextField!
-    @IBOutlet weak var time: NSTextField!
-    
+        
     var popover: NSPopover?
     var calView: MLCalendarView?
     
@@ -24,6 +18,7 @@ class DateNodeView: NSView, MLCalendarViewDelegate {
         super.init(coder: coder)!
     }
     
+    /*
     
     init() {
         super.init(frame: NSRect(x: 0.0, y: 0.0, width: 53, height: 34))
@@ -33,6 +28,7 @@ class DateNodeView: NSView, MLCalendarViewDelegate {
         self.addSubview(view)
     }
     
+*/
     override func mouseDown(theEvent: NSEvent) {
         
         // display calendar popup

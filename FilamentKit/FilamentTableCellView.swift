@@ -9,31 +9,38 @@
 import Cocoa
 import FilamentKit
 
-public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate {
+public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate,NSCollectionViewDataSource, NSCollectionViewDelegate {
     
     override public var acceptsFirstResponder: Bool { return true }
     
     // UI Properties
     @IBOutlet weak var backgroundView: NSView!
     @IBOutlet weak var titleTextField: NSTextField!
-    @IBOutlet weak var scrollView: NSScrollView!
-    
-    var sequenceView: SequenceView?
+    @IBOutlet weak var collectionView: SequenceCollectionView!
     
     public var presenter: SequencePresenter? {
-        
         didSet {
-            if sequenceView == nil { sequenceView = SequenceView() }
-            sequenceView!.sequence = presenter!.archiveableSeq
+            assert(collectionView != nil)
+            collectionView.sequence = presenter!.archiveableSeq
             presenter!.delegate = self
             updateCellView()
         }
     }
     
     public var selected: Bool {
-        
         didSet {
-            updateCellView()
+            switch selected {
+            case true:
+                backgroundView.layer?.borderWidth = 2
+                backgroundView.layer?.borderColor = AppConfiguration.Palette.selectionBlue.CGColor
+                titleTextField.editable = true
+                self.becomeFirstResponder()
+                
+            case false:
+                backgroundView.layer?.borderWidth = 0
+                titleTextField.editable = false
+                self.resignFirstResponder()
+            }
     }
 }
     
@@ -43,39 +50,63 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate {
         
         selected = false
         super.init(coder: coder)
+
+        
     }
     
-
+    
+    
+    
+    //MARK: Datasource
+    
+    public func collectionView(collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return 1
+        
+        //  if sequence == nil { return 0 }
+        //  return sequence!.allNodes().count+1
+    }
+    
+    
+    public func collectionView(collectionView: NSCollectionView, itemForRepresentedObjectAtIndexPath indexPath: NSIndexPath) -> NSCollectionViewItem {
+        /*
+        Swift.print("loading item")
+        
+        assert(sequence != nil)
+        
+        let item = ActionNodeCollectionViewItem(node: sequence!.allNodes()[0])
+        return item
+        */
+        
+        if indexPath.item == 0 {
+            
+            let item = NSCollectionViewItem(nibName: "ItemView", bundle: NSBundle(identifier:"com.andris.FilamentKit"))
+            
+            //let item = self.makeItemWithIdentifier("DateNodeCollectionViewItem", forIndexPath: indexPath)
+            
+            //let item = DateNodeCollectionViewItem(nibName: "DateNodeCollectionViewItem", bundle: NSBundle(identifier:"com.andris.FilamentKit"))
+            
+            // assert(item != nil)
+            
+            //    item!.representedObject = Sequence()
+            return item!
+        }
+        
+        return NSCollectionViewItem()
+    }
+    
+    
+    
+    
+    
+    
+    
     func updateCellView() {
         
         backgroundView.backgroundColor = NSColor.whiteColor()
-
+        
         if presenter != nil {
             titleTextField.stringValue = presenter!.title
-        }
-        
-        switch selected {
-        case true:
-            backgroundView.layer?.borderWidth = 2
-            backgroundView.layer?.borderColor = NSColor(red: 0.6, green: 0.75, blue: 0.9, alpha: 1.0).CGColor
-            titleTextField.editable = true
-            self.becomeFirstResponder()
-            
-        case false:
-            backgroundView.layer?.borderWidth = 0
-            titleTextField.editable = false
-            self.resignFirstResponder()
-        }
-        
-        // update the scrollView
-        
-        if sequenceView != nil {
-            
-            //  if scrollView.documentView == nil {
-               scrollView.documentView = sequenceView
-            //}
-            sequenceView!.frame = NSRect(origin: CGPoint.zero, size: scrollView.frame.size)
-            sequenceView?.setNeedsDisplayInRect(NSRect.infinite)
         }
     }
     

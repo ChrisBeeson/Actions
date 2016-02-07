@@ -25,7 +25,6 @@ public class ActionNodeView: NSView {
     
     required public init?(coder: NSCoder) {
         super.init(coder: coder)!
-
     }
     
     override init(frame: NSRect) {
@@ -33,8 +32,15 @@ public class ActionNodeView: NSView {
         updateView()
     }
     
+    convenience init(node:Node) {
+        self.init(frame: NSRect(x: 0.0, y: 0.0, width: 100, height: 38))
+        self.node = node
+    }
+    
     
     func updateView() {
+        
+        // TODO: Text label
         
         if textField == nil {
             textField = NSTextField(frame: NSRect(x: 10.0, y: self.frame.height/2 - (20.0/2) , width: self.frame.width * 0.80, height: 20.0))

@@ -38,11 +38,15 @@ public class SequenceView : NSView {
         
         // date Node
         
+        /*
+        
         let dateView = DateNodeView()
         dateView.setFrameOrigin(NSPoint(x: xDrawPosition, y: ((self.frame.size.height/2) - (dateView.frame.size.height/2))))
         self.addSubview(dateView)
         xDrawPosition += dateView.frame.size.width + 5.0
-        
+
+*/
+        /*
         for node in sequence.allNodes() {
             
             switch (node.type) {
@@ -66,7 +70,7 @@ public class SequenceView : NSView {
         }
         
         self.frame.size = NSSize(width: xDrawPosition, height: self.frame.size.height)
-    
+    */
         
         //self.translatesAutoresizingMaskIntoConstraints = false
         

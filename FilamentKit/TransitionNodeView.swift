@@ -17,6 +17,7 @@ public class TransitionNodeView: NSView {
     self.setNeedsDisplayInRect(self.frame)
     }
 }
+    var node:Node?
 
 
     required public init?(coder: NSCoder) {
@@ -26,6 +27,11 @@ public class TransitionNodeView: NSView {
     override init(frame: NSRect) {
         super.init(frame: NSRect(x: 0.0, y: 0.0, width: 50, height: 40))
         updateView()
+    }
+    
+    convenience init(node:Node) {
+        self.init(frame: NSRect(x: 0.0, y: 0.0, width: 100, height: 38))
+        self.node = node
     }
     
     
