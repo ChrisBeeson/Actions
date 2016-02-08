@@ -29,19 +29,25 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
     }
     
     func commonInit() {
-        
+        /*
         let gridLayout = NSCollectionViewGridLayout()
         gridLayout.minimumItemSize = NSSize(width: 20, height: 35)
         gridLayout.maximumItemSize = NSSize(width: 175, height: 35)
         gridLayout.minimumInteritemSpacing = 0
         gridLayout.margins = NSEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         self.collectionViewLayout = gridLayout
-        
+        */
         self.dataSource = self
         self.delegate = self
         
         let nib = NSNib(nibNamed: "DateNodeCollectionViewItem", bundle: NSBundle(identifier:"com.andris.FilamentKit"))
         self.registerNib(nib, forItemWithIdentifier: "DateNodeCollectionViewItem")
+        
+        let actionNib = NSNib(nibNamed: "ActionNodeCollectionViewItem", bundle: NSBundle(identifier:"com.andris.FilamentKit"))
+        self.registerNib(actionNib, forItemWithIdentifier: "ActionNodeCollectionViewItem")
+        
+        let transNib = NSNib(nibNamed: "TransitionNodeCollectionViewItem", bundle: NSBundle(identifier:"com.andris.FilamentKit"))
+        self.registerNib(transNib, forItemWithIdentifier: "TransitionNodeCollectionViewItem")
     }
 
     
@@ -58,14 +64,10 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
 
     public func collectionView(collectionView: NSCollectionView, itemForRepresentedObjectAtIndexPath indexPath: NSIndexPath) -> NSCollectionViewItem {
         
-        let item : NSCollectionViewItem
-
-        if indexPath.item != -1 {
+        if indexPath.item == 0 {
             
-            item = makeItemWithIdentifier("DateNodeCollectionViewItem", forIndexPath: indexPath)
-            
-            // item = DateNodeCollectionViewItem(nibName: "DateNodeCollectionViewItem", bundle: NSBundle(identifier:"com.andris.FilamentKit"))!
-            //   item.representedObject = Sequence()
+            let item = makeItemWithIdentifier("DateNodeCollectionViewItem", forIndexPath: indexPath)
+            return item
             
         } else {
             
@@ -73,27 +75,24 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
             
             switch node.type {
             case .Action:
-                item = ActionNodeCollectionViewItem(node: node)
+                let item = makeItemWithIdentifier("ActionNodeCollectionViewItem", forIndexPath: indexPath) as! ActionNodeCollectionViewItem
+                item.node = node
+                return item
             
             case .Transition:
-                item = TransitionNodeCollectionViewItem(node: node)
+                let item = makeItemWithIdentifier("TransitionNodeCollectionViewItem", forIndexPath: indexPath)
+                return item
                 
              default:
-                item = NSCollectionViewItem()
+                return NSCollectionViewItem()
             }
         }
-
-        //  item.loadView()
-        // Swift.print(item)
-        return item
     }
     
     //MARK: Delegate
     
     public func collectionView(collectionView: NSCollectionView, willDisplayItem item: NSCollectionViewItem, forRepresentedObjectAtIndexPath indexPath: NSIndexPath) {
-        Swift.print("will display")
-        ///   let frame = frameForItemAtIndex(indexPath.item)
-        // item.view.frame = frame
+
     }
     
    

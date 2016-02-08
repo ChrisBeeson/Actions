@@ -795,11 +795,11 @@ CA
                                                                                 <rect key="frame" x="0.0" y="0.0" width="401" height="51"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
-                                                                                    <collectionView focusRingType="none" allowsEmptySelection="NO" id="8np-EO-BYI" customClass="SequenceCollectionView" customModule="FilamentKit">
+                                                                                    <collectionView focusRingType="none" selectable="YES" allowsEmptySelection="NO" id="8np-EO-BYI" customClass="SequenceCollectionView" customModule="FilamentKit">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="401" height="51"/>
                                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                                                        <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="0Vz-Up-tSq">
-                                                                                            <size key="itemSize" width="50" height="50"/>
+                                                                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" id="0Vz-Up-tSq">
+                                                                                            <size key="itemSize" width="50" height="35"/>
                                                                                         </collectionViewFlowLayout>
                                                                                         <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                     </collectionView>

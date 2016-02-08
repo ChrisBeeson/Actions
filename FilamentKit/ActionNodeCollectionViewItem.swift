@@ -9,25 +9,29 @@
 import Foundation
 
 class ActionNodeCollectionViewItem : NSCollectionViewItem {
- 
-    convenience init(node : Node) {
-        
-        self.init()
-        self.representedObject = node
+    
+    @IBOutlet weak var nodeTitleTextField: AutoSizingTextField!
+    
+    var node: Node? {
+        didSet {
+          nodeTitleTextField.stringValue = node!.title
+        }
     }
     
-    
-    override func loadView() {
-        
-        print ("Loadview")
-        assert(self.representedObject != nil)
-        
-        view = ActionNodeView(node: representedObject as! Node)
-        
-        // self.view = NSView(frame:CGRect(origin: CGPoint(x: 100, y: 100), size: CGSize(width: 100, height: 100)))
-    }
+
     
     override func viewDidLoad() {
         
+    }
+    
+    override func viewWillLayout() {
+        
+        
+    }
+    
+    override func viewWillAppear() {
+        if node != nil {
+            nodeTitleTextField.stringValue = node!.title
+        }
     }
 }

@@ -19,10 +19,7 @@ class TransitionNodeCollectionViewItem : NSCollectionViewItem {
     override func loadView() {
         
         assert(self.representedObject != nil)
-        
         view = TransitionNodeView(node: representedObject as! Node)
-        
-        // self.view = NSView(frame:CGRect(origin: CGPoint(x: 100, y: 100), size: CGSize(width: 100, height: 100)))
     }
     
     override func viewDidLoad() {

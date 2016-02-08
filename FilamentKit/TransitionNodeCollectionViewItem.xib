@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="163" height="96"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="qmM-hs-Nu1" customClass="TransitionNodeView" customModule="FilamentKit" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="163" height="96"/>
+                </customView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="qmM-hs-Nu1" secondAttribute="bottom" id="JvS-be-TlL"/>
+                <constraint firstItem="qmM-hs-Nu1" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="NWK-ys-ECY"/>
+                <constraint firstItem="qmM-hs-Nu1" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="sKl-MP-E7c"/>
+                <constraint firstAttribute="trailing" secondItem="qmM-hs-Nu1" secondAttribute="trailing" id="yQD-d1-DL7"/>
+            </constraints>
+            <point key="canvasLocation" x="248.5" y="498"/>
+        </customView>
+        <collectionViewItem id="CFe-eG-lqt" customClass="TransitionNodeCollectionViewItem" customModule="FilamentKit" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="c22-O7-iKe" id="Lji-j9-TXO"/>
+            </connections>
+        </collectionViewItem>
+    </objects>
+</document>

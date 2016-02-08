@@ -12,7 +12,7 @@ public class TransitionNodeView: NSView {
     
     var text = "Wash Cells"
     var textField:NSTextField?
-    var selected = true {
+    var selected = false {
     didSet {
     self.setNeedsDisplayInRect(self.frame)
     }
