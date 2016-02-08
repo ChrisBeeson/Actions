@@ -55,50 +55,6 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate {
         
     }
     
-    
-    
-    
-    //MARK: Datasource
-/*
-    public func collectionView(collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        // assert(sequence != nil)
-        let count = presenter!.archiveableSeq.allNodes().count+1
-        return count
-    }
-    
-    
-    public func collectionView(collectionView: NSCollectionView, itemForRepresentedObjectAtIndexPath indexPath: NSIndexPath) -> NSCollectionViewItem {
-        
-        let item : NSCollectionViewItem
-        
-        if indexPath.item == 0 {
-            
-            item = DateNodeCollectionViewItem(nibName: "DateNodeCollectionViewItem", bundle: NSBundle(identifier:"com.andris.FilamentKit"))!
-            item.representedObject = Sequence()
-            
-        } else {
-            
-            let node = presenter!.archiveableSeq.allNodes()[indexPath.item-1]
-            
-            switch node.type {
-            case .Action:
-                item = ActionNodeCollectionViewItem(node: node)
-                
-            case .Transition:
-                item = TransitionNodeCollectionViewItem(node: node)
-                
-            default:
-                item = NSCollectionViewItem()
-            }
-        }
-        item.loadView()
-        // Swift.print(item)
-        return item
-    }
-  */
-
-    
     func updateCellView() {
         
         backgroundView.backgroundColor = NSColor.whiteColor()

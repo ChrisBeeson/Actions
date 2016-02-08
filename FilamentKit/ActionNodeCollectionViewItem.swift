@@ -10,7 +10,10 @@ import Foundation
 
 class ActionNodeCollectionViewItem : NSCollectionViewItem {
     
-    @IBOutlet weak var nodeTitleTextField: AutoSizingTextField!
+    var indexPath : NSIndexPath?
+    
+    @IBOutlet weak var nodeTitleTextField: NSTextField!
+    @IBOutlet weak var actionNodeView: ActionNodeView!
     
     var node: Node? {
         didSet {
@@ -18,6 +21,14 @@ class ActionNodeCollectionViewItem : NSCollectionViewItem {
         }
     }
     
+    override var highlightState: NSCollectionViewItemHighlightState {
+        didSet {
+            Swift.print("highlight state changed \(highlightState.rawValue)")
+           
+            //self.actionNodeView.selected = self.highlightState == .ForSelection
+            
+        }
+    }
 
     
     override func viewDidLoad() {
@@ -34,4 +45,12 @@ class ActionNodeCollectionViewItem : NSCollectionViewItem {
             nodeTitleTextField.stringValue = node!.title
         }
     }
+   /*
+    override func preferredLayoutAttributesFittingAttributes(layoutAttributes: NSCollectionViewLayoutAttributes) -> NSCollectionViewLayoutAttributes {
+        let layout = NSCollectionViewLayoutAttributes(forItemWithIndexPath: indexPath!)
+        layout.size = NSSize(width: 180,height: 35)
+        return layout
+       
+    }
+*/
 }

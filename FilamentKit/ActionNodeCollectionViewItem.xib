@@ -5,42 +5,47 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="ActionNodeCollectionViewItem" customModule="FilamentKit" customModuleProvider="target"/>
+        <customObject id="-2" userLabel="File's Owner" customClass="ActionNodeCollectionViewItem" customModule="FilamentKit" customModuleProvider="target">
+            <connections>
+                <outlet property="actionNodeView" destination="LiW-QU-knJ" id="zqm-8e-QPf"/>
+            </connections>
+        </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="276" height="124"/>
+            <rect key="frame" x="0.0" y="0.0" width="221" height="119"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="LiW-QU-knJ" customClass="ActionNodeView" customModule="FilamentKit" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="276" height="124"/>
+                    <rect key="frame" x="0.0" y="0.0" width="221" height="119"/>
                     <subviews>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="x8X-rw-GIG" customClass="AutoSizingTextField" customModule="FilamentKit" customModuleProvider="target">
-                            <rect key="frame" x="6" y="53" width="93" height="19"/>
-                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label one to" usesSingleLineMode="YES" id="dmg-0r-nTe">
-                                <font key="font" metaFont="systemLight" size="16"/>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SgK-88-xw1">
+                            <rect key="frame" x="10" y="50" width="75" height="19"/>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Test Label" usesSingleLineMode="YES" id="DUc-vE-1aT">
+                                <font key="font" metaFont="system" size="15"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="x8X-rw-GIG" firstAttribute="leading" secondItem="LiW-QU-knJ" secondAttribute="leading" constant="8" id="0Rw-TC-V1S"/>
-                        <constraint firstItem="x8X-rw-GIG" firstAttribute="centerY" secondItem="LiW-QU-knJ" secondAttribute="centerY" id="tqv-uU-A1E"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="SgK-88-xw1" secondAttribute="trailing" priority="991" constant="25" id="RQ7-vC-jJP"/>
+                        <constraint firstItem="SgK-88-xw1" firstAttribute="centerY" secondItem="LiW-QU-knJ" secondAttribute="centerY" id="d8Z-UV-Rzo"/>
+                        <constraint firstItem="SgK-88-xw1" firstAttribute="leading" secondItem="LiW-QU-knJ" secondAttribute="leading" constant="12" id="eq8-rS-f5E"/>
                     </constraints>
                 </customView>
             </subviews>
             <constraints>
-                <constraint firstItem="LiW-QU-knJ" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="Mfx-hS-w8W"/>
-                <constraint firstAttribute="bottom" secondItem="LiW-QU-knJ" secondAttribute="bottom" id="PAx-m3-B8e"/>
-                <constraint firstAttribute="trailing" secondItem="LiW-QU-knJ" secondAttribute="trailing" id="ig3-cN-BHd"/>
-                <constraint firstItem="LiW-QU-knJ" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="sW3-Cw-j0T"/>
+                <constraint firstItem="LiW-QU-knJ" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="5vW-9H-B2o"/>
+                <constraint firstItem="LiW-QU-knJ" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="JKl-hp-nYM"/>
+                <constraint firstAttribute="bottom" secondItem="LiW-QU-knJ" secondAttribute="bottom" id="L8z-P7-ojL"/>
+                <constraint firstAttribute="trailing" secondItem="LiW-QU-knJ" secondAttribute="trailing" id="zz3-ru-36Q"/>
             </constraints>
-            <point key="canvasLocation" x="355" y="273"/>
+            <point key="canvasLocation" x="342.5" y="253.5"/>
         </customView>
         <collectionViewItem id="FOf-By-Fhe" customClass="ActionNodeCollectionViewItem" customModule="FilamentKit" customModuleProvider="target">
             <connections>
-                <outlet property="nodeTitleTextField" destination="x8X-rw-GIG" id="FRh-GJ-4cd"/>
+                <outlet property="nodeTitleTextField" destination="SgK-88-xw1" id="mgD-sW-eeg"/>
                 <outlet property="view" destination="c22-O7-iKe" id="gHM-ej-V52"/>
             </connections>
         </collectionViewItem>
