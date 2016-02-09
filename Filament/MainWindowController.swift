@@ -14,10 +14,20 @@ class MainWindowController: NSWindowController {
     override func awakeFromNib() {
         
         super.awakeFromNib()
-        self.window!.titleVisibility = NSWindowTitleVisibility.Hidden
+        // self.window!.titleVisibility = NSWindowTitleVisibility.Hidden
+        
+        addObserver(self, forKeyPath: "self.window.firstResponder", options: [.Initial, .Old, .New], context: nil)
     }
     
-    
+
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String: AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        
+
+            self.window!.title = "Filament - " + window!.firstResponder.className
+    }
+
+
+
     @IBAction func segmentedControlAction(sender: NSSegmentedControl) {
         
         print("Segmented Control Changed")

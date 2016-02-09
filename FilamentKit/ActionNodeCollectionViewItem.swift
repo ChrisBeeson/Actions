@@ -8,9 +8,11 @@
 
 import Foundation
 
-class ActionNodeCollectionViewItem : NSCollectionViewItem {
+public class ActionNodeCollectionViewItem : NSCollectionViewItem {
     
     var indexPath : NSIndexPath?
+    
+    override public var acceptsFirstResponder: Bool { return true }
     
     @IBOutlet weak var nodeTitleTextField: NSTextField!
     @IBOutlet weak var actionNodeView: ActionNodeView!
@@ -20,40 +22,28 @@ class ActionNodeCollectionViewItem : NSCollectionViewItem {
           nodeTitleTextField.stringValue = node!.title
         }
     }
-    /*
-    override var highlightState: NSCollectionViewItemHighlightState {
+    
+    override public var selected: Bool {
         didSet {
-            //  Swift.print("highlight state changed \(highlightState)")
-            //self.actionNodeView.selected = self.highlightState == .ForSelection
+            actionNodeView.selected = self.selected
         }
     }
-    */
     
-    override var selected: Bool {
-        didSet {
-            if actionNodeView != nil {
-                actionNodeView.selected = self.selected
-            } else {
-                Swift.print("actionNodeView = nil")
-            }
-        }
-    }
-
     
-    override func viewDidLoad() {
-        
-    }
-    
-    override func viewWillLayout() {
-        
-        
-    }
-    
-    override func viewWillAppear() {
+    override public func viewWillAppear() {
         if node != nil {
             nodeTitleTextField.stringValue = node!.title
         }
     }
+    
+    
+    override public func becomeFirstResponder() -> Bool {
+        
+        Swift.print("BecomeFirstResponder:ActionNodeCell")
+        
+        return true
+    }
+
    /*
     override func preferredLayoutAttributesFittingAttributes(layoutAttributes: NSCollectionViewLayoutAttributes) -> NSCollectionViewLayoutAttributes {
         let layout = NSCollectionViewLayoutAttributes(forItemWithIndexPath: indexPath!)

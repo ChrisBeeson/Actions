@@ -10,6 +10,19 @@ import Foundation
 
 public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSource, NSCollectionViewDelegate {
     
+    
+    override public var acceptsFirstResponder: Bool { return true }
+    
+    override public func becomeFirstResponder() -> Bool {
+    
+        // need to select the row I belong to
+        
+        let row = self.superview
+        
+        return true
+    }
+    
+    
     public var sequence: Sequence? {
         didSet {
             //  reloadData()
@@ -42,15 +55,6 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
         let transNib = NSNib(nibNamed: "TransitionNodeCollectionViewItem", bundle: NSBundle(identifier:"com.andris.FilamentKit"))
         self.registerNib(transNib, forItemWithIdentifier: "TransitionNodeCollectionViewItem")
     }
-    
-    
-    
-    override public func selectItemsAtIndexPaths(indexPaths: Set<NSIndexPath>, scrollPosition: NSCollectionViewScrollPosition) {
-        
-        Swift.print("selecting")
-    }
-    
-
     
     
     //MARK: Datasource

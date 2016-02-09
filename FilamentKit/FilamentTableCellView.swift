@@ -34,17 +34,35 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate {
                 backgroundView.layer?.borderWidth = 2
                 backgroundView.layer?.borderColor = AppConfiguration.Palette.selectionBlue.CGColor
                 titleTextField.editable = true
-                self.becomeFirstResponder()
                 
             case false:
                 backgroundView.layer?.borderWidth = 0
                 titleTextField.editable = false
-                self.resignFirstResponder()
+                collectionView.deselectAll(self)
             }
         }
     }
     
+    override public func becomeFirstResponder() -> Bool {
+    
+        Swift.print("BecomeFirstResponder:TableCellView")
+        
+        return true
+    }
+    
+    override public func resignFirstResponder() -> Bool {
+        
+        Swift.print("ResignFirstResponder:TableCellView")
+        
+        return true
+    }
+    
+    
+    
+    
     override public func validateProposedFirstResponder(responder: NSResponder, forEvent event: NSEvent?) -> Bool {
+        
+        Swift.print("Validating Proposed Responder \(responder)")
         
         if event == nil { return false }
         
@@ -54,10 +72,13 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate {
         if mouse(point, inRect: rect) {
             self.selected = true
             
+            Swift.print("True")
             return true
         }
+        Swift.print("False")
         return false
     }
+
     
     // MARK: Methods
     
