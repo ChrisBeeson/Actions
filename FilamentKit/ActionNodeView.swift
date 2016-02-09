@@ -25,17 +25,17 @@ public class ActionNodeView: NSView {
     
     override public func drawRect(dirtyRect: NSRect) {
         
-        let tailOff:CGFloat = 0.85   // 85% of the view consists of the tailing triangle
+        let tailOff:CGFloat = 15.0
         let padding:CGFloat = 2
         let frame = self.frame
         
         let path = NSBezierPath()
-        path.moveToPoint(NSPoint(x: frame.size.width * tailOff , y: frame.size.height - padding))
+        path.moveToPoint(NSPoint(x: frame.size.width - tailOff , y: frame.size.height - padding))
         path.lineToPoint(NSPoint(x: padding , y:frame.size.height - padding))
         path.lineToPoint(NSPoint(x: padding , y:padding))
-        path.lineToPoint(NSPoint(x: frame.size.width * tailOff , y:padding))
+        path.lineToPoint(NSPoint(x: frame.size.width - tailOff , y:padding))
         path.lineToPoint(NSPoint(x: frame.size.width-1 , y:frame.size.height/2))
-        path.lineToPoint(NSPoint(x: frame.size.width * tailOff , y: frame.size.height - padding))
+        path.lineToPoint(NSPoint(x: frame.size.width - tailOff , y: frame.size.height - padding))
         
         if selected {
             path.lineWidth = 1.5
