@@ -19,57 +19,8 @@ public class ActionNodeView: NSView {
     
     public var node : Node? {
         didSet {
-            updateView()
+            self.setNeedsDisplayInRect(self.frame)
         }
-    }
-    
-    required public init?(coder: NSCoder) {
-        super.init(coder: coder)!
-    }
-    
-    override init(frame: NSRect) {
-        super.init(frame: NSRect(x: 0.0, y: 0.0, width: 100, height: 38))
-        updateView()
-    }
-    
-    convenience init(node:Node) {
-        self.init(frame: NSRect(x: 0.0, y: 0.0, width: 100, height: 38))
-        self.node = node
-    }
-    
-    
-    func updateView() {
-        
-        // TODO: Text label
-        /*
-        if textField == nil {
-            textField = NSTextField(frame: NSRect(x: 10.0, y: self.frame.height/2 - (20.0/2) , width: self.frame.width * 0.80, height: 20.0))
-            textField!.font = NSFont.systemFontOfSize(14.0)
-            // textField!.font = NSFont.systemFontOfSize(14.0, weight: 1.0)
-            textField!.backgroundColor = NSColor.clearColor()
-            textField?.selectable = false
-            self.addSubview(textField!)
-            textField?.bordered = false
-        }
-        
-        if node != nil {
-            textField!.stringValue = node!.title
-            
-            var xDrawPosition:CGFloat = 0.0
-            
-            for rule in node!.rules {
-                
-                let button = NSButton(frame: NSRect(origin: CGPoint.zero, size: CGSize(width: 45.0, height: 10.0)))
-                button.font = NSFont.systemFontOfSize(8.0)
-                button.title = rule.name
-                button.bezelStyle = .InlineBezelStyle
-                button.setFrameOrigin(NSPoint(x: xDrawPosition, y: self.frame.size.height-15))
-                //  self.addSubview(button)
-                
-                xDrawPosition += button.frame.size.width
-            }
-        }
-*/
     }
     
     override public func drawRect(dirtyRect: NSRect) {
