@@ -20,13 +20,22 @@ class ActionNodeCollectionViewItem : NSCollectionViewItem {
           nodeTitleTextField.stringValue = node!.title
         }
     }
-    
+    /*
     override var highlightState: NSCollectionViewItemHighlightState {
         didSet {
-            Swift.print("highlight state changed \(highlightState.rawValue)")
-           
+            //  Swift.print("highlight state changed \(highlightState)")
             //self.actionNodeView.selected = self.highlightState == .ForSelection
-            
+        }
+    }
+    */
+    
+    override var selected: Bool {
+        didSet {
+            if actionNodeView != nil {
+                actionNodeView.selected = self.selected
+            } else {
+                Swift.print("actionNodeView = nil")
+            }
         }
     }
 

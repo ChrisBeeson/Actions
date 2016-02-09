@@ -45,6 +45,7 @@
         </customView>
         <collectionViewItem id="FOf-By-Fhe" customClass="ActionNodeCollectionViewItem" customModule="FilamentKit" customModuleProvider="target">
             <connections>
+                <outlet property="actionNodeView" destination="LiW-QU-knJ" id="FTj-T0-Vc3"/>
                 <outlet property="nodeTitleTextField" destination="SgK-88-xw1" id="mgD-sW-eeg"/>
                 <outlet property="view" destination="c22-O7-iKe" id="gHM-ej-V52"/>
             </connections>
