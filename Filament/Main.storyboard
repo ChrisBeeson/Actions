@@ -767,7 +767,7 @@ CA
                                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="bTc-Dp-Ybh">
                                                                     <rect key="frame" x="10" y="3" width="421" height="84"/>
                                                                     <subviews>
-                                                                        <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BeT-IN-UXD">
+                                                                        <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="BeT-IN-UXD">
                                                                             <rect key="frame" x="8" y="61" width="395" height="17"/>
                                                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" alignment="left" title="Western Blot - Tuesday" placeholderString="Title" id="chR-lv-cWb">
                                                                                 <font key="font" size="13" name="Helvetica-Bold"/>
@@ -778,14 +778,14 @@ CA
                                                                                 <action selector="titleTextFieldDidChange:" target="FDm-hf-wGf" id="RrH-q7-QJw"/>
                                                                             </connections>
                                                                         </textField>
-                                                                        <scrollView ambiguous="YES" misplaced="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWa-CA-nxC">
+                                                                        <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="wWa-CA-nxC">
                                                                             <rect key="frame" x="0.0" y="0.0" width="421" height="59"/>
-                                                                            <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="8Ne-ER-Rn3">
+                                                                            <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="8Ne-ER-Rn3">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="421" height="59"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
-                                                                                    <collectionView focusRingType="none" ambiguous="YES" selectable="YES" allowsEmptySelection="NO" id="8np-EO-BYI" customClass="SequenceCollectionView" customModule="FilamentKit">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="421" height="59"/>
+                                                                                    <collectionView focusRingType="none" selectable="YES" allowsMultipleSelection="YES" id="8np-EO-BYI" customClass="SequenceCollectionView" customModule="FilamentKit">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="421" height="0.0"/>
                                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" id="qIE-mC-5dM">
                                                                                             <size key="itemSize" width="50" height="50"/>
@@ -796,17 +796,20 @@ CA
                                                                                 </subviews>
                                                                             </clipView>
                                                                             <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="s4s-Iv-z9p">
-                                                                                <rect key="frame" x="1" y="144" width="233" height="15"/>
+                                                                                <rect key="frame" x="-100" y="-100" width="421" height="16"/>
                                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                             </scroller>
                                                                             <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="cP1-A5-XuF">
-                                                                                <rect key="frame" x="234" y="1" width="15" height="143"/>
+                                                                                <rect key="frame" x="-100" y="-100" width="16" height="59"/>
                                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                             </scroller>
                                                                         </scrollView>
                                                                     </subviews>
                                                                     <constraints>
+                                                                        <constraint firstItem="BeT-IN-UXD" firstAttribute="top" secondItem="bTc-Dp-Ybh" secondAttribute="top" constant="6" id="3u3-4L-xyj"/>
                                                                         <constraint firstAttribute="trailing" secondItem="wWa-CA-nxC" secondAttribute="trailing" id="9bE-j4-kt6"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="BeT-IN-UXD" secondAttribute="trailing" constant="20" symbolic="YES" id="E93-XR-3c6"/>
+                                                                        <constraint firstItem="BeT-IN-UXD" firstAttribute="leading" secondItem="bTc-Dp-Ybh" secondAttribute="leading" constant="10" id="GYc-J5-Iyu"/>
                                                                         <constraint firstItem="wWa-CA-nxC" firstAttribute="leading" secondItem="bTc-Dp-Ybh" secondAttribute="leading" id="JyZ-QS-gth"/>
                                                                         <constraint firstItem="wWa-CA-nxC" firstAttribute="top" secondItem="BeT-IN-UXD" secondAttribute="bottom" constant="2" id="NAA-Cc-tgs"/>
                                                                         <constraint firstAttribute="bottom" secondItem="wWa-CA-nxC" secondAttribute="bottom" id="Tbi-uW-GzY"/>

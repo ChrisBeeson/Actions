@@ -41,8 +41,23 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate {
                 titleTextField.editable = false
                 self.resignFirstResponder()
             }
+        }
     }
-}
+    
+    override public func validateProposedFirstResponder(responder: NSResponder, forEvent event: NSEvent?) -> Bool {
+        
+        if event == nil { return false }
+        
+        let point = convertPoint(event!.locationInWindow , fromView: nil)
+        let rect = bounds
+        
+        if mouse(point, inRect: rect) {
+            self.selected = true
+            
+            return true
+        }
+        return false
+    }
     
     // MARK: Methods
     
@@ -51,7 +66,7 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate {
         selected = false
         super.init(coder: coder)
         // collectionView.dataSource = self
-
+        
         
     }
     
@@ -78,46 +93,47 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate {
     /*
     
     Context Menu
-
--(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
-if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-CGPoint p = [gestureRecognizer locationInView: self.tableView];
-NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
-if (indexPath != nil) {
-
-[self becomeFirstResponder];
-UIMenuItem *delete = [[UIMenuItem alloc] initWithTitle:@"Delete" action:@selector(customDelete:)];
-
-UIMenuController *menu = [UIMenuController sharedMenuController];
-[menu setMenuItems:[NSArray arrayWithObjects:delete, nil]];
-[menu setTargetRect:[self.tableView rectForRowAtIndexPath:indexPath] inView:self.tableView];
-[menu setMenuVisible:YES animated:YES];
-}
-}
-}
-
-- (void)customDelete:(id)sender {
-//
-}
-*/
-
-
+    
+    -(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
+    if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+    CGPoint p = [gestureRecognizer locationInView: self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
+    if (indexPath != nil) {
+    
+    [self becomeFirstResponder];
+    UIMenuItem *delete = [[UIMenuItem alloc] initWithTitle:@"Delete" action:@selector(customDelete:)];
+    
+    UIMenuController *menu = [UIMenuController sharedMenuController];
+    [menu setMenuItems:[NSArray arrayWithObjects:delete, nil]];
+    [menu setTargetRect:[self.tableView rectForRowAtIndexPath:indexPath] inView:self.tableView];
+    [menu setMenuVisible:YES animated:YES];
+    }
+    }
+    }
+    
+    - (void)customDelete:(id)sender {
+    //
+    }
+    */
+    
+    
     // MARK: Presenter Delegate
-
+    
     public func sequencePresenterDidRefreshCompleteLayout(sequencePresenter: SequencePresenter) {
         updateCellView()
     }
     
     /*
     public func performClose(sender: AnyObject) {
-        Swift.print("Export")
+    Swift.print("Export")
     }
     
     public override func keyDown(theEvent: NSEvent) {
-        Swift.print(theEvent)
+    Swift.print(theEvent)
     }
     */
-
+    
+    /*
     public override func mouseUp(theEvent: NSEvent) {
         
         Swift.print(self.window!.firstResponder)
@@ -126,6 +142,7 @@ UIMenuController *menu = [UIMenuController sharedMenuController];
         // TODO: Context menu please
         
     }
+*/
 }
 
 
