@@ -58,10 +58,10 @@ public class TransitionNodeView: NSView {
             
         } else {
             AppConfiguration.Palette.outlineGray.setStroke()
-            path.lineWidth = 0.5
+            path.lineWidth = 0.7
         }
 
-        path.moveToPoint(NSPoint(x: 0.0 , y: (frame.size.height/2)-(path.lineWidth/2)))
+        path.moveToPoint(NSPoint(x: 0 , y: (frame.size.height/2)-(path.lineWidth/2)))
         path.lineToPoint(NSPoint(x: frame.size.width , y:(frame.size.height/2)-(path.lineWidth/2)))
         path.stroke()
     }

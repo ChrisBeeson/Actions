@@ -25,28 +25,29 @@ public class ActionNodeView: NSView {
     
     override public func drawRect(dirtyRect: NSRect) {
         
+        let path = NSBezierPath()
         let tailOff:CGFloat = 15.0
-        let padding:CGFloat = 2
+        
         let frame = self.frame
         
-        let path = NSBezierPath()
+        if selected {
+            path.lineWidth = 2
+            AppConfiguration.Palette.selectionBlue.setStroke()
+        } else {
+            path.lineWidth = 0.7
+            AppConfiguration.Palette.outlineGray.setStroke()
+        }
+        
+        let padding = path.lineWidth / 2.0
+
         path.moveToPoint(NSPoint(x: frame.size.width - tailOff , y: frame.size.height - padding))
         path.lineToPoint(NSPoint(x: padding , y:frame.size.height - padding))
         path.lineToPoint(NSPoint(x: padding , y:padding))
         path.lineToPoint(NSPoint(x: frame.size.width - tailOff , y:padding))
-        path.lineToPoint(NSPoint(x: frame.size.width-1 , y:frame.size.height/2))
+        path.lineToPoint(NSPoint(x: frame.size.width - padding , y:frame.size.height/2))
         path.lineToPoint(NSPoint(x: frame.size.width - tailOff , y: frame.size.height - padding))
         
-        if selected {
-            path.lineWidth = 1.5
-            AppConfiguration.Palette.selectionBlue.setStroke()
-        } else {
-            path.lineWidth = 0.5
-             AppConfiguration.Palette.outlineGray.setStroke()
-        }
-        
         AppConfiguration.Palette.filledGray.setFill()
-
         path.fill()
         path.stroke()
     }

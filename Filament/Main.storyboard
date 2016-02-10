@@ -789,7 +789,7 @@ CA
                                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" id="qIE-mC-5dM">
                                                                                             <size key="itemSize" width="50" height="50"/>
-                                                                                            <edgeInsets key="sectionInset" left="5" right="5" top="0.0" bottom="0.0"/>
+                                                                                            <edgeInsets key="sectionInset" left="15" right="5" top="0.0" bottom="0.0"/>
                                                                                         </collectionViewFlowLayout>
                                                                                         <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                     </collectionView>

@@ -238,7 +238,7 @@ public class AppConfiguration: NSObject {
     
     public struct Palette {
         public static let selectionBlue = NSColor(red: 0.6, green: 0.75, blue: 0.9, alpha: 1.0)
-        public static let outlineGray = NSColor(calibratedWhite:0.6, alpha:1.0)
+        public static let outlineGray = NSColor(calibratedWhite:0.65, alpha:1.0)
         public static let filledGray = NSColor(calibratedWhite:0.95, alpha:1.0)
     }
 }

@@ -130,7 +130,7 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
         
         if indexPath.item == 0 {
             
-            return NSSize(width: 55,height: 35)
+            return NSSize(width: 60,height: 35)
         }
             
         else if indexPath.item < sequence!.allNodes().count+1 {
