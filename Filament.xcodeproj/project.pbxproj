@@ -66,6 +66,8 @@
 		833AE3301C67F85B002F35C1 /* ActionNodeCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 833AE32F1C67F85B002F35C1 /* ActionNodeCollectionViewItem.xib */; };
 		833AE3321C67FB6D002F35C1 /* TransitionNodeCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 833AE3311C67FB6D002F35C1 /* TransitionNodeCollectionViewItem.xib */; };
 		8343519D1BA297650094428B /* EventStartsInTimeFromNow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8343519C1BA297650094428B /* EventStartsInTimeFromNow.swift */; };
+		834F85CF1C6ACF5E009CC72F /* AddNewNodeCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F85CE1C6ACF5E009CC72F /* AddNewNodeCollectionViewItem.swift */; };
+		834F85D11C6ACFA2009CC72F /* AddNewNodeViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 834F85D01C6ACFA2009CC72F /* AddNewNodeViewItem.xib */; };
 		83861F2B1BEEA25F00A44122 /* FilamentDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83861F2A1BEEA25F00A44122 /* FilamentDocument.swift */; };
 		83C73E0D1BE31C4F0045973C /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C73E0B1BE31BF20045973C /* AppConfiguration.swift */; };
 		83C73E0E1BE31C4F0045973C /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C73E0B1BE31BF20045973C /* AppConfiguration.swift */; };
@@ -175,6 +177,8 @@
 		833AE32F1C67F85B002F35C1 /* ActionNodeCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionNodeCollectionViewItem.xib; sourceTree = "<group>"; };
 		833AE3311C67FB6D002F35C1 /* TransitionNodeCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransitionNodeCollectionViewItem.xib; sourceTree = "<group>"; };
 		8343519C1BA297650094428B /* EventStartsInTimeFromNow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventStartsInTimeFromNow.swift; sourceTree = "<group>"; };
+		834F85CE1C6ACF5E009CC72F /* AddNewNodeCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewNodeCollectionViewItem.swift; sourceTree = "<group>"; };
+		834F85D01C6ACFA2009CC72F /* AddNewNodeViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddNewNodeViewItem.xib; sourceTree = "<group>"; };
 		83861F2A1BEEA25F00A44122 /* FilamentDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilamentDocument.swift; sourceTree = "<group>"; };
 		83C73E0B1BE31BF20045973C /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		83DDAA4A1B9978CF001A4DBE /* Filament-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Filament-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -332,6 +336,8 @@
 				4778C0A91C657D8F00F5A259 /* ActionNodeCollectionViewItem.swift */,
 				4791AB7E1C6706E3007FBEB8 /* TransitionNodeCollectionViewItem.swift */,
 				4778C0AC1C657F7B00F5A259 /* NodeViews */,
+				834F85CE1C6ACF5E009CC72F /* AddNewNodeCollectionViewItem.swift */,
+				834F85D01C6ACFA2009CC72F /* AddNewNodeViewItem.xib */,
 			);
 			name = SequenceCollectionView;
 			sourceTree = "<group>";
@@ -673,6 +679,7 @@
 			files = (
 				833AE3301C67F85B002F35C1 /* ActionNodeCollectionViewItem.xib in Resources */,
 				833AE32E1C67E463002F35C1 /* DateNodeCollectionViewItem.xib in Resources */,
+				834F85D11C6ACFA2009CC72F /* AddNewNodeViewItem.xib in Resources */,
 				833AE3321C67FB6D002F35C1 /* TransitionNodeCollectionViewItem.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -773,6 +780,7 @@
 				477C2CB51C40B3AD0071467C /* TransitionNodeView.swift in Sources */,
 				47DF1C471C6879FE00482390 /* AutoSizingTextField.swift in Sources */,
 				473574791B9A68BE00493CA0 /* Rule.swift in Sources */,
+				834F85CF1C6ACF5E009CC72F /* AddNewNodeCollectionViewItem.swift in Sources */,
 				47CD21C31BDF7B0900AF25BE /* Sequence+NodeLogic.swift in Sources */,
 				47ACA9541BB5464C000CAC61 /* DateToolsExtenstions.swift in Sources */,
 				47ACA9591BB54EEA000CAC61 /* AvoidCalendarEvents.swift in Sources */,

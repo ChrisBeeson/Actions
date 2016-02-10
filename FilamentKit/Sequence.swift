@@ -13,11 +13,11 @@ public class Sequence: NSObject, NSCopying, NSCoding {
     public var title: String = ""
     public var actionNodes = [Node]()
     public var transitionNodes = [Node]()
-    public var startDate: NSDate?
+    public var date: NSDate?
+    public var startsAtDate = true    // false means the sequence is back timed to end at the date
     public var uuid = NSUUID()
 
     // public var calendarsToAvoid = [EKCalendar]()
-    
     
     // MARK: Initializers
     
@@ -42,7 +42,8 @@ public class Sequence: NSObject, NSCopying, NSCoding {
         static let title = "title"
         static let actionNodes = "actionNodes"
         static let transitionNodes = "transitionNodes"
-        static let startDate = "startDate"
+        static let date = "date"
+        static let startsAtDate = "startsAtDate"
         static let events = "events"
         static let uuid = "uuid"
     }
@@ -51,7 +52,8 @@ public class Sequence: NSObject, NSCopying, NSCoding {
         title = aDecoder.decodeObjectForKey(SerializationKeys.title) as! String
         actionNodes = aDecoder.decodeObjectForKey(SerializationKeys.actionNodes) as! [Node]
         transitionNodes = aDecoder.decodeObjectForKey(SerializationKeys.transitionNodes) as! [Node]
-        startDate = aDecoder.decodeObjectForKey(SerializationKeys.startDate) as? NSDate
+        date = aDecoder.decodeObjectForKey(SerializationKeys.date) as? NSDate
+        startsAtDate = aDecoder.decodeObjectForKey(SerializationKeys.startsAtDate) as! Bool
         uuid = aDecoder.decodeObjectForKey(SerializationKeys.uuid) as! NSUUID
     }
     
@@ -59,7 +61,8 @@ public class Sequence: NSObject, NSCopying, NSCoding {
         aCoder.encodeObject(title, forKey: SerializationKeys.title)
         aCoder.encodeObject(actionNodes, forKey: SerializationKeys.actionNodes)
         aCoder.encodeObject(transitionNodes, forKey: SerializationKeys.transitionNodes)
-        aCoder.encodeObject(startDate, forKey: SerializationKeys.startDate)
+        aCoder.encodeObject(date, forKey: SerializationKeys.date)
+        aCoder.encodeObject(startsAtDate, forKey: SerializationKeys.startsAtDate)
         aCoder.encodeObject(uuid, forKey: SerializationKeys.uuid)
     }
     
@@ -71,6 +74,8 @@ public class Sequence: NSObject, NSCopying, NSCoding {
         clone.title = title.copy() as! String
         clone.actionNodes =  NSArray(array:actionNodes, copyItems: true) as! [Node]
         clone.transitionNodes = NSArray(array:transitionNodes, copyItems: true) as! [Node]
+        clone.date = date
+        clone.startsAtDate = startsAtDate
         return clone
     }
     

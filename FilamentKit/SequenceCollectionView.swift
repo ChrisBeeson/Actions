@@ -10,27 +10,7 @@ import Foundation
 
 public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSource, NSCollectionViewDelegate {
     
-    
-    override public var acceptsFirstResponder: Bool { return true }
-    
-    override public func becomeFirstResponder() -> Bool {
-    
-        dispatch_async(dispatch_get_main_queue()) {
-           
-        }
-         NSNotificationCenter.defaultCenter().postNotificationName("FilamentTableViewSelectCellForView", object: self.superview)
-       
-        if self.selectionIndexes.count == 0 {
-            //   Swift.print(self.superview?.superview?.superview?.superview?.superview)
-            
-            self.window?.makeFirstResponder(self.superview?.superview?.superview?.superview?.superview?.superview)
-            //  return false
-        
-        }
-     
-        return true
-    }
-    
+    public enum ItemType: Int { case DateNode, ActionNode, TransitionNode, NewNode }
     
     public var sequence: Sequence? {
         didSet {
@@ -107,6 +87,26 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
     
     //MARK: First Responder Events
     
+    override public var acceptsFirstResponder: Bool { return true }
+    
+    override public func becomeFirstResponder() -> Bool {
+        
+        dispatch_async(dispatch_get_main_queue()) {
+            
+        }
+        NSNotificationCenter.defaultCenter().postNotificationName("FilamentTableViewSelectCellForView", object: self.superview)
+        
+        if self.selectionIndexes.count == 0 {
+            //   Swift.print(self.superview?.superview?.superview?.superview?.superview)
+            
+            self.window?.makeFirstResponder(self.superview?.superview?.superview?.superview?.superview?.superview)
+            //  return false
+            
+        }
+        
+        return true
+    }
+    
      public func delete(theEvent: NSEvent) {
     
     Swift.print("Delete")
@@ -114,8 +114,6 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
     }
     
 
-    
-    
     //MARK: Delegate
     
     public func collectionView(collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> NSSize {
