@@ -18,6 +18,9 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system" size="12"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="plusButtonPressed:" target="CCb-pQ-6Gr" id="mlV-MZ-kZc"/>
+                    </connections>
                 </button>
             </subviews>
             <constraints>
@@ -28,6 +31,7 @@
         </customView>
         <collectionViewItem id="CCb-pQ-6Gr" customClass="AddNewNodeCollectionViewItem" customModule="FilamentKit" customModuleProvider="target">
             <connections>
+                <outlet property="plusButton" destination="PUa-oD-wFs" id="6HS-eW-BGC"/>
                 <outlet property="view" destination="c22-O7-iKe" id="Djx-eR-jTq"/>
             </connections>
         </collectionViewItem>
