@@ -16,13 +16,14 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
     override public func becomeFirstResponder() -> Bool {
     
         dispatch_async(dispatch_get_main_queue()) {
-            NSNotificationCenter.defaultCenter().postNotificationName("FilamentTableViewSelectCellForView", object: self.superview)
+           
         }
-        
+         NSNotificationCenter.defaultCenter().postNotificationName("FilamentTableViewSelectCellForView", object: self.superview)
+       
         if self.selectionIndexes.count == 0 {
             //   Swift.print(self.superview?.superview?.superview?.superview?.superview)
             
-            //  self.window?.nextResponder = self.superview?.superview?.superview?.superview?.superview
+            self.window?.makeFirstResponder(self.superview?.superview?.superview?.superview?.superview?.superview)
             //  return false
         
         }
@@ -195,6 +196,8 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
 
     public func collectionView(collectionView: NSCollectionView, shouldDeselectItemsAtIndexPaths indexPaths: Set<NSIndexPath>) -> Set<NSIndexPath> {
         
+        self.window?.makeFirstResponder(self.superview?.superview?.superview?.superview?.superview?.superview)
+        
         return indexPaths
         
     }
@@ -203,6 +206,8 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
     */
 
     public func collectionView(collectionView: NSCollectionView, didSelectItemsAtIndexPaths indexPaths: Set<NSIndexPath>) {
+        
+        self.window?.makeFirstResponder(self)
         
     }
     

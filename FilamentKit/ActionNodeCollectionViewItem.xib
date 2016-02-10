@@ -23,7 +23,7 @@
                             <rect key="frame" x="8" y="50" width="74" height="19"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Test Label" usesSingleLineMode="YES" id="DUc-vE-1aT">
                                 <font key="font" metaFont="systemLight" size="15"/>
-                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
