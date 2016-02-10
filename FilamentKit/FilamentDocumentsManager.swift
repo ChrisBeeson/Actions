@@ -84,6 +84,7 @@ public class FilamentDocumentsManager : DirectoryMonitorDelegate {
                 }
             }
             
+            print("removing documents from array: \(removedDocs)")
             self.documents.removeObjects(removedDocs)
             
             self.delegate?.filamentsDocumentsManagerDidUpdateContents(inserted:insertedDocs, removed:removedDocs)

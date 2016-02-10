@@ -20,9 +20,9 @@
                     <rect key="frame" x="0.0" y="0.0" width="221" height="119"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SgK-88-xw1">
-                            <rect key="frame" x="10" y="50" width="75" height="19"/>
+                            <rect key="frame" x="8" y="50" width="74" height="19"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Test Label" usesSingleLineMode="YES" id="DUc-vE-1aT">
-                                <font key="font" metaFont="system" size="15"/>
+                                <font key="font" metaFont="systemLight" size="15"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
@@ -31,7 +31,7 @@
                     <constraints>
                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="SgK-88-xw1" secondAttribute="trailing" priority="991" constant="25" id="RQ7-vC-jJP"/>
                         <constraint firstItem="SgK-88-xw1" firstAttribute="centerY" secondItem="LiW-QU-knJ" secondAttribute="centerY" id="d8Z-UV-Rzo"/>
-                        <constraint firstItem="SgK-88-xw1" firstAttribute="leading" secondItem="LiW-QU-knJ" secondAttribute="leading" constant="12" id="eq8-rS-f5E"/>
+                        <constraint firstItem="SgK-88-xw1" firstAttribute="leading" secondItem="LiW-QU-knJ" secondAttribute="leading" constant="10" id="eq8-rS-f5E"/>
                     </constraints>
                 </customView>
             </subviews>

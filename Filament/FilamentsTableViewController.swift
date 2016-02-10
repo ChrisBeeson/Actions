@@ -16,10 +16,17 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     override public func viewDidLoad() {
         
         FilamentDocumentsManager.sharedManager.delegate = self
+        
+        NSNotificationCenter.defaultCenter().addObserverForName("FilamentTableViewSelectCellForView", object: nil, queue: nil) { (notification) -> Void in
+            
+            let row = self.tableView.rowForView(notification.object as! NSView)
+            self.tableView.selectRowIndexes((NSIndexSet(index: row)), byExtendingSelection: false)
+        }
     }
     
     override public func viewDidAppear() {
         tableView!.reloadData()
+        tableView.deselectAll(self)
     }
     
     // MARK: TableView DataSource
@@ -76,6 +83,8 @@ extension FilamentsTableViewController {
     
     public func delete(theEvent: NSEvent) {   // TODO: Muliple
         
+        if self.tableView.selectedRowIndexes.count == 0 { return }
+        
         let alert = NSAlert()
         alert.informativeText = "Are you sure you want to delete this Filament?"
         alert.messageText = "Delete"
@@ -86,7 +95,6 @@ extension FilamentsTableViewController {
         switch (alert.runModal()) {
             
         case NSAlertFirstButtonReturn:   // Delete
-            
             if let cellView = tableView.viewAtColumn(0, row: tableView.selectedRow, makeIfNecessary: false) as? FilamentTableCellView {
                 let docToDel = FilamentDocumentsManager.sharedManager.documentForSequence(cellView.presenter!.archiveableSeq)
                 FilamentDocumentsManager.permanentlyDeleteDocument(docToDel)

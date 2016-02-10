@@ -15,10 +15,18 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
     
     override public func becomeFirstResponder() -> Bool {
     
-        // need to select the row I belong to
+        dispatch_async(dispatch_get_main_queue()) {
+            NSNotificationCenter.defaultCenter().postNotificationName("FilamentTableViewSelectCellForView", object: self.superview)
+        }
         
-        let row = self.superview
+        if self.selectionIndexes.count == 0 {
+            //   Swift.print(self.superview?.superview?.superview?.superview?.superview)
+            
+            //  self.window?.nextResponder = self.superview?.superview?.superview?.superview?.superview
+            //  return false
         
+        }
+     
         return true
     }
     
@@ -94,6 +102,18 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
             }
         }
     }
+    
+    
+    //MARK: First Responder Events
+    
+     public func delete(theEvent: NSEvent) {
+    
+    Swift.print("Delete")
+    
+    }
+    
+
+    
     
     //MARK: Delegate
     

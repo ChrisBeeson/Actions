@@ -43,42 +43,6 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate {
         }
     }
     
-    override public func becomeFirstResponder() -> Bool {
-    
-        Swift.print("BecomeFirstResponder:TableCellView")
-        
-        return true
-    }
-    
-    override public func resignFirstResponder() -> Bool {
-        
-        Swift.print("ResignFirstResponder:TableCellView")
-        
-        return true
-    }
-    
-    
-    
-    
-    override public func validateProposedFirstResponder(responder: NSResponder, forEvent event: NSEvent?) -> Bool {
-        
-        Swift.print("Validating Proposed Responder \(responder)")
-        
-        if event == nil { return false }
-        
-        let point = convertPoint(event!.locationInWindow , fromView: nil)
-        let rect = bounds
-        
-        if mouse(point, inRect: rect) {
-            self.selected = true
-            
-            Swift.print("True")
-            return true
-        }
-        Swift.print("False")
-        return false
-    }
-
     
     // MARK: Methods
     
@@ -86,9 +50,7 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate {
         
         selected = false
         super.init(coder: coder)
-        // collectionView.dataSource = self
-        
-        
+
     }
     
     func updateCellView() {
@@ -105,11 +67,25 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate {
         
         presenter!.renameTitle(sender.stringValue)
     }
-    
-    public func canBecomeFirstResponder() -> Bool {
+
+/*
+    override public func validateProposedFirstResponder(responder: NSResponder, forEvent event: NSEvent?) -> Bool {
         
-        return true
+        if event == nil { return false }
+        
+        let point = convertPoint(event!.locationInWindow , fromView: nil)
+        let rect = bounds
+        
+        if mouse(point, inRect: rect) {
+            self.selected = true
+            
+            Swift.print("True")
+            return true
+        }
+        Swift.print("False")
+        return false
     }
+    */
     
     /*
     
