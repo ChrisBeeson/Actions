@@ -15,7 +15,7 @@ extension Sequence {
     
     public func UpdateEvents() -> (success:Bool, firstFailedNode:Node?) {
         
-        guard var time = startDate else { return (false,nil) }
+        guard var time = date else { return (false,nil) }
         
         for node in self.actionNodes {
             

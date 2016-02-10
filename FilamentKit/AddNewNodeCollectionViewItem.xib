@@ -16,11 +16,8 @@
                     <rect key="frame" x="37" y="26" width="22" height="19"/>
                     <buttonCell key="cell" type="roundRect" title="+" bezelStyle="roundedRect" alignment="center" borderStyle="border" inset="2" id="6eJ-UG-1Oz">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="cellTitle"/>
+                        <font key="font" metaFont="system" size="12"/>
                     </buttonCell>
-                    <connections>
-                        <action selector="plusButtonPressed:" target="CCb-pQ-6Gr" id="z86-s3-kVw"/>
-                    </connections>
                 </button>
             </subviews>
             <constraints>

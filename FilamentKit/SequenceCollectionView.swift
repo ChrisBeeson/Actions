@@ -43,15 +43,19 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
         
         let transNib = NSNib(nibNamed: "TransitionNodeCollectionViewItem", bundle: NSBundle(identifier:"com.andris.FilamentKit"))
         self.registerNib(transNib, forItemWithIdentifier: "TransitionNodeCollectionViewItem")
+        
+        let addNib = NSNib(nibNamed: "AddNewNodeCollectionViewItem", bundle: NSBundle(identifier:"com.andris.FilamentKit"))
+        self.registerNib(addNib, forItemWithIdentifier: "AddNewNodeCollectionViewItem")
     }
     
     
     //MARK: Datasource
     
+    
     public func collectionView(collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
         
         assert(sequence != nil)
-        let count = sequence!.allNodes().count+1
+        let count = sequence!.allNodes().count+2
         return count
     }
     
@@ -63,7 +67,7 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
             let item = makeItemWithIdentifier("DateNodeCollectionViewItem", forIndexPath: indexPath)
             return item
             
-        } else {
+        } else if indexPath.item < sequence!.allNodes().count+1 {
             
             let node = sequence!.allNodes()[indexPath.item-1]
             
@@ -81,6 +85,12 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
             default:
                 return NSCollectionViewItem()
             }
+        } else {
+            
+            // must be the last spot
+            
+            let item = makeItemWithIdentifier("AddNewNodeCollectionViewItem", forIndexPath: indexPath)
+            return item
         }
     }
     
@@ -123,7 +133,7 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
             return NSSize(width: 55,height: 35)
         }
             
-        else {
+        else if indexPath.item < sequence!.allNodes().count+1 {
             
             let node = sequence!.allNodes()[indexPath.item-1]
             
@@ -142,11 +152,14 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
                 }
                 
             case .Transition:
-                return NSSize(width: 30,height: 35)
+                return NSSize(width: 50,height: 35)
                 
             default:
                 return NSSize(width: 30,height: 35)
             }
+        } else {
+            
+            return NSSize(width: 40,height: 50)
         }
     }
     
