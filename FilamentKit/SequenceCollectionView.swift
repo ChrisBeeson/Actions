@@ -108,15 +108,20 @@ import Foundation
     
     public func sequencePresenterDidUpdateChainContents(insertedNodes:[nodeAtIndex], deletedNodes:[nodeAtIndex]) {
         
-        if insertedNodes.count > 0 {
+        self.performBatchUpdates({ () -> Void in
             
-            var indexes =  Set<NSIndexPath>()
-            
-            for node in insertedNodes {
-                indexes.insert(NSIndexPath(forItem: node.0.idx+1, inSection: 0))
+            if insertedNodes.count > 0 {
+                
+                var indexes =  Set<NSIndexPath>()
+                
+                for node in insertedNodes {
+                    indexes.insert(NSIndexPath(forItem: node.0.idx+1, inSection: 0))
+                }
+                
+                self.animator().insertItemsAtIndexPaths(indexes)
             }
             
-            self.animator().insertItemsAtIndexPaths(indexes)
+            }) { (completed) -> Void in
         }
     }
     
