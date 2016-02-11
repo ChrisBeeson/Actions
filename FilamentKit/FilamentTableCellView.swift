@@ -21,9 +21,10 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate {
     public var presenter: SequencePresenter? {
         
         didSet {
-            presenter!.addDelegate(self)
-            assert(collectionView != nil)
-            collectionView.presenter = presenter!
+            collectionView.presenter = presenter
+            if presenter != nil {
+                presenter!.addDelegate(self)
+            }
             updateCellView()
         }
     }
@@ -60,6 +61,7 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate {
         
         if presenter != nil {
             titleTextField.stringValue = presenter!.title
+            collectionView.reloadData()
         }
     }
     

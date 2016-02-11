@@ -67,7 +67,7 @@ public class FilamentDocument: NSDocument {
         
         let newDoc = FilamentDocument()
         
-        let actionNodes = [Node(text: "Action 1", type: .Action, rules: nil), Node(text: "Action 2", type: .Action, rules: nil), Node(text: "Action 3", type: .Action, rules: nil)]
+        let actionNodes = [Node(text: "Action 1", type: .Action, rules: nil), Node(text: "Action 2", type: .Action, rules: nil)]
         let sequence = Sequence(name: title, actionNodes: actionNodes)
         
         // sequence.title = title
@@ -78,11 +78,8 @@ public class FilamentDocument: NSDocument {
         let url = storageDir().URLByAppendingPathComponent(sequence.filename)
         
         newDoc.saveToURL(url, ofType: AppConfiguration.filamentFileExtension , forSaveOperation:.SaveOperation, completionHandler: { (Err: NSError?) -> Void in
-            
             if Err != nil {
                 print(Err!.localizedDescription)
-            } else {
-                print ("Created new Sequence: \(title)")
             }
         })
         

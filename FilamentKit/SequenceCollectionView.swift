@@ -53,6 +53,7 @@ import Foundation
 
     deinit {
         presenter?.removeDelegate(self)
+        presenter = nil
     }
     
     
@@ -118,28 +119,24 @@ import Foundation
                     indexes.insert(NSIndexPath(forItem: node.0.idx+1, inSection: 0))
                 }
                 
-                self.animator().insertItemsAtIndexPaths(indexes)
+                self.insertItemsAtIndexPaths(indexes)
+            }
+            
+            
+            if deletedNodes.count > 0 {
+                var indexes =  Set<NSIndexPath>()
+                
+                for node in insertedNodes {
+                    indexes.insert(NSIndexPath(forItem: node.0.idx+1, inSection: 0))
+                }
+                
+                self.deleteItemsAtIndexPaths(indexes)
             }
             
             }) { (completed) -> Void in
         }
     }
-    
-    
-    
-    
-    /*
-  public func sequencePresenterDidInsertNodes(sequencePresenter: SequencePresenter,  nodes:[NodeAtIndex]) {
-    
-    
-    let indexes = Set([ NSIndexPath(forItem: atIndex-1, inSection: 0)])
-    self.insertItemsAtIndexPaths(indexes)
-    
-    //reloadData()
         
-    }
-*/
-    
     
     //MARK: First Responder Events
     
@@ -165,8 +162,25 @@ import Foundation
     
      public func delete(theEvent: NSEvent) {
     
-    Swift.print("Delete")
+        var nodesToDelete = [Node]()
+        
+        for indexPath in self.selectionIndexPaths {
+            
+            if let object = self.itemAtIndexPath(indexPath) {
+            
+            if object.isKindOfClass(ActionNodeCollectionViewItem) {
+                
+                let item = object as! ActionNodeCollectionViewItem
+                nodesToDelete.append(item.node!)
+            }
+            }
+        }
+        presenter?.deleteNodes(nodesToDelete)
+    }
     
+    
+    override public func keyDown(event: NSEvent) {
+        interpretKeyEvents([event]) // calls insertText(_:), moveUp(_:), etc.
     }
     
 

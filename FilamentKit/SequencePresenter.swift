@@ -49,7 +49,7 @@ public class SequencePresenter: NSObject {
     
     
     public var nodes:[Node]? {
-        precondition(sequence!.validSequence(), "Trying to present a sequence that is not Valid")
+        //  precondition(sequence!.validSequence(), "Trying to present a sequence that is not Valid")
         return sequence!.nodeChain()
     }
     
@@ -85,15 +85,15 @@ public class SequencePresenter: NSObject {
         }
         
         let oldNodes = sequence!.nodeChain()
-        
         sequence!.insertActionNode(node!, index: index)
-        
         informDelegatesOfChangesToNodeChain(oldNodes)
     
         //TODO:Undo
         // undoManager?.prepareWithInvocationTarget(self).removeNode(node)
         let undoActionName = NSLocalizedString("Remove Node", comment: "")
         undoManager?.setActionName(undoActionName)
+        
+        delegates.forEach { $0.sequencePresenterDidFinishChangingNodeLayout(self) }
     }
 
     
@@ -110,85 +110,31 @@ public class SequencePresenter: NSObject {
     }
 }
     
-    /*
-    public func insertNodes(nodes:[Node]) {
-        
+
+    public func deleteNodes(nodes: [Node]) {
+    
         if nodes.isEmpty { return }
         
-        delegate?.sequencePresenterWillChangeNodeLayout(self, isInitialLayout: false)
-        
-        for node in nodes{
-            unsafeInsertNode(node)
-        }
-        
-        delegate?.sequencePresenterDidChangeNodeLayout(self, isInitialLayout: false)
-        
-        // Undo
-        undoManager?.prepareWithInvocationTarget(self).removeNodes(nodes)
-
-        let undoActionName = NSLocalizedString("Remove", comment: "")
-        undoManager?.setActionName(undoActionName)
-    }
-    
-
-    @objc public func removeNode(node: Node) {
-        
-        let nodeIndex = presentedNodes?.indexOf(node)
-        
-        if nodeIndex == nil {
-            preconditionFailure("A list item was requested to be removed that isn't in the list.")
-        }
-        
-        delegate?.sequencePresenterWillChangeNodeLayout(self, isInitialLayout: false)
-        
-        sequence!.actionNodes.removeAtIndex(nodeIndex!)
-        
-        delegate?.sequencePresenter(self, didRemoveNode: node, atIndex: nodeIndex!)
-
-        delegate?.sequencePresenterDidChangeNodeLayout(self, isInitialLayout: false)
-
-        // Undo
-        undoManager?.prepareWithInvocationTarget(self).insertNodesForUndo([node], atIndexes: [nodeIndex!])
-        
-        let undoActionName = NSLocalizedString("Remove", comment: "")
-        undoManager?.setActionName(undoActionName)
-    }
-
-
-    
-    @objc public func removeNodes(nodes: [Node]) {
-        
-        if nodes.isEmpty { return }
-        
-        delegate?.sequencePresenterWillChangeNodeLayout(self, isInitialLayout: false)
-        
-        var removedIndexes = [Int]()
+        let oldNodes = sequence!.nodeChain()
         
         for node in nodes {
-            
-            if let nodeIndex = presentedNodes?.indexOf(node) {
-                
+            if let nodeIndex = nodes.indexOf(node) {
                 sequence!.actionNodes.removeAtIndex(nodeIndex)
-                
-                delegate?.sequencePresenter(self, didRemoveNode: node, atIndex: nodeIndex)
-                
-                removedIndexes += [nodeIndex]
-            }
-            else {
-                preconditionFailure("A list item was requested to be removed that isn't in the list.")
             }
         }
         
-        delegate?.sequencePresenterDidChangeNodeLayout(self, isInitialLayout: false)
-        
-        // Undo
+        informDelegatesOfChangesToNodeChain(oldNodes)
+    
+        //TODO: Undo 
+        /*
         undoManager?.prepareWithInvocationTarget(self).insertNodesForUndo(Array(nodes.reverse()), atIndexes: Array(removedIndexes.reverse()))
         
         let undoActionName = NSLocalizedString("Remove", comment: "")
         undoManager?.setActionName(undoActionName)
+        */
     }
     
-
+/*
     
     @objc public func updateNode(node: Node, withText newText: String) {
         

@@ -99,6 +99,7 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
             if let cellView = tableView.viewAtColumn(0, row: tableView.selectedRow, makeIfNecessary: false) as? FilamentTableCellView {
                 let docToDel = FilamentDocumentsManager.sharedManager.documentForSequence(cellView.presenter!.archiveableSeq)
                 FilamentDocumentsManager.permanentlyDeleteDocument(docToDel)
+                cellView.presenter = nil
             }
         default: break
         }
