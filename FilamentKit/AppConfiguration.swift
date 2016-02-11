@@ -41,6 +41,10 @@ public class AppConfiguration: NSObject {
         return "fil"
     }
     
+    public class var defaultActionNodeName: String {
+        return "Untitled"
+    }
+    
     
     public class var localizedDocumentFolderName: String {
         return NSLocalizedString("Filament", comment: "The name of the documents folder")
@@ -110,7 +114,7 @@ public class AppConfiguration: NSObject {
     }
     
     
-    public var storageDirectory: NSURL {
+    public func storageDirectory() -> NSURL {
         
         switch storageOption {
             

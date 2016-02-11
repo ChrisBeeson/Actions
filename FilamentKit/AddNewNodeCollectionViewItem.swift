@@ -12,6 +12,7 @@ class AddNewNodeCollectionViewItem : NSCollectionViewItem {
     
     @IBOutlet weak var plusButton: NSButton!
     
+    var presenter : SequencePresenter?
     
     override func viewDidLoad() {
         
@@ -25,7 +26,7 @@ class AddNewNodeCollectionViewItem : NSCollectionViewItem {
     
     @IBAction func plusButtonPressed(sender: AnyObject) {
         
-
+        presenter?.insertActionNode(nil, index: nil)
     }
     
 

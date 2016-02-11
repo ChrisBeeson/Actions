@@ -8,24 +8,26 @@
 
 import Foundation
 
-public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSource, NSCollectionViewDelegate {
+@objc public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSource, NSCollectionViewDelegate, SequencePresenterDelegate {
     
-    public enum ItemType: Int { case DateNode, ActionNode, TransitionNode, NewNode }
-    
-    public var sequence: Sequence? {
+    enum ItemType: Int { case DateNode, ActionNode, TransitionNode, NewNode }
+
+    public var presenter : SequencePresenter? {
         didSet {
-            //  reloadData()
+            presenter?.addDelegate(self)
         }
     }
     
-    // MARK: Inits
+    // MARK: Life Cycle
     
     public required init(coder aDecoder: NSCoder)  {
+        
         super.init(coder: aDecoder)!
         commonInit()
     }
     
     override init(frame: CGRect) {
+        
         super.init(frame: frame)
         commonInit()
     }
@@ -48,28 +50,33 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
         self.registerNib(addNib, forItemWithIdentifier: "AddNewNodeCollectionViewItem")
     }
     
+
+    deinit {
+        presenter?.removeDelegate(self)
+    }
+    
     
     //MARK: Datasource
     
     
     public func collectionView(collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        assert(sequence != nil)
-        let count = sequence!.allNodes().count+2
-        return count
+    
+        return presenter!.nodes!.count + 2
     }
     
     
     public func collectionView(collectionView: NSCollectionView, itemForRepresentedObjectAtIndexPath indexPath: NSIndexPath) -> NSCollectionViewItem {
+        
+        let nodes = presenter!.nodes!
         
         if indexPath.item == 0 {
             
             let item = makeItemWithIdentifier("DateNodeCollectionViewItem", forIndexPath: indexPath)
             return item
             
-        } else if indexPath.item < sequence!.allNodes().count+1 {
+        } else if indexPath.item < nodes.count+1 {
             
-            let node = sequence!.allNodes()[indexPath.item-1]
+            let node = nodes[indexPath.item-1]
             
             switch node.type {
             case .Action:
@@ -87,12 +94,46 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
             }
         } else {
             
-            // must be the last spot
+            // add
             
-            let item = makeItemWithIdentifier("AddNewNodeCollectionViewItem", forIndexPath: indexPath)
+            let item = makeItemWithIdentifier("AddNewNodeCollectionViewItem", forIndexPath: indexPath) as! AddNewNodeCollectionViewItem
+            item.presenter = presenter
             return item
         }
     }
+    
+    
+    //MARK: Sequence Delegate Protocol 
+    
+    
+    public func sequencePresenterDidUpdateChainContents(insertedNodes:[nodeAtIndex], deletedNodes:[nodeAtIndex]) {
+        
+        if insertedNodes.count > 0 {
+            
+            var indexes =  Set<NSIndexPath>()
+            
+            for node in insertedNodes {
+                indexes.insert(NSIndexPath(forItem: node.0.idx+1, inSection: 0))
+            }
+            
+            self.animator().insertItemsAtIndexPaths(indexes)
+        }
+    }
+    
+    
+    
+    
+    /*
+  public func sequencePresenterDidInsertNodes(sequencePresenter: SequencePresenter,  nodes:[NodeAtIndex]) {
+    
+    
+    let indexes = Set([ NSIndexPath(forItem: atIndex-1, inSection: 0)])
+    self.insertItemsAtIndexPaths(indexes)
+    
+    //reloadData()
+        
+    }
+*/
     
     
     //MARK: First Responder Events
@@ -124,18 +165,20 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
     }
     
 
-    //MARK: Delegate
+    //MARK: Collection View Delegate
     
     public func collectionView(collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> NSSize {
+        
+        let nodes = presenter!.nodes!
         
         if indexPath.item == 0 {
             
             return NSSize(width: 60,height: 35)
         }
             
-        else if indexPath.item < sequence!.allNodes().count+1 {
+        else if indexPath.item < nodes.count+1 {
             
-            let node = sequence!.allNodes()[indexPath.item-1]
+            let node = nodes[indexPath.item-1]
             
             switch node.type {
                 
@@ -144,8 +187,9 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
             case .Action:
                 
                 if let item = collectionView.itemAtIndex(indexPath.item) {
+                    return NSSize(width: 100,height: 35)
                     Swift.print("using real size of view")
-                return item.view.intrinsicContentSize
+                    //return item.view.intrinsicContentSize
                     
                 } else {
                     return NSSize(width: 100,height: 35)

@@ -13,8 +13,6 @@ public enum NodeType: Int { case Action = 0, Transition, All, None }
 
 public class Node: NSObject, NSCoding {
     
-    // MARK: Properties
-    
     public var title = ""
     public var rules = [Rule]()
     public var type = NodeType.Action

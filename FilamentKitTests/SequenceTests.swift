@@ -30,11 +30,11 @@ class SequenceTests: XCTestCase {
     }
     
     
-    func testAllNodes() {
+    func testchain() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
-        sequence!.logAllNodes()
+        sequence!.logchain()
         
         XCTAssert(sequence!.validSequence() == true)
     }
@@ -51,12 +51,12 @@ class SequenceTests: XCTestCase {
         sequence!.insertActionNode(Node(text: "Middle", type: .Action, rules: nil),index: 2)
         XCTAssert(sequence!.validSequence() == true)
         
-        sequence!.logAllNodes()
+        sequence!.logchain()
     }
     
     func testValidSequence() {
         
-        let nodes = sequence!.allNodes()
+        let nodes = sequence!.nodeChain()
         nodes[0].rightTransitionNode = nil
         XCTAssert(sequence!.validSequence() == false)
     }
@@ -64,24 +64,24 @@ class SequenceTests: XCTestCase {
     
     func testValidSequence2() {
         
-        let nodes = sequence!.allNodes()
+        let nodes = sequence!.nodeChain()
         nodes[nodes.count-1].leftTransitionNode = nil
         XCTAssert(sequence!.validSequence() == false)
     }
     
     func testValidSequence3(){
         
-        let nodes = sequence!.allNodes()
+        let nodes = sequence!.nodeChain()
         nodes[0].type = .Transition
         XCTAssert(sequence!.validSequence() == false)
     }
     
     func testDelete () {
         
-        let nodeToDelete = sequence!.allNodes()[2]
-        // let index = sequence!.allNodes().indexOf(nodeToDelete)
+        let nodeToDelete = sequence!.nodeChain()[2]
+        // let index = sequence!.nodeChain().indexOf(nodeToDelete)
         sequence!.removeActionNode(nodeToDelete)
-        sequence!.logAllNodes()
+        sequence!.logchain()
         XCTAssert(sequence!.validSequence() == true)
     }
     

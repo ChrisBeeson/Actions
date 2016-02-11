@@ -47,7 +47,7 @@ public class SequenceView : NSView {
 
 */
         /*
-        for node in sequence.allNodes() {
+        for node in sequence.nodeChain() {
             
             switch (node.type) {
                 

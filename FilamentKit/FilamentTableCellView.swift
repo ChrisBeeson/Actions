@@ -19,10 +19,11 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate {
     @IBOutlet weak var collectionView: SequenceCollectionView!
     
     public var presenter: SequencePresenter? {
+        
         didSet {
+            presenter!.addDelegate(self)
             assert(collectionView != nil)
-            collectionView.sequence = presenter!.archiveableSeq
-            presenter!.delegate = self
+            collectionView.presenter = presenter!
             updateCellView()
         }
     }

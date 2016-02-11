@@ -24,10 +24,13 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         }
     }
     
-    override public func viewDidAppear() {
+    override public func viewWillAppear() {
+        
         tableView!.reloadData()
         tableView.deselectAll(self)
     }
+    
+    
     
     // MARK: TableView DataSource
     
@@ -57,7 +60,10 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     }
     
     
+    
+    
     // MARK: Filaments Manager Delegate
+    
     
     public func filamentsDocumentsManagerDidUpdateContents(inserted inserted:[FilamentDocument], removed:[FilamentDocument]) {
         
@@ -70,16 +76,11 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
             self.tableView.reloadData()
         }
     }
-}
 
+    
 
+    // MARK: First Responder Events
 
-//
-// MARK: First Responder Events
-//
-
-
-extension FilamentsTableViewController {
     
     public func delete(theEvent: NSEvent) {   // TODO: Muliple
         

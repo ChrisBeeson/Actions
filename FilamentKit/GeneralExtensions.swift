@@ -8,28 +8,18 @@
 
 import Foundation
 
-
-extension RangeReplaceableCollectionType where Generator.Element : Equatable {
-    
-    mutating func removeObject(object : Generator.Element) {
-        if let index = self.indexOf(object) {
-            self.removeAtIndex(index)
-        }
-    }
-}
-
-extension IntegerType {
-    
-    func isEven() -> Bool { return self % 2 == 0 ? true : false }
-    
-}
-
 extension Array where Element: Equatable {
- 
-    mutating func removeObject(object: Element) {
-        if let index = self.indexOf(object) {
-            self.removeAtIndex(index)
+    
+    mutating func removeObject<U: Equatable>(object: U) -> Bool {
+        for (idx, objectToCompare) in self.enumerate() {  //in old swift use enumerate(self)
+            if let to = objectToCompare as? U {
+                if object == to {
+                    self.removeAtIndex(idx)
+                    return true
+                }
+            }
         }
+        return false
     }
     
     mutating func removeObjects(array: [Element]) {
@@ -37,4 +27,24 @@ extension Array where Element: Equatable {
             self.removeObject(object)
         }
     }
+    
 }
+
+/*
+extension RangeReplaceableCollectionType where Generator.Element : Equatable {
+
+mutating func removeObject(object : Generator.Element) {
+if let index = self.indexOf(object) {
+self.removeAtIndex(index)
+}
+}
+}
+*/
+
+
+extension IntegerType {
+    
+    func isEven() -> Bool { return self % 2 == 0 ? true : false }
+    
+}
+

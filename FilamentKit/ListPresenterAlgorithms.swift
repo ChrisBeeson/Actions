@@ -3,7 +3,7 @@
     See LICENSE.txt for this sample’s licensing information
     
     Abstract:
-    Simple internal helper functions to share across `IncompleteNodesPresenter` and `AllNodesPresenter`. These functions help diff two arrays of `Node` objects.
+    Simple internal helper functions to share across `IncompleteNodesPresenter` and `chainPresenter`. These functions help diff two arrays of `Node` objects.
 */
 
 import Foundation

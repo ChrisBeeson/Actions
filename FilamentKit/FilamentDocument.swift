@@ -59,7 +59,7 @@ public class FilamentDocument: NSDocument {
     
     public func storageURL() -> NSURL {
         let storageDir = AppConfiguration.sharedConfiguration.storageDirectory
-        let url = storageDir.URLByAppendingPathComponent(unarchivedSequence!.filename)
+        let url = storageDir().URLByAppendingPathComponent(unarchivedSequence!.filename)
         return url
     }
     
@@ -75,7 +75,7 @@ public class FilamentDocument: NSDocument {
         newDoc.unarchivedSequence = sequence
         
         let storageDir = AppConfiguration.sharedConfiguration.storageDirectory
-        let url = storageDir.URLByAppendingPathComponent(sequence.filename)
+        let url = storageDir().URLByAppendingPathComponent(sequence.filename)
         
         newDoc.saveToURL(url, ofType: AppConfiguration.filamentFileExtension , forSaveOperation:.SaveOperation, completionHandler: { (Err: NSError?) -> Void in
             
@@ -92,7 +92,7 @@ public class FilamentDocument: NSDocument {
     public func save() {
         
         let storageDir = AppConfiguration.sharedConfiguration.storageDirectory
-        let url = storageDir.URLByAppendingPathComponent(_sequencePresenter!.archiveableSeq.filename)
+        let url = storageDir().URLByAppendingPathComponent(_sequencePresenter!.archiveableSeq.filename)
         
         self.saveToURL(url, ofType: AppConfiguration.filamentFileExtension , forSaveOperation:.SaveOperation, completionHandler: { (Err: NSError?) -> Void in
             

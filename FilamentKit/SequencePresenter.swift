@@ -2,11 +2,12 @@
 //  Filament
 //
 //  Created by Chris Beeson on 5/09/2015.
-//  Copyright (c) 2015 Andris Ltd. All rights reserved.
+//  Copyright (c) 2016 Andris Ltd. All rights reserved.
 //
 
 import Foundation
 
+public typealias nodeAtIndex = (DiffStep<Node>, Int)
 
 public class SequencePresenter: NSObject {
     
@@ -14,18 +15,33 @@ public class SequencePresenter: NSObject {
     
     private var sequence: Sequence?
     public var undoManager: NSUndoManager?
-    public weak var delegate: SequencePresenterDelegate? // Controller
+    private var delegates = [SequencePresenterDelegate]()
+    
+    // MARK: Delegate management 
+    
+    public func addDelegate(delegate:SequencePresenterDelegate) {
+        
+        if !delegates.contains({$0 === delegate}) {
+        
+        delegates.append(delegate)
+        }
+    }
+    
+    public func removeDelegate(delegate:SequencePresenterDelegate) {
+        //delegates = delegates.filter { return $0 !== delegate }
+        
+        //delegates.removeObject(delegate)
+    }
+    
 
     public var title: String {
         get {
             return sequence!.title
         }
         set {
-            
             sequence!.title = newValue
         }
     }
-    
     
     public var archiveableSeq: Sequence {
         return sequence!
@@ -34,7 +50,7 @@ public class SequencePresenter: NSObject {
     
     public var nodes:[Node]? {
         precondition(sequence!.validSequence(), "Trying to present a sequence that is not Valid")
-        return sequence!.allNodes()
+        return sequence!.nodeChain()
     }
     
 
@@ -49,31 +65,50 @@ public class SequencePresenter: NSObject {
     
     public func setSequence(sequence: Sequence) {
             self.sequence = sequence
-            delegate?.sequencePresenterDidRefreshCompleteLayout(self)
+        
+        delegates.forEach{ $0.sequencePresenterDidRefreshCompleteLayout(self) }
     }
     
 
     // MARK: Methods
 
-/*
-    public func insertNode(node: Node, index: Int?) {
+    /*
+    If node and Int is nil then insertNode will create a new untitled node, and place it at the end of the list.
+    */
+
+    public func insertActionNode(var node: Node?, index: Int?) {
+
+        delegates.forEach { $0.sequencePresenterWillChangeNodeLayout(self) }
         
-        if sequence == nil {return}
+        if node == nil {
+            node = Node(text: AppConfiguration.defaultActionNodeName, type: .Action, rules: nil)
+        }
         
-        delegate?.sequencePresenterWillChangeNodeLayout(self, isInitialLayout:false)
+        let oldNodes = sequence!.nodeChain()
         
-        sequence!.insertActionNode(node, index: index)
+        sequence!.insertActionNode(node!, index: index)
         
-        delegate?.sequencePresenterDidChangeNodeLayout(self, isInitialLayout:false)
-        
-        // Undo
-      //  undoManager?.prepareWithInvocationTarget(self).removeNode(node)
-        
+        informDelegatesOfChangesToNodeChain(oldNodes)
+    
+        //TODO:Undo
+        // undoManager?.prepareWithInvocationTarget(self).removeNode(node)
         let undoActionName = NSLocalizedString("Remove Node", comment: "")
         undoManager?.setActionName(undoActionName)
     }
 
-*/
+    
+    func informDelegatesOfChangesToNodeChain(oldNodes:[Node]) {
+        
+        let diff = oldNodes.diff(sequence!.nodeChain())
+    
+        if (diff.results.count > 0) {
+            
+            let insertedNodes = diff.insertions.map { ($0, $0.idx) }
+            let deletedNodes = diff.deletions.map { ($0, $0.idx) }
+            
+            delegates.forEach { $0.sequencePresenterDidUpdateChainContents(insertedNodes, deletedNodes:deletedNodes) }
+    }
+}
     
     /*
     public func insertNodes(nodes:[Node]) {
@@ -302,3 +337,26 @@ public class SequencePresenter: NSObject {
 */
 
 }
+
+
+/*
+extension Array where Element: Equatable {
+    mutating func remove(object: Element) {
+        if let index = indexOf({ $0 == object }) {
+            removeAtIndex(index)
+        }
+    }
+}
+*/
+
+extension RangeReplaceableCollectionType where Generator.Element : Equatable {
+    
+    // Remove first collection element that is equal to the given `object`:
+    mutating func removeObject(object : Generator.Element) {
+        if let index = self.indexOf(object) {
+            self.removeAtIndex(index)
+        }
+    }
+}
+
+

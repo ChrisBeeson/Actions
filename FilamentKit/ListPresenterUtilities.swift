@@ -3,7 +3,7 @@
     See LICENSE.txt for this sample’s licensing information
     
     Abstract:
-    Helper functions to perform common operations in `IncompleteNodesPresenter` and `AllNodesPresenter`.
+    Helper functions to perform common operations in `IncompleteNodesPresenter` and `chainPresenter`.
 */
 
 import Foundation

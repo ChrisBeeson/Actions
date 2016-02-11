@@ -26,7 +26,7 @@ public class FilamentDocumentsManager : DirectoryMonitorDelegate {
         
         documents = FilamentDocumentsManager.documentsForURLs(FilamentDocumentsManager.documentDirectoryList())
         
-        directoryMonitor = DirectoryMonitor(URL: AppConfiguration.sharedConfiguration.storageDirectory)
+        directoryMonitor = DirectoryMonitor(URL: AppConfiguration.sharedConfiguration.storageDirectory())
         directoryMonitor.delegate = self
         directoryMonitor.startMonitoring()
     }
@@ -84,7 +84,6 @@ public class FilamentDocumentsManager : DirectoryMonitorDelegate {
                 }
             }
             
-            print("removing documents from array: \(removedDocs)")
             self.documents.removeObjects(removedDocs)
             
             self.delegate?.filamentsDocumentsManagerDidUpdateContents(inserted:insertedDocs, removed:removedDocs)
@@ -100,7 +99,7 @@ public extension FilamentDocumentsManager {
     class func documentDirectoryList() -> ([NSURL]) {
         
         let fileManager = NSFileManager.defaultManager()
-        let storageDir = AppConfiguration.sharedConfiguration.storageDirectory
+        let storageDir = AppConfiguration.sharedConfiguration.storageDirectory()
         
         do {
             return try fileManager.contentsOfDirectoryAtURL(storageDir, includingPropertiesForKeys: nil, options:NSDirectoryEnumerationOptions.SkipsHiddenFiles)

@@ -10,7 +10,7 @@ import Foundation
 
 extension Sequence {
     
-    public func allNodes() -> [Node] {
+    public func nodeChain() -> [Node] {
         
         var nodesToReturn = [Node]()
         
@@ -37,7 +37,7 @@ extension Sequence {
             if actionNodes[index].rightTransitionNode != actionNodes[index+1].leftTransitionNode { return false }
         }
         
-        let nodes = allNodes()
+        let nodes = nodeChain()
         
         for var index = 0 ; index < nodes.count-1 ; ++index {
             if index.isEven() && nodes[index].type != .Action { return false }
@@ -97,13 +97,13 @@ extension Sequence {
     }
     
     
-    public func logAllNodes() {
+    public func logchain() {
         
-        for node in allNodes() { print (String(node.type) + ": " + node.title) }
+        for node in nodeChain() { print (String(node.type) + ": " + node.title) }
         validSequence() ? NSLog("Sequence is Valid") : NSLog("Sequence is NOT Valid")
     }
     
-    public func forceCreateTransistionNodesForActionNodes() {
+    func forceCreateTransistionNodesForActionNodes() {
         
         if actionNodes.count == 0 {return}
         
@@ -148,6 +148,8 @@ extension Sequence {
     public enum NodePostion: Int { case StartingAction, Transition, Action, EndingAction,None }
     
     public func postion(node: Node) -> NodePostion {
+        
+        print("using this useless func")
         
         if let index = actionNodes.indexOf(node) {
         

@@ -34,6 +34,7 @@
 		473EAEE31BA3A91400AFEA2A /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 473EAEE21BA3A91400AFEA2A /* EventKit.framework */; };
 		473EAEE61BA3AD0300AFEA2A /* RuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473EAEE41BA3AD0300AFEA2A /* RuleTests.swift */; };
 		4753D3AF1BE378720071DB59 /* WorkingWeekRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4753D3AE1BE378720071DB59 /* WorkingWeekRule.swift */; };
+		475927B11C6C725700D24DE9 /* Dwifft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475927B01C6C725700D24DE9 /* Dwifft.swift */; };
 		477212061BED699500D5E988 /* FilamentDocumentsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477212051BED699500D5E988 /* FilamentDocumentsManager.swift */; };
 		477626951C53839B00C35599 /* FilamentKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 477626931C53823B00C35599 /* FilamentKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4778C0A81C656B2500F5A259 /* DateNodeCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4778C0A71C656B2500F5A259 /* DateNodeCollectionViewItem.swift */; };
@@ -147,6 +148,7 @@
 		473EAEE21BA3A91400AFEA2A /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		473EAEE41BA3AD0300AFEA2A /* RuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleTests.swift; sourceTree = "<group>"; };
 		4753D3AE1BE378720071DB59 /* WorkingWeekRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkingWeekRule.swift; sourceTree = "<group>"; };
+		475927B01C6C725700D24DE9 /* Dwifft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dwifft.swift; sourceTree = "<group>"; };
 		477212051BED699500D5E988 /* FilamentDocumentsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilamentDocumentsManager.swift; sourceTree = "<group>"; };
 		477212071BED9DCB00D5E988 /* Filament.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Filament.entitlements; path = Filament/Filament.entitlements; sourceTree = "<group>"; };
 		477626931C53823B00C35599 /* FilamentKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilamentKit.h; sourceTree = "<group>"; };
@@ -186,7 +188,6 @@
 		83F6B9571B994652002A5AAF /* Filament.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Filament.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F6B95B1B994652002A5AAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83F6B95C1B994652002A5AAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		83F6B95E1B994652002A5AAF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		83F6B9601B994652002A5AAF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		83F6B9691B994652002A5AAF /* FilamentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FilamentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F6B96E1B994652002A5AAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -325,19 +326,27 @@
 			name = "Presenter Helpers";
 			sourceTree = "<group>";
 		};
+		475927AF1C6C723D00D24DE9 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				475927B01C6C725700D24DE9 /* Dwifft.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		4778C0AB1C657F6500F5A259 /* SequenceCollectionView */ = {
 			isa = PBXGroup;
 			children = (
 				833AE3311C67FB6D002F35C1 /* TransitionNodeCollectionViewItem.xib */,
 				833AE32F1C67F85B002F35C1 /* ActionNodeCollectionViewItem.xib */,
 				833AE32D1C67E463002F35C1 /* DateNodeCollectionViewItem.xib */,
+				834F85D01C6ACFA2009CC72F /* AddNewNodeCollectionViewItem.xib */,
 				8329DE9A1C63DF10001B3A2F /* SequenceCollectionView.swift */,
 				4778C0A71C656B2500F5A259 /* DateNodeCollectionViewItem.swift */,
 				4778C0A91C657D8F00F5A259 /* ActionNodeCollectionViewItem.swift */,
 				4791AB7E1C6706E3007FBEB8 /* TransitionNodeCollectionViewItem.swift */,
-				4778C0AC1C657F7B00F5A259 /* NodeViews */,
 				834F85CE1C6ACF5E009CC72F /* AddNewNodeCollectionViewItem.swift */,
-				834F85D01C6ACFA2009CC72F /* AddNewNodeCollectionViewItem.xib */,
+				4778C0AC1C657F7B00F5A259 /* NodeViews */,
 			);
 			name = SequenceCollectionView;
 			sourceTree = "<group>";
@@ -381,6 +390,7 @@
 		47AFF8531BE497D700514857 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				475927AF1C6C723D00D24DE9 /* Helpers */,
 				47CD21BE1BDF797B00AF25BE /* GeneralExtensions.swift */,
 				479CD2841C1B8AA300C8D1D6 /* UI */,
 				83C73E081BE2E35A0045973C /* Configuration */,
@@ -485,7 +495,6 @@
 			children = (
 				83F6B95C1B994652002A5AAF /* AppDelegate.swift */,
 				47B696431BE5640800260C2A /* UI */,
-				83F6B95E1B994652002A5AAF /* ViewController.swift */,
 				83F6B9601B994652002A5AAF /* Images.xcassets */,
 				83DDAA4E1B997C9A001A4DBE /* SystemTrayMenu.xib */,
 				83F6B95A1B994652002A5AAF /* Supporting Files */,
@@ -777,6 +786,7 @@
 				473574751B9A689B00493CA0 /* Node.swift in Sources */,
 				8329DE9B1C63DF10001B3A2F /* SequenceCollectionView.swift in Sources */,
 				83C73E0E1BE31C4F0045973C /* AppConfiguration.swift in Sources */,
+				475927B11C6C725700D24DE9 /* Dwifft.swift in Sources */,
 				477C2CB51C40B3AD0071467C /* TransitionNodeView.swift in Sources */,
 				47DF1C471C6879FE00482390 /* AutoSizingTextField.swift in Sources */,
 				473574791B9A68BE00493CA0 /* Rule.swift in Sources */,
