@@ -12,18 +12,18 @@ public class Presenter: NSObject {
     
     public var undoManager: NSUndoManager?
     
-    internal var delegates = [SequencePresenterDelegate]()
+    internal var delegates = [PresenterDelegate]()
     
     // MARK: Delegate management
     
-    public func addDelegate(delegate:SequencePresenterDelegate) {
+    public func addDelegate(delegate:PresenterDelegate) {
         
         if !delegates.contains({$0 === delegate}) {
             delegates.append(delegate)
         }
     }
     
-    public func removeDelegate(delegate:SequencePresenterDelegate) {
+    public func removeDelegate(delegate:PresenterDelegate) {
         
         //delegates = delegates.filter { return $0 !== delegate }
         //delegates.removeObject(delegate)

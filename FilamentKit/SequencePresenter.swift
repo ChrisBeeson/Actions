@@ -9,11 +9,29 @@ import Foundation
 
 public typealias nodeAtIndex = (DiffStep<Node>, Int)
 
-public class SequencePresenter: Presenter {
+public class SequencePresenter : NSObject {
     
     // MARK: Properties
     
     private var sequence: Sequence?
+    public var undoManager: NSUndoManager?
+    private var delegates = [SequencePresenterDelegate]()
+    
+    // MARK: Delegate management
+    
+    public func addDelegate(delegate:SequencePresenterDelegate) {
+        
+        if !delegates.contains({$0 === delegate}) {
+            delegates.append(delegate)
+        }
+    }
+    
+    public func removeDelegate(delegate:SequencePresenterDelegate) {
+        
+        //delegates = delegates.filter { return $0 !== delegate }
+        //delegates.removeObject(delegate)
+    }
+    
     
     public var title: String {
         get {
