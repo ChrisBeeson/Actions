@@ -35,7 +35,7 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, MLCalendarViewDe
             popover = NSPopover()
             popover!.animates = true
             popover!.behavior = .Transient
-            popover!.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
+            popover!.appearance = NSAppearance(named: NSAppearanceNameAqua)
             
             if calView == nil {
                 calView = MLCalendarView()

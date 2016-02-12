@@ -10,45 +10,49 @@
         <customObject id="-2" userLabel="File's Owner" customClass="NodeDetailViewController" customModule="FilamentKit">
             <connections>
                 <outlet property="notesTextField" destination="soW-a3-LlD" id="lpq-MK-hdH"/>
+                <outlet property="rulesView" destination="Wro-5z-UqJ" id="k86-lD-9rv"/>
+                <outlet property="sceduledDateView" destination="Jnq-gc-YXg" id="ndH-0Q-vsO"/>
+                <outlet property="stackView" destination="Uuw-IY-nOe" id="CwD-w2-5bC"/>
                 <outlet property="titleTextField" destination="vQH-96-PCB" id="Wqu-Py-zpu"/>
+                <outlet property="titleView" destination="mAK-EC-N9g" id="iWS-Zm-y0Z"/>
                 <outlet property="tokenField" destination="WcC-2Z-6n2" id="eI7-SH-m5q"/>
                 <outlet property="view" destination="c22-O7-iKe" id="EkG-En-0xY"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView wantsLayer="YES" misplaced="YES" id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="328" height="195"/>
+        <customView wantsLayer="YES" id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="328" height="184"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uuw-IY-nOe">
-                    <rect key="frame" x="20" y="20" width="288" height="155"/>
+                <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uuw-IY-nOe">
+                    <rect key="frame" x="20" y="20" width="288" height="144"/>
                     <subviews>
-                        <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mAK-EC-N9g">
-                            <rect key="frame" x="0.0" y="97" width="288" height="58"/>
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="mAK-EC-N9g" userLabel="TitleView">
+                            <rect key="frame" x="0.0" y="105" width="288" height="39"/>
                             <subviews>
-                                <textField focusRingType="none" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vQH-96-PCB">
-                                    <rect key="frame" x="0.0" y="36" width="260" height="22"/>
+                                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vQH-96-PCB">
+                                    <rect key="frame" x="0.0" y="17" width="260" height="22"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="256" id="gj0-2n-fFl"/>
                                         <constraint firstAttribute="height" constant="22" id="kPg-XZ-XBS"/>
                                     </constraints>
-                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="left" title="My Text" usesSingleLineMode="YES" id="00O-nu-52x">
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="left" title="My Text" usesSingleLineMode="YES" id="00O-nu-52x">
                                         <font key="font" metaFont="system" size="18"/>
                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                                     </textFieldCell>
                                 </textField>
-                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="soW-a3-LlD">
-                                    <rect key="frame" x="0.0" y="0.0" width="290" height="33"/>
-                                    <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" placeholderString="Notes" id="NHT-jn-ZJs">
+                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="soW-a3-LlD">
+                                    <rect key="frame" x="0.0" y="0.0" width="290" height="14"/>
+                                    <textFieldCell key="cell" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" placeholderString="Notes" id="NHT-jn-ZJs">
                                         <font key="font" metaFont="smallSystem"/>
                                         <color key="textColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                                     </textFieldCell>
                                 </textField>
-                                <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tkg-p6-Wdc">
-                                    <rect key="frame" x="261" y="36" width="27" height="21"/>
+                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tkg-p6-Wdc">
+                                    <rect key="frame" x="261" y="17" width="27" height="21"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="E6K-aF-8sw"/>
                                         <constraint firstAttribute="width" constant="27" id="jIG-qz-74n"/>
@@ -70,8 +74,8 @@
                                 <constraint firstAttribute="trailing" secondItem="soW-a3-LlD" secondAttribute="trailing" id="wgK-rG-OO1"/>
                             </constraints>
                         </customView>
-                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="Jnq-gc-YXg">
-                            <rect key="frame" x="0.0" y="61" width="288" height="32"/>
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="Jnq-gc-YXg" userLabel="SceduledDateView">
+                            <rect key="frame" x="0.0" y="65" width="288" height="32"/>
                             <subviews>
                                 <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="wWm-tv-lB1">
                                     <rect key="frame" x="0.0" y="29" width="288" height="5"/>
@@ -100,7 +104,7 @@
                                     </constraints>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="12.30 Weds 16th June" id="u49-fr-dNX">
                                         <font key="font" metaFont="system"/>
-                                        <color key="textColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="textColor" white="0.28054807318581476" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
@@ -122,7 +126,7 @@
                                 <constraint firstItem="ZEx-8E-xlh" firstAttribute="centerY" secondItem="Jnq-gc-YXg" secondAttribute="centerY" id="w5k-vf-k0X"/>
                             </constraints>
                         </customView>
-                        <box title="Rules" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="Wro-5z-UqJ">
+                        <box title="Rules" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="Wro-5z-UqJ" userLabel="RulesView">
                             <rect key="frame" x="-3" y="-4" width="294" height="61"/>
                             <view key="contentView" id="tYG-DU-IR1">
                                 <rect key="frame" x="1" y="1" width="292" height="45"/>
@@ -138,10 +142,10 @@
                                     </tokenField>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="WcC-2Z-6n2" secondAttribute="bottom" id="VMi-FI-cWp"/>
-                                    <constraint firstAttribute="trailing" secondItem="WcC-2Z-6n2" secondAttribute="trailing" id="dH0-JV-1ZO"/>
-                                    <constraint firstItem="WcC-2Z-6n2" firstAttribute="top" secondItem="tYG-DU-IR1" secondAttribute="top" id="f2h-2g-APw"/>
-                                    <constraint firstItem="WcC-2Z-6n2" firstAttribute="leading" secondItem="tYG-DU-IR1" secondAttribute="leading" id="fAf-ej-Rmg"/>
+                                    <constraint firstItem="WcC-2Z-6n2" firstAttribute="top" secondItem="tYG-DU-IR1" secondAttribute="top" id="5mV-Ll-fhG"/>
+                                    <constraint firstAttribute="bottom" secondItem="WcC-2Z-6n2" secondAttribute="bottom" id="aQr-A3-sIm"/>
+                                    <constraint firstAttribute="trailing" secondItem="WcC-2Z-6n2" secondAttribute="trailing" id="k0h-VL-8Uo"/>
+                                    <constraint firstItem="WcC-2Z-6n2" firstAttribute="leading" secondItem="tYG-DU-IR1" secondAttribute="leading" id="yLI-Ym-hUM"/>
                                 </constraints>
                             </view>
                             <constraints>
@@ -173,8 +177,9 @@
                 <constraint firstItem="Uuw-IY-nOe" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="20" id="bkD-Jq-iQo"/>
                 <constraint firstAttribute="bottom" secondItem="Uuw-IY-nOe" secondAttribute="bottom" constant="20" id="bmH-7a-yDP"/>
             </constraints>
-            <point key="canvasLocation" x="-73" y="-93.5"/>
+            <point key="canvasLocation" x="-73" y="-94"/>
         </customView>
+        <dateFormatter dateStyle="medium" timeStyle="short" id="ige-uG-4DW"/>
     </objects>
     <resources>
         <image name="NSFollowLinkFreestandingTemplate" width="14" height="14"/>
