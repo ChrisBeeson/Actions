@@ -104,7 +104,7 @@ public class Node: NSObject, NSCoding {
         let clone = Node(text: title, type: type, rules: rules)
         clone.notes = notes.copy() as! String
         clone.UUID = UUID.copy() as! NSUUID
-        clone.event  = event!.copy() as? EKEvent
+        // clone.event  = event!.copy() as? EKEvent
         clone.leftTransitionNode = leftTransitionNode
         clone.rightTransitionNode = rightTransitionNode
         return clone

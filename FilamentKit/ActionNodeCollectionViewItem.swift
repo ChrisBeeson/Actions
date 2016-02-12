@@ -8,14 +8,14 @@
 
 import Foundation
 
-public class ActionNodeCollectionViewItem : NSCollectionViewItem {
+public class ActionNodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     
     override public var acceptsFirstResponder: Bool { return true }
     
     var indexPath : NSIndexPath?
     var popover: NSPopover?
     var nodeDetailViewController: NodeDetailViewController?
-    
+    var nodePresenter: NodePresenter?
     
     
     @IBOutlet weak var nodeTitleTextField: NSTextField!
@@ -23,7 +23,8 @@ public class ActionNodeCollectionViewItem : NSCollectionViewItem {
     
     var node: Node? {
         didSet {
-          nodeTitleTextField.stringValue = node!.title
+          nodePresenter = NodePresenter(node:node!, delegate:self)
+          nodeTitleTextField.stringValue = nodePresenter!.title
         }
     }
     
@@ -61,6 +62,9 @@ public class ActionNodeCollectionViewItem : NSCollectionViewItem {
                 nodeDetailViewController = NodeDetailViewController(nibName:"NodeDetailViewController", bundle:NSBundle(identifier:"com.andris.FilamentKit"))
             }
             
+            nodeDetailViewController!.nodePresenter = nodePresenter!
+            nodePresenter!.addDelegate(nodeDetailViewController!)
+            
             popover!.contentViewController = nodeDetailViewController
             
         }
@@ -71,6 +75,13 @@ public class ActionNodeCollectionViewItem : NSCollectionViewItem {
         popover?.showRelativeToRect(frame, ofView: self.view.superview!, preferredEdge:.MaxX )
     }
     
+    
+    //Mark: NodePresenter delegate calls
+    
+    public func nodePresenterDidChangeTitle(presenter: NodePresenter) {
+        
+        nodeTitleTextField.stringValue = nodePresenter!.title
+    }
     
     
     

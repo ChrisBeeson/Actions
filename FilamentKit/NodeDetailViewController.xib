@@ -42,6 +42,9 @@
                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                                     </textFieldCell>
+                                    <connections>
+                                        <action selector="titleTextFieldDidFinishEditing:" target="-2" id="3SM-wX-Qea"/>
+                                    </connections>
                                 </textField>
                                 <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="soW-a3-LlD">
                                     <rect key="frame" x="0.0" y="0.0" width="290" height="14"/>

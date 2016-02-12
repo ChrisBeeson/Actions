@@ -41,6 +41,11 @@ public class NodePresenter : NSObject {
         set {
             node.title = newValue
             delegates.forEach { $0.nodePresenterDidChangeTitle(self) }
+            /*
+            undoManager?.prepareWithInvocationTarget(self).renameTitle(title)
+            let undoActionName = NSLocalizedString("Rename", comment: "")
+            undoManager?.setActionName(undoActionName)
+*/
         }
     }
     
@@ -51,6 +56,8 @@ public class NodePresenter : NSObject {
         set {
             node.notes = newValue
             delegates.forEach { $0.nodePresenterDidChangeNotes(self) }
+            
+
         }
     }
     
@@ -91,6 +98,8 @@ public class NodePresenter : NSObject {
         
         if !delegates.contains({$0 === delegate}) {
             delegates.append(delegate)
+        } else {
+            Swift.print("Already contains delegate")
         }
     }
     

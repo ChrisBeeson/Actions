@@ -18,9 +18,9 @@ public protocol NodePresenterDelegate : class  {
 
 extension  NodePresenterDelegate {
     
-    func nodePresenterDidChangeTitle(presenter: NodePresenter) {}
-    func nodePresenterDidChangeNotes(presenter: NodePresenter) {}
-    func nodePresenterDidChangeRules(presenter: NodePresenter) {}
+    public func nodePresenterDidChangeTitle(presenter: NodePresenter) {}
+    public func nodePresenterDidChangeNotes(presenter: NodePresenter) {}
+    public func nodePresenterDidChangeRules(presenter: NodePresenter) {}
     
     // public func sequencePresenterDidRefreshCompleteLayout(sequencePresenter: SequencePresenter) {}
 }

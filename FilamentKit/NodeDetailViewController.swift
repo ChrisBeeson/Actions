@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class NodeDetailViewController : NSViewController {
+public class NodeDetailViewController : NSViewController, NodePresenterDelegate {
     
     @IBOutlet weak var stackView: NSStackView!
     @IBOutlet weak var tokenField: NSTokenField!
@@ -22,15 +22,34 @@ public class NodeDetailViewController : NSViewController {
     @IBOutlet weak var rulesView: NSBox!
     
     
+    var nodePresenter: NodePresenter?
     
-    var node: Node?
+    override public func viewWillAppear() {
+        super.viewWillAppear()
+        
+        titleTextField.stringValue = nodePresenter!.title
+        notesTextField.stringValue = nodePresenter!.notes
+    }
+    
+    @IBAction func titleTextFieldDidFinishEditing(sender: AnyObject) {
+        
+        nodePresenter!.title = titleTextField.stringValue
+    }
+    
+    
+    /*
+    public func nodePresenterDidChangeTitle(presenter: NodePresenter) {
+        
+        titleTextField.stringValue = nodePresenter!.title
+    }
+    */
     
     override public func viewDidAppear() {
         
         
         // stackView.removeArrangedSubview(sceduledDateView)
         
-        titleTextField.selectable = false
+        // titleTextField.selectable = false
         
         // tokenField.objectValue = ["< 48h","Tomorrow","AvoidAllCals","AvoidLunch"]
     }
