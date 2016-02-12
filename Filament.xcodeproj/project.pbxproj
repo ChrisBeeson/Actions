@@ -58,7 +58,6 @@
 		47CD21C61BDF807900AF25BE /* Sequence+EventLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CD21C51BDF807900AF25BE /* Sequence+EventLogic.swift */; };
 		47CD21C71BDF807900AF25BE /* Sequence+EventLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CD21C51BDF807900AF25BE /* Sequence+EventLogic.swift */; };
 		47D6165B1B9C1FAA00F72155 /* SequenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D6165A1B9C1FAA00F72155 /* SequenceTests.swift */; };
-		47DF1C471C6879FE00482390 /* AutoSizingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DF1C461C6879FE00482390 /* AutoSizingTextField.swift */; };
 		47F2FBC41BA8CFEE0041B291 /* Solver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F2FBC31BA8CFEE0041B291 /* Solver.swift */; };
 		47F5E82B1BF495D8004C0D16 /* AddFilamentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F5E82A1BF495D8004C0D16 /* AddFilamentViewController.swift */; };
 		8329DE9B1C63DF10001B3A2F /* SequenceCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8329DE9A1C63DF10001B3A2F /* SequenceCollectionView.swift */; };
@@ -169,7 +168,6 @@
 		47CD21C01BDF7A2600AF25BE /* Sequence+NodeLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sequence+NodeLogic.swift"; sourceTree = "<group>"; };
 		47CD21C51BDF807900AF25BE /* Sequence+EventLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sequence+EventLogic.swift"; sourceTree = "<group>"; };
 		47D6165A1B9C1FAA00F72155 /* SequenceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceTests.swift; sourceTree = "<group>"; };
-		47DF1C461C6879FE00482390 /* AutoSizingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoSizingTextField.swift; sourceTree = "<group>"; };
 		47F2FBC31BA8CFEE0041B291 /* Solver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Solver.swift; sourceTree = "<group>"; };
 		47F5E82A1BF495D8004C0D16 /* AddFilamentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFilamentViewController.swift; sourceTree = "<group>"; };
 		8329DE9A1C63DF10001B3A2F /* SequenceCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceCollectionView.swift; sourceTree = "<group>"; };
@@ -418,7 +416,6 @@
 		47DF1C451C6879D700482390 /* Custom Controls */ = {
 			isa = PBXGroup;
 			children = (
-				47DF1C461C6879FE00482390 /* AutoSizingTextField.swift */,
 			);
 			name = "Custom Controls";
 			sourceTree = "<group>";
@@ -784,7 +781,6 @@
 				83C73E0E1BE31C4F0045973C /* AppConfiguration.swift in Sources */,
 				475927B11C6C725700D24DE9 /* Dwifft.swift in Sources */,
 				477C2CB51C40B3AD0071467C /* TransitionNodeView.swift in Sources */,
-				47DF1C471C6879FE00482390 /* AutoSizingTextField.swift in Sources */,
 				473574791B9A68BE00493CA0 /* Rule.swift in Sources */,
 				834F85CF1C6ACF5E009CC72F /* AddNewNodeCollectionViewItem.swift in Sources */,
 				47CD21C31BDF7B0900AF25BE /* Sequence+NodeLogic.swift in Sources */,
