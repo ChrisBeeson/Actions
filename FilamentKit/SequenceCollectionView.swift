@@ -178,12 +178,15 @@ import Foundation
         
         presenter?.deleteNodes(nodesToDelete)
     }
-    
-    
-    override public func keyDown(event: NSEvent) {
-        interpretKeyEvents([event]) // calls insertText(_:), moveUp(_:), etc.
+
+    override public func keyDown(theEvent: NSEvent) {
+        
+        if theEvent.keyCode == 51 || theEvent.keyCode == 117  {
+            delete(theEvent)
+        }
     }
-    
+
+
 
     //MARK: Collection View Delegate
     
@@ -207,8 +210,8 @@ import Foundation
             case .Action:
                 
                 if let item = collectionView.itemAtIndex(indexPath.item) {
-                    return NSSize(width: 100,height: 35)
-                    Swift.print("using real size of view")
+                     return NSSize(width: 100,height: 35)
+                    //Swift.print("using real size of view")
                     //return item.view.intrinsicContentSize
                     
                 } else {
