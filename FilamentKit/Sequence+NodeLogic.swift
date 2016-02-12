@@ -86,8 +86,9 @@ extension Sequence {
         
         // it was the last
         
-        if index! == actionNodes.count - 2 {
-            transitionNodes.removeObject(actionNodes[0].rightTransitionNode!)
+        if index! == actionNodes.count {
+            transitionNodes.removeObject(actionNodes[actionNodes.count-1].rightTransitionNode!)
+            actionNodes[actionNodes.count-1].rightTransitionNode = nil
             return
         }
         

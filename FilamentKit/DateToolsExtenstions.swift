@@ -76,9 +76,7 @@ extension DTTimePeriodCollection {
         let flatdate = DTTimePeriod()
     
         for period in periods {
-            
-            // print(period.debugDescription)
-            
+
             guard let periodStart = period.StartDate, let periodEnd = period.EndDate else { continue }
 
             if !flatdate.hasStartDate() { flatdate.StartDate = periodStart }

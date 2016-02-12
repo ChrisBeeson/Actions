@@ -117,11 +117,7 @@ public class SequencePresenter: NSObject {
         
         let oldNodes = sequence!.nodeChain()
         
-        for node in nodes {
-            if let nodeIndex = nodes.indexOf(node) {
-                sequence!.actionNodes.removeAtIndex(nodeIndex)
-            }
-        }
+        nodes.forEach { sequence!.removeActionNode($0) }
         
         informDelegatesOfChangesToNodeChain(oldNodes)
     

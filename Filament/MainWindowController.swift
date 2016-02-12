@@ -29,8 +29,7 @@ class MainWindowController: NSWindowController {
 
 
     @IBAction func segmentedControlAction(sender: NSSegmentedControl) {
-        
-        print("Segmented Control Changed")
+    
     }
     
 }

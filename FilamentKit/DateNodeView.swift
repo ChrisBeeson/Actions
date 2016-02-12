@@ -51,7 +51,6 @@ class DateNodeView: NSView, MLCalendarViewDelegate {
     }
     
     internal func didSelectDate(selectedDate: NSDate!) {
-        Swift.print("Date selected")
     }
 }
 

@@ -126,7 +126,7 @@ import Foundation
             if deletedNodes.count > 0 {
                 var indexes =  Set<NSIndexPath>()
                 
-                for node in insertedNodes {
+                for node in deletedNodes {
                     indexes.insert(NSIndexPath(forItem: node.0.idx+1, inSection: 0))
                 }
                 
@@ -175,6 +175,7 @@ import Foundation
             }
             }
         }
+        
         presenter?.deleteNodes(nodesToDelete)
     }
     

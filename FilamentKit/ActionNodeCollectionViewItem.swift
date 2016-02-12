@@ -38,9 +38,6 @@ public class ActionNodeCollectionViewItem : NSCollectionViewItem {
     
     
     override public func becomeFirstResponder() -> Bool {
-        
-        Swift.print("BecomeFirstResponder:ActionNodeCell")
-        
         return true
     }
 
