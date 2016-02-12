@@ -10,6 +10,17 @@ import Foundation
 
 class TransitionNodeCollectionViewItem : NSCollectionViewItem {
     
+    @IBOutlet weak var transitionNodeView: TransitionNodeView!
+    
+    override var selected: Bool {
+        didSet {
+            transitionNodeView.selected = self.selected
+        }
+    }
+    
+    
+    
+    
     convenience init(node : Node) {
         
         self.init()

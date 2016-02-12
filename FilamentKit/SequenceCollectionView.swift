@@ -144,19 +144,11 @@ import Foundation
     
     override public func becomeFirstResponder() -> Bool {
         
-        dispatch_async(dispatch_get_main_queue()) {
-            
-        }
         NSNotificationCenter.defaultCenter().postNotificationName("FilamentTableViewSelectCellForView", object: self.superview)
         
         if self.selectionIndexes.count == 0 {
-            //   Swift.print(self.superview?.superview?.superview?.superview?.superview)
-            
             self.window?.makeFirstResponder(self.superview?.superview?.superview?.superview?.superview?.superview)
-            //  return false
-            
         }
-        
         return true
     }
     
