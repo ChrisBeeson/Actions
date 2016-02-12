@@ -14,6 +14,7 @@ public enum NodeType: Int { case Action = 0, Transition, All, None }
 public class Node: NSObject, NSCoding {
     
     public var title = ""
+    public var notes = ""
     public var rules = [Rule]()
     public var type = NodeType.Action
     public var leftTransitionNode: Node?
@@ -59,17 +60,20 @@ public class Node: NSObject, NSCoding {
     
     private struct SerializationKeys {
         static let title = "title"
+        static let notes = "notes"
         static let rules = "rules"
         static let type = "type"
         static let uuid = "uuid"
         static let leftTransitionNode = "leftTransitionNode"
         static let rightTransitionNode = "rightTransitionNode"
         static let event = "event"
+
     }
     
     public required init?(coder aDecoder: NSCoder) {
         
         title = aDecoder.decodeObjectForKey(SerializationKeys.title) as! String
+        notes = aDecoder.decodeObjectForKey(SerializationKeys.notes) as! String
         rules = aDecoder.decodeObjectForKey(SerializationKeys.rules) as! [Rule]
         type = NodeType(rawValue: aDecoder.decodeIntegerForKey(SerializationKeys.type))!
         UUID = aDecoder.decodeObjectForKey(SerializationKeys.uuid) as! NSUUID
@@ -81,6 +85,7 @@ public class Node: NSObject, NSCoding {
     public func encodeWithCoder(encoder: NSCoder) {
         
         encoder.encodeObject(title, forKey: SerializationKeys.title)
+        encoder.encodeObject(notes, forKey: SerializationKeys.notes)
         encoder.encodeObject(rules, forKey: SerializationKeys.rules)
         encoder.encodeInteger(type.rawValue, forKey: SerializationKeys.type)
         encoder.encodeObject(UUID, forKey: SerializationKeys.uuid)
@@ -94,7 +99,15 @@ public class Node: NSObject, NSCoding {
     
     public func copyWithZone(zone: NSZone) -> AnyObject  {
         
-        return Node(text: title, type: type, rules: rules)
+        //TODO: can't copy transistions nodes from here /  they are meaningless
+        
+        let clone = Node(text: title, type: type, rules: rules)
+        clone.notes = notes.copy() as! String
+        clone.UUID = UUID.copy() as! NSUUID
+        clone.event  = event!.copy() as? EKEvent
+        clone.leftTransitionNode = leftTransitionNode
+        clone.rightTransitionNode = rightTransitionNode
+        return clone
     }
     
     

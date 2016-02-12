@@ -9,29 +9,11 @@ import Foundation
 
 public typealias nodeAtIndex = (DiffStep<Node>, Int)
 
-public class SequencePresenter: NSObject {
+public class SequencePresenter: Presenter {
     
     // MARK: Properties
     
     private var sequence: Sequence?
-    public var undoManager: NSUndoManager?
-    private var delegates = [SequencePresenterDelegate]()
-    
-    // MARK: Delegate management
-    
-    public func addDelegate(delegate:SequencePresenterDelegate) {
-        
-        if !delegates.contains({$0 === delegate}) {
-            delegates.append(delegate)
-        }
-    }
-    
-    public func removeDelegate(delegate:SequencePresenterDelegate) {
-        
-        //delegates = delegates.filter { return $0 !== delegate }
-        //delegates.removeObject(delegate)
-    }
-    
     
     public var title: String {
         get {
@@ -72,7 +54,7 @@ public class SequencePresenter: NSObject {
     // MARK: Methods
     
     /*
-    If node and Int is nil then insertNode will create a new untitled node, and place it at the end of the list.
+       If node and Int is nil then insertNode will create a new untitled node, and place it at the end of the list.
     */
     
     public func insertActionNode(var node: Node?, index: Int?) {
@@ -115,9 +97,7 @@ public class SequencePresenter: NSObject {
         if nodes.isEmpty { return }
         
         let oldNodes = sequence!.nodeChain()
-        
         nodes.forEach { sequence!.removeActionNode($0) }
-        
         informDelegatesOfChangesToNodeChain(oldNodes)
         
         //TODO: Undo
@@ -286,24 +266,5 @@ public class SequencePresenter: NSObject {
 }
 
 
-/*
-extension Array where Element: Equatable {
-mutating func remove(object: Element) {
-if let index = indexOf({ $0 == object }) {
-removeAtIndex(index)
-}
-}
-}
-*/
-
-extension RangeReplaceableCollectionType where Generator.Element : Equatable {
-    
-    // Remove first collection element that is equal to the given `object`:
-    mutating func removeObject(object : Generator.Element) {
-        if let index = self.indexOf(object) {
-            self.removeAtIndex(index)
-        }
-    }
-}
 
 

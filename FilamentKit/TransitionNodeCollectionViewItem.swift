@@ -8,11 +8,15 @@
 
 import Foundation
 
-class TransitionNodeCollectionViewItem : NSCollectionViewItem {
+public class TransitionNodeCollectionViewItem : NSCollectionViewItem {
     
     @IBOutlet weak var transitionNodeView: TransitionNodeView!
     
-    override var selected: Bool {
+    var indexPath : NSIndexPath?
+    var popover: NSPopover?
+    var nodeDetailViewController: NodeDetailViewController?
+    
+    override public var selected: Bool {
         didSet {
             transitionNodeView.selected = self.selected
         }
@@ -27,13 +31,42 @@ class TransitionNodeCollectionViewItem : NSCollectionViewItem {
         self.representedObject = node
     }
     
-    override func loadView() {
+    override public func loadView() {
         
         assert(self.representedObject != nil)
         view = TransitionNodeView(node: representedObject as! Node)
     }
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         
+    }
+    
+    override public func mouseDown(theEvent: NSEvent) {
+        
+        super.mouseDown(theEvent)
+        
+        if theEvent.clickCount < 2 {return }
+        
+        // display popOver
+        
+        if popover == nil {
+            
+            popover = NSPopover()
+            popover!.animates = true
+            popover!.behavior = .Transient
+            popover!.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
+            
+            if nodeDetailViewController == nil {
+                nodeDetailViewController = NodeDetailViewController(nibName:"NodeDetailViewController", bundle:NSBundle(identifier:"com.andris.FilamentKit"))
+            }
+            
+            popover!.contentViewController = nodeDetailViewController
+            
+        }
+        
+        var frame = self.view.frame
+        frame.size = NSSize(width: frame.size.width-10.0, height: frame.size.height-10.0)
+        
+        popover?.showRelativeToRect(frame, ofView: self.view.superview!, preferredEdge:.MaxY )
     }
 }

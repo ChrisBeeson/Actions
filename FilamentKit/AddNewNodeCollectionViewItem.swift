@@ -8,13 +8,13 @@
 
 import Foundation
 
-class AddNewNodeCollectionViewItem : NSCollectionViewItem {
+public class AddNewNodeCollectionViewItem : NSCollectionViewItem {
     
     @IBOutlet weak var plusButton: NSButton!
     
     var presenter : SequencePresenter?
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         
         let tracking = NSTrackingArea(rect: self.view.frame, options: [.MouseEnteredAndExited,.ActiveInActiveApp] , owner: self, userInfo: nil)
         self.view.addTrackingArea(tracking)
@@ -31,7 +31,7 @@ class AddNewNodeCollectionViewItem : NSCollectionViewItem {
     
 
     
-     override func mouseEntered(theEvent: NSEvent) {
+     override public func mouseEntered(theEvent: NSEvent) {
 
         NSAnimationContext.beginGrouping()
         NSAnimationContext.currentContext().duration  = 0.5
@@ -39,7 +39,7 @@ class AddNewNodeCollectionViewItem : NSCollectionViewItem {
         NSAnimationContext.endGrouping()
     }
     
-    override func mouseExited(theEvent: NSEvent) {
+    override public func mouseExited(theEvent: NSEvent) {
         
         NSAnimationContext.beginGrouping()
         NSAnimationContext.currentContext().duration  = 0.5
