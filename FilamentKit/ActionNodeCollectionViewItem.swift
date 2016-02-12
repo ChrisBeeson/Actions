@@ -10,9 +10,13 @@ import Foundation
 
 public class ActionNodeCollectionViewItem : NSCollectionViewItem {
     
-    var indexPath : NSIndexPath?
-    
     override public var acceptsFirstResponder: Bool { return true }
+    
+    var indexPath : NSIndexPath?
+    var popover: NSPopover?
+    var nodeDetailViewController: NodeDetailViewController?
+    
+    
     
     @IBOutlet weak var nodeTitleTextField: NSTextField!
     @IBOutlet weak var actionNodeView: ActionNodeView!
@@ -36,10 +40,45 @@ public class ActionNodeCollectionViewItem : NSCollectionViewItem {
         }
     }
     
+
+    
+    override public func mouseDown(theEvent: NSEvent) {
+        
+        super.mouseDown(theEvent)
+        
+        if theEvent.clickCount < 2 {return }
+        
+        // display popOver
+        
+        if popover == nil {
+            
+            popover = NSPopover()
+            popover!.animates = true
+            popover!.behavior = .Transient
+            popover!.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
+            
+            if nodeDetailViewController == nil {
+                nodeDetailViewController = NodeDetailViewController(nibName:"NodeDetailViewController", bundle:NSBundle(identifier:"com.andris.FilamentKit"))
+            }
+            
+            popover!.contentViewController = nodeDetailViewController
+            
+        }
+        
+        var frame = self.view.frame
+        frame.size = NSSize(width: frame.size.width-10.0, height: frame.size.height)
+        
+        popover?.showRelativeToRect(frame, ofView: self.view.superview!, preferredEdge:.MaxX )
+    }
+    
+    
+    
     
     override public func becomeFirstResponder() -> Bool {
         return true
     }
+    
+    
 
    /*
     override func preferredLayoutAttributesFittingAttributes(layoutAttributes: NSCollectionViewLayoutAttributes) -> NSCollectionViewLayoutAttributes {

@@ -67,6 +67,9 @@
 		8343519D1BA297650094428B /* EventStartsInTimeFromNow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8343519C1BA297650094428B /* EventStartsInTimeFromNow.swift */; };
 		834F85CF1C6ACF5E009CC72F /* AddNewNodeCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F85CE1C6ACF5E009CC72F /* AddNewNodeCollectionViewItem.swift */; };
 		834F85D11C6ACFA2009CC72F /* AddNewNodeCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 834F85D01C6ACFA2009CC72F /* AddNewNodeCollectionViewItem.xib */; };
+		835619CA1C6D6AAA00488E99 /* NodeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835619C91C6D6AAA00488E99 /* NodeDetailViewController.swift */; };
+		835619CC1C6D6AD100488E99 /* NodeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */; };
+		835619CD1C6D6E4B00488E99 /* NodeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */; };
 		83861F2B1BEEA25F00A44122 /* FilamentDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83861F2A1BEEA25F00A44122 /* FilamentDocument.swift */; };
 		83C73E0D1BE31C4F0045973C /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C73E0B1BE31BF20045973C /* AppConfiguration.swift */; };
 		83C73E0E1BE31C4F0045973C /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C73E0B1BE31BF20045973C /* AppConfiguration.swift */; };
@@ -177,6 +180,8 @@
 		8343519C1BA297650094428B /* EventStartsInTimeFromNow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventStartsInTimeFromNow.swift; sourceTree = "<group>"; };
 		834F85CE1C6ACF5E009CC72F /* AddNewNodeCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewNodeCollectionViewItem.swift; sourceTree = "<group>"; };
 		834F85D01C6ACFA2009CC72F /* AddNewNodeCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddNewNodeCollectionViewItem.xib; sourceTree = "<group>"; };
+		835619C91C6D6AAA00488E99 /* NodeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDetailViewController.swift; sourceTree = "<group>"; };
+		835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NodeDetailViewController.xib; sourceTree = "<group>"; };
 		83861F2A1BEEA25F00A44122 /* FilamentDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilamentDocument.swift; sourceTree = "<group>"; };
 		83C73E0B1BE31BF20045973C /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		83DDAA4A1B9978CF001A4DBE /* Filament-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Filament-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -360,7 +365,7 @@
 		479CD2841C1B8AA300C8D1D6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				47DF1C451C6879D700482390 /* Custom Controls */,
+				47DF1C451C6879D700482390 /* DetailViews */,
 				4778C0AB1C657F6500F5A259 /* SequenceCollectionView */,
 			);
 			name = UI;
@@ -413,11 +418,13 @@
 			name = UI;
 			sourceTree = "<group>";
 		};
-		47DF1C451C6879D700482390 /* Custom Controls */ = {
+		47DF1C451C6879D700482390 /* DetailViews */ = {
 			isa = PBXGroup;
 			children = (
+				835619C91C6D6AAA00488E99 /* NodeDetailViewController.swift */,
+				835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */,
 			);
-			name = "Custom Controls";
+			name = DetailViews;
 			sourceTree = "<group>";
 		};
 		69793A9D031B4179C7761969 /* Pods */ = {
@@ -683,6 +690,7 @@
 				833AE3301C67F85B002F35C1 /* ActionNodeCollectionViewItem.xib in Resources */,
 				833AE32E1C67E463002F35C1 /* DateNodeCollectionViewItem.xib in Resources */,
 				834F85D11C6ACFA2009CC72F /* AddNewNodeCollectionViewItem.xib in Resources */,
+				835619CC1C6D6AD100488E99 /* NodeDetailViewController.xib in Resources */,
 				833AE3321C67FB6D002F35C1 /* TransitionNodeCollectionViewItem.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -699,6 +707,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83F9E92B1BA18739006282B5 /* .gitignore in Resources */,
+				835619CD1C6D6E4B00488E99 /* NodeDetailViewController.xib in Resources */,
 				47B6964B1BE5BC0B00260C2A /* Main.storyboard in Resources */,
 				4731AA471C466807001EB80A /* README in Resources */,
 				83F6B97A1B995683002A5AAF /* Podfile in Resources */,
@@ -774,6 +783,7 @@
 				4778C0AA1C657D8F00F5A259 /* ActionNodeCollectionViewItem.swift in Sources */,
 				4753D3AF1BE378720071DB59 /* WorkingWeekRule.swift in Sources */,
 				47181F321C0E487B006FD38E /* SequenceView.swift in Sources */,
+				835619CA1C6D6AAA00488E99 /* NodeDetailViewController.swift in Sources */,
 				473574851B9A91A200493CA0 /* SequencePresenterDelegate.swift in Sources */,
 				4778C0A81C656B2500F5A259 /* DateNodeCollectionViewItem.swift in Sources */,
 				473574751B9A689B00493CA0 /* Node.swift in Sources */,
