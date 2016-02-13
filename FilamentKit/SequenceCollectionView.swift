@@ -87,7 +87,9 @@ import Foundation
                 return item
                 
             case .Transition:
-                let item = makeItemWithIdentifier("TransitionNodeCollectionViewItem", forIndexPath: indexPath)
+                let item = makeItemWithIdentifier("TransitionNodeCollectionViewItem", forIndexPath: indexPath) as! TransitionNodeCollectionViewItem
+                item.node = node
+                item.indexPath = indexPath
                 return item
                 
             default:
@@ -202,8 +204,6 @@ import Foundation
             case .Action:
                 
                 if let item = collectionView.itemAtIndex(indexPath.item) {
-                    // return NSSize(width: 100,height: 35)
-                    //Swift.print("using real size of view")
                     return item.view.intrinsicContentSize
                     
                 } else {
@@ -213,7 +213,15 @@ import Foundation
                 }
                 
             case .Transition:
-                return NSSize(width: 50,height: 35)
+                
+                if let item = collectionView.itemAtIndex(indexPath.item) {
+                    return item.view.intrinsicContentSize
+                    
+                } else {
+                    let string:NSString = node.title as NSString
+                    let size: CGSize = string.sizeWithAttributes([NSFontAttributeName: NSFont.systemFontOfSize(9, weight:NSFontWeightRegular) ])
+                    return NSSize(width: size.width + 30.5, height: 46)
+                }
                 
             default:
                 return NSSize(width: 30,height: 35)

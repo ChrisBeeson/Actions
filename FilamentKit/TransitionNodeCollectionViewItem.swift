@@ -8,20 +8,31 @@
 
 import Foundation
 
-public class TransitionNodeCollectionViewItem : NSCollectionViewItem {
+public class TransitionNodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     
     @IBOutlet weak var transitionNodeView: TransitionNodeView!
+    
+    @IBOutlet weak var titleTextView: NSTextField!
     
     var indexPath : NSIndexPath?
     var popover: NSPopover?
     var nodeDetailViewController: NodeDetailViewController?
+    var nodePresenter: NodePresenter?
     
     override public var selected: Bool {
         didSet {
             transitionNodeView.selected = self.selected
+            
+            titleTextView.textColor =  selected ? AppConfiguration.Palette.selectionBlue : AppConfiguration.Palette.outlineGray
         }
     }
     
+    var node: Node? {
+        didSet {
+            nodePresenter = NodePresenter(node:node!, delegate:self)
+            titleTextView.stringValue = nodePresenter!.title
+        }
+    }
     
     
     
@@ -38,6 +49,7 @@ public class TransitionNodeCollectionViewItem : NSCollectionViewItem {
     }
     
     override public func viewDidLoad() {
+        //   titleTextView.stringValue = nodePresenter!.title
         
     }
     
@@ -59,6 +71,9 @@ public class TransitionNodeCollectionViewItem : NSCollectionViewItem {
             if nodeDetailViewController == nil {
                 nodeDetailViewController = NodeDetailViewController(nibName:"NodeDetailViewController", bundle:NSBundle(identifier:"com.andris.FilamentKit"))
             }
+            
+            nodeDetailViewController!.nodePresenter = nodePresenter!
+            nodePresenter!.addDelegate(nodeDetailViewController!)
             
             popover!.contentViewController = nodeDetailViewController
             
