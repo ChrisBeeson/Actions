@@ -8,6 +8,10 @@
 
 import Foundation
 
+/*
+ TODO: Combine this with ActionNodeCollectionViewItem
+*/
+
 public class TransitionNodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     
     @IBOutlet weak var transitionNodeView: TransitionNodeView!
@@ -22,7 +26,6 @@ public class TransitionNodeCollectionViewItem : NSCollectionViewItem, NodePresen
     override public var selected: Bool {
         didSet {
             transitionNodeView.selected = self.selected
-            
             titleTextView.textColor =  selected ? AppConfiguration.Palette.selectionBlue : AppConfiguration.Palette.outlineGray
         }
     }
@@ -83,5 +86,13 @@ public class TransitionNodeCollectionViewItem : NSCollectionViewItem, NodePresen
         frame.size = NSSize(width: frame.size.width-10.0, height: frame.size.height-10.0)
         
         popover?.showRelativeToRect(frame, ofView: self.view.superview!, preferredEdge:.MaxY )
+    }
+    
+    //Mark: NodePresenter delegate calls
+    
+    public func nodePresenterDidChangeTitle(presenter: NodePresenter) {
+        
+        titleTextView.stringValue = nodePresenter!.title
+        self.collectionView.reloadData()
     }
 }

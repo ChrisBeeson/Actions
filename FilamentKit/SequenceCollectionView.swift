@@ -97,8 +97,6 @@ import Foundation
             }
         } else {
             
-            // add
-            
             let item = makeItemWithIdentifier("AddNewNodeCollectionViewItem", forIndexPath: indexPath) as! AddNewNodeCollectionViewItem
             item.presenter = presenter
             return item
@@ -137,6 +135,8 @@ import Foundation
             
             }) { (completed) -> Void in
         }
+        
+        self.reloadData()
     }
         
     
@@ -198,9 +198,7 @@ import Foundation
             let node = nodes[indexPath.item-1]
             
             switch node.type {
-                
-                //TODO: Get real sizes for these 
-                
+            
             case .Action:
                 
                 if let item = collectionView.itemAtIndex(indexPath.item) {
@@ -220,11 +218,11 @@ import Foundation
                 } else {
                     let string:NSString = node.title as NSString
                     let size: CGSize = string.sizeWithAttributes([NSFontAttributeName: NSFont.systemFontOfSize(9, weight:NSFontWeightRegular) ])
-                    return NSSize(width: size.width + 30.5, height: 46)
+                    return NSSize(width: size.width + 30.5, height: 25)
                 }
                 
             default:
-                return NSSize(width: 30,height: 35)
+                return NSSize(width: 30,height: 50)
             }
         } else {
             
@@ -233,7 +231,6 @@ import Foundation
     }
     
     public func collectionView(collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        
         return 0.0
     }
     
@@ -242,12 +239,9 @@ import Foundation
     }
     
     
-    
     public func collectionView(collectionView: NSCollectionView, willDisplayItem item: NSCollectionViewItem, forRepresentedObjectAtIndexPath indexPath: NSIndexPath) {
         
     }
-    
-    
     
     public func collectionView(collectionView: NSCollectionView, canDragItemsAtIndexPaths indexPaths: Set<NSIndexPath>, withEvent event: NSEvent) -> Bool {
         
@@ -275,9 +269,6 @@ import Foundation
     /* Sent during interactive selection, to inform the delegate that the CollectionView would like to de-select the items at the specified "indexPaths".  In addition to optionally reacting to the proposed change, you can approve it (by returning "indexPaths" as-is), or selectively refuse some or all of the proposed selection changes (by returning a modified autoreleased mutableCopy of indexPaths, or an empty indexPaths instance). */
 
     public func collectionView(collectionView: NSCollectionView, shouldDeselectItemsAtIndexPaths indexPaths: Set<NSIndexPath>) -> Set<NSIndexPath> {
-        
-        self.window?.makeFirstResponder(self.superview?.superview?.superview?.superview?.superview?.superview)
-        
         return indexPaths
         
     }
@@ -295,7 +286,7 @@ import Foundation
     */
 
     public func collectionView(collectionView: NSCollectionView, didDeselectItemsAtIndexPaths indexPaths: Set<NSIndexPath>) {
-        
+        self.window?.makeFirstResponder(self.superview?.superview?.superview?.superview?.superview?.superview)
     }
     
     
