@@ -128,7 +128,17 @@ public class SequencePresenter : NSObject {
     }
     
     
-    
+    public func setDate(date:NSDate, isStartDate:Bool) {
+        
+        if sequence!.date != nil && date.isEqualToDate(sequence!.date!) && isStartDate == sequence?.startsAtDate { return }
+        
+        sequence!.date = date
+        sequence!.startsAtDate = isStartDate
+        
+        let result = sequence?.UpdateEvents()
+        
+        delegates.forEach { $0.sequencePresenterUpdatedCalendarEvents(result!.success,  firstFailingNode:result?.firstFailedNode) }
+    }
     
     
     

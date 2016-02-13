@@ -142,15 +142,9 @@ extension Sequence {
     }
     
     
-    
-    
-    // This isn't right or complete - what array does this use?
-    
     public enum NodePostion: Int { case StartingAction, Transition, Action, EndingAction,None }
     
     public func postion(node: Node) -> NodePostion {
-        
-        print("using this useless func")
         
         if let index = actionNodes.indexOf(node) {
         

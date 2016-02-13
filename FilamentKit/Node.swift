@@ -99,7 +99,7 @@ public class Node: NSObject, NSCoding {
     
     public func copyWithZone(zone: NSZone) -> AnyObject  {
         
-        //TODO: can't copy transistions nodes from here /  they are meaningless
+        //TODO: can't copy transistions nodes from here as they are meaningless
         
         let clone = Node(text: title, type: type, rules: rules)
         clone.notes = notes.copy() as! String

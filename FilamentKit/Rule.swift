@@ -37,15 +37,13 @@ public class Rule: NSObject, RuleType {
     public var availableToNodeType:NodeType {get {return NodeType.All} }
     public var conflictingRules: [Rule]? {get {return nil} }
     public var options: RoleOptions {get { return RoleOptions.None } }
-    
-    public var inputDate: NSDate? { get { return nil }  set { self.inputDate = newValue}}
-    public var interestPeriod: DTTimePeriod? { get { return nil }  set { self.interestPeriod = newValue }}
-    
+    public var inputDate: NSDate?
+    public var interestPeriod: DTTimePeriod?
     public var eventStartTimeWindow: DTTimePeriod? {get {return nil} }
     public var eventPreferedStartDate: NSDate? {get {return nil} }
     public var eventDuration: TimeSize? { get { return nil } }
     public var eventMinDuration: TimeSize? { get { return nil } }
-    public var avoidPeriods: [DTTimePeriod]? { get { return nil } set { self.avoidPeriods = newValue }} // set required for testing
+    public var avoidPeriods: [DTTimePeriod]?
 }
 
 
@@ -64,17 +62,6 @@ public struct RoleOptions : OptionSetType {
     //  static let ThirdOption  = RoleOptions(rawValue: 1 << 2)
 }
 
-/*
-let singleOption = MyOptions.FirstOption
-let multipleOptions: MyOptions = [.FirstOption, .SecondOption]
-if multipleOptions.contains(.SecondOption) {
-print("multipleOptions has SecondOption")
-}
-let allOptions = MyOptions(rawValue: 7)
-if allOptions.contains(.ThirdOption) {
-print("allOptions has ThirdOption")
-}
-*/
 
 
 public class TimeSize: NSObject, NSCoding  {

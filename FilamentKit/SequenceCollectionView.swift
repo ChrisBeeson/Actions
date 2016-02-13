@@ -72,7 +72,9 @@ import Foundation
         
         if indexPath.item == 0 {
             
-            let item = makeItemWithIdentifier("DateNodeCollectionViewItem", forIndexPath: indexPath)
+            let item = makeItemWithIdentifier("DateNodeCollectionViewItem", forIndexPath: indexPath) as! DateNodeCollectionViewItem
+            item.sequencePresenter = self.presenter!
+            presenter?.addDelegate(item)
             return item
             
         } else if indexPath.item < nodes.count+1 {

@@ -8,15 +8,20 @@
 
 import Foundation
 
-public class DateNodeCollectionViewItem : NSCollectionViewItem {
+public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegate, SequencePresenterDelegate {
     
     @IBOutlet weak var month: NSTextField!
     @IBOutlet weak var day: NSTextField!
     @IBOutlet weak var dayString: NSTextField!
     @IBOutlet weak var time: NSTextField!
     
+    var sequencePresenter: SequencePresenter?
     var popover: NSPopover?
     var dateTimePickerViewController : DateTimePickerViewController?
+    
+    override public func viewDidLoad() {
+        super.viewDidLoad()
+    }
     
     override public func mouseDown(theEvent: NSEvent) {
         
@@ -25,6 +30,7 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem {
             popover!.animates = true
             popover!.behavior = .Transient
             popover!.appearance = NSAppearance(named: NSAppearanceNameAqua)
+            popover!.delegate = self
             
             if dateTimePickerViewController  == nil {
                 dateTimePickerViewController  = DateTimePickerViewController(nibName:"DateTimePickerViewController", bundle:NSBundle(identifier:"com.andris.FilamentKit"))
@@ -35,6 +41,8 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem {
         popover?.showRelativeToRect(self.dayString!.frame, ofView: self.view, preferredEdge:.MinX )
     }
     
-    public func didSelectDate(selectedDate: NSDate!) {
+    public func popoverDidClose(notification: NSNotification) {
+        
+        self.sequencePresenter!.setDate(self.dateTimePickerViewController!.date!, isStartDate:true)
     }
 }

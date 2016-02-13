@@ -21,7 +21,7 @@ extension Sequence {
             
             var solvedPeriod: SolvedPeriod?
             
-            // Add Generic Rules
+            // Add Rules
             
             var rules = node.rules
             
@@ -30,7 +30,7 @@ extension Sequence {
             rules.append(AvoidCalendarEvents(calendars: [CalendarManager.sharedInstance.applicationCalendar!]))
             
             // TODO: app generic rules
-            
+
             
             switch postion(node) {
                 
@@ -98,6 +98,8 @@ extension Sequence {
             node.event = nil
             
         }
+        
+        //TODO: rather than delete out of Date events, move them.
         
         
         // Create Event
