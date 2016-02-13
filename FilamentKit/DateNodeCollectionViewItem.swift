@@ -7,29 +7,18 @@
 //
 
 import Foundation
-import MLCalendarView
 
-public class DateNodeCollectionViewItem : NSCollectionViewItem, MLCalendarViewDelegate {
+public class DateNodeCollectionViewItem : NSCollectionViewItem {
     
     @IBOutlet weak var month: NSTextField!
     @IBOutlet weak var day: NSTextField!
     @IBOutlet weak var dayString: NSTextField!
     @IBOutlet weak var time: NSTextField!
     
-   
     var popover: NSPopover?
-    var calView: MLCalendarView?
-    
-    /*
-    required public init(coder: NSCoder) {
-        super.init(coder: coder)!
-    }
-    
-   */
+    var dateTimePickerViewController : DateTimePickerViewController?
     
     override public func mouseDown(theEvent: NSEvent) {
-        
-        // display calendar popup
         
         if popover == nil {
             popover = NSPopover()
@@ -37,24 +26,15 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, MLCalendarViewDe
             popover!.behavior = .Transient
             popover!.appearance = NSAppearance(named: NSAppearanceNameAqua)
             
-            if calView == nil {
-                calView = MLCalendarView()
-                calView!.delegate = self
+            if dateTimePickerViewController  == nil {
+                dateTimePickerViewController  = DateTimePickerViewController(nibName:"DateTimePickerViewController", bundle:NSBundle(identifier:"com.andris.FilamentKit"))
             }
-            
-            popover!.contentViewController = calView
+            popover!.contentViewController = dateTimePickerViewController
         }
         
         popover?.showRelativeToRect(self.dayString!.frame, ofView: self.view, preferredEdge:.MinX )
     }
     
-
-    
-    
     public func didSelectDate(selectedDate: NSDate!) {
     }
-    
-    
-
-    
 }

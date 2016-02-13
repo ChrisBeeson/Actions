@@ -10,6 +10,8 @@
 		471420D61BA3CB2A00EDF32D /* Pods_Filament.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 471420D51BA3CB2A00EDF32D /* Pods_Filament.framework */; };
 		4720B5001C6E7EF200229734 /* NodePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4720B4FF1C6E7EF200229734 /* NodePresenter.swift */; };
 		4720B5021C6E7F0400229734 /* NodePresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4720B5011C6E7F0400229734 /* NodePresenterDelegate.swift */; };
+		4720B5081C6F00B300229734 /* DateTimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4720B5071C6F00B300229734 /* DateTimePickerViewController.swift */; };
+		4720B50A1C6F00E500229734 /* DateTimePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4720B5091C6F00E500229734 /* DateTimePickerViewController.xib */; };
 		472465191BBFD0DA004DE4DE /* DateToolsExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472465171BBFD0DA004DE4DE /* DateToolsExtensionsTests.swift */; };
 		4724651B1BBFE595004DE4DE /* DateToolsExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9531BB5464C000CAC61 /* DateToolsExtenstions.swift */; };
 		4724651C1BBFE610004DE4DE /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574781B9A68BE00493CA0 /* Rule.swift */; };
@@ -133,6 +135,8 @@
 		471420D51BA3CB2A00EDF32D /* Pods_Filament.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Filament.framework; path = Pods/../build/Release/Pods_Filament.framework; sourceTree = "<group>"; };
 		4720B4FF1C6E7EF200229734 /* NodePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodePresenter.swift; sourceTree = "<group>"; };
 		4720B5011C6E7F0400229734 /* NodePresenterDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodePresenterDelegate.swift; sourceTree = "<group>"; };
+		4720B5071C6F00B300229734 /* DateTimePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTimePickerViewController.swift; sourceTree = "<group>"; };
+		4720B5091C6F00E500229734 /* DateTimePickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateTimePickerViewController.xib; sourceTree = "<group>"; };
 		472465171BBFD0DA004DE4DE /* DateToolsExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateToolsExtensionsTests.swift; sourceTree = "<group>"; };
 		4731AA461C466807001EB80A /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		473574551B9A687400493CA0 /* FilamentKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FilamentKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -426,6 +430,8 @@
 			children = (
 				835619C91C6D6AAA00488E99 /* NodeDetailViewController.swift */,
 				835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */,
+				4720B5071C6F00B300229734 /* DateTimePickerViewController.swift */,
+				4720B5091C6F00E500229734 /* DateTimePickerViewController.xib */,
 			);
 			name = DetailViews;
 			sourceTree = "<group>";
@@ -690,6 +696,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4720B50A1C6F00E500229734 /* DateTimePickerViewController.xib in Resources */,
 				833AE3301C67F85B002F35C1 /* ActionNodeCollectionViewItem.xib in Resources */,
 				833AE32E1C67E463002F35C1 /* DateNodeCollectionViewItem.xib in Resources */,
 				834F85D11C6ACFA2009CC72F /* AddNewNodeCollectionViewItem.xib in Resources */,
@@ -797,6 +804,7 @@
 				473574791B9A68BE00493CA0 /* Rule.swift in Sources */,
 				834F85CF1C6ACF5E009CC72F /* AddNewNodeCollectionViewItem.swift in Sources */,
 				4720B5021C6E7F0400229734 /* NodePresenterDelegate.swift in Sources */,
+				4720B5081C6F00B300229734 /* DateTimePickerViewController.swift in Sources */,
 				47CD21C31BDF7B0900AF25BE /* Sequence+NodeLogic.swift in Sources */,
 				47ACA9541BB5464C000CAC61 /* DateToolsExtenstions.swift in Sources */,
 				47ACA9591BB54EEA000CAC61 /* AvoidCalendarEvents.swift in Sources */,

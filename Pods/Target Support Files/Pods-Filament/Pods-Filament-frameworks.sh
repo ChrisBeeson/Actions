@@ -86,10 +86,10 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Filament/CCNStatusItem.framework"
   install_framework "Pods-Filament/DateTools.framework"
-  install_framework "Pods-Filament/MLCalendarView.framework"
+  install_framework "Pods-Filament/PopDatePicker.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Filament/CCNStatusItem.framework"
   install_framework "Pods-Filament/DateTools.framework"
-  install_framework "Pods-Filament/MLCalendarView.framework"
+  install_framework "Pods-Filament/PopDatePicker.framework"
 fi

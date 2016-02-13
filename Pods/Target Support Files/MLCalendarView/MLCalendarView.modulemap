@@ -1,6 +1,0 @@
-framework module MLCalendarView {
-  umbrella header "MLCalendarView-umbrella.h"
-
-  export *
-  module * { export * }
-}

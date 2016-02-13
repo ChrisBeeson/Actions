@@ -5,5 +5,5 @@ target 'Filament' do
 
     pod 'CCNStatusItem', '~> 0.5'
     pod 'DateTools', '~> 1.7'
-    pod 'MLCalendarView'
+    pod 'PopDatePicker'
 end
