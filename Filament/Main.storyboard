@@ -788,7 +788,7 @@ CA
                                                                                         <rect key="frame" x="0.0" y="0.0" width="421" height="0.0"/>
                                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" id="qIE-mC-5dM">
-                                                                                            <size key="itemSize" width="50" height="50"/>
+                                                                                            <size key="itemSize" width="500" height="50"/>
                                                                                             <edgeInsets key="sectionInset" left="15" right="5" top="0.0" bottom="12"/>
                                                                                         </collectionViewFlowLayout>
                                                                                         <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>

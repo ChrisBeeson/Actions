@@ -78,13 +78,13 @@
                         </textField>
                     </subviews>
                     <constraints>
+                        <constraint firstAttribute="width" constant="59" id="66s-BG-LL6"/>
                         <constraint firstItem="y6m-fx-SPN" firstAttribute="leading" secondItem="93f-2C-0vr" secondAttribute="leading" id="Os7-CE-7T8"/>
-                        <constraint firstAttribute="height" constant="33" id="UAL-cB-7nd"/>
                         <constraint firstItem="c4T-eg-6ow" firstAttribute="centerY" secondItem="93f-2C-0vr" secondAttribute="centerY" id="W58-Xg-nOk"/>
                         <constraint firstAttribute="bottom" secondItem="hSr-NU-lXM" secondAttribute="bottom" id="ew0-n3-FCs"/>
                         <constraint firstItem="y6m-fx-SPN" firstAttribute="top" secondItem="93f-2C-0vr" secondAttribute="top" id="idK-iV-ff4"/>
                         <constraint firstItem="c4T-eg-6ow" firstAttribute="leading" secondItem="93f-2C-0vr" secondAttribute="leading" constant="4" id="mYg-1e-xXZ"/>
-                        <constraint firstAttribute="width" constant="59" id="nrj-ah-Hsv"/>
+                        <constraint firstAttribute="height" constant="33" id="osb-9k-VIy"/>
                         <constraint firstAttribute="trailing" secondItem="hSr-NU-lXM" secondAttribute="trailing" constant="13" id="qWq-Qi-kPN"/>
                         <constraint firstAttribute="trailing" secondItem="3NW-1H-wgc" secondAttribute="trailing" constant="13" id="yCa-rd-1D6"/>
                         <constraint firstItem="3NW-1H-wgc" firstAttribute="top" secondItem="93f-2C-0vr" secondAttribute="top" constant="9" id="yy5-fc-Ejg"/>
@@ -92,8 +92,8 @@
                 </customView>
             </subviews>
             <constraints>
-                <constraint firstItem="93f-2C-0vr" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="6gk-BY-Pmp"/>
-                <constraint firstItem="93f-2C-0vr" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="hLu-cv-XcX"/>
+                <constraint firstItem="93f-2C-0vr" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="cBk-le-vAh"/>
+                <constraint firstAttribute="bottom" secondItem="93f-2C-0vr" secondAttribute="bottom" id="zHZ-1o-iYD"/>
             </constraints>
             <point key="canvasLocation" x="-114.5" y="-13.5"/>
         </customView>

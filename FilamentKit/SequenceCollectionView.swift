@@ -202,12 +202,14 @@ import Foundation
             case .Action:
                 
                 if let item = collectionView.itemAtIndex(indexPath.item) {
-                     return NSSize(width: 100,height: 35)
+                    // return NSSize(width: 100,height: 35)
                     //Swift.print("using real size of view")
-                    //return item.view.intrinsicContentSize
+                    return item.view.intrinsicContentSize
                     
                 } else {
-                    return NSSize(width: 100,height: 35)
+                    let string:NSString = node.title as NSString
+                    let size: CGSize = string.sizeWithAttributes([NSFontAttributeName: NSFont.systemFontOfSize(14.0, weight:NSFontWeightThin) ])
+                    return NSSize(width: size.width + 30.5, height: 35)
                 }
                 
             case .Transition:

@@ -81,6 +81,7 @@ public class ActionNodeCollectionViewItem : NSCollectionViewItem, NodePresenterD
     public func nodePresenterDidChangeTitle(presenter: NodePresenter) {
         
         nodeTitleTextField.stringValue = nodePresenter!.title
+        self.collectionView.reloadData()
     }
     
     
