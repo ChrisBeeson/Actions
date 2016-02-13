@@ -31,6 +31,7 @@ public class ActionNodeCollectionViewItem : NSCollectionViewItem, NodePresenterD
     override public var selected: Bool {
         didSet {
             actionNodeView.selected = self.selected
+            // nodeTitleTextField.textColor =  selected ? AppConfiguration.Palette.selectionBlue : NSColor.blackColor()
         }
     }
     

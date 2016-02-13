@@ -218,7 +218,7 @@ import Foundation
                 } else {
                     let string:NSString = node.title as NSString
                     let size: CGSize = string.sizeWithAttributes([NSFontAttributeName: NSFont.systemFontOfSize(9, weight:NSFontWeightRegular) ])
-                    return NSSize(width: size.width + 30.5, height: 25)
+                    return NSSize(width: size.width + 50.5, height: 25)
                 }
                 
             default:
