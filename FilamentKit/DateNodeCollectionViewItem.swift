@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import DateTools
 
-public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegate, SequencePresenterDelegate {
+public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegate, SequencePresenterDelegate, DateTimePickerViewDelegate {
     
     @IBOutlet weak var month: NSTextField!
     @IBOutlet weak var day: NSTextField!
@@ -20,8 +21,16 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     var dateTimePickerViewController : DateTimePickerViewController?
     
     override public func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewDidLoad()        
     }
+    
+    override public func viewWillAppear() {
+        super.viewWillAppear()
+        
+        //   let date = (self.sequencePresenter!.date != nil) ? self.sequencePresenter!.date! : NSDate()
+        updateView()
+    }
+    
     
     override public func mouseDown(theEvent: NSEvent) {
         
@@ -34,15 +43,40 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
             
             if dateTimePickerViewController  == nil {
                 dateTimePickerViewController  = DateTimePickerViewController(nibName:"DateTimePickerViewController", bundle:NSBundle(identifier:"com.andris.FilamentKit"))
+                dateTimePickerViewController!.delegate = self
             }
             popover!.contentViewController = dateTimePickerViewController
+        }
+        
+        if sequencePresenter!.date != nil {
+            dateTimePickerViewController!.date = sequencePresenter!.date!
         }
         
         popover?.showRelativeToRect(self.dayString!.frame, ofView: self.view, preferredEdge:.MinX )
     }
     
-    public func popoverDidClose(notification: NSNotification) {
+    func updateView() {
         
-        self.sequencePresenter!.setDate(self.dateTimePickerViewController!.date!, isStartDate:true)
+        let date = (sequencePresenter!.date != nil) ? sequencePresenter!.date! : NSDate()
+        
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "MMM"
+            month.stringValue = dateFormatter.stringFromDate(date).capitalizedString
+            dateFormatter.dateFormat = "EEE"
+            dayString.stringValue = dateFormatter.stringFromDate(date).capitalizedString
+            day.stringValue = String(date.day())
+            dateFormatter.dateFormat = "HH:mm"
+            time.objectValue = dateFormatter.stringFromDate(date)
+    }
+    
+    
+    
+    // MARK: DateTimePicker delegate
+    
+    public func dateTimePickerDidChangeDate(date:NSDate) {
+        
+        Swift.print(date)
+        self.sequencePresenter!.setDate(date, isStartDate:true)
+        updateView()
     }
 }

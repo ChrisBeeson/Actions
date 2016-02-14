@@ -52,6 +52,9 @@ public class SequencePresenter : NSObject {
         return sequence!.nodeChain()
     }
     
+    public var date : NSDate? {
+        return sequence!.date
+    }
     
     public func renameTitle(newTitle:String) {
         
@@ -135,9 +138,16 @@ public class SequencePresenter : NSObject {
         sequence!.date = date
         sequence!.startsAtDate = isStartDate
         
-        let result = sequence?.UpdateEvents()
+        delegates.forEach { $0.sequencePresenterUpdatedDate(self) }
         
-        delegates.forEach { $0.sequencePresenterUpdatedCalendarEvents(result!.success,  firstFailingNode:result?.firstFailedNode) }
+        /*
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
+            
+            let result = self.sequence?.UpdateEvents()
+            
+            self.delegates.forEach { $0.sequencePresenterUpdatedCalendarEvents(result!.success,  firstFailingNode:result?.firstFailedNode) }
+        }
+*/
     }
     
     

@@ -11,6 +11,8 @@ public protocol SequencePresenterDelegate : class {
     func sequencePresenterDidRefreshCompleteLayout(sequencePresenter: SequencePresenter)
     func sequencePresenterWillChangeNodeLayout(sequencePresenter: SequencePresenter)
     func sequencePresenterDidUpdateChainContents(insertedNodes:[nodeAtIndex], deletedNodes:[nodeAtIndex])
+    
+    func sequencePresenterUpdatedDate(sequencePresenter: SequencePresenter)
     func sequencePresenterUpdatedCalendarEvents(success:Bool, firstFailingNode:Node?)
     
     
@@ -23,6 +25,7 @@ extension  SequencePresenterDelegate {
     public func sequencePresenterDidRefreshCompleteLayout(sequencePresenter: SequencePresenter) {}
     public func sequencePresenterWillChangeNodeLayout(sequencePresenter: SequencePresenter) {}
     public func sequencePresenterDidUpdateChainContents(insertedNodes:[nodeAtIndex], deletedNodes:[nodeAtIndex]) {}
+    public func sequencePresenterUpdatedDate(sequencePresenter: SequencePresenter) {}
     public func sequencePresenterUpdatedCalendarEvents(success:Bool, firstFailingNode:Node?) {}
     
     

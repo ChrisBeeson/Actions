@@ -9,10 +9,17 @@
 import Foundation
 import PopDatePicker
 
+public protocol DateTimePickerViewDelegate {
+    
+    func dateTimePickerDidChangeDate(date:NSDate)
+}
+
 public class DateTimePickerViewController : NSViewController {
     
     @IBOutlet weak var datePicker: PopDatePicker!
     @IBOutlet weak var timePicker: PopDatePicker!
+    
+    var delegate: DateTimePickerViewDelegate?
     
     public var date:NSDate?
     
@@ -27,17 +34,25 @@ public class DateTimePickerViewController : NSViewController {
         }
         
         datePicker.preferredPopoverEdge = .MinY
-        
     }
     
     public override func viewWillAppear() {
         super.viewWillAppear()
-        datePicker.dateValue = NSDate()
+        
+        if date == nil {
+            date = NSDate()
+        } else if date!.isEarlierThan(NSDate()) {
+            date = NSDate()
+        }
+        
+        datePicker.dateValue = date!
+        timePicker.dateValue = date!
     }
     
     public  override func viewWillDisappear() {
         super.viewWillDisappear()
-        date = combineDateWithTime(datePicker.dateValue, time: timePicker.dateValue)
+        
+         delegate?.dateTimePickerDidChangeDate(combineDateWithTime(datePicker.dateValue, time: timePicker.dateValue))
     }
     
     
@@ -56,5 +71,4 @@ public class DateTimePickerViewController : NSViewController {
         
         return calendar.dateFromComponents(components)!
     }
-    
 }

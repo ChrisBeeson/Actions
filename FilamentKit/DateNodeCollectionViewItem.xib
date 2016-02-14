@@ -5,19 +5,15 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="DateNodeCollectionViewItem" customModule="FilamentKit">
-            <connections>
-                <outlet property="day" destination="3NW-1H-wgc" id="K9j-dN-n1s"/>
-                <outlet property="dayString" destination="c4T-eg-6ow" id="fYE-Ce-MI1"/>
-                <outlet property="month" destination="hSr-NU-lXM" id="iDb-vZ-0Of"/>
-                <outlet property="time" destination="y6m-fx-SPN" id="2z6-rN-f7W"/>
-            </connections>
-        </customObject>
+        <customObject id="-2" userLabel="File's Owner" customClass="NSObject" customModule="FilamentKit"/>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <collectionViewItem id="9IM-3f-SrT" customClass="DateNodeCollectionViewItem" customModule="FilamentKit" customModuleProvider="target">
             <connections>
-                <outlet property="dayString" destination="c4T-eg-6ow" id="xTw-AP-1gS"/>
+                <outlet property="day" destination="3NW-1H-wgc" id="ic8-MU-Die"/>
+                <outlet property="dayString" destination="c4T-eg-6ow" id="Hf4-bb-6s1"/>
+                <outlet property="month" destination="hSr-NU-lXM" id="ehQ-4t-HxW"/>
+                <outlet property="time" destination="y6m-fx-SPN" id="RXI-RO-kA5"/>
                 <outlet property="view" destination="c22-O7-iKe" id="4TB-Bs-wwP"/>
             </connections>
         </collectionViewItem>
@@ -35,8 +31,8 @@
                                 <constraint firstAttribute="height" constant="11" id="hct-yQ-rC1"/>
                             </constraints>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" alignment="right" title="JUN" id="yGL-H7-htS">
-                                <font key="font" size="8" name=".HelveticaNeueDeskInterface-UltraLightP2"/>
-                                <color key="textColor" white="0.45538194444444446" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="font" metaFont="miniSystem"/>
+                                <color key="textColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
@@ -53,13 +49,13 @@
                             </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3NW-1H-wgc">
-                            <rect key="frame" x="12" y="8" width="36" height="16"/>
+                            <rect key="frame" x="12" y="9" width="36" height="16"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="16" id="Byq-fX-BWn"/>
                                 <constraint firstAttribute="width" constant="32" id="DOy-dr-tq6"/>
                             </constraints>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" alignment="right" title="28" id="eFX-HN-w0A">
-                                <font key="font" size="15" name=".HelveticaNeueDeskInterface-UltraLightP2"/>
+                                <font key="font" metaFont="system"/>
                                 <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
@@ -87,7 +83,7 @@
                         <constraint firstAttribute="height" constant="33" id="osb-9k-VIy"/>
                         <constraint firstAttribute="trailing" secondItem="hSr-NU-lXM" secondAttribute="trailing" constant="13" id="qWq-Qi-kPN"/>
                         <constraint firstAttribute="trailing" secondItem="3NW-1H-wgc" secondAttribute="trailing" constant="13" id="yCa-rd-1D6"/>
-                        <constraint firstItem="3NW-1H-wgc" firstAttribute="top" secondItem="93f-2C-0vr" secondAttribute="top" constant="9" id="yy5-fc-Ejg"/>
+                        <constraint firstItem="3NW-1H-wgc" firstAttribute="top" secondItem="93f-2C-0vr" secondAttribute="top" constant="8" id="yy5-fc-Ejg"/>
                     </constraints>
                 </customView>
             </subviews>
