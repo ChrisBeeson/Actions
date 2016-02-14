@@ -135,15 +135,16 @@ public class SequencePresenter : NSObject {
         
         if sequence!.date != nil && date.isEqualToDate(sequence!.date!) && isStartDate == sequence?.startsAtDate { return }
         
+        undoManager?.prepareWithInvocationTarget(self).setDate(self.date!, isStartDate: true)
+        let undoActionName = NSLocalizedString("Change Date", comment: "")
+        undoManager?.setActionName(undoActionName)
+        
         sequence!.date = date
         sequence!.startsAtDate = isStartDate
-        
         delegates.forEach { $0.sequencePresenterUpdatedDate(self) }
-        
+
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
-            
             let result = self.sequence?.UpdateEvents()
-            
             self.delegates.forEach { $0.sequencePresenterUpdatedCalendarEvents(result!.success,  firstFailingNode:result?.firstFailedNode) }
         }
     }

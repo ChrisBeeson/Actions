@@ -15,19 +15,18 @@ public class ActionNodeCollectionViewItem : NSCollectionViewItem, NodePresenterD
     var indexPath : NSIndexPath?
     var popover: NSPopover?
     var nodeDetailViewController: NodeDetailViewController?
-    var nodePresenter: NodePresenter?
+    var nodePresenter: NodePresenter?  {
+        didSet {
+
+            nodeTitleTextField.stringValue = nodePresenter!.title
+    }
+    }
     
     
     @IBOutlet weak var nodeTitleTextField: NSTextField!
     @IBOutlet weak var actionNodeView: ActionNodeView!
     
-    var node: Node? {
-        didSet {
-          nodePresenter = NodePresenter(node:node!, delegate:self)
-          nodeTitleTextField.stringValue = nodePresenter!.title
-        }
-    }
-    
+
     override public var selected: Bool {
         didSet {
             actionNodeView.selected = self.selected
@@ -37,8 +36,8 @@ public class ActionNodeCollectionViewItem : NSCollectionViewItem, NodePresenterD
     
     
     override public func viewWillAppear() {
-        if node != nil {
-            nodeTitleTextField.stringValue = node!.title
+        if nodePresenter != nil {
+            nodeTitleTextField.stringValue = nodePresenter!.title
         }
     }
     

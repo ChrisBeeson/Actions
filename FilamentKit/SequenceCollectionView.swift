@@ -84,19 +84,26 @@ import Foundation
             switch node.type {
             case .Action:
                 let item = makeItemWithIdentifier("ActionNodeCollectionViewItem", forIndexPath: indexPath) as! ActionNodeCollectionViewItem
-                item.node = node
+                let nodePresenter = NodePresenter(node: node, delegate: item)
+                nodePresenter.undoManager = presenter!.undoManager
+                item.nodePresenter = nodePresenter
                 item.indexPath = indexPath
                 return item
                 
             case .Transition:
                 let item = makeItemWithIdentifier("TransitionNodeCollectionViewItem", forIndexPath: indexPath) as! TransitionNodeCollectionViewItem
-                item.node = node
+                let nodePresenter = NodePresenter(node: node, delegate: item)
+                nodePresenter.undoManager = presenter!.undoManager
+                item.nodePresenter = nodePresenter
                 item.indexPath = indexPath
+                return item
                 return item
                 
             default:
                 return NSCollectionViewItem()
             }
+            
+      
         } else {
             
             let item = makeItemWithIdentifier("AddNewNodeCollectionViewItem", forIndexPath: indexPath) as! AddNewNodeCollectionViewItem
@@ -167,7 +174,9 @@ import Foundation
             if object.isKindOfClass(ActionNodeCollectionViewItem) {
                 
                 let item = object as! ActionNodeCollectionViewItem
-                nodesToDelete.append(item.node!)
+                
+                //TODO: need to delete the presenter
+                nodesToDelete.append(item.nodePresenter!.node)
             }
             }
         }

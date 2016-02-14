@@ -21,7 +21,12 @@ public class TransitionNodeCollectionViewItem : NSCollectionViewItem, NodePresen
     var indexPath : NSIndexPath?
     var popover: NSPopover?
     var nodeDetailViewController: NodeDetailViewController?
-    var nodePresenter: NodePresenter?
+    var nodePresenter: NodePresenter? {
+        didSet {
+            titleTextView.stringValue = nodePresenter!.title
+        }
+    }
+    
     
     override public var selected: Bool {
         didSet {
@@ -29,21 +34,7 @@ public class TransitionNodeCollectionViewItem : NSCollectionViewItem, NodePresen
             titleTextView.textColor =  selected ? AppConfiguration.Palette.selectionBlue : AppConfiguration.Palette.outlineGray
         }
     }
-    
-    var node: Node? {
-        didSet {
-            nodePresenter = NodePresenter(node:node!, delegate:self)
-            titleTextView.stringValue = nodePresenter!.title
-        }
-    }
-    
-    
-    
-    convenience init(node : Node) {
-        
-        self.init()
-        self.representedObject = node
-    }
+
     
     override public func loadView() {
         
