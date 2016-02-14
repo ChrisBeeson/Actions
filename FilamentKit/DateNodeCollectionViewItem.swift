@@ -26,8 +26,7 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     
     override public func viewWillAppear() {
         super.viewWillAppear()
-        
-        //   let date = (self.sequencePresenter!.date != nil) ? self.sequencePresenter!.date! : NSDate()
+
         updateView()
     }
     
@@ -70,12 +69,10 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     }
     
     
-    
     // MARK: DateTimePicker delegate
     
     public func dateTimePickerDidChangeDate(date:NSDate) {
         
-        Swift.print(date)
         self.sequencePresenter!.setDate(date, isStartDate:true)
         updateView()
     }

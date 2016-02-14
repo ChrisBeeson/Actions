@@ -128,6 +128,10 @@ public class Solver {
         
         var bestPeriod: DTTimePeriod?
         
+        if freePeriods.periods() == nil {
+            return (false, nil)
+        }
+        
         for free in freePeriods.periods()! {
             
             print("free Period: \(free.debugDescription)")

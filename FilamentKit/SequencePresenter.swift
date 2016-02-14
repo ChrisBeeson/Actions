@@ -140,14 +140,12 @@ public class SequencePresenter : NSObject {
         
         delegates.forEach { $0.sequencePresenterUpdatedDate(self) }
         
-        /*
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
             
             let result = self.sequence?.UpdateEvents()
             
             self.delegates.forEach { $0.sequencePresenterUpdatedCalendarEvents(result!.success,  firstFailingNode:result?.firstFailedNode) }
         }
-*/
     }
     
     

@@ -64,69 +64,8 @@ extension Sequence {
             }
             
             time = solvedPeriod!.period!.EndDate
-            
-            processEventWithPeriod(solvedPeriod!.period!, node:node)
+            node.updateCalendarEventWithTimePeriod(solvedPeriod!.period!)
         }
-        
         return (true,nil)
-    }
-    
-    
-    private func processEventWithPeriod(period:DTTimePeriod, node:Node) {
-        
-        // Does this node already have a correct event?
-        
-        if node.event != nil && node.event!.startDate.isEqualToDate(period.StartDate) == true && node.event?.endDate.isEqualToDate(period.EndDate) == true {
-            return
-        }
-        
-        let store = CalendarManager.sharedInstance.store
-        
-        // Node has an Event, but it's wrong so lets delete it.
-        
-        if node.event != nil {
-            
-            do {
-                
-                try store.removeEvent(node.event!, span: .ThisEvent, commit: true)
-                
-            } catch let error as NSError {
-                
-                print("Unresolved error deleting Event \(error), \(error.userInfo)")
-            }
-            
-            node.event = nil
-            
-        }
-        
-        //TODO: rather than delete out of Date events, move them.
-        
-        
-        // Create Event
-        
-        let event = EKEvent(eventStore: store)
-        event.title = node.title
-        event.startDate = period.StartDate
-        event.endDate = period.EndDate
-        
-        if let appCal = CalendarManager.sharedInstance.applicationCalendar {
-            
-            event.calendar = appCal
-            
-        } else {
-            
-            print("No Application Calendar")
-        }
-        
-        // Publish it
-        
-        do {
-            
-            try store.saveEvent(event, span: .ThisEvent, commit: true)
-            
-        } catch let error as NSError {
-            
-            NSLog("Unresolved error \(error), \(error.userInfo)")
-        }
     }
 }

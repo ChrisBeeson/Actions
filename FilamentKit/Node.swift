@@ -3,7 +3,7 @@
 //  Filament
 //
 //  Created by Chris Beeson on 5/09/2015.
-//  Copyright (c) 2015 Andris Ltd. All rights reserved.
+//  Copyright (c) 2016 Andris Ltd. All rights reserved.
 //
 
 import Foundation
@@ -20,8 +20,7 @@ public class Node: NSObject, NSCoding {
     public var leftTransitionNode: Node?
     public var rightTransitionNode: Node?
     public var UUID = NSUUID()
-    public var event: EKEvent?
-    
+    public var eventID = ""
     
     // MARK: Initializers
     
@@ -66,8 +65,7 @@ public class Node: NSObject, NSCoding {
         static let uuid = "uuid"
         static let leftTransitionNode = "leftTransitionNode"
         static let rightTransitionNode = "rightTransitionNode"
-        static let event = "event"
-
+        static let eventID = "eventIdentifier"
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -79,7 +77,7 @@ public class Node: NSObject, NSCoding {
         UUID = aDecoder.decodeObjectForKey(SerializationKeys.uuid) as! NSUUID
         leftTransitionNode = aDecoder.decodeObjectForKey(SerializationKeys.leftTransitionNode) as? Node
         rightTransitionNode = aDecoder.decodeObjectForKey(SerializationKeys.rightTransitionNode) as? Node
-        event = aDecoder.decodeObjectForKey(SerializationKeys.event) as? EKEvent
+        eventID = aDecoder.decodeObjectForKey(SerializationKeys.eventID) as! String
     }
 
     public func encodeWithCoder(encoder: NSCoder) {
@@ -91,7 +89,7 @@ public class Node: NSObject, NSCoding {
         encoder.encodeObject(UUID, forKey: SerializationKeys.uuid)
         encoder.encodeObject(leftTransitionNode, forKey: SerializationKeys.leftTransitionNode)
         encoder.encodeObject(rightTransitionNode, forKey: SerializationKeys.rightTransitionNode)
-        encoder.encodeObject(event, forKey: SerializationKeys.event)
+        encoder.encodeObject(eventID, forKey: SerializationKeys.eventID)
     }
     
     
@@ -119,17 +117,15 @@ public class Node: NSObject, NSCoding {
             if UUID == node.UUID  {
                 return true
             }
-            
             return false
         }
-        
         return false
     }
+    
     
     // Description
 
     public override var description: String {
-        
         return " \(self.title) type: \(type) \n Rules: \n \(rules)"
     }
 }

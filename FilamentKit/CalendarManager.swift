@@ -60,6 +60,8 @@ public class CalendarManager: NSObject {
                     print("Unresolved error \(error), \(error.userInfo)")
                 }
             }
+            
+            
         }
     }
     
@@ -75,6 +77,10 @@ public class CalendarManager: NSObject {
                 }
             })
         case .Authorized: print("Access to calendar is Authorized")
+        store.requestAccessToEntityType(.Event, completion: { (success, error) -> Void in
+            
+        })
+            
         case .Denied: print("Access to calendar is denied")
         case .Restricted: print("Access to calendar is Restricted")
         }
