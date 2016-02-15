@@ -17,6 +17,7 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate {
     @IBOutlet weak var backgroundView: NSView!
     @IBOutlet weak var titleTextField: NSTextField!
     @IBOutlet weak var collectionView: SequenceCollectionView!
+    @IBOutlet weak var scrollview: NSScrollView!
     
     public var presenter: SequencePresenter? {
         
@@ -52,15 +53,19 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate {
         
         selected = false
         super.init(coder: coder)
-
     }
+    
     
     func updateCellView() {
         
+        scrollview.horizontalScroller?.alphaValue = 0.0
         backgroundView.backgroundColor = NSColor.whiteColor()
+        
+        self.collectionView.toolTip = String(presenter!.status)
         
         if presenter != nil {
             titleTextField.stringValue = presenter!.title
+           
             collectionView.reloadData()
         }
     }
@@ -71,24 +76,20 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate {
         presenter!.renameTitle(sender.stringValue)
     }
 
-/*
-    override public func validateProposedFirstResponder(responder: NSResponder, forEvent event: NSEvent?) -> Bool {
-        
-        if event == nil { return false }
-        
-        let point = convertPoint(event!.locationInWindow , fromView: nil)
-        let rect = bounds
-        
-        if mouse(point, inRect: rect) {
-            self.selected = true
-            
-            Swift.print("True")
-            return true
-        }
-        Swift.print("False")
-        return false
+    
+
+    
+    // MARK: Presenter Delegate
+    
+    public func sequencePresenterDidRefreshCompleteLayout(sequencePresenter: SequencePresenter) {
+        updateCellView()
     }
-    */
+    
+    
+    public func sequencePresenterDidChangeStatus(sequencePresenter: SequencePresenter, toStatus:SequenceStatus){
+        
+         self.collectionView.toolTip = String(presenter!.status)
+    }
     
     /*
     
@@ -116,12 +117,6 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate {
     }
     */
     
-    
-    // MARK: Presenter Delegate
-    
-    public func sequencePresenterDidRefreshCompleteLayout(sequencePresenter: SequencePresenter) {
-        updateCellView()
-    }
     
     /*
     public func performClose(sender: AnyObject) {

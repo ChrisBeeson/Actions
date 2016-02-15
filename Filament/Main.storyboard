@@ -778,7 +778,7 @@ CA
                                                                                 <action selector="titleTextFieldDidChange:" target="FDm-hf-wGf" id="RrH-q7-QJw"/>
                                                                             </connections>
                                                                         </textField>
-                                                                        <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasVerticalScroller="NO" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="wWa-CA-nxC">
+                                                                        <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="wWa-CA-nxC">
                                                                             <rect key="frame" x="0.0" y="0.0" width="421" height="59"/>
                                                                             <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="8Ne-ER-Rn3">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="421" height="59"/>
@@ -797,7 +797,7 @@ CA
                                                                             </clipView>
                                                                             <edgeInsets key="contentInsets" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                                                                             <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="s4s-Iv-z9p">
-                                                                                <rect key="frame" x="0.0" y="43" width="421" height="16"/>
+                                                                                <rect key="frame" x="-100" y="-100" width="421" height="16"/>
                                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                             </scroller>
                                                                             <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="cP1-A5-XuF">
@@ -842,6 +842,7 @@ AwEVARgBHQAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAEfA
                                                             <connections>
                                                                 <outlet property="backgroundView" destination="bTc-Dp-Ybh" id="RVm-3F-Rqz"/>
                                                                 <outlet property="collectionView" destination="8np-EO-BYI" id="39o-4G-A8f"/>
+                                                                <outlet property="scrollview" destination="wWa-CA-nxC" id="jDy-BS-7oD"/>
                                                                 <outlet property="textField" destination="BeT-IN-UXD" id="PVO-Gh-Ozv"/>
                                                                 <outlet property="titleTextField" destination="BeT-IN-UXD" id="ul7-YM-x7C"/>
                                                             </connections>

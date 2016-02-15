@@ -6,17 +6,22 @@
 //
 
 import Foundation
+import DateTools
 
 public typealias nodeAtIndex = (DiffStep<Node>, Int)
+
+public enum SequenceStatus: Int { case NoStartSet, WaitingForStart, Running, Paused, FailedNode, Completed, Void }
 
 public class SequencePresenter : NSObject {
     
     // MARK: Properties
     
     private var sequence: Sequence?
-    public var undoManager: NSUndoManager?
     private var delegates = [SequencePresenterDelegate]()
+    private var currentStatus = SequenceStatus.Void
     
+    public var undoManager: NSUndoManager?
+
     public var title: String {
         get {
             return sequence!.title
@@ -39,6 +44,50 @@ public class SequencePresenter : NSObject {
         return sequence!.date
     }
     
+    public var completionDate : NSDate? {
+        if nodes == nil { return nil}
+        if let event = nodes![nodes!.count-1].event {
+            return event.endDate
+        } else {
+            return nil
+        }
+    }
+    
+    
+    public var status:SequenceStatus {
+        return updateSequenceStatus()
+    }
+    
+    
+    // MARK: Methods
+    
+    
+    func updateSequenceStatus() -> SequenceStatus {
+        
+        var status = SequenceStatus.Void
+        
+        if date == nil { status = .NoStartSet }
+        if date?.isLaterThan(NSDate()) == true { status = .WaitingForStart }
+        if date?.isEarlierThan(NSDate()) == true { status = .Running }
+        if completionDate?.isLaterThan(NSDate()) == true { status = .Completed }
+        assert(status != .Void)
+        
+        if currentStatus != status {
+             currentStatus = status
+             delegates.forEach{ $0.sequencePresenterDidChangeStatus(self, toStatus:currentStatus)  }
+        }
+        return currentStatus
+    }
+    
+    
+    public func setSequence(sequence: Sequence) {
+        
+        self.sequence = sequence
+        delegates.forEach{ $0.sequencePresenterDidRefreshCompleteLayout(self) }
+        updateSequenceStatus()
+    }
+    
+    
     public func renameTitle(newTitle:String) {
         
         undoManager?.prepareWithInvocationTarget(self).renameTitle(title)
@@ -47,18 +96,10 @@ public class SequencePresenter : NSObject {
         
         title = newTitle
     }
-    
-    public func setSequence(sequence: Sequence) {
-        self.sequence = sequence
-        
-        delegates.forEach{ $0.sequencePresenterDidRefreshCompleteLayout(self) }
-    }
-    
-    
-    // MARK: Methods
+
     
     /*
-    If node and Int is nil then insertNode will create a new untitled node, and place it at the end of the list.
+       If node and Int is nil then insertNode will create a new untitled node, and place it at the end of the list.
     */
     
     public func insertActionNode(var node: Node?, index: Int?) {
@@ -92,6 +133,8 @@ public class SequencePresenter : NSObject {
             
             delegates.forEach { $0.sequencePresenterDidUpdateChainContents(insertedNodes, deletedNodes:deletedNodes) }
         }
+        
+        updateSequenceStatus()
     }
     
     
@@ -127,6 +170,7 @@ public class SequencePresenter : NSObject {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
             let result = self.sequence?.UpdateEvents()
             self.delegates.forEach { $0.sequencePresenterUpdatedCalendarEvents(result!.success,  firstFailingNode:result?.firstFailedNode) }
+            self.updateSequenceStatus()
         }
     }
     
