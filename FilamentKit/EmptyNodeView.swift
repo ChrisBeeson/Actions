@@ -16,7 +16,7 @@ public class EmptyNodeView: NSView {
         //  self.layer?.masksToBounds
         //  self.layer?.backgroundColor =  AppConfiguration.Palette.outlineGray
         
-        let path = NSBezierPath(ovalInRect: self.bounds)
+        let path = NSBezierPath(ovalInRect: self.bounds.insetBy(dx: 3.0, dy: 3.0) )
         
         AppConfiguration.Palette.filledGray.setFill()
         

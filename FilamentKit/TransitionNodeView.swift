@@ -53,8 +53,8 @@ public class TransitionNodeView: NSView {
             path.lineWidth = 0.7
         }
 
-        path.moveToPoint(NSPoint(x: 0 , y: (frame.size.height/2)-(path.lineWidth/2)))
-        path.lineToPoint(NSPoint(x: frame.size.width , y:(frame.size.height/2)-(path.lineWidth/2)))
+        path.moveToPoint(NSPoint(x: 0 , y: (frame.size.height/2)-(path.lineWidth/4)))
+        path.lineToPoint(NSPoint(x: frame.size.width , y:(frame.size.height/2)-(path.lineWidth/4)))
         path.stroke()
     }
 }
