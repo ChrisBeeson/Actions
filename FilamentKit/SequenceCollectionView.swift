@@ -97,7 +97,6 @@ import Foundation
                 item.nodePresenter = nodePresenter
                 item.indexPath = indexPath
                 return item
-                return item
                 
             default:
                 return NSCollectionViewItem()

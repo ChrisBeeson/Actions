@@ -32,11 +32,11 @@ Timeslot found                         |----|
 */
 
 
-public typealias SolvedPeriod = (solved: Bool, period:DTTimePeriod?)
+typealias SolvedPeriod = (solved: Bool, period:DTTimePeriod?)
 
-public class Solver {
+class Solver {
 
-    public class func calculateEventPeriod(inputDate: NSDate, rules:[Rule]) -> SolvedPeriod {
+    class func calculateEventPeriod(inputDate: NSDate, rules:[Rule]) -> SolvedPeriod {
         
         var averageStartWindow: DTTimePeriod?
         var preferedStartTime: NSDate?

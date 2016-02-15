@@ -17,22 +17,6 @@ public class SequencePresenter : NSObject {
     public var undoManager: NSUndoManager?
     private var delegates = [SequencePresenterDelegate]()
     
-    // MARK: Delegate management
-    
-    public func addDelegate(delegate:SequencePresenterDelegate) {
-        
-        if !delegates.contains({$0 === delegate}) {
-            delegates.append(delegate)
-        }
-    }
-    
-    public func removeDelegate(delegate:SequencePresenterDelegate) {
-        
-        //delegates = delegates.filter { return $0 !== delegate }
-        //delegates.removeObject(delegate)
-    }
-    
-    
     public var title: String {
         get {
             return sequence!.title
@@ -45,7 +29,6 @@ public class SequencePresenter : NSObject {
     public var archiveableSeq: Sequence {
         return sequence!
     }
-    
     
     public var nodes:[Node]? {
         //  precondition(sequence!.validSequence(), "Trying to present a sequence that is not Valid")
@@ -75,7 +58,7 @@ public class SequencePresenter : NSObject {
     // MARK: Methods
     
     /*
-       If node and Int is nil then insertNode will create a new untitled node, and place it at the end of the list.
+    If node and Int is nil then insertNode will create a new untitled node, and place it at the end of the list.
     */
     
     public func insertActionNode(var node: Node?, index: Int?) {
@@ -90,9 +73,8 @@ public class SequencePresenter : NSObject {
         sequence!.insertActionNode(node!, index: index)
         informDelegatesOfChangesToNodeChain(oldNodes)
         
-        //TODO:Undo
-        // undoManager?.prepareWithInvocationTarget(self).removeNode(node)
-        let undoActionName = NSLocalizedString("Remove Node", comment: "")
+        undoManager?.prepareWithInvocationTarget(self).deleteNodes([node!])
+        let undoActionName = NSLocalizedString("Insert Node", comment: "")
         undoManager?.setActionName(undoActionName)
         
         delegates.forEach { $0.sequencePresenterDidFinishChangingNodeLayout(self) }
@@ -120,14 +102,13 @@ public class SequencePresenter : NSObject {
         let oldNodes = sequence!.nodeChain()
         nodes.forEach { sequence!.removeActionNode($0) }
         informDelegatesOfChangesToNodeChain(oldNodes)
-        
-        //TODO: Undo
         /*
-        undoManager?.prepareWithInvocationTarget(self).insertNodesForUndo(Array(nodes.reverse()), atIndexes: Array(removedIndexes.reverse()))
-        
-        let undoActionName = NSLocalizedString("Remove", comment: "")
-        undoManager?.setActionName(undoActionName)
-        */
+        for node in nodes.reverse() {
+            undoManager?.prepareWithInvocationTarget(self).insertActionNode(node, index: nil)
+            let undoActionName = NSLocalizedString("Delete Node", comment: "")
+            undoManager?.setActionName(undoActionName)
+        }
+*/
     }
     
     
@@ -142,7 +123,7 @@ public class SequencePresenter : NSObject {
         sequence!.date = date
         sequence!.startsAtDate = isStartDate
         delegates.forEach { $0.sequencePresenterUpdatedDate(self) }
-
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
             let result = self.sequence?.UpdateEvents()
             self.delegates.forEach { $0.sequencePresenterUpdatedCalendarEvents(result!.success,  firstFailingNode:result?.firstFailedNode) }
@@ -299,6 +280,21 @@ public class SequencePresenter : NSObject {
     }
     
     */
+    
+    // MARK: Delegate management
+    
+    public func addDelegate(delegate:SequencePresenterDelegate) {
+        
+        if !delegates.contains({$0 === delegate}) {
+            delegates.append(delegate)
+        }
+    }
+    
+    public func removeDelegate(delegate:SequencePresenterDelegate) {
+        
+        //delegates = delegates.filter { return $0 !== delegate }
+        //delegates.removeObject(delegate)
+    }
     
 }
 
