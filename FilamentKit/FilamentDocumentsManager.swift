@@ -52,6 +52,7 @@ public class FilamentDocumentsManager : DirectoryMonitorDelegate {
     // MARK: DirectoryMonitorDelegate
     
     public func directoryMonitorDidObserveChange(directoryMonitor: DirectoryMonitor) {
+        
         processChangeToLocalDocumentsDirectory()
     }
     

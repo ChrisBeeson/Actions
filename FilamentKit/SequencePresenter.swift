@@ -70,11 +70,13 @@ public class SequencePresenter : NSObject {
         if date == nil { status = .NoStartSet }
         if date?.isLaterThan(NSDate()) == true { status = .WaitingForStart }
         if date?.isEarlierThan(NSDate()) == true { status = .Running }
-        if completionDate?.isLaterThan(NSDate()) == true { status = .Completed }
+        if completionDate?.isEarlierThan(NSDate()) == true { status = .Completed }
+        
         assert(status != .Void)
         
         if currentStatus != status {
              currentStatus = status
+            Swift.print("Status changed: \(currentStatus)")
              delegates.forEach{ $0.sequencePresenterDidChangeStatus(self, toStatus:currentStatus)  }
         }
         return currentStatus

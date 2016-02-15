@@ -34,6 +34,7 @@ Timeslot found                         |----|
 
 typealias SolvedPeriod = (solved: Bool, period:DTTimePeriod?)
 
+
 class Solver {
 
     class func calculateEventPeriod(inputDate: NSDate, rules:[Rule]) -> SolvedPeriod {
@@ -83,7 +84,7 @@ class Solver {
         // Step 2. Make sure we have the Basic Requirements
         
         if preferedStartTime == nil  || averageMinDuration == nil || averageStartWindow == nil || averageDuration == nil {
-            print("! Solver failed to meet basic requirements")
+            //print("! Solver failed to meet basic requirements")
             return (false,nil)
         }
         
@@ -120,11 +121,11 @@ class Solver {
         
         // The Main Algorithm
         
-        print("\n\n--------------------------------------------------")
-        print("prefered Period: \(preferedPeriod.debugDescription)")
-        print("average Start Window: \(averageStartWindow.debugDescription)")
-        print("avoid periods: \(avoidPeriods.debugDescription)")
-        print("--------------------------------------------------")
+        //print("\n\n--------------------------------------------------")
+        //print("prefered Period: \(preferedPeriod.debugDescription)")
+        //print("average Start Window: \(averageStartWindow.debugDescription)")
+        //print("avoid periods: \(avoidPeriods.debugDescription)")
+        //print("--------------------------------------------------")
         
         var bestPeriod: DTTimePeriod?
         
@@ -134,14 +135,14 @@ class Solver {
         
         for free in freePeriods.periods()! {
             
-            print("free Period: \(free.debugDescription)")
+            //print("free Period: \(free.debugDescription)")
             
             // Lets evaluate this free period
             
             // Does our preferred window fit into this free period?
             if preferedPeriod.relationToPeriod(free) == DTTimePeriodRelation.Inside || preferedPeriod.relationToPeriod(free) == DTTimePeriodRelation.ExactMatch {
                 
-                print("SOLVED: PreferedPeriod fits \n")
+                //print("SOLVED: PreferedPeriod fits \n")
                 return (true, preferedPeriod)
             }
             
@@ -196,7 +197,7 @@ class Solver {
                     let avgMinDur = averageMinDuration!.inSeconds()
                     
                     if  posDur < avgMinDur {
-                        print("Poss period cancelled because Dur: \(posDur)  avgMinDur:\(avgMinDur)")
+                        //print("Poss period cancelled because Dur: \(posDur)  avgMinDur:\(avgMinDur)")
                         possiblePeriod = nil
                     }
                 }
@@ -204,7 +205,7 @@ class Solver {
             
             if possiblePeriod == nil { continue }
             
-            print("! Found Possible Period: \(possiblePeriod)")
+            //print("! Found Possible Period: \(possiblePeriod)")
             
             if bestPeriod == nil { bestPeriod = possiblePeriod; continue }
             
