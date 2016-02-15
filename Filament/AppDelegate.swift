@@ -24,8 +24,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(aNotification: NSNotification) {
       
         FilamentDocumentsManager.sharedManager.saveAllDocuments()
-        
-        // NSDocumentController.sharedDocumentController().saveAllDocuments(self)
+    }
+    
+    func applicationShouldTerminateAfterLastWindowClosed(sender: NSApplication) -> Bool {
+        return true
     }
 }
 

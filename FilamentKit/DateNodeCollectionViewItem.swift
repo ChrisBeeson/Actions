@@ -15,6 +15,8 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     @IBOutlet weak var day: NSTextField!
     @IBOutlet weak var dayString: NSTextField!
     @IBOutlet weak var time: NSTextField!
+    @IBOutlet weak var circleView: EmptyNodeView!
+    @IBOutlet weak var transitionView: TransitionNodeView!
     
     var sequencePresenter: SequencePresenter?
     var popover: NSPopover?
@@ -55,6 +57,14 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     }
     
     func updateView() {
+        
+        let hidden = (sequencePresenter!.date == nil) ? true : false
+        month.hidden = hidden
+        day.hidden = hidden
+        dayString.hidden = hidden
+        time.hidden = hidden
+        transitionView.hidden = !hidden
+        circleView.hidden = !hidden
         
         let date = (sequencePresenter!.date != nil) ? sequencePresenter!.date! : NSDate()
         

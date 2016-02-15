@@ -10,17 +10,29 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <collectionViewItem id="9IM-3f-SrT" customClass="DateNodeCollectionViewItem" customModule="FilamentKit" customModuleProvider="target">
             <connections>
+                <outlet property="circleView" destination="lxw-2o-cB3" id="VyK-gu-9rn"/>
                 <outlet property="day" destination="3NW-1H-wgc" id="ic8-MU-Die"/>
                 <outlet property="dayString" destination="c4T-eg-6ow" id="Hf4-bb-6s1"/>
                 <outlet property="month" destination="hSr-NU-lXM" id="ehQ-4t-HxW"/>
                 <outlet property="time" destination="y6m-fx-SPN" id="RXI-RO-kA5"/>
+                <outlet property="transitionView" destination="2Hp-Nn-vAM" id="l2k-pz-zFF"/>
                 <outlet property="view" destination="c22-O7-iKe" id="4TB-Bs-wwP"/>
             </connections>
         </collectionViewItem>
         <customView id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="59" height="33"/>
+            <rect key="frame" x="0.0" y="0.0" width="60" height="33"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
+                <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lxw-2o-cB3" customClass="EmptyNodeView" customModule="FilamentKit" customModuleProvider="target">
+                    <rect key="frame" x="23" y="9" width="15" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="15" id="AMb-tJ-psw"/>
+                        <constraint firstAttribute="height" constant="15" id="tYJ-sj-0b3"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="2Hp-Nn-vAM" customClass="TransitionNodeView" customModule="FilamentKit" customModuleProvider="target">
+                    <rect key="frame" x="38" y="0.0" width="22" height="33"/>
+                </customView>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="93f-2C-0vr">
                     <rect key="frame" x="0.0" y="0.0" width="59" height="33"/>
                     <subviews>
@@ -88,10 +100,16 @@
                 </customView>
             </subviews>
             <constraints>
+                <constraint firstItem="2Hp-Nn-vAM" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="24j-ny-biM"/>
+                <constraint firstAttribute="trailing" secondItem="2Hp-Nn-vAM" secondAttribute="trailing" id="AZt-Ey-O9u"/>
+                <constraint firstItem="2Hp-Nn-vAM" firstAttribute="leading" secondItem="lxw-2o-cB3" secondAttribute="trailing" id="M2p-7y-5qC"/>
                 <constraint firstItem="93f-2C-0vr" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="cBk-le-vAh"/>
+                <constraint firstItem="lxw-2o-cB3" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="hUJ-H7-fTs"/>
+                <constraint firstAttribute="bottom" secondItem="2Hp-Nn-vAM" secondAttribute="bottom" id="hhK-Q1-Csx"/>
+                <constraint firstItem="lxw-2o-cB3" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="ojS-IV-eql"/>
                 <constraint firstAttribute="bottom" secondItem="93f-2C-0vr" secondAttribute="bottom" id="zHZ-1o-iYD"/>
             </constraints>
-            <point key="canvasLocation" x="-114.5" y="-13.5"/>
+            <point key="canvasLocation" x="-114" y="-13.5"/>
         </customView>
     </objects>
 </document>

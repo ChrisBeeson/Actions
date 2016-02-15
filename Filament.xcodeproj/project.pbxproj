@@ -13,6 +13,7 @@
 		4720B5081C6F00B300229734 /* DateTimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4720B5071C6F00B300229734 /* DateTimePickerViewController.swift */; };
 		4720B50A1C6F00E500229734 /* DateTimePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4720B5091C6F00E500229734 /* DateTimePickerViewController.xib */; };
 		4720B50C1C71193600229734 /* Node+Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4720B50B1C71193600229734 /* Node+Event.swift */; };
+		4720B50E1C71C32100229734 /* EmptyNodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4720B50D1C71C32100229734 /* EmptyNodeView.swift */; };
 		472465191BBFD0DA004DE4DE /* DateToolsExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472465171BBFD0DA004DE4DE /* DateToolsExtensionsTests.swift */; };
 		4724651B1BBFE595004DE4DE /* DateToolsExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9531BB5464C000CAC61 /* DateToolsExtenstions.swift */; };
 		4724651C1BBFE610004DE4DE /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574781B9A68BE00493CA0 /* Rule.swift */; };
@@ -139,6 +140,7 @@
 		4720B5071C6F00B300229734 /* DateTimePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTimePickerViewController.swift; sourceTree = "<group>"; };
 		4720B5091C6F00E500229734 /* DateTimePickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateTimePickerViewController.xib; sourceTree = "<group>"; };
 		4720B50B1C71193600229734 /* Node+Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Node+Event.swift"; sourceTree = "<group>"; };
+		4720B50D1C71C32100229734 /* EmptyNodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyNodeView.swift; sourceTree = "<group>"; };
 		472465171BBFD0DA004DE4DE /* DateToolsExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateToolsExtensionsTests.swift; sourceTree = "<group>"; };
 		4731AA461C466807001EB80A /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		473574551B9A687400493CA0 /* FilamentKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FilamentKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -363,6 +365,7 @@
 			children = (
 				477C2CB21C409C660071467C /* ActionNodeView.swift */,
 				477C2CB41C40B3AD0071467C /* TransitionNodeView.swift */,
+				4720B50D1C71C32100229734 /* EmptyNodeView.swift */,
 			);
 			name = NodeViews;
 			sourceTree = "<group>";
@@ -826,6 +829,7 @@
 				47CD21C61BDF807900AF25BE /* Sequence+EventLogic.swift in Sources */,
 				47A14E811C21384F00B45F86 /* DirectoryMonitor.swift in Sources */,
 				473574771B9A68AC00493CA0 /* Sequence.swift in Sources */,
+				4720B50E1C71C32100229734 /* EmptyNodeView.swift in Sources */,
 				4791AB7F1C6706E3007FBEB8 /* TransitionNodeCollectionViewItem.swift in Sources */,
 				473574841B9A91A200493CA0 /* ListPresenterAlgorithms.swift in Sources */,
 				47F2FBC41BA8CFEE0041B291 /* Solver.swift in Sources */,

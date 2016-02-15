@@ -38,7 +38,7 @@ public class FilamentDocumentsManager : DirectoryMonitorDelegate {
     
     public func saveAllDocuments() {
         for doc in documents {
-            doc.saveDocument(nil)
+            doc.saveDocument(self)
         }
     }
     

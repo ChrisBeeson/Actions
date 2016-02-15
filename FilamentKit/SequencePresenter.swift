@@ -20,6 +20,7 @@ public class SequencePresenter : NSObject {
     private var delegates = [SequencePresenterDelegate]()
     private var currentStatus = SequenceStatus.Void
     
+    public var representingDocument: FilamentDocument?
     public var undoManager: NSUndoManager?
 
     public var title: String {
@@ -155,11 +156,11 @@ public class SequencePresenter : NSObject {
     }
     
     
-    public func setDate(date:NSDate, isStartDate:Bool) {
+    public func setDate(date:NSDate?, isStartDate:Bool) {
         
-        if sequence!.date != nil && date.isEqualToDate(sequence!.date!) && isStartDate == sequence?.startsAtDate { return }
+        if sequence!.date != nil && date!.isEqualToDate(sequence!.date!) && isStartDate == sequence?.startsAtDate { return }
         
-        undoManager?.prepareWithInvocationTarget(self).setDate(self.date!, isStartDate: true)
+        undoManager?.prepareWithInvocationTarget(self).setDate(self.date, isStartDate: true)
         let undoActionName = NSLocalizedString("Change Date", comment: "")
         undoManager?.setActionName(undoActionName)
         

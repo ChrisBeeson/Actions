@@ -23,6 +23,7 @@ public class FilamentDocument: NSDocument {
                     _sequencePresenter = SequencePresenter()
                     _sequencePresenter!.setSequence(seq)
                     _sequencePresenter!.undoManager = self.undoManager
+                    _sequencePresenter!.representingDocument = self
                 }
                 return _sequencePresenter
                 
