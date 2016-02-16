@@ -56,7 +56,7 @@ public class ActionNodeCollectionViewItem : NSCollectionViewItem, NodePresenterD
             popover = NSPopover()
             popover!.animates = true
             popover!.behavior = .Transient
-            popover!.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
+            popover!.appearance = NSAppearance(named: NSAppearanceNameAqua)
             
             if nodeDetailViewController == nil {
                 nodeDetailViewController = NodeDetailViewController(nibName:"NodeDetailViewController", bundle:NSBundle(identifier:"com.andris.FilamentKit"))

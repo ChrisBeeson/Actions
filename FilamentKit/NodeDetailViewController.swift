@@ -10,16 +10,22 @@ import Foundation
 
 public class NodeDetailViewController : NSViewController, NodePresenterDelegate {
     
-    @IBOutlet weak var stackView: NSStackView!
+    
     @IBOutlet weak var tokenField: NSTokenField!
     @IBOutlet weak var titleTextField: NSTextField!
     @IBOutlet weak var notesTextField: NSTextField!
     
     
     // StackView Views
-    @IBOutlet weak var titleView: NSView!
-    @IBOutlet weak var sceduledDateView: NSView!
+
+    @IBOutlet weak var mainStackView: NSStackView!
+    @IBOutlet weak var titleStackView: NSStackView!
+    @IBOutlet weak var eventStackView: NSStackView!
     @IBOutlet weak var rulesView: NSBox!
+    
+    @IBOutlet weak var testStackView: NSStackView!
+    
+    @IBOutlet var testView: NSView!
     
     
     var nodePresenter: NodePresenter?
@@ -29,6 +35,11 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate 
         
         titleTextField.stringValue = nodePresenter!.title
         notesTextField.stringValue = nodePresenter!.notes
+        
+        // eventStackView.hidden = true
+        
+                mainStackView.addArrangedSubview(testView)
+        
     }
     
     @IBAction func titleTextFieldDidFinishEditing(sender: AnyObject) {
@@ -37,6 +48,37 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate 
     }
     
     
+    @IBAction func calendarLinkButtonPressed(sender: AnyObject) {
+        
+        // testView.hidden = true
+        
+        NSAnimationContext.runAnimationGroup({ context in
+            context.duration = 1.0
+            self.testView.animator().hidden = !self.testView.hidden
+            }, completionHandler: nil)
+
+    /*
+        testStackView.hidden = true
+        
+        mainStackView.addArrangedSubview(testStackView)
+        
+        NSAnimationContext.runAnimationGroup({ context in
+            context.duration = 1.0
+            self.testStackView.animator().hidden = false
+            }, completionHandler: nil)
+        
+        */
+    }
+    
+    
+    /*
+
+    NSAnimationContext.runAnimationGroup({ contextin
+    context.duration = 1.0
+    self.subviewToHide.animatior().hidden = true
+    }, completionHandler: nil)
+*/
+    
     /*
     public func nodePresenterDidChangeTitle(presenter: NodePresenter) {
         
@@ -44,13 +86,12 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate 
     }
     */
     
-    override public func viewDidAppear() {
+    //override public func viewWillAppear() {
         
-        
-        // stackView.removeArrangedSubview(sceduledDateView)
+   
         
         // titleTextField.selectable = false
         
         // tokenField.objectValue = ["< 48h","Tomorrow","AvoidAllCals","AvoidLunch"]
-    }
+    //  }
 }
