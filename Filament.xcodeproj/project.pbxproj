@@ -78,6 +78,7 @@
 		83861F2B1BEEA25F00A44122 /* FilamentDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83861F2A1BEEA25F00A44122 /* FilamentDocument.swift */; };
 		83C73E0D1BE31C4F0045973C /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C73E0B1BE31BF20045973C /* AppConfiguration.swift */; };
 		83C73E0E1BE31C4F0045973C /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C73E0B1BE31BF20045973C /* AppConfiguration.swift */; };
+		83D659B71C729E9400AAD708 /* dandelion_plant_flower_seeds_feathers_90323_2560x1600.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 83D659B61C729E9400AAD708 /* dandelion_plant_flower_seeds_feathers_90323_2560x1600.jpg */; };
 		83DDAA4F1B997C9A001A4DBE /* SystemTrayMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83DDAA4E1B997C9A001A4DBE /* SystemTrayMenu.xib */; };
 		83F6B95D1B994652002A5AAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F6B95C1B994652002A5AAF /* AppDelegate.swift */; };
 		83F6B9611B994652002A5AAF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83F6B9601B994652002A5AAF /* Images.xcassets */; };
@@ -194,6 +195,7 @@
 		835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NodeDetailViewController.xib; sourceTree = "<group>"; };
 		83861F2A1BEEA25F00A44122 /* FilamentDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilamentDocument.swift; sourceTree = "<group>"; };
 		83C73E0B1BE31BF20045973C /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		83D659B61C729E9400AAD708 /* dandelion_plant_flower_seeds_feathers_90323_2560x1600.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dandelion_plant_flower_seeds_feathers_90323_2560x1600.jpg; sourceTree = "<group>"; };
 		83DDAA4A1B9978CF001A4DBE /* Filament-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Filament-Bridging-Header.h"; sourceTree = "<group>"; };
 		83DDAA4E1B997C9A001A4DBE /* SystemTrayMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SystemTrayMenu.xib; sourceTree = "<group>"; };
 		83F6B9571B994652002A5AAF /* Filament.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Filament.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -420,6 +422,7 @@
 				47B696441BE5645400260C2A /* FilamentsTableViewController.swift */,
 				479CD2851C1B8AE700C8D1D6 /* FilamentTableCellView.swift */,
 				47F5E82A1BF495D8004C0D16 /* AddFilamentViewController.swift */,
+				83D659B61C729E9400AAD708 /* dandelion_plant_flower_seeds_feathers_90323_2560x1600.jpg */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -617,6 +620,7 @@
 				9A9F2FB0D106D7558D035E97 /* Embed Pods Frameworks */,
 				8970011A8D41BFED117A25E8 /* Copy Pods Resources */,
 				4735742A1B9A671D00493CA0 /* Embed Frameworks */,
+				83D659B81C72A10400AAD708 /* Inc Build */,
 			);
 			buildRules = (
 			);
@@ -731,6 +735,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83F9E92B1BA18739006282B5 /* .gitignore in Resources */,
+				83D659B71C729E9400AAD708 /* dandelion_plant_flower_seeds_feathers_90323_2560x1600.jpg in Resources */,
 				835619CD1C6D6E4B00488E99 /* NodeDetailViewController.xib in Resources */,
 				47B6964B1BE5BC0B00260C2A /* Main.storyboard in Resources */,
 				4731AA471C466807001EB80A /* README in Resources */,
@@ -764,6 +769,20 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		83D659B81C72A10400AAD708 /* Inc Build */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Inc Build";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
 		};
 		8970011A8D41BFED117A25E8 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;

@@ -61,11 +61,10 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate {
         scrollview.horizontalScroller?.alphaValue = 0.0
         backgroundView.backgroundColor = NSColor.whiteColor()
         
-        self.collectionView.toolTip = String(presenter!.status)
-        
         if presenter != nil {
+            
             titleTextField.stringValue = presenter!.title
-           
+            self.collectionView.toolTip = String(presenter!.status)
             collectionView.reloadData()
         }
     }

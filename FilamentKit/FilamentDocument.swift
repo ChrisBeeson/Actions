@@ -33,6 +33,10 @@ public class FilamentDocument: NSDocument {
         }
     }
     
+    deinit {
+        _sequencePresenter = nil
+    }
+    
     
     // MARK: Auto Save and Versions
     

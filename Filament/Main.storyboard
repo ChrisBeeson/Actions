@@ -5,35 +5,31 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Info-->
         <scene sceneID="jw0-hT-vgf">
             <objects>
-                <viewController id="V04-Ff-GEc" sceneMemberID="viewController">
-                    <view key="view" id="o0E-DB-cWO">
+                <viewController title="Info" showSeguePresentationStyle="single" id="V04-Ff-GEc" sceneMemberID="viewController">
+                    <view key="view" focusRingType="none" id="o0E-DB-cWO">
                         <rect key="frame" x="0.0" y="0.0" width="333" height="151"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vsN-v6-YlR">
+                                <rect key="frame" x="-15" y="-124" width="362" height="362"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="dandelion_plant_flower_seeds_feathers_90323_2560x1600" id="hmI-Hj-PBX"/>
+                            </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tsv-iX-MTb">
-                                <rect key="frame" x="111" y="98" width="117" height="33"/>
+                                <rect key="frame" x="43" y="72" width="117" height="33"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Filament" id="7Qb-7x-W9F">
                                     <font key="font" metaFont="system" size="27"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t6g-MD-dsg">
-                                <rect key="frame" x="72" y="83" width="189" height="17"/>
+                                <rect key="frame" x="4" y="57" width="189" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="1.0 (1092)" id="0gg-qD-ey5">
                                     <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7tx-cR-KlJ">
-                                <rect key="frame" x="25" y="47" width="82" height="84"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="u" id="MFZ-Hp-HRn">
-                                    <font key="font" size="97" name="TheOctopus"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
@@ -42,7 +38,7 @@
                 </viewController>
                 <customObject id="LLE-ol-L7v" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="819.5" y="-1200.5"/>
+            <point key="canvasLocation" x="700.5" y="-1258.5"/>
         </scene>
         <!--Application-->
         <scene sceneID="JPo-4y-FX3">
@@ -937,5 +933,6 @@ AwEVARgBHQAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAEfA
     </scenes>
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>
+        <image name="dandelion_plant_flower_seeds_feathers_90323_2560x1600" width="2560" height="1600"/>
     </resources>
 </document>

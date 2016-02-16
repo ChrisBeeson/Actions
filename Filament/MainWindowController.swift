@@ -14,7 +14,7 @@ class MainWindowController: NSWindowController {
     override func awakeFromNib() {
         
         super.awakeFromNib()
-        // self.window!.titleVisibility = NSWindowTitleVisibility.Hidden
+         self.window!.titleVisibility = NSWindowTitleVisibility.Hidden
         
         addObserver(self, forKeyPath: "self.window.firstResponder", options: [.Initial, .Old, .New], context: nil)
     }
