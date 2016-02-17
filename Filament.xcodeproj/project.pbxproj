@@ -43,10 +43,9 @@
 		477212061BED699500D5E988 /* FilamentDocumentsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477212051BED699500D5E988 /* FilamentDocumentsManager.swift */; };
 		477626951C53839B00C35599 /* FilamentKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 477626931C53823B00C35599 /* FilamentKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4778C0A81C656B2500F5A259 /* DateNodeCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4778C0A71C656B2500F5A259 /* DateNodeCollectionViewItem.swift */; };
-		4778C0AA1C657D8F00F5A259 /* ActionNodeCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4778C0A91C657D8F00F5A259 /* ActionNodeCollectionViewItem.swift */; };
+		4778C0AA1C657D8F00F5A259 /* NodeCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4778C0A91C657D8F00F5A259 /* NodeCollectionViewItem.swift */; };
 		477C2CB31C409C660071467C /* ActionNodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477C2CB21C409C660071467C /* ActionNodeView.swift */; };
 		477C2CB51C40B3AD0071467C /* TransitionNodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477C2CB41C40B3AD0071467C /* TransitionNodeView.swift */; };
-		4791AB7F1C6706E3007FBEB8 /* TransitionNodeCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4791AB7E1C6706E3007FBEB8 /* TransitionNodeCollectionViewItem.swift */; };
 		479CD2861C1B8AE700C8D1D6 /* FilamentTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479CD2851C1B8AE700C8D1D6 /* FilamentTableCellView.swift */; };
 		47A14E811C21384F00B45F86 /* DirectoryMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A14E801C21384F00B45F86 /* DirectoryMonitor.swift */; };
 		47ACA9541BB5464C000CAC61 /* DateToolsExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9531BB5464C000CAC61 /* DateToolsExtenstions.swift */; };
@@ -66,6 +65,7 @@
 		47F2FBC41BA8CFEE0041B291 /* Solver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F2FBC31BA8CFEE0041B291 /* Solver.swift */; };
 		47F5E82B1BF495D8004C0D16 /* AddFilamentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F5E82A1BF495D8004C0D16 /* AddFilamentViewController.swift */; };
 		8329DE9B1C63DF10001B3A2F /* SequenceCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8329DE9A1C63DF10001B3A2F /* SequenceCollectionView.swift */; };
+		832BA20A1C740686004331A7 /* NodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832BA2091C740686004331A7 /* NodeView.swift */; };
 		833AE32E1C67E463002F35C1 /* DateNodeCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 833AE32D1C67E463002F35C1 /* DateNodeCollectionViewItem.xib */; };
 		833AE3301C67F85B002F35C1 /* ActionNodeCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 833AE32F1C67F85B002F35C1 /* ActionNodeCollectionViewItem.xib */; };
 		833AE3321C67FB6D002F35C1 /* TransitionNodeCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 833AE3311C67FB6D002F35C1 /* TransitionNodeCollectionViewItem.xib */; };
@@ -164,10 +164,9 @@
 		477212071BED9DCB00D5E988 /* Filament.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Filament.entitlements; path = Filament/Filament.entitlements; sourceTree = "<group>"; };
 		477626931C53823B00C35599 /* FilamentKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilamentKit.h; sourceTree = "<group>"; };
 		4778C0A71C656B2500F5A259 /* DateNodeCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateNodeCollectionViewItem.swift; sourceTree = "<group>"; };
-		4778C0A91C657D8F00F5A259 /* ActionNodeCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionNodeCollectionViewItem.swift; sourceTree = "<group>"; };
+		4778C0A91C657D8F00F5A259 /* NodeCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeCollectionViewItem.swift; sourceTree = "<group>"; };
 		477C2CB21C409C660071467C /* ActionNodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionNodeView.swift; sourceTree = "<group>"; };
 		477C2CB41C40B3AD0071467C /* TransitionNodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionNodeView.swift; sourceTree = "<group>"; };
-		4791AB7E1C6706E3007FBEB8 /* TransitionNodeCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionNodeCollectionViewItem.swift; sourceTree = "<group>"; };
 		479CD2851C1B8AE700C8D1D6 /* FilamentTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilamentTableCellView.swift; path = FilamentKit/FilamentTableCellView.swift; sourceTree = SOURCE_ROOT; };
 		47A14E801C21384F00B45F86 /* DirectoryMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectoryMonitor.swift; sourceTree = "<group>"; };
 		47ACA9531BB5464C000CAC61 /* DateToolsExtenstions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateToolsExtenstions.swift; sourceTree = "<group>"; };
@@ -184,6 +183,7 @@
 		47F2FBC31BA8CFEE0041B291 /* Solver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Solver.swift; sourceTree = "<group>"; };
 		47F5E82A1BF495D8004C0D16 /* AddFilamentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFilamentViewController.swift; sourceTree = "<group>"; };
 		8329DE9A1C63DF10001B3A2F /* SequenceCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceCollectionView.swift; sourceTree = "<group>"; };
+		832BA2091C740686004331A7 /* NodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeView.swift; sourceTree = "<group>"; };
 		833AE32D1C67E463002F35C1 /* DateNodeCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateNodeCollectionViewItem.xib; sourceTree = "<group>"; };
 		833AE32F1C67F85B002F35C1 /* ActionNodeCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionNodeCollectionViewItem.xib; sourceTree = "<group>"; };
 		833AE3311C67FB6D002F35C1 /* TransitionNodeCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransitionNodeCollectionViewItem.xib; sourceTree = "<group>"; };
@@ -366,6 +366,7 @@
 				477C2CB21C409C660071467C /* ActionNodeView.swift */,
 				477C2CB41C40B3AD0071467C /* TransitionNodeView.swift */,
 				4720B50D1C71C32100229734 /* EmptyNodeView.swift */,
+				832BA2091C740686004331A7 /* NodeView.swift */,
 			);
 			name = NodeViews;
 			sourceTree = "<group>";
@@ -473,8 +474,7 @@
 				833AE32D1C67E463002F35C1 /* DateNodeCollectionViewItem.xib */,
 				834F85D01C6ACFA2009CC72F /* AddNewNodeCollectionViewItem.xib */,
 				4778C0A71C656B2500F5A259 /* DateNodeCollectionViewItem.swift */,
-				4778C0A91C657D8F00F5A259 /* ActionNodeCollectionViewItem.swift */,
-				4791AB7E1C6706E3007FBEB8 /* TransitionNodeCollectionViewItem.swift */,
+				4778C0A91C657D8F00F5A259 /* NodeCollectionViewItem.swift */,
 				834F85CE1C6ACF5E009CC72F /* AddNewNodeCollectionViewItem.swift */,
 			);
 			name = CollectionViewItems;
@@ -820,7 +820,7 @@
 				47ACA9571BB54B82000CAC61 /* EventDuration.swift in Sources */,
 				4720B5001C6E7EF200229734 /* NodePresenter.swift in Sources */,
 				4735747F1B9A919500493CA0 /* SequencePresenter.swift in Sources */,
-				4778C0AA1C657D8F00F5A259 /* ActionNodeCollectionViewItem.swift in Sources */,
+				4778C0AA1C657D8F00F5A259 /* NodeCollectionViewItem.swift in Sources */,
 				4753D3AF1BE378720071DB59 /* WorkingWeekRule.swift in Sources */,
 				835619CA1C6D6AAA00488E99 /* NodeDetailViewController.swift in Sources */,
 				473574851B9A91A200493CA0 /* SequencePresenterDelegate.swift in Sources */,
@@ -831,6 +831,7 @@
 				475927B11C6C725700D24DE9 /* Dwifft.swift in Sources */,
 				477C2CB51C40B3AD0071467C /* TransitionNodeView.swift in Sources */,
 				473574791B9A68BE00493CA0 /* Rule.swift in Sources */,
+				832BA20A1C740686004331A7 /* NodeView.swift in Sources */,
 				834F85CF1C6ACF5E009CC72F /* AddNewNodeCollectionViewItem.swift in Sources */,
 				4720B5021C6E7F0400229734 /* NodePresenterDelegate.swift in Sources */,
 				4720B5081C6F00B300229734 /* DateTimePickerViewController.swift in Sources */,
@@ -845,7 +846,6 @@
 				47A14E811C21384F00B45F86 /* DirectoryMonitor.swift in Sources */,
 				473574771B9A68AC00493CA0 /* Sequence.swift in Sources */,
 				4720B50E1C71C32100229734 /* EmptyNodeView.swift in Sources */,
-				4791AB7F1C6706E3007FBEB8 /* TransitionNodeCollectionViewItem.swift in Sources */,
 				473574841B9A91A200493CA0 /* ListPresenterAlgorithms.swift in Sources */,
 				47F2FBC41BA8CFEE0041B291 /* Solver.swift in Sources */,
 				4720B50C1C71193600229734 /* Node+Event.swift in Sources */,

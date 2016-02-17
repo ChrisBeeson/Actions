@@ -14,7 +14,7 @@ import Foundation
 
 public class TransitionNodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     
-    @IBOutlet weak var transitionNodeView: TransitionNodeView!
+
     
     @IBOutlet weak var titleTextView: NSTextField!
     

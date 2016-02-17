@@ -21,10 +21,9 @@ public class NodePresenter : NSObject {
     }
     
     
-    init(node:Node, delegate:NodePresenterDelegate) {
+    init(node:Node) {
         self.node = node
         super.init()
-        addDelegate(delegate)
     }
     
     var type: NodeType {

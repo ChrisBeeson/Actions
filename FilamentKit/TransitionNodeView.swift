@@ -8,38 +8,9 @@
 
 import Foundation
 
-public class TransitionNodeView: NSView {
+class TransitionNodeView: NodeView {
     
-    var text = ""
-    var textField:NSTextField?
-    var selected = false {
-    didSet {
-    self.setNeedsDisplayInRect(self.frame)
-    }
-}
-    var node:Node?
-
-
-    required public init?(coder: NSCoder) {
-        super.init(coder: coder)!
-    }
-    
-    override init(frame: NSRect) {
-        super.init(frame: NSRect(x: 0.0, y: 0.0, width: 50, height: 40))
-        updateView()
-    }
-    
-    convenience init(node:Node) {
-        self.init(frame: NSRect(x: 0.0, y: 0.0, width: 100, height: 38))
-        self.node = node
-    }
-    
-    
-    func updateView() {
-
-    }
-    
-    override public func drawRect(dirtyRect: NSRect) {
+    override func drawRect(dirtyRect: NSRect) {
         
         let frame = self.frame
         let path = NSBezierPath()

@@ -80,28 +80,27 @@ import Foundation
         } else if indexPath.item < nodes.count+1 {
             
             let node = nodes[indexPath.item-1]
+            var item: NodeCollectionViewItem
             
             switch node.type {
+                
             case .Action:
-                let item = makeItemWithIdentifier("ActionNodeCollectionViewItem", forIndexPath: indexPath) as! ActionNodeCollectionViewItem
-                let nodePresenter = NodePresenter(node: node, delegate: item)
-                nodePresenter.undoManager = presenter!.undoManager
-                item.nodePresenter = nodePresenter
-                item.indexPath = indexPath
-                return item
+                 item = makeItemWithIdentifier("ActionNodeCollectionViewItem", forIndexPath: indexPath) as! NodeCollectionViewItem
+
                 
             case .Transition:
-                let item = makeItemWithIdentifier("TransitionNodeCollectionViewItem", forIndexPath: indexPath) as! TransitionNodeCollectionViewItem
-                let nodePresenter = NodePresenter(node: node, delegate: item)
-                nodePresenter.undoManager = presenter!.undoManager
-                item.nodePresenter = nodePresenter
-                item.indexPath = indexPath
-                return item
+                 item = makeItemWithIdentifier("TransitionNodeCollectionViewItem", forIndexPath: indexPath) as! NodeCollectionViewItem
                 
             default:
-                return NSCollectionViewItem()
+                fatalError("Invaild Node Type for CollectionView")
             }
             
+            let nodePresenter = NodePresenter(node: node)
+            nodePresenter.addDelegate(item)
+            nodePresenter.undoManager = presenter!.undoManager
+            item.presenter = nodePresenter
+            item.indexPath = indexPath
+            return item
       
         } else {
             
@@ -170,12 +169,13 @@ import Foundation
             
             if let object = self.itemAtIndexPath(indexPath) {
             
-            if object.isKindOfClass(ActionNodeCollectionViewItem) {
+            if object.isKindOfClass(NodeCollectionViewItem) {
                 
-                let item = object as! ActionNodeCollectionViewItem
+                let item = object as! NodeCollectionViewItem
+                assert(item.presenter!.type == .Action,"Trying to delete a non .Action node")
                 
                 //TODO: need to delete the presenter
-                nodesToDelete.append(item.nodePresenter!.node)
+                nodesToDelete.append(item.presenter!.node)
             }
             }
         }

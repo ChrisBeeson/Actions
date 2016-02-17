@@ -5,11 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="ActionNodeCollectionViewItem" customModule="FilamentKit" customModuleProvider="target">
-            <connections>
-                <outlet property="actionNodeView" destination="LiW-QU-knJ" id="zqm-8e-QPf"/>
-            </connections>
-        </customObject>
+        <customObject id="-2" userLabel="File's Owner"/>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe">
@@ -45,10 +41,10 @@
             </constraints>
             <point key="canvasLocation" x="268" y="232.5"/>
         </customView>
-        <collectionViewItem id="FOf-By-Fhe" customClass="ActionNodeCollectionViewItem" customModule="FilamentKit" customModuleProvider="target">
+        <collectionViewItem id="FOf-By-Fhe" customClass="NodeCollectionViewItem" customModule="FilamentKit" customModuleProvider="target">
             <connections>
-                <outlet property="actionNodeView" destination="LiW-QU-knJ" id="FTj-T0-Vc3"/>
-                <outlet property="nodeTitleTextField" destination="SgK-88-xw1" id="mgD-sW-eeg"/>
+                <outlet property="nodeView" destination="LiW-QU-knJ" id="ybO-fs-S6E"/>
+                <outlet property="titleTextField" destination="SgK-88-xw1" id="0U9-Ab-4o7"/>
                 <outlet property="view" destination="c22-O7-iKe" id="gHM-ej-V52"/>
             </connections>
         </collectionViewItem>
