@@ -36,6 +36,9 @@ public class ActionNodeView: NSView {
         } else {
             path.lineWidth = 0.7
             AppConfiguration.Palette.outlineGray.setStroke()
+            // NSColor(calibratedRed: 1.0, green: 0.1, blue: 0.1, alpha: 1.0).setStroke()
+            //  NSColor(calibratedRed: 0.1, green: 0.8, blue: 0.1, alpha: 1.0).setStroke()
+            NSColor(calibratedRed: 0.1, green: 0.1, blue: 1.0, alpha: 1.0).setStroke()
         }
         
         let padding = path.lineWidth / 2.0
@@ -48,6 +51,10 @@ public class ActionNodeView: NSView {
         path.lineToPoint(NSPoint(x: frame.size.width - tailOff , y: frame.size.height - padding))
         
         AppConfiguration.Palette.filledGray.setFill()
+        
+        //  NSColor(calibratedRed: 1.0, green: 0.1, blue: 0.1, alpha: 0.08).setFill()
+        //  NSColor(calibratedRed: 0.1, green: 0.8, blue: 0.1, alpha: 0.08).setFill()
+         NSColor(calibratedRed: 0.1, green: 0.1, blue: 1.0, alpha: 0.08).setFill()
         path.fill()
         path.stroke()
     }

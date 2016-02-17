@@ -29,14 +29,8 @@ public class Node: NSObject, NSCoding {
         self.title = text
         self.type = type
         
-        /*
-        if let nodes = actionNodes {
-            self.actionNodes = nodes.map { $0.copy() as! Node}
-        }
-        */
-        
         if let incomingRules = rules {
-            for rule in incomingRules { self.rules.append(rule) }    // Could be a problem as we are not copying..
+            for rule in incomingRules { self.rules.append(rule) }
         }
         
         // Add default rules

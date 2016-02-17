@@ -8,6 +8,12 @@
 import Foundation
 import DateTools
 
+/*
+
+SequencePresenter is responsible for : SequenceStatus & NodePresenters associated with this sequence.
+
+*/
+
 public typealias nodeAtIndex = (DiffStep<Node>, Int)
 
 public enum SequenceStatus: Int { case NoStartSet, WaitingForStart, Running, Paused, FailedNode, Completed, Void }
@@ -18,6 +24,8 @@ public class SequencePresenter : NSObject {
     
     private var sequence: Sequence?
     private var delegates = [SequencePresenterDelegate]()
+    private var nodePresenters = [NodePresenter]()
+    
     private var currentStatus = SequenceStatus.Void
     
     public var representingDocument: FilamentDocument?
@@ -61,6 +69,24 @@ public class SequencePresenter : NSObject {
     
     
     // MARK: Methods
+    
+    //func nodePresenterForNode(node:Node) -> NodePresenter {
+        
+        // 1. return if nodePresenter already exists in nodePresenters
+        
+        // 2. if not create and add
+        
+        /*
+        
+        let nodePresenter = NodePresenter(node: node, delegate: item)
+        nodePresenter.undoManager = presenter!.undoManager
+        item.nodePresenter = nodePresenter
+        item.indexPath = indexPath
+
+        */
+        
+    //  return NodePresenter()
+    //}
     
     
     func updateSequenceStatus() -> SequenceStatus {

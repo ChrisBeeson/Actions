@@ -10,7 +10,7 @@ import Foundation
 
 public class TransitionNodeView: NSView {
     
-    var text = "Wash Cells"
+    var text = ""
     var textField:NSTextField?
     var selected = false {
     didSet {
