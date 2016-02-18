@@ -25,37 +25,4 @@ class ActionNodeView: NodeView {
         path.lineToPoint(NSPoint(x: frame.size.width - tailOff , y: frame.size.height - padding))
         return path.CGPath(forceClose: false)!
     }
-    
 }
-
-/*
-    override func drawRect(dirtyRect: NSRect) {
-   
-        let path = NSBezierPath()
-        let tailOff:CGFloat = 15.0
-        
-        let frame = self.frame
-        
-        drawingContextColours().fill.setFill()
-        drawingContextColours().stroke.setStroke()
-        
-        if selected {
-            path.lineWidth = 2
-            AppConfiguration.Palette.selectionBlue.setStroke()
-        } else {
-            path.lineWidth = 0.7
-        }
-        
-        let padding = path.lineWidth / 2.0
-
-        path.moveToPoint(NSPoint(x: frame.size.width - tailOff , y: frame.size.height - padding))
-        path.lineToPoint(NSPoint(x: padding , y:frame.size.height - padding))
-        path.lineToPoint(NSPoint(x: padding , y:padding))
-        path.lineToPoint(NSPoint(x: frame.size.width - tailOff , y:padding))
-        path.lineToPoint(NSPoint(x: frame.size.width - padding , y:frame.size.height/2))
-        path.lineToPoint(NSPoint(x: frame.size.width - tailOff , y: frame.size.height - padding))
-                
-        path.fill()
-        path.stroke()
-    }
-*/

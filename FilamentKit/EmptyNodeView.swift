@@ -13,9 +13,6 @@ public class EmptyNodeView: NSView {
 
     override public func drawRect(dirtyRect: NSRect) {
         
-        //  self.layer?.masksToBounds
-        //  self.layer?.backgroundColor =  AppConfiguration.Palette.outlineGray
-        
         let path = NSBezierPath(ovalInRect: self.bounds.insetBy(dx: 3.0, dy: 3.0) )
         
         AppConfiguration.Palette.lightGreyFill.setFill()
