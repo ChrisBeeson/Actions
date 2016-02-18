@@ -8,15 +8,13 @@
 
 import Foundation
 
-enum DrawColour: Int { case LightGrey, Green, Red, Blue}
+enum NodeColour: Int { case LightGrey, Green, Red, Blue}
 
 class NodeView: NSView {
     
     var pathLayer : CAShapeLayer
     
-    
     required init?(coder: NSCoder) {
-        
         pathLayer = CAShapeLayer()
         super.init(coder: coder)
     }
@@ -24,29 +22,139 @@ class NodeView: NSView {
     
     var selected = false {
         didSet {
-            self.setNeedsDisplayInRect(self.frame)
+            /*
+            if selected {
+                pathLayer.lineWidth = 2
+                pathLayer.strokeColor = AppConfiguration.Palette.selectionBlue.CGColor
+            } else {
+               pathLayer.lineWidth = 0.6
+               pathLayer.strokeColor = AppConfiguration.Palette.selectionBlue.CGColor
+            }
+*/
         }
     }
     
-    var currentColour = DrawColour.LightGrey {
+    var currentStatus:NodeStatus = .inActive {
+        
+        willSet {
+            if newValue == currentStatus { return }
+            performAnimationsForNewStatus(newValue)
+        }
+        
         didSet {
-            self.setNeedsDisplayInRect(self.frame)
+            self.needsLayout = true
         }
     }
     
-    func drawingContextColours() -> (fill:NSColor, outline:NSColor) {
- 
-        switch currentColour {
-        case .LightGrey:
-            return (AppConfiguration.Palette.lightGreyFill, AppConfiguration.Palette.lightGreyOutline)
-        case .Green:
-            return (AppConfiguration.Palette.greenFill, AppConfiguration.Palette.greenOutline)
-        case .Red:
-            return (AppConfiguration.Palette.redFill, AppConfiguration.Palette.redOutline)
-        case .Blue:
-            return (AppConfiguration.Palette.blueFill, AppConfiguration.Palette.blueOutline)
+    func performAnimationsForNewStatus(newStatus:NodeStatus) {
+        
+        switch newStatus {
+            
+        case .inActive, .Completed:
+            pathLayer.strokeColor = drawingContextColour(.LightGrey).stroke
+            pathLayer.fillColor = drawingContextColour(.LightGrey).fill
+            
+        case .Ready:
+            CATransaction.begin()
+            CATransaction.setDisableActions(true)
+            pathLayer.strokeColor = drawingContextColour(.Green).stroke
+            pathLayer.fillColor = drawingContextColour(.Green).fill
+            CATransaction.commit()
+            
+            CATransaction.begin()
+            CATransaction.setAnimationDuration(2.0)
+            pathLayer.strokeColor = drawingContextColour(.LightGrey).stroke
+            pathLayer.fillColor = drawingContextColour(.LightGrey).fill
+            CATransaction.commit()
+            
+            
+        case .Running:
+            pathLayer.strokeColor = drawingContextColour(.Green).stroke
+            pathLayer.fillColor = drawingContextColour(.Green).fill
+
+            
+        case .WaitingForUserInput:
+            pathLayer.strokeColor = drawingContextColour(.Blue).stroke
+            pathLayer.fillColor = drawingContextColour(.Blue).fill
+            
+        case .Error:
+            pathLayer.strokeColor = drawingContextColour(.Red).stroke
+            pathLayer.fillColor = drawingContextColour(.Red).fill
+            
+        case .Void: fatalError("Trying to add animation when statusNode = .Void")
         }
     }
+
+
+    func drawingContextColour(colour:NodeColour) -> (fill:CGColor, stroke:CGColor) {
+ 
+        switch colour {
+        case .LightGrey:
+            return (AppConfiguration.Palette.lightGreyFill.CGColor, AppConfiguration.Palette.lightGreyStroke.CGColor)
+        case .Green:
+            return (AppConfiguration.Palette.greenFill.CGColor, AppConfiguration.Palette.greenStroke.CGColor)
+        case .Red:
+            return (AppConfiguration.Palette.redFill.CGColor, AppConfiguration.Palette.redStroke.CGColor)
+        case .Blue:
+            return (AppConfiguration.Palette.blueFill.CGColor, AppConfiguration.Palette.blueStroke.CGColor)
+        }
+    }
+    
+    func colourForStatus(status:NodeStatus) -> NodeColour {
+        
+        switch status {
+        case .inActive: return .LightGrey
+        case .Ready: return .LightGrey
+        case .Running: return .Green
+        case .Completed: return .LightGrey
+        case .WaitingForUserInput: return .Blue
+        case .Error: return .Red
+        case .Void: fatalError("Trying to find colour for a Void Status")
+        }
+    }
+}
+
+
+extension NSBezierPath {
+    
+    func CGPath(forceClose forceClose:Bool) -> CGPathRef? {
+        
+        var cgPath:CGPathRef? = nil
+        
+        let numElements = self.elementCount
+        if numElements > 0 {
+            let newPath = CGPathCreateMutable()
+            let points = NSPointArray.alloc(3)
+            var bDidClosePath:Bool = true
+            
+            for i in 0 ..< numElements {
+                
+                switch elementAtIndex(i, associatedPoints:points) {
+                    
+                case NSBezierPathElement.MoveToBezierPathElement:
+                    CGPathMoveToPoint(newPath, nil, points[0].x, points[0].y )
+                    
+                case NSBezierPathElement.LineToBezierPathElement:
+                    CGPathAddLineToPoint(newPath, nil, points[0].x, points[0].y )
+                    bDidClosePath = false
+                    
+                case NSBezierPathElement.CurveToBezierPathElement:
+                    CGPathAddCurveToPoint(newPath, nil, points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y )
+                    bDidClosePath = false
+                    
+                case NSBezierPathElement.ClosePathBezierPathElement:
+                    CGPathCloseSubpath(newPath)
+                    bDidClosePath = true
+                }
+                
+                if forceClose && !bDidClosePath {
+                    CGPathCloseSubpath(newPath)
+                }
+            }
+            cgPath = CGPathCreateCopy(newPath)
+        }
+        return cgPath
+}
 }
 
 

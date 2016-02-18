@@ -19,7 +19,7 @@ public class EmptyNodeView: NSView {
         let path = NSBezierPath(ovalInRect: self.bounds.insetBy(dx: 3.0, dy: 3.0) )
         
         AppConfiguration.Palette.lightGreyFill.setFill()
-        AppConfiguration.Palette.lightGreyOutline.setStroke()
+        AppConfiguration.Palette.lightGreyStroke.setStroke()
         
         path.lineWidth = 0.7
         

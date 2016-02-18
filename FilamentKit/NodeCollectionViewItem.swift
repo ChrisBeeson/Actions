@@ -42,18 +42,7 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
         
         if presenter != nil {
             titleTextField.stringValue = presenter!.title
-            
-            nodeView.currentColour = .LightGrey
-            
-            switch presenter!.currentStatus {
-            case .inActive:break
-            case .Ready: break
-            case .Running:break
-            case .Completed:break
-            case .WaitingForUserInput:break
-            case .Error:break
-            case .Void:break
-            }
+            nodeView.currentStatus = .inActive
         }
     }
     
@@ -61,17 +50,7 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     override func mouseDown(theEvent: NSEvent) {
         super.mouseDown(theEvent)
         
-        
-        if theEvent.clickCount == 1 {
-            
-            // test animation
-            
-            nodeView.pathLayer.fillColor = AppConfiguration.Palette.blueFill.CGColor
-            nodeView.pathLayer.strokeColor = AppConfiguration.Palette.blueOutline .CGColor
-            return
-        }
-        
-        // if theEvent.clickCount < 2 {return }
+        if theEvent.clickCount < 2 {return }
         
         if popover == nil {
             
@@ -107,6 +86,30 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     
     //Mark: NodePresenter delegate calls
     
+    func nodePresenterDidChangeStatus(presenter: NodePresenter, toStatus: NodeStatus) {
+    
+        if toStatus == .Ready {
+            
+            delay(Double(indexPath!.item) * 0.3) {
+                self.nodeView.currentStatus = .Ready
+            }
+        } else {
+             self.nodeView.currentStatus = toStatus
+        }
+    }
+    
+    /*
+    
+    
+    NSAnimationContext.runAnimationGroup({ context in
+    context.duration = 1.0
+    self.testView.animator().hidden = !self.testView.hidden
+    }, completionHandler: nil)
+    
+    */
+    
+    
+    
     func nodePresenterDidChangeTitle(presenter: NodePresenter) {
         
         titleTextField.stringValue = presenter.title
@@ -121,4 +124,17 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
         return true
     }
     
+
+    
 }
+
+
+func delay(delay:Double, closure:()->()) {
+    dispatch_after(
+        dispatch_time(
+            DISPATCH_TIME_NOW,
+            Int64(delay * Double(NSEC_PER_SEC))
+        ),
+        dispatch_get_main_queue(), closure)
+}
+

@@ -242,16 +242,16 @@ public class AppConfiguration: NSObject {
     
     public struct Palette {
         public static let selectionBlue = NSColor(red: 0.6, green: 0.75, blue: 0.9, alpha: 1.0)
-        public static let lightGreyOutline = NSColor(calibratedWhite:0.65, alpha:1.0)
+        public static let lightGreyStroke = NSColor(calibratedWhite:0.65, alpha:1.0)
         public static let lightGreyFill = NSColor(calibratedWhite:0.95, alpha:1.0)
         
         public static let greenFill = NSColor(calibratedRed: 0.9, green: 1.0, blue: 0.9, alpha: 1.0)
-        public static let greenOutline = NSColor(calibratedRed: 0.1, green: 0.8, blue: 0.1, alpha: 1.0)
+        public static let greenStroke = NSColor(calibratedRed: 0.1, green: 0.8, blue: 0.1, alpha: 1.0)
         
         public static let redFill =  NSColor(calibratedRed: 1.0, green: 0.9, blue: 0.9, alpha: 1.0)
-        public static let redOutline = NSColor(calibratedRed: 1.0, green: 0.1, blue: 0.1, alpha: 1.0)
+        public static let redStroke = NSColor(calibratedRed: 1.0, green: 0.1, blue: 0.1, alpha: 1.0)
         
         public static let blueFill = NSColor(calibratedRed: 0.9, green: 0.9, blue: 1.0, alpha: 1.0)
-        public static let blueOutline = NSColor(calibratedRed: 0.1, green: 0.1, blue: 0.8, alpha: 1.0)
+        public static let blueStroke = NSColor(calibratedRed: 0.1, green: 0.1, blue: 0.8, alpha: 1.0)
     }
 }

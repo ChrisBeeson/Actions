@@ -132,10 +132,11 @@ class NodePresenter : NSObject {
         
         if newStatus != _currentStatus {
             delegates.forEach { $0.nodePresenterDidChangeStatus(self, toStatus:newStatus) }
+            print("Node \(node.title) changed Status to \(newStatus)")
         }
         
         _currentStatus = newStatus
-        
+    
         return _currentStatus
     }
     

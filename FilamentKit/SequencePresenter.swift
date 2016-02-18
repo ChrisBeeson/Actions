@@ -97,7 +97,7 @@ public class SequencePresenter : NSObject {
         
         if currentStatus != status {
              currentStatus = status
-            Swift.print("Status changed: \(currentStatus)")
+            Swift.print("Sequence Status changed: \(currentStatus)")
              delegates.forEach{ $0.sequencePresenterDidChangeStatus(self, toStatus:currentStatus)  }
         }
         

@@ -11,14 +11,13 @@ import Foundation
 class ActionNodeView: NodeView {
     
     required init?(coder: NSCoder) {
-    
         super.init(coder: coder)
         
-        pathLayer.lineWidth = 1
+        pathLayer.lineWidth = 0.5
         pathLayer.path = calcPath()
-        pathLayer.strokeColor = drawingContextColours().outline.CGColor
-        pathLayer.fillColor = drawingContextColours().fill.CGColor
         pathLayer.shouldRasterize = false
+        pathLayer.strokeColor = drawingContextColour(.LightGrey).stroke
+        pathLayer.fillColor = drawingContextColour(.LightGrey).fill
        
         self.wantsLayer = true
         self.layer?.addSublayer(pathLayer)
@@ -38,9 +37,6 @@ class ActionNodeView: NodeView {
         let frame = self.frame
         let padding:CGFloat = 1.0
         
-        pathLayer.strokeColor = drawingContextColours().outline.CGColor
-        pathLayer.fillColor = drawingContextColours().fill.CGColor
-        
         let path = NSBezierPath()
         path.moveToPoint(NSPoint(x: frame.size.width - tailOff , y: frame.size.height - padding))
         path.lineToPoint(NSPoint(x: padding , y:frame.size.height - padding))
@@ -51,7 +47,8 @@ class ActionNodeView: NodeView {
         return path.CGPath(forceClose: false)!
     }
     
-    
+}
+
 /*
     override func drawRect(dirtyRect: NSRect) {
    
@@ -61,7 +58,7 @@ class ActionNodeView: NodeView {
         let frame = self.frame
         
         drawingContextColours().fill.setFill()
-        drawingContextColours().outline.setStroke()
+        drawingContextColours().stroke.setStroke()
         
         if selected {
             path.lineWidth = 2
@@ -83,47 +80,3 @@ class ActionNodeView: NodeView {
         path.stroke()
     }
 */
-
-}
-
-extension NSBezierPath {
-
-    func CGPath(forceClose forceClose:Bool) -> CGPathRef? {
-        
-        var cgPath:CGPathRef? = nil
-        
-        let numElements = self.elementCount
-        if numElements > 0 {
-            let newPath = CGPathCreateMutable()
-            let points = NSPointArray.alloc(3)
-            var bDidClosePath:Bool = true
-            
-            for i in 0 ..< numElements {
-                
-                switch elementAtIndex(i, associatedPoints:points) {
-                    
-                case NSBezierPathElement.MoveToBezierPathElement:
-                    CGPathMoveToPoint(newPath, nil, points[0].x, points[0].y )
-                    
-                case NSBezierPathElement.LineToBezierPathElement:
-                    CGPathAddLineToPoint(newPath, nil, points[0].x, points[0].y )
-                    bDidClosePath = false
-                    
-                case NSBezierPathElement.CurveToBezierPathElement:
-                    CGPathAddCurveToPoint(newPath, nil, points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y )
-                    bDidClosePath = false
-                    
-                case NSBezierPathElement.ClosePathBezierPathElement:
-                    CGPathCloseSubpath(newPath)
-                    bDidClosePath = true
-                }
-                
-                if forceClose && !bDidClosePath {
-                    CGPathCloseSubpath(newPath)
-                }
-            }
-            cgPath = CGPathCreateCopy(newPath)
-        }
-        return cgPath
-}
-}

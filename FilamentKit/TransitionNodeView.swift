@@ -15,16 +15,9 @@ class TransitionNodeView: NodeView {
         let frame = self.frame
         let path = NSBezierPath()
         
-        drawingContextColours().fill.setFill()
-        drawingContextColours().outline.setStroke()
-        
-        if selected {
-            path.lineWidth = 2
-            AppConfiguration.Palette.selectionBlue.setStroke()
-        } else {
-            path.lineWidth = 0.7
-        }
-        
+        //drawingContextColour(.LightGrey).fill.setFill()
+        //drawingContextColour(.LightGrey).stroke.setStroke()
+                
         path.moveToPoint(NSPoint(x: 0 , y: (frame.size.height/2)-(path.lineWidth/4)))
         path.lineToPoint(NSPoint(x: frame.size.width , y:(frame.size.height/2)-(path.lineWidth/4)))
         path.stroke()
