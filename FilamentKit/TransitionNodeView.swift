@@ -10,6 +10,7 @@ import Foundation
 
 class TransitionNodeView: NodeView {
     
+    /*
     override func drawRect(dirtyRect: NSRect) {
 
         let frame = self.frame
@@ -18,8 +19,18 @@ class TransitionNodeView: NodeView {
         //drawingContextColour(.LightGrey).fill.setFill()
         //drawingContextColour(.LightGrey).stroke.setStroke()
                 
+
+        path.stroke()
+    }
+    
+    */
+    
+    override func calculatePath() -> CGPath {
+        
+        let frame = self.frame
+        let path = NSBezierPath()
         path.moveToPoint(NSPoint(x: 0 , y: (frame.size.height/2)-(path.lineWidth/4)))
         path.lineToPoint(NSPoint(x: frame.size.width , y:(frame.size.height/2)-(path.lineWidth/4)))
-        path.stroke()
+        return path.CGPath(forceClose: false)!
     }
 }

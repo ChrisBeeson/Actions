@@ -15,9 +15,28 @@ class NodeView: NSView {
     var pathLayer : CAShapeLayer
     
     required init?(coder: NSCoder) {
+        
         pathLayer = CAShapeLayer()
+        
         super.init(coder: coder)
+        
+        pathLayer.lineWidth = 0.5
+        pathLayer.path = calculatePath()
+        pathLayer.shouldRasterize = false
+        pathLayer.strokeColor = drawingContextColour(.LightGrey).stroke
+        pathLayer.fillColor = drawingContextColour(.LightGrey).fill
+        
+        self.wantsLayer = true
+        self.layer?.addSublayer(pathLayer)
     }
+    
+    
+    override func layout() {
+        super.layout()
+        
+        pathLayer.path = calculatePath()
+    }
+    
     
     
     var selected = false {
@@ -35,7 +54,6 @@ class NodeView: NSView {
     }
     
     var currentStatus:NodeStatus = .inActive {
-        
         willSet {
             if newValue == currentStatus { return }
             performAnimationsForNewStatus(newValue)
@@ -45,6 +63,11 @@ class NodeView: NSView {
             self.needsLayout = true
         }
     }
+    
+    func calculatePath() -> CGPath {
+        fatalError("calculatePath MUST be overriden")
+    }
+    
     
     func performAnimationsForNewStatus(newStatus:NodeStatus) {
         

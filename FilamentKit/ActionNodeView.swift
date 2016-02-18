@@ -10,28 +10,7 @@ import Foundation
 
 class ActionNodeView: NodeView {
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        
-        pathLayer.lineWidth = 0.5
-        pathLayer.path = calcPath()
-        pathLayer.shouldRasterize = false
-        pathLayer.strokeColor = drawingContextColour(.LightGrey).stroke
-        pathLayer.fillColor = drawingContextColour(.LightGrey).fill
-       
-        self.wantsLayer = true
-        self.layer?.addSublayer(pathLayer)
-    }
-    
-    
-    override func layout() {
-        super.layout()
-        
-        pathLayer.path = calcPath()
-    }
-    
-    
-    func calcPath() -> CGPathRef {
+    override func calculatePath() -> CGPath {
         
         let tailOff:CGFloat = 15.0
         let frame = self.frame
