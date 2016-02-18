@@ -41,15 +41,17 @@ class NodeView: NSView {
     
     var selected = false {
         didSet {
-            /*
+            CATransaction.begin()
+            CATransaction.setDisableActions(true)
+            
             if selected {
                 pathLayer.lineWidth = 2
                 pathLayer.strokeColor = AppConfiguration.Palette.selectionBlue.CGColor
             } else {
-               pathLayer.lineWidth = 0.6
-               pathLayer.strokeColor = AppConfiguration.Palette.selectionBlue.CGColor
+                pathLayer.lineWidth = 0.6
+                pathLayer.strokeColor = drawingContextColour(colourForStatus(currentStatus)).stroke
             }
-*/
+              CATransaction.commit()
         }
     }
     
