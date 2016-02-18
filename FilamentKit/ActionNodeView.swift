@@ -10,13 +10,8 @@ import Foundation
 
 class ActionNodeView: NodeView {
     
-    var pathLayer : CAShapeLayer
-    
-    
     required init?(coder: NSCoder) {
-        
-        pathLayer = CAShapeLayer()
-        
+    
         super.init(coder: coder)
         
         pathLayer.lineWidth = 1

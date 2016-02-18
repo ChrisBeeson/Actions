@@ -43,7 +43,7 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
         if presenter != nil {
             titleTextField.stringValue = presenter!.title
             
-            nodeView.currentColour = .Blue
+            nodeView.currentColour = .LightGrey
             
             switch presenter!.currentStatus {
             case .inActive:break
@@ -61,7 +61,17 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     override func mouseDown(theEvent: NSEvent) {
         super.mouseDown(theEvent)
         
-        if theEvent.clickCount < 2 {return }
+        
+        if theEvent.clickCount == 1 {
+            
+            // test animation
+            
+            nodeView.pathLayer.fillColor = AppConfiguration.Palette.blueFill.CGColor
+            nodeView.pathLayer.strokeColor = AppConfiguration.Palette.blueOutline .CGColor
+            return
+        }
+        
+        // if theEvent.clickCount < 2 {return }
         
         if popover == nil {
             

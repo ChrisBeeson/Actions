@@ -12,6 +12,16 @@ enum DrawColour: Int { case LightGrey, Green, Red, Blue}
 
 class NodeView: NSView {
     
+    var pathLayer : CAShapeLayer
+    
+    
+    required init?(coder: NSCoder) {
+        
+        pathLayer = CAShapeLayer()
+        super.init(coder: coder)
+    }
+    
+    
     var selected = false {
         didSet {
             self.setNeedsDisplayInRect(self.frame)
