@@ -16,7 +16,7 @@ SequencePresenter is responsible for : SequenceStatus & NodePresenters associate
 
 public typealias nodeAtIndex = (DiffStep<Node>, Int)
 
-public enum SequenceStatus: Int { case NoStartSet, WaitingForStart, Running, Paused, FailedNode, Completed, Void }
+public enum SequenceStatus: Int { case NoStartDateSet, WaitingForStart, Running, Paused, FailedNode, Completed, Void }
 
 public class SequencePresenter : NSObject {
     
@@ -25,11 +25,13 @@ public class SequencePresenter : NSObject {
     private var sequence: Sequence?
     private var delegates = [SequencePresenterDelegate]()
     private var nodePresenters = [NodePresenter]()
-    
     private var currentStatus = SequenceStatus.Void
-    
-    public var representingDocument: FilamentDocument?
     public var undoManager: NSUndoManager?
+    public var representingDocument: FilamentDocument? {
+        didSet {
+            undoManager = representingDocument?.undoManager
+        }
+    }
 
     public var title: String {
         get {
@@ -45,7 +47,6 @@ public class SequencePresenter : NSObject {
     }
     
     public var nodes:[Node]? {
-        //  precondition(sequence!.validSequence(), "Trying to present a sequence that is not Valid")
         return sequence!.nodeChain()
     }
     
@@ -55,6 +56,7 @@ public class SequencePresenter : NSObject {
     
     public var completionDate : NSDate? {
         if nodes == nil { return nil}
+        if nodes!.count == 0 { return nodes![nodes!.count-1].event?.endDate }
         if let event = nodes![nodes!.count-1].event {
             return event.endDate
         } else {
@@ -70,30 +72,23 @@ public class SequencePresenter : NSObject {
     
     // MARK: Methods
     
-    //func nodePresenterForNode(node:Node) -> NodePresenter {
-        
-        // 1. return if nodePresenter already exists in nodePresenters
-        
-        // 2. if not create and add
-        
-        /*
-        
-        let nodePresenter = NodePresenter(node: node, delegate: item)
-        nodePresenter.undoManager = presenter!.undoManager
-        item.nodePresenter = nodePresenter
-        item.indexPath = indexPath
-
-        */
-        
-    //  return NodePresenter()
-    //}
+   func presenterForNode(node:Node) -> NodePresenter {
+    
+        let presenter = nodePresenters.filter {$0.node === node}
+        if presenter.count == 1 { return presenter[0] }
+    
+        let newPresenter = NodePresenter(node: node)
+        newPresenter.undoManager = representingDocument?.undoManager
+        nodePresenters.append(newPresenter)
+        return newPresenter
+    }
     
     
     func updateSequenceStatus() -> SequenceStatus {
         
         var status = SequenceStatus.Void
         
-        if date == nil { status = .NoStartSet }
+        if date == nil { status = .NoStartDateSet }
         if date?.isLaterThan(NSDate()) == true { status = .WaitingForStart }
         if date?.isEarlierThan(NSDate()) == true { status = .Running }
         if completionDate?.isEarlierThan(NSDate()) == true { status = .Completed }
@@ -105,6 +100,10 @@ public class SequencePresenter : NSObject {
             Swift.print("Status changed: \(currentStatus)")
              delegates.forEach{ $0.sequencePresenterDidChangeStatus(self, toStatus:currentStatus)  }
         }
+        
+        // update nodes 
+        nodePresenters.forEach{ $0.updateNodeStatus() }
+        
         return currentStatus
     }
     
@@ -172,7 +171,12 @@ public class SequencePresenter : NSObject {
         if nodes.isEmpty { return }
         
         let oldNodes = sequence!.nodeChain()
-        nodes.forEach { sequence!.removeActionNode($0) }
+        
+        for node in nodes {
+            nodePresenters = nodePresenters.filter {$0.node != node}
+            sequence!.removeActionNode(node)
+        }
+        
         informDelegatesOfChangesToNodeChain(oldNodes)
         /*
         for node in nodes.reverse() {

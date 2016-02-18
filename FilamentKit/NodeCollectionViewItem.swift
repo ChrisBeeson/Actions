@@ -1,5 +1,5 @@
 //
-//  ActionNodeCollectionViewItem.swift
+//  NodeCollectionViewItem.swift
 //  Filament
 //
 //  Created by Chris Beeson on 6/02/2016.
@@ -19,8 +19,10 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     var detailViewController: NodeDetailViewController?
     
     var presenter: NodePresenter?  {
+        
         didSet {
-            titleTextField.stringValue = presenter!.title
+            presenter?.addDelegate(self)
+            refreshView()
         }
     }
     
@@ -40,6 +42,18 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
         
         if presenter != nil {
             titleTextField.stringValue = presenter!.title
+            
+            nodeView.currentColour = .Blue
+            
+            switch presenter!.currentStatus {
+            case .inActive:break
+            case .Ready: break
+            case .Running:break
+            case .Completed:break
+            case .WaitingForUserInput:break
+            case .Error:break
+            case .Void:break
+            }
         }
     }
     
@@ -74,7 +88,7 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
             frame.size = NSSize(width: frame.size.width-10.0, height: frame.size.height)
             popover?.showRelativeToRect(frame, ofView: self.view.superview!, preferredEdge:.MaxX )
         case .Transition:
-            frame.size = NSSize(width: frame.size.width-10.0, height: frame.size.height-10.0)
+            frame.size = NSSize(width: frame.size.width-10.0, height: frame.size.height)
             popover?.showRelativeToRect(frame, ofView: self.view.superview!, preferredEdge:.MaxY )
         default: break
         }

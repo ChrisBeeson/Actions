@@ -8,6 +8,8 @@
 
 import Foundation
 
+enum DrawColour: Int { case LightGrey, Green, Red, Blue}
+
 class NodeView: NSView {
     
     var selected = false {
@@ -16,12 +18,25 @@ class NodeView: NSView {
         }
     }
     
-    var node : Node? {
+    var currentColour = DrawColour.LightGrey {
         didSet {
             self.setNeedsDisplayInRect(self.frame)
         }
     }
-
+    
+    func drawingContextColours() -> (fill:NSColor, outline:NSColor) {
+ 
+        switch currentColour {
+        case .LightGrey:
+            return (AppConfiguration.Palette.lightGreyFill, AppConfiguration.Palette.lightGreyOutline)
+        case .Green:
+            return (AppConfiguration.Palette.greenFill, AppConfiguration.Palette.greenOutline)
+        case .Red:
+            return (AppConfiguration.Palette.redFill, AppConfiguration.Palette.redOutline)
+        case .Blue:
+            return (AppConfiguration.Palette.blueFill, AppConfiguration.Palette.blueOutline)
+        }
+    }
 }
 
 

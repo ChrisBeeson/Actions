@@ -86,7 +86,6 @@ import Foundation
                 
             case .Action:
                  item = makeItemWithIdentifier("ActionNodeCollectionViewItem", forIndexPath: indexPath) as! NodeCollectionViewItem
-
                 
             case .Transition:
                  item = makeItemWithIdentifier("TransitionNodeCollectionViewItem", forIndexPath: indexPath) as! NodeCollectionViewItem
@@ -95,17 +94,14 @@ import Foundation
                 fatalError("Invaild Node Type for CollectionView")
             }
             
-            let nodePresenter = NodePresenter(node: node)
-            nodePresenter.addDelegate(item)
-            nodePresenter.undoManager = presenter!.undoManager
-            item.presenter = nodePresenter
+            item.presenter = presenter!.presenterForNode(node)
             item.indexPath = indexPath
             return item
       
         } else {
             
             let item = makeItemWithIdentifier("AddNewNodeCollectionViewItem", forIndexPath: indexPath) as! AddNewNodeCollectionViewItem
-            item.presenter = presenter
+            item.sequencePresenter = presenter
             return item
         }
     }
@@ -119,24 +115,22 @@ import Foundation
         self.performBatchUpdates({ () -> Void in
             
             if insertedNodes.count > 0 {
-                
                 var indexes =  Set<NSIndexPath>()
                 
                 for node in insertedNodes {
+                    
                     indexes.insert(NSIndexPath(forItem: node.0.idx+1, inSection: 0))
                 }
-                
                 self.insertItemsAtIndexPaths(indexes)
             }
             
-            
             if deletedNodes.count > 0 {
+                
                 var indexes =  Set<NSIndexPath>()
                 
                 for node in deletedNodes {
                     indexes.insert(NSIndexPath(forItem: node.0.idx+1, inSection: 0))
                 }
-                
                 self.deleteItemsAtIndexPaths(indexes)
             }
             
@@ -173,13 +167,10 @@ import Foundation
                 
                 let item = object as! NodeCollectionViewItem
                 assert(item.presenter!.type == .Action,"Trying to delete a non .Action node")
-                
-                //TODO: need to delete the presenter
                 nodesToDelete.append(item.presenter!.node)
             }
             }
         }
-        
         presenter?.deleteNodes(nodesToDelete)
     }
 

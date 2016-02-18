@@ -8,19 +8,21 @@
 
 import Foundation
 
-public protocol NodePresenterDelegate : class  {
+protocol NodePresenterDelegate : class  {
     
     func nodePresenterDidChangeTitle(presenter: NodePresenter)
     func nodePresenterDidChangeNotes(presenter: NodePresenter)
     func nodePresenterDidChangeRules(presenter: NodePresenter)
+    func nodePresenterDidChangeStatus(presenter: NodePresenter, toStatus: NodeStatus)
 
 }
 
 extension  NodePresenterDelegate {
     
-    public func nodePresenterDidChangeTitle(presenter: NodePresenter) {}
-    public func nodePresenterDidChangeNotes(presenter: NodePresenter) {}
-    public func nodePresenterDidChangeRules(presenter: NodePresenter) {}
+    func nodePresenterDidChangeTitle(presenter: NodePresenter) {}
+    func nodePresenterDidChangeNotes(presenter: NodePresenter) {}
+    func nodePresenterDidChangeRules(presenter: NodePresenter) {}
+    func nodePresenterDidChangeStatus(presenter: NodePresenter, toStatus: NodeStatus) {}
     
     // public func sequencePresenterDidRefreshCompleteLayout(sequencePresenter: SequencePresenter) {}
 }
