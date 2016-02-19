@@ -8,46 +8,46 @@
 
 /* Begin PBXBuildFile section */
 		0222DC06D0CB7D23E121510D284F160E /* Pods-Filament-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 89F85B04CAC95D970C7036F3380BD4FA /* Pods-Filament-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		06EDD0BE76CF9F1F8D3102CA8DD07849 /* PopDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2725A6B9532E199DF547488A98938839 /* PopDatePicker.swift */; };
-		09DE57B864B2677DC9EAEEDA216FB72D /* CCNStatusItemWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = D40FF1765A750B075656954E2662291C /* CCNStatusItemWindowController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		19D228ED87FF16C882731F1ED7992B4E /* DateTools-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6E3AE8E520CFF890B8FE91ED91B89D /* DateTools-dummy.m */; };
-		1B09B6693F04CBB836CE385C12D88CAC /* CCNStatusItem-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 683863CEC052B05C67ECF6D986F3D63E /* CCNStatusItem-dummy.m */; };
-		20282EAFCFB06EC3E4791A53C136F7CA /* CCNStatusItem.h in Headers */ = {isa = PBXBuildFile; fileRef = AFD9F24AEDF8FF943E5F27EB107A0F6E /* CCNStatusItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		23FAFEA2D3E1CDEED13AA29BD200D86C /* CCNStatusItemWindowConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CBD4C3771ACB8A1316E354A83F927ED /* CCNStatusItemWindowConfiguration.m */; };
-		2DAF4E8CD18ED10B30CCFB8FF1984A46 /* DateTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 66ED2C88EC55F81BF1F69FFF906BC771 /* DateTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		06EDD0BE76CF9F1F8D3102CA8DD07849 /* PopDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB9354FFDABF048A35FCBBD42567923 /* PopDatePicker.swift */; };
+		09DE57B864B2677DC9EAEEDA216FB72D /* CCNStatusItemWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = E44362A3E44BF00D6B0CCC2A3D8E0953 /* CCNStatusItemWindowController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		19D228ED87FF16C882731F1ED7992B4E /* DateTools-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2390938A2D554A737D2BBA999C083A9C /* DateTools-dummy.m */; };
+		1B09B6693F04CBB836CE385C12D88CAC /* CCNStatusItem-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D1E5D06255229248D33F3EF6B3450B04 /* CCNStatusItem-dummy.m */; };
+		20282EAFCFB06EC3E4791A53C136F7CA /* CCNStatusItem.h in Headers */ = {isa = PBXBuildFile; fileRef = EAB906090B84F3EB605C86B8012ECB2A /* CCNStatusItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		23FAFEA2D3E1CDEED13AA29BD200D86C /* CCNStatusItemWindowConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA34185AC64B7C5C430BBDCB5FCFB03 /* CCNStatusItemWindowConfiguration.m */; };
+		2DAF4E8CD18ED10B30CCFB8FF1984A46 /* DateTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 39C4C6BEB73A9D99750435E0984BF8C5 /* DateTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3FBE7CDAB15CB2B272B3A00A3901FE38 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA6EBC2E57D96052268211209D6AA52 /* Cocoa.framework */; };
-		4159C0A759E6090F2C58FCB2492DFB05 /* DTTimePeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = 701D36E4697D807F66B2372618DE761F /* DTTimePeriod.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		41B4F4F448E988440CEE6D945DFCA1B9 /* CCNStatusItemDropView.h in Headers */ = {isa = PBXBuildFile; fileRef = B301AF095FD8CC581D55B679A33921A9 /* CCNStatusItemDropView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4EF49C485BE5112FAF9B95C006EFA6E1 /* CCNStatusItemWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DAFBF9902613F829974A84D2B8EE0F /* CCNStatusItemWindowController.m */; };
+		4159C0A759E6090F2C58FCB2492DFB05 /* DTTimePeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A72634DF058E2F025C4A1E4CA892F12 /* DTTimePeriod.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		41B4F4F448E988440CEE6D945DFCA1B9 /* CCNStatusItemDropView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B93D12C7A43E3A168ED29C7EC5D053E /* CCNStatusItemDropView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4EF49C485BE5112FAF9B95C006EFA6E1 /* CCNStatusItemWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EB4BEC1ED4B24876C3DD826C3A44F45 /* CCNStatusItemWindowController.m */; };
 		551AA7837412761D85DE2592B774F5EC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA6EBC2E57D96052268211209D6AA52 /* Cocoa.framework */; };
 		5B707D924F36E828E47A4301B73F03E1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA6EBC2E57D96052268211209D6AA52 /* Cocoa.framework */; };
-		63FB5300A7BD9FE2EF7DAE0471730EF2 /* CCNStatusItem-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A2FB6ECAA1291C8BB3D41EC267CB4018 /* CCNStatusItem-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66D6CA16EF2371E39FAB73473A89D8C1 /* NSDate+DateTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BB6EFD2A14E0CC960732BF59AAC3B7B /* NSDate+DateTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6F00A3D837A718CBC5D7C7157CCF71A2 /* DTTimePeriodGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 668250C7780C832D6B924CE6C8FFC84C /* DTTimePeriodGroup.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7050ED73E100547D9799E694A69D9EF3 /* CCNStatusItemWindowBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E5AD6D6AF93173F4402E9A68AB7A2B /* CCNStatusItemWindowBackgroundView.m */; };
-		729719BE516B8080199215BB6A52117A /* DateTools-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B7F53E08D6C37DBB8BDB962E73A5E625 /* DateTools-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7902018FD0635F9A5E4C13BFD67E3750 /* DateTools.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D620A67D352C4354C8A9501A5BADFC44 /* DateTools.bundle */; };
-		7A3C7A5DAEB1C695F060F0248053A1A6 /* NSDate+DateTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 6043A018C4706550C545EB6456F8C13A /* NSDate+DateTools.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		7BD8F5806596EB765BB2F6D07F8107AD /* CCNStatusItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 62AE18267853AFDA6698EB99810119E4 /* CCNStatusItem.m */; };
-		7E9B82B87C3E50BB11C4622FE83EACA0 /* CCNStatusItemWindowBackgroundView.h in Headers */ = {isa = PBXBuildFile; fileRef = 17AE649F67A288C7F5D4BCA055A0E3CB /* CCNStatusItemWindowBackgroundView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		801E845E678344633F3972FA4FC16B7C /* DTTimePeriodChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 44DBCEDC006C20723E7D834BD96E046C /* DTTimePeriodChain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		96C091A57B56F83A13BDECC3519A2B40 /* CCNStatusItemWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 208FE8E2E2531F33C984133591437833 /* CCNStatusItemWindow.m */; };
-		9BC7910A61F45206D435065CD0F23BA0 /* DTTimePeriod.h in Headers */ = {isa = PBXBuildFile; fileRef = A30471243654239250C96388FF820450 /* DTTimePeriod.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A2E3F4AF5136E7D68B5B269C6E34AD8B /* CCNStatusItemWindowConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 71013B5B45D92201678808920CF5919C /* CCNStatusItemWindowConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A4A5DE1784D58F0D9AC336BE0A4936C4 /* DTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = C8888C7B98BD9DA6F2E938926F1B3BE9 /* DTConstants.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		AA7675662C34C34D85AD17EEFCF9BC42 /* CCNStatusItemDropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D6FE25CC32E1C87E68FAC5EE0F16F06 /* CCNStatusItemDropView.m */; };
-		AFF4480B4B63FA58209AEC8052207A92 /* DTTimePeriodCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F29DD352FB12178A2FBCFC658E283CD /* DTTimePeriodCollection.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		B4137B6F5B1EF819B8DF88A194F598ED /* DTError.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C97D685F1769E908E7E9EE9B0D52AF6 /* DTError.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C16E0F1A698E02F1D49D4593A71BE38F /* DTConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = DB47A5104A74A8F517BCDBEF3C0239F4 /* DTConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C69B0DB3560C74D36287787E6A62C254 /* PopDatePicker-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DFEB32941AE3752EAE9B6100DA44C06D /* PopDatePicker-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C988DAEA4E21FD415359116C3AE6B77A /* PopDatePicker-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6821F63EB4581B41566A60BEE03A8DCF /* PopDatePicker-dummy.m */; };
-		CC1CD7BAF05F362DECAA5698D1100896 /* DTError.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCC894D8F74A622413D0CBEE34D0680 /* DTError.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		63FB5300A7BD9FE2EF7DAE0471730EF2 /* CCNStatusItem-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C77C2C891BDA3EF5E946F2ACA0FFA61A /* CCNStatusItem-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66D6CA16EF2371E39FAB73473A89D8C1 /* NSDate+DateTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 77279C676FBD8A286AB6C9E9D6167A86 /* NSDate+DateTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6F00A3D837A718CBC5D7C7157CCF71A2 /* DTTimePeriodGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 035DBEE0826B9401ACB160C475158951 /* DTTimePeriodGroup.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7050ED73E100547D9799E694A69D9EF3 /* CCNStatusItemWindowBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C3F8287D7059B74CDC264FCCD45AE /* CCNStatusItemWindowBackgroundView.m */; };
+		729719BE516B8080199215BB6A52117A /* DateTools-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B2A340EED5FCE21F63E6D6993B8C17 /* DateTools-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7902018FD0635F9A5E4C13BFD67E3750 /* DateTools.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B4C7ED7942E53C99AE165C2B946BB7D0 /* DateTools.bundle */; };
+		7A3C7A5DAEB1C695F060F0248053A1A6 /* NSDate+DateTools.m in Sources */ = {isa = PBXBuildFile; fileRef = EBE5281CD3F0BB2DCB65F37D92347629 /* NSDate+DateTools.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		7BD8F5806596EB765BB2F6D07F8107AD /* CCNStatusItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C671170ABEEEBE62EA06D292B1704227 /* CCNStatusItem.m */; };
+		7E9B82B87C3E50BB11C4622FE83EACA0 /* CCNStatusItemWindowBackgroundView.h in Headers */ = {isa = PBXBuildFile; fileRef = 205A198E6F8AB8E8D6DCA5A81BCE4A48 /* CCNStatusItemWindowBackgroundView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		801E845E678344633F3972FA4FC16B7C /* DTTimePeriodChain.m in Sources */ = {isa = PBXBuildFile; fileRef = E62EB76A91D02859A5B5A557D2F1900A /* DTTimePeriodChain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		96C091A57B56F83A13BDECC3519A2B40 /* CCNStatusItemWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 9478926F9A2C4EEA4C7B45C8BF72E6C6 /* CCNStatusItemWindow.m */; };
+		9BC7910A61F45206D435065CD0F23BA0 /* DTTimePeriod.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DD27F01F432B2F69AF2857A265004C7 /* DTTimePeriod.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A2E3F4AF5136E7D68B5B269C6E34AD8B /* CCNStatusItemWindowConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 33CE4C929531AA5353C5EA859677018C /* CCNStatusItemWindowConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A4A5DE1784D58F0D9AC336BE0A4936C4 /* DTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C85815123EC5C764C077CB27B62BDE /* DTConstants.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		AA7675662C34C34D85AD17EEFCF9BC42 /* CCNStatusItemDropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E084F829BD4FB95F83F4E8EFCC6701 /* CCNStatusItemDropView.m */; };
+		AFF4480B4B63FA58209AEC8052207A92 /* DTTimePeriodCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCC8C29E4AC2BFD866ADCFA8D6F86AD /* DTTimePeriodCollection.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		B4137B6F5B1EF819B8DF88A194F598ED /* DTError.h in Headers */ = {isa = PBXBuildFile; fileRef = 04C36277895CCBE0EECA0D90A73B6365 /* DTError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C16E0F1A698E02F1D49D4593A71BE38F /* DTConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D46684F19D1B58968A064729275656D /* DTConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C69B0DB3560C74D36287787E6A62C254 /* PopDatePicker-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AE3F96A62E736DD08F536CDAAF0133C9 /* PopDatePicker-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C988DAEA4E21FD415359116C3AE6B77A /* PopDatePicker-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F779B211A7A4209E6AC6058F2BA85D9 /* PopDatePicker-dummy.m */; };
+		CC1CD7BAF05F362DECAA5698D1100896 /* DTError.m in Sources */ = {isa = PBXBuildFile; fileRef = 379D8478D646F841B2BE73C99162D619 /* DTError.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		CF915D8F344349EAF361BB84D974A67B /* Pods-Filament-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C19AC3142207CEF34D71639DC6997A2 /* Pods-Filament-dummy.m */; };
 		DB66A1509386FFBDF71F9A968FC87A8A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA6EBC2E57D96052268211209D6AA52 /* Cocoa.framework */; };
-		DD710EA2C8E2D3E0917519775D1F571C /* DTTimePeriodGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CC53DEE362474F919B81F6B58FF9EC2C /* DTTimePeriodGroup.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		E73820895130CBC0E5F8C7F5AC307350 /* CCNStatusItemWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = A52B82E11449ECC6865545D3BBFBCD46 /* CCNStatusItemWindow.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EE13D588E52431089F7406353C90A144 /* DTTimePeriodChain.h in Headers */ = {isa = PBXBuildFile; fileRef = 66633EB631B6F805B03963456253485A /* DTTimePeriodChain.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F423AB12C14DA731C42897A3D929D2B8 /* DTTimePeriodCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DD5EE4EC5A35AF81211A7EE84B8A395 /* DTTimePeriodCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DD710EA2C8E2D3E0917519775D1F571C /* DTTimePeriodGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB779A9A7274308DE3939BA89BBC541 /* DTTimePeriodGroup.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		E73820895130CBC0E5F8C7F5AC307350 /* CCNStatusItemWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = A43F2E3889495ADA125BF572D7A32A18 /* CCNStatusItemWindow.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EE13D588E52431089F7406353C90A144 /* DTTimePeriodChain.h in Headers */ = {isa = PBXBuildFile; fileRef = A74400935BB7665997F473FF040BE84A /* DTTimePeriodChain.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F423AB12C14DA731C42897A3D929D2B8 /* DTTimePeriodCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = C8CE97DE7FC243978F7162664886B0E3 /* DTTimePeriodCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,69 +75,71 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		035DBEE0826B9401ACB160C475158951 /* DTTimePeriodGroup.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTTimePeriodGroup.h; path = DateTools/DTTimePeriodGroup.h; sourceTree = "<group>"; };
+		03E084F829BD4FB95F83F4E8EFCC6701 /* CCNStatusItemDropView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CCNStatusItemDropView.m; path = CCNStatusItem/CCNStatusItemDropView.m; sourceTree = "<group>"; };
+		04C36277895CCBE0EECA0D90A73B6365 /* DTError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTError.h; path = DateTools/DTError.h; sourceTree = "<group>"; };
 		06EC4CC4BB166EC670E060AB2D05452F /* DateTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DateTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		07AA2BE8A169C6BA1BAF32E040B4B466 /* PopDatePicker.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PopDatePicker.xcconfig; sourceTree = "<group>"; };
-		0D6FE25CC32E1C87E68FAC5EE0F16F06 /* CCNStatusItemDropView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CCNStatusItemDropView.m; path = CCNStatusItem/CCNStatusItemDropView.m; sourceTree = "<group>"; };
+		0889C612A8199A38C52262D109579841 /* DateTools-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DateTools-prefix.pch"; sourceTree = "<group>"; };
+		0B461CC49F7701A4460434155F4E6FC6 /* DateTools.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = DateTools.modulemap; sourceTree = "<group>"; };
 		0EB23B34C21AAD53A401C022301F8CFC /* CCNStatusItem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CCNStatusItem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		17AE649F67A288C7F5D4BCA055A0E3CB /* CCNStatusItemWindowBackgroundView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CCNStatusItemWindowBackgroundView.h; path = CCNStatusItem/CCNStatusItemWindowBackgroundView.h; sourceTree = "<group>"; };
+		0EB4BEC1ED4B24876C3DD826C3A44F45 /* CCNStatusItemWindowController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CCNStatusItemWindowController.m; path = CCNStatusItem/CCNStatusItemWindowController.m; sourceTree = "<group>"; };
+		0F779B211A7A4209E6AC6058F2BA85D9 /* PopDatePicker-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PopDatePicker-dummy.m"; sourceTree = "<group>"; };
+		151D489D8B22796ECECAC8D35D827AD9 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = OSX/Crashlytics.framework; sourceTree = "<group>"; };
+		176351DA927FD57F237569D91C55BBDA /* CCNStatusItem.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = CCNStatusItem.modulemap; sourceTree = "<group>"; };
+		1A72634DF058E2F025C4A1E4CA892F12 /* DTTimePeriod.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTTimePeriod.m; path = DateTools/DTTimePeriod.m; sourceTree = "<group>"; };
 		1CA6EBC2E57D96052268211209D6AA52 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
-		208FE8E2E2531F33C984133591437833 /* CCNStatusItemWindow.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CCNStatusItemWindow.m; path = CCNStatusItem/CCNStatusItemWindow.m; sourceTree = "<group>"; };
-		26F1FDEA6B6F19234ADB44AA3FE8E8DC /* DateTools.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = DateTools.modulemap; sourceTree = "<group>"; };
-		2725A6B9532E199DF547488A98938839 /* PopDatePicker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopDatePicker.swift; path = PopDatePicker/PopDatePicker.swift; sourceTree = "<group>"; };
+		205A198E6F8AB8E8D6DCA5A81BCE4A48 /* CCNStatusItemWindowBackgroundView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CCNStatusItemWindowBackgroundView.h; path = CCNStatusItem/CCNStatusItemWindowBackgroundView.h; sourceTree = "<group>"; };
+		2390938A2D554A737D2BBA999C083A9C /* DateTools-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DateTools-dummy.m"; sourceTree = "<group>"; };
+		271434E3A8E135F0D5A593FA88870613 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2762E18B10973FE4AC1E4518989007DD /* Pods-Filament-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Filament-resources.sh"; sourceTree = "<group>"; };
-		28346FB0E00FA79544631AC86AA33D6A /* PopDatePicker.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = PopDatePicker.modulemap; sourceTree = "<group>"; };
-		2BCC894D8F74A622413D0CBEE34D0680 /* DTError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTError.m; path = DateTools/DTError.m; sourceTree = "<group>"; };
-		2DD5EE4EC5A35AF81211A7EE84B8A395 /* DTTimePeriodCollection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTTimePeriodCollection.h; path = DateTools/DTTimePeriodCollection.h; sourceTree = "<group>"; };
-		32E5AD6D6AF93173F4402E9A68AB7A2B /* CCNStatusItemWindowBackgroundView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CCNStatusItemWindowBackgroundView.m; path = CCNStatusItem/CCNStatusItemWindowBackgroundView.m; sourceTree = "<group>"; };
+		2B93D12C7A43E3A168ED29C7EC5D053E /* CCNStatusItemDropView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CCNStatusItemDropView.h; path = CCNStatusItem/CCNStatusItemDropView.h; sourceTree = "<group>"; };
+		2DFFE8C075AF8CE1FEE1A55985580FD2 /* CCNStatusItem.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CCNStatusItem.xcconfig; sourceTree = "<group>"; };
+		33CE4C929531AA5353C5EA859677018C /* CCNStatusItemWindowConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CCNStatusItemWindowConfiguration.h; path = CCNStatusItem/CCNStatusItemWindowConfiguration.h; sourceTree = "<group>"; };
 		35A23D72EB598F1ADBDD07A642BA9AFC /* Pods-Filament-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Filament-acknowledgements.markdown"; sourceTree = "<group>"; };
-		3E8D0E0BD345400E7994A2C90177C422 /* CCNStatusItem.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = CCNStatusItem.modulemap; sourceTree = "<group>"; };
-		4051C40F4C5DA6BF731AA3A3DDE61D94 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		44DBCEDC006C20723E7D834BD96E046C /* DTTimePeriodChain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTTimePeriodChain.m; path = DateTools/DTTimePeriodChain.m; sourceTree = "<group>"; };
+		379D8478D646F841B2BE73C99162D619 /* DTError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTError.m; path = DateTools/DTError.m; sourceTree = "<group>"; };
+		39C4C6BEB73A9D99750435E0984BF8C5 /* DateTools.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DateTools.h; path = DateTools/DateTools.h; sourceTree = "<group>"; };
+		3B1681FB33A09B532573E14B969EF167 /* DateTools.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DateTools.xcconfig; sourceTree = "<group>"; };
+		427C3F8287D7059B74CDC264FCCD45AE /* CCNStatusItemWindowBackgroundView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CCNStatusItemWindowBackgroundView.m; path = CCNStatusItem/CCNStatusItemWindowBackgroundView.m; sourceTree = "<group>"; };
+		453C0FD25EBDC2774AE6358A97B6A862 /* PopDatePicker.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = PopDatePicker.modulemap; sourceTree = "<group>"; };
 		4C19AC3142207CEF34D71639DC6997A2 /* Pods-Filament-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Filament-dummy.m"; sourceTree = "<group>"; };
 		4DAE256B81A180AFBE508B3BFF67E596 /* Pods-Filament.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Filament.debug.xcconfig"; sourceTree = "<group>"; };
-		4E4C4B95937D501CDC6286A6EDEBC0D3 /* CCNStatusItem-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CCNStatusItem-prefix.pch"; sourceTree = "<group>"; };
 		4F7E154EBD4E4D6740E1BCD126B24723 /* Pods-Filament.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Filament.release.xcconfig"; sourceTree = "<group>"; };
-		50DAFBF9902613F829974A84D2B8EE0F /* CCNStatusItemWindowController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CCNStatusItemWindowController.m; path = CCNStatusItem/CCNStatusItemWindowController.m; sourceTree = "<group>"; };
 		5BAC77A4C15AC7B7C13635EA95387054 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5C97D685F1769E908E7E9EE9B0D52AF6 /* DTError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTError.h; path = DateTools/DTError.h; sourceTree = "<group>"; };
-		6043A018C4706550C545EB6456F8C13A /* NSDate+DateTools.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSDate+DateTools.m"; path = "DateTools/NSDate+DateTools.m"; sourceTree = "<group>"; };
-		62AE18267853AFDA6698EB99810119E4 /* CCNStatusItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CCNStatusItem.m; path = CCNStatusItem/CCNStatusItem.m; sourceTree = "<group>"; };
-		646473D6897FF182F09A8FE6C319C0A8 /* DateTools-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DateTools-prefix.pch"; sourceTree = "<group>"; };
-		66633EB631B6F805B03963456253485A /* DTTimePeriodChain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTTimePeriodChain.h; path = DateTools/DTTimePeriodChain.h; sourceTree = "<group>"; };
-		668250C7780C832D6B924CE6C8FFC84C /* DTTimePeriodGroup.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTTimePeriodGroup.h; path = DateTools/DTTimePeriodGroup.h; sourceTree = "<group>"; };
-		66ED2C88EC55F81BF1F69FFF906BC771 /* DateTools.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DateTools.h; path = DateTools/DateTools.h; sourceTree = "<group>"; };
-		6821F63EB4581B41566A60BEE03A8DCF /* PopDatePicker-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PopDatePicker-dummy.m"; sourceTree = "<group>"; };
-		683863CEC052B05C67ECF6D986F3D63E /* CCNStatusItem-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CCNStatusItem-dummy.m"; sourceTree = "<group>"; };
-		701D36E4697D807F66B2372618DE761F /* DTTimePeriod.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTTimePeriod.m; path = DateTools/DTTimePeriod.m; sourceTree = "<group>"; };
-		71013B5B45D92201678808920CF5919C /* CCNStatusItemWindowConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CCNStatusItemWindowConfiguration.h; path = CCNStatusItem/CCNStatusItemWindowConfiguration.h; sourceTree = "<group>"; };
+		5DD27F01F432B2F69AF2857A265004C7 /* DTTimePeriod.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTTimePeriod.h; path = DateTools/DTTimePeriod.h; sourceTree = "<group>"; };
+		64089A557E4812623F5CD5B5081A0B46 /* PopDatePicker-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PopDatePicker-prefix.pch"; sourceTree = "<group>"; };
+		6AAF996B3052F57C9763AC9E1B28801B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		77279C676FBD8A286AB6C9E9D6167A86 /* NSDate+DateTools.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSDate+DateTools.h"; path = "DateTools/NSDate+DateTools.h"; sourceTree = "<group>"; };
 		89F85B04CAC95D970C7036F3380BD4FA /* Pods-Filament-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Filament-umbrella.h"; sourceTree = "<group>"; };
-		8F29DD352FB12178A2FBCFC658E283CD /* DTTimePeriodCollection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTTimePeriodCollection.m; path = DateTools/DTTimePeriodCollection.m; sourceTree = "<group>"; };
-		96D7B500EF6661FC8B8E0F35657C2576 /* DateTools.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DateTools.xcconfig; sourceTree = "<group>"; };
-		9BB6EFD2A14E0CC960732BF59AAC3B7B /* NSDate+DateTools.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSDate+DateTools.h"; path = "DateTools/NSDate+DateTools.h"; sourceTree = "<group>"; };
-		9CBD4C3771ACB8A1316E354A83F927ED /* CCNStatusItemWindowConfiguration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CCNStatusItemWindowConfiguration.m; path = CCNStatusItem/CCNStatusItemWindowConfiguration.m; sourceTree = "<group>"; };
-		9FBAFAA05134C2B2996B276A8CB869B9 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A2FB6ECAA1291C8BB3D41EC267CB4018 /* CCNStatusItem-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CCNStatusItem-umbrella.h"; sourceTree = "<group>"; };
-		A30471243654239250C96388FF820450 /* DTTimePeriod.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTTimePeriod.h; path = DateTools/DTTimePeriod.h; sourceTree = "<group>"; };
-		A52B82E11449ECC6865545D3BBFBCD46 /* CCNStatusItemWindow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CCNStatusItemWindow.h; path = CCNStatusItem/CCNStatusItemWindow.h; sourceTree = "<group>"; };
-		AF6E3AE8E520CFF890B8FE91ED91B89D /* DateTools-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DateTools-dummy.m"; sourceTree = "<group>"; };
-		AFD9F24AEDF8FF943E5F27EB107A0F6E /* CCNStatusItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CCNStatusItem.h; path = CCNStatusItem/CCNStatusItem.h; sourceTree = "<group>"; };
-		B301AF095FD8CC581D55B679A33921A9 /* CCNStatusItemDropView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CCNStatusItemDropView.h; path = CCNStatusItem/CCNStatusItemDropView.h; sourceTree = "<group>"; };
-		B7F53E08D6C37DBB8BDB962E73A5E625 /* DateTools-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DateTools-umbrella.h"; sourceTree = "<group>"; };
-		BA3E8FAF38504D2C508E97FC3B4D62F6 /* CCNStatusItem.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CCNStatusItem.xcconfig; sourceTree = "<group>"; };
+		8AB779A9A7274308DE3939BA89BBC541 /* DTTimePeriodGroup.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTTimePeriodGroup.m; path = DateTools/DTTimePeriodGroup.m; sourceTree = "<group>"; };
+		90B2A340EED5FCE21F63E6D6993B8C17 /* DateTools-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DateTools-umbrella.h"; sourceTree = "<group>"; };
+		9478926F9A2C4EEA4C7B45C8BF72E6C6 /* CCNStatusItemWindow.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CCNStatusItemWindow.m; path = CCNStatusItem/CCNStatusItemWindow.m; sourceTree = "<group>"; };
+		9D46684F19D1B58968A064729275656D /* DTConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTConstants.h; path = DateTools/DTConstants.h; sourceTree = "<group>"; };
+		A43F2E3889495ADA125BF572D7A32A18 /* CCNStatusItemWindow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CCNStatusItemWindow.h; path = CCNStatusItem/CCNStatusItemWindow.h; sourceTree = "<group>"; };
+		A74400935BB7665997F473FF040BE84A /* DTTimePeriodChain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTTimePeriodChain.h; path = DateTools/DTTimePeriodChain.h; sourceTree = "<group>"; };
+		AB823B6C73D58954054E4121D78B8B08 /* PopDatePicker.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PopDatePicker.xcconfig; sourceTree = "<group>"; };
+		AD7DD0CA0AE78F8EDF6771C54A06B6B3 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = OSX/Fabric.framework; sourceTree = "<group>"; };
+		AE3F96A62E736DD08F536CDAAF0133C9 /* PopDatePicker-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PopDatePicker-umbrella.h"; sourceTree = "<group>"; };
+		AEA34185AC64B7C5C430BBDCB5FCFB03 /* CCNStatusItemWindowConfiguration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CCNStatusItemWindowConfiguration.m; path = CCNStatusItem/CCNStatusItemWindowConfiguration.m; sourceTree = "<group>"; };
+		B4C7ED7942E53C99AE165C2B946BB7D0 /* DateTools.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = DateTools.bundle; path = DateTools/DateTools.bundle; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		C02C8A4EEDBE68E659880696E33A2D8B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BCB9354FFDABF048A35FCBBD42567923 /* PopDatePicker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopDatePicker.swift; path = PopDatePicker/PopDatePicker.swift; sourceTree = "<group>"; };
+		C671170ABEEEBE62EA06D292B1704227 /* CCNStatusItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CCNStatusItem.m; path = CCNStatusItem/CCNStatusItem.m; sourceTree = "<group>"; };
 		C6E21A1EB26A18AB77E8FAC8A2A969E1 /* Pods-Filament-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Filament-frameworks.sh"; sourceTree = "<group>"; };
-		C8888C7B98BD9DA6F2E938926F1B3BE9 /* DTConstants.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTConstants.m; path = DateTools/DTConstants.m; sourceTree = "<group>"; };
-		CC53DEE362474F919B81F6B58FF9EC2C /* DTTimePeriodGroup.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTTimePeriodGroup.m; path = DateTools/DTTimePeriodGroup.m; sourceTree = "<group>"; };
-		D40FF1765A750B075656954E2662291C /* CCNStatusItemWindowController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CCNStatusItemWindowController.h; path = CCNStatusItem/CCNStatusItemWindowController.h; sourceTree = "<group>"; };
-		D620A67D352C4354C8A9501A5BADFC44 /* DateTools.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = DateTools.bundle; path = DateTools/DateTools.bundle; sourceTree = "<group>"; };
+		C77C2C891BDA3EF5E946F2ACA0FFA61A /* CCNStatusItem-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CCNStatusItem-umbrella.h"; sourceTree = "<group>"; };
+		C8CE97DE7FC243978F7162664886B0E3 /* DTTimePeriodCollection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTTimePeriodCollection.h; path = DateTools/DTTimePeriodCollection.h; sourceTree = "<group>"; };
+		CB5429CC670752B08C743C697AD42CD5 /* CCNStatusItem-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CCNStatusItem-prefix.pch"; sourceTree = "<group>"; };
+		D1E5D06255229248D33F3EF6B3450B04 /* CCNStatusItem-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CCNStatusItem-dummy.m"; sourceTree = "<group>"; };
 		D8C7C9F41754D37D84885728F6B86FD1 /* Pods-Filament.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Filament.modulemap"; sourceTree = "<group>"; };
-		DB47A5104A74A8F517BCDBEF3C0239F4 /* DTConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTConstants.h; path = DateTools/DTConstants.h; sourceTree = "<group>"; };
-		DC8086636A46AF95508AC16842C0CD1E /* PopDatePicker-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PopDatePicker-prefix.pch"; sourceTree = "<group>"; };
-		DFEB32941AE3752EAE9B6100DA44C06D /* PopDatePicker-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PopDatePicker-umbrella.h"; sourceTree = "<group>"; };
+		D8C85815123EC5C764C077CB27B62BDE /* DTConstants.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTConstants.m; path = DateTools/DTConstants.m; sourceTree = "<group>"; };
+		E1453392415715B95CD1177A3B410A20 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E44362A3E44BF00D6B0CCC2A3D8E0953 /* CCNStatusItemWindowController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CCNStatusItemWindowController.h; path = CCNStatusItem/CCNStatusItemWindowController.h; sourceTree = "<group>"; };
+		E62EB76A91D02859A5B5A557D2F1900A /* DTTimePeriodChain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTTimePeriodChain.m; path = DateTools/DTTimePeriodChain.m; sourceTree = "<group>"; };
+		EAB906090B84F3EB605C86B8012ECB2A /* CCNStatusItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CCNStatusItem.h; path = CCNStatusItem/CCNStatusItem.h; sourceTree = "<group>"; };
+		EBE5281CD3F0BB2DCB65F37D92347629 /* NSDate+DateTools.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSDate+DateTools.m"; path = "DateTools/NSDate+DateTools.m"; sourceTree = "<group>"; };
 		F139F779866E519E12E7252FA082E561 /* PopDatePicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PopDatePicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4979867B7FFE9DFCB75813806D5A088 /* Pods_Filament.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Filament.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5D2EEEEA6E2484E303E907B9B67C813 /* Pods-Filament-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Filament-acknowledgements.plist"; sourceTree = "<group>"; };
+		FCCC8C29E4AC2BFD866ADCFA8D6F86AD /* DTTimePeriodCollection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTTimePeriodCollection.m; path = DateTools/DTTimePeriodCollection.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +178,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00DE81BE28D255206ACC40D616714026 /* DateTools */ = {
+			isa = PBXGroup;
+			children = (
+				39C4C6BEB73A9D99750435E0984BF8C5 /* DateTools.h */,
+				9D46684F19D1B58968A064729275656D /* DTConstants.h */,
+				D8C85815123EC5C764C077CB27B62BDE /* DTConstants.m */,
+				04C36277895CCBE0EECA0D90A73B6365 /* DTError.h */,
+				379D8478D646F841B2BE73C99162D619 /* DTError.m */,
+				5DD27F01F432B2F69AF2857A265004C7 /* DTTimePeriod.h */,
+				1A72634DF058E2F025C4A1E4CA892F12 /* DTTimePeriod.m */,
+				A74400935BB7665997F473FF040BE84A /* DTTimePeriodChain.h */,
+				E62EB76A91D02859A5B5A557D2F1900A /* DTTimePeriodChain.m */,
+				C8CE97DE7FC243978F7162664886B0E3 /* DTTimePeriodCollection.h */,
+				FCCC8C29E4AC2BFD866ADCFA8D6F86AD /* DTTimePeriodCollection.m */,
+				035DBEE0826B9401ACB160C475158951 /* DTTimePeriodGroup.h */,
+				8AB779A9A7274308DE3939BA89BBC541 /* DTTimePeriodGroup.m */,
+				77279C676FBD8A286AB6C9E9D6167A86 /* NSDate+DateTools.h */,
+				EBE5281CD3F0BB2DCB65F37D92347629 /* NSDate+DateTools.m */,
+				AAD356C63F24A50C0C0B4A4B492BC436 /* Resources */,
+				709839FEF58149F6745D3DCA2E06C1FD /* Support Files */,
+			);
+			path = DateTools;
+			sourceTree = "<group>";
+		};
+		1608011F326569F891CF0C608EA6DC46 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				151D489D8B22796ECECAC8D35D827AD9 /* Crashlytics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1D9EC4F2E39FAA82263EBE4BC61D561A /* PopDatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				BCB9354FFDABF048A35FCBBD42567923 /* PopDatePicker.swift */,
+				CA708A3E3535944250C5053467CA11F2 /* Support Files */,
+			);
+			path = PopDatePicker;
+			sourceTree = "<group>";
+		};
 		2238030CC6782B208CB6C6DE6412EB44 /* Pods-Filament */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,6 +245,14 @@
 			name = "OS X";
 			sourceTree = "<group>";
 		};
+		323C332074953D0E0EBB7132AFA7E67F /* Fabric */ = {
+			isa = PBXGroup;
+			children = (
+				E8AC79BE9E929D1B22989384987A2618 /* Frameworks */,
+			);
+			path = Fabric;
+			sourceTree = "<group>";
+		};
 		39E9EE8210D861DFD82346C1F5EB7218 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -218,104 +269,93 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		7DB346D0F39D3F0E887471402A8071AB = {
+		61618CF5A1214B4FE2B64FBC03059233 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
-				39E9EE8210D861DFD82346C1F5EB7218 /* Frameworks */,
-				D6E22D200F06EB6214CA41A399D78BAF /* Pods */,
-				EA0F4DF5728BE16E80B30CF1EEF7F1EF /* Products */,
-				4EEFA7017D45329BC3300039B2669688 /* Targets Support Files */,
-			);
-			sourceTree = "<group>";
-		};
-		90177588A42477BCF57BE2EEC02F7B19 /* PopDatePicker */ = {
-			isa = PBXGroup;
-			children = (
-				2725A6B9532E199DF547488A98938839 /* PopDatePicker.swift */,
-				9667122DB39C3505283ECD5217ABE768 /* Support Files */,
-			);
-			path = PopDatePicker;
-			sourceTree = "<group>";
-		};
-		9667122DB39C3505283ECD5217ABE768 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				9FBAFAA05134C2B2996B276A8CB869B9 /* Info.plist */,
-				28346FB0E00FA79544631AC86AA33D6A /* PopDatePicker.modulemap */,
-				07AA2BE8A169C6BA1BAF32E040B4B466 /* PopDatePicker.xcconfig */,
-				6821F63EB4581B41566A60BEE03A8DCF /* PopDatePicker-dummy.m */,
-				DC8086636A46AF95508AC16842C0CD1E /* PopDatePicker-prefix.pch */,
-				DFEB32941AE3752EAE9B6100DA44C06D /* PopDatePicker-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/PopDatePicker";
-			sourceTree = "<group>";
-		};
-		B41978B5581CA9258AC00FF6B00AA741 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				26F1FDEA6B6F19234ADB44AA3FE8E8DC /* DateTools.modulemap */,
-				96D7B500EF6661FC8B8E0F35657C2576 /* DateTools.xcconfig */,
-				AF6E3AE8E520CFF890B8FE91ED91B89D /* DateTools-dummy.m */,
-				646473D6897FF182F09A8FE6C319C0A8 /* DateTools-prefix.pch */,
-				B7F53E08D6C37DBB8BDB962E73A5E625 /* DateTools-umbrella.h */,
-				4051C40F4C5DA6BF731AA3A3DDE61D94 /* Info.plist */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/DateTools";
-			sourceTree = "<group>";
-		};
-		BE8F8B782CC763067840736A9E133BFB /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				3E8D0E0BD345400E7994A2C90177C422 /* CCNStatusItem.modulemap */,
-				BA3E8FAF38504D2C508E97FC3B4D62F6 /* CCNStatusItem.xcconfig */,
-				683863CEC052B05C67ECF6D986F3D63E /* CCNStatusItem-dummy.m */,
-				4E4C4B95937D501CDC6286A6EDEBC0D3 /* CCNStatusItem-prefix.pch */,
-				A2FB6ECAA1291C8BB3D41EC267CB4018 /* CCNStatusItem-umbrella.h */,
-				C02C8A4EEDBE68E659880696E33A2D8B /* Info.plist */,
+				176351DA927FD57F237569D91C55BBDA /* CCNStatusItem.modulemap */,
+				2DFFE8C075AF8CE1FEE1A55985580FD2 /* CCNStatusItem.xcconfig */,
+				D1E5D06255229248D33F3EF6B3450B04 /* CCNStatusItem-dummy.m */,
+				CB5429CC670752B08C743C697AD42CD5 /* CCNStatusItem-prefix.pch */,
+				C77C2C891BDA3EF5E946F2ACA0FFA61A /* CCNStatusItem-umbrella.h */,
+				271434E3A8E135F0D5A593FA88870613 /* Info.plist */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/CCNStatusItem";
 			sourceTree = "<group>";
 		};
-		C17EB76D5FB8DFB595C7BAEE9AB8ABC1 /* Resources */ = {
+		709839FEF58149F6745D3DCA2E06C1FD /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				D620A67D352C4354C8A9501A5BADFC44 /* DateTools.bundle */,
+				0B461CC49F7701A4460434155F4E6FC6 /* DateTools.modulemap */,
+				3B1681FB33A09B532573E14B969EF167 /* DateTools.xcconfig */,
+				2390938A2D554A737D2BBA999C083A9C /* DateTools-dummy.m */,
+				0889C612A8199A38C52262D109579841 /* DateTools-prefix.pch */,
+				90B2A340EED5FCE21F63E6D6993B8C17 /* DateTools-umbrella.h */,
+				E1453392415715B95CD1177A3B410A20 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/DateTools";
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
+				39E9EE8210D861DFD82346C1F5EB7218 /* Frameworks */,
+				89A40C788C0B934217B1313FAFA67340 /* Pods */,
+				EA0F4DF5728BE16E80B30CF1EEF7F1EF /* Products */,
+				4EEFA7017D45329BC3300039B2669688 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		89A40C788C0B934217B1313FAFA67340 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EAA5855FD9D40CD799278FEF9B6C91F5 /* CCNStatusItem */,
+				A0AADA4451EBA25A45370CBA6CB46CF9 /* Crashlytics */,
+				00DE81BE28D255206ACC40D616714026 /* DateTools */,
+				323C332074953D0E0EBB7132AFA7E67F /* Fabric */,
+				1D9EC4F2E39FAA82263EBE4BC61D561A /* PopDatePicker */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A0AADA4451EBA25A45370CBA6CB46CF9 /* Crashlytics */ = {
+			isa = PBXGroup;
+			children = (
+				1608011F326569F891CF0C608EA6DC46 /* Frameworks */,
+			);
+			path = Crashlytics;
+			sourceTree = "<group>";
+		};
+		AAD356C63F24A50C0C0B4A4B492BC436 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B4C7ED7942E53C99AE165C2B946BB7D0 /* DateTools.bundle */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		CD2D2028E5DB0904F4FE913A39A78EDC /* CCNStatusItem */ = {
+		CA708A3E3535944250C5053467CA11F2 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				AFD9F24AEDF8FF943E5F27EB107A0F6E /* CCNStatusItem.h */,
-				62AE18267853AFDA6698EB99810119E4 /* CCNStatusItem.m */,
-				B301AF095FD8CC581D55B679A33921A9 /* CCNStatusItemDropView.h */,
-				0D6FE25CC32E1C87E68FAC5EE0F16F06 /* CCNStatusItemDropView.m */,
-				A52B82E11449ECC6865545D3BBFBCD46 /* CCNStatusItemWindow.h */,
-				208FE8E2E2531F33C984133591437833 /* CCNStatusItemWindow.m */,
-				17AE649F67A288C7F5D4BCA055A0E3CB /* CCNStatusItemWindowBackgroundView.h */,
-				32E5AD6D6AF93173F4402E9A68AB7A2B /* CCNStatusItemWindowBackgroundView.m */,
-				71013B5B45D92201678808920CF5919C /* CCNStatusItemWindowConfiguration.h */,
-				9CBD4C3771ACB8A1316E354A83F927ED /* CCNStatusItemWindowConfiguration.m */,
-				D40FF1765A750B075656954E2662291C /* CCNStatusItemWindowController.h */,
-				50DAFBF9902613F829974A84D2B8EE0F /* CCNStatusItemWindowController.m */,
-				BE8F8B782CC763067840736A9E133BFB /* Support Files */,
+				6AAF996B3052F57C9763AC9E1B28801B /* Info.plist */,
+				453C0FD25EBDC2774AE6358A97B6A862 /* PopDatePicker.modulemap */,
+				AB823B6C73D58954054E4121D78B8B08 /* PopDatePicker.xcconfig */,
+				0F779B211A7A4209E6AC6058F2BA85D9 /* PopDatePicker-dummy.m */,
+				64089A557E4812623F5CD5B5081A0B46 /* PopDatePicker-prefix.pch */,
+				AE3F96A62E736DD08F536CDAAF0133C9 /* PopDatePicker-umbrella.h */,
 			);
-			path = CCNStatusItem;
+			name = "Support Files";
+			path = "../Target Support Files/PopDatePicker";
 			sourceTree = "<group>";
 		};
-		D6E22D200F06EB6214CA41A399D78BAF /* Pods */ = {
+		E8AC79BE9E929D1B22989384987A2618 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CD2D2028E5DB0904F4FE913A39A78EDC /* CCNStatusItem */,
-				F3A9A7253236C5EC5F1A1BCE0A6415A8 /* DateTools */,
-				90177588A42477BCF57BE2EEC02F7B19 /* PopDatePicker */,
+				AD7DD0CA0AE78F8EDF6771C54A06B6B3 /* Fabric.framework */,
 			);
-			name = Pods;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		EA0F4DF5728BE16E80B30CF1EEF7F1EF /* Products */ = {
@@ -329,28 +369,24 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F3A9A7253236C5EC5F1A1BCE0A6415A8 /* DateTools */ = {
+		EAA5855FD9D40CD799278FEF9B6C91F5 /* CCNStatusItem */ = {
 			isa = PBXGroup;
 			children = (
-				66ED2C88EC55F81BF1F69FFF906BC771 /* DateTools.h */,
-				DB47A5104A74A8F517BCDBEF3C0239F4 /* DTConstants.h */,
-				C8888C7B98BD9DA6F2E938926F1B3BE9 /* DTConstants.m */,
-				5C97D685F1769E908E7E9EE9B0D52AF6 /* DTError.h */,
-				2BCC894D8F74A622413D0CBEE34D0680 /* DTError.m */,
-				A30471243654239250C96388FF820450 /* DTTimePeriod.h */,
-				701D36E4697D807F66B2372618DE761F /* DTTimePeriod.m */,
-				66633EB631B6F805B03963456253485A /* DTTimePeriodChain.h */,
-				44DBCEDC006C20723E7D834BD96E046C /* DTTimePeriodChain.m */,
-				2DD5EE4EC5A35AF81211A7EE84B8A395 /* DTTimePeriodCollection.h */,
-				8F29DD352FB12178A2FBCFC658E283CD /* DTTimePeriodCollection.m */,
-				668250C7780C832D6B924CE6C8FFC84C /* DTTimePeriodGroup.h */,
-				CC53DEE362474F919B81F6B58FF9EC2C /* DTTimePeriodGroup.m */,
-				9BB6EFD2A14E0CC960732BF59AAC3B7B /* NSDate+DateTools.h */,
-				6043A018C4706550C545EB6456F8C13A /* NSDate+DateTools.m */,
-				C17EB76D5FB8DFB595C7BAEE9AB8ABC1 /* Resources */,
-				B41978B5581CA9258AC00FF6B00AA741 /* Support Files */,
+				EAB906090B84F3EB605C86B8012ECB2A /* CCNStatusItem.h */,
+				C671170ABEEEBE62EA06D292B1704227 /* CCNStatusItem.m */,
+				2B93D12C7A43E3A168ED29C7EC5D053E /* CCNStatusItemDropView.h */,
+				03E084F829BD4FB95F83F4E8EFCC6701 /* CCNStatusItemDropView.m */,
+				A43F2E3889495ADA125BF572D7A32A18 /* CCNStatusItemWindow.h */,
+				9478926F9A2C4EEA4C7B45C8BF72E6C6 /* CCNStatusItemWindow.m */,
+				205A198E6F8AB8E8D6DCA5A81BCE4A48 /* CCNStatusItemWindowBackgroundView.h */,
+				427C3F8287D7059B74CDC264FCCD45AE /* CCNStatusItemWindowBackgroundView.m */,
+				33CE4C929531AA5353C5EA859677018C /* CCNStatusItemWindowConfiguration.h */,
+				AEA34185AC64B7C5C430BBDCB5FCFB03 /* CCNStatusItemWindowConfiguration.m */,
+				E44362A3E44BF00D6B0CCC2A3D8E0953 /* CCNStatusItemWindowController.h */,
+				0EB4BEC1ED4B24876C3DD826C3A44F45 /* CCNStatusItemWindowController.m */,
+				61618CF5A1214B4FE2B64FBC03059233 /* Support Files */,
 			);
-			path = DateTools;
+			path = CCNStatusItem;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -660,7 +696,7 @@
 		};
 		4ABC856BB5D0379A465281588304F492 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BA3E8FAF38504D2C508E97FC3B4D62F6 /* CCNStatusItem.xcconfig */;
+			baseConfigurationReference = 2DFFE8C075AF8CE1FEE1A55985580FD2 /* CCNStatusItem.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -687,7 +723,7 @@
 		};
 		7B16A7F99FE9285F2F0511B574D8DA3C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 07AA2BE8A169C6BA1BAF32E040B4B466 /* PopDatePicker.xcconfig */;
+			baseConfigurationReference = AB823B6C73D58954054E4121D78B8B08 /* PopDatePicker.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -749,7 +785,7 @@
 		};
 		9DABBB66B4E6270915FE79A60B38E234 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 07AA2BE8A169C6BA1BAF32E040B4B466 /* PopDatePicker.xcconfig */;
+			baseConfigurationReference = AB823B6C73D58954054E4121D78B8B08 /* PopDatePicker.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -777,7 +813,7 @@
 		};
 		A6A778C168FA983E5461720713B4D0A7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 96D7B500EF6661FC8B8E0F35657C2576 /* DateTools.xcconfig */;
+			baseConfigurationReference = 3B1681FB33A09B532573E14B969EF167 /* DateTools.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -835,7 +871,7 @@
 		};
 		C59DFD2E5B4D2BEBD61C0D01DC4E3683 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 96D7B500EF6661FC8B8E0F35657C2576 /* DateTools.xcconfig */;
+			baseConfigurationReference = 3B1681FB33A09B532573E14B969EF167 /* DateTools.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -863,7 +899,7 @@
 		};
 		FA1D1CB8D67D09D2F1E013C2ACB731C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BA3E8FAF38504D2C508E97FC3B4D62F6 /* CCNStatusItem.xcconfig */;
+			baseConfigurationReference = 2DFFE8C075AF8CE1FEE1A55985580FD2 /* CCNStatusItem.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;

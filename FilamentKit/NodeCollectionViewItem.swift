@@ -90,7 +90,7 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     
         if toStatus == .Ready {
             
-            delay(Double(indexPath!.item) * 0.3) {
+            delay(Double(indexPath!.item) * 0.2) {
                 self.nodeView.currentStatus = .Ready
             }
         } else {

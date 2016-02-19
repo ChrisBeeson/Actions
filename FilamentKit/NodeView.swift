@@ -87,16 +87,20 @@ class NodeView: NSView {
             CATransaction.commit()
             
             CATransaction.begin()
-            CATransaction.setAnimationDuration(2.0)
+            CATransaction.setAnimationDuration(1.5)
             pathLayer.strokeColor = drawingContextColour(.LightGrey).stroke
             pathLayer.fillColor = drawingContextColour(.LightGrey).fill
             CATransaction.commit()
             
             
         case .Running:
-            pathLayer.strokeColor = drawingContextColour(.Green).stroke
-            pathLayer.fillColor = drawingContextColour(.Green).fill
-
+            let anim = CABasicAnimation(keyPath: "fillColor")
+            anim.fromValue = drawingContextColour(.Green).fill
+            anim.toValue = drawingContextColour(.LightGrey).fill
+            anim.repeatCount = Float.infinity
+            anim.repeatDuration = 2.0
+            anim.autoreverses = true
+            pathLayer.addAnimation(anim, forKey: "stroke")
             
         case .WaitingForUserInput:
             pathLayer.strokeColor = drawingContextColour(.Blue).stroke

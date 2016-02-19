@@ -9,12 +9,16 @@
 import Cocoa
 //import CCNStatusItem
 import FilamentKit
+import Fabric
+import Crashlytics
 
 @NSApplicationMain
 
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
+        
+        //   Fabric.with([Crashlytics.self])
         
         //   CCNStatusItem.sharedInstance().presentStatusItemWithImage(NSImage(named: "SystemTrayIcon"), contentViewController: nil)
     }
