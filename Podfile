@@ -8,4 +8,6 @@ target 'Filament' do
     pod 'PopDatePicker'
     pod 'Fabric'
     pod 'Crashlytics'
+    pod 'AsyncSwift'
+    
 end

@@ -73,11 +73,6 @@ class NodePresenter : NSObject {
         }
     }
     
-    var sceduledDate :NSDate? {
-        get {
-            return nil
-        }
-    }
     
     var rules:[Rule] {
         get {
@@ -85,7 +80,7 @@ class NodePresenter : NSObject {
         }
     }
     
-    var calendarEvent: EKEvent? {
+    var event: EKEvent? {
         get {
             return node.event
         }

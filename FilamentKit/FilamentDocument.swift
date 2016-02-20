@@ -101,7 +101,6 @@ public class FilamentDocument: NSDocument {
             if Err != nil {
                 print(Err!.localizedDescription)
             } else {
-                print ("Saved Sequence: \(self._sequencePresenter!.archiveableSeq.title)")
             }
         })
     }
@@ -140,4 +139,5 @@ public class FilamentDocument: NSDocument {
             NSLocalizedFailureReasonErrorKey: NSLocalizedString("No presenter was available for the document", comment: "Archive failure reason")
             ])
     }
+
 }

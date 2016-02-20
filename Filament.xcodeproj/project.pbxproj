@@ -75,6 +75,7 @@
 		835619CA1C6D6AAA00488E99 /* NodeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835619C91C6D6AAA00488E99 /* NodeDetailViewController.swift */; };
 		835619CC1C6D6AD100488E99 /* NodeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */; };
 		835619CD1C6D6E4B00488E99 /* NodeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */; };
+		835740B21C77AD0700CFBB1B /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835740B11C77AD0700CFBB1B /* Event.swift */; };
 		83861F2B1BEEA25F00A44122 /* FilamentDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83861F2A1BEEA25F00A44122 /* FilamentDocument.swift */; };
 		83C73E0D1BE31C4F0045973C /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C73E0B1BE31BF20045973C /* AppConfiguration.swift */; };
 		83C73E0E1BE31C4F0045973C /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C73E0B1BE31BF20045973C /* AppConfiguration.swift */; };
@@ -83,6 +84,7 @@
 		83F6B9611B994652002A5AAF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83F6B9601B994652002A5AAF /* Images.xcassets */; };
 		83F6B9701B994652002A5AAF /* FilamentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F6B96F1B994652002A5AAF /* FilamentTests.swift */; };
 		83F6B97A1B995683002A5AAF /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 83F6B9791B995683002A5AAF /* Podfile */; };
+		83F7DE691C77D768008BEDCC /* GeneralExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CD21BE1BDF797B00AF25BE /* GeneralExtensions.swift */; };
 		83F9E92B1BA18739006282B5 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 83F9E92A1BA18739006282B5 /* .gitignore */; };
 		83FE26051BCB8FC200AC20B5 /* SolverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FE26031BCB8FB700AC20B5 /* SolverTests.swift */; };
 		A434260737AE2B1831E7CA6A /* Pods_Filament.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87F8CB0AFDC603CD8046EEF /* Pods_Filament.framework */; };
@@ -192,6 +194,7 @@
 		834F85D01C6ACFA2009CC72F /* AddNewNodeCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddNewNodeCollectionViewItem.xib; sourceTree = "<group>"; };
 		835619C91C6D6AAA00488E99 /* NodeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDetailViewController.swift; sourceTree = "<group>"; };
 		835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NodeDetailViewController.xib; sourceTree = "<group>"; };
+		835740B11C77AD0700CFBB1B /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		83861F2A1BEEA25F00A44122 /* FilamentDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilamentDocument.swift; sourceTree = "<group>"; };
 		83C73E0B1BE31BF20045973C /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		83DDAA4A1B9978CF001A4DBE /* Filament-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Filament-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -316,6 +319,7 @@
 				473574761B9A68AC00493CA0 /* Sequence.swift */,
 				47CD21C01BDF7A2600AF25BE /* Sequence+NodeLogic.swift */,
 				47CD21C51BDF807900AF25BE /* Sequence+EventLogic.swift */,
+				835740B11C77AD0700CFBB1B /* Event.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -860,6 +864,7 @@
 				47CD21C61BDF807900AF25BE /* Sequence+EventLogic.swift in Sources */,
 				47A14E811C21384F00B45F86 /* DirectoryMonitor.swift in Sources */,
 				473574771B9A68AC00493CA0 /* Sequence.swift in Sources */,
+				835740B21C77AD0700CFBB1B /* Event.swift in Sources */,
 				4720B50E1C71C32100229734 /* EmptyNodeView.swift in Sources */,
 				473574841B9A91A200493CA0 /* ListPresenterAlgorithms.swift in Sources */,
 				47F2FBC41BA8CFEE0041B291 /* Solver.swift in Sources */,
@@ -901,6 +906,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				47B696471BE564DC00260C2A /* MainWindowController.swift in Sources */,
+				83F7DE691C77D768008BEDCC /* GeneralExtensions.swift in Sources */,
 				47F5E82B1BF495D8004C0D16 /* AddFilamentViewController.swift in Sources */,
 				479CD2861C1B8AE700C8D1D6 /* FilamentTableCellView.swift in Sources */,
 				83F6B95D1B994652002A5AAF /* AppDelegate.swift in Sources */,

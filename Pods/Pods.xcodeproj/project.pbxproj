@@ -7,147 +7,182 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0222DC06D0CB7D23E121510D284F160E /* Pods-Filament-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 89F85B04CAC95D970C7036F3380BD4FA /* Pods-Filament-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		06EDD0BE76CF9F1F8D3102CA8DD07849 /* PopDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB9354FFDABF048A35FCBBD42567923 /* PopDatePicker.swift */; };
-		09DE57B864B2677DC9EAEEDA216FB72D /* CCNStatusItemWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = E44362A3E44BF00D6B0CCC2A3D8E0953 /* CCNStatusItemWindowController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		19D228ED87FF16C882731F1ED7992B4E /* DateTools-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2390938A2D554A737D2BBA999C083A9C /* DateTools-dummy.m */; };
-		1B09B6693F04CBB836CE385C12D88CAC /* CCNStatusItem-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D1E5D06255229248D33F3EF6B3450B04 /* CCNStatusItem-dummy.m */; };
-		20282EAFCFB06EC3E4791A53C136F7CA /* CCNStatusItem.h in Headers */ = {isa = PBXBuildFile; fileRef = EAB906090B84F3EB605C86B8012ECB2A /* CCNStatusItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		23FAFEA2D3E1CDEED13AA29BD200D86C /* CCNStatusItemWindowConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = AEA34185AC64B7C5C430BBDCB5FCFB03 /* CCNStatusItemWindowConfiguration.m */; };
-		2DAF4E8CD18ED10B30CCFB8FF1984A46 /* DateTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 39C4C6BEB73A9D99750435E0984BF8C5 /* DateTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3FBE7CDAB15CB2B272B3A00A3901FE38 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA6EBC2E57D96052268211209D6AA52 /* Cocoa.framework */; };
-		4159C0A759E6090F2C58FCB2492DFB05 /* DTTimePeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A72634DF058E2F025C4A1E4CA892F12 /* DTTimePeriod.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		41B4F4F448E988440CEE6D945DFCA1B9 /* CCNStatusItemDropView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B93D12C7A43E3A168ED29C7EC5D053E /* CCNStatusItemDropView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4EF49C485BE5112FAF9B95C006EFA6E1 /* CCNStatusItemWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EB4BEC1ED4B24876C3DD826C3A44F45 /* CCNStatusItemWindowController.m */; };
-		551AA7837412761D85DE2592B774F5EC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA6EBC2E57D96052268211209D6AA52 /* Cocoa.framework */; };
+		002443F368208854938EAFBF214DD30E /* PopDatePicker-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 69F414AB38617CD62C1859B1001BDB08 /* PopDatePicker-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		09DE57B864B2677DC9EAEEDA216FB72D /* CCNStatusItemWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 501F9353404F7F05CDC755D3B2ED8978 /* CCNStatusItemWindowController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		19D228ED87FF16C882731F1ED7992B4E /* DateTools-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 391B6824497C7337296427A2741CB649 /* DateTools-dummy.m */; };
+		1AD2BD10E67BB119D3667884299E354F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA6EBC2E57D96052268211209D6AA52 /* Cocoa.framework */; };
+		1B09B6693F04CBB836CE385C12D88CAC /* CCNStatusItem-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DBF736B00333E104BB0051B52C80D6 /* CCNStatusItem-dummy.m */; };
+		20282EAFCFB06EC3E4791A53C136F7CA /* CCNStatusItem.h in Headers */ = {isa = PBXBuildFile; fileRef = E68F1341950D076C9A53FB6482CEC6BA /* CCNStatusItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		23FAFEA2D3E1CDEED13AA29BD200D86C /* CCNStatusItemWindowConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 790C1E28D834AEEE79B15A526E69D518 /* CCNStatusItemWindowConfiguration.m */; };
+		2752EE44238405FBA37C2DCAFE342BAD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA6EBC2E57D96052268211209D6AA52 /* Cocoa.framework */; };
+		2AAD8559A7E416702CE6539179B26CFB /* AsyncSwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F8F934D75503A91C47A83794E98DD25B /* AsyncSwift-dummy.m */; };
+		2B4EDDC7743A12738E9F3E48258C228D /* Pods-Filament-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 89F85B04CAC95D970C7036F3380BD4FA /* Pods-Filament-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2DAF4E8CD18ED10B30CCFB8FF1984A46 /* DateTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1190B36453F8FEAB43D50045BE60D4 /* DateTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4159C0A759E6090F2C58FCB2492DFB05 /* DTTimePeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = 759B66D714F8C7B4EBA14DA9C0A64371 /* DTTimePeriod.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		41B4F4F448E988440CEE6D945DFCA1B9 /* CCNStatusItemDropView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E6F960A59F9981DA6FD8AEBC22441AB /* CCNStatusItemDropView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4EF49C485BE5112FAF9B95C006EFA6E1 /* CCNStatusItemWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6D06AD7A95381F5A9FE60936227C69 /* CCNStatusItemWindowController.m */; };
 		5B707D924F36E828E47A4301B73F03E1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA6EBC2E57D96052268211209D6AA52 /* Cocoa.framework */; };
-		63FB5300A7BD9FE2EF7DAE0471730EF2 /* CCNStatusItem-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C77C2C891BDA3EF5E946F2ACA0FFA61A /* CCNStatusItem-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66D6CA16EF2371E39FAB73473A89D8C1 /* NSDate+DateTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 77279C676FBD8A286AB6C9E9D6167A86 /* NSDate+DateTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6F00A3D837A718CBC5D7C7157CCF71A2 /* DTTimePeriodGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 035DBEE0826B9401ACB160C475158951 /* DTTimePeriodGroup.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7050ED73E100547D9799E694A69D9EF3 /* CCNStatusItemWindowBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C3F8287D7059B74CDC264FCCD45AE /* CCNStatusItemWindowBackgroundView.m */; };
-		729719BE516B8080199215BB6A52117A /* DateTools-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B2A340EED5FCE21F63E6D6993B8C17 /* DateTools-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7902018FD0635F9A5E4C13BFD67E3750 /* DateTools.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B4C7ED7942E53C99AE165C2B946BB7D0 /* DateTools.bundle */; };
-		7A3C7A5DAEB1C695F060F0248053A1A6 /* NSDate+DateTools.m in Sources */ = {isa = PBXBuildFile; fileRef = EBE5281CD3F0BB2DCB65F37D92347629 /* NSDate+DateTools.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		7BD8F5806596EB765BB2F6D07F8107AD /* CCNStatusItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C671170ABEEEBE62EA06D292B1704227 /* CCNStatusItem.m */; };
-		7E9B82B87C3E50BB11C4622FE83EACA0 /* CCNStatusItemWindowBackgroundView.h in Headers */ = {isa = PBXBuildFile; fileRef = 205A198E6F8AB8E8D6DCA5A81BCE4A48 /* CCNStatusItemWindowBackgroundView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		801E845E678344633F3972FA4FC16B7C /* DTTimePeriodChain.m in Sources */ = {isa = PBXBuildFile; fileRef = E62EB76A91D02859A5B5A557D2F1900A /* DTTimePeriodChain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		96C091A57B56F83A13BDECC3519A2B40 /* CCNStatusItemWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 9478926F9A2C4EEA4C7B45C8BF72E6C6 /* CCNStatusItemWindow.m */; };
-		9BC7910A61F45206D435065CD0F23BA0 /* DTTimePeriod.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DD27F01F432B2F69AF2857A265004C7 /* DTTimePeriod.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A2E3F4AF5136E7D68B5B269C6E34AD8B /* CCNStatusItemWindowConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 33CE4C929531AA5353C5EA859677018C /* CCNStatusItemWindowConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A4A5DE1784D58F0D9AC336BE0A4936C4 /* DTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C85815123EC5C764C077CB27B62BDE /* DTConstants.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		AA7675662C34C34D85AD17EEFCF9BC42 /* CCNStatusItemDropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E084F829BD4FB95F83F4E8EFCC6701 /* CCNStatusItemDropView.m */; };
-		AFF4480B4B63FA58209AEC8052207A92 /* DTTimePeriodCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCC8C29E4AC2BFD866ADCFA8D6F86AD /* DTTimePeriodCollection.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		B4137B6F5B1EF819B8DF88A194F598ED /* DTError.h in Headers */ = {isa = PBXBuildFile; fileRef = 04C36277895CCBE0EECA0D90A73B6365 /* DTError.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C16E0F1A698E02F1D49D4593A71BE38F /* DTConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D46684F19D1B58968A064729275656D /* DTConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C69B0DB3560C74D36287787E6A62C254 /* PopDatePicker-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AE3F96A62E736DD08F536CDAAF0133C9 /* PopDatePicker-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C988DAEA4E21FD415359116C3AE6B77A /* PopDatePicker-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F779B211A7A4209E6AC6058F2BA85D9 /* PopDatePicker-dummy.m */; };
-		CC1CD7BAF05F362DECAA5698D1100896 /* DTError.m in Sources */ = {isa = PBXBuildFile; fileRef = 379D8478D646F841B2BE73C99162D619 /* DTError.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		CF915D8F344349EAF361BB84D974A67B /* Pods-Filament-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C19AC3142207CEF34D71639DC6997A2 /* Pods-Filament-dummy.m */; };
+		63FB5300A7BD9FE2EF7DAE0471730EF2 /* CCNStatusItem-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AA252836547784A51483385EB861C4AB /* CCNStatusItem-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66D6CA16EF2371E39FAB73473A89D8C1 /* NSDate+DateTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E1CBE3EAFE21A189A10CC6EE220555B /* NSDate+DateTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6F00A3D837A718CBC5D7C7157CCF71A2 /* DTTimePeriodGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = F2EFBE638B875C1E41744F5174772F47 /* DTTimePeriodGroup.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7050ED73E100547D9799E694A69D9EF3 /* CCNStatusItemWindowBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = A94384C1359ADFE94FA76759C5982CA5 /* CCNStatusItemWindowBackgroundView.m */; };
+		729719BE516B8080199215BB6A52117A /* DateTools-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FDB8821183011690B56E2F6D6CFB9050 /* DateTools-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7902018FD0635F9A5E4C13BFD67E3750 /* DateTools.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6353AD0405B6A2D72CF92EDBEB59BB0B /* DateTools.bundle */; };
+		7A3C7A5DAEB1C695F060F0248053A1A6 /* NSDate+DateTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDF284901A19A85B38554A1DCE8A12D /* NSDate+DateTools.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		7BD8F5806596EB765BB2F6D07F8107AD /* CCNStatusItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1902668C4C7469F2BABE45ACEDCDEB /* CCNStatusItem.m */; };
+		7E9B82B87C3E50BB11C4622FE83EACA0 /* CCNStatusItemWindowBackgroundView.h in Headers */ = {isa = PBXBuildFile; fileRef = A47C0C89A2ADB28B1CFB1CD33F29B18C /* CCNStatusItemWindowBackgroundView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		80115EC7C35A3C88CD341C790E55B18F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA6EBC2E57D96052268211209D6AA52 /* Cocoa.framework */; };
+		801E845E678344633F3972FA4FC16B7C /* DTTimePeriodChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB41F13F36815925AF64243933E9D82 /* DTTimePeriodChain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		8388061C3ADA54DDDACDCBAE10E4F27C /* PopDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8453047A28A82671858096698632A7 /* PopDatePicker.swift */; };
+		96C091A57B56F83A13BDECC3519A2B40 /* CCNStatusItemWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2564920A0C9401EC0605B0B3B8467E76 /* CCNStatusItemWindow.m */; };
+		9BC7910A61F45206D435065CD0F23BA0 /* DTTimePeriod.h in Headers */ = {isa = PBXBuildFile; fileRef = CF50A2C2E2A4D984E952BE8BA6D80410 /* DTTimePeriod.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A1402E09498287925DECA915C04DB448 /* AsyncSwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F452F8E069014F644ED4DDB2D1E2E5A2 /* AsyncSwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A2E3F4AF5136E7D68B5B269C6E34AD8B /* CCNStatusItemWindowConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 0EF4CAD3909667EC49E02FEF0C6D51E6 /* CCNStatusItemWindowConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A4A5DE1784D58F0D9AC336BE0A4936C4 /* DTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C0FAE93AA78D9888B582042BEC1EB4 /* DTConstants.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		AA7675662C34C34D85AD17EEFCF9BC42 /* CCNStatusItemDropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 362B4FE131D132C32BD308144F4364AD /* CCNStatusItemDropView.m */; };
+		AFBC3405169EC62D3D6CC38549B64DF1 /* Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99A8C4A022450FAF03FF5D29021D81C /* Async.swift */; };
+		AFF4480B4B63FA58209AEC8052207A92 /* DTTimePeriodCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E0F12DC9E087B1CBA62DF6C7D41F124 /* DTTimePeriodCollection.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		B4137B6F5B1EF819B8DF88A194F598ED /* DTError.h in Headers */ = {isa = PBXBuildFile; fileRef = D8624DE43F55951A5E7E6F9A872D208B /* DTError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C16E0F1A698E02F1D49D4593A71BE38F /* DTConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 018769739212C0FBAC3695206DBD5663 /* DTConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CC1CD7BAF05F362DECAA5698D1100896 /* DTError.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD9A01C09499FECA282D84B53B5A420 /* DTError.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		DB66A1509386FFBDF71F9A968FC87A8A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA6EBC2E57D96052268211209D6AA52 /* Cocoa.framework */; };
-		DD710EA2C8E2D3E0917519775D1F571C /* DTTimePeriodGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB779A9A7274308DE3939BA89BBC541 /* DTTimePeriodGroup.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		E73820895130CBC0E5F8C7F5AC307350 /* CCNStatusItemWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = A43F2E3889495ADA125BF572D7A32A18 /* CCNStatusItemWindow.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EE13D588E52431089F7406353C90A144 /* DTTimePeriodChain.h in Headers */ = {isa = PBXBuildFile; fileRef = A74400935BB7665997F473FF040BE84A /* DTTimePeriodChain.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F423AB12C14DA731C42897A3D929D2B8 /* DTTimePeriodCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = C8CE97DE7FC243978F7162664886B0E3 /* DTTimePeriodCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DD710EA2C8E2D3E0917519775D1F571C /* DTTimePeriodGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = D21E2559988BAE0BFD4A70CD77505718 /* DTTimePeriodGroup.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		E1FF5824578CA97803DB94BB8345E854 /* Pods-Filament-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C19AC3142207CEF34D71639DC6997A2 /* Pods-Filament-dummy.m */; };
+		E73820895130CBC0E5F8C7F5AC307350 /* CCNStatusItemWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 41A6055AF5E8E910F2EC4FD5AB47A319 /* CCNStatusItemWindow.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EE13D588E52431089F7406353C90A144 /* DTTimePeriodChain.h in Headers */ = {isa = PBXBuildFile; fileRef = BA6C8049428BAA46A2F83ADD019E021B /* DTTimePeriodChain.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F423AB12C14DA731C42897A3D929D2B8 /* DTTimePeriodCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = C370DF200619965C83F3AF40EF041DB3 /* DTTimePeriodCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F84D8F80D712550DDE0766EA74A421A8 /* PopDatePicker-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0CE241DEAE6ED206C9C8B1C1E5EE79 /* PopDatePicker-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		01F2828E8AC2EBB4E8ED6DA10891C122 /* PBXContainerItemProxy */ = {
+		03C6A64517D726C5147EE7FCEFABC9C1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = AFEDA8059B169E4068B6DCC4D2F0B0E9;
 			remoteInfo = DateTools;
 		};
-		16AFEA09650BFA66B32809B8AB6CA627 /* PBXContainerItemProxy */ = {
+		441E20D0034A44A9C9E8AB981923D511 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 73A4600794483FA0A926CFC8AAAD0A90;
 			remoteInfo = CCNStatusItem;
 		};
-		6B3E20A29F8F88129089D9E399A8CDE1 /* PBXContainerItemProxy */ = {
+		72B08D217C14959B2E39AAAA8453D6DF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = ABBD6D70D6A495EA6D67DFDEBAE353EB;
+			remoteGlobalIDString = C3073B134B63E04F4DEC80298EC3474A;
 			remoteInfo = PopDatePicker;
+		};
+		B0E962A5276CE14AF349840CC787369A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4E155FBB6070C868840C7A2BB6E75E85;
+			remoteInfo = AsyncSwift;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		035DBEE0826B9401ACB160C475158951 /* DTTimePeriodGroup.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTTimePeriodGroup.h; path = DateTools/DTTimePeriodGroup.h; sourceTree = "<group>"; };
-		03E084F829BD4FB95F83F4E8EFCC6701 /* CCNStatusItemDropView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CCNStatusItemDropView.m; path = CCNStatusItem/CCNStatusItemDropView.m; sourceTree = "<group>"; };
-		04C36277895CCBE0EECA0D90A73B6365 /* DTError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTError.h; path = DateTools/DTError.h; sourceTree = "<group>"; };
-		06EC4CC4BB166EC670E060AB2D05452F /* DateTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DateTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0889C612A8199A38C52262D109579841 /* DateTools-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DateTools-prefix.pch"; sourceTree = "<group>"; };
-		0B461CC49F7701A4460434155F4E6FC6 /* DateTools.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = DateTools.modulemap; sourceTree = "<group>"; };
-		0EB23B34C21AAD53A401C022301F8CFC /* CCNStatusItem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CCNStatusItem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0EB4BEC1ED4B24876C3DD826C3A44F45 /* CCNStatusItemWindowController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CCNStatusItemWindowController.m; path = CCNStatusItem/CCNStatusItemWindowController.m; sourceTree = "<group>"; };
-		0F779B211A7A4209E6AC6058F2BA85D9 /* PopDatePicker-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PopDatePicker-dummy.m"; sourceTree = "<group>"; };
-		151D489D8B22796ECECAC8D35D827AD9 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = OSX/Crashlytics.framework; sourceTree = "<group>"; };
-		176351DA927FD57F237569D91C55BBDA /* CCNStatusItem.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = CCNStatusItem.modulemap; sourceTree = "<group>"; };
-		1A72634DF058E2F025C4A1E4CA892F12 /* DTTimePeriod.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTTimePeriod.m; path = DateTools/DTTimePeriod.m; sourceTree = "<group>"; };
+		018769739212C0FBAC3695206DBD5663 /* DTConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTConstants.h; path = DateTools/DTConstants.h; sourceTree = "<group>"; };
+		024574C863DDE94CB67536F755FE8376 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0E1CBE3EAFE21A189A10CC6EE220555B /* NSDate+DateTools.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSDate+DateTools.h"; path = "DateTools/NSDate+DateTools.h"; sourceTree = "<group>"; };
+		0EF4CAD3909667EC49E02FEF0C6D51E6 /* CCNStatusItemWindowConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CCNStatusItemWindowConfiguration.h; path = CCNStatusItem/CCNStatusItemWindowConfiguration.h; sourceTree = "<group>"; };
+		12448D1FE33229AB7DAFBA4A3F1AEB65 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = OSX/Crashlytics.framework; sourceTree = "<group>"; };
+		1A8453047A28A82671858096698632A7 /* PopDatePicker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopDatePicker.swift; path = PopDatePicker/PopDatePicker.swift; sourceTree = "<group>"; };
 		1CA6EBC2E57D96052268211209D6AA52 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
-		205A198E6F8AB8E8D6DCA5A81BCE4A48 /* CCNStatusItemWindowBackgroundView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CCNStatusItemWindowBackgroundView.h; path = CCNStatusItem/CCNStatusItemWindowBackgroundView.h; sourceTree = "<group>"; };
-		2390938A2D554A737D2BBA999C083A9C /* DateTools-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DateTools-dummy.m"; sourceTree = "<group>"; };
-		271434E3A8E135F0D5A593FA88870613 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2564920A0C9401EC0605B0B3B8467E76 /* CCNStatusItemWindow.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CCNStatusItemWindow.m; path = CCNStatusItem/CCNStatusItemWindow.m; sourceTree = "<group>"; };
 		2762E18B10973FE4AC1E4518989007DD /* Pods-Filament-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Filament-resources.sh"; sourceTree = "<group>"; };
-		2B93D12C7A43E3A168ED29C7EC5D053E /* CCNStatusItemDropView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CCNStatusItemDropView.h; path = CCNStatusItem/CCNStatusItemDropView.h; sourceTree = "<group>"; };
-		2DFFE8C075AF8CE1FEE1A55985580FD2 /* CCNStatusItem.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CCNStatusItem.xcconfig; sourceTree = "<group>"; };
-		33CE4C929531AA5353C5EA859677018C /* CCNStatusItemWindowConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CCNStatusItemWindowConfiguration.h; path = CCNStatusItem/CCNStatusItemWindowConfiguration.h; sourceTree = "<group>"; };
+		2CDF284901A19A85B38554A1DCE8A12D /* NSDate+DateTools.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSDate+DateTools.m"; path = "DateTools/NSDate+DateTools.m"; sourceTree = "<group>"; };
+		2E0F12DC9E087B1CBA62DF6C7D41F124 /* DTTimePeriodCollection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTTimePeriodCollection.m; path = DateTools/DTTimePeriodCollection.m; sourceTree = "<group>"; };
+		2E6F960A59F9981DA6FD8AEBC22441AB /* CCNStatusItemDropView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CCNStatusItemDropView.h; path = CCNStatusItem/CCNStatusItemDropView.h; sourceTree = "<group>"; };
+		30C0FAE93AA78D9888B582042BEC1EB4 /* DTConstants.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTConstants.m; path = DateTools/DTConstants.m; sourceTree = "<group>"; };
+		340A413FB806E30E5FABBDE2DCA77DED /* AsyncSwift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AsyncSwift.xcconfig; sourceTree = "<group>"; };
 		35A23D72EB598F1ADBDD07A642BA9AFC /* Pods-Filament-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Filament-acknowledgements.markdown"; sourceTree = "<group>"; };
-		379D8478D646F841B2BE73C99162D619 /* DTError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTError.m; path = DateTools/DTError.m; sourceTree = "<group>"; };
-		39C4C6BEB73A9D99750435E0984BF8C5 /* DateTools.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DateTools.h; path = DateTools/DateTools.h; sourceTree = "<group>"; };
-		3B1681FB33A09B532573E14B969EF167 /* DateTools.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DateTools.xcconfig; sourceTree = "<group>"; };
-		427C3F8287D7059B74CDC264FCCD45AE /* CCNStatusItemWindowBackgroundView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CCNStatusItemWindowBackgroundView.m; path = CCNStatusItem/CCNStatusItemWindowBackgroundView.m; sourceTree = "<group>"; };
-		453C0FD25EBDC2774AE6358A97B6A862 /* PopDatePicker.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = PopDatePicker.modulemap; sourceTree = "<group>"; };
+		362B4FE131D132C32BD308144F4364AD /* CCNStatusItemDropView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CCNStatusItemDropView.m; path = CCNStatusItem/CCNStatusItemDropView.m; sourceTree = "<group>"; };
+		391B6824497C7337296427A2741CB649 /* DateTools-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DateTools-dummy.m"; sourceTree = "<group>"; };
+		41A6055AF5E8E910F2EC4FD5AB47A319 /* CCNStatusItemWindow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CCNStatusItemWindow.h; path = CCNStatusItem/CCNStatusItemWindow.h; sourceTree = "<group>"; };
 		4C19AC3142207CEF34D71639DC6997A2 /* Pods-Filament-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Filament-dummy.m"; sourceTree = "<group>"; };
 		4DAE256B81A180AFBE508B3BFF67E596 /* Pods-Filament.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Filament.debug.xcconfig"; sourceTree = "<group>"; };
 		4F7E154EBD4E4D6740E1BCD126B24723 /* Pods-Filament.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Filament.release.xcconfig"; sourceTree = "<group>"; };
+		501F9353404F7F05CDC755D3B2ED8978 /* CCNStatusItemWindowController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CCNStatusItemWindowController.h; path = CCNStatusItem/CCNStatusItemWindowController.h; sourceTree = "<group>"; };
 		5BAC77A4C15AC7B7C13635EA95387054 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5DD27F01F432B2F69AF2857A265004C7 /* DTTimePeriod.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTTimePeriod.h; path = DateTools/DTTimePeriod.h; sourceTree = "<group>"; };
-		64089A557E4812623F5CD5B5081A0B46 /* PopDatePicker-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PopDatePicker-prefix.pch"; sourceTree = "<group>"; };
-		6AAF996B3052F57C9763AC9E1B28801B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		77279C676FBD8A286AB6C9E9D6167A86 /* NSDate+DateTools.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSDate+DateTools.h"; path = "DateTools/NSDate+DateTools.h"; sourceTree = "<group>"; };
+		5CAEFDCDD7074B622D5AB3D88302FC77 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5EB41F13F36815925AF64243933E9D82 /* DTTimePeriodChain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTTimePeriodChain.m; path = DateTools/DTTimePeriodChain.m; sourceTree = "<group>"; };
+		61FDB465DCF6445A5EF83CB94526A77D /* CCNStatusItem.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = CCNStatusItem.modulemap; sourceTree = "<group>"; };
+		6353AD0405B6A2D72CF92EDBEB59BB0B /* DateTools.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = DateTools.bundle; path = DateTools/DateTools.bundle; sourceTree = "<group>"; };
+		648C8F68D7D381AEF0068FC3332E0745 /* AsyncSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = AsyncSwift.modulemap; sourceTree = "<group>"; };
+		69F414AB38617CD62C1859B1001BDB08 /* PopDatePicker-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PopDatePicker-umbrella.h"; sourceTree = "<group>"; };
+		6A6D06AD7A95381F5A9FE60936227C69 /* CCNStatusItemWindowController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CCNStatusItemWindowController.m; path = CCNStatusItem/CCNStatusItemWindowController.m; sourceTree = "<group>"; };
+		759B66D714F8C7B4EBA14DA9C0A64371 /* DTTimePeriod.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTTimePeriod.m; path = DateTools/DTTimePeriod.m; sourceTree = "<group>"; };
+		76FEDED37BF5A8E78A2437174CB3468E /* DateTools.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = DateTools.modulemap; sourceTree = "<group>"; };
+		790C1E28D834AEEE79B15A526E69D518 /* CCNStatusItemWindowConfiguration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CCNStatusItemWindowConfiguration.m; path = CCNStatusItem/CCNStatusItemWindowConfiguration.m; sourceTree = "<group>"; };
+		7BAD372B598D7822448B96D377651904 /* Pods_Filament.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Filament.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7BD72166368C9A9A8A2130565F02569F /* PopDatePicker.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PopDatePicker.xcconfig; sourceTree = "<group>"; };
 		89F85B04CAC95D970C7036F3380BD4FA /* Pods-Filament-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Filament-umbrella.h"; sourceTree = "<group>"; };
-		8AB779A9A7274308DE3939BA89BBC541 /* DTTimePeriodGroup.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTTimePeriodGroup.m; path = DateTools/DTTimePeriodGroup.m; sourceTree = "<group>"; };
-		90B2A340EED5FCE21F63E6D6993B8C17 /* DateTools-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DateTools-umbrella.h"; sourceTree = "<group>"; };
-		9478926F9A2C4EEA4C7B45C8BF72E6C6 /* CCNStatusItemWindow.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CCNStatusItemWindow.m; path = CCNStatusItem/CCNStatusItemWindow.m; sourceTree = "<group>"; };
-		9D46684F19D1B58968A064729275656D /* DTConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTConstants.h; path = DateTools/DTConstants.h; sourceTree = "<group>"; };
-		A43F2E3889495ADA125BF572D7A32A18 /* CCNStatusItemWindow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CCNStatusItemWindow.h; path = CCNStatusItem/CCNStatusItemWindow.h; sourceTree = "<group>"; };
-		A74400935BB7665997F473FF040BE84A /* DTTimePeriodChain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTTimePeriodChain.h; path = DateTools/DTTimePeriodChain.h; sourceTree = "<group>"; };
-		AB823B6C73D58954054E4121D78B8B08 /* PopDatePicker.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PopDatePicker.xcconfig; sourceTree = "<group>"; };
-		AD7DD0CA0AE78F8EDF6771C54A06B6B3 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = OSX/Fabric.framework; sourceTree = "<group>"; };
-		AE3F96A62E736DD08F536CDAAF0133C9 /* PopDatePicker-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PopDatePicker-umbrella.h"; sourceTree = "<group>"; };
-		AEA34185AC64B7C5C430BBDCB5FCFB03 /* CCNStatusItemWindowConfiguration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CCNStatusItemWindowConfiguration.m; path = CCNStatusItem/CCNStatusItemWindowConfiguration.m; sourceTree = "<group>"; };
-		B4C7ED7942E53C99AE165C2B946BB7D0 /* DateTools.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = DateTools.bundle; path = DateTools/DateTools.bundle; sourceTree = "<group>"; };
+		8C6EC78B1C58509DEB31FB89774A30B9 /* DateTools.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DateTools.xcconfig; sourceTree = "<group>"; };
+		8D52AE8EFFF32E03D905134587C8C9AD /* CCNStatusItem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CCNStatusItem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F1902668C4C7469F2BABE45ACEDCDEB /* CCNStatusItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CCNStatusItem.m; path = CCNStatusItem/CCNStatusItem.m; sourceTree = "<group>"; };
+		94CB210D5FE4E9D01C91BB94CC34BE91 /* CCNStatusItem-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CCNStatusItem-prefix.pch"; sourceTree = "<group>"; };
+		951C69CE41F75B7143F5A2DBCF0B49F5 /* PopDatePicker.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = PopDatePicker.modulemap; sourceTree = "<group>"; };
+		9A1190B36453F8FEAB43D50045BE60D4 /* DateTools.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DateTools.h; path = DateTools/DateTools.h; sourceTree = "<group>"; };
+		A47C0C89A2ADB28B1CFB1CD33F29B18C /* CCNStatusItemWindowBackgroundView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CCNStatusItemWindowBackgroundView.h; path = CCNStatusItem/CCNStatusItemWindowBackgroundView.h; sourceTree = "<group>"; };
+		A5135A868D3615472282E872741B2F40 /* Async.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Async.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A59E124E45667C7E8F64C1BE38B01B90 /* DateTools-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DateTools-prefix.pch"; sourceTree = "<group>"; };
+		A94384C1359ADFE94FA76759C5982CA5 /* CCNStatusItemWindowBackgroundView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CCNStatusItemWindowBackgroundView.m; path = CCNStatusItem/CCNStatusItemWindowBackgroundView.m; sourceTree = "<group>"; };
+		AA252836547784A51483385EB861C4AB /* CCNStatusItem-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CCNStatusItem-umbrella.h"; sourceTree = "<group>"; };
+		AAE044CDE0A8EE1A71C0ED17AF1C4D08 /* DateTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DateTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4BCE59DA712B68DD217C13299D28FA3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B99A8C4A022450FAF03FF5D29021D81C /* Async.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Async.swift; path = Source/Async.swift; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		BCB9354FFDABF048A35FCBBD42567923 /* PopDatePicker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopDatePicker.swift; path = PopDatePicker/PopDatePicker.swift; sourceTree = "<group>"; };
-		C671170ABEEEBE62EA06D292B1704227 /* CCNStatusItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CCNStatusItem.m; path = CCNStatusItem/CCNStatusItem.m; sourceTree = "<group>"; };
+		BA6C8049428BAA46A2F83ADD019E021B /* DTTimePeriodChain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTTimePeriodChain.h; path = DateTools/DTTimePeriodChain.h; sourceTree = "<group>"; };
+		BBD9A01C09499FECA282D84B53B5A420 /* DTError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTError.m; path = DateTools/DTError.m; sourceTree = "<group>"; };
+		C370DF200619965C83F3AF40EF041DB3 /* DTTimePeriodCollection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTTimePeriodCollection.h; path = DateTools/DTTimePeriodCollection.h; sourceTree = "<group>"; };
 		C6E21A1EB26A18AB77E8FAC8A2A969E1 /* Pods-Filament-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Filament-frameworks.sh"; sourceTree = "<group>"; };
-		C77C2C891BDA3EF5E946F2ACA0FFA61A /* CCNStatusItem-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CCNStatusItem-umbrella.h"; sourceTree = "<group>"; };
-		C8CE97DE7FC243978F7162664886B0E3 /* DTTimePeriodCollection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTTimePeriodCollection.h; path = DateTools/DTTimePeriodCollection.h; sourceTree = "<group>"; };
-		CB5429CC670752B08C743C697AD42CD5 /* CCNStatusItem-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CCNStatusItem-prefix.pch"; sourceTree = "<group>"; };
-		D1E5D06255229248D33F3EF6B3450B04 /* CCNStatusItem-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CCNStatusItem-dummy.m"; sourceTree = "<group>"; };
+		C90A8016681CDAEA6B48034B4BD3B493 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CB57A6F8AECAA567CBDA14B95EB9C4A6 /* PopDatePicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PopDatePicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB9139DA9D99D50B38DCB1CB46A9FA79 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = OSX/Fabric.framework; sourceTree = "<group>"; };
+		CF0CE241DEAE6ED206C9C8B1C1E5EE79 /* PopDatePicker-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PopDatePicker-dummy.m"; sourceTree = "<group>"; };
+		CF50A2C2E2A4D984E952BE8BA6D80410 /* DTTimePeriod.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTTimePeriod.h; path = DateTools/DTTimePeriod.h; sourceTree = "<group>"; };
+		D21E2559988BAE0BFD4A70CD77505718 /* DTTimePeriodGroup.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTTimePeriodGroup.m; path = DateTools/DTTimePeriodGroup.m; sourceTree = "<group>"; };
+		D8624DE43F55951A5E7E6F9A872D208B /* DTError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTError.h; path = DateTools/DTError.h; sourceTree = "<group>"; };
 		D8C7C9F41754D37D84885728F6B86FD1 /* Pods-Filament.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Filament.modulemap"; sourceTree = "<group>"; };
-		D8C85815123EC5C764C077CB27B62BDE /* DTConstants.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTConstants.m; path = DateTools/DTConstants.m; sourceTree = "<group>"; };
-		E1453392415715B95CD1177A3B410A20 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E44362A3E44BF00D6B0CCC2A3D8E0953 /* CCNStatusItemWindowController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CCNStatusItemWindowController.h; path = CCNStatusItem/CCNStatusItemWindowController.h; sourceTree = "<group>"; };
-		E62EB76A91D02859A5B5A557D2F1900A /* DTTimePeriodChain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTTimePeriodChain.m; path = DateTools/DTTimePeriodChain.m; sourceTree = "<group>"; };
-		EAB906090B84F3EB605C86B8012ECB2A /* CCNStatusItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CCNStatusItem.h; path = CCNStatusItem/CCNStatusItem.h; sourceTree = "<group>"; };
-		EBE5281CD3F0BB2DCB65F37D92347629 /* NSDate+DateTools.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSDate+DateTools.m"; path = "DateTools/NSDate+DateTools.m"; sourceTree = "<group>"; };
-		F139F779866E519E12E7252FA082E561 /* PopDatePicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PopDatePicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F4979867B7FFE9DFCB75813806D5A088 /* Pods_Filament.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Filament.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA4D0570D07935E38559F27C4E19C5AD /* CCNStatusItem.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CCNStatusItem.xcconfig; sourceTree = "<group>"; };
+		E68F1341950D076C9A53FB6482CEC6BA /* CCNStatusItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CCNStatusItem.h; path = CCNStatusItem/CCNStatusItem.h; sourceTree = "<group>"; };
+		F1DBF736B00333E104BB0051B52C80D6 /* CCNStatusItem-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CCNStatusItem-dummy.m"; sourceTree = "<group>"; };
+		F2EFBE638B875C1E41744F5174772F47 /* DTTimePeriodGroup.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTTimePeriodGroup.h; path = DateTools/DTTimePeriodGroup.h; sourceTree = "<group>"; };
+		F452F8E069014F644ED4DDB2D1E2E5A2 /* AsyncSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AsyncSwift-umbrella.h"; sourceTree = "<group>"; };
 		F5D2EEEEA6E2484E303E907B9B67C813 /* Pods-Filament-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Filament-acknowledgements.plist"; sourceTree = "<group>"; };
-		FCCC8C29E4AC2BFD866ADCFA8D6F86AD /* DTTimePeriodCollection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTTimePeriodCollection.m; path = DateTools/DTTimePeriodCollection.m; sourceTree = "<group>"; };
+		F621A7F6591DE97BB3ED3DBFB90361D8 /* AsyncSwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AsyncSwift-prefix.pch"; sourceTree = "<group>"; };
+		F8F934D75503A91C47A83794E98DD25B /* AsyncSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AsyncSwift-dummy.m"; sourceTree = "<group>"; };
+		FA777CF8B17271627DEE550C821FF796 /* PopDatePicker-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PopDatePicker-prefix.pch"; sourceTree = "<group>"; };
+		FDB8821183011690B56E2F6D6CFB9050 /* DateTools-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DateTools-umbrella.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		12345E23B97B9B3A63FDC5C1F0E25C0C /* Frameworks */ = {
+		17F4E8BD79AFDC974A010BA44D99DDD5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FBE7CDAB15CB2B272B3A00A3901FE38 /* Cocoa.framework in Frameworks */,
+				1AD2BD10E67BB119D3667884299E354F /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D839F206A414A392FB07321662F2C80 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80115EC7C35A3C88CD341C790E55B18F /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A336E65339D350D8CD7939CB015DB92E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2752EE44238405FBA37C2DCAFE342BAD /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,56 +202,37 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FF744C718024258CAF396749A291EAD5 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				551AA7837412761D85DE2592B774F5EC /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00DE81BE28D255206ACC40D616714026 /* DateTools */ = {
+		02E5285817B405146F247A68E5FDAEFB /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				39C4C6BEB73A9D99750435E0984BF8C5 /* DateTools.h */,
-				9D46684F19D1B58968A064729275656D /* DTConstants.h */,
-				D8C85815123EC5C764C077CB27B62BDE /* DTConstants.m */,
-				04C36277895CCBE0EECA0D90A73B6365 /* DTError.h */,
-				379D8478D646F841B2BE73C99162D619 /* DTError.m */,
-				5DD27F01F432B2F69AF2857A265004C7 /* DTTimePeriod.h */,
-				1A72634DF058E2F025C4A1E4CA892F12 /* DTTimePeriod.m */,
-				A74400935BB7665997F473FF040BE84A /* DTTimePeriodChain.h */,
-				E62EB76A91D02859A5B5A557D2F1900A /* DTTimePeriodChain.m */,
-				C8CE97DE7FC243978F7162664886B0E3 /* DTTimePeriodCollection.h */,
-				FCCC8C29E4AC2BFD866ADCFA8D6F86AD /* DTTimePeriodCollection.m */,
-				035DBEE0826B9401ACB160C475158951 /* DTTimePeriodGroup.h */,
-				8AB779A9A7274308DE3939BA89BBC541 /* DTTimePeriodGroup.m */,
-				77279C676FBD8A286AB6C9E9D6167A86 /* NSDate+DateTools.h */,
-				EBE5281CD3F0BB2DCB65F37D92347629 /* NSDate+DateTools.m */,
-				AAD356C63F24A50C0C0B4A4B492BC436 /* Resources */,
-				709839FEF58149F6745D3DCA2E06C1FD /* Support Files */,
+				B4BCE59DA712B68DD217C13299D28FA3 /* Info.plist */,
+				951C69CE41F75B7143F5A2DBCF0B49F5 /* PopDatePicker.modulemap */,
+				7BD72166368C9A9A8A2130565F02569F /* PopDatePicker.xcconfig */,
+				CF0CE241DEAE6ED206C9C8B1C1E5EE79 /* PopDatePicker-dummy.m */,
+				FA777CF8B17271627DEE550C821FF796 /* PopDatePicker-prefix.pch */,
+				69F414AB38617CD62C1859B1001BDB08 /* PopDatePicker-umbrella.h */,
 			);
-			path = DateTools;
+			name = "Support Files";
+			path = "../Target Support Files/PopDatePicker";
 			sourceTree = "<group>";
 		};
-		1608011F326569F891CF0C608EA6DC46 /* Frameworks */ = {
+		08138D37C7EF73370729D8648AD7FFB1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				151D489D8B22796ECECAC8D35D827AD9 /* Crashlytics.framework */,
+				CB9139DA9D99D50B38DCB1CB46A9FA79 /* Fabric.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		1D9EC4F2E39FAA82263EBE4BC61D561A /* PopDatePicker */ = {
+		0CBC30A6D275F39A31C28612A31F653F /* Fabric */ = {
 			isa = PBXGroup;
 			children = (
-				BCB9354FFDABF048A35FCBBD42567923 /* PopDatePicker.swift */,
-				CA708A3E3535944250C5053467CA11F2 /* Support Files */,
+				08138D37C7EF73370729D8648AD7FFB1 /* Frameworks */,
 			);
-			path = PopDatePicker;
+			path = Fabric;
 			sourceTree = "<group>";
 		};
 		2238030CC6782B208CB6C6DE6412EB44 /* Pods-Filament */ = {
@@ -245,20 +261,26 @@
 			name = "OS X";
 			sourceTree = "<group>";
 		};
-		323C332074953D0E0EBB7132AFA7E67F /* Fabric */ = {
-			isa = PBXGroup;
-			children = (
-				E8AC79BE9E929D1B22989384987A2618 /* Frameworks */,
-			);
-			path = Fabric;
-			sourceTree = "<group>";
-		};
 		39E9EE8210D861DFD82346C1F5EB7218 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				28C17CEF104526ACA07B6EEE217EC43E /* OS X */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3BF7CD3A9B709D4598FE31E7735F44B7 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				61FDB465DCF6445A5EF83CB94526A77D /* CCNStatusItem.modulemap */,
+				DA4D0570D07935E38559F27C4E19C5AD /* CCNStatusItem.xcconfig */,
+				F1DBF736B00333E104BB0051B52C80D6 /* CCNStatusItem-dummy.m */,
+				94CB210D5FE4E9D01C91BB94CC34BE91 /* CCNStatusItem-prefix.pch */,
+				AA252836547784A51483385EB861C4AB /* CCNStatusItem-umbrella.h */,
+				C90A8016681CDAEA6B48034B4BD3B493 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/CCNStatusItem";
 			sourceTree = "<group>";
 		};
 		4EEFA7017D45329BC3300039B2669688 /* Targets Support Files */ = {
@@ -269,29 +291,29 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		61618CF5A1214B4FE2B64FBC03059233 /* Support Files */ = {
+		570302143492CF0F8A5E517377D432BD /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				176351DA927FD57F237569D91C55BBDA /* CCNStatusItem.modulemap */,
-				2DFFE8C075AF8CE1FEE1A55985580FD2 /* CCNStatusItem.xcconfig */,
-				D1E5D06255229248D33F3EF6B3450B04 /* CCNStatusItem-dummy.m */,
-				CB5429CC670752B08C743C697AD42CD5 /* CCNStatusItem-prefix.pch */,
-				C77C2C891BDA3EF5E946F2ACA0FFA61A /* CCNStatusItem-umbrella.h */,
-				271434E3A8E135F0D5A593FA88870613 /* Info.plist */,
+				648C8F68D7D381AEF0068FC3332E0745 /* AsyncSwift.modulemap */,
+				340A413FB806E30E5FABBDE2DCA77DED /* AsyncSwift.xcconfig */,
+				F8F934D75503A91C47A83794E98DD25B /* AsyncSwift-dummy.m */,
+				F621A7F6591DE97BB3ED3DBFB90361D8 /* AsyncSwift-prefix.pch */,
+				F452F8E069014F644ED4DDB2D1E2E5A2 /* AsyncSwift-umbrella.h */,
+				024574C863DDE94CB67536F755FE8376 /* Info.plist */,
 			);
 			name = "Support Files";
-			path = "../Target Support Files/CCNStatusItem";
+			path = "../Target Support Files/AsyncSwift";
 			sourceTree = "<group>";
 		};
-		709839FEF58149F6745D3DCA2E06C1FD /* Support Files */ = {
+		6F507848A54FD867A6CAD5C2CBC44F34 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				0B461CC49F7701A4460434155F4E6FC6 /* DateTools.modulemap */,
-				3B1681FB33A09B532573E14B969EF167 /* DateTools.xcconfig */,
-				2390938A2D554A737D2BBA999C083A9C /* DateTools-dummy.m */,
-				0889C612A8199A38C52262D109579841 /* DateTools-prefix.pch */,
-				90B2A340EED5FCE21F63E6D6993B8C17 /* DateTools-umbrella.h */,
-				E1453392415715B95CD1177A3B410A20 /* Info.plist */,
+				76FEDED37BF5A8E78A2437174CB3468E /* DateTools.modulemap */,
+				8C6EC78B1C58509DEB31FB89774A30B9 /* DateTools.xcconfig */,
+				391B6824497C7337296427A2741CB649 /* DateTools-dummy.m */,
+				A59E124E45667C7E8F64C1BE38B01B90 /* DateTools-prefix.pch */,
+				FDB8821183011690B56E2F6D6CFB9050 /* DateTools-umbrella.h */,
+				5CAEFDCDD7074B622D5AB3D88302FC77 /* Info.plist */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/DateTools";
@@ -302,91 +324,121 @@
 			children = (
 				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
 				39E9EE8210D861DFD82346C1F5EB7218 /* Frameworks */,
-				89A40C788C0B934217B1313FAFA67340 /* Pods */,
-				EA0F4DF5728BE16E80B30CF1EEF7F1EF /* Products */,
+				97CAD79ED07341FBE7B808D963351CA2 /* Pods */,
+				FC48A9AAC381BF71F991AA528A48085F /* Products */,
 				4EEFA7017D45329BC3300039B2669688 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		89A40C788C0B934217B1313FAFA67340 /* Pods */ = {
+		7E18038652A33C79A336B26672A54C00 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				EAA5855FD9D40CD799278FEF9B6C91F5 /* CCNStatusItem */,
-				A0AADA4451EBA25A45370CBA6CB46CF9 /* Crashlytics */,
-				00DE81BE28D255206ACC40D616714026 /* DateTools */,
-				323C332074953D0E0EBB7132AFA7E67F /* Fabric */,
-				1D9EC4F2E39FAA82263EBE4BC61D561A /* PopDatePicker */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		A0AADA4451EBA25A45370CBA6CB46CF9 /* Crashlytics */ = {
-			isa = PBXGroup;
-			children = (
-				1608011F326569F891CF0C608EA6DC46 /* Frameworks */,
-			);
-			path = Crashlytics;
-			sourceTree = "<group>";
-		};
-		AAD356C63F24A50C0C0B4A4B492BC436 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				B4C7ED7942E53C99AE165C2B946BB7D0 /* DateTools.bundle */,
+				6353AD0405B6A2D72CF92EDBEB59BB0B /* DateTools.bundle */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		CA708A3E3535944250C5053467CA11F2 /* Support Files */ = {
+		8FDA0BAB7EBFEB90EB80CFC76CF56082 /* CCNStatusItem */ = {
 			isa = PBXGroup;
 			children = (
-				6AAF996B3052F57C9763AC9E1B28801B /* Info.plist */,
-				453C0FD25EBDC2774AE6358A97B6A862 /* PopDatePicker.modulemap */,
-				AB823B6C73D58954054E4121D78B8B08 /* PopDatePicker.xcconfig */,
-				0F779B211A7A4209E6AC6058F2BA85D9 /* PopDatePicker-dummy.m */,
-				64089A557E4812623F5CD5B5081A0B46 /* PopDatePicker-prefix.pch */,
-				AE3F96A62E736DD08F536CDAAF0133C9 /* PopDatePicker-umbrella.h */,
+				E68F1341950D076C9A53FB6482CEC6BA /* CCNStatusItem.h */,
+				8F1902668C4C7469F2BABE45ACEDCDEB /* CCNStatusItem.m */,
+				2E6F960A59F9981DA6FD8AEBC22441AB /* CCNStatusItemDropView.h */,
+				362B4FE131D132C32BD308144F4364AD /* CCNStatusItemDropView.m */,
+				41A6055AF5E8E910F2EC4FD5AB47A319 /* CCNStatusItemWindow.h */,
+				2564920A0C9401EC0605B0B3B8467E76 /* CCNStatusItemWindow.m */,
+				A47C0C89A2ADB28B1CFB1CD33F29B18C /* CCNStatusItemWindowBackgroundView.h */,
+				A94384C1359ADFE94FA76759C5982CA5 /* CCNStatusItemWindowBackgroundView.m */,
+				0EF4CAD3909667EC49E02FEF0C6D51E6 /* CCNStatusItemWindowConfiguration.h */,
+				790C1E28D834AEEE79B15A526E69D518 /* CCNStatusItemWindowConfiguration.m */,
+				501F9353404F7F05CDC755D3B2ED8978 /* CCNStatusItemWindowController.h */,
+				6A6D06AD7A95381F5A9FE60936227C69 /* CCNStatusItemWindowController.m */,
+				3BF7CD3A9B709D4598FE31E7735F44B7 /* Support Files */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/PopDatePicker";
+			path = CCNStatusItem;
 			sourceTree = "<group>";
 		};
-		E8AC79BE9E929D1B22989384987A2618 /* Frameworks */ = {
+		97CAD79ED07341FBE7B808D963351CA2 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				AD7DD0CA0AE78F8EDF6771C54A06B6B3 /* Fabric.framework */,
+				A8AF5E531444D86B5F68A442D7E87992 /* AsyncSwift */,
+				8FDA0BAB7EBFEB90EB80CFC76CF56082 /* CCNStatusItem */,
+				A346A741DE286F52F90DDD0CB59C3222 /* Crashlytics */,
+				F0537AD2DC37A28ABAC4FFAC87807BA3 /* DateTools */,
+				0CBC30A6D275F39A31C28612A31F653F /* Fabric */,
+				BD38E84E9E62C1BEE576D390770B2D80 /* PopDatePicker */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A346A741DE286F52F90DDD0CB59C3222 /* Crashlytics */ = {
+			isa = PBXGroup;
+			children = (
+				D61E46A19ADC114C707283935398B287 /* Frameworks */,
+			);
+			path = Crashlytics;
+			sourceTree = "<group>";
+		};
+		A8AF5E531444D86B5F68A442D7E87992 /* AsyncSwift */ = {
+			isa = PBXGroup;
+			children = (
+				B99A8C4A022450FAF03FF5D29021D81C /* Async.swift */,
+				570302143492CF0F8A5E517377D432BD /* Support Files */,
+			);
+			path = AsyncSwift;
+			sourceTree = "<group>";
+		};
+		BD38E84E9E62C1BEE576D390770B2D80 /* PopDatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				1A8453047A28A82671858096698632A7 /* PopDatePicker.swift */,
+				02E5285817B405146F247A68E5FDAEFB /* Support Files */,
+			);
+			path = PopDatePicker;
+			sourceTree = "<group>";
+		};
+		D61E46A19ADC114C707283935398B287 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				12448D1FE33229AB7DAFBA4A3F1AEB65 /* Crashlytics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		EA0F4DF5728BE16E80B30CF1EEF7F1EF /* Products */ = {
+		F0537AD2DC37A28ABAC4FFAC87807BA3 /* DateTools */ = {
 			isa = PBXGroup;
 			children = (
-				0EB23B34C21AAD53A401C022301F8CFC /* CCNStatusItem.framework */,
-				06EC4CC4BB166EC670E060AB2D05452F /* DateTools.framework */,
-				F4979867B7FFE9DFCB75813806D5A088 /* Pods_Filament.framework */,
-				F139F779866E519E12E7252FA082E561 /* PopDatePicker.framework */,
+				9A1190B36453F8FEAB43D50045BE60D4 /* DateTools.h */,
+				018769739212C0FBAC3695206DBD5663 /* DTConstants.h */,
+				30C0FAE93AA78D9888B582042BEC1EB4 /* DTConstants.m */,
+				D8624DE43F55951A5E7E6F9A872D208B /* DTError.h */,
+				BBD9A01C09499FECA282D84B53B5A420 /* DTError.m */,
+				CF50A2C2E2A4D984E952BE8BA6D80410 /* DTTimePeriod.h */,
+				759B66D714F8C7B4EBA14DA9C0A64371 /* DTTimePeriod.m */,
+				BA6C8049428BAA46A2F83ADD019E021B /* DTTimePeriodChain.h */,
+				5EB41F13F36815925AF64243933E9D82 /* DTTimePeriodChain.m */,
+				C370DF200619965C83F3AF40EF041DB3 /* DTTimePeriodCollection.h */,
+				2E0F12DC9E087B1CBA62DF6C7D41F124 /* DTTimePeriodCollection.m */,
+				F2EFBE638B875C1E41744F5174772F47 /* DTTimePeriodGroup.h */,
+				D21E2559988BAE0BFD4A70CD77505718 /* DTTimePeriodGroup.m */,
+				0E1CBE3EAFE21A189A10CC6EE220555B /* NSDate+DateTools.h */,
+				2CDF284901A19A85B38554A1DCE8A12D /* NSDate+DateTools.m */,
+				7E18038652A33C79A336B26672A54C00 /* Resources */,
+				6F507848A54FD867A6CAD5C2CBC44F34 /* Support Files */,
 			);
-			name = Products;
+			path = DateTools;
 			sourceTree = "<group>";
 		};
-		EAA5855FD9D40CD799278FEF9B6C91F5 /* CCNStatusItem */ = {
+		FC48A9AAC381BF71F991AA528A48085F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EAB906090B84F3EB605C86B8012ECB2A /* CCNStatusItem.h */,
-				C671170ABEEEBE62EA06D292B1704227 /* CCNStatusItem.m */,
-				2B93D12C7A43E3A168ED29C7EC5D053E /* CCNStatusItemDropView.h */,
-				03E084F829BD4FB95F83F4E8EFCC6701 /* CCNStatusItemDropView.m */,
-				A43F2E3889495ADA125BF572D7A32A18 /* CCNStatusItemWindow.h */,
-				9478926F9A2C4EEA4C7B45C8BF72E6C6 /* CCNStatusItemWindow.m */,
-				205A198E6F8AB8E8D6DCA5A81BCE4A48 /* CCNStatusItemWindowBackgroundView.h */,
-				427C3F8287D7059B74CDC264FCCD45AE /* CCNStatusItemWindowBackgroundView.m */,
-				33CE4C929531AA5353C5EA859677018C /* CCNStatusItemWindowConfiguration.h */,
-				AEA34185AC64B7C5C430BBDCB5FCFB03 /* CCNStatusItemWindowConfiguration.m */,
-				E44362A3E44BF00D6B0CCC2A3D8E0953 /* CCNStatusItemWindowController.h */,
-				0EB4BEC1ED4B24876C3DD826C3A44F45 /* CCNStatusItemWindowController.m */,
-				61618CF5A1214B4FE2B64FBC03059233 /* Support Files */,
+				A5135A868D3615472282E872741B2F40 /* Async.framework */,
+				8D52AE8EFFF32E03D905134587C8C9AD /* CCNStatusItem.framework */,
+				AAE044CDE0A8EE1A71C0ED17AF1C4D08 /* DateTools.framework */,
+				7BAD372B598D7822448B96D377651904 /* Pods_Filament.framework */,
+				CB57A6F8AECAA567CBDA14B95EB9C4A6 /* PopDatePicker.framework */,
 			);
-			path = CCNStatusItem;
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -406,6 +458,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		08FAC951FF39C134ABC381C92EAE599A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B4EDDC7743A12738E9F3E48258C228D /* Pods-Filament-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		170B579A18E66321213347B0CCFC29B5 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1402E09498287925DECA915C04DB448 /* AsyncSwift-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B901B089EC086B025BEE4BC074FBD6E9 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -422,25 +490,55 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BBC7FF9406B1FC5D29C7BCC8702799D1 /* Headers */ = {
+		CED8FE968AA56787A2FE8EE7A2300522 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0222DC06D0CB7D23E121510D284F160E /* Pods-Filament-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F91561F06F3776142AC92578DFEDF462 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C69B0DB3560C74D36287787E6A62C254 /* PopDatePicker-umbrella.h in Headers */,
+				002443F368208854938EAFBF214DD30E /* PopDatePicker-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		4743EC3E65956BF66F9F5F6AA1C941FC /* Pods-Filament */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1973F4ECB484C12EB57CF509244EF48B /* Build configuration list for PBXNativeTarget "Pods-Filament" */;
+			buildPhases = (
+				F0211E7FBB1616BA4D336374916C37C1 /* Sources */,
+				17F4E8BD79AFDC974A010BA44D99DDD5 /* Frameworks */,
+				08FAC951FF39C134ABC381C92EAE599A /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6397B25B2117F38DB59EC548BE070FEC /* PBXTargetDependency */,
+				7310A294CFBEF8C9D36669E9B582AE5F /* PBXTargetDependency */,
+				A27CCBC131D5EA1932DF642F83C15455 /* PBXTargetDependency */,
+				8F54120A1F534F71B631B7FEB6DF35B5 /* PBXTargetDependency */,
+			);
+			name = "Pods-Filament";
+			productName = "Pods-Filament";
+			productReference = 7BAD372B598D7822448B96D377651904 /* Pods_Filament.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		4E155FBB6070C868840C7A2BB6E75E85 /* AsyncSwift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 055B7B7B893A1F82F2471AA1001BA79B /* Build configuration list for PBXNativeTarget "AsyncSwift" */;
+			buildPhases = (
+				BAA580FE91EEEA313081F06B5AAB77C4 /* Sources */,
+				A336E65339D350D8CD7939CB015DB92E /* Frameworks */,
+				170B579A18E66321213347B0CCFC29B5 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AsyncSwift;
+			productName = AsyncSwift;
+			productReference = A5135A868D3615472282E872741B2F40 /* Async.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		73A4600794483FA0A926CFC8AAAD0A90 /* CCNStatusItem */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3C704EC791BF0F886DC3162AA4491D1F /* Build configuration list for PBXNativeTarget "CCNStatusItem" */;
@@ -455,24 +553,7 @@
 			);
 			name = CCNStatusItem;
 			productName = CCNStatusItem;
-			productReference = 0EB23B34C21AAD53A401C022301F8CFC /* CCNStatusItem.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		ABBD6D70D6A495EA6D67DFDEBAE353EB /* PopDatePicker */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 21D13B11C423AAA99E896B3672FE55E9 /* Build configuration list for PBXNativeTarget "PopDatePicker" */;
-			buildPhases = (
-				1CD29CE494C83CAB2D341EAF5C9E7A17 /* Sources */,
-				12345E23B97B9B3A63FDC5C1F0E25C0C /* Frameworks */,
-				F91561F06F3776142AC92578DFEDF462 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = PopDatePicker;
-			productName = PopDatePicker;
-			productReference = F139F779866E519E12E7252FA082E561 /* PopDatePicker.framework */;
+			productReference = 8D52AE8EFFF32E03D905134587C8C9AD /* CCNStatusItem.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		AFEDA8059B169E4068B6DCC4D2F0B0E9 /* DateTools */ = {
@@ -490,27 +571,24 @@
 			);
 			name = DateTools;
 			productName = DateTools;
-			productReference = 06EC4CC4BB166EC670E060AB2D05452F /* DateTools.framework */;
+			productReference = AAE044CDE0A8EE1A71C0ED17AF1C4D08 /* DateTools.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		D7FD53B4010448C2452AFC08E0DF4990 /* Pods-Filament */ = {
+		C3073B134B63E04F4DEC80298EC3474A /* PopDatePicker */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3581333E263A9E09E512F8E6F6450733 /* Build configuration list for PBXNativeTarget "Pods-Filament" */;
+			buildConfigurationList = BFBA593C5939A0A30DBC4DB4F5EA121F /* Build configuration list for PBXNativeTarget "PopDatePicker" */;
 			buildPhases = (
-				A05FA9432004BBD60C9119E63406C620 /* Sources */,
-				FF744C718024258CAF396749A291EAD5 /* Frameworks */,
-				BBC7FF9406B1FC5D29C7BCC8702799D1 /* Headers */,
+				193A23FFDBCF30E34CABB277E0DE7DEA /* Sources */,
+				3D839F206A414A392FB07321662F2C80 /* Frameworks */,
+				CED8FE968AA56787A2FE8EE7A2300522 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				CADF131BBB0DD68E8BD31BB3B50CE83B /* PBXTargetDependency */,
-				3D53B2D6CCF536F6457919C6DEB88059 /* PBXTargetDependency */,
-				0C3DFDECB71B7BF1225BCF99EE6BFF8D /* PBXTargetDependency */,
 			);
-			name = "Pods-Filament";
-			productName = "Pods-Filament";
-			productReference = F4979867B7FFE9DFCB75813806D5A088 /* Pods_Filament.framework */;
+			name = PopDatePicker;
+			productName = PopDatePicker;
+			productReference = CB57A6F8AECAA567CBDA14B95EB9C4A6 /* PopDatePicker.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -530,14 +608,15 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = EA0F4DF5728BE16E80B30CF1EEF7F1EF /* Products */;
+			productRefGroup = FC48A9AAC381BF71F991AA528A48085F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				4E155FBB6070C868840C7A2BB6E75E85 /* AsyncSwift */,
 				73A4600794483FA0A926CFC8AAAD0A90 /* CCNStatusItem */,
 				AFEDA8059B169E4068B6DCC4D2F0B0E9 /* DateTools */,
-				D7FD53B4010448C2452AFC08E0DF4990 /* Pods-Filament */,
-				ABBD6D70D6A495EA6D67DFDEBAE353EB /* PopDatePicker */,
+				4743EC3E65956BF66F9F5F6AA1C941FC /* Pods-Filament */,
+				C3073B134B63E04F4DEC80298EC3474A /* PopDatePicker */,
 			);
 		};
 /* End PBXProject section */
@@ -554,12 +633,12 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1CD29CE494C83CAB2D341EAF5C9E7A17 /* Sources */ = {
+		193A23FFDBCF30E34CABB277E0DE7DEA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C988DAEA4E21FD415359116C3AE6B77A /* PopDatePicker-dummy.m in Sources */,
-				06EDD0BE76CF9F1F8D3102CA8DD07849 /* PopDatePicker.swift in Sources */,
+				F84D8F80D712550DDE0766EA74A421A8 /* PopDatePicker-dummy.m in Sources */,
+				8388061C3ADA54DDDACDCBAE10E4F27C /* PopDatePicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,38 +671,115 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A05FA9432004BBD60C9119E63406C620 /* Sources */ = {
+		BAA580FE91EEEA313081F06B5AAB77C4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF915D8F344349EAF361BB84D974A67B /* Pods-Filament-dummy.m in Sources */,
+				AFBC3405169EC62D3D6CC38549B64DF1 /* Async.swift in Sources */,
+				2AAD8559A7E416702CE6539179B26CFB /* AsyncSwift-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F0211E7FBB1616BA4D336374916C37C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1FF5824578CA97803DB94BB8345E854 /* Pods-Filament-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0C3DFDECB71B7BF1225BCF99EE6BFF8D /* PBXTargetDependency */ = {
+		6397B25B2117F38DB59EC548BE070FEC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = PopDatePicker;
-			target = ABBD6D70D6A495EA6D67DFDEBAE353EB /* PopDatePicker */;
-			targetProxy = 6B3E20A29F8F88129089D9E399A8CDE1 /* PBXContainerItemProxy */;
+			name = AsyncSwift;
+			target = 4E155FBB6070C868840C7A2BB6E75E85 /* AsyncSwift */;
+			targetProxy = B0E962A5276CE14AF349840CC787369A /* PBXContainerItemProxy */;
 		};
-		3D53B2D6CCF536F6457919C6DEB88059 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = DateTools;
-			target = AFEDA8059B169E4068B6DCC4D2F0B0E9 /* DateTools */;
-			targetProxy = 01F2828E8AC2EBB4E8ED6DA10891C122 /* PBXContainerItemProxy */;
-		};
-		CADF131BBB0DD68E8BD31BB3B50CE83B /* PBXTargetDependency */ = {
+		7310A294CFBEF8C9D36669E9B582AE5F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = CCNStatusItem;
 			target = 73A4600794483FA0A926CFC8AAAD0A90 /* CCNStatusItem */;
-			targetProxy = 16AFEA09650BFA66B32809B8AB6CA627 /* PBXContainerItemProxy */;
+			targetProxy = 441E20D0034A44A9C9E8AB981923D511 /* PBXContainerItemProxy */;
+		};
+		8F54120A1F534F71B631B7FEB6DF35B5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PopDatePicker;
+			target = C3073B134B63E04F4DEC80298EC3474A /* PopDatePicker */;
+			targetProxy = 72B08D217C14959B2E39AAAA8453D6DF /* PBXContainerItemProxy */;
+		};
+		A27CCBC131D5EA1932DF642F83C15455 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = DateTools;
+			target = AFEDA8059B169E4068B6DCC4D2F0B0E9 /* DateTools */;
+			targetProxy = 03C6A64517D726C5147EE7FCEFABC9C1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		02D98014BE9282F56BA0A6AB989075AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4DAE256B81A180AFBE508B3BFF67E596 /* Pods-Filament.debug.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "Target Support Files/Pods-Filament/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MODULEMAP_FILE = "Target Support Files/Pods-Filament/Pods-Filament.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_Filament;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		0E93D6FAAE8DEAE79B4782A69BA56112 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4F7E154EBD4E4D6740E1BCD126B24723 /* Pods-Filament.release.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "Target Support Files/Pods-Filament/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MODULEMAP_FILE = "Target Support Files/Pods-Filament/Pods-Filament.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_Filament;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		10B2EE21B5D67EE2C819831CCC43832B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -663,40 +819,37 @@
 			};
 			name = Debug;
 		};
-		449F377DB80AA1F0809296116E1C09F2 /* Release */ = {
+		2FAAF6BC39DB71EDBE5E9FF20616B655 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4F7E154EBD4E4D6740E1BCD126B24723 /* Pods-Filament.release.xcconfig */;
+			baseConfigurationReference = 7BD72166368C9A9A8A2130565F02569F /* PopDatePicker.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "Target Support Files/Pods-Filament/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/PopDatePicker/PopDatePicker-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PopDatePicker/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MODULEMAP_FILE = "Target Support Files/Pods-Filament/Pods-Filament.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = Pods_Filament;
+				MODULEMAP_FILE = "Target Support Files/PopDatePicker/PopDatePicker.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = PopDatePicker;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
 		4ABC856BB5D0379A465281588304F492 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2DFFE8C075AF8CE1FEE1A55985580FD2 /* CCNStatusItem.xcconfig */;
+			baseConfigurationReference = DA4D0570D07935E38559F27C4E19C5AD /* CCNStatusItem.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -720,34 +873,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
-		};
-		7B16A7F99FE9285F2F0511B574D8DA3C /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = AB823B6C73D58954054E4121D78B8B08 /* PopDatePicker.xcconfig */;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_VERSION = A;
-				GCC_PREFIX_HEADER = "Target Support Files/PopDatePicker/PopDatePicker-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/PopDatePicker/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MODULEMAP_FILE = "Target Support Files/PopDatePicker/PopDatePicker.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = PopDatePicker;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
 		};
 		7C07D96CC7C445E83983A6C6420BC692 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -783,37 +908,37 @@
 			};
 			name = Release;
 		};
-		9DABBB66B4E6270915FE79A60B38E234 /* Debug */ = {
+		9E860642995B7168E3266FD9B1D3901E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AB823B6C73D58954054E4121D78B8B08 /* PopDatePicker.xcconfig */;
+			baseConfigurationReference = 340A413FB806E30E5FABBDE2DCA77DED /* AsyncSwift.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_VERSION = A;
-				GCC_PREFIX_HEADER = "Target Support Files/PopDatePicker/PopDatePicker-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/PopDatePicker/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/AsyncSwift/AsyncSwift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/AsyncSwift/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MODULEMAP_FILE = "Target Support Files/PopDatePicker/PopDatePicker.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = PopDatePicker;
+				MODULEMAP_FILE = "Target Support Files/AsyncSwift/AsyncSwift.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = Async;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
 		A6A778C168FA983E5461720713B4D0A7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B1681FB33A09B532573E14B969EF167 /* DateTools.xcconfig */;
+			baseConfigurationReference = 8C6EC78B1C58509DEB31FB89774A30B9 /* DateTools.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -838,9 +963,9 @@
 			};
 			name = Debug;
 		};
-		BBF6A59544E44D313824B5FD1B18B570 /* Debug */ = {
+		C1A9C42DC163523997116AD2742D81F4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4DAE256B81A180AFBE508B3BFF67E596 /* Pods-Filament.debug.xcconfig */;
+			baseConfigurationReference = 340A413FB806E30E5FABBDE2DCA77DED /* AsyncSwift.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -850,17 +975,14 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "Target Support Files/Pods-Filament/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/AsyncSwift/AsyncSwift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/AsyncSwift/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MODULEMAP_FILE = "Target Support Files/Pods-Filament/Pods-Filament.modulemap";
+				MODULEMAP_FILE = "Target Support Files/AsyncSwift/AsyncSwift.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = Pods_Filament;
+				PRODUCT_NAME = Async;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -871,7 +993,7 @@
 		};
 		C59DFD2E5B4D2BEBD61C0D01DC4E3683 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B1681FB33A09B532573E14B969EF167 /* DateTools.xcconfig */;
+			baseConfigurationReference = 8C6EC78B1C58509DEB31FB89774A30B9 /* DateTools.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -897,9 +1019,37 @@
 			};
 			name = Release;
 		};
+		F18BE9B62E4A50D63ACCCC347DBDFCC3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BD72166368C9A9A8A2130565F02569F /* PopDatePicker.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_VERSION = A;
+				GCC_PREFIX_HEADER = "Target Support Files/PopDatePicker/PopDatePicker-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PopDatePicker/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MODULEMAP_FILE = "Target Support Files/PopDatePicker/PopDatePicker.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = PopDatePicker;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		FA1D1CB8D67D09D2F1E013C2ACB731C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2DFFE8C075AF8CE1FEE1A55985580FD2 /* CCNStatusItem.xcconfig */;
+			baseConfigurationReference = DA4D0570D07935E38559F27C4E19C5AD /* CCNStatusItem.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -928,11 +1078,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		21D13B11C423AAA99E896B3672FE55E9 /* Build configuration list for PBXNativeTarget "PopDatePicker" */ = {
+		055B7B7B893A1F82F2471AA1001BA79B /* Build configuration list for PBXNativeTarget "AsyncSwift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9DABBB66B4E6270915FE79A60B38E234 /* Debug */,
-				7B16A7F99FE9285F2F0511B574D8DA3C /* Release */,
+				C1A9C42DC163523997116AD2742D81F4 /* Debug */,
+				9E860642995B7168E3266FD9B1D3901E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1973F4ECB484C12EB57CF509244EF48B /* Build configuration list for PBXNativeTarget "Pods-Filament" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				02D98014BE9282F56BA0A6AB989075AD /* Debug */,
+				0E93D6FAAE8DEAE79B4782A69BA56112 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -942,15 +1101,6 @@
 			buildConfigurations = (
 				10B2EE21B5D67EE2C819831CCC43832B /* Debug */,
 				7C07D96CC7C445E83983A6C6420BC692 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3581333E263A9E09E512F8E6F6450733 /* Build configuration list for PBXNativeTarget "Pods-Filament" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BBF6A59544E44D313824B5FD1B18B570 /* Debug */,
-				449F377DB80AA1F0809296116E1C09F2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -969,6 +1119,15 @@
 			buildConfigurations = (
 				A6A778C168FA983E5461720713B4D0A7 /* Debug */,
 				C59DFD2E5B4D2BEBD61C0D01DC4E3683 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BFBA593C5939A0A30DBC4DB4F5EA121F /* Build configuration list for PBXNativeTarget "PopDatePicker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2FAAF6BC39DB71EDBE5E9FF20616B655 /* Debug */,
+				F18BE9B62E4A50D63ACCCC347DBDFCC3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
