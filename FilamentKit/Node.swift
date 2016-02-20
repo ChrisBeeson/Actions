@@ -132,6 +132,11 @@ import DateTools
         }
     }
     
+   func deleteEvent() {
+        if self.event == nil { return }
+        self.event!.deleteCalenderEvent()
+    }
+    
     
     
     // Description

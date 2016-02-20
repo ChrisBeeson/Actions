@@ -105,5 +105,5 @@ extension Sequence {
             }
         }
     }
-    
+
 }

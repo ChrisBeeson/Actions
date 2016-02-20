@@ -79,6 +79,12 @@ class NodeView: NSView {
     
     func performAnimationsForNewStatus(newStatus:NodeStatus) {
         
+        //Remove any animation
+        
+        if newStatus != NodeStatus.Running && self.pathLayer.animationKeys()?.contains("RunningFill") == true  {
+            self.pathLayer.removeAllAnimations()
+        }
+        
         switch newStatus {
             
         case .inActive, .Completed:
@@ -97,7 +103,7 @@ class NodeView: NSView {
                 CATransaction.commit()
                 
                 CATransaction.begin()
-                CATransaction.setAnimationDuration(2.5)
+                CATransaction.setAnimationDuration(1.0)
                 self.pathLayer.strokeColor = drawingContextColour(.LightGrey).stroke
                 self.pathLayer.fillColor = drawingContextColour(.LightGrey).fill
                 CATransaction.commit()

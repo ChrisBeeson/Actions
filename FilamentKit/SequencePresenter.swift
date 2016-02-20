@@ -167,6 +167,19 @@ public class SequencePresenter : NSObject {
     }
     
     
+    public func prepareForCompleteDeletion() {
+        
+        if currentStatus != .Completed {
+            
+            for node in nodes! {
+                node.deleteEvent()
+            }
+        }
+        
+        
+    }
+    
+    
     public func setDate(date:NSDate?, isStartDate:Bool) {
         
         if sequence!.date != nil && date!.isEqualToDate(sequence!.date!) && isStartDate == sequence?.startsAtDate { return }
@@ -176,10 +189,9 @@ public class SequencePresenter : NSObject {
             self.sequence!.startsAtDate = isStartDate
             let result = self.sequence!.UpdateEvents()
         
-        
-        
             self.delegates.forEach { $0.sequencePresenterUpdatedDate(self) }
             self.delegates.forEach { $0.sequencePresenterUpdatedCalendarEvents(result.success) }
+            nodePresenters.forEach{ $0.currentStatus = .inActive  }
             self.updateSequenceStatus()
                 //    }
         //       .background {

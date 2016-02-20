@@ -19,8 +19,8 @@ class Event : NSObject {
     
     var period:DTTimePeriod? {
         willSet {
-            guard newValue == nil else { return }
-            //  updateCalendarDates(newValue!.StartDate, endDate:newValue!.EndDate)
+            guard newValue != nil else { return }
+            updateCalendarDates(newValue!.StartDate, endDate:newValue!.EndDate)
         }
     }
     
@@ -127,6 +127,19 @@ class Event : NSObject {
         }
     }
     
+
+    func deleteCalenderEvent() {
+        guard calendarEvent != nil else { return }
+        
+        do {
+            try CalendarManager.sharedInstance.store.removeEvent(calendarEvent!, span: .ThisEvent, commit: true)
+            self.calendarEventId = ""
+            
+        } catch let error as NSError {
+            print("Unresolved error \(error), \(error.userInfo)")
+        }
+        
+    }
     
     // MARK: NSCoding
     
