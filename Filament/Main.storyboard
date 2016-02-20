@@ -13,22 +13,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="333" height="151"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vsN-v6-YlR">
-                                <rect key="frame" x="-15" y="-124" width="362" height="362"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="dandelion_plant_flower_seeds_feathers_90323_2560x1600" id="hmI-Hj-PBX"/>
-                            </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tsv-iX-MTb">
-                                <rect key="frame" x="43" y="72" width="117" height="33"/>
+                                <rect key="frame" x="43" y="80" width="117" height="33"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Filament" id="7Qb-7x-W9F">
                                     <font key="font" metaFont="system" size="27"/>
-                                    <color key="textColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" white="0.39537037037037037" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t6g-MD-dsg">
-                                <rect key="frame" x="4" y="57" width="189" height="17"/>
+                                <rect key="frame" x="43" y="65" width="104" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="1.0 (1092)" id="0gg-qD-ey5">
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="system" size="11"/>
+                                    <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s8o-iA-4ZM">
+                                <rect key="frame" x="74" y="0.0" width="184" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Made with love in Valentine, NSW" id="21H-LN-P21">
+                                    <font key="font" metaFont="systemSemibold" size="10"/>
                                     <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -933,6 +937,5 @@ AwEVARgBHQAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAEfA
     </scenes>
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>
-        <image name="dandelion_plant_flower_seeds_feathers_90323_2560x1600" width="2560" height="1600"/>
     </resources>
 </document>

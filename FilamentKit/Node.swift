@@ -20,7 +20,7 @@ public class Node: NSObject, NSCoding {
     public var leftTransitionNode: Node?
     public var rightTransitionNode: Node?
     public var UUID = NSUUID()
-    public var eventID = ""
+    public var event: Event?
     
     // MARK: Initializers
     

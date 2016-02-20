@@ -12,7 +12,6 @@
 		4720B5021C6E7F0400229734 /* NodePresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4720B5011C6E7F0400229734 /* NodePresenterDelegate.swift */; };
 		4720B5081C6F00B300229734 /* DateTimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4720B5071C6F00B300229734 /* DateTimePickerViewController.swift */; };
 		4720B50A1C6F00E500229734 /* DateTimePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4720B5091C6F00E500229734 /* DateTimePickerViewController.xib */; };
-		4720B50C1C71193600229734 /* Node+Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4720B50B1C71193600229734 /* Node+Event.swift */; };
 		4720B50E1C71C32100229734 /* EmptyNodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4720B50D1C71C32100229734 /* EmptyNodeView.swift */; };
 		472465191BBFD0DA004DE4DE /* DateToolsExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472465171BBFD0DA004DE4DE /* DateToolsExtensionsTests.swift */; };
 		4724651B1BBFE595004DE4DE /* DateToolsExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9531BB5464C000CAC61 /* DateToolsExtenstions.swift */; };
@@ -868,7 +867,6 @@
 				4720B50E1C71C32100229734 /* EmptyNodeView.swift in Sources */,
 				473574841B9A91A200493CA0 /* ListPresenterAlgorithms.swift in Sources */,
 				47F2FBC41BA8CFEE0041B291 /* Solver.swift in Sources */,
-				4720B50C1C71193600229734 /* Node+Event.swift in Sources */,
 				8343519D1BA297650094428B /* EventStartsInTimeFromNow.swift in Sources */,
 				477C2CB31C409C660071467C /* ActionNodeView.swift in Sources */,
 				83861F2B1BEEA25F00A44122 /* FilamentDocument.swift in Sources */,

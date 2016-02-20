@@ -7,78 +7,137 @@
 //
 
 import Foundation
+import EventKit
+import Async
+import DateTools
 
-// Event is a proxy and handler for EKEvents
-
-/*
 class Event : NSObject {
     
-    var eventID = ""
-    var calendar
+    private var startDate: NSDate
+    private var endDate: NSDate
     
-    // MARK: Initializers
+    var period:DTTimePeriod? {
+        willSet {
+            guard newValue == nil else { return }
+            updateCalendarDates(newValue!.StartDate, endDate:newValue!.EndDate)
+        }
+    }
     
-    public init(text: String, type: NodeType = .Action, rules:[Rule]?) {
+    var owner: Node?
+    var calendarEventId = ""
+    var calendarEvent:EKEvent?
+    
+    init(period:DTTimePeriod, owner:Node) {
         
-        self.title = text
-        self.type = type
-        
-        if let incomingRules = rules {
-            for rule in incomingRules { self.rules.append(rule) }
-        }
-        
-        // Add default rules
-        
-        switch type {
-        case .Action: self.rules.append(EventDuration())
-        case .Transition: self.rules.append(EventStartsInTimeFromNow())
-        default: break
-        }
+        self.startDate = period.StartDate
+        self.endDate = period.EndDate
+        self.owner = owner
         
         super.init()
+        
+        synchronizeCalendarEvent()
+    }
+    
+    func synchronizeCalendarEvent() {
+        
+        guard calendarEventId.isEmpty == false  else {
+            Async.utility { [unowned self] in
+                self.createCalendarEvent()
+            }
+            return
+        }
+        
+        Async.utility { [unowned self] in
+            let store = CalendarManager.sharedInstance.store
+            self.calendarEvent = store.eventWithIdentifier(self.calendarEventId)
+            
+            if self.calendarEvent == nil {
+                self.createCalendarEvent()
+            } else {
+                self.updateCalendarDates(self.startDate, endDate: self.endDate)
+            }
+        }
     }
     
     
-    public override init() {
-        super.init()
+    private func createCalendarEvent() {
+        
+        calendarEvent = EKEvent(eventStore: CalendarManager.sharedInstance.store)
+        
+        updateCalendarData()
+        
+        if let appCal = CalendarManager.sharedInstance.applicationCalendar {
+            calendarEvent!.calendar = appCal
+        } else {
+            print("No Application Calendar")
+        }
+        
+        saveCalendarEvent()
     }
+    
+    
+    private func updateCalendarDates(startDate:NSDate, endDate:NSDate) {
+        guard calendarEvent != nil else { return }
+        
+        if self.startDate.isEqualToDate(startDate) && self.endDate.isEqualToDate(endDate) {
+            return
+        }
+        
+        self.startDate = startDate
+        self.endDate = endDate
+        
+        updateCalendarData()
+        
+        Async.utility { [unowned self] in
+            self.saveCalendarEvent()
+        }
+    }
+    
+    func updateCalendarData() {
+        guard calendarEvent != nil else { return }
+        
+        calendarEvent!.startDate = startDate
+        calendarEvent!.endDate = endDate
+        
+        if let owner = self.owner {
+            calendarEvent!.title = owner.title
+            calendarEvent!.notes = owner.notes
+        } else {
+            calendarEvent!.title = "untitled"
+            calendarEvent!.notes = ""
+        }
+    }
+    
+    
+    private func saveCalendarEvent() {
+        guard calendarEvent != nil else { return }
+        do {
+            try CalendarManager.sharedInstance.store.saveEvent(calendarEvent!, span: .ThisEvent, commit: true)
+            self.calendarEventId = calendarEvent!.eventIdentifier
+            
+        } catch let error as NSError {
+            print("Unresolved error \(error), \(error.userInfo)")
+        }
+    }
+    
     
     // MARK: NSCoding
     
     private struct SerializationKeys {
-        static let title = "title"
-        static let notes = "notes"
-        static let rules = "rules"
-        static let type = "type"
-        static let uuid = "uuid"
-        static let leftTransitionNode = "leftTransitionNode"
-        static let rightTransitionNode = "rightTransitionNode"
-        static let eventID = "eventIdentifier"
+        static let startDate = "startDate"
+        static let endDate = "endDate"
+        static let calendarEventId = "calendarEventId"
     }
     
-    public required init?(coder aDecoder: NSCoder) {
-        
-        title = aDecoder.decodeObjectForKey(SerializationKeys.title) as! String
-        notes = aDecoder.decodeObjectForKey(SerializationKeys.notes) as! String
-        rules = aDecoder.decodeObjectForKey(SerializationKeys.rules) as! [Rule]
-        type = NodeType(rawValue: aDecoder.decodeIntegerForKey(SerializationKeys.type))!
-        UUID = aDecoder.decodeObjectForKey(SerializationKeys.uuid) as! NSUUID
-        leftTransitionNode = aDecoder.decodeObjectForKey(SerializationKeys.leftTransitionNode) as? Node
-        rightTransitionNode = aDecoder.decodeObjectForKey(SerializationKeys.rightTransitionNode) as? Node
-        eventID = aDecoder.decodeObjectForKey(SerializationKeys.eventID) as! String
+    required init?(coder aDecoder: NSCoder) {
+        startDate = aDecoder.decodeObjectForKey(SerializationKeys.startDate) as! NSDate
+        endDate = aDecoder.decodeObjectForKey(SerializationKeys.endDate) as! NSDate
+        calendarEventId = aDecoder.decodeObjectForKey(SerializationKeys.calendarEventId) as! String
     }
     
-    public func encodeWithCoder(encoder: NSCoder) {
-        
-        encoder.encodeObject(title, forKey: SerializationKeys.title)
-        encoder.encodeObject(notes, forKey: SerializationKeys.notes)
-        encoder.encodeObject(rules, forKey: SerializationKeys.rules)
-        encoder.encodeInteger(type.rawValue, forKey: SerializationKeys.type)
-        encoder.encodeObject(UUID, forKey: SerializationKeys.uuid)
-        encoder.encodeObject(leftTransitionNode, forKey: SerializationKeys.leftTransitionNode)
-        encoder.encodeObject(rightTransitionNode, forKey: SerializationKeys.rightTransitionNode)
-        encoder.encodeObject(eventID, forKey: SerializationKeys.eventID)
+    func encodeWithCoder(encoder: NSCoder) {
+        encoder.encodeObject(startDate, forKey: SerializationKeys.startDate )
+        encoder.encodeObject(endDate, forKey: SerializationKeys.endDate)
+        encoder.encodeObject(calendarEventId, forKey: SerializationKeys.calendarEventId)
     }
 }
-
-*/
