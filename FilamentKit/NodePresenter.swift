@@ -53,13 +53,11 @@ class NodePresenter : NSObject {
             return node.title
         }
         set {
-            node.title = newValue
-            delegates.forEach { $0.nodePresenterDidChangeTitle(self) }
-            /*
-            undoManager?.prepareWithInvocationTarget(self).renameTitle(title)
+            undoManager?.prepareWithInvocationTarget(self).renameTitle(node.title)
             let undoActionName = NSLocalizedString("Rename", comment: "")
             undoManager?.setActionName(undoActionName)
-            */
+        
+            renameTitle(newValue)
         }
     }
     
@@ -102,6 +100,13 @@ class NodePresenter : NSObject {
     
     
     //MARK: Methods
+
+    
+    func renameTitle(title:String) {
+        node.title = title
+        node.event?.updateCalendarData()
+        delegates.forEach { $0.nodePresenterDidChangeTitle(self) }
+    }
     
     
     func updateNodeStatus() {

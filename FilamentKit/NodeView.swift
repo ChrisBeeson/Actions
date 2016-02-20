@@ -37,7 +37,6 @@ class NodeView: NSView {
         
         pathLayer.path = calculatePath()
         performAnimationsForNewStatus(currentStatus)
-        // Swift.print("layout!")
     }
     
     

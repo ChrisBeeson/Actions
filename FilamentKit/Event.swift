@@ -46,20 +46,20 @@ class Event : NSObject {
         
         guard calendarEventId.isEmpty == false  else {
             //  Async.utility { [unowned self] in
-                self.createCalendarEvent()
+            self.createCalendarEvent()
             //}
             return
         }
         
         // Async.utility { [unowned self] in
-            let store = CalendarManager.sharedInstance.store
-            self.calendarEvent = store.eventWithIdentifier(self.calendarEventId)
-            
-            if self.calendarEvent == nil {
-                self.createCalendarEvent()
-            } else {
-                self.updateCalendarDates(self.startDate, endDate: self.endDate)
-            }
+        let store = CalendarManager.sharedInstance.store
+        self.calendarEvent = store.eventWithIdentifier(self.calendarEventId)
+        
+        if self.calendarEvent == nil {
+            self.createCalendarEvent()
+        } else {
+            self.updateCalendarDates(self.startDate, endDate: self.endDate)
+        }
         // }
     }
     
@@ -89,19 +89,15 @@ class Event : NSObject {
         
         self.startDate = startDate
         self.endDate = endDate
+        updateCalendarData()
         
-        if publish == true {
-            
-            updateCalendarData()
-            
-            //   Async.utility { [unowned self] in
-                self.saveCalendarEvent()
-            // }
-        }
+        
     }
     
     func updateCalendarData() {
         guard calendarEvent != nil else { return }
+        guard publish == true else { return }
+        // guard startDate != nil else { return }
         
         calendarEvent!.startDate = startDate
         calendarEvent!.endDate = endDate
@@ -113,6 +109,10 @@ class Event : NSObject {
             calendarEvent!.title = "untitled"
             calendarEvent!.notes = ""
         }
+        
+        //Async.utility { [unowned self] in
+            self.saveCalendarEvent()
+        //}
     }
     
     
@@ -127,7 +127,7 @@ class Event : NSObject {
         }
     }
     
-
+    
     func deleteCalenderEvent() {
         guard calendarEvent != nil else { return }
         
