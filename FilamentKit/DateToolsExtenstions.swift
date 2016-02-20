@@ -48,12 +48,12 @@ extension NSDate {
 
 extension DTTimePeriod {
     
-    public override var description: String { return "\(StartDate) ->  \(EndDate)"}
+     override public var description: String { return "\(StartDate) ->  \(EndDate)"}
 }
 
 extension DTTimePeriodGroup {
     
-    public func periods() -> [DTTimePeriod]? {
+     func periods() -> [DTTimePeriod]? {
         
         if self.count() == 0 { return nil }
         
@@ -162,7 +162,7 @@ extension DTTimePeriodCollection {
         return voidPeriods
     }
     
-    public override var description: String {
+     override public var description: String {
         
         var string = String()
         

@@ -15,8 +15,6 @@ SequencePresenter is responsible for : SequenceStatus & NodePresenters associate
 
 */
 
-public typealias nodeAtIndex = (DiffStep<Node>, Int)
-
 public enum SequenceStatus: Int { case NoStartDateSet, WaitingForStart, Running, Paused, FailedNode, Completed, Void }
 
 public class SequencePresenter : NSObject {
@@ -43,11 +41,11 @@ public class SequencePresenter : NSObject {
         }
     }
     
-    public var archiveableSeq: Sequence {
+   var archiveableSeq: Sequence {
         return sequence!
     }
     
-    public var nodes:[Node]? {
+    var nodes:[Node]? {
         return sequence!.nodeChain()
     }
     
@@ -56,6 +54,7 @@ public class SequencePresenter : NSObject {
     }
     
     public var completionDate : NSDate? {
+        /*
         if nodes == nil { return nil}
         if nodes!.count == 0 { return nodes![nodes!.count-1].event?.endDate }
         if let event = nodes![nodes!.count-1].event {
@@ -63,6 +62,8 @@ public class SequencePresenter : NSObject {
         } else {
             return nil
         }
+*/
+        return nil
     }
     
     
@@ -86,7 +87,7 @@ public class SequencePresenter : NSObject {
     
     
     
-    public func setSequence(sequence: Sequence) {
+    func setSequence(sequence: Sequence) {
         
         self.sequence = sequence
         delegates.forEach{ $0.sequencePresenterDidRefreshCompleteLayout(self) }
@@ -108,7 +109,7 @@ public class SequencePresenter : NSObject {
     If node and Int is nil then insertNode will create a new untitled node, and place it at the end of the list.
     */
     
-    public func insertActionNode(var node: Node?, index: Int?) {
+    func insertActionNode(var node: Node?, index: Int?) {
         
         delegates.forEach { $0.sequencePresenterWillChangeNodeLayout(self) }
         
@@ -134,8 +135,8 @@ public class SequencePresenter : NSObject {
         
         if (diff.results.count > 0) {
             
-            let insertedNodes = diff.insertions.map { ($0, $0.idx) }
-            let deletedNodes = diff.deletions.map { ($0, $0.idx) }
+            let insertedNodes = Set(diff.insertions.map { NSIndexPath (forItem: $0.idx , inSection: 0)})
+            let deletedNodes = Set(diff.deletions.map {NSIndexPath (forItem: $0.idx , inSection: 0)})
             
             delegates.forEach { $0.sequencePresenterDidUpdateChainContents(insertedNodes, deletedNodes:deletedNodes) }
         }
@@ -144,7 +145,7 @@ public class SequencePresenter : NSObject {
     }
     
     
-    public func deleteNodes(nodes: [Node]) {
+    func deleteNodes(nodes: [Node]) {
         
         if nodes.isEmpty { return }
         
@@ -182,7 +183,7 @@ public class SequencePresenter : NSObject {
         
         Async.userInitiated {
             let result = self.sequence?.UpdateEvents()
-            self.delegates.forEach { $0.sequencePresenterUpdatedCalendarEvents(result!.success,  firstFailingNode:result?.firstFailedNode) }
+            self.delegates.forEach { $0.sequencePresenterUpdatedCalendarEvents(result!.success) }
             self.updateSequenceStatus()
         }
     }
@@ -226,6 +227,7 @@ public class SequencePresenter : NSObject {
         
         // work out what item is next, then set a timer to update the status of everything when it hits.
         
+        /*
         switch currentStatus {
             
         case .NoStartDateSet: break;
@@ -273,6 +275,8 @@ public class SequencePresenter : NSObject {
         case .Void: break
             
         }
+
+*/
     }
     
     

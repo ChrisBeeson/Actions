@@ -9,7 +9,7 @@
 import Foundation
 import DateTools
 
-public protocol RuleType {
+ protocol RuleType {
     
     var name: String {get}
     var availableToNodeType:NodeType {get}
@@ -31,30 +31,30 @@ public protocol RuleType {
     var avoidPeriods: [DTTimePeriod]? {get set}
 }
 
-public class Rule: NSObject, RuleType {
+ class Rule: NSObject, RuleType {
     
-    public var name: String {get {return ""} }
-    public var availableToNodeType:NodeType {get {return NodeType.All} }
-    public var conflictingRules: [Rule]? {get {return nil} }
-    public var options: RoleOptions {get { return RoleOptions.None } }
-    public var inputDate: NSDate?
-    public var interestPeriod: DTTimePeriod?
-    public var eventStartTimeWindow: DTTimePeriod? {get {return nil} }
-    public var eventPreferedStartDate: NSDate? {get {return nil} }
-    public var eventDuration: TimeSize? { get { return nil } }
-    public var eventMinDuration: TimeSize? { get { return nil } }
-    public var avoidPeriods: [DTTimePeriod]?
+     var name: String {get {return ""} }
+     var availableToNodeType:NodeType {get {return NodeType.All} }
+     var conflictingRules: [Rule]? {get {return nil} }
+     var options: RoleOptions {get { return RoleOptions.None } }
+     var inputDate: NSDate?
+     var interestPeriod: DTTimePeriod?
+     var eventStartTimeWindow: DTTimePeriod? {get {return nil} }
+     var eventPreferedStartDate: NSDate? {get {return nil} }
+     var eventDuration: TimeSize? { get { return nil } }
+     var eventMinDuration: TimeSize? { get { return nil } }
+     var avoidPeriods: [DTTimePeriod]?
 }
 
 
-public struct RoleOptions : OptionSetType {
+ struct RoleOptions : OptionSetType {
     
-    public init(rawValue:Int) {
+     init(rawValue:Int) {
         
         self.rawValue = rawValue
     }
     
-    public let rawValue: Int
+     let rawValue: Int
     
     static let None                    = RoleOptions(rawValue: 0)
     static let RequiresInterestWindow  = RoleOptions(rawValue: 1 << 0)
@@ -64,19 +64,19 @@ public struct RoleOptions : OptionSetType {
 
 
 
-public class TimeSize: NSObject, NSCoding  {
+ class TimeSize: NSObject, NSCoding  {
     
     var unit: DTTimePeriodSize
     var amount: Int
     
-    public init (unit:DTTimePeriodSize, amount:Int) {
+     init (unit:DTTimePeriodSize, amount:Int) {
         
         self.unit = unit
         self.amount = amount
         super.init()
     }
     
-    public func inSeconds() -> Int {
+     func inSeconds() -> Int {
         
         switch unit {
         case .Second: return self.amount
@@ -89,13 +89,13 @@ public class TimeSize: NSObject, NSCoding  {
         }
     }
     
-    required public init?(coder aDecoder: NSCoder) {
+    required  init?(coder aDecoder: NSCoder) {
         
         unit = DTTimePeriodSize(rawValue: UInt(aDecoder.decodeIntegerForKey("unit")))!
         amount = aDecoder.decodeIntegerForKey("amount")
     }
     
-    public func encodeWithCoder(aCoder: NSCoder) {
+     func encodeWithCoder(aCoder: NSCoder) {
         
         aCoder.encodeInteger(Int(unit.rawValue), forKey: "unit")
         aCoder.encodeInteger(amount, forKey: "amount")

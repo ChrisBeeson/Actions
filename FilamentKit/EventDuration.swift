@@ -9,29 +9,29 @@
 import Foundation
 import DateTools
 
-public class EventDuration: Rule, NSCoding  {
+ class EventDuration: Rule, NSCoding  {
     
     // This rule sits the duration of an event.
     // It allows the event to be shortened to a minimum duration if required.
     
-    public override var name: String { return "Event Duration" }
-    public override var availableToNodeType:NodeType { return .Action}
-    public override var conflictingRules: [Rule]? { return nil }
+     override var name: String { return "Event Duration" }
+     override var availableToNodeType:NodeType { return .Action}
+     override var conflictingRules: [Rule]? { return nil }
     
-    public override init() {
+     override init() {
         super.init()
     }
     
     // Specific user controls
     
-    public var duration = TimeSize(unit: .Minute, amount: 30)
-    public var minDuration = TimeSize(unit: .Minute, amount: 15)
+     var duration = TimeSize(unit: .Minute, amount: 30)
+     var minDuration = TimeSize(unit: .Minute, amount: 15)
     
     
     // Rule out values
     
-    public override var eventMinDuration: TimeSize? { get { return minDuration } }
-    public override var eventDuration: TimeSize? { get { return duration } }
+     override var eventMinDuration: TimeSize? { get { return minDuration } }
+     override var eventDuration: TimeSize? { get { return duration } }
     
     
     // MARK: NSCoding
@@ -41,13 +41,13 @@ public class EventDuration: Rule, NSCoding  {
         static let minDuration = "minDuration"
     }
     
-    public required init?(coder aDecoder: NSCoder) {
+     required init?(coder aDecoder: NSCoder) {
         
         duration = aDecoder.decodeObjectForKey(SerializationKeys.duration) as! TimeSize
         minDuration = aDecoder.decodeObjectForKey(SerializationKeys.minDuration) as! TimeSize
     }
     
-    public func encodeWithCoder(aCoder: NSCoder) {
+     func encodeWithCoder(aCoder: NSCoder) {
         
         aCoder.encodeObject(duration, forKey:SerializationKeys.duration)
         aCoder.encodeObject(minDuration, forKey:SerializationKeys.minDuration)

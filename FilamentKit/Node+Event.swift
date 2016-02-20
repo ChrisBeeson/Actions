@@ -19,7 +19,7 @@ extension Node {
         return store.eventWithIdentifier(self.eventID)
     }
     
-    public func updateCalendarEventWithTimePeriod(period:DTTimePeriod) {
+     func updateCalendarEventWithTimePeriod(period:DTTimePeriod) {
         
         // Already have a correct event?
         

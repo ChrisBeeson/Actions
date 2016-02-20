@@ -42,13 +42,7 @@ public class FilamentDocumentsManager : DirectoryMonitorDelegate {
         }
     }
     
-    
-    public func documentForSequence(sequence: Sequence) -> FilamentDocument {
-        
-        return documents.filter{$0.unarchivedSequence! == sequence}.first!
-    }
-    
-    
+
     // MARK: DirectoryMonitorDelegate
     
     public func directoryMonitorDidObserveChange(directoryMonitor: DirectoryMonitor) {
@@ -89,6 +83,17 @@ public class FilamentDocumentsManager : DirectoryMonitorDelegate {
             
             self.delegate?.filamentsDocumentsManagerDidUpdateContents(inserted:insertedDocs, removed:removedDocs)
         }
+    }
+    
+    public func deleteDocumentForPresenter(presenter:SequencePresenter) {
+        
+        let docToDel = self.documentForSequence(presenter.archiveableSeq)
+        FilamentDocumentsManager.permanentlyDeleteDocument(docToDel)
+    }
+    
+    func documentForSequence(sequence: Sequence) -> FilamentDocument {
+        
+        return documents.filter{$0.unarchivedSequence! == sequence}.first!
     }
 }
 

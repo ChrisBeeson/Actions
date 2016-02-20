@@ -80,11 +80,13 @@ class NodePresenter : NSObject {
         }
     }
     
+    /*
     var event: EKEvent? {
         get {
             return node.event
         }
     }
+*/
     
     var hasRuleError:Bool {
         get {
@@ -102,6 +104,8 @@ class NodePresenter : NSObject {
     //MARK: Methods
     
     func updateNodeStatus() -> NodeStatus {
+        
+        /*
         
         // if the node has an error it cannot be removed here.
         if _currentStatus == .Error { return .Error }
@@ -131,6 +135,7 @@ class NodePresenter : NSObject {
         }
         
         _currentStatus = newStatus
+*/
     
         return _currentStatus
     }

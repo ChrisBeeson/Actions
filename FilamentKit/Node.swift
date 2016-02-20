@@ -9,22 +9,22 @@
 import Foundation
 import EventKit
 
-public enum NodeType: Int { case Action = 0, Transition, All, None }
+ enum NodeType: Int { case Action = 0, Transition, All, None }
 
-public class Node: NSObject, NSCoding {
+ class Node: NSObject, NSCoding {
     
-    public var title = ""
-    public var notes = ""
-    public var rules = [Rule]()
-    public var type = NodeType.Action
-    public var leftTransitionNode: Node?
-    public var rightTransitionNode: Node?
-    public var UUID = NSUUID()
-    public var event: Event?
+     var title = ""
+     var notes = ""
+     var rules = [Rule]()
+     var type = NodeType.Action
+     var leftTransitionNode: Node?
+     var rightTransitionNode: Node?
+     var UUID = NSUUID()
+    var event: Event?
     
     // MARK: Initializers
     
-    public init(text: String, type: NodeType = .Action, rules:[Rule]?) {
+     init(text: String, type: NodeType = .Action, rules:[Rule]?) {
         
         self.title = text
         self.type = type
@@ -45,7 +45,7 @@ public class Node: NSObject, NSCoding {
     }
     
     
-    public override init() {
+     override init() {
         super.init()
     }
     
@@ -59,10 +59,10 @@ public class Node: NSObject, NSCoding {
         static let uuid = "uuid"
         static let leftTransitionNode = "leftTransitionNode"
         static let rightTransitionNode = "rightTransitionNode"
-        static let eventID = "eventIdentifier"
+        static let event = "event"
     }
     
-    public required init?(coder aDecoder: NSCoder) {
+     required init?(coder aDecoder: NSCoder) {
         
         title = aDecoder.decodeObjectForKey(SerializationKeys.title) as! String
         notes = aDecoder.decodeObjectForKey(SerializationKeys.notes) as! String
@@ -71,10 +71,16 @@ public class Node: NSObject, NSCoding {
         UUID = aDecoder.decodeObjectForKey(SerializationKeys.uuid) as! NSUUID
         leftTransitionNode = aDecoder.decodeObjectForKey(SerializationKeys.leftTransitionNode) as? Node
         rightTransitionNode = aDecoder.decodeObjectForKey(SerializationKeys.rightTransitionNode) as? Node
-        eventID = aDecoder.decodeObjectForKey(SerializationKeys.eventID) as! String
+        event = aDecoder.decodeObjectForKey(SerializationKeys.event) as? Event
+        
+        super.init()
+        
+        if event != nil {
+            event!.owner = self
+        }
     }
 
-    public func encodeWithCoder(encoder: NSCoder) {
+     func encodeWithCoder(encoder: NSCoder) {
         
         encoder.encodeObject(title, forKey: SerializationKeys.title)
         encoder.encodeObject(notes, forKey: SerializationKeys.notes)
@@ -83,13 +89,13 @@ public class Node: NSObject, NSCoding {
         encoder.encodeObject(UUID, forKey: SerializationKeys.uuid)
         encoder.encodeObject(leftTransitionNode, forKey: SerializationKeys.leftTransitionNode)
         encoder.encodeObject(rightTransitionNode, forKey: SerializationKeys.rightTransitionNode)
-        encoder.encodeObject(eventID, forKey: SerializationKeys.eventID)
+        encoder.encodeObject(event, forKey: SerializationKeys.event)
     }
     
     
     // MARK: NSCopying
     
-    public func copyWithZone(zone: NSZone) -> AnyObject  {
+     func copyWithZone(zone: NSZone) -> AnyObject  {
         
         //TODO: can't copy transistions nodes from here as they are meaningless
         
@@ -105,7 +111,7 @@ public class Node: NSObject, NSCoding {
     
     // MARK: Equality
     
-    override public func isEqual(object: AnyObject?) -> Bool {
+    override  func isEqual(object: AnyObject?) -> Bool {
         
         if let node = object as? Node {
             if UUID == node.UUID  {
@@ -119,7 +125,7 @@ public class Node: NSObject, NSCoding {
     
     // Description
 
-    public override var description: String {
+     override var description: String {
         return " \(self.title) type: \(type) \n Rules: \n \(rules)"
     }
 }

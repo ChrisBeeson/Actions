@@ -159,9 +159,8 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
             
         case NSAlertFirstButtonReturn:   // Delete
             if let cellView = tableView.viewAtColumn(0, row: tableView.selectedRow, makeIfNecessary: false) as? FilamentTableCellView {
-                let docToDel = FilamentDocumentsManager.sharedManager.documentForSequence(cellView.presenter!.archiveableSeq)
-                cellView.presenter = nil
-                FilamentDocumentsManager.permanentlyDeleteDocument(docToDel)
+                
+                FilamentDocumentsManager.sharedManager.deleteDocumentForPresenter(cellView.presenter!)
                 cellView.presenter = nil
             }
         default: break

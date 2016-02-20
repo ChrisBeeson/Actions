@@ -10,7 +10,7 @@ import Foundation
 
 extension Sequence {
     
-    public func nodeChain() -> [Node] {
+     func nodeChain() -> [Node] {
         
         var nodesToReturn = [Node]()
         
@@ -23,7 +23,7 @@ extension Sequence {
     }
     
     
-    public func validSequence() -> Bool {
+     func validSequence() -> Bool {
         
         //    Action -> Transition -> Action -> Transition -> Action
         //    Transitions can only sit inbetween Action nodes
@@ -47,7 +47,7 @@ extension Sequence {
     }
     
     
-    public func insertActionNode(node: Node, index:Int? = nil) {
+     func insertActionNode(node: Node, index:Int? = nil) {
         
         precondition(node.type == .Action, "Trying to insert node into sequence that is not of type .Action")
         
@@ -64,7 +64,7 @@ extension Sequence {
         if indexToInsertNode < actionNodes.count-1 { addTransistionNodeToActionNodes(node, right:actionNodes[indexToInsertNode+1]) }
     }
     
-    public func removeActionNode(node:Node) {
+     func removeActionNode(node:Node) {
         
         let index = actionNodes.indexOf(node)
         
@@ -98,7 +98,7 @@ extension Sequence {
     }
     
     
-    public func logchain() {
+     func logchain() {
         
         for node in nodeChain() { print (String(node.type) + ": " + node.title) }
         validSequence() ? NSLog("Sequence is Valid") : NSLog("Sequence is NOT Valid")
@@ -142,9 +142,9 @@ extension Sequence {
     }
     
     
-    public enum NodePostion: Int { case StartingAction, Transition, Action, EndingAction,None }
+     enum NodePostion: Int { case StartingAction, Transition, Action, EndingAction,None }
     
-    public func postion(node: Node) -> NodePostion {
+     func postion(node: Node) -> NodePostion {
         
         if let index = actionNodes.indexOf(node) {
         

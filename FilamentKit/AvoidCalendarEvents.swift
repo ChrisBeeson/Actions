@@ -10,31 +10,31 @@ import Foundation
 import DateTools
 import EventKit
 
-public class AvoidCalendarEvents: Rule, NSCoding {
+ class AvoidCalendarEvents: Rule, NSCoding {
     
     // This rule sits the duration of an event.
     // It allows the event to be shortened to a minimum duration if required.
     
-    public override var name: String { return "!!!" }
-    public override var availableToNodeType:NodeType { return .None}
-    public override var conflictingRules: [Rule]? { return nil }
-    public override var options: RoleOptions { get { return RoleOptions.RequiresInterestWindow } }
+     override var name: String { return "!!!" }
+     override var availableToNodeType:NodeType { return .None}
+     override var conflictingRules: [Rule]? { return nil }
+     override var options: RoleOptions { get { return RoleOptions.RequiresInterestWindow } }
     
     
     // Custom Vars
     
-    public var calendars = [EKCalendar]()
+     var calendars = [EKCalendar]()
     
-    public init(calendars:[EKCalendar]) {
+     init(calendars:[EKCalendar]) {
         self.calendars = calendars
     }
     
-    public override init() {
+     override init() {
         super.init()
     }
     
     
-    public override var avoidPeriods: [DTTimePeriod]? {
+     override var avoidPeriods: [DTTimePeriod]? {
         
         get {
             
@@ -72,11 +72,11 @@ public class AvoidCalendarEvents: Rule, NSCoding {
         static let minDuration = "minDuration"
     }
     
-    public required init?(coder aDecoder: NSCoder) {
+     required init?(coder aDecoder: NSCoder) {
        calendars = aDecoder.decodeObjectForKey("calendars") as! [EKCalendar]
     }
     
-    public func encodeWithCoder(aCoder: NSCoder) {
+     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(calendars, forKey:"calendars")
     }
 }

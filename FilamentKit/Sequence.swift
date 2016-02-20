@@ -8,24 +8,24 @@
 
 import Foundation
 
-public class Sequence: NSObject, NSCopying, NSCoding {
+ class Sequence: NSObject, NSCopying, NSCoding {
     
-    public var title: String = ""
+     var title: String = ""
     var actionNodes = [Node]()
     var transitionNodes = [Node]()
-    public var date: NSDate?
-    public var startsAtDate = true    // false means the sequence is back timed to end at the date
+     var date: NSDate?
+     var startsAtDate = true    // false means the sequence is back timed to end at the date
     var uuid = NSUUID()
 
-    // public var calendarsToAvoid = [EKCalendar]()
+    //  var calendarsToAvoid = [EKCalendar]()
     
     // MARK: Initializers
     
-    override public init () {
+    override  init () {
         super.init()
     }
     
-    public init(name:String, actionNodes:[Node]? = []) {
+     init(name:String, actionNodes:[Node]? = []) {
         
         self.title = name
         super.init()
@@ -48,7 +48,7 @@ public class Sequence: NSObject, NSCopying, NSCoding {
         static let uuid = "uuid"
     }
     
-    public required init?(coder aDecoder: NSCoder) {
+     required init?(coder aDecoder: NSCoder) {
         title = aDecoder.decodeObjectForKey(SerializationKeys.title) as! String
         actionNodes = aDecoder.decodeObjectForKey(SerializationKeys.actionNodes) as! [Node]
         transitionNodes = aDecoder.decodeObjectForKey(SerializationKeys.transitionNodes) as! [Node]
@@ -57,7 +57,7 @@ public class Sequence: NSObject, NSCopying, NSCoding {
         uuid = aDecoder.decodeObjectForKey(SerializationKeys.uuid) as! NSUUID
     }
     
-    public func encodeWithCoder(aCoder: NSCoder) {
+     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(title, forKey: SerializationKeys.title)
         aCoder.encodeObject(actionNodes, forKey: SerializationKeys.actionNodes)
         aCoder.encodeObject(transitionNodes, forKey: SerializationKeys.transitionNodes)
@@ -69,7 +69,7 @@ public class Sequence: NSObject, NSCopying, NSCoding {
     
     // MARK: NSCopying
     
-    public func copyWithZone(zone: NSZone) -> AnyObject  {
+     func copyWithZone(zone: NSZone) -> AnyObject  {
         let clone = Sequence()
         clone.title = title.copy() as! String
         clone.actionNodes =  NSArray(array:actionNodes, copyItems: true) as! [Node]
@@ -79,7 +79,7 @@ public class Sequence: NSObject, NSCopying, NSCoding {
         return clone
     }
     
-    public var filename: String {
+     var filename: String {
         var filename = uuid.UUIDString
         filename.appendContentsOf("."+AppConfiguration.filamentFileExtension)
         return filename
@@ -87,13 +87,13 @@ public class Sequence: NSObject, NSCopying, NSCoding {
     
     // Description
     
-    public override var description: String {
+     override var description: String {
         return " \(title)"
     }
     
     // MARK: Equality
     
-    override public func isEqual(object: AnyObject?) -> Bool {
+    override  func isEqual(object: AnyObject?) -> Bool {
         if let sequence = object as? Sequence {
             if uuid == sequence.uuid  {
                 return true

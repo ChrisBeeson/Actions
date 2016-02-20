@@ -10,9 +10,9 @@ public protocol SequencePresenterDelegate : class {
 
     func sequencePresenterDidRefreshCompleteLayout(sequencePresenter: SequencePresenter)
     func sequencePresenterWillChangeNodeLayout(sequencePresenter: SequencePresenter)
-    func sequencePresenterDidUpdateChainContents(insertedNodes:[nodeAtIndex], deletedNodes:[nodeAtIndex])
+    func sequencePresenterDidUpdateChainContents(insertedNodes:Set<NSIndexPath>, deletedNodes:Set<NSIndexPath>)
     func sequencePresenterUpdatedDate(sequencePresenter: SequencePresenter)
-    func sequencePresenterUpdatedCalendarEvents(success:Bool, firstFailingNode:Node?)
+    func sequencePresenterUpdatedCalendarEvents(success:Bool)
     func sequencePresenterDidChangeStatus(sequencePresenter: SequencePresenter, toStatus:SequenceStatus)
     
     
@@ -24,9 +24,9 @@ extension  SequencePresenterDelegate {
     
     public func sequencePresenterDidRefreshCompleteLayout(sequencePresenter: SequencePresenter) {}
     public func sequencePresenterWillChangeNodeLayout(sequencePresenter: SequencePresenter) {}
-    public func sequencePresenterDidUpdateChainContents(insertedNodes:[nodeAtIndex], deletedNodes:[nodeAtIndex]) {}
+   public func sequencePresenterDidUpdateChainContents(insertedNodes:Set<NSIndexPath>, deletedNodes:Set<NSIndexPath>) {}
     public func sequencePresenterUpdatedDate(sequencePresenter: SequencePresenter) {}
-    public func sequencePresenterUpdatedCalendarEvents(success:Bool, firstFailingNode:Node?) {}
+    public func sequencePresenterUpdatedCalendarEvents(success:Bool) {}
     public func sequencePresenterDidChangeStatus(sequencePresenter: SequencePresenter, toStatus:SequenceStatus) {}
     
     

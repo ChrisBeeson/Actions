@@ -111,36 +111,22 @@ import Async
     //MARK: Sequence Delegate Protocol 
     
     
-    public func sequencePresenterDidUpdateChainContents(insertedNodes:[nodeAtIndex], deletedNodes:[nodeAtIndex]) {
+    public func sequencePresenterDidUpdateChainContents(insertedNodes:Set<NSIndexPath>, deletedNodes:Set<NSIndexPath>) {
         
         Async.main { [unowned self] in
             
         self.performBatchUpdates({ () -> Void in
             
             if insertedNodes.count > 0 {
-                var indexes =  Set<NSIndexPath>()
-                
-                for node in insertedNodes {
-                    
-                    indexes.insert(NSIndexPath(forItem: node.0.idx+1, inSection: 0))
-                }
-
-                self.insertItemsAtIndexPaths(indexes)
+                self.insertItemsAtIndexPaths(insertedNodes)
             }
             
             if deletedNodes.count > 0 {
-                
-                var indexes =  Set<NSIndexPath>()
-                
-                for node in deletedNodes {
-                    indexes.insert(NSIndexPath(forItem: node.0.idx+1, inSection: 0))
-                }
-                self.deleteItemsAtIndexPaths(indexes)
+                self.deleteItemsAtIndexPaths(deletedNodes)
             }
             
             }) { (completed) -> Void in
         }
-        
             self.reloadData()
     }
     }

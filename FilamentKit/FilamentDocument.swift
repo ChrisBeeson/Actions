@@ -12,7 +12,7 @@ public class FilamentDocument: NSDocument {
     
     // MARK: Properties
     
-    public var unarchivedSequence: Sequence?
+    var unarchivedSequence: Sequence?
     
     private var _sequencePresenter: SequencePresenter?
     

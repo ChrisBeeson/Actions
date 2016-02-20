@@ -13,7 +13,7 @@ import EventKit
 
 extension Sequence {
     
-    public func UpdateEvents() -> (success:Bool, firstFailedNode:Node?) {
+     func UpdateEvents() -> (success:Bool, firstFailedNode:Node?) {
         
         guard var time = date else { return (false,nil) }
         
@@ -64,7 +64,8 @@ extension Sequence {
             }
             
             time = solvedPeriod!.period!.EndDate
-            node.updateCalendarEventWithTimePeriod(solvedPeriod!.period!)
+            
+            node.event!.period = solvedPeriod!.period!
         }
         return (true,nil)
     }
