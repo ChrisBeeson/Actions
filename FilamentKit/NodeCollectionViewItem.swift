@@ -22,7 +22,6 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
         
         didSet {
             presenter?.addDelegate(self)
-            refreshView()
         }
     }
     
@@ -34,16 +33,25 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     }
     
     
-    override func viewWillAppear() {
-
+    override func viewWillLayout() {
+        super.viewWillLayout()
+        
+         refreshView()
     }
+    
+    override func viewWillAppear() {
+        super.viewWillAppear()
+    }
+    
     
     func refreshView() {
         
         if presenter != nil {
             titleTextField.stringValue = presenter!.title
-            nodeView.currentStatus = .inActive
+            presenter!.updateNodeStatus()
+            nodeView.currentStatus = presenter!.currentStatus
         }
+
     }
     
     
@@ -63,11 +71,11 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
                 detailViewController = NodeDetailViewController(nibName:"NodeDetailViewController", bundle:NSBundle(identifier:"com.andris.FilamentKit"))
             }
             
-            detailViewController!.nodePresenter = presenter!
-            presenter!.addDelegate(detailViewController!)
-    
             popover!.contentViewController = detailViewController
         }
+        
+        detailViewController!.nodePresenter = presenter!
+        presenter!.addDelegate(detailViewController!)
         
         // Popover position & show
         
@@ -113,7 +121,6 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     
     func nodePresenterDidChangeTitle(presenter: NodePresenter) {
         
-        titleTextField.stringValue = presenter.title
         self.collectionView.reloadData()
     }
     

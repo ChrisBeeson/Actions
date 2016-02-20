@@ -104,7 +104,7 @@ class NodePresenter : NSObject {
     
     func renameTitle(title:String) {
         node.title = title
-        node.event?.updateCalendarData()
+        node.event?.synchronizeCalendarEvent()
         delegates.forEach { $0.nodePresenterDidChangeTitle(self) }
     }
     
