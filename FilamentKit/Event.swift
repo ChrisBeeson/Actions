@@ -15,7 +15,7 @@ class Event : NSObject {
     
     var startDate: NSDate
     var endDate: NSDate
-    var publish = true
+    var publish = false
     
     var period:DTTimePeriod? {
         willSet {
@@ -33,7 +33,7 @@ class Event : NSObject {
         self.startDate = period.StartDate
         self.endDate = period.EndDate
         self.owner = owner
-        if owner.type == .Transition { publish = false }
+        if owner.type == .Action { publish = true}
         
         super.init()
         
@@ -52,12 +52,16 @@ class Event : NSObject {
         }
         
         // Async.utility { [unowned self] in
+        
         let store = CalendarManager.sharedInstance.store
         self.calendarEvent = store.eventWithIdentifier(self.calendarEventId)
         
         if self.calendarEvent == nil {
+
             self.createCalendarEvent()
+            
         } else {
+            
             self.updateCalendarDates(self.startDate, endDate: self.endDate)
         }
         // }
@@ -68,15 +72,12 @@ class Event : NSObject {
         
         calendarEvent = EKEvent(eventStore: CalendarManager.sharedInstance.store)
         
-        updateCalendarData()
-        
         if let appCal = CalendarManager.sharedInstance.applicationCalendar {
             calendarEvent!.calendar = appCal
         } else {
             print("No Application Calendar")
         }
-        
-        saveCalendarEvent()
+        updateCalendarData()
     }
     
     
@@ -147,17 +148,20 @@ class Event : NSObject {
         static let startDate = "startDate"
         static let endDate = "endDate"
         static let calendarEventId = "calendarEventId"
+        static let publish = "publish"
     }
     
     required init?(coder aDecoder: NSCoder) {
         startDate = aDecoder.decodeObjectForKey(SerializationKeys.startDate) as! NSDate
         endDate = aDecoder.decodeObjectForKey(SerializationKeys.endDate) as! NSDate
         calendarEventId = aDecoder.decodeObjectForKey(SerializationKeys.calendarEventId) as! String
+        publish = aDecoder.decodeObjectForKey(SerializationKeys.publish) as! Bool
     }
     
     func encodeWithCoder(encoder: NSCoder) {
         encoder.encodeObject(startDate, forKey: SerializationKeys.startDate )
         encoder.encodeObject(endDate, forKey: SerializationKeys.endDate)
         encoder.encodeObject(calendarEventId, forKey: SerializationKeys.calendarEventId)
+        encoder.encodeObject(publish, forKey: SerializationKeys.publish)
     }
 }

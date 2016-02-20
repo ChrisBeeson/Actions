@@ -75,7 +75,10 @@ import DateTools
         rightTransitionNode = aDecoder.decodeObjectForKey(SerializationKeys.rightTransitionNode) as? Node
         event = aDecoder.decodeObjectForKey(SerializationKeys.event) as? Event
         
-        if event != nil { event!.owner = self }
+        if event != nil {
+            event!.owner = self
+            event!.synchronizeCalendarEvent()
+        }
     }
 
      func encodeWithCoder(encoder: NSCoder) {
