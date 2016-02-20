@@ -87,7 +87,7 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate {
     
     public func sequencePresenterDidChangeStatus(sequencePresenter: SequencePresenter, toStatus:SequenceStatus){
         
-         self.collectionView.toolTip = String(presenter!.status)
+        //  self.collectionView.toolTip = String(presenter!.status)
     }
     
     /*

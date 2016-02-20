@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Async
 
 @objc public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSource, NSCollectionViewDelegate, SequencePresenterDelegate {
     
@@ -112,6 +113,8 @@ import Foundation
     
     public func sequencePresenterDidUpdateChainContents(insertedNodes:[nodeAtIndex], deletedNodes:[nodeAtIndex]) {
         
+        Async.main { [unowned self] in
+            
         self.performBatchUpdates({ () -> Void in
             
             if insertedNodes.count > 0 {
@@ -121,6 +124,7 @@ import Foundation
                     
                     indexes.insert(NSIndexPath(forItem: node.0.idx+1, inSection: 0))
                 }
+
                 self.insertItemsAtIndexPaths(indexes)
             }
             
@@ -137,9 +141,10 @@ import Foundation
             }) { (completed) -> Void in
         }
         
-        self.reloadData()
+            self.reloadData()
     }
-        
+    }
+    
     
     //MARK: First Responder Events
     

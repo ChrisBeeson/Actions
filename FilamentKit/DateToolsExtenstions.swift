@@ -101,9 +101,9 @@ extension DTTimePeriodCollection {
         
         // add flattened periods to self
         
-         print("Flattened to:")
+        //   print("Flattened to:")
         for flat in flattenedPeriods {
-              print(flat.description)
+            //   print(flat.description)
             self.addTimePeriod(flat)
         }
     }

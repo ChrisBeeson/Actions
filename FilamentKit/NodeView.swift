@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Async
 
 enum NodeColour: Int { case LightGrey, Green, Red, Blue}
 
@@ -51,7 +52,7 @@ class NodeView: NSView {
                 pathLayer.lineWidth = 0.6
                 pathLayer.strokeColor = drawingContextColour(colourForStatus(currentStatus)).stroke
             }
-              CATransaction.commit()
+            CATransaction.commit()
         }
     }
     
@@ -80,27 +81,30 @@ class NodeView: NSView {
             pathLayer.fillColor = drawingContextColour(.LightGrey).fill
             
         case .Ready:
-            CATransaction.begin()
-            CATransaction.setDisableActions(true)
-            pathLayer.strokeColor = drawingContextColour(.Green).stroke
-            pathLayer.fillColor = drawingContextColour(.Green).fill
-            CATransaction.commit()
-            
-            CATransaction.begin()
-            CATransaction.setAnimationDuration(1.5)
-            pathLayer.strokeColor = drawingContextColour(.LightGrey).stroke
-            pathLayer.fillColor = drawingContextColour(.LightGrey).fill
-            CATransaction.commit()
-            
+            Async.main{ [unowned self] in
+                CATransaction.begin()
+                CATransaction.setDisableActions(true)
+                self.pathLayer.strokeColor = drawingContextColour(.Green).stroke
+                self.pathLayer.fillColor = drawingContextColour(.Green).fill
+                CATransaction.commit()
+                
+                CATransaction.begin()
+                CATransaction.setAnimationDuration(2.5)
+                self.pathLayer.strokeColor = drawingContextColour(.LightGrey).stroke
+                self.pathLayer.fillColor = drawingContextColour(.LightGrey).fill
+                CATransaction.commit()
+            }
             
         case .Running:
-            let anim = CABasicAnimation(keyPath: "fillColor")
-            anim.fromValue = drawingContextColour(.Green).fill
-            anim.toValue = drawingContextColour(.LightGrey).fill
-            anim.repeatCount = Float.infinity
-            anim.repeatDuration = 2.0
-            anim.autoreverses = true
-            pathLayer.addAnimation(anim, forKey: "stroke")
+            Async.main{ [unowned self] in
+                let anim = CABasicAnimation(keyPath: "fillColor")
+                anim.fromValue = drawingContextColour(.Green).fill
+                anim.toValue = drawingContextColour(.LightGrey).fill
+                anim.repeatCount = Float.infinity
+                anim.repeatDuration = 2.0
+                anim.autoreverses = true
+                self.pathLayer.addAnimation(anim, forKey: "stroke")
+            }
             
         case .WaitingForUserInput:
             pathLayer.strokeColor = drawingContextColour(.Blue).stroke
@@ -113,21 +117,9 @@ class NodeView: NSView {
         case .Void: fatalError("Trying to add animation when statusNode = .Void")
         }
     }
-
-
-    func drawingContextColour(colour:NodeColour) -> (fill:CGColor, stroke:CGColor) {
- 
-        switch colour {
-        case .LightGrey:
-            return (AppConfiguration.Palette.lightGreyFill.CGColor, AppConfiguration.Palette.lightGreyStroke.CGColor)
-        case .Green:
-            return (AppConfiguration.Palette.greenFill.CGColor, AppConfiguration.Palette.greenStroke.CGColor)
-        case .Red:
-            return (AppConfiguration.Palette.redFill.CGColor, AppConfiguration.Palette.redStroke.CGColor)
-        case .Blue:
-            return (AppConfiguration.Palette.blueFill.CGColor, AppConfiguration.Palette.blueStroke.CGColor)
-        }
-    }
+    
+    
+    
     
     func colourForStatus(status:NodeStatus) -> NodeColour {
         
@@ -140,6 +132,20 @@ class NodeView: NSView {
         case .Error: return .Red
         case .Void: fatalError("Trying to find colour for a Void Status")
         }
+    }
+}
+
+func drawingContextColour(colour:NodeColour) -> (fill:CGColor, stroke:CGColor) {
+    
+    switch colour {
+    case .LightGrey:
+        return (AppConfiguration.Palette.lightGreyFill.CGColor, AppConfiguration.Palette.lightGreyStroke.CGColor)
+    case .Green:
+        return (AppConfiguration.Palette.greenFill.CGColor, AppConfiguration.Palette.greenStroke.CGColor)
+    case .Red:
+        return (AppConfiguration.Palette.redFill.CGColor, AppConfiguration.Palette.redStroke.CGColor)
+    case .Blue:
+        return (AppConfiguration.Palette.blueFill.CGColor, AppConfiguration.Palette.blueStroke.CGColor)
     }
 }
 
@@ -183,7 +189,7 @@ extension NSBezierPath {
             cgPath = CGPathCreateCopy(newPath)
         }
         return cgPath
-}
+    }
 }
 
 
