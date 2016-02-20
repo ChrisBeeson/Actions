@@ -46,7 +46,6 @@ extension Sequence {
         return true
     }
     
-    
      func insertActionNode(node: Node, index:Int? = nil) {
         
         precondition(node.type == .Action, "Trying to insert node into sequence that is not of type .Action")

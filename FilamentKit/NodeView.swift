@@ -36,9 +36,14 @@ class NodeView: NSView {
         super.layout()
         
         pathLayer.path = calculatePath()
+        performAnimationsForNewStatus(currentStatus)
+        // Swift.print("layout!")
     }
     
     
+    deinit {
+        Swift.print("deinit")
+    }
     
     var selected = false {
         didSet {
@@ -81,6 +86,9 @@ class NodeView: NSView {
             pathLayer.fillColor = drawingContextColour(.LightGrey).fill
             
         case .Ready:
+            //   self.pathLayer.strokeColor = drawingContextColour(.Green).stroke
+            //self.pathLayer.fillColor = drawingContextColour(.Green).fill
+            
             Async.main{ [unowned self] in
                 CATransaction.begin()
                 CATransaction.setDisableActions(true)
@@ -96,14 +104,22 @@ class NodeView: NSView {
             }
             
         case .Running:
-            Async.main{ [unowned self] in
+              Async.main{ [unowned self] in
                 let anim = CABasicAnimation(keyPath: "fillColor")
-                anim.fromValue = drawingContextColour(.Green).fill
-                anim.toValue = drawingContextColour(.LightGrey).fill
+                anim.toValue = drawingContextColour(.Green).fill
+                anim.fromValue = drawingContextColour(.LightGrey).fill
                 anim.repeatCount = Float.infinity
-                anim.repeatDuration = 2.0
+                anim.duration = 0.5
                 anim.autoreverses = true
-                self.pathLayer.addAnimation(anim, forKey: "stroke")
+                self.pathLayer.addAnimation(anim, forKey: "RunningFill")
+                
+                let animStroke = CABasicAnimation(keyPath: "strokeColor")
+                animStroke.toValue = drawingContextColour(.Green).stroke
+                animStroke.fromValue = drawingContextColour(.LightGrey).stroke
+                animStroke.repeatCount = Float.infinity
+                animStroke.duration = 0.5
+                animStroke.autoreverses = true
+                self.pathLayer.addAnimation(animStroke, forKey: "RunningStroke")
             }
             
         case .WaitingForUserInput:

@@ -10,11 +10,11 @@ import Foundation
 
  class Sequence: NSObject, NSCopying, NSCoding {
     
-     var title: String = ""
+    var title: String = ""
     var actionNodes = [Node]()
     var transitionNodes = [Node]()
-     var date: NSDate?
-     var startsAtDate = true    // false means the sequence is back timed to end at the date
+    var date: NSDate?
+    var startsAtDate = true    // false means the sequence is back timed to end at the date
     var uuid = NSUUID()
 
     //  var calendarsToAvoid = [EKCalendar]()

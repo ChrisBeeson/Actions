@@ -40,7 +40,7 @@ class NodePresenter : NSObject {
     var currentStatus:NodeStatus {
         
         get {
-            return updateNodeStatus()
+            return calcNodeStatus()
         }
         set {
             _currentStatus = newValue
@@ -80,13 +80,13 @@ class NodePresenter : NSObject {
         }
     }
     
-    /*
-    var event: EKEvent? {
+    
+    var event: Event? {
         get {
             return node.event
         }
     }
-*/
+
     
     var hasRuleError:Bool {
         get {
@@ -95,7 +95,7 @@ class NodePresenter : NSObject {
         set {
             _hasRuleError = newValue
             if _hasRuleError == true { _currentStatus = .Error } else {
-                _currentStatus = updateNodeStatus()
+                _currentStatus = calcNodeStatus()
             }
         }
     }
@@ -103,41 +103,54 @@ class NodePresenter : NSObject {
     
     //MARK: Methods
     
-    func updateNodeStatus() -> NodeStatus {
+    
+    func updateNodeStatus() {
         
-        /*
-        
-        // if the node has an error it cannot be removed here.
-        if _currentStatus == .Error { return .Error }
-        
-        var newStatus = NodeStatus.Void
-        
-        // if we don't have an event
-        if node.event == nil { newStatus = .inActive } else {
+        let newStatus = calcNodeStatus()
+
+        switch newStatus {
             
-            // if we have an event but we're before time
-            if (node.event?.startDate.isLaterThan(NSDate())) != nil { newStatus = .Ready }
-            
-            // we're in the middle of this event
-            if node.event!.startDate.isEarlierThanOrEqualTo(NSDate()) && node.event!.endDate.isLaterThanOrEqualTo(NSDate())  {
-                newStatus = .Running
+        case .Ready:
+            let secsToStart = node.event!.startDate.secondsLaterThan(NSDate())
+            NSTimer.schedule(delay: secsToStart+0.1) { timer in
+                self.updateNodeStatus()
             }
             
-            // event is after
-            if node.event!.endDate.isEarlierThanOrEqualTo(NSDate()) { newStatus = .Completed }
+        case .Running:
+            let secsToComplete = node.event!.endDate.secondsLaterThan(NSDate())
+            NSTimer.schedule(delay: secsToComplete+0.1) { timer in
+                self.updateNodeStatus()
+            }
+            
+        default: break
         }
-        
-        assert(newStatus != .Void, "updateNodeStatus came up with Void")
         
         if newStatus != _currentStatus {
             delegates.forEach { $0.nodePresenterDidChangeStatus(self, toStatus:newStatus) }
-            print("Node \(node.title) changed Status to \(newStatus)")
+            print("Node \(node.title) : \(newStatus)")
         }
         
         _currentStatus = newStatus
-*/
+        
+    }
     
-        return _currentStatus
+    
+    func calcNodeStatus() -> NodeStatus {
+
+        // if the node has an error it cannot be removed here - not sure why but it's a rule I've made up
+        if _currentStatus == .Error { return .Error }
+    
+        var newStatus = NodeStatus.Void
+        
+        if node.event == nil { return .inActive }
+        if node.event!.startDate.isLaterThan(NSDate())  { newStatus = .Ready }
+        if node.event!.startDate.isEarlierThanOrEqualTo(NSDate()) && node.event!.endDate.isLaterThanOrEqualTo(NSDate())  {
+            newStatus = .Running
+        }
+        if node.event!.endDate.isEarlierThanOrEqualTo(NSDate()) { newStatus = .Completed }
+        
+        assert(newStatus != .Void, "updateNodeStatus came up with Void")
+        return newStatus
     }
     
     
@@ -150,7 +163,7 @@ class NodePresenter : NSObject {
     
     func removeRules(rules:[Rule]) {
         
-        delegates.forEach { $0.nodePresenterDidChangeRules(self) }
+        // delegates.forEach { $0.nodePresenterDidChangeRules(self) }
     }
     
     

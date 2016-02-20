@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import EventKit
+import DateTools
 
  enum NodeType: Int { case Action = 0, Transition, All, None }
 
@@ -20,7 +20,7 @@ import EventKit
      var leftTransitionNode: Node?
      var rightTransitionNode: Node?
      var UUID = NSUUID()
-    var event: Event?
+     var event: Event?
     
     // MARK: Initializers
     
@@ -64,6 +64,8 @@ import EventKit
     
      required init?(coder aDecoder: NSCoder) {
         
+        super.init()
+        
         title = aDecoder.decodeObjectForKey(SerializationKeys.title) as! String
         notes = aDecoder.decodeObjectForKey(SerializationKeys.notes) as! String
         rules = aDecoder.decodeObjectForKey(SerializationKeys.rules) as! [Rule]
@@ -73,11 +75,7 @@ import EventKit
         rightTransitionNode = aDecoder.decodeObjectForKey(SerializationKeys.rightTransitionNode) as? Node
         event = aDecoder.decodeObjectForKey(SerializationKeys.event) as? Event
         
-        super.init()
-        
-        if event != nil {
-            event!.owner = self
-        }
+        if event != nil { event!.owner = self }
     }
 
      func encodeWithCoder(encoder: NSCoder) {
@@ -121,6 +119,19 @@ import EventKit
         }
         return false
     }
+    
+    
+    //MARK: Event Creation and Maintance
+    
+    func setEventPeriod(period: DTTimePeriod) {
+        
+        if event == nil {
+            event = Event(period:period, owner: self)
+        } else {
+            event!.period = period
+        }
+    }
+    
     
     
     // Description

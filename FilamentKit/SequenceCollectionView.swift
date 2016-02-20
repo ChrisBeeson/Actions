@@ -38,6 +38,8 @@ import Async
         self.dataSource = self
         self.delegate = self
         
+         self.wantsLayer = true
+        
         let nib = NSNib(nibNamed: "DateNodeCollectionViewItem", bundle: NSBundle(identifier:"com.andris.FilamentKit"))
         self.registerNib(nib, forItemWithIdentifier: "DateNodeCollectionViewItem")
         
@@ -124,7 +126,6 @@ import Async
             if deletedNodes.count > 0 {
                 self.deleteItemsAtIndexPaths(deletedNodes)
             }
-            
             }) { (completed) -> Void in
         }
             self.reloadData()

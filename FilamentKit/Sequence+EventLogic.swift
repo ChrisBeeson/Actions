@@ -65,8 +65,45 @@ extension Sequence {
             
             time = solvedPeriod!.period!.EndDate
             
-            node.event!.period = solvedPeriod!.period!
+            node.setEventPeriod(solvedPeriod!.period!)
         }
+        
+        processEventsForTransitionPeriods()
+        
         return (true,nil)
     }
+    
+    
+    func  processEventsForTransitionPeriods() {
+        
+        let allNodes = nodeChain()
+        
+        for node in transitionNodes {
+            
+            // Bit of house keeping... really shouldn't go here.
+            
+            if node.leftTransitionNode == nil {
+                if  let index = allNodes.indexOf(node) where index != -1 {
+                    node.leftTransitionNode = allNodes[index-1]
+                }
+            }
+            
+            if node.rightTransitionNode == nil {
+                if  let index = allNodes.indexOf(node) where index != -1 {
+                    node.rightTransitionNode = allNodes[index+1]
+                }
+            }
+            
+            let start = node.leftTransitionNode?.event!.endDate.dateByAddingSeconds(1)
+            let end = node.rightTransitionNode?.event!.startDate.dateBySubtractingSeconds(1)
+            
+            if start != nil && end != nil {
+                let period = DTTimePeriod(startDate: start, endDate: end)
+                node.setEventPeriod(period)
+            } else {
+                print("Start and End Dates when processEventsForTransitionPeriods")
+            }
+        }
+    }
+    
 }

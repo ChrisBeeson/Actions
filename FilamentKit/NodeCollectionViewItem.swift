@@ -88,6 +88,11 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     
     func nodePresenterDidChangeStatus(presenter: NodePresenter, toStatus: NodeStatus) {
     
+        
+         self.nodeView.currentStatus = toStatus
+        
+        /*
+        
         if toStatus == .Ready {
             
             delay(Double(indexPath!.item) * 0.2) {
@@ -96,6 +101,7 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
         } else {
              self.nodeView.currentStatus = toStatus
         }
+*/
     }
     
     /*

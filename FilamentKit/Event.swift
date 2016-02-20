@@ -13,13 +13,14 @@ import DateTools
 
 class Event : NSObject {
     
-    private var startDate: NSDate
-    private var endDate: NSDate
+    var startDate: NSDate
+    var endDate: NSDate
+    var publish = true
     
     var period:DTTimePeriod? {
         willSet {
             guard newValue == nil else { return }
-            updateCalendarDates(newValue!.StartDate, endDate:newValue!.EndDate)
+            //  updateCalendarDates(newValue!.StartDate, endDate:newValue!.EndDate)
         }
     }
     
@@ -32,6 +33,7 @@ class Event : NSObject {
         self.startDate = period.StartDate
         self.endDate = period.EndDate
         self.owner = owner
+        if owner.type == .Transition { publish = false }
         
         super.init()
         
@@ -40,14 +42,16 @@ class Event : NSObject {
     
     func synchronizeCalendarEvent() {
         
+        guard publish == true else { return }
+        
         guard calendarEventId.isEmpty == false  else {
-            Async.utility { [unowned self] in
+            //  Async.utility { [unowned self] in
                 self.createCalendarEvent()
-            }
+            //}
             return
         }
         
-        Async.utility { [unowned self] in
+        // Async.utility { [unowned self] in
             let store = CalendarManager.sharedInstance.store
             self.calendarEvent = store.eventWithIdentifier(self.calendarEventId)
             
@@ -56,7 +60,7 @@ class Event : NSObject {
             } else {
                 self.updateCalendarDates(self.startDate, endDate: self.endDate)
             }
-        }
+        // }
     }
     
     
@@ -86,10 +90,13 @@ class Event : NSObject {
         self.startDate = startDate
         self.endDate = endDate
         
-        updateCalendarData()
-        
-        Async.utility { [unowned self] in
-            self.saveCalendarEvent()
+        if publish == true {
+            
+            updateCalendarData()
+            
+            //   Async.utility { [unowned self] in
+                self.saveCalendarEvent()
+            // }
         }
     }
     

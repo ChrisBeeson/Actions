@@ -41,7 +41,7 @@ public class SequencePresenter : NSObject {
         }
     }
     
-   var archiveableSeq: Sequence {
+    var archiveableSeq: Sequence {
         return sequence!
     }
     
@@ -58,11 +58,11 @@ public class SequencePresenter : NSObject {
         if nodes == nil { return nil}
         if nodes!.count == 0 { return nodes![nodes!.count-1].event?.endDate }
         if let event = nodes![nodes!.count-1].event {
-            return event.endDate
+        return event.endDate
         } else {
-            return nil
+        return nil
         }
-*/
+        */
         return nil
     }
     
@@ -171,21 +171,22 @@ public class SequencePresenter : NSObject {
         
         if sequence!.date != nil && date!.isEqualToDate(sequence!.date!) && isStartDate == sequence?.startsAtDate { return }
         
-        Async.background {
-            self.undoManager?.prepareWithInvocationTarget(self).setDate(self.date, isStartDate: true)
-            let undoActionName = NSLocalizedString("Change Date", comment: "")
-            self.undoManager?.setActionName(undoActionName)
-        }
+        //    Async.main { [unowned self] in
+            self.sequence!.date = date
+            self.sequence!.startsAtDate = isStartDate
+            let result = self.sequence!.UpdateEvents()
         
-        sequence!.date = date
-        sequence!.startsAtDate = isStartDate
-        delegates.forEach { $0.sequencePresenterUpdatedDate(self) }
         
-        Async.userInitiated {
-            let result = self.sequence?.UpdateEvents()
-            self.delegates.forEach { $0.sequencePresenterUpdatedCalendarEvents(result!.success) }
+        
+            self.delegates.forEach { $0.sequencePresenterUpdatedDate(self) }
+            self.delegates.forEach { $0.sequencePresenterUpdatedCalendarEvents(result.success) }
             self.updateSequenceStatus()
-        }
+                //    }
+        //       .background {
+                self.undoManager?.prepareWithInvocationTarget(self).setDate(self.date, isStartDate: true)
+                let undoActionName = NSLocalizedString("Change Date", comment: "")
+                self.undoManager?.setActionName(undoActionName)
+        //   }
     }
     
     
@@ -210,11 +211,22 @@ public class SequencePresenter : NSObject {
         if currentStatus != status {
             currentStatus = status
             Swift.print("Sequence Status changed: \(currentStatus)")
-            delegates.forEach{ $0.sequencePresenterDidChangeStatus(self, toStatus:currentStatus)  }
+            delegates.forEach{ $0.sequencePresenterDidChangeStatus(self, toStatus:currentStatus)}
+        }
+        
+        switch currentStatus {
+            
+        case .WaitingForStart:
+            assert(date != nil)
+            let secsToStart = date!.secondsLaterThan(NSDate())
+            NSTimer.schedule(delay: secsToStart+0.1) { timer in
+                self.updateSequenceStatus()
+            }
+            
+        default: break
         }
         
         updateAllNodesStatus()
-        queueNextItemRefresh()
     }
     
     
@@ -223,62 +235,66 @@ public class SequencePresenter : NSObject {
         nodePresenters.forEach{ $0.updateNodeStatus() }
     }
     
+    /*
+    
     func queueNextItemRefresh() {
-        
-        // work out what item is next, then set a timer to update the status of everything when it hits.
-        
-        /*
-        switch currentStatus {
-            
-        case .NoStartDateSet: break;
-        case .WaitingForStart:
-            let secondsToStartDate = date?.secondsFrom(NSDate())
-            Async.utility(after:secondsToStartDate) { [unowned self] in
-                self.updateSequenceStatus()
-            }
-        case .Running:
-            
-            // Find the next .Ready Node
-            
-            if nodes == nil { print("nodes is NULL"); break }
-            
-            for node in nodes! {
-                
-                let presenter = presenterForNode(node)
-                if presenter.currentStatus == .Ready {
-                    let secondsToStartDate = presenter.event?.startDate.secondsFrom(NSDate())
-                    Async.utility(after:secondsToStartDate) { [unowned self] in
-                        self.updateSequenceStatus()
-                    }
-                    return;
-                }
-            }
-            
-            //TODO: handle waitingForUser
-            
-            // last node in list
-            
-            let presenter = presenterForNode(nodes![nodes!.count-1])
-            
-            if presenter.currentStatus == .Running {
-                
-                let secondsToCompletion = NSDate().secondsEarlierThan(presenter.event?.endDate)
-                
-                Async.utility(after:secondsToCompletion) { [unowned self] in
-                    self.updateSequenceStatus()
-                }
-            }
-            
-        case .Paused: break
-        case .FailedNode: break
-        case .Completed: break
-        case .Void: break
-            
-        }
-
-*/
+    
+    // work out what item is next, then set a timer to update the status of everything when it hits.
+    
+    
+    switch currentStatus {
+    
+    case .NoStartDateSet: break;
+    case .WaitingForStart:
+    
+    if let date = date {
+    let secondsToStartDate = date.secondsFrom(NSDate())
+    Async.utility(after:secondsToStartDate) { [unowned self] in
+    self.updateSequenceStatus()
+    }
     }
     
+    case .Running:
+    guard nodes != nil else { break }
+    
+    for node in nodes! {
+    
+    let presenter = presenterForNode(node)
+    
+    if presenter.currentStatus == .Ready {
+    
+    if let event = presenter.event {
+    let secondsToStartDate = event.startDate.secondsFrom(NSDate())
+    Async.utility(after:secondsToStartDate) { [unowned self] in
+    self.updateSequenceStatus()
+    }
+    return
+    }
+    }
+    }
+    
+    //TODO: handle waitingForUser
+    
+    // last node in list
+    
+    let presenter = presenterForNode(nodes![nodes!.count-1])
+    
+    if presenter.currentStatus == .Running {
+    
+    let secondsToCompletion = NSDate().secondsEarlierThan(presenter.event?.endDate)
+    
+    Async.utility(after:secondsToCompletion) { [unowned self] in
+    self.updateSequenceStatus()
+    }
+    }
+    
+    case .Paused: break
+    case .FailedNode: break
+    case .Completed: break
+    case .Void: break
+    }
+    }
+    */
     
     public func addDelegate(delegate:SequencePresenterDelegate) {
         
