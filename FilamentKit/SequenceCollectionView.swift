@@ -98,6 +98,7 @@ import Async
             }
             
             item.presenter = presenter!.presenterForNode(node)
+            item.presenter!.updateNodeStatus()
             item.indexPath = indexPath
             return item
       

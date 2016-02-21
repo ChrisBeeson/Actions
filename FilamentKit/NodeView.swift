@@ -80,8 +80,6 @@ class NodeView: NSView {
     
     func performAnimationsForNewStatus(newStatus:NodeStatus) {
         
-        //Remove any animation
-       
         if newStatus != NodeStatus.Running && self.pathLayer.animationKeys()?.contains("RunningFill") == true  {
             self.pathLayer.removeAllAnimations()
         }
@@ -93,10 +91,6 @@ class NodeView: NSView {
             pathLayer.fillColor = drawingContextColour(.LightGrey).fill
             
         case .Ready:
-            //   self.pathLayer.strokeColor = drawingContextColour(.Green).stroke
-            //self.pathLayer.fillColor = drawingContextColour(.Green).fill
-            
-            //Async.main{ [unowned self] in
                 CATransaction.begin()
                 CATransaction.setDisableActions(true)
                 self.pathLayer.strokeColor = drawingContextColour(.Green).stroke
@@ -108,26 +102,25 @@ class NodeView: NSView {
                 self.pathLayer.strokeColor = drawingContextColour(.LightGrey).stroke
                 self.pathLayer.fillColor = drawingContextColour(.LightGrey).fill
                 CATransaction.commit()
-            // }
             
         case .Running:
-                Async.main{ [unowned self] in
-                let anim = CABasicAnimation(keyPath: "fillColor")
-                anim.toValue = drawingContextColour(.Green).fill
-                anim.fromValue = drawingContextColour(.LightGrey).fill
-                anim.repeatCount = Float.infinity
-                anim.duration = 0.5
-                anim.autoreverses = true
-                self.pathLayer.addAnimation(anim, forKey: "RunningFill")
+                    let anim = CABasicAnimation(keyPath: "fillColor")
+                    anim.toValue = drawingContextColour(.Green).fill
+                    anim.fromValue = drawingContextColour(.LightGrey).fill
+                    anim.repeatCount = Float.infinity
+                    anim.duration = 0.5
+                    anim.autoreverses = true
+                    self.pathLayer.addAnimation(anim, forKey: "RunningFill")
+                    //   }
                 
-                let animStroke = CABasicAnimation(keyPath: "strokeColor")
-                animStroke.toValue = drawingContextColour(.Green).stroke
-                animStroke.fromValue = drawingContextColour(.LightGrey).stroke
-                animStroke.repeatCount = Float.infinity
-                animStroke.duration = 0.5
-                animStroke.autoreverses = true
-                self.pathLayer.addAnimation(animStroke, forKey: "RunningStroke")
-                }
+                    // if self.pathLayer.animationKeys()?.contains("RunningStroke") == false {
+                    let animStroke = CABasicAnimation(keyPath: "strokeColor")
+                    animStroke.toValue = drawingContextColour(.Green).stroke
+                    animStroke.fromValue = drawingContextColour(.LightGrey).stroke
+                    animStroke.repeatCount = Float.infinity
+                    animStroke.duration = 0.5
+                    animStroke.autoreverses = true
+                    self.pathLayer.addAnimation(animStroke, forKey: "RunningStroke")
             
         case .WaitingForUserInput:
             pathLayer.strokeColor = drawingContextColour(.Blue).stroke
@@ -138,15 +131,12 @@ class NodeView: NSView {
             pathLayer.fillColor = drawingContextColour(.Red).fill
             
         case .Completed:
-            pathLayer.strokeColor = drawingContextColour(.LightGrey).fill
+            pathLayer.strokeColor = NSColor.lightGrayColor().CGColor
             pathLayer.fillColor = drawingContextColour(.LightGrey).fill
-            
             
         case .Void: fatalError("Trying to add animation when statusNode = .Void")
         }
     }
-    
-    
     
     
     func colourForStatus(status:NodeStatus) -> NodeColour {

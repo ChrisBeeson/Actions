@@ -34,6 +34,9 @@
 		473574841B9A91A200493CA0 /* ListPresenterAlgorithms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574801B9A91A200493CA0 /* ListPresenterAlgorithms.swift */; };
 		473574851B9A91A200493CA0 /* SequencePresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574811B9A91A200493CA0 /* SequencePresenterDelegate.swift */; };
 		473574871B9A91A200493CA0 /* ListPresenterUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574831B9A91A200493CA0 /* ListPresenterUtilities.swift */; };
+		473853B21C7A590A000AB1E2 /* RuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473853B11C7A590A000AB1E2 /* RuleViewController.swift */; };
+		473853B51C7A596E000AB1E2 /* RulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473853B41C7A596E000AB1E2 /* RulePresenter.swift */; };
+		473853B71C7A5A43000AB1E2 /* RulePresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473853B61C7A5A43000AB1E2 /* RulePresenterDelegate.swift */; };
 		473EAEE11BA3A7D200AFEA2A /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473EAEE01BA3A7D200AFEA2A /* CalendarManager.swift */; };
 		473EAEE31BA3A91400AFEA2A /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 473EAEE21BA3A91400AFEA2A /* EventKit.framework */; };
 		473EAEE61BA3AD0300AFEA2A /* RuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473EAEE41BA3AD0300AFEA2A /* RuleTests.swift */; };
@@ -157,6 +160,9 @@
 		473574801B9A91A200493CA0 /* ListPresenterAlgorithms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListPresenterAlgorithms.swift; sourceTree = "<group>"; };
 		473574811B9A91A200493CA0 /* SequencePresenterDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencePresenterDelegate.swift; sourceTree = "<group>"; };
 		473574831B9A91A200493CA0 /* ListPresenterUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListPresenterUtilities.swift; sourceTree = "<group>"; };
+		473853B11C7A590A000AB1E2 /* RuleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleViewController.swift; sourceTree = "<group>"; };
+		473853B41C7A596E000AB1E2 /* RulePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulePresenter.swift; sourceTree = "<group>"; };
+		473853B61C7A5A43000AB1E2 /* RulePresenterDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulePresenterDelegate.swift; sourceTree = "<group>"; };
 		473EAEE01BA3A7D200AFEA2A /* CalendarManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
 		473EAEE21BA3A91400AFEA2A /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		473EAEE41BA3AD0300AFEA2A /* RuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleTests.swift; sourceTree = "<group>"; };
@@ -328,6 +334,7 @@
 		4735747D1B9A915800493CA0 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
+				473853B31C7A5956000AB1E2 /* Rule Presenters */,
 				4735747E1B9A919500493CA0 /* SequencePresenter.swift */,
 				473574811B9A91A200493CA0 /* SequencePresenterDelegate.swift */,
 				4720B4FF1C6E7EF200229734 /* NodePresenter.swift */,
@@ -344,6 +351,23 @@
 				473574831B9A91A200493CA0 /* ListPresenterUtilities.swift */,
 			);
 			name = "Presenter Helpers";
+			sourceTree = "<group>";
+		};
+		473853B01C7A5892000AB1E2 /* RuleViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				473853B11C7A590A000AB1E2 /* RuleViewController.swift */,
+			);
+			name = RuleViewControllers;
+			sourceTree = "<group>";
+		};
+		473853B31C7A5956000AB1E2 /* Rule Presenters */ = {
+			isa = PBXGroup;
+			children = (
+				473853B41C7A596E000AB1E2 /* RulePresenter.swift */,
+				473853B61C7A5A43000AB1E2 /* RulePresenterDelegate.swift */,
+			);
+			name = "Rule Presenters";
 			sourceTree = "<group>";
 		};
 		475927AF1C6C723D00D24DE9 /* Helpers */ = {
@@ -380,7 +404,7 @@
 		479CD2841C1B8AA300C8D1D6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				47DF1C451C6879D700482390 /* DetailViews */,
+				47DF1C451C6879D700482390 /* DetailViewControllers */,
 				4778C0AB1C657F6500F5A259 /* SequenceCollectionView */,
 			);
 			name = UI;
@@ -431,15 +455,16 @@
 			name = UI;
 			sourceTree = "<group>";
 		};
-		47DF1C451C6879D700482390 /* DetailViews */ = {
+		47DF1C451C6879D700482390 /* DetailViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				473853B01C7A5892000AB1E2 /* RuleViewControllers */,
 				835619C91C6D6AAA00488E99 /* NodeDetailViewController.swift */,
 				835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */,
 				4720B5071C6F00B300229734 /* DateTimePickerViewController.swift */,
 				4720B5091C6F00E500229734 /* DateTimePickerViewController.xib */,
 			);
-			name = DetailViews;
+			name = DetailViewControllers;
 			sourceTree = "<group>";
 		};
 		69793A9D031B4179C7761969 /* Pods */ = {
@@ -850,6 +875,7 @@
 				8329DE9B1C63DF10001B3A2F /* SequenceCollectionView.swift in Sources */,
 				83C73E0E1BE31C4F0045973C /* AppConfiguration.swift in Sources */,
 				475927B11C6C725700D24DE9 /* Dwifft.swift in Sources */,
+				473853B51C7A596E000AB1E2 /* RulePresenter.swift in Sources */,
 				477C2CB51C40B3AD0071467C /* TransitionNodeView.swift in Sources */,
 				473574791B9A68BE00493CA0 /* Rule.swift in Sources */,
 				832BA20A1C740686004331A7 /* NodeView.swift in Sources */,
@@ -866,7 +892,9 @@
 				477212061BED699500D5E988 /* FilamentDocumentsManager.swift in Sources */,
 				47CD21C61BDF807900AF25BE /* Sequence+EventLogic.swift in Sources */,
 				47A14E811C21384F00B45F86 /* DirectoryMonitor.swift in Sources */,
+				473853B21C7A590A000AB1E2 /* RuleViewController.swift in Sources */,
 				473574771B9A68AC00493CA0 /* Sequence.swift in Sources */,
+				473853B71C7A5A43000AB1E2 /* RulePresenterDelegate.swift in Sources */,
 				835740B21C77AD0700CFBB1B /* Event.swift in Sources */,
 				4720B50E1C71C32100229734 /* EmptyNodeView.swift in Sources */,
 				473574841B9A91A200493CA0 /* ListPresenterAlgorithms.swift in Sources */,

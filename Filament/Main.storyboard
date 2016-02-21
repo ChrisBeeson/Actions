@@ -14,7 +14,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tsv-iX-MTb">
-                                <rect key="frame" x="43" y="80" width="117" height="33"/>
+                                <rect key="frame" x="160" y="91" width="117" height="33"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Filament" id="7Qb-7x-W9F">
                                     <font key="font" metaFont="system" size="27"/>
                                     <color key="textColor" white="0.39537037037037037" alpha="1" colorSpace="calibratedWhite"/>
@@ -22,15 +22,19 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t6g-MD-dsg">
-                                <rect key="frame" x="43" y="65" width="104" height="17"/>
+                                <rect key="frame" x="166" y="72" width="104" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="1.0 (1092)" id="0gg-qD-ey5">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iy5-8s-h5p">
+                                <rect key="frame" x="49" y="57" width="74" height="74"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Filament-Logo-4" id="feY-eR-E96"/>
+                            </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s8o-iA-4ZM">
-                                <rect key="frame" x="74" y="0.0" width="184" height="17"/>
+                                <rect key="frame" x="74" y="8" width="184" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Made with love in Valentine, NSW" id="21H-LN-P21">
                                     <font key="font" metaFont="systemSemibold" size="10"/>
                                     <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -936,6 +940,7 @@ AwEVARgBHQAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAEfA
         </scene>
     </scenes>
     <resources>
+        <image name="Filament-Logo-4" width="1024" height="1024"/>
         <image name="NSAddTemplate" width="11" height="11"/>
     </resources>
 </document>

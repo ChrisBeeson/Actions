@@ -9,6 +9,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NodeDetailViewController" customModule="FilamentKit">
             <connections>
+                <outlet property="dateTextField" destination="ZEx-8E-xlh" id="oZN-8F-R1O"/>
                 <outlet property="eventStackView" destination="qEl-Q6-vlS" id="uTT-bV-4WO"/>
                 <outlet property="mainStackView" destination="fns-Wr-QDB" id="JcT-4E-8ky"/>
                 <outlet property="notesTextField" destination="soW-a3-LlD" id="lpq-MK-hdH"/>
@@ -79,7 +80,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="17" id="48V-2r-nGl"/>
                                             </constraints>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="12.30 Weds 16th June" id="u49-fr-dNX">
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="u49-fr-dNX">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" white="0.28054807318581476" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -138,8 +139,8 @@
                                 <rect key="frame" x="1" y="1" width="254" height="42"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <tokenField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WcC-2Z-6n2">
-                                        <rect key="frame" x="0.0" y="0.0" width="77" height="17"/>
+                                    <tokenField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WcC-2Z-6n2">
+                                        <rect key="frame" x="0.0" y="0.0" width="254" height="42"/>
                                         <tokenFieldCell key="cell" selectable="YES" alignment="left" title="~30m" drawsBackground="YES" allowsEditingTextAttributes="YES" id="5UP-Ba-U0x">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -147,6 +148,12 @@
                                         </tokenFieldCell>
                                     </tokenField>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="WcC-2Z-6n2" secondAttribute="trailing" id="1iG-aB-eUg"/>
+                                    <constraint firstAttribute="bottom" secondItem="WcC-2Z-6n2" secondAttribute="bottom" id="IGr-1t-pVb"/>
+                                    <constraint firstItem="WcC-2Z-6n2" firstAttribute="top" secondItem="tYG-DU-IR1" secondAttribute="top" id="Pfn-Gd-gAY"/>
+                                    <constraint firstItem="WcC-2Z-6n2" firstAttribute="leading" secondItem="tYG-DU-IR1" secondAttribute="leading" id="kgf-7i-cWg"/>
+                                </constraints>
                             </view>
                             <constraints>
                                 <constraint firstAttribute="height" constant="54" id="6eM-cH-dwT"/>
@@ -178,7 +185,7 @@
                 <constraint firstAttribute="trailing" secondItem="fns-Wr-QDB" secondAttribute="trailing" constant="20" id="pgi-jQ-EEF"/>
                 <constraint firstAttribute="bottom" secondItem="fns-Wr-QDB" secondAttribute="bottom" constant="17" id="xuz-lq-4GV"/>
             </constraints>
-            <point key="canvasLocation" x="-209" y="13"/>
+            <point key="canvasLocation" x="-209" y="12.5"/>
         </customView>
         <dateFormatter dateStyle="medium" timeStyle="short" id="ige-uG-4DW"/>
         <customView id="wsH-fx-EnY">
@@ -189,7 +196,7 @@
                     <rect key="frame" x="115" y="7" width="175" height="52"/>
                     <subviews>
                         <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aJ9-22-O7b">
-                            <rect key="frame" x="12" y="30" width="163" height="22"/>
+                            <rect key="frame" x="2" y="30" width="173" height="22"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="prO-Ly-hIb">
                                     <rect key="frame" x="-2" y="4" width="49" height="14"/>
@@ -200,12 +207,12 @@
                                     </textFieldCell>
                                 </textField>
                                 <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HE0-9R-Lkl">
-                                    <rect key="frame" x="53" y="0.0" width="38" height="22"/>
+                                    <rect key="frame" x="53" y="0.0" width="48" height="22"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fHN-R9-PYA">
-                                            <rect key="frame" x="0.0" y="0.0" width="25" height="22"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="35" height="22"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="25" id="SOY-K7-gbL"/>
+                                                <constraint firstAttribute="width" constant="35" id="SOY-K7-gbL"/>
                                                 <constraint firstAttribute="height" constant="22" id="XvD-nY-dQ5"/>
                                             </constraints>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" bezelStyle="round" id="gb6-L4-7da">
@@ -215,7 +222,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="674-hF-T7y">
-                                            <rect key="frame" x="22" y="-3" width="19" height="27"/>
+                                            <rect key="frame" x="32" y="-3" width="19" height="27"/>
                                             <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="Urv-nG-iNe"/>
                                         </stepper>
                                     </subviews>
@@ -229,7 +236,7 @@
                                     </customSpacing>
                                 </stackView>
                                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9kC-FZ-nM2">
-                                    <rect key="frame" x="99" y="-2" width="64" height="25"/>
+                                    <rect key="frame" x="109" y="-2" width="64" height="25"/>
                                     <popUpButtonCell key="cell" type="roundTextured" title="Hour" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" selectedItem="qWB-q7-Qsm" id="xuU-ix-co0">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="menu"/>
@@ -255,7 +262,7 @@
                             </customSpacing>
                         </stackView>
                         <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9dm-cw-Q81">
-                            <rect key="frame" x="40" y="0.0" width="135" height="22"/>
+                            <rect key="frame" x="30" y="0.0" width="145" height="22"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Oo5-vn-sOA">
                                     <rect key="frame" x="-2" y="4" width="21" height="14"/>
@@ -266,12 +273,12 @@
                                     </textFieldCell>
                                 </textField>
                                 <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HzK-M9-ugA">
-                                    <rect key="frame" x="25" y="0.0" width="38" height="22"/>
+                                    <rect key="frame" x="25" y="0.0" width="48" height="22"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="anB-XG-P0k">
-                                            <rect key="frame" x="0.0" y="0.0" width="25" height="22"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="35" height="22"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="25" id="556-ga-QyB"/>
+                                                <constraint firstAttribute="width" constant="35" id="556-ga-QyB"/>
                                                 <constraint firstAttribute="height" constant="22" id="7Hg-hS-j5H"/>
                                             </constraints>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" bezelStyle="round" id="EKM-W6-hel">
@@ -281,7 +288,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ivx-F6-R5J">
-                                            <rect key="frame" x="22" y="-3" width="19" height="27"/>
+                                            <rect key="frame" x="32" y="-3" width="19" height="27"/>
                                             <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="TCl-v6-bRz"/>
                                         </stepper>
                                     </subviews>
@@ -295,7 +302,7 @@
                                     </customSpacing>
                                 </stackView>
                                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oM7-9v-bcv">
-                                    <rect key="frame" x="71" y="-2" width="64" height="25"/>
+                                    <rect key="frame" x="81" y="-2" width="64" height="25"/>
                                     <popUpButtonCell key="cell" type="roundTextured" title="Hour" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="3su-so-90w" id="BYw-uJ-B34">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="menu"/>
