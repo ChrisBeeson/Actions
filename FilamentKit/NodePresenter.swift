@@ -56,7 +56,7 @@ class NodePresenter : NSObject {
             undoManager?.prepareWithInvocationTarget(self).renameTitle(node.title)
             let undoActionName = NSLocalizedString("Rename", comment: "")
             undoManager?.setActionName(undoActionName)
-        
+            
             renameTitle(newValue)
         }
     }
@@ -84,23 +84,9 @@ class NodePresenter : NSObject {
             return node.event
         }
     }
-
-/*
-    var hasRuleError:Bool {
-        get {
-            return _hasRuleError
-        }
-        set {
-            _hasRuleError = newValue
-            if _hasRuleError == true { _currentStatus = .Error } else {
-                _currentStatus = calcNodeStatus()
-            }
-        }
-    }
-  */
     
     //MARK: Methods
-
+    
     
     func renameTitle(title:String) {
         node.title = title
@@ -112,7 +98,7 @@ class NodePresenter : NSObject {
     func updateNodeStatus() {
         
         let newStatus = calcNodeStatus()
-
+        
         switch newStatus {
             
         case .Ready:
@@ -130,21 +116,17 @@ class NodePresenter : NSObject {
         default: break
         }
         
-        if newStatus != _currentStatus || newStatus == .Error {
-            delegates.forEach { $0.nodePresenterDidChangeStatus(self, toStatus:newStatus) }
-            print("Node \(node.title) : \(newStatus)")
-        }
-        
+        delegates.forEach { $0.nodePresenterDidChangeStatus(self, toStatus:newStatus) }
+        //    print("Node \(node.title) : \(newStatus)")
         _currentStatus = newStatus
-        
     }
     
     
     func calcNodeStatus() -> NodeStatus {
-
+        
         // if the node has an error it cannot be removed here - not sure why but it's a rule I've made up
         if _currentStatus == .Error { return .Error }
-    
+        
         var newStatus = NodeStatus.Void
         
         if node.event == nil { return .Inactive }
@@ -172,8 +154,6 @@ class NodePresenter : NSObject {
     }
     
     
-    
-    
     // MARK: Delegate management
     
     func addDelegate(delegate:NodePresenterDelegate) {
@@ -184,8 +164,6 @@ class NodePresenter : NSObject {
     }
     
     func removeDelegate(delegate:NodePresenterDelegate) {
-        
         delegates = delegates.filter { return $0 !== delegate }
     }
-    
 }

@@ -54,16 +54,14 @@ public class SequencePresenter : NSObject {
     }
     
     public var completionDate : NSDate? {
-        /*
+        
         if nodes == nil { return nil}
         if nodes!.count == 0 { return nodes![nodes!.count-1].event?.endDate }
         if let event = nodes![nodes!.count-1].event {
-        return event.endDate
+            return event.endDate
         } else {
-        return nil
+            return nil
         }
-        */
-        return nil
     }
     
     
@@ -74,19 +72,7 @@ public class SequencePresenter : NSObject {
     
     // MARK: Methods
     
-    func presenterForNode(node:Node) -> NodePresenter {
-        
-        let presenter = nodePresenters.filter {$0.node === node}
-        if presenter.count == 1 { return presenter[0] }
-        
-        let newPresenter = NodePresenter(node: node)
-        newPresenter.undoManager = representingDocument?.undoManager
-        nodePresenters.append(newPresenter)
-        return newPresenter
-    }
-    
-    
-    
+
     func setSequence(sequence: Sequence) {
         
         guard sequence != self.sequence else { return }
@@ -106,6 +92,23 @@ public class SequencePresenter : NSObject {
         
         title = newTitle
     }
+    
+    public func setDate(date:NSDate?, isStartDate:Bool) {
+        
+        if sequence!.date != nil && date!.isEqualToDate(sequence!.date!) && isStartDate == sequence?.startsAtDate { return }
+        
+        self.undoManager?.prepareWithInvocationTarget(self).setDate(self.date, isStartDate: true)
+        let undoActionName = NSLocalizedString("Change Date", comment: "")
+        self.undoManager?.setActionName(undoActionName)
+        
+        self.sequence!.date = date
+        self.sequence!.startsAtDate = isStartDate
+        self.delegates.forEach { $0.sequencePresenterUpdatedDate(self) }
+        
+        updateSequenceEvents()
+    }
+    
+    
     
     
     /*
@@ -183,23 +186,6 @@ public class SequencePresenter : NSObject {
     }
     
     
-    public func setDate(date:NSDate?, isStartDate:Bool) {
-        
-        if sequence!.date != nil && date!.isEqualToDate(sequence!.date!) && isStartDate == sequence?.startsAtDate { return }
-        
-        self.undoManager?.prepareWithInvocationTarget(self).setDate(self.date, isStartDate: true)
-        let undoActionName = NSLocalizedString("Change Date", comment: "")
-        self.undoManager?.setActionName(undoActionName)
-        
-        self.sequence!.date = date
-        self.sequence!.startsAtDate = isStartDate
-        self.delegates.forEach { $0.sequencePresenterUpdatedDate(self) }
-        
-        updateSequenceEvents()
-    }
-    
-    
-    
     // MARK: Events
     
     /* This is the entry to requesting the sequence to recalculate all events */
@@ -207,9 +193,9 @@ public class SequencePresenter : NSObject {
     func updateSequenceEvents() {
         guard sequence != nil else { return }
         guard date != nil else { return }
-    
+        
         let result = sequence!.UpdateEvents()
-    
+        
         nodePresenters.forEach{ $0.currentStatus = .Inactive  }  //first reset all nodes
         currentStatus = .Void
         
@@ -231,6 +217,7 @@ public class SequencePresenter : NSObject {
             
             for index in index...nodes!.count-1 {
                 let presenter = presenterForNode(nodes![index])
+                nodes![index].deleteEvent()
                 presenter.currentStatus = .Error
             }
         }
@@ -239,7 +226,7 @@ public class SequencePresenter : NSObject {
     }
     
     
-     // MARK: Status
+    // MARK: Status
     
     internal func calcCurrentStatus() -> SequenceStatus {
         
@@ -272,7 +259,6 @@ public class SequencePresenter : NSObject {
             NSTimer.schedule(delay: secsToStart+0.1) { timer in
                 self.updateSequenceStatus()
             }
-            
         default: break
         }
         
@@ -286,70 +272,18 @@ public class SequencePresenter : NSObject {
     }
     
     
-
-    
-    
-    
-    /*
-    
-    func queueNextItemRefresh() {
-    
-    // work out what item is next, then set a timer to update the status of everything when it hits.
-    
-    
-    switch currentStatus {
-    
-    case .NoStartDateSet: break;
-    case .WaitingForStart:
-    
-    if let date = date {
-    let secondsToStartDate = date.secondsFrom(NSDate())
-    Async.utility(after:secondsToStartDate) { [unowned self] in
-    self.updateSequenceStatus()
-    }
+    func presenterForNode(node:Node) -> NodePresenter {
+        
+        let presenter = nodePresenters.filter {$0.node === node}
+        if presenter.count == 1 { return presenter[0] }
+        
+        let newPresenter = NodePresenter(node: node)
+        newPresenter.undoManager = representingDocument?.undoManager
+        nodePresenters.append(newPresenter)
+        return newPresenter
     }
     
-    case .Running:
-    guard nodes != nil else { break }
-    
-    for node in nodes! {
-    
-    let presenter = presenterForNode(node)
-    
-    if presenter.currentStatus == .Ready {
-    
-    if let event = presenter.event {
-    let secondsToStartDate = event.startDate.secondsFrom(NSDate())
-    Async.utility(after:secondsToStartDate) { [unowned self] in
-    self.updateSequenceStatus()
-    }
-    return
-    }
-    }
-    }
-    
-    //TODO: handle waitingForUser
-    
-    // last node in list
-    
-    let presenter = presenterForNode(nodes![nodes!.count-1])
-    
-    if presenter.currentStatus == .Running {
-    
-    let secondsToCompletion = NSDate().secondsEarlierThan(presenter.event?.endDate)
-    
-    Async.utility(after:secondsToCompletion) { [unowned self] in
-    self.updateSequenceStatus()
-    }
-    }
-    
-    case .Paused: break
-    case .FailedNode: break
-    case .Completed: break
-    case .Void: break
-    }
-    }
-    */
+//MARK: Delegate helpers
     
     public func addDelegate(delegate:SequencePresenterDelegate) {
         

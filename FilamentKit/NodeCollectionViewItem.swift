@@ -51,7 +51,6 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
             presenter!.updateNodeStatus()
             nodeView.currentStatus = presenter!.currentStatus
         }
-
     }
     
     
@@ -98,7 +97,7 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     
         guard presenter == self.presenter else { return }
         
-         self.nodeView.currentStatus = toStatus
+        titleTextField?.textColor = toStatus == .Completed ?  NSColor.lightGrayColor() : NSColor.blackColor()
         
         if toStatus == .Ready {
             delay(Double(indexPath!.item) * 0.1) {
@@ -108,18 +107,6 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
              self.nodeView.currentStatus = toStatus
         }
     }
-    
-    /*
-    
-    
-    NSAnimationContext.runAnimationGroup({ context in
-    context.duration = 1.0
-    self.testView.animator().hidden = !self.testView.hidden
-    }, completionHandler: nil)
-    
-    */
-    
-    
     
     func nodePresenterDidChangeTitle(presenter: NodePresenter) {
         

@@ -47,7 +47,6 @@ extension Sequence {
     }
     
      func insertActionNode(node: Node, index:Int? = nil) {
-        
         precondition(node.type == .Action, "Trying to insert node into sequence that is not of type .Action")
         
         let indexToInsertNode = index ?? self.actionNodes.count
@@ -66,7 +65,6 @@ extension Sequence {
      func removeActionNode(node:Node) {
         
         let index = actionNodes.indexOf(node)
-        
         precondition(index != nil, "Cannot remove Node because it doesn't exist in the sequence.")
         
         actionNodes.removeObject(node)

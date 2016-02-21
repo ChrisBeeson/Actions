@@ -21,7 +21,7 @@ class NodeView: NSView {
         
         super.init(coder: coder)
         
-        pathLayer.lineWidth = 0.5
+        pathLayer.lineWidth = 1.0
         pathLayer.path = calculatePath()
         pathLayer.shouldRasterize = false
         pathLayer.strokeColor = drawingContextColour(.LightGrey).stroke
@@ -50,10 +50,13 @@ class NodeView: NSView {
             CATransaction.setDisableActions(true)
             
             if selected {
-                pathLayer.lineWidth = 2
+                pathLayer.lineWidth = 2.0
+                if currentStatus == .Inactive || currentStatus == .Ready || currentStatus == .Completed {
                 pathLayer.strokeColor = AppConfiguration.Palette.selectionBlue.CGColor
+                }
+                
             } else {
-                pathLayer.lineWidth = 0.6
+                pathLayer.lineWidth = 1.0
                 pathLayer.strokeColor = drawingContextColour(colourForStatus(currentStatus)).stroke
             }
             CATransaction.commit()
@@ -65,7 +68,6 @@ class NodeView: NSView {
             if newValue == currentStatus { return }
             performAnimationsForNewStatus(newValue)
         }
-        
         didSet {
             self.needsLayout = true
         }
@@ -94,7 +96,7 @@ class NodeView: NSView {
             //   self.pathLayer.strokeColor = drawingContextColour(.Green).stroke
             //self.pathLayer.fillColor = drawingContextColour(.Green).fill
             
-            Async.main{ [unowned self] in
+            //Async.main{ [unowned self] in
                 CATransaction.begin()
                 CATransaction.setDisableActions(true)
                 self.pathLayer.strokeColor = drawingContextColour(.Green).stroke
@@ -106,7 +108,7 @@ class NodeView: NSView {
                 self.pathLayer.strokeColor = drawingContextColour(.LightGrey).stroke
                 self.pathLayer.fillColor = drawingContextColour(.LightGrey).fill
                 CATransaction.commit()
-            }
+            // }
             
         case .Running:
                 Async.main{ [unowned self] in
