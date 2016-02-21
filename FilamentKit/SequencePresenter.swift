@@ -15,7 +15,7 @@ SequencePresenter is responsible for : SequenceStatus & NodePresenters associate
 
 */
 
-public enum SequenceStatus: Int { case NoStartDateSet, WaitingForStart, Running, Paused, FailedNode, Completed, Void }
+public enum SequenceStatus: Int { case NoStartDateSet, WaitingForStart, Running, Paused, HasFailedNode, Completed, Void }
 
 public class SequencePresenter : NSObject {
     
@@ -92,8 +92,8 @@ public class SequencePresenter : NSObject {
         guard sequence != self.sequence else { return }
         
         self.sequence = sequence
-        sequence.UpdateEvents()
-        updateSequenceStatus()
+        updateSequenceEvents()
+        
         delegates.forEach{ $0.sequencePresenterDidRefreshCompleteLayout(self) }
     }
     
@@ -187,28 +187,63 @@ public class SequencePresenter : NSObject {
         
         if sequence!.date != nil && date!.isEqualToDate(sequence!.date!) && isStartDate == sequence?.startsAtDate { return }
         
-        //    Async.main { [unowned self] in
-            self.sequence!.date = date
-            self.sequence!.startsAtDate = isStartDate
-            let result = self.sequence!.UpdateEvents()
+        self.undoManager?.prepareWithInvocationTarget(self).setDate(self.date, isStartDate: true)
+        let undoActionName = NSLocalizedString("Change Date", comment: "")
+        self.undoManager?.setActionName(undoActionName)
         
-            self.delegates.forEach { $0.sequencePresenterUpdatedDate(self) }
-            self.delegates.forEach { $0.sequencePresenterUpdatedCalendarEvents(result.success) }
-            nodePresenters.forEach{ $0.currentStatus = .Inactive  }
-            self.updateSequenceStatus()
-                //    }
-        //       .background {
-                self.undoManager?.prepareWithInvocationTarget(self).setDate(self.date, isStartDate: true)
-                let undoActionName = NSLocalizedString("Change Date", comment: "")
-                self.undoManager?.setActionName(undoActionName)
-        //   }
+        self.sequence!.date = date
+        self.sequence!.startsAtDate = isStartDate
+        self.delegates.forEach { $0.sequencePresenterUpdatedDate(self) }
+        
+        updateSequenceEvents()
     }
     
     
     
-    // MARK: Status
+    // MARK: Events
+    
+    /* This is the entry to requesting the sequence to recalculate all events */
+    
+    func updateSequenceEvents() {
+        guard sequence != nil else { return }
+        guard date != nil else { return }
+    
+        let result = sequence!.UpdateEvents()
+    
+        nodePresenters.forEach{ $0.currentStatus = .Inactive  }  //first reset all nodes
+        currentStatus = .Void
+        
+        if result.success == true {
+            updateSequenceStatus()
+            return
+        }
+        
+        // the sequence failed, flag node has an error, and all future nodes.
+        
+        guard result.firstFailedNode != nil else {
+            Swift.print("Was expecting the failed Node, but got nothing")
+            return
+        }
+        
+        currentStatus = .HasFailedNode
+        
+        if let index = nodes?.indexOf(result.firstFailedNode!) where index != -1 {
+            
+            for index in index...nodes!.count-1 {
+                let presenter = presenterForNode(nodes![index])
+                presenter.currentStatus = .Error
+            }
+        }
+        
+        updateSequenceStatus()
+    }
+    
+    
+     // MARK: Status
     
     internal func calcCurrentStatus() -> SequenceStatus {
+        
+        guard currentStatus != .HasFailedNode else { return .HasFailedNode }
         
         var status = SequenceStatus.Void
         if date == nil { status = .NoStartDateSet }
@@ -249,6 +284,11 @@ public class SequencePresenter : NSObject {
         
         nodePresenters.forEach{ $0.updateNodeStatus() }
     }
+    
+    
+
+    
+    
     
     /*
     

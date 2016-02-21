@@ -13,7 +13,7 @@ import EventKit
 
 extension Sequence {
     
-     func UpdateEvents() -> (success:Bool, firstFailedNode:Node?) {
+    func UpdateEvents() -> (success:Bool, firstFailedNode:Node?) {
         
         guard var time = date else { return (false,nil) }
         
@@ -30,7 +30,7 @@ extension Sequence {
             rules.append(AvoidCalendarEvents(calendars: [CalendarManager.sharedInstance.applicationCalendar!]))
             
             // TODO: app generic rules
-
+            
             
             switch postion(node) {
                 
@@ -60,7 +60,7 @@ extension Sequence {
                 
                 print("Failed at node: \(node.title)")
                 
-                //TODO: delete all events this node onwards
+                processEventsForTransitionPeriods()
                 
                 return (false, node)
             }
@@ -83,23 +83,24 @@ extension Sequence {
         for node in transitionNodes {
             
             // Bit of house keeping... really shouldn't go here.
-
-                if  let index = allNodes.indexOf(node) where index != -1 {
-                    node.leftTransitionNode = allNodes[index-1]
-                }
-
-                if  let index = allNodes.indexOf(node) where index != -1 {
-                    node.rightTransitionNode = allNodes[index+1]
-                }
             
-            let start = node.leftTransitionNode?.event!.endDate.dateByAddingSeconds(1)
-            let end = node.rightTransitionNode?.event!.startDate.dateBySubtractingSeconds(1)
+            if  let index = allNodes.indexOf(node) where index != -1 {
+                node.leftTransitionNode = allNodes[index-1]
+            }
+            
+            if  let index = allNodes.indexOf(node) where index != -1 {
+                node.rightTransitionNode = allNodes[index+1]
+            }
+            
+            let start = node.leftTransitionNode?.event?.endDate.dateByAddingSeconds(1)
+            let end = node.rightTransitionNode?.event?.startDate.dateBySubtractingSeconds(1)
             
             if start != nil && end != nil {
                 let period = DTTimePeriod(startDate: start, endDate: end)
-                 node.setEventPeriod(period)
+                node.setEventPeriod(period)
             } else {
-                print("Start and End Dates Nil processEventsForTransitionPeriods")
+                //Node failed
+                node.deleteEvent()
             }
         }
         

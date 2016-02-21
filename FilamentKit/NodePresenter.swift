@@ -85,7 +85,7 @@ class NodePresenter : NSObject {
         }
     }
 
-    
+/*
     var hasRuleError:Bool {
         get {
             return _hasRuleError
@@ -97,7 +97,7 @@ class NodePresenter : NSObject {
             }
         }
     }
-    
+  */
     
     //MARK: Methods
 
@@ -130,7 +130,7 @@ class NodePresenter : NSObject {
         default: break
         }
         
-        if newStatus != _currentStatus {
+        if newStatus != _currentStatus || newStatus == .Error {
             delegates.forEach { $0.nodePresenterDidChangeStatus(self, toStatus:newStatus) }
             print("Node \(node.title) : \(newStatus)")
         }
