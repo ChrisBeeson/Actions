@@ -82,8 +82,7 @@ class Event : NSObject {
     
     
     private func updateCalendarDates(startDate:NSDate, endDate:NSDate) {
-        guard calendarEvent != nil else { return }
-        
+ 
         if self.startDate.isEqualToDate(startDate) && self.endDate.isEqualToDate(endDate) {
             return
         }
@@ -91,8 +90,6 @@ class Event : NSObject {
         self.startDate = startDate
         self.endDate = endDate
         updateCalendarData()
-        
-        
     }
     
     func updateCalendarData() {

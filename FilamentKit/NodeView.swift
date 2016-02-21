@@ -36,7 +36,7 @@ class NodeView: NSView {
         super.layout()
         
         pathLayer.path = calculatePath()
-        performAnimationsForNewStatus(currentStatus)
+        //   performAnimationsForNewStatus(currentStatus)
     }
     
     
@@ -60,7 +60,7 @@ class NodeView: NSView {
         }
     }
     
-    var currentStatus:NodeStatus = .inActive {
+    var currentStatus:NodeStatus = .Inactive {
         willSet {
             if newValue == currentStatus { return }
             performAnimationsForNewStatus(newValue)
@@ -79,14 +79,14 @@ class NodeView: NSView {
     func performAnimationsForNewStatus(newStatus:NodeStatus) {
         
         //Remove any animation
-        
+       
         if newStatus != NodeStatus.Running && self.pathLayer.animationKeys()?.contains("RunningFill") == true  {
             self.pathLayer.removeAllAnimations()
         }
         
         switch newStatus {
             
-        case .inActive, .Completed:
+        case .Inactive:
             pathLayer.strokeColor = drawingContextColour(.LightGrey).stroke
             pathLayer.fillColor = drawingContextColour(.LightGrey).fill
             
@@ -109,7 +109,7 @@ class NodeView: NSView {
             }
             
         case .Running:
-              Async.main{ [unowned self] in
+                Async.main{ [unowned self] in
                 let anim = CABasicAnimation(keyPath: "fillColor")
                 anim.toValue = drawingContextColour(.Green).fill
                 anim.fromValue = drawingContextColour(.LightGrey).fill
@@ -125,7 +125,7 @@ class NodeView: NSView {
                 animStroke.duration = 0.5
                 animStroke.autoreverses = true
                 self.pathLayer.addAnimation(animStroke, forKey: "RunningStroke")
-            }
+                }
             
         case .WaitingForUserInput:
             pathLayer.strokeColor = drawingContextColour(.Blue).stroke
@@ -134,6 +134,11 @@ class NodeView: NSView {
         case .Error:
             pathLayer.strokeColor = drawingContextColour(.Red).stroke
             pathLayer.fillColor = drawingContextColour(.Red).fill
+            
+        case .Completed:
+            pathLayer.strokeColor = drawingContextColour(.LightGrey).fill
+            pathLayer.fillColor = drawingContextColour(.LightGrey).fill
+            
             
         case .Void: fatalError("Trying to add animation when statusNode = .Void")
         }
@@ -145,7 +150,7 @@ class NodeView: NSView {
     func colourForStatus(status:NodeStatus) -> NodeColour {
         
         switch status {
-        case .inActive: return .LightGrey
+        case .Inactive: return .LightGrey
         case .Ready: return .LightGrey
         case .Running: return .Green
         case .Completed: return .LightGrey

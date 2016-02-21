@@ -10,7 +10,7 @@ import Foundation
 import EventKit
 import DateTools
 
-enum NodeStatus: Int { case inActive, Ready, Running, WaitingForUserInput, Completed, Error, Void }
+enum NodeStatus: Int { case Inactive, Ready, Running, WaitingForUserInput, Completed, Error, Void }
 
 class NodePresenter : NSObject {
     
@@ -147,7 +147,7 @@ class NodePresenter : NSObject {
     
         var newStatus = NodeStatus.Void
         
-        if node.event == nil { return .inActive }
+        if node.event == nil { return .Inactive }
         if node.event!.startDate.isLaterThan(NSDate())  { newStatus = .Ready }
         if node.event!.startDate.isEarlierThanOrEqualTo(NSDate()) && node.event!.endDate.isLaterThanOrEqualTo(NSDate())  {
             newStatus = .Running

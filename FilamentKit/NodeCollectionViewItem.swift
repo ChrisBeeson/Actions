@@ -96,6 +96,8 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     
     func nodePresenterDidChangeStatus(presenter: NodePresenter, toStatus: NodeStatus) {
     
+        guard presenter == self.presenter else { return }
+        
          self.nodeView.currentStatus = toStatus
         
         if toStatus == .Ready {

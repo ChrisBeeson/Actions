@@ -89,9 +89,12 @@ public class SequencePresenter : NSObject {
     
     func setSequence(sequence: Sequence) {
         
+        guard sequence != self.sequence else { return }
+        
         self.sequence = sequence
-        delegates.forEach{ $0.sequencePresenterDidRefreshCompleteLayout(self) }
+        sequence.UpdateEvents()
         updateSequenceStatus()
+        delegates.forEach{ $0.sequencePresenterDidRefreshCompleteLayout(self) }
     }
     
     
@@ -191,7 +194,7 @@ public class SequencePresenter : NSObject {
         
             self.delegates.forEach { $0.sequencePresenterUpdatedDate(self) }
             self.delegates.forEach { $0.sequencePresenterUpdatedCalendarEvents(result.success) }
-            nodePresenters.forEach{ $0.currentStatus = .inActive  }
+            nodePresenters.forEach{ $0.currentStatus = .Inactive  }
             self.updateSequenceStatus()
                 //    }
         //       .background {

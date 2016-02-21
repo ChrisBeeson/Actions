@@ -58,6 +58,8 @@ extension Sequence {
             
             if solvedPeriod == nil || solvedPeriod!.solved == false {
                 
+                print("Failed at node: \(node.title)")
+                
                 //TODO: delete all events this node onwards
                 
                 return (false, node)
@@ -81,29 +83,26 @@ extension Sequence {
         for node in transitionNodes {
             
             // Bit of house keeping... really shouldn't go here.
-            
-            if node.leftTransitionNode == nil {
+
                 if  let index = allNodes.indexOf(node) where index != -1 {
                     node.leftTransitionNode = allNodes[index-1]
                 }
-            }
-            
-            if node.rightTransitionNode == nil {
+
                 if  let index = allNodes.indexOf(node) where index != -1 {
                     node.rightTransitionNode = allNodes[index+1]
                 }
-            }
             
             let start = node.leftTransitionNode?.event!.endDate.dateByAddingSeconds(1)
             let end = node.rightTransitionNode?.event!.startDate.dateBySubtractingSeconds(1)
             
             if start != nil && end != nil {
                 let period = DTTimePeriod(startDate: start, endDate: end)
-                node.setEventPeriod(period)
+                 node.setEventPeriod(period)
             } else {
-                print("Start and End Dates when processEventsForTransitionPeriods")
+                print("Start and End Dates Nil processEventsForTransitionPeriods")
             }
         }
+        
+        //  nodeChain().forEach { print("\($0.type):  \($0.event!.startDate.formattedDateWithFormat("hh:mm"))  ->  \($0.event!.endDate.formattedDateWithFormat("hh:mm"))")}
     }
-
 }

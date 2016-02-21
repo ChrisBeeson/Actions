@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
+        <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="DateTimePickerViewController" customModule="FilamentKit" customModuleProvider="target">
@@ -15,44 +16,55 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="221" height="40"/>
+            <rect key="frame" x="0.0" y="0.0" width="190" height="40"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <datePicker verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vcl-AO-cHR" customClass="PopDatePicker" customModule="PopDatePicker">
-                    <rect key="frame" x="59" y="10" width="83" height="22"/>
-                    <datePickerCell key="cell" alignment="left" drawsBackground="NO" datePickerStyle="textField" id="eo8-Kd-2Yx">
-                        <font key="font" metaFont="systemLight" size="13"/>
-                        <calendarDate key="date" timeIntervalSinceReferenceDate="-595929600" calendarFormat="%Y-%m-%d %H:%M:%S %z">
-                            <!--1982-02-12 08:00:00 -0800-->
-                            <timeZone key="timeZone" name="US/Pacific"/>
-                        </calendarDate>
-                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        <color key="textColor" white="0.098372147251851852" alpha="1" colorSpace="calibratedWhite"/>
-                    </datePickerCell>
-                </datePicker>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zWV-p8-ZvR">
-                    <rect key="frame" x="14" y="13" width="43" height="17"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="starts:" id="yYZ-cU-31G">
-                        <font key="font" metaFont="systemUltraLight" size="13"/>
-                        <color key="textColor" white="0.13631365740740742" alpha="0.84999999999999998" colorSpace="calibratedWhite"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <datePicker verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uuy-rS-CJ3" customClass="PopDatePicker" customModule="PopDatePicker">
-                    <rect key="frame" x="142" y="10" width="69" height="22"/>
-                    <datePickerCell key="cell" alignment="left" drawsBackground="NO" datePickerStyle="textField" id="zYn-bQ-h42">
-                        <font key="font" metaFont="systemLight" size="13"/>
-                        <calendarDate key="date" timeIntervalSinceReferenceDate="-595929600" calendarFormat="%Y-%m-%d %H:%M:%S %z">
-                            <!--1982-02-12 08:00:00 -0800-->
-                            <timeZone key="timeZone" name="US/Pacific"/>
-                        </calendarDate>
-                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        <color key="textColor" white="0.09837214725" alpha="1" colorSpace="calibratedWhite"/>
-                        <datePickerElements key="datePickerElements" hour="YES" minute="YES"/>
-                    </datePickerCell>
-                </datePicker>
+                <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mzY-86-1zT">
+                    <rect key="frame" x="20" y="9" width="150" height="22"/>
+                    <subviews>
+                        <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vcl-AO-cHR" customClass="PopDatePicker" customModule="PopDatePicker">
+                            <rect key="frame" x="0.0" y="0.0" width="78" height="22"/>
+                            <datePickerCell key="cell" alignment="left" drawsBackground="NO" datePickerStyle="textField" id="eo8-Kd-2Yx">
+                                <font key="font" metaFont="system"/>
+                                <calendarDate key="date" timeIntervalSinceReferenceDate="-595929600" calendarFormat="%Y-%m-%d %H:%M:%S %z">
+                                    <!--1982-02-12 08:00:00 -0800-->
+                                    <timeZone key="timeZone" name="US/Pacific"/>
+                                </calendarDate>
+                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <color key="textColor" white="0.098372147251851852" alpha="1" colorSpace="calibratedWhite"/>
+                            </datePickerCell>
+                        </datePicker>
+                        <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Uuy-rS-CJ3" customClass="PopDatePicker" customModule="PopDatePicker">
+                            <rect key="frame" x="86" y="0.0" width="64" height="22"/>
+                            <datePickerCell key="cell" alignment="left" drawsBackground="NO" datePickerStyle="textField" id="zYn-bQ-h42">
+                                <font key="font" metaFont="system"/>
+                                <calendarDate key="date" timeIntervalSinceReferenceDate="-595929600" calendarFormat="%Y-%m-%d %H:%M:%S %z">
+                                    <!--1982-02-12 08:00:00 -0800-->
+                                    <timeZone key="timeZone" name="US/Pacific"/>
+                                </calendarDate>
+                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <color key="textColor" white="0.09837214725" alpha="1" colorSpace="calibratedWhite"/>
+                                <datePickerElements key="datePickerElements" hour="YES" minute="YES"/>
+                            </datePickerCell>
+                        </datePicker>
+                    </subviews>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
             </subviews>
-            <point key="canvasLocation" x="133.5" y="121"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="mzY-86-1zT" secondAttribute="trailing" constant="20" id="D1q-bP-I5k"/>
+                <constraint firstAttribute="bottom" secondItem="mzY-86-1zT" secondAttribute="bottom" constant="9" id="TQx-nn-Qac"/>
+                <constraint firstItem="mzY-86-1zT" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="9" id="hD7-aD-mz6"/>
+                <constraint firstItem="mzY-86-1zT" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="20" id="v6q-R0-Bra"/>
+            </constraints>
+            <point key="canvasLocation" x="178" y="171"/>
         </customView>
     </objects>
 </document>
