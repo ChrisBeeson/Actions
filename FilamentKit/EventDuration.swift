@@ -14,7 +14,7 @@ import DateTools
     // This rule sits the duration of an event.
     // It allows the event to be shortened to a minimum duration if required.
     
-     override var name: String { return "Event Duration" }
+     override var name: String { return "EventDuration" }
      override var availableToNodeType:NodeType { return .Action}
      override var conflictingRules: [Rule]? { return nil }
     

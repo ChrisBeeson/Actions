@@ -15,7 +15,7 @@ import DateTools
     // User specifies a time period, and can pick a variance size.
     // Eg Next event should happen in 5 hours, give or take 30mins
     
-     override var name: String { return "~>" }
+     override var name: String { return "TransitionDuration" }
      override var availableToNodeType:NodeType { return NodeType.Transition }
      override var conflictingRules: [Rule]? { return nil }
     

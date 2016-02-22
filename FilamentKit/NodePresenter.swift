@@ -18,6 +18,7 @@ class NodePresenter : NSObject {
     private var delegates = [NodePresenterDelegate]()
     private var _currentStatus = NodeStatus.Void
     private var _hasRuleError = false
+    private var rulePresenters = [RulePresenter]()
     
     //MARK: Properties
     
@@ -139,6 +140,31 @@ class NodePresenter : NSObject {
         assert(newStatus != .Void, "updateNodeStatus came up with Void")
         return newStatus
     }
+    
+    
+    //MARK: Rules
+    
+    func rulePresenterForRule(rule:Rule) -> RulePresenter {
+        
+        let presenter = rulePresenters.filter {$0.rule === rule}
+        if presenter.count == 1 { return presenter[0] }
+        
+        let newPresenter = RulePresenter.rulePresenterForRule(rule)
+        newPresenter.undoManager = self.undoManager
+        rulePresenters.append(newPresenter)
+        return newPresenter
+    }
+    
+    
+    func allRulePresenters() -> [RulePresenter] {
+        
+        var presenters = [RulePresenter]()
+        for rule in node.rules {
+           presenters.append(rulePresenterForRule(rule))
+        }
+        return presenters
+    }
+    
     
     
     func insertRules(rules:[Rule]) {

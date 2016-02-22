@@ -37,6 +37,8 @@
 		473853B21C7A590A000AB1E2 /* RuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473853B11C7A590A000AB1E2 /* RuleViewController.swift */; };
 		473853B51C7A596E000AB1E2 /* RulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473853B41C7A596E000AB1E2 /* RulePresenter.swift */; };
 		473853B71C7A5A43000AB1E2 /* RulePresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473853B61C7A5A43000AB1E2 /* RulePresenterDelegate.swift */; };
+		473D9F581C7AEF7500E81D39 /* EventDurationRulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473D9F571C7AEF7500E81D39 /* EventDurationRulePresenter.swift */; };
+		473D9F5A1C7AF53800E81D39 /* EventStartsInTimeFromNowRulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473D9F591C7AF53800E81D39 /* EventStartsInTimeFromNowRulePresenter.swift */; };
 		473EAEE11BA3A7D200AFEA2A /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473EAEE01BA3A7D200AFEA2A /* CalendarManager.swift */; };
 		473EAEE31BA3A91400AFEA2A /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 473EAEE21BA3A91400AFEA2A /* EventKit.framework */; };
 		473EAEE61BA3AD0300AFEA2A /* RuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473EAEE41BA3AD0300AFEA2A /* RuleTests.swift */; };
@@ -163,6 +165,8 @@
 		473853B11C7A590A000AB1E2 /* RuleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleViewController.swift; sourceTree = "<group>"; };
 		473853B41C7A596E000AB1E2 /* RulePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulePresenter.swift; sourceTree = "<group>"; };
 		473853B61C7A5A43000AB1E2 /* RulePresenterDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulePresenterDelegate.swift; sourceTree = "<group>"; };
+		473D9F571C7AEF7500E81D39 /* EventDurationRulePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDurationRulePresenter.swift; sourceTree = "<group>"; };
+		473D9F591C7AF53800E81D39 /* EventStartsInTimeFromNowRulePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventStartsInTimeFromNowRulePresenter.swift; sourceTree = "<group>"; };
 		473EAEE01BA3A7D200AFEA2A /* CalendarManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
 		473EAEE21BA3A91400AFEA2A /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		473EAEE41BA3AD0300AFEA2A /* RuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleTests.swift; sourceTree = "<group>"; };
@@ -364,10 +368,21 @@
 		473853B31C7A5956000AB1E2 /* Rule Presenters */ = {
 			isa = PBXGroup;
 			children = (
+				473853B01C7A5892000AB1E2 /* RuleViewControllers */,
+				473D9F561C7AEF4A00E81D39 /* base */,
+				473D9F571C7AEF7500E81D39 /* EventDurationRulePresenter.swift */,
+				473D9F591C7AF53800E81D39 /* EventStartsInTimeFromNowRulePresenter.swift */,
+			);
+			name = "Rule Presenters";
+			sourceTree = "<group>";
+		};
+		473D9F561C7AEF4A00E81D39 /* base */ = {
+			isa = PBXGroup;
+			children = (
 				473853B41C7A596E000AB1E2 /* RulePresenter.swift */,
 				473853B61C7A5A43000AB1E2 /* RulePresenterDelegate.swift */,
 			);
-			name = "Rule Presenters";
+			name = base;
 			sourceTree = "<group>";
 		};
 		475927AF1C6C723D00D24DE9 /* Helpers */ = {
@@ -458,7 +473,6 @@
 		47DF1C451C6879D700482390 /* DetailViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				473853B01C7A5892000AB1E2 /* RuleViewControllers */,
 				835619C91C6D6AAA00488E99 /* NodeDetailViewController.swift */,
 				835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */,
 				4720B5071C6F00B300229734 /* DateTimePickerViewController.swift */,
@@ -879,12 +893,14 @@
 				477C2CB51C40B3AD0071467C /* TransitionNodeView.swift in Sources */,
 				473574791B9A68BE00493CA0 /* Rule.swift in Sources */,
 				832BA20A1C740686004331A7 /* NodeView.swift in Sources */,
+				473D9F5A1C7AF53800E81D39 /* EventStartsInTimeFromNowRulePresenter.swift in Sources */,
 				834F85CF1C6ACF5E009CC72F /* AddNewNodeCollectionViewItem.swift in Sources */,
 				4720B5021C6E7F0400229734 /* NodePresenterDelegate.swift in Sources */,
 				4720B5081C6F00B300229734 /* DateTimePickerViewController.swift in Sources */,
 				4794B99E1C78522B009CE617 /* NSTimer+Closure.swift in Sources */,
 				47CD21C31BDF7B0900AF25BE /* Sequence+NodeLogic.swift in Sources */,
 				47ACA9541BB5464C000CAC61 /* DateToolsExtenstions.swift in Sources */,
+				473D9F581C7AEF7500E81D39 /* EventDurationRulePresenter.swift in Sources */,
 				47ACA9591BB54EEA000CAC61 /* AvoidCalendarEvents.swift in Sources */,
 				473EAEE11BA3A7D200AFEA2A /* CalendarManager.swift in Sources */,
 				473574871B9A91A200493CA0 /* ListPresenterUtilities.swift in Sources */,

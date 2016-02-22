@@ -8,13 +8,39 @@
 
 import Foundation
 
-public class RulePresenter {
+public class RulePresenter : NSObject {
     
-    private var rule : Rule?
     private var delegates = [RulePresenterDelegate]()
+    var undoManager: NSUndoManager?
+    
+    var rule : Rule
+    
+    init(rule: Rule) {
+        self.rule = rule
+        super.init()
+    }
+    
+    var name : NSString {
+        return rule.name
+    }
     
     
+    //MARK: Factory class
     
+    class func rulePresenterForRule(rule: Rule) -> RulePresenter {
+        
+        switch rule.className {
+            
+        case "FilamentKit.EventDuration":
+            return EventDurationRulePresenter(rule: rule)
+            
+        case "FilamentKit.EventStartsInTimeFromNow":
+            return EventStartsInTimeFromNowRulePresenter(rule: rule)
+            
+        default:
+            fatalError("Unable to find rule presenter for rule \(rule.className)")
+        }
+    }
     
     
     
@@ -30,9 +56,6 @@ public class RulePresenter {
     public func removeDelegate(delegate:RulePresenterDelegate) {
         
         delegates = delegates.filter { return $0 !== delegate }
-        //delegates.removeObject(delegate)
     }
-    
-    
     
 }
