@@ -10,6 +10,8 @@ import Foundation
 
 extension Sequence {
     
+    enum NodePostion: Int { case StartingAction, Transition, Action, EndingAction,None }
+    
      func nodeChain() -> [Node] {
         
         var nodesToReturn = [Node]()
@@ -138,9 +140,7 @@ extension Sequence {
         transitionNodes.append(transitionNode)
     }
     
-    
-     enum NodePostion: Int { case StartingAction, Transition, Action, EndingAction,None }
-    
+
      func postion(node: Node) -> NodePostion {
         
         if let index = actionNodes.indexOf(node) {

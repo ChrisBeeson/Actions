@@ -70,9 +70,11 @@ public class FilamentDocument: NSDocument {
     
     public class func newSequenceDocument(title: String) -> FilamentDocument {
         
+        print("New Sequence Doc")
+        
         let newDoc = FilamentDocument()
         
-        let actionNodes = [Node(text: "Action 1", type: .Action, rules: nil), Node(text: "Action 2", type: .Action, rules: nil)]
+        let actionNodes = [Node(text: "Event 1", type: .Action, rules: nil), Node(text: "Event 2", type: .Action, rules: nil)]
         let sequence = Sequence(name: title, actionNodes: actionNodes)
         
         // sequence.title = title

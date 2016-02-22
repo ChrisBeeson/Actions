@@ -9,22 +9,22 @@
 import Foundation
 import DateTools
 
- enum NodeType: Int { case Action = 0, Transition, All, None }
+enum NodeType: Int { case Action = 0, Transition, All, None }
 
- class Node: NSObject, NSCoding {
+class Node: NSObject, NSCoding {
     
-     var title = ""
-     var notes = ""
-     var rules = [Rule]()
-     var type = NodeType.Action
-     var leftTransitionNode: Node?
-     var rightTransitionNode: Node?
-     var UUID = NSUUID()
-     var event: TimeEvent?
+    var title = ""
+    var notes = ""
+    var rules = [Rule]()
+    var type = NodeType.Action
+    var leftTransitionNode: Node?
+    var rightTransitionNode: Node?
+    var UUID = NSUUID()
+    var event: TimeEvent?
     
     // MARK: Initializers
     
-     init(text: String, type: NodeType = .Action, rules:[Rule]?) {
+    init(text: String, type: NodeType = .Action, rules:[Rule]?) {
         
         self.title = text
         self.type = type
@@ -33,19 +33,21 @@ import DateTools
             for rule in incomingRules { self.rules.append(rule) }
         }
         
-        // Add default rules
+        // Add default rules if there arn't any already
         
-        switch type {
+        if self.rules.count == 0 {
+            switch type {
             case .Action: self.rules.append(EventDuration())
             case .Transition: self.rules.append(EventStartsInTimeFromNow())
             default: break
+            }
         }
         
         super.init()
     }
     
     
-     override init() {
+    override init() {
         super.init()
     }
     
@@ -62,7 +64,7 @@ import DateTools
         static let event = "event"
     }
     
-     required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         
         super.init()
         
@@ -80,8 +82,8 @@ import DateTools
             event!.synchronizeCalendarEvent()
         }
     }
-
-     func encodeWithCoder(encoder: NSCoder) {
+    
+    func encodeWithCoder(encoder: NSCoder) {
         
         encoder.encodeObject(title, forKey: SerializationKeys.title)
         encoder.encodeObject(notes, forKey: SerializationKeys.notes)
@@ -96,14 +98,15 @@ import DateTools
     
     // MARK: NSCopying
     
-     func copyWithZone(zone: NSZone) -> AnyObject  {
+    func copyWithZone(zone: NSZone) -> AnyObject  {
         
         //TODO: can't copy transistions nodes from here as they are meaningless
         
         let clone = Node(text: title, type: type, rules: rules)
         clone.notes = notes.copy() as! String
         clone.UUID = UUID.copy() as! NSUUID
-        // clone.event  = event!.copy() as? EKEvent
+        clone.event  = event?.copy() as? TimeEvent
+        //     for rule in rules { clone.rules.append(rule) }
         clone.leftTransitionNode = leftTransitionNode
         clone.rightTransitionNode = rightTransitionNode
         return clone
@@ -135,7 +138,7 @@ import DateTools
         }
     }
     
-   func deleteEvent() {
+    func deleteEvent() {
         if self.event == nil { return }
         self.event!.deleteCalenderEvent()
     }
@@ -143,8 +146,8 @@ import DateTools
     
     
     // Description
-
-     override var description: String {
+    
+    override var description: String {
         return " \(self.title) type: \(type) \n Rules: \n \(rules)"
     }
 }
