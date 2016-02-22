@@ -80,7 +80,7 @@ class NodePresenter : NSObject {
     }
     
     
-    var event: Event? {
+    var event: TimeEvent? {
         get {
             return node.event
         }

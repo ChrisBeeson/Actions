@@ -37,7 +37,7 @@ class RuleTests: XCTestCase {
     
     func testEventStartsInTimeFromNow() {
         
-        // Event starts in 1 hour, give or take 15 min
+        // TimeEvent starts in 1 hour, give or take 15 min
         
         let rule = EventStartsInTimeFromNow()
         rule.inputDate = NSDate.dateFromString("2015-1-1 10:00:00")

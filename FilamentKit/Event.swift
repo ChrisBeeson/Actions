@@ -1,5 +1,5 @@
 //
-//  Event.swift
+//  TimeEvent.swift
 //  Filament
 //
 //  Created by Chris on 20/02/2016.
@@ -11,7 +11,7 @@ import EventKit
 import Async
 import DateTools
 
-class Event : NSObject {
+class TimeEvent : NSObject {
     
     var startDate: NSDate
     var endDate: NSDate

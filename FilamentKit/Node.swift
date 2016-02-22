@@ -20,7 +20,7 @@ import DateTools
      var leftTransitionNode: Node?
      var rightTransitionNode: Node?
      var UUID = NSUUID()
-     var event: Event?
+     var event: TimeEvent?
     
     // MARK: Initializers
     
@@ -73,7 +73,7 @@ import DateTools
         UUID = aDecoder.decodeObjectForKey(SerializationKeys.uuid) as! NSUUID
         leftTransitionNode = aDecoder.decodeObjectForKey(SerializationKeys.leftTransitionNode) as? Node
         rightTransitionNode = aDecoder.decodeObjectForKey(SerializationKeys.rightTransitionNode) as? Node
-        event = aDecoder.decodeObjectForKey(SerializationKeys.event) as? Event
+        event = aDecoder.decodeObjectForKey(SerializationKeys.event) as? TimeEvent
         
         if event != nil {
             event!.owner = self
@@ -124,12 +124,12 @@ import DateTools
     }
     
     
-    //MARK: Event Creation and Maintance
+    //MARK: TimeEvent Creation and Maintance
     
     func setEventPeriod(period: DTTimePeriod) {
         
         if event == nil {
-            event = Event(period:period, owner: self)
+            event = TimeEvent(period:period, owner: self)
         } else {
             event!.period = period
         }

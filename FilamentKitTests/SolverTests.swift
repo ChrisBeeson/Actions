@@ -24,8 +24,8 @@ class SolverTests: XCTestCase {
     func testCalculateEventPeriod() {
         
         // Simple Just fits in the hole
-        // Event starts in 1 hour, give or take 15 min
-        // Event Dur is 30, min 15
+        // TimeEvent starts in 1 hour, give or take 15 min
+        // TimeEvent Dur is 30, min 15
         
         var rules:[Rule] = [EventDuration(), EventStartsInTimeFromNow()]
         
