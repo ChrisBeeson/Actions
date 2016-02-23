@@ -81,6 +81,8 @@
 		835619CC1C6D6AD100488E99 /* NodeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */; };
 		835619CD1C6D6E4B00488E99 /* NodeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */; };
 		835740B21C77AD0700CFBB1B /* TimeEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835740B11C77AD0700CFBB1B /* TimeEvent.swift */; };
+		837B67B11C7C3138000D1BCC /* TokenAccessoryBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837B67B01C7C3138000D1BCC /* TokenAccessoryBarViewController.swift */; };
+		837B67B31C7C34E7000D1BCC /* TokenAccessoryBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 837B67B21C7C34E7000D1BCC /* TokenAccessoryBarViewController.xib */; };
 		83861F2B1BEEA25F00A44122 /* FilamentDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83861F2A1BEEA25F00A44122 /* FilamentDocument.swift */; };
 		83AD7EBC1C7BA4E60097BD61 /* RuleTokenField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AD7EBB1C7BA4E60097BD61 /* RuleTokenField.swift */; };
 		83C73E0D1BE31C4F0045973C /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C73E0B1BE31BF20045973C /* AppConfiguration.swift */; };
@@ -207,6 +209,8 @@
 		835619C91C6D6AAA00488E99 /* NodeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDetailViewController.swift; sourceTree = "<group>"; };
 		835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NodeDetailViewController.xib; sourceTree = "<group>"; };
 		835740B11C77AD0700CFBB1B /* TimeEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeEvent.swift; sourceTree = "<group>"; };
+		837B67B01C7C3138000D1BCC /* TokenAccessoryBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenAccessoryBarViewController.swift; sourceTree = "<group>"; };
+		837B67B21C7C34E7000D1BCC /* TokenAccessoryBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TokenAccessoryBarViewController.xib; sourceTree = "<group>"; };
 		83861F2A1BEEA25F00A44122 /* FilamentDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilamentDocument.swift; sourceTree = "<group>"; };
 		83AD7EBB1C7BA4E60097BD61 /* RuleTokenField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleTokenField.swift; sourceTree = "<group>"; };
 		83C73E0B1BE31BF20045973C /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
@@ -465,6 +469,8 @@
 			children = (
 				47B6964A1BE5BC0B00260C2A /* Main.storyboard */,
 				47B696461BE564DC00260C2A /* MainWindowController.swift */,
+				837B67B01C7C3138000D1BCC /* TokenAccessoryBarViewController.swift */,
+				837B67B21C7C34E7000D1BCC /* TokenAccessoryBarViewController.xib */,
 				47B696441BE5645400260C2A /* FilamentsTableViewController.swift */,
 				479CD2851C1B8AE700C8D1D6 /* FilamentTableCellView.swift */,
 				47F5E82A1BF495D8004C0D16 /* AddFilamentViewController.swift */,
@@ -785,6 +791,7 @@
 				47B6964B1BE5BC0B00260C2A /* Main.storyboard in Resources */,
 				4731AA471C466807001EB80A /* README in Resources */,
 				83F6B97A1B995683002A5AAF /* Podfile in Resources */,
+				837B67B31C7C34E7000D1BCC /* TokenAccessoryBarViewController.xib in Resources */,
 				83DDAA4F1B997C9A001A4DBE /* SystemTrayMenu.xib in Resources */,
 				83F6B9611B994652002A5AAF /* Images.xcassets in Resources */,
 			);
@@ -958,6 +965,7 @@
 				47B696471BE564DC00260C2A /* MainWindowController.swift in Sources */,
 				83F7DE691C77D768008BEDCC /* GeneralExtensions.swift in Sources */,
 				47F5E82B1BF495D8004C0D16 /* AddFilamentViewController.swift in Sources */,
+				837B67B11C7C3138000D1BCC /* TokenAccessoryBarViewController.swift in Sources */,
 				479CD2861C1B8AE700C8D1D6 /* FilamentTableCellView.swift in Sources */,
 				83F6B95D1B994652002A5AAF /* AppDelegate.swift in Sources */,
 				47B696451BE5645400260C2A /* FilamentsTableViewController.swift in Sources */,

@@ -21,7 +21,6 @@ public class RuleTokenField : NSTokenField, NodePresenterDelegate, NSTokenFieldD
         super.init(coder: coder)
         
         self.delegate = self
-        
     }
     
     func loadTokenField() {

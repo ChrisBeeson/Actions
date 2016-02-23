@@ -17,6 +17,10 @@ class MainWindowController: NSWindowController {
          self.window!.titleVisibility = NSWindowTitleVisibility.Hidden
         
         addObserver(self, forKeyPath: "self.window.firstResponder", options: [.Initial, .Old, .New], context: nil)
+        
+        let toolBar = TokenAccessoryBarViewController()
+        toolBar.layoutAttribute = .Bottom
+        self.window!.addTitlebarAccessoryViewController(toolBar)
     }
     
 
@@ -31,7 +35,4 @@ class MainWindowController: NSWindowController {
     @IBAction func segmentedControlAction(sender: NSSegmentedControl) {
     
     }
-    
-    
-    
 }
