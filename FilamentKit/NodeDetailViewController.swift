@@ -10,7 +10,7 @@ import Foundation
 
 public class NodeDetailViewController : NSViewController, NodePresenterDelegate {
     
-    @IBOutlet weak var tokenField: NSTokenField!
+    @IBOutlet weak var tokenField: RuleTokenField!
     @IBOutlet weak var titleTextField: NSTextField!
     @IBOutlet weak var notesTextField: NSTextField!
     @IBOutlet weak var dateTextField: NSTextField!
@@ -25,6 +25,15 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate 
     @IBOutlet weak var testStack: NSStackView!
     
     var nodePresenter: NodePresenter?
+    
+    
+    override public func viewDidLoad() {
+        
+        tokenField.nodePresenter = nodePresenter!
+        nodePresenter!.addDelegate(tokenField)
+    }
+    
+    
     
     override public func viewWillAppear() {
         super.viewWillAppear()
@@ -42,22 +51,10 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate 
         } else {
              dateTextField.stringValue = ""
         }
-        */
-        
-        refreshTokenField()
+*/
     }
     
-    func refreshTokenField() {
-        
-        var ruleNames = [String]()
-        
-        for rulePresenter in nodePresenter!.allRulePresenters() {
-           
-            ruleNames.append(rulePresenter.name as String)
-        }
-        
-        tokenField.objectValue = ruleNames
-    }
+
     
     
     

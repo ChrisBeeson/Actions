@@ -18,7 +18,7 @@
                 <outlet property="testView" destination="wsH-fx-EnY" id="fKL-Cp-b3f"/>
                 <outlet property="titleStackView" destination="Pna-jH-CKI" id="wDw-re-Axf"/>
                 <outlet property="titleTextField" destination="vQH-96-PCB" id="Wqu-Py-zpu"/>
-                <outlet property="tokenField" destination="WcC-2Z-6n2" id="OeP-sj-DIV"/>
+                <outlet property="tokenField" destination="WcC-2Z-6n2" id="dGI-9c-zlU"/>
                 <outlet property="view" destination="c22-O7-iKe" id="EkG-En-0xY"/>
             </connections>
         </customObject>
@@ -89,7 +89,7 @@
                                 <rect key="frame" x="1" y="1" width="254" height="42"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <tokenField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WcC-2Z-6n2">
+                                    <tokenField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WcC-2Z-6n2" customClass="RuleTokenField" customModule="FilamentKit">
                                         <rect key="frame" x="0.0" y="0.0" width="254" height="42"/>
                                         <tokenFieldCell key="cell" selectable="YES" alignment="left" drawsBackground="YES" allowsEditingTextAttributes="YES" id="5UP-Ba-U0x">
                                             <font key="font" metaFont="system"/>
