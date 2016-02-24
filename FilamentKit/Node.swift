@@ -37,8 +37,8 @@ class Node: NSObject, NSCoding {
         
         if self.rules.count == 0 {
             switch type {
-            case .Action: self.rules.append(EventDuration())
-            case .Transition: self.rules.append(EventStartsInTimeFromNow())
+            case .Action: self.rules.append(EventDurationWithMinimumDuration ())
+            case .Transition: self.rules.append(TransitionDurationWithVariance())
             default: break
             }
         }

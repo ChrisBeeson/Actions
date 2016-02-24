@@ -8,6 +8,6 @@
 
 import Foundation
 
-class EventStartsInTimeFromNowRulePresenter : RulePresenter {
+class EventDurationWithMinimumDurationRulePresenter : RulePresenter {
     
 }

@@ -6,25 +6,27 @@
         <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="EventDurationViewController" customModule="FilamentKit" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="DurationWithVarianceViewController" customModule="FilamentKit" customModuleProvider="target">
             <connections>
+                <outlet property="durationUnitsPopUp" destination="K2B-9N-UCv" id="tmx-pg-21h"/>
+                <outlet property="varianceUnitsPopUp" destination="d8f-cA-odK" id="hNj-ly-ind"/>
                 <outlet property="view" destination="h3u-ic-QiG" id="Oe2-yN-7Se"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="h3u-ic-QiG">
-            <rect key="frame" x="0.0" y="0.0" width="218" height="86"/>
+            <rect key="frame" x="0.0" y="0.0" width="263" height="86"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <customView translatesAutoresizingMaskIntoConstraints="NO" id="6Cs-1n-4y5">
-                    <rect key="frame" x="20" y="20" width="178" height="46"/>
+                <customView ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Cs-1n-4y5">
+                    <rect key="frame" x="20" y="20" width="192" height="46"/>
                     <subviews>
                         <stackView distribution="fillEqually" orientation="vertical" alignment="trailing" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SrQ-ak-SuU">
-                            <rect key="frame" x="0.0" y="0.0" width="178" height="46"/>
+                            <rect key="frame" x="0.0" y="0.0" width="192" height="46"/>
                             <subviews>
                                 <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kF4-id-Yf1">
-                                    <rect key="frame" x="0.0" y="24" width="178" height="22"/>
+                                    <rect key="frame" x="0.0" y="24" width="192" height="22"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Gdy-iB-Qui">
                                             <rect key="frame" x="-2" y="4" width="49" height="14"/>
@@ -52,19 +54,12 @@
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                     <connections>
-                                                        <binding destination="-2" name="value" keyPath="self.duration" id="3L7-9W-sv2"/>
+                                                        <binding destination="-2" name="value" keyPath="self.rulePresenter.duration" id="DsG-Up-V3d"/>
                                                     </connections>
                                                 </textField>
                                                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cpC-d1-SgK">
                                                     <rect key="frame" x="37" y="-3" width="19" height="27"/>
                                                     <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="6" valueWraps="YES" id="wer-ME-JgO"/>
-                                                    <connections>
-                                                        <binding destination="-2" name="value" keyPath="self.duration" id="ghV-oL-6QP">
-                                                            <dictionary key="options">
-                                                                <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
-                                                            </dictionary>
-                                                        </binding>
-                                                    </connections>
                                                 </stepper>
                                             </subviews>
                                             <visibilityPriorities>
@@ -76,16 +71,25 @@
                                                 <real value="3.4028234663852886e+38"/>
                                             </customSpacing>
                                         </stackView>
-                                        <popUpButton focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="K2B-9N-UCv">
-                                            <rect key="frame" x="114" y="-2" width="64" height="25"/>
-                                            <popUpButtonCell key="cell" type="roundTextured" title="Hour" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" focusRingType="none" inset="2" arrowPosition="arrowAtCenter" selectedItem="lL4-ia-WTq" id="S2m-kK-vFg">
+                                        <popUpButton focusRingType="none" verticalHuggingPriority="750" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K2B-9N-UCv">
+                                            <rect key="frame" x="114" y="-2" width="78" height="25"/>
+                                            <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" focusRingType="none" inset="2" arrowPosition="arrowAtCenter" id="S2m-kK-vFg">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="menu"/>
                                                 <menu key="menu" id="Ilh-RJ-XSP">
                                                     <items>
-                                                        <menuItem title="Hour" state="on" id="lL4-ia-WTq"/>
-                                                        <menuItem title="Item 2" id="yem-Pa-S6V"/>
-                                                        <menuItem title="Item 3" id="e4p-H1-Cwn"/>
+                                                        <menuItem title="Seconds" id="lL4-ia-WTq"/>
+                                                        <menuItem title="Minutes" state="on" id="yem-Pa-S6V"/>
+                                                        <menuItem title="Hours" id="e4p-H1-Cwn"/>
+                                                        <menuItem title="Days" id="4kh-vg-Xr1">
+                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                        </menuItem>
+                                                        <menuItem title="Weeks" id="IdB-Pq-3yz">
+                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                        </menuItem>
+                                                        <menuItem title="Years" id="6mL-ql-Lce">
+                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                        </menuItem>
                                                     </items>
                                                 </menu>
                                             </popUpButtonCell>
@@ -103,7 +107,7 @@
                                     </customSpacing>
                                 </stackView>
                                 <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u1T-rg-od2">
-                                    <rect key="frame" x="28" y="0.0" width="150" height="22"/>
+                                    <rect key="frame" x="28" y="0.0" width="164" height="22"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="v0M-QK-eUA">
                                             <rect key="frame" x="-2" y="4" width="21" height="14"/>
@@ -142,16 +146,25 @@
                                                 <real value="3.4028234663852886e+38"/>
                                             </customSpacing>
                                         </stackView>
-                                        <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d8f-cA-odK">
-                                            <rect key="frame" x="86" y="-2" width="64" height="25"/>
-                                            <popUpButtonCell key="cell" type="roundTextured" title="Hour" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="cte-WB-6hh" id="IU2-4z-GrU">
+                                        <popUpButton verticalHuggingPriority="750" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d8f-cA-odK">
+                                            <rect key="frame" x="86" y="-2" width="78" height="25"/>
+                                            <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="IU2-4z-GrU">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="menu"/>
                                                 <menu key="menu" id="u2M-xH-deC">
                                                     <items>
-                                                        <menuItem title="Hour" state="on" id="cte-WB-6hh"/>
-                                                        <menuItem title="Item 2" id="ou6-h1-QkV"/>
-                                                        <menuItem title="Item 3" id="lyk-nK-rQW"/>
+                                                        <menuItem title="Seconds" id="Ioo-6G-1Kx"/>
+                                                        <menuItem title="Minutes" state="on" id="HRs-6A-sV0"/>
+                                                        <menuItem title="Hours" id="ydf-hN-C7v"/>
+                                                        <menuItem title="Days" id="TcP-SW-g4l">
+                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                        </menuItem>
+                                                        <menuItem title="Weeks" id="0bo-oN-jfl">
+                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                        </menuItem>
+                                                        <menuItem title="Years" id="YnV-bK-JRp">
+                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                        </menuItem>
                                                     </items>
                                                 </menu>
                                             </popUpButtonCell>
@@ -182,18 +195,11 @@
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="SrQ-ak-SuU" secondAttribute="bottom" id="4Py-00-0R8"/>
                         <constraint firstItem="SrQ-ak-SuU" firstAttribute="leading" secondItem="6Cs-1n-4y5" secondAttribute="leading" id="QBI-LM-ALj"/>
-                        <constraint firstAttribute="trailing" secondItem="SrQ-ak-SuU" secondAttribute="trailing" id="Rbp-as-I5K"/>
                         <constraint firstItem="SrQ-ak-SuU" firstAttribute="top" secondItem="6Cs-1n-4y5" secondAttribute="top" id="vdG-N3-SFZ"/>
                     </constraints>
                 </customView>
             </subviews>
-            <constraints>
-                <constraint firstItem="6Cs-1n-4y5" firstAttribute="top" secondItem="h3u-ic-QiG" secondAttribute="top" constant="20" id="9AW-Or-6wu"/>
-                <constraint firstItem="6Cs-1n-4y5" firstAttribute="leading" secondItem="h3u-ic-QiG" secondAttribute="leading" constant="20" id="FGI-2V-TyX"/>
-                <constraint firstAttribute="trailing" secondItem="6Cs-1n-4y5" secondAttribute="trailing" constant="20" id="Q9q-l2-y8t"/>
-                <constraint firstAttribute="bottom" secondItem="6Cs-1n-4y5" secondAttribute="bottom" constant="20" id="oKZ-iL-NJI"/>
-            </constraints>
-            <point key="canvasLocation" x="-245" y="227"/>
+            <point key="canvasLocation" x="-222.5" y="227"/>
         </customView>
         <userDefaultsController representsSharedInstance="YES" id="u2m-HX-MG3"/>
     </objects>

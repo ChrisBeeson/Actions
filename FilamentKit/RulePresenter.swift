@@ -32,11 +32,11 @@ public class RulePresenter : NSObject {
         
         switch rule.className {
             
-        case "FilamentKit.EventDuration":
-            return EventDurationRulePresenter(rule: rule)
+        case "FilamentKit.EventDurationWithMinimumDuration":
+            return EventDurationWithMinimumDurationRulePresenter(rule: rule)
             
-        case "FilamentKit.EventStartsInTimeFromNow":
-            return EventStartsInTimeFromNowRulePresenter(rule: rule)
+        case "FilamentKit.TransitionDurationWithVariance":
+            return TransitionDurationWithVarianceRulePresenter(rule: rule)
             
         default:
             fatalError("Unable to find rule presenter for rule \(rule.className)")

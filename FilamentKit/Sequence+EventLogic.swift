@@ -36,7 +36,7 @@ extension Sequence {
                 
             case .StartingAction:
                 
-                let startRule = EventStartsInTimeFromNow()
+                let startRule = TransitionDurationWithVariance()
                 startRule.eventStartsInDuration = TimeSize(unit: .Hour, amount: 0)
                 rules.append(startRule)
                 
