@@ -10,4 +10,6 @@ import Foundation
 
 public class RuleViewController : NSViewController {
     
+    public var rulePresenter: RulePresenter?
+    
 }

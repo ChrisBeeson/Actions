@@ -10,4 +10,14 @@ import Foundation
 
 public class EventDurationRulePresenter : RulePresenter {
     
+    public override func detailViewController() -> RuleViewController {
+        
+        if ruleViewController == nil {
+            ruleViewController = EventDurationViewController(nibName:"EventDurationViewController", bundle: NSBundle(identifier:"com.andris.FilamentKit"))!
+        }
+        
+        ruleViewController!.rulePresenter = self
+        
+        return ruleViewController!
+    }
 }

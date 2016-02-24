@@ -81,6 +81,8 @@
 		835619CC1C6D6AD100488E99 /* NodeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */; };
 		835619CD1C6D6E4B00488E99 /* NodeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */; };
 		835740B21C77AD0700CFBB1B /* TimeEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835740B11C77AD0700CFBB1B /* TimeEvent.swift */; };
+		8359A7711C7CF28E00ED87D9 /* EventDurationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8359A7701C7CF28E00ED87D9 /* EventDurationViewController.xib */; };
+		8359A7731C7CF2F400ED87D9 /* EventDurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8359A7721C7CF2F400ED87D9 /* EventDurationViewController.swift */; };
 		83861F2B1BEEA25F00A44122 /* FilamentDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83861F2A1BEEA25F00A44122 /* FilamentDocument.swift */; };
 		83AD7EBC1C7BA4E60097BD61 /* RuleTokenField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AD7EBB1C7BA4E60097BD61 /* RuleTokenField.swift */; };
 		83C73E0D1BE31C4F0045973C /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C73E0B1BE31BF20045973C /* AppConfiguration.swift */; };
@@ -207,6 +209,8 @@
 		835619C91C6D6AAA00488E99 /* NodeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDetailViewController.swift; sourceTree = "<group>"; };
 		835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NodeDetailViewController.xib; sourceTree = "<group>"; };
 		835740B11C77AD0700CFBB1B /* TimeEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeEvent.swift; sourceTree = "<group>"; };
+		8359A7701C7CF28E00ED87D9 /* EventDurationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDurationViewController.xib; sourceTree = "<group>"; };
+		8359A7721C7CF2F400ED87D9 /* EventDurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDurationViewController.swift; sourceTree = "<group>"; };
 		83861F2A1BEEA25F00A44122 /* FilamentDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilamentDocument.swift; sourceTree = "<group>"; };
 		83AD7EBB1C7BA4E60097BD61 /* RuleTokenField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleTokenField.swift; sourceTree = "<group>"; };
 		83C73E0B1BE31BF20045973C /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
@@ -363,6 +367,8 @@
 			isa = PBXGroup;
 			children = (
 				473853B11C7A590A000AB1E2 /* RuleViewController.swift */,
+				8359A7701C7CF28E00ED87D9 /* EventDurationViewController.xib */,
+				8359A7721C7CF2F400ED87D9 /* EventDurationViewController.swift */,
 			);
 			name = RuleViewControllers;
 			sourceTree = "<group>";
@@ -370,7 +376,6 @@
 		473853B31C7A5956000AB1E2 /* Rule Presenters */ = {
 			isa = PBXGroup;
 			children = (
-				473853B01C7A5892000AB1E2 /* RuleViewControllers */,
 				473D9F561C7AEF4A00E81D39 /* base */,
 				473D9F571C7AEF7500E81D39 /* EventDurationRulePresenter.swift */,
 				473D9F591C7AF53800E81D39 /* EventStartsInTimeFromNowRulePresenter.swift */,
@@ -475,6 +480,7 @@
 		47DF1C451C6879D700482390 /* DetailViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				473853B01C7A5892000AB1E2 /* RuleViewControllers */,
 				835619C91C6D6AAA00488E99 /* NodeDetailViewController.swift */,
 				835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */,
 				4720B5071C6F00B300229734 /* DateTimePickerViewController.swift */,
@@ -762,6 +768,7 @@
 			files = (
 				4720B50A1C6F00E500229734 /* DateTimePickerViewController.xib in Resources */,
 				833AE3301C67F85B002F35C1 /* ActionNodeCollectionViewItem.xib in Resources */,
+				8359A7711C7CF28E00ED87D9 /* EventDurationViewController.xib in Resources */,
 				833AE32E1C67E463002F35C1 /* DateNodeCollectionViewItem.xib in Resources */,
 				834F85D11C6ACFA2009CC72F /* AddNewNodeCollectionViewItem.xib in Resources */,
 				835619CC1C6D6AD100488E99 /* NodeDetailViewController.xib in Resources */,
@@ -901,6 +908,7 @@
 				4720B5021C6E7F0400229734 /* NodePresenterDelegate.swift in Sources */,
 				4720B5081C6F00B300229734 /* DateTimePickerViewController.swift in Sources */,
 				4794B99E1C78522B009CE617 /* NSTimer+Closure.swift in Sources */,
+				8359A7731C7CF2F400ED87D9 /* EventDurationViewController.swift in Sources */,
 				47CD21C31BDF7B0900AF25BE /* Sequence+NodeLogic.swift in Sources */,
 				47ACA9541BB5464C000CAC61 /* DateToolsExtenstions.swift in Sources */,
 				473D9F581C7AEF7500E81D39 /* EventDurationRulePresenter.swift in Sources */,

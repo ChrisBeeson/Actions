@@ -7,15 +7,26 @@
 //
 
 import Foundation
+import Async
+
+@objc public protocol RuleTokenFieldDelegate  {
+    
+    func ruleTokenFieldDidSelectObjects(tokenField:RuleTokenField, rules:[AnyObject]?)
+}
+
+
 
 public class RuleTokenField : NSTokenField, NodePresenterDelegate, NSTokenFieldDelegate {
+    
+    var ruleDetailDelegate : RuleTokenFieldDelegate?
+    
+    var popover : NSPopover?
     
     var nodePresenter : NodePresenter? {
         didSet {
             loadTokenField()
         }
     }
-    
     
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -28,21 +39,21 @@ public class RuleTokenField : NSTokenField, NodePresenterDelegate, NSTokenFieldD
         self.objectValue = nodePresenter!.rules
     }
     
+    //MARK:Delegate
     
-    func refreshTokenField() {
+    public func tokenField(tokenField: NSTokenField, displayStringForRepresentedObject representedObject: AnyObject) -> String? {
         
-        var ruleNames = [String]()
-        
-        for rulePresenter in nodePresenter!.allRulePresenters() {
-            ruleNames.append(rulePresenter.name as String)
-        }
-        
-        self.objectValue = ruleNames
+        let rule = representedObject as! Rule
+        return rule.name
     }
+
+
     
-    
-    public  func textViewDidChangeSelection(notification: NSNotification) {
+    public func textViewDidChangeSelection(notification: NSNotification) {
         
+        //     Swift.print(notification.object)
+        //    let obj = notification.object
+
         if let fieldView = self.cell!.fieldEditorForView(self) {
             
             var selectedObjects = [AnyObject]()
@@ -53,19 +64,29 @@ public class RuleTokenField : NSTokenField, NodePresenterDelegate, NSTokenFieldD
                 for var i = 0 ; i<range.length; i++ {
                     selectedObjects.append(self.objectValue!.objectAtIndex(range.location + i))
                 }
+                
+                if selectedObjects.count == 0 { return }
+                
+                if popover == nil {
+                    
+                    popover = NSPopover()
+                    popover!.animates = true
+                    popover!.behavior = .Transient
+                    popover!.appearance = NSAppearance(named: NSAppearanceNameAqua)
+                    //  popover!.delegate = self
+                    
+                }
+                
+                let rulePresenter = RulePresenter.rulePresenterForRule(selectedObjects[0] as! Rule)
+                popover!.contentViewController = rulePresenter.detailViewController()
+                
+                
+                //      let frame = fieldView.selectedCell()!.controlView!.frame
+                Async.main(after: 0.1) {
+                self.popover?.showRelativeToRect(self.selectedCell()!.controlView!.frame, ofView: self, preferredEdge:.MinX )
+                }
             }
-            
-            Swift.print("selected objects:\(selectedObjects)")
         }
-    }
-    
-    
-    //MARK:Delegate
-    
-    public func tokenField(tokenField: NSTokenField, displayStringForRepresentedObject representedObject: AnyObject) -> String? {
-        
-        let rule = representedObject as! Rule
-        return rule.name
     }
 }
 

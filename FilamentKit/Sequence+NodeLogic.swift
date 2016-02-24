@@ -162,5 +162,4 @@ extension Sequence {
             return .None
         }
     }
-    
 }

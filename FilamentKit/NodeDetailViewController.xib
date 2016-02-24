@@ -92,7 +92,7 @@
                                     <tokenField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WcC-2Z-6n2" customClass="RuleTokenField" customModule="FilamentKit">
                                         <rect key="frame" x="0.0" y="0.0" width="254" height="42"/>
                                         <tokenFieldCell key="cell" selectable="YES" alignment="left" drawsBackground="YES" allowsEditingTextAttributes="YES" id="5UP-Ba-U0x">
-                                            <font key="font" metaFont="system"/>
+                                            <font key="font" metaFont="systemLight" size="12"/>
                                             <color key="textColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                                         </tokenFieldCell>

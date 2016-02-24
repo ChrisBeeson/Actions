@@ -12,6 +12,7 @@ public class RulePresenter : NSObject {
     
     private var delegates = [RulePresenterDelegate]()
     var undoManager: NSUndoManager?
+    var ruleViewController : RuleViewController?
     
     var rule : Rule
     
@@ -58,4 +59,8 @@ public class RulePresenter : NSObject {
         delegates = delegates.filter { return $0 !== delegate }
     }
     
+    
+    public func detailViewController() -> RuleViewController {
+        fatalError("This needs to be subclassed")
+    }
 }

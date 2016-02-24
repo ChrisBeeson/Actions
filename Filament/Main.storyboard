@@ -753,7 +753,7 @@ CA
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView appearanceType="aqua" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnReordering="NO" columnResizing="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="100" viewBased="YES" floatsGroupRows="NO" id="8Qp-fL-QNJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="448" height="271"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="448" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="0.0"/>
                                             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
@@ -888,7 +888,7 @@ AwEVARgBHQAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAEfA
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="saH-yg-Uz8"/>
                                 </constraints>
-                                <tokenFieldCell key="cell" selectable="YES" focusRingType="none" alignment="left" title="Work Hours" allowsEditingTextAttributes="YES" usesSingleLineMode="YES" id="QBT-Yh-xR4">
+                                <tokenFieldCell key="cell" selectable="YES" focusRingType="none" alignment="left" title="Avoid Calendars" allowsEditingTextAttributes="YES" usesSingleLineMode="YES" id="QBT-Yh-xR4">
                                     <font key="font" metaFont="systemLight" size="12"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>

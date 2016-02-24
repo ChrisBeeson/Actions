@@ -100,8 +100,13 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
         titleTextField?.textColor = toStatus == .Completed ?  NSColor.lightGrayColor() : NSColor.blackColor()
         
         if toStatus == .Ready {
-            delay(Double(indexPath!.item) * 0.1) {
+            
+            if let indexPath = indexPath {
+        
+            delay(Double(indexPath.item) * 0.1) {
                 self.nodeView.currentStatus = .Ready
+                }} else {
+                 self.nodeView.currentStatus = .Ready
             }
         } else {
              self.nodeView.currentStatus = toStatus
