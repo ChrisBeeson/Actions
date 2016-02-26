@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		471279B71C80615C0090426C /* EventDurationWithMinimumDurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471279B61C80615C0090426C /* EventDurationWithMinimumDurationViewController.swift */; };
+		471279B91C8061A20090426C /* EventDurationWithMinimumDurationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 471279B81C8061A20090426C /* EventDurationWithMinimumDurationViewController.xib */; };
 		471420D61BA3CB2A00EDF32D /* Pods_Filament.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 471420D51BA3CB2A00EDF32D /* Pods_Filament.framework */; };
 		4720B5001C6E7EF200229734 /* NodePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4720B4FF1C6E7EF200229734 /* NodePresenter.swift */; };
 		4720B5021C6E7F0400229734 /* NodePresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4720B5011C6E7F0400229734 /* NodePresenterDelegate.swift */; };
@@ -144,6 +146,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		471279B61C80615C0090426C /* EventDurationWithMinimumDurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDurationWithMinimumDurationViewController.swift; sourceTree = "<group>"; };
+		471279B81C8061A20090426C /* EventDurationWithMinimumDurationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDurationWithMinimumDurationViewController.xib; sourceTree = "<group>"; };
 		471420D51BA3CB2A00EDF32D /* Pods_Filament.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Filament.framework; path = Pods/../build/Release/Pods_Filament.framework; sourceTree = "<group>"; };
 		4720B4FF1C6E7EF200229734 /* NodePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodePresenter.swift; sourceTree = "<group>"; };
 		4720B5011C6E7F0400229734 /* NodePresenterDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodePresenterDelegate.swift; sourceTree = "<group>"; };
@@ -367,6 +371,8 @@
 			isa = PBXGroup;
 			children = (
 				473853B11C7A590A000AB1E2 /* RuleViewController.swift */,
+				471279B81C8061A20090426C /* EventDurationWithMinimumDurationViewController.xib */,
+				471279B61C80615C0090426C /* EventDurationWithMinimumDurationViewController.swift */,
 				83B74FAC1C7FDC0F005E5E22 /* DurationWithVarianceViewController.xib */,
 				8359A7721C7CF2F400ED87D9 /* DurationWithVarianceViewController.swift */,
 			);
@@ -766,6 +772,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				471279B91C8061A20090426C /* EventDurationWithMinimumDurationViewController.xib in Resources */,
 				4720B50A1C6F00E500229734 /* DateTimePickerViewController.xib in Resources */,
 				833AE3301C67F85B002F35C1 /* ActionNodeCollectionViewItem.xib in Resources */,
 				833AE32E1C67E463002F35C1 /* DateNodeCollectionViewItem.xib in Resources */,
@@ -899,6 +906,7 @@
 				8329DE9B1C63DF10001B3A2F /* SequenceCollectionView.swift in Sources */,
 				83C73E0E1BE31C4F0045973C /* AppConfiguration.swift in Sources */,
 				475927B11C6C725700D24DE9 /* Dwifft.swift in Sources */,
+				471279B71C80615C0090426C /* EventDurationWithMinimumDurationViewController.swift in Sources */,
 				473853B51C7A596E000AB1E2 /* RulePresenter.swift in Sources */,
 				477C2CB51C40B3AD0071467C /* TransitionNodeView.swift in Sources */,
 				473574791B9A68BE00493CA0 /* Rule.swift in Sources */,

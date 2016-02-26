@@ -7,7 +7,57 @@
 //
 
 import Foundation
+import DateTools
 
-class EventDurationWithMinimumDurationRulePresenter : RulePresenter {
+public class EventDurationWithMinimumDurationRulePresenter : RulePresenter {
+    
+    var duration : Int  {
+        get {
+            return (rule as! EventDurationWithMinimumDuration).duration.amount
+        }
+        set {
+            (rule as! EventDurationWithMinimumDuration).duration.amount = newValue
+        }
+    }
+    
+    var durationUnit : UInt {
+        get {
+            return (rule as! EventDurationWithMinimumDuration).duration.unit.rawValue
+        }
+        set {
+            (rule as! EventDurationWithMinimumDuration).duration.unit = DTTimePeriodSize(rawValue: newValue)!
+            informDelegatesOfChangesToContent()
+        }
+    }
+    
+    var minDuration : Int  {
+        get {
+            return (rule as! EventDurationWithMinimumDuration).minDuration.amount
+        }
+        set {
+            (rule as! EventDurationWithMinimumDuration).minDuration.amount = newValue
+        }
+    }
+    
+    var minDurationUnit : UInt {
+        get {
+            return (rule as! EventDurationWithMinimumDuration).minDuration.unit.rawValue
+        }
+        set {
+            (rule as! EventDurationWithMinimumDuration).minDuration.unit = DTTimePeriodSize(rawValue: newValue)!
+            informDelegatesOfChangesToContent()
+        }
+    }
+    
+    public override func detailViewController() -> RuleViewController {
+        
+        if ruleViewController == nil {
+            ruleViewController = EventDurationWithMinimumDurationViewController(nibName:"EventDurationWithMinimumDurationViewController", bundle: NSBundle(identifier:"com.andris.FilamentKit"))!
+        }
+        
+        ruleViewController!.rulePresenter = self
+        
+        return ruleViewController!
+    }
     
 }
