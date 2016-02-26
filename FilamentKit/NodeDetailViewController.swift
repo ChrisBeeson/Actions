@@ -19,10 +19,7 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
     @IBOutlet weak var mainStackView: NSStackView!
     @IBOutlet weak var titleStackView: NSStackView!
     @IBOutlet weak var eventStackView: NSStackView!
-    @IBOutlet weak var rulesView: NSBox!
-    @IBOutlet weak var testStackView: NSStackView!
-    @IBOutlet var testView: NSView!
-    @IBOutlet weak var testStack: NSStackView!
+
     
     var nodePresenter: NodePresenter?
     
