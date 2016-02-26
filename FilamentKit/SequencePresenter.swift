@@ -95,7 +95,7 @@ public class SequencePresenter : NSObject {
     
     public func setDate(date:NSDate?, isStartDate:Bool) {
         
-        if sequence!.date != nil && date!.isEqualToDate(sequence!.date!) && isStartDate == sequence?.startsAtDate { return }
+        if date != nil && sequence!.date != nil && date!.isEqualToDate(sequence!.date!) && isStartDate == sequence?.startsAtDate { return }
         
         self.undoManager?.prepareWithInvocationTarget(self).setDate(self.date, isStartDate: true)
         let undoActionName = NSLocalizedString("Change Date", comment: "")
@@ -193,7 +193,13 @@ public class SequencePresenter : NSObject {
         //TODO: Process from starting Node
         
         guard sequence != nil else { return }
-        guard date != nil else { return }
+       
+        if date == nil {
+            nodes!.forEach{ $0.deleteEvent() }
+            nodePresenters.forEach{ $0.currentStatus = .Inactive }
+            currentStatus = .NoStartDateSet
+            return
+        }
         
         let result = sequence!.UpdateEvents()
         

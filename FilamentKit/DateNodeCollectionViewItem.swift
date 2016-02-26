@@ -81,7 +81,7 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     
     // MARK: DateTimePicker delegate
     
-    public func dateTimePickerDidChangeDate(date:NSDate) {
+    public func dateTimePickerDidChangeDate(date:NSDate?) {
         
         self.sequencePresenter!.setDate(date, isStartDate:true)
         updateView()

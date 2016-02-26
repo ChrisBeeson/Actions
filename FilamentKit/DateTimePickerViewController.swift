@@ -11,7 +11,7 @@ import PopDatePicker
 
 public protocol DateTimePickerViewDelegate {
     
-    func dateTimePickerDidChangeDate(date:NSDate)
+    func dateTimePickerDidChangeDate(date:NSDate?)
 }
 
 public class DateTimePickerViewController : NSViewController {
@@ -22,6 +22,8 @@ public class DateTimePickerViewController : NSViewController {
     var delegate: DateTimePickerViewDelegate?
     
     public var date:NSDate?
+    var trashPressed = false
+    
     
     public override func viewDidLoad() {
         
@@ -36,6 +38,7 @@ public class DateTimePickerViewController : NSViewController {
         datePicker.preferredPopoverEdge = .MinY
     }
     
+    
     public override func viewWillAppear() {
         super.viewWillAppear()
         
@@ -49,10 +52,30 @@ public class DateTimePickerViewController : NSViewController {
         timePicker.dateValue = date!
     }
     
+    
     public  override func viewWillDisappear() {
         super.viewWillDisappear()
         
-         delegate?.dateTimePickerDidChangeDate(combineDateWithTime(datePicker.dateValue, time: timePicker.dateValue))
+        if trashPressed == false {
+            delegate?.dateTimePickerDidChangeDate(combineDateWithTime(datePicker.dateValue, time: timePicker.dateValue))
+        }
+        trashPressed = false
+    }
+    
+    
+    @IBAction func trashPressed(sender: AnyObject) {
+        
+        delegate?.dateTimePickerDidChangeDate(nil)
+        trashPressed = true
+        
+       
+    }
+    
+    
+    @IBAction func nowPressed(sender: AnyObject) {
+        
+        datePicker.dateValue = NSDate()
+        timePicker.dateValue = NSDate()
     }
     
     
