@@ -15,7 +15,7 @@ import Async
 }
 
 
-public class RuleTokenField : NSTokenField, NodePresenterDelegate, NSTokenFieldDelegate {
+public class RuleTokenField : NSTokenField, NodePresenterDelegate, NSTokenFieldDelegate, NSMenuDelegate {
     
     var ruleDetailDelegate : RuleTokenFieldDelegate?
     
@@ -58,46 +58,31 @@ public class RuleTokenField : NSTokenField, NodePresenterDelegate, NSTokenFieldD
     }
     
     public func tokenField(tokenField: NSTokenField, menuForRepresentedObject representedObject: AnyObject) -> NSMenu? {
-        /*
-        if popover == nil {
-            
-            popover = NSPopover()
-            popover!.animates = true
-            popover!.behavior = .Transient
-            popover!.appearance = NSAppearance(named: NSAppearanceNameAqua)
-            //  popover!.delegate = self
-            
-        }
         
-        let rulePresenter = RulePresenter.rulePresenterForRule(representedObject as! Rule)
-        popover!.contentViewController = rulePresenter.detailViewController()
-        
-        var displayRect = NSMakeRect(NSEvent.mouseLocation().x - 13.5, NSEvent.mouseLocation().y - 16, 5, 5)
-        
-        displayRect = self.window!.convertRectFromScreen(displayRect)
-
-        self.popover?.showRelativeToRect(displayRect, ofView: self.window!.contentView! , preferredEdge:.MaxY )
-*/
-
         let menu = NSMenu()
         let menuItem = NSMenuItem()
-        menuItem.view = detailViewForRule(representedObject as! Rule)
+        let detailView = detailControllerForRule(representedObject as! Rule)
+        menuItem.view = detailView.view
         menu.addItem(menuItem)
+        menu.delegate = detailView
         return menu
     }
 
     
-    func detailViewForRule(rule:Rule) -> NSView {
+    func detailControllerForRule(rule:Rule) -> RuleViewController {
         
         if let presenter = rulePresenters[rule] {
-            return presenter.detailViewController().view
+            return presenter.detailViewController()
         } else {
             let presenter = RulePresenter.rulePresenterForRule(rule)
+            presenter.sequencePresenter = nodePresenter?.sequencePresenter
             rulePresenters[rule] = presenter
-            return presenter.detailViewController().view
+            return presenter.detailViewController()
         }
     }
     
+    
+
     
     
     

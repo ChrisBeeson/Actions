@@ -8,8 +8,12 @@
 
 import Foundation
 
-public class RuleViewController : NSViewController {
+public class RuleViewController : NSViewController, NSMenuDelegate {
     
     public var rulePresenter: RulePresenter?
     
+    public func menuDidClose(menu: NSMenu) {
+        
+        rulePresenter?.sequencePresenter?.updateSequenceEvents()
+    }
 }

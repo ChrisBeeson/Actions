@@ -189,6 +189,9 @@ public class SequencePresenter : NSObject {
     /* This is the entry to requesting the sequence to recalculate all events */
     
     func updateSequenceEvents() {
+        
+        //TODO: Process from starting Node
+        
         guard sequence != nil else { return }
         guard date != nil else { return }
         
@@ -276,6 +279,7 @@ public class SequencePresenter : NSObject {
         
         let newPresenter = NodePresenter(node: node)
         newPresenter.undoManager = representingDocument?.undoManager
+        newPresenter.sequencePresenter = self
         nodePresenters.append(newPresenter)
         return newPresenter
     }

@@ -15,6 +15,7 @@ enum NodeStatus: Int { case Inactive, Ready, Running, WaitingForUserInput, Compl
 class NodePresenter : NSObject {
     
     var undoManager: NSUndoManager?
+    var sequencePresenter: SequencePresenter?
     private var delegates = [NodePresenterDelegate]()
     private var _currentStatus = NodeStatus.Void
     private var _hasRuleError = false

@@ -63,7 +63,7 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
             
             popover = NSPopover()
             popover!.animates = true
-            popover!.behavior = .Transient
+            popover!.behavior = .Semitransient
             popover!.appearance = NSAppearance(named: NSAppearanceNameAqua)
             
             if detailViewController == nil {
