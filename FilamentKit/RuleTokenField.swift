@@ -15,12 +15,13 @@ import Async
 }
 
 
-
 public class RuleTokenField : NSTokenField, NodePresenterDelegate, NSTokenFieldDelegate {
     
     var ruleDetailDelegate : RuleTokenFieldDelegate?
     
-    var popover : NSPopover?
+    private var rulePresenters = [Rule : RulePresenter]()
+    
+    // var popover : NSPopover?
     
     var nodePresenter : NodePresenter? {
         didSet {
@@ -46,9 +47,62 @@ public class RuleTokenField : NSTokenField, NodePresenterDelegate, NSTokenFieldD
         let rule = representedObject as! Rule
         return rule.name
     }
+    
+    
+    public func tokenField(tokenField: NSTokenField, hasMenuForRepresentedObject representedObject: AnyObject) -> Bool {
+        
+        switch nodePresenter!.currentStatus {
+            case .Inactive, .Ready, .Error : return true
+            case .Running, .WaitingForUserInput, .Completed, .Void: return false
+        }
+    }
+    
+    public func tokenField(tokenField: NSTokenField, menuForRepresentedObject representedObject: AnyObject) -> NSMenu? {
+        /*
+        if popover == nil {
+            
+            popover = NSPopover()
+            popover!.animates = true
+            popover!.behavior = .Transient
+            popover!.appearance = NSAppearance(named: NSAppearanceNameAqua)
+            //  popover!.delegate = self
+            
+        }
+        
+        let rulePresenter = RulePresenter.rulePresenterForRule(representedObject as! Rule)
+        popover!.contentViewController = rulePresenter.detailViewController()
+        
+        var displayRect = NSMakeRect(NSEvent.mouseLocation().x - 13.5, NSEvent.mouseLocation().y - 16, 5, 5)
+        
+        displayRect = self.window!.convertRectFromScreen(displayRect)
 
+        self.popover?.showRelativeToRect(displayRect, ofView: self.window!.contentView! , preferredEdge:.MaxY )
+*/
+
+        let menu = NSMenu()
+        let menuItem = NSMenuItem()
+        menuItem.view = detailViewForRule(representedObject as! Rule)
+        menu.addItem(menuItem)
+        return menu
+    }
 
     
+    func detailViewForRule(rule:Rule) -> NSView {
+        
+        if let presenter = rulePresenters[rule] {
+            return presenter.detailViewController().view
+        } else {
+            let presenter = RulePresenter.rulePresenterForRule(rule)
+            rulePresenters[rule] = presenter
+            return presenter.detailViewController().view
+        }
+    }
+    
+    
+    
+    
+
+    /*
     public func textViewDidChangeSelection(notification: NSNotification) {
         
         //     Swift.print(notification.object)
@@ -88,27 +142,6 @@ public class RuleTokenField : NSTokenField, NodePresenterDelegate, NSTokenFieldD
             }
         }
     }
+*/
 }
 
-
-/*
-
-
-public class func setCellClass(factoryId: AnyClass?)
-public class func cellClass() -> AnyClass?
-
-public var cell: NSCell?
-
-public func selectedCell() -> NSCell?
-public func selectedTag() -> Int
-
-public func setNeedsDisplay() // Use setNeedsDisplay:YES instead.
-public func calcSize()
-
-public func updateCell(aCell: NSCell)
-public func updateCellInside(aCell: NSCell)
-public func drawCellInside(aCell: NSCell)
-public func drawCell(aCell: NSCell)
-public func selectCell(aCell: NSCell)
-
-*/

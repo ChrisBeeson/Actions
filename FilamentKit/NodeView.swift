@@ -52,7 +52,7 @@ class NodeView: NSView {
             if selected {
                 pathLayer.lineWidth = 2.0
                 if currentStatus == .Inactive || currentStatus == .Ready || currentStatus == .Completed {
-                pathLayer.strokeColor = AppConfiguration.Palette.selectionBlue.CGColor
+                    pathLayer.strokeColor = AppConfiguration.Palette.selectionBlue.CGColor
                 }
                 
             } else {
@@ -91,36 +91,36 @@ class NodeView: NSView {
             pathLayer.fillColor = drawingContextColour(.LightGrey).fill
             
         case .Ready:
-                CATransaction.begin()
-                CATransaction.setDisableActions(true)
-                self.pathLayer.strokeColor = drawingContextColour(.Green).stroke
-                self.pathLayer.fillColor = drawingContextColour(.Green).fill
-                CATransaction.commit()
-                
-                CATransaction.begin()
-                CATransaction.setAnimationDuration(1.0)
-                self.pathLayer.strokeColor = drawingContextColour(.LightGrey).stroke
-                self.pathLayer.fillColor = drawingContextColour(.LightGrey).fill
-                CATransaction.commit()
+            CATransaction.begin()
+            CATransaction.setDisableActions(true)
+            self.pathLayer.strokeColor = drawingContextColour(.Green).stroke
+            self.pathLayer.fillColor = drawingContextColour(.Green).fill
+            CATransaction.commit()
+            
+            CATransaction.begin()
+            CATransaction.setAnimationDuration(1.0)
+            self.pathLayer.strokeColor = drawingContextColour(.LightGrey).stroke
+            self.pathLayer.fillColor = drawingContextColour(.LightGrey).fill
+            CATransaction.commit()
             
         case .Running:
-                    let anim = CABasicAnimation(keyPath: "fillColor")
-                    anim.toValue = drawingContextColour(.Green).fill
-                    anim.fromValue = drawingContextColour(.LightGrey).fill
-                    anim.repeatCount = Float.infinity
-                    anim.duration = 0.5
-                    anim.autoreverses = true
-                    self.pathLayer.addAnimation(anim, forKey: "RunningFill")
-                    //   }
-                
-                    // if self.pathLayer.animationKeys()?.contains("RunningStroke") == false {
-                    let animStroke = CABasicAnimation(keyPath: "strokeColor")
-                    animStroke.toValue = drawingContextColour(.Green).stroke
-                    animStroke.fromValue = drawingContextColour(.LightGrey).stroke
-                    animStroke.repeatCount = Float.infinity
-                    animStroke.duration = 0.5
-                    animStroke.autoreverses = true
-                    self.pathLayer.addAnimation(animStroke, forKey: "RunningStroke")
+            let anim = CABasicAnimation(keyPath: "fillColor")
+            anim.toValue = drawingContextColour(.Green).fill
+            anim.fromValue = drawingContextColour(.LightGrey).fill
+            anim.repeatCount = Float.infinity
+            anim.duration = 0.5
+            anim.autoreverses = true
+            self.pathLayer.addAnimation(anim, forKey: "RunningFill")
+            //   }
+            
+            // if self.pathLayer.animationKeys()?.contains("RunningStroke") == false {
+            let animStroke = CABasicAnimation(keyPath: "strokeColor")
+            animStroke.toValue = drawingContextColour(.Green).stroke
+            animStroke.fromValue = drawingContextColour(.LightGrey).stroke
+            animStroke.repeatCount = Float.infinity
+            animStroke.duration = 0.5
+            animStroke.autoreverses = true
+            self.pathLayer.addAnimation(animStroke, forKey: "RunningStroke")
             
         case .WaitingForUserInput:
             pathLayer.strokeColor = drawingContextColour(.Blue).stroke

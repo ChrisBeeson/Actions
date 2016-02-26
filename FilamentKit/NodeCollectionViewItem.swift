@@ -97,7 +97,9 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     
         guard presenter == self.presenter else { return }
         
-        titleTextField?.textColor = toStatus == .Completed ?  NSColor.lightGrayColor() : NSColor.blackColor()
+        if presenter.type == .Action {
+            titleTextField?.textColor = toStatus == .Completed ?  NSColor.lightGrayColor() : NSColor.blackColor()
+        }
         
         if toStatus == .Ready {
             
@@ -112,6 +114,7 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
              self.nodeView.currentStatus = toStatus
         }
     }
+    
     
     func nodePresenterDidChangeTitle(presenter: NodePresenter) {
         

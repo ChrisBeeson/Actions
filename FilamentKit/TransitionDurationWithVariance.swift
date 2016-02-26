@@ -15,13 +15,13 @@ import DateTools
     // User specifies a time period, and can pick a variance size.
     // Eg Next event should happen in 5 hours, give or take 30mins
     
-     override var name: String { return "Duration (+/-)" }
+     override var name: String { return "+/- Duration" }
      override var availableToNodeType:NodeType { return NodeType.Transition }
      override var conflictingRules: [Rule]? { return nil }
     
     // Rule user input
     
-     var eventStartsInDuration = TimeSize(unit: .Hour, amount: 3)
+     var eventStartsInDuration = TimeSize(unit: .Hour, amount: 1)
      var variance = TimeSize(unit: .Minute, amount: 15)
     
    

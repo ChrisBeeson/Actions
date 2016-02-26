@@ -7,15 +7,45 @@
 //
 
 import Foundation
+import DateTools
 
 public class TransitionDurationWithVarianceRulePresenter : RulePresenter {
     
     var duration : Int  {
         get {
-            
-            Swift.print( (rule as! TransitionDurationWithVariance).eventStartsInDuration.amount)
-            
             return (rule as! TransitionDurationWithVariance).eventStartsInDuration.amount
+        }
+        set {
+            (rule as! TransitionDurationWithVariance).eventStartsInDuration.amount = newValue
+        }
+    }
+    
+    var durationUnit : UInt {
+        get {
+            return (rule as! TransitionDurationWithVariance).eventStartsInDuration.unit.rawValue
+        }
+        set {
+            (rule as! TransitionDurationWithVariance).eventStartsInDuration.unit = DTTimePeriodSize(rawValue: newValue)!
+            informDelegatesOfChangesToContent()
+        }
+    }
+    
+    var variance : Int  {
+        get {
+            return (rule as! TransitionDurationWithVariance).variance.amount
+        }
+        set {
+            (rule as! TransitionDurationWithVariance).variance.amount = newValue
+        }
+    }
+    
+    var varianceUnit : UInt {
+        get {
+            return (rule as! TransitionDurationWithVariance).variance.unit.rawValue
+        }
+        set {
+            (rule as! TransitionDurationWithVariance).variance.unit = DTTimePeriodSize(rawValue: newValue)!
+            informDelegatesOfChangesToContent()
         }
     }
     

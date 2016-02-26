@@ -60,11 +60,10 @@
             </subviews>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="mzY-86-1zT" secondAttribute="trailing" constant="20" id="D1q-bP-I5k"/>
-                <constraint firstAttribute="bottom" secondItem="mzY-86-1zT" secondAttribute="bottom" constant="9" id="TQx-nn-Qac"/>
                 <constraint firstItem="mzY-86-1zT" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="9" id="hD7-aD-mz6"/>
                 <constraint firstItem="mzY-86-1zT" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="20" id="v6q-R0-Bra"/>
             </constraints>
-            <point key="canvasLocation" x="178" y="171"/>
+            <point key="canvasLocation" x="178" y="205"/>
         </customView>
     </objects>
 </document>

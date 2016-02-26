@@ -59,6 +59,12 @@ public class RulePresenter : NSObject {
         delegates = delegates.filter { return $0 !== delegate }
     }
     
+    func informDelegatesOfChangesToContent() {
+        
+        delegates.forEach { $0.rulePresenterDidChangeContent(self) }
+    }
+    
+    
     
     public func detailViewController() -> RuleViewController {
         fatalError("This needs to be subclassed")

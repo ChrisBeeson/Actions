@@ -9,30 +9,50 @@
 import Foundation
 import DateTools
 
-class DurationWithVarianceViewController : RuleViewController {
+class DurationWithVarianceViewController : RuleViewController, NSComboBoxDelegate, RulePresenterDelegate  {
     
-    @IBOutlet weak var durationUnitsPopUp: NSPopUpButton!
+    @IBOutlet weak var durationUnitComboBox: NSComboBox!
+    @IBOutlet weak var variationUnitComboBox: NSComboBox!
     
-    @IBOutlet weak var varianceUnitsPopUp: NSPopUpButton!
-
-    /*
-    var duration = 1
-    var variance = 0
-    var durationUnits : DTTimePeriodSize = .Minute
-    var varianceUnits : DTTimePeriodSize = .Minute
-
     
-    override func viewWillAppear() {
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        if rulePresenter != nil {
-            
-            duration = rulePresenter.duration
-            duration = rulePres
-        }
-        
-        
+        refreshComboBoxes()
     }
-
-*/
     
+
+    func refreshComboBoxes() {
+        
+        let presenter = rulePresenter as! TransitionDurationWithVarianceRulePresenter
+        
+        durationUnitComboBox.selectItemAtIndex(Int(presenter.durationUnit))
+        durationUnitComboBox.stringValue = durationUnitComboBox.objectValueOfSelectedItem as! String
+        
+        variationUnitComboBox.selectItemAtIndex(Int(presenter.varianceUnit))
+        variationUnitComboBox.stringValue = variationUnitComboBox.objectValueOfSelectedItem as! String
+    }
+    
+    
+    func comboBoxSelectionDidChange(notification: NSNotification) {
+        
+        let combobox = notification.object as! NSComboBox
+        let presenter = rulePresenter as! TransitionDurationWithVarianceRulePresenter
+          
+            switch combobox.tag {
+                
+            case 1:
+                presenter.durationUnit = UInt(combobox.indexOfSelectedItem)
+                
+            case 2:
+                 presenter.varianceUnit = UInt(combobox.indexOfSelectedItem)
+                
+            default: break
+            }
+    }
+    
+    func rulePresenterDidChangeContent(presenter: RulePresenter) {
+        
+        refreshComboBoxes()
+    }
 }

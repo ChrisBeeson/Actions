@@ -10,11 +10,11 @@ import Foundation
 
 public protocol RulePresenterDelegate : class {
     
-    func rulePresenterDidRefreshCompleteLayout(presenter: RulePresenter)
+    func rulePresenterDidChangeContent(presenter: RulePresenter)
 }
 
 
 extension  RulePresenterDelegate {
     
-    public func rulePresenterDidRefreshCompleteLayout(presenter: RulePresenter) {}
+    public func rulePresenterDidChangeContent(presenter: RulePresenter) {}
 }

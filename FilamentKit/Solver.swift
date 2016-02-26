@@ -13,7 +13,7 @@ import DateTools
 
 /*
 
-Window 1                       |----------------------------------|     <- can be only within this period
+Window 1                       |----------------------------------|     <- Event can be only within this period
 prefered time                              ^
 
 
@@ -27,8 +27,8 @@ Action Dur Min           |--|
 
 Cal avoiding          |------------|            |---|   |----|
 
-Timeslot found                         |----|
-^^^^^^
+                                       |----|
+Timeslot found                         ^^^^^^
 */
 
 

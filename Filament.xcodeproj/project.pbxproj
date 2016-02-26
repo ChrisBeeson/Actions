@@ -81,10 +81,10 @@
 		835619CC1C6D6AD100488E99 /* NodeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */; };
 		835619CD1C6D6E4B00488E99 /* NodeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */; };
 		835740B21C77AD0700CFBB1B /* TimeEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835740B11C77AD0700CFBB1B /* TimeEvent.swift */; };
-		8359A7711C7CF28E00ED87D9 /* DurationWithVarianceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8359A7701C7CF28E00ED87D9 /* DurationWithVarianceViewController.xib */; };
 		8359A7731C7CF2F400ED87D9 /* DurationWithVarianceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8359A7721C7CF2F400ED87D9 /* DurationWithVarianceViewController.swift */; };
 		83861F2B1BEEA25F00A44122 /* FilamentDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83861F2A1BEEA25F00A44122 /* FilamentDocument.swift */; };
 		83AD7EBC1C7BA4E60097BD61 /* RuleTokenField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AD7EBB1C7BA4E60097BD61 /* RuleTokenField.swift */; };
+		83B74FAD1C7FDC0F005E5E22 /* DurationWithVarianceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83B74FAC1C7FDC0F005E5E22 /* DurationWithVarianceViewController.xib */; };
 		83C73E0D1BE31C4F0045973C /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C73E0B1BE31BF20045973C /* AppConfiguration.swift */; };
 		83C73E0E1BE31C4F0045973C /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C73E0B1BE31BF20045973C /* AppConfiguration.swift */; };
 		83DDAA4F1B997C9A001A4DBE /* SystemTrayMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83DDAA4E1B997C9A001A4DBE /* SystemTrayMenu.xib */; };
@@ -209,10 +209,10 @@
 		835619C91C6D6AAA00488E99 /* NodeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDetailViewController.swift; sourceTree = "<group>"; };
 		835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NodeDetailViewController.xib; sourceTree = "<group>"; };
 		835740B11C77AD0700CFBB1B /* TimeEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeEvent.swift; sourceTree = "<group>"; };
-		8359A7701C7CF28E00ED87D9 /* DurationWithVarianceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DurationWithVarianceViewController.xib; sourceTree = "<group>"; };
 		8359A7721C7CF2F400ED87D9 /* DurationWithVarianceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationWithVarianceViewController.swift; sourceTree = "<group>"; };
 		83861F2A1BEEA25F00A44122 /* FilamentDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilamentDocument.swift; sourceTree = "<group>"; };
 		83AD7EBB1C7BA4E60097BD61 /* RuleTokenField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleTokenField.swift; sourceTree = "<group>"; };
+		83B74FAC1C7FDC0F005E5E22 /* DurationWithVarianceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DurationWithVarianceViewController.xib; sourceTree = "<group>"; };
 		83C73E0B1BE31BF20045973C /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		83DDAA4A1B9978CF001A4DBE /* Filament-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Filament-Bridging-Header.h"; sourceTree = "<group>"; };
 		83DDAA4E1B997C9A001A4DBE /* SystemTrayMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SystemTrayMenu.xib; sourceTree = "<group>"; };
@@ -367,7 +367,7 @@
 			isa = PBXGroup;
 			children = (
 				473853B11C7A590A000AB1E2 /* RuleViewController.swift */,
-				8359A7701C7CF28E00ED87D9 /* DurationWithVarianceViewController.xib */,
+				83B74FAC1C7FDC0F005E5E22 /* DurationWithVarianceViewController.xib */,
 				8359A7721C7CF2F400ED87D9 /* DurationWithVarianceViewController.swift */,
 			);
 			name = RuleViewControllers;
@@ -768,8 +768,8 @@
 			files = (
 				4720B50A1C6F00E500229734 /* DateTimePickerViewController.xib in Resources */,
 				833AE3301C67F85B002F35C1 /* ActionNodeCollectionViewItem.xib in Resources */,
-				8359A7711C7CF28E00ED87D9 /* DurationWithVarianceViewController.xib in Resources */,
 				833AE32E1C67E463002F35C1 /* DateNodeCollectionViewItem.xib in Resources */,
+				83B74FAD1C7FDC0F005E5E22 /* DurationWithVarianceViewController.xib in Resources */,
 				834F85D11C6ACFA2009CC72F /* AddNewNodeCollectionViewItem.xib in Resources */,
 				835619CC1C6D6AD100488E99 /* NodeDetailViewController.xib in Resources */,
 				833AE3321C67FB6D002F35C1 /* TransitionNodeCollectionViewItem.xib in Resources */,

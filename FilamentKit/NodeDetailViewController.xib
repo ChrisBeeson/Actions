@@ -13,9 +13,6 @@
                 <outlet property="mainStackView" destination="fns-Wr-QDB" id="JcT-4E-8ky"/>
                 <outlet property="notesTextField" destination="soW-a3-LlD" id="lpq-MK-hdH"/>
                 <outlet property="rulesView" destination="Wro-5z-UqJ" id="zq5-Bo-CEn"/>
-                <outlet property="testStack" destination="pEH-zI-dhJ" id="Q2O-f3-U2X"/>
-                <outlet property="testStackView" destination="pEH-zI-dhJ" id="x7w-CJ-dqq"/>
-                <outlet property="testView" destination="wsH-fx-EnY" id="fKL-Cp-b3f"/>
                 <outlet property="titleStackView" destination="Pna-jH-CKI" id="wDw-re-Axf"/>
                 <outlet property="titleTextField" destination="vQH-96-PCB" id="Wqu-Py-zpu"/>
                 <outlet property="tokenField" destination="WcC-2Z-6n2" id="dGI-9c-zlU"/>
@@ -89,9 +86,9 @@
                                 <rect key="frame" x="1" y="1" width="254" height="42"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <tokenField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WcC-2Z-6n2" customClass="RuleTokenField" customModule="FilamentKit">
+                                    <tokenField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WcC-2Z-6n2" customClass="RuleTokenField" customModule="FilamentKit">
                                         <rect key="frame" x="0.0" y="0.0" width="254" height="42"/>
-                                        <tokenFieldCell key="cell" selectable="YES" alignment="left" drawsBackground="YES" allowsEditingTextAttributes="YES" id="5UP-Ba-U0x">
+                                        <tokenFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" focusRingType="none" alignment="left" drawsBackground="YES" allowsEditingTextAttributes="YES" id="5UP-Ba-U0x">
                                             <font key="font" metaFont="systemLight" size="12"/>
                                             <color key="textColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
@@ -138,162 +135,6 @@
             <point key="canvasLocation" x="-209" y="25"/>
         </customView>
         <dateFormatter dateStyle="medium" timeStyle="short" id="ige-uG-4DW"/>
-        <customView id="wsH-fx-EnY">
-            <rect key="frame" x="0.0" y="0.0" width="290" height="67"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <subviews>
-                <stackView distribution="fill" orientation="vertical" alignment="trailing" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pEH-zI-dhJ">
-                    <rect key="frame" x="117" y="7" width="173" height="52"/>
-                    <subviews>
-                        <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aJ9-22-O7b">
-                            <rect key="frame" x="0.0" y="30" width="173" height="22"/>
-                            <subviews>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="prO-Ly-hIb">
-                                    <rect key="frame" x="-2" y="4" width="49" height="14"/>
-                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Duration" id="ICY-KS-5W7">
-                                        <font key="font" metaFont="smallSystem"/>
-                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                    </textFieldCell>
-                                </textField>
-                                <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HE0-9R-Lkl">
-                                    <rect key="frame" x="53" y="0.0" width="48" height="22"/>
-                                    <subviews>
-                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fHN-R9-PYA">
-                                            <rect key="frame" x="0.0" y="0.0" width="35" height="22"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="35" id="SOY-K7-gbL"/>
-                                                <constraint firstAttribute="height" constant="22" id="XvD-nY-dQ5"/>
-                                            </constraints>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" bezelStyle="round" id="gb6-L4-7da">
-                                                <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="674-hF-T7y">
-                                            <rect key="frame" x="32" y="-3" width="19" height="27"/>
-                                            <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="Urv-nG-iNe"/>
-                                        </stepper>
-                                    </subviews>
-                                    <visibilityPriorities>
-                                        <integer value="1000"/>
-                                        <integer value="1000"/>
-                                    </visibilityPriorities>
-                                    <customSpacing>
-                                        <real value="3.4028234663852886e+38"/>
-                                        <real value="3.4028234663852886e+38"/>
-                                    </customSpacing>
-                                </stackView>
-                                <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9kC-FZ-nM2">
-                                    <rect key="frame" x="109" y="-2" width="64" height="25"/>
-                                    <popUpButtonCell key="cell" type="roundTextured" title="Hour" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" selectedItem="qWB-q7-Qsm" id="xuU-ix-co0">
-                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="menu"/>
-                                        <menu key="menu" id="sCR-CD-MU3">
-                                            <items>
-                                                <menuItem title="Hour" state="on" id="qWB-q7-Qsm"/>
-                                                <menuItem title="Item 2" id="Dl1-f0-Xtd"/>
-                                                <menuItem title="Item 3" id="l9V-9U-aOb"/>
-                                            </items>
-                                        </menu>
-                                    </popUpButtonCell>
-                                </popUpButton>
-                            </subviews>
-                            <visibilityPriorities>
-                                <integer value="1000"/>
-                                <integer value="1000"/>
-                                <integer value="1000"/>
-                            </visibilityPriorities>
-                            <customSpacing>
-                                <real value="3.4028234663852886e+38"/>
-                                <real value="3.4028234663852886e+38"/>
-                                <real value="3.4028234663852886e+38"/>
-                            </customSpacing>
-                        </stackView>
-                        <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9dm-cw-Q81">
-                            <rect key="frame" x="28" y="0.0" width="145" height="22"/>
-                            <subviews>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Oo5-vn-sOA">
-                                    <rect key="frame" x="-2" y="4" width="21" height="14"/>
-                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="+/-" id="f73-Sh-noJ">
-                                        <font key="font" metaFont="smallSystem"/>
-                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                    </textFieldCell>
-                                </textField>
-                                <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HzK-M9-ugA">
-                                    <rect key="frame" x="25" y="0.0" width="48" height="22"/>
-                                    <subviews>
-                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="anB-XG-P0k">
-                                            <rect key="frame" x="0.0" y="0.0" width="35" height="22"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="35" id="556-ga-QyB"/>
-                                                <constraint firstAttribute="height" constant="22" id="7Hg-hS-j5H"/>
-                                            </constraints>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" bezelStyle="round" id="EKM-W6-hel">
-                                                <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ivx-F6-R5J">
-                                            <rect key="frame" x="32" y="-3" width="19" height="27"/>
-                                            <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="TCl-v6-bRz"/>
-                                        </stepper>
-                                    </subviews>
-                                    <visibilityPriorities>
-                                        <integer value="1000"/>
-                                        <integer value="1000"/>
-                                    </visibilityPriorities>
-                                    <customSpacing>
-                                        <real value="3.4028234663852886e+38"/>
-                                        <real value="3.4028234663852886e+38"/>
-                                    </customSpacing>
-                                </stackView>
-                                <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oM7-9v-bcv">
-                                    <rect key="frame" x="81" y="-2" width="64" height="25"/>
-                                    <popUpButtonCell key="cell" type="roundTextured" title="Hour" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="3su-so-90w" id="BYw-uJ-B34">
-                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="menu"/>
-                                        <menu key="menu" id="zWg-5H-8b2">
-                                            <items>
-                                                <menuItem title="Hour" state="on" id="3su-so-90w"/>
-                                                <menuItem title="Item 2" id="pCx-49-qn6"/>
-                                                <menuItem title="Item 3" id="Kma-aR-kRv"/>
-                                            </items>
-                                        </menu>
-                                    </popUpButtonCell>
-                                </popUpButton>
-                            </subviews>
-                            <visibilityPriorities>
-                                <integer value="1000"/>
-                                <integer value="1000"/>
-                                <integer value="1000"/>
-                            </visibilityPriorities>
-                            <customSpacing>
-                                <real value="3.4028234663852886e+38"/>
-                                <real value="3.4028234663852886e+38"/>
-                                <real value="3.4028234663852886e+38"/>
-                            </customSpacing>
-                        </stackView>
-                    </subviews>
-                    <visibilityPriorities>
-                        <integer value="1000"/>
-                        <integer value="1000"/>
-                    </visibilityPriorities>
-                    <customSpacing>
-                        <real value="3.4028234663852886e+38"/>
-                        <real value="3.4028234663852886e+38"/>
-                    </customSpacing>
-                </stackView>
-            </subviews>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="pEH-zI-dhJ" secondAttribute="trailing" id="9W7-lN-x9p"/>
-                <constraint firstItem="pEH-zI-dhJ" firstAttribute="centerY" secondItem="wsH-fx-EnY" secondAttribute="centerY" id="B5e-xx-YDr"/>
-            </constraints>
-            <point key="canvasLocation" x="-209" y="217.5"/>
-        </customView>
         <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="a7d-4d-OQ3">
             <rect key="frame" x="0.0" y="0.0" width="240" height="135"/>
             <autoresizingMask key="autoresizingMask"/>
