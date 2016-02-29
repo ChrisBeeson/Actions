@@ -3,61 +3,56 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
-        <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="AvailableRulesViewController" customModule="FilamentKit" customModuleProvider="target">
             <connections>
-                <outlet property="tokenField" destination="Cz2-2W-IRu" id="tvm-4T-O0X"/>
                 <outlet property="view" destination="c22-O7-iKe" id="Ae2-FV-lRM"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="365" height="78"/>
+            <rect key="frame" x="0.0" y="0.0" width="365" height="101"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ulw-uh-KlL">
-                    <rect key="frame" x="11" y="15" width="342" height="51"/>
+                    <rect key="frame" x="11" y="-1" width="342" height="90"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="14y-PR-BU1">
-                            <rect key="frame" x="-2" y="34" width="97" height="17"/>
+                            <rect key="frame" x="-2" y="73" width="97" height="17"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Avaliable Rules" id="kaE-c9-udy">
                                 <font key="font" metaFont="systemMedium" size="13"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <box misplaced="YES" title="Box" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="NJ2-ag-zGn">
-                            <rect key="frame" x="-3" y="-4" width="348" height="32"/>
-                            <view key="contentView" id="ugP-eA-EIN">
-                                <rect key="frame" x="1" y="1" width="346" height="30"/>
+                        <scrollView misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aiL-Yw-GyX">
+                            <rect key="frame" x="0.0" y="0.0" width="336" height="65"/>
+                            <clipView key="contentView" id="l2I-kV-dzm">
+                                <rect key="frame" x="1" y="1" width="334" height="63"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <tokenField verticalHuggingPriority="750" misplaced="YES" preferredMaxLayoutWidth="400" translatesAutoresizingMaskIntoConstraints="NO" id="Cz2-2W-IRu">
-                                        <rect key="frame" x="3" y="8" width="8" height="17"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="6Q9-VM-W84"/>
-                                        </constraints>
-                                        <tokenFieldCell key="cell" selectable="YES" alignment="left" allowsEditingTextAttributes="YES" id="hjB-PA-6m3">
-                                            <font key="font" metaFont="systemLight" size="13"/>
-                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </tokenFieldCell>
-                                    </tokenField>
+                                    <collectionView id="1Cs-xj-n4s" customClass="RuleCollectionView" customModule="FilamentKit" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="63"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" scrollDirection="horizontal" id="Rwa-4I-LmX">
+                                            <size key="itemSize" width="50" height="50"/>
+                                        </collectionViewFlowLayout>
+                                        <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </collectionView>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Cz2-2W-IRu" secondAttribute="trailing" constant="5" id="5p8-VG-jK1"/>
-                                    <constraint firstItem="Cz2-2W-IRu" firstAttribute="top" secondItem="ugP-eA-EIN" secondAttribute="top" constant="5" id="LON-sJ-vIt"/>
-                                    <constraint firstItem="Cz2-2W-IRu" firstAttribute="leading" secondItem="ugP-eA-EIN" secondAttribute="leading" constant="5" id="Sp4-cM-ZlB"/>
-                                    <constraint firstAttribute="bottom" secondItem="Cz2-2W-IRu" secondAttribute="bottom" constant="8" id="hYV-St-ZEr"/>
-                                </constraints>
-                            </view>
-                            <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                            <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </box>
+                            </clipView>
+                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="Qmm-Nm-ujD">
+                                <rect key="frame" x="1" y="144" width="233" height="15"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </scroller>
+                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="C92-60-ZCj">
+                                <rect key="frame" x="234" y="1" width="15" height="143"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </scroller>
+                        </scrollView>
                     </subviews>
                     <visibilityPriorities>
                         <integer value="1000"/>
@@ -75,7 +70,8 @@
                 <constraint firstItem="ulw-uh-KlL" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="12" id="fu3-bo-HgC"/>
                 <constraint firstAttribute="trailing" secondItem="ulw-uh-KlL" secondAttribute="trailing" constant="12" id="mRA-HO-4Wx"/>
             </constraints>
-            <point key="canvasLocation" x="414.5" y="312"/>
+            <point key="canvasLocation" x="414.5" y="323.5"/>
         </customView>
+        <collectionViewItem id="WAu-PG-DQh" customClass="RuleCollectionItem" customModule="FilamentKit" customModuleProvider="target"/>
     </objects>
 </document>

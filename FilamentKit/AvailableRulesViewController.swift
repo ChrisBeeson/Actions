@@ -17,14 +17,14 @@ public class AvailableRulesViewController : NSViewController,NSTokenFieldDelegat
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-        tokenField.delegate = self
+        //   tokenField.delegate = self
     }
     
     override public func viewWillLayout() {
         super.viewWillLayout()
         
         if nodePresenter != nil  {
-            tokenField.objectValue = nodePresenter!.availableRules()
+            //       tokenField.objectValue = nodePresenter!.availableRules()
         }
     }
     

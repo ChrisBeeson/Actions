@@ -98,6 +98,9 @@
 		83B74FAD1C7FDC0F005E5E22 /* DurationWithVarianceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83B74FAC1C7FDC0F005E5E22 /* DurationWithVarianceViewController.xib */; };
 		83C73E0D1BE31C4F0045973C /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C73E0B1BE31BF20045973C /* AppConfiguration.swift */; };
 		83C73E0E1BE31C4F0045973C /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C73E0B1BE31BF20045973C /* AppConfiguration.swift */; };
+		83CE36381C84E35100D3A556 /* RuleCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CE36371C84E35100D3A556 /* RuleCollectionView.swift */; };
+		83CE363A1C84E4AA00D3A556 /* RuleCollectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CE36391C84E4AA00D3A556 /* RuleCollectionItem.swift */; };
+		83CE363C1C84E53F00D3A556 /* RuleCollectionItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83CE363B1C84E53F00D3A556 /* RuleCollectionItem.xib */; };
 		83DDAA4F1B997C9A001A4DBE /* SystemTrayMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83DDAA4E1B997C9A001A4DBE /* SystemTrayMenu.xib */; };
 		83F6B95D1B994652002A5AAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F6B95C1B994652002A5AAF /* AppDelegate.swift */; };
 		83F6B9611B994652002A5AAF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83F6B9601B994652002A5AAF /* Images.xcassets */; };
@@ -236,6 +239,9 @@
 		83AD7EBB1C7BA4E60097BD61 /* RuleTokenField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleTokenField.swift; sourceTree = "<group>"; };
 		83B74FAC1C7FDC0F005E5E22 /* DurationWithVarianceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DurationWithVarianceViewController.xib; sourceTree = "<group>"; };
 		83C73E0B1BE31BF20045973C /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		83CE36371C84E35100D3A556 /* RuleCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleCollectionView.swift; sourceTree = "<group>"; };
+		83CE36391C84E4AA00D3A556 /* RuleCollectionItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleCollectionItem.swift; sourceTree = "<group>"; };
+		83CE363B1C84E53F00D3A556 /* RuleCollectionItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RuleCollectionItem.xib; sourceTree = "<group>"; };
 		83DDAA4A1B9978CF001A4DBE /* Filament-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Filament-Bridging-Header.h"; sourceTree = "<group>"; };
 		83DDAA4E1B997C9A001A4DBE /* SystemTrayMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SystemTrayMenu.xib; sourceTree = "<group>"; };
 		83F6B9571B994652002A5AAF /* Filament.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Filament.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -467,6 +473,7 @@
 		479CD2841C1B8AA300C8D1D6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				83CE36361C84E33900D3A556 /* RuleCollectionView */,
 				47DF1C451C6879D700482390 /* DetailViewControllers */,
 				4778C0AB1C657F6500F5A259 /* SequenceCollectionView */,
 			);
@@ -589,6 +596,16 @@
 				83C73E0B1BE31BF20045973C /* AppConfiguration.swift */,
 			);
 			name = Configuration;
+			sourceTree = "<group>";
+		};
+		83CE36361C84E33900D3A556 /* RuleCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				83CE36371C84E35100D3A556 /* RuleCollectionView.swift */,
+				83CE36391C84E4AA00D3A556 /* RuleCollectionItem.swift */,
+				83CE363B1C84E53F00D3A556 /* RuleCollectionItem.xib */,
+			);
+			name = RuleCollectionView;
 			sourceTree = "<group>";
 		};
 		83F6B94E1B994652002A5AAF = {
@@ -818,6 +835,7 @@
 				471279B91C8061A20090426C /* EventDurationWithMinimumDurationViewController.xib in Resources */,
 				4720B50A1C6F00E500229734 /* DateTimePickerViewController.xib in Resources */,
 				833AE3301C67F85B002F35C1 /* ActionNodeCollectionViewItem.xib in Resources */,
+				83CE363C1C84E53F00D3A556 /* RuleCollectionItem.xib in Resources */,
 				833AE32E1C67E463002F35C1 /* DateNodeCollectionViewItem.xib in Resources */,
 				836896361C80801900F3F547 /* AvailableRulesViewController.xib in Resources */,
 				835289D21C840D8F001CD0DE /* Localizable.strings in Resources */,
@@ -944,7 +962,9 @@
 				471279C51C82CA9D0090426C /* NextUnitRule.swift in Sources */,
 				4735747F1B9A919500493CA0 /* SequencePresenter.swift in Sources */,
 				4778C0AA1C657D8F00F5A259 /* NodeCollectionViewItem.swift in Sources */,
+				83CE363A1C84E4AA00D3A556 /* RuleCollectionItem.swift in Sources */,
 				4753D3AF1BE378720071DB59 /* WorkingWeekRule.swift in Sources */,
+				83CE36381C84E35100D3A556 /* RuleCollectionView.swift in Sources */,
 				835619CA1C6D6AAA00488E99 /* NodeDetailViewController.swift in Sources */,
 				473574851B9A91A200493CA0 /* SequencePresenterDelegate.swift in Sources */,
 				833366CA1C838F99001FE4CD /* EventAlarmRule.swift in Sources */,
