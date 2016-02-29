@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AppKit
 
 public class AppConfiguration: NSObject {
     
@@ -254,4 +255,15 @@ public class AppConfiguration: NSObject {
         public static let blueFill = NSColor(calibratedRed: 0.9, green: 0.9, blue: 1.0, alpha: 1.0)
         public static let blueStroke = NSColor(calibratedRed: 0.1, green: 0.1, blue: 0.8, alpha: 1.0)
     }
+    
+    // Beta Helpers 
+    
+    public class func featureNotYetImplimented() {
+        let alert = NSAlert()
+        alert.informativeText = "This feature isn't implimented yet"
+        alert.showsHelp = false
+        alert.addButtonWithTitle("Ok")
+        alert.runModal()
+    }
+    
 }

@@ -169,17 +169,20 @@ class NodePresenter : NSObject {
     
     func availableRules() -> [Rule] {
         
-       var avalRules = Rule.RuleClasses()
-       
-        // Filter out nodes that we already have
-        avalRules = avalRules.filter{ !rules.contains($0) }
+        var avalRules = Rule.RuleClasses()
         
-        // filter out rules not avail to node type
-        avalRules
-        
-        
+        for aRule in avalRules {
+            for rule in rules {
+                if aRule.className == rule.className {
+                    avalRules = avalRules.filter{ $0.className != rule.className }
+                }
+            }
+            
+            if aRule.availableToNodeType != .All && aRule.availableToNodeType != self.type {
+                avalRules = avalRules.filter{ $0.className != aRule.className }
+            }
+        }
         return avalRules
-        
     }
     
     

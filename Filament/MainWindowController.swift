@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import FilamentKit
 
 class MainWindowController: NSWindowController {
     
@@ -26,5 +27,7 @@ class MainWindowController: NSWindowController {
     
     
     @IBAction func segmentedControlAction(sender: NSSegmentedControl) {
+        
+        AppConfiguration.featureNotYetImplimented()
     }
 }

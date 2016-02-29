@@ -44,6 +44,8 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
         
         titleTextField.stringValue = nodePresenter!.title
         notesTextField.stringValue = nodePresenter!.notes
+        addNodeButton.hidden = nodePresenter!.availableRules().count > 0 ? false : true
+        
         
         /*
         
@@ -127,18 +129,15 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
             
             addNodePopover = NSPopover()
             addNodePopover!.animates = true
-            addNodePopover!.behavior = .Semitransient
+            addNodePopover!.behavior = .Transient
             addNodePopover!.appearance = NSAppearance(named: NSAppearanceNameAqua)
         }
         
         let viewController = AvailableRulesViewController(nibName:"AvailableRulesViewController", bundle:NSBundle(identifier:"com.andris.FilamentKit"))
         
         viewController!.nodePresenter = nodePresenter
-        
         addNodePopover?.contentViewController = viewController
-    
         addNodePopover?.showRelativeToRect(addNodeButton.frame, ofView: rulesTitleStackView, preferredEdge:.MaxX )
 
     }
-    
 }

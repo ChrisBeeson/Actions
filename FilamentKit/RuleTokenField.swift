@@ -82,9 +82,16 @@ public class RuleTokenField : NSTokenField, NodePresenterDelegate, NSTokenFieldD
     }
     
     
-
-    
-    
+/*
+    public override func mouseDown(theEvent: NSEvent) {
+        //    super.mouseDown(theEvent)
+        
+        if theEvent.clickCount > 1 {
+            Swift.print("double click")
+        }
+        
+    }
+    */
     
 
     /*

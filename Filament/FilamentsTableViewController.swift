@@ -149,11 +149,11 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         if self.tableView.selectedRowIndexes.count == 0 { return }
         
         let alert = NSAlert()
-        alert.informativeText = "Are you sure you want to delete this sequence?"
-        alert.messageText = "Delete"
+        alert.informativeText = "TABLEVIEW_DELETE_SEQ_TITLE".localized
+        alert.messageText = "TABLEVIEW_DELETE_SEQ_DELETE".localized
         alert.showsHelp = false
-        alert.addButtonWithTitle("Delete")
-        alert.addButtonWithTitle("Cancel")
+        alert.addButtonWithTitle("TABLEVIEW_DELETE_SEQ_DELETE".localized)
+        alert.addButtonWithTitle("TABLEVIEW_DELETE_SEQ_CANCEL".localized)
         
         switch (alert.runModal()) {
             

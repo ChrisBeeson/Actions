@@ -21,7 +21,7 @@ class ActionNodeView: NodeView {
         path.lineToPoint(NSPoint(x: padding , y:frame.size.height - padding))
         path.lineToPoint(NSPoint(x: padding , y:padding))
         path.lineToPoint(NSPoint(x: frame.size.width - tailOff , y:padding))
-        path.lineToPoint(NSPoint(x: frame.size.width, y:frame.size.height/2))   // point
+        path.lineToPoint(NSPoint(x: frame.size.width - padding, y:frame.size.height/2))   // point
         path.lineToPoint(NSPoint(x: frame.size.width - tailOff , y: frame.size.height - padding))
         return path.CGPath(forceClose: false)!
     }
