@@ -1,0 +1,27 @@
+/* 
+  Localizable.strings
+  Filament
+
+  Created by Chris Beeson on 28/02/2016.
+  Copyright © 2016 Andris Ltd. All rights reserved.
+*/
+
+
+// RULES
+
+"RULE_NAME_DURATION_WITH_VARIANCE" = "+/- Duration";
+"RULE_DESC_DURATION_WITH_VARIANCE" = "Set the duration and allow for a custom variance to aviod other events.";
+
+"RULE_NAME_DURATION_WITH_MIN" = "Min Duration";
+"RULE_DESC_DURATION_WITH_MIN" = "Set the duration with an optional minimum duration";
+
+"RULE_NAME_AVOID_CALS" = "Avoid Calendars";
+"RULE_DESC_AVOID_CALS" = "Select calendars you wish to avoid conflicting with";
+
+"RULE_NAME_WORK_HOURS" = "Work Hours";
+"RULE_NAME_TRAVEL_DUR" = "Travel Duration";
+"RULE_NAME_FIXED" = "Fixed";
+"RULE_NAME_GREATER_LESS" = "Greater Less";
+"RULE_NAME_NEXT" = "Next";
+"RULE_NAME_WAIT" = "Wait";
+"RULE_NAME_ALARM" = "Alarm";

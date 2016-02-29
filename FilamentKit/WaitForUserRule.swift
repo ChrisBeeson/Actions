@@ -10,5 +10,5 @@ import Foundation
 
 class WaitForUserRule : Rule {
     
-    override var name: String { return "Wait" }
+    override var name: String { return "RULE_NAME_WAIT".localized }
 }

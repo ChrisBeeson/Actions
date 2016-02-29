@@ -10,5 +10,5 @@ import Foundation
 
 class GreaterThanLessThan : Rule {
     
-    override var name: String { return "Greater Less" }
+    override var name: String { return "RULE_NAME_GREATER_LESS".localized }
 }

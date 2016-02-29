@@ -11,7 +11,6 @@
 		471279B91C8061A20090426C /* EventDurationWithMinimumDurationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 471279B81C8061A20090426C /* EventDurationWithMinimumDurationViewController.xib */; };
 		471279BB1C8298C80090426C /* TransitionDurationBasedOnTravelTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471279BA1C8298C80090426C /* TransitionDurationBasedOnTravelTime.swift */; };
 		471279BD1C8298FA0090426C /* EventFixedStartAndEndDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471279BC1C8298FA0090426C /* EventFixedStartAndEndDate.swift */; };
-		471279C01C82BB440090426C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 471279BF1C82BB440090426C /* Localizable.strings */; };
 		471279C31C82CA730090426C /* GreaterThanLessThan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471279C21C82CA730090426C /* GreaterThanLessThan.swift */; };
 		471279C51C82CA9D0090426C /* NextUnitRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471279C41C82CA9D0090426C /* NextUnitRule.swift */; };
 		471420D61BA3CB2A00EDF32D /* Pods_Filament.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 471420D51BA3CB2A00EDF32D /* Pods_Filament.framework */; };
@@ -86,6 +85,7 @@
 		8343519D1BA297650094428B /* TransitionDurationWithVariance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8343519C1BA297650094428B /* TransitionDurationWithVariance.swift */; };
 		834F85CF1C6ACF5E009CC72F /* AddNewNodeCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F85CE1C6ACF5E009CC72F /* AddNewNodeCollectionViewItem.swift */; };
 		834F85D11C6ACFA2009CC72F /* AddNewNodeCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 834F85D01C6ACFA2009CC72F /* AddNewNodeCollectionViewItem.xib */; };
+		835289D21C840D8F001CD0DE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 835289D41C840D8F001CD0DE /* Localizable.strings */; };
 		835619CA1C6D6AAA00488E99 /* NodeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835619C91C6D6AAA00488E99 /* NodeDetailViewController.swift */; };
 		835619CC1C6D6AD100488E99 /* NodeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */; };
 		835619CD1C6D6E4B00488E99 /* NodeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */; };
@@ -159,7 +159,6 @@
 		471279B81C8061A20090426C /* EventDurationWithMinimumDurationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDurationWithMinimumDurationViewController.xib; sourceTree = "<group>"; };
 		471279BA1C8298C80090426C /* TransitionDurationBasedOnTravelTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionDurationBasedOnTravelTime.swift; sourceTree = "<group>"; };
 		471279BC1C8298FA0090426C /* EventFixedStartAndEndDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventFixedStartAndEndDate.swift; sourceTree = "<group>"; };
-		471279BF1C82BB440090426C /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		471279C21C82CA730090426C /* GreaterThanLessThan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GreaterThanLessThan.swift; sourceTree = "<group>"; };
 		471279C41C82CA9D0090426C /* NextUnitRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextUnitRule.swift; sourceTree = "<group>"; };
 		471420D51BA3CB2A00EDF32D /* Pods_Filament.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Filament.framework; path = Pods/../build/Release/Pods_Filament.framework; sourceTree = "<group>"; };
@@ -226,6 +225,7 @@
 		8343519C1BA297650094428B /* TransitionDurationWithVariance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionDurationWithVariance.swift; sourceTree = "<group>"; };
 		834F85CE1C6ACF5E009CC72F /* AddNewNodeCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewNodeCollectionViewItem.swift; sourceTree = "<group>"; };
 		834F85D01C6ACFA2009CC72F /* AddNewNodeCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddNewNodeCollectionViewItem.xib; sourceTree = "<group>"; };
+		835289D31C840D8F001CD0DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		835619C91C6D6AAA00488E99 /* NodeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDetailViewController.swift; sourceTree = "<group>"; };
 		835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NodeDetailViewController.xib; sourceTree = "<group>"; };
 		835740B11C77AD0700CFBB1B /* TimeEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeEvent.swift; sourceTree = "<group>"; };
@@ -310,7 +310,7 @@
 		471279C11C82BB650090426C /* en.lproj */ = {
 			isa = PBXGroup;
 			children = (
-				471279BF1C82BB440090426C /* Localizable.strings */,
+				835289D41C840D8F001CD0DE /* Localizable.strings */,
 			);
 			name = en.lproj;
 			sourceTree = "<group>";
@@ -820,7 +820,7 @@
 				833AE3301C67F85B002F35C1 /* ActionNodeCollectionViewItem.xib in Resources */,
 				833AE32E1C67E463002F35C1 /* DateNodeCollectionViewItem.xib in Resources */,
 				836896361C80801900F3F547 /* AvailableRulesViewController.xib in Resources */,
-				471279C01C82BB440090426C /* Localizable.strings in Resources */,
+				835289D21C840D8F001CD0DE /* Localizable.strings in Resources */,
 				83B74FAD1C7FDC0F005E5E22 /* DurationWithVarianceViewController.xib in Resources */,
 				834F85D11C6ACFA2009CC72F /* AddNewNodeCollectionViewItem.xib in Resources */,
 				835619CC1C6D6AD100488E99 /* NodeDetailViewController.xib in Resources */,
@@ -1064,6 +1064,17 @@
 			targetProxy = 83F6B96A1B994652002A5AAF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		835289D41C840D8F001CD0DE /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				835289D31C840D8F001CD0DE /* Base */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		4735746F1B9A687400493CA0 /* Debug */ = {

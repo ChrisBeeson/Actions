@@ -16,7 +16,7 @@ import DateTools
     // This rule sits the duration of an event.
     // It allows the event to be shortened to a minimum duration if required.
     
-     override var name: String { return "Work Hours" }
+     override var name: String { return "RULE_NAME_WORK_HOURS".localized }
      override var availableToNodeType:NodeType { return .None}
      override var conflictingRules: [Rule]? { return nil }
      override var options: RoleOptions { get { return RoleOptions.RequiresInterestWindow } }

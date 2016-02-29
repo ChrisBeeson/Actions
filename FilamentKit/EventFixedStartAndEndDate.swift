@@ -10,5 +10,5 @@ import Foundation
 
 class EventFixedStartAndEndDate : Rule {
     
-      override var name: String { return "Fixed" }
+      override var name: String { return "RULE_NAME_FIXED".localized }
 }

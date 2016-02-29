@@ -10,5 +10,5 @@ import Foundation
 
 class NextUnitRule : Rule {
     
-    override var name: String { return "Next" }
+    override var name: String { return "RULE_NAME_NEXT".localized }
 }

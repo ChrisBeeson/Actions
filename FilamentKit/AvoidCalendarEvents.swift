@@ -15,7 +15,7 @@ import EventKit
     // This rule sits the duration of an event.
     // It allows the event to be shortened to a minimum duration if required.
     
-     override var name: String { return "Avoid Calendars" }
+     override var name: String { return "RULE_NAME_AVOID_CALS".localized }
      override var availableToNodeType:NodeType { return .None}
      override var conflictingRules: [Rule]? { return nil }
      override var options: RoleOptions { get { return RoleOptions.RequiresInterestWindow } }

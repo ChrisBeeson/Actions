@@ -50,7 +50,8 @@ extension IntegerType {
 
 extension String {
     var localized: String {
-        return NSLocalizedString(self, tableName: nil, bundle: NSBundle(forClass:object_getClass(self)) , value: "", comment: "")
+        
+        return NSLocalizedString(self, tableName: nil, bundle: NSBundle(identifier:"com.andris.FilamentKit")!, value: "", comment: "")
     }
 }
 

@@ -167,6 +167,21 @@ class NodePresenter : NSObject {
     }
     
     
+    func availableRules() -> [Rule] {
+        
+       var avalRules = Rule.RuleClasses()
+       
+        // Filter out nodes that we already have
+        avalRules = avalRules.filter{ !rules.contains($0) }
+        
+        // filter out rules not avail to node type
+        avalRules
+        
+        
+        return avalRules
+        
+    }
+    
     
     func insertRules(rules:[Rule]) {
         

@@ -23,8 +23,12 @@ public class AvailableRulesViewController : NSViewController,NSTokenFieldDelegat
     override public func viewWillLayout() {
         super.viewWillLayout()
         
-        tokenField.objectValue = Rule.RuleClasses()
+        if nodePresenter != nil  {
+            tokenField.objectValue = nodePresenter!.availableRules()
+        }
     }
+    
+
     
     
     //MARK:Delegate

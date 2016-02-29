@@ -11,7 +11,7 @@ import Foundation
 
 class TransitionDurationBasedOnTravelTime: Rule {
     
-      override var name: String { return "Travel Duration" }
+      override var name: String { return "RULE_NAME_TRAVEL_DUR".localized }
 }
 
 /*
