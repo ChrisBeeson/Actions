@@ -28,8 +28,6 @@ public class AvailableRulesViewController : NSViewController,NSTokenFieldDelegat
         }
     }
     
-
-    
     
     //MARK:Delegate
     

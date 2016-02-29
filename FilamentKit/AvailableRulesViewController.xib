@@ -19,10 +19,10 @@
             <rect key="frame" x="0.0" y="0.0" width="365" height="78"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ulw-uh-KlL">
+                <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ulw-uh-KlL">
                     <rect key="frame" x="11" y="15" width="342" height="51"/>
                     <subviews>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="14y-PR-BU1">
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="14y-PR-BU1">
                             <rect key="frame" x="-2" y="34" width="97" height="17"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Avaliable Rules" id="kaE-c9-udy">
                                 <font key="font" metaFont="systemMedium" size="13"/>
@@ -30,14 +30,17 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <box title="Box" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="NJ2-ag-zGn">
-                            <rect key="frame" x="-3" y="-4" width="16" height="32"/>
+                        <box misplaced="YES" title="Box" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="NJ2-ag-zGn">
+                            <rect key="frame" x="-3" y="-4" width="348" height="32"/>
                             <view key="contentView" id="ugP-eA-EIN">
-                                <rect key="frame" x="1" y="1" width="14" height="30"/>
+                                <rect key="frame" x="1" y="1" width="346" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <tokenField verticalHuggingPriority="750" preferredMaxLayoutWidth="400" translatesAutoresizingMaskIntoConstraints="NO" id="Cz2-2W-IRu">
+                                    <tokenField verticalHuggingPriority="750" misplaced="YES" preferredMaxLayoutWidth="400" translatesAutoresizingMaskIntoConstraints="NO" id="Cz2-2W-IRu">
                                         <rect key="frame" x="3" y="8" width="8" height="17"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="6Q9-VM-W84"/>
+                                        </constraints>
                                         <tokenFieldCell key="cell" selectable="YES" alignment="left" allowsEditingTextAttributes="YES" id="hjB-PA-6m3">
                                             <font key="font" metaFont="systemLight" size="13"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
