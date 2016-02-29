@@ -9,5 +9,6 @@ target 'Filament' do
     pod 'Fabric'
     pod 'Crashlytics'
     pod 'AsyncSwift'
+    pod 'FormatterKit'
     
 end

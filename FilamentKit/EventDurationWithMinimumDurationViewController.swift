@@ -22,7 +22,7 @@ class EventDurationWithMinimumDurationViewController : RuleViewController, NSCom
     
     
     func refreshComboBoxes() {
-        
+     
         let presenter = rulePresenter as! EventDurationWithMinimumDurationRulePresenter
         
         durationUnitComboBox.selectItemAtIndex(Int(presenter.durationUnit))

@@ -12,6 +12,7 @@ import DateTools
  protocol RuleType {
     
     var name: String {get}
+    var description: String {get}
     var availableToNodeType:NodeType {get}
     var conflictingRules: [Rule]? {get}
     var options: RoleOptions { get }
@@ -29,11 +30,14 @@ import DateTools
     var eventMinDuration: TimeSize? {get}
     
     var avoidPeriods: [DTTimePeriod]? {get set}
+    
+
 }
 
  class Rule: NSObject, RuleType {
     
-     var name: String {get {return ""} }
+     var name: String {get {return "Not set"} }
+     var Description: String {get {return "NOT SET"} }
      var availableToNodeType:NodeType {get {return NodeType.All} }
      var conflictingRules: [Rule]? {get {return nil} }
      var options: RoleOptions {get { return RoleOptions.None } }
@@ -44,6 +48,24 @@ import DateTools
      var eventDuration: TimeSize? { get { return nil } }
      var eventMinDuration: TimeSize? { get { return nil } }
      var avoidPeriods: [DTTimePeriod]?
+    
+    
+    
+    class func RuleClasses() -> [Rule] {
+        
+        var ruleClasses = [Rule]()
+        ruleClasses.append(TransitionDurationWithVariance())
+        ruleClasses.append(EventDurationWithMinimumDuration())
+        ruleClasses.append(AvoidCalendarEvents())
+        ruleClasses.append(WorkingWeekRule())
+        ruleClasses.append(TransitionDurationBasedOnTravelTime())
+        ruleClasses.append(EventFixedStartAndEndDate())
+        ruleClasses.append(GreaterThanLessThan())
+        ruleClasses.append(NextUnitRule())
+        ruleClasses.append(WaitForUserRule())
+        ruleClasses.append(EventAlarmRule())
+        return ruleClasses
+    }
 }
 
 

@@ -61,7 +61,7 @@
                             </customSpacing>
                         </stackView>
                         <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="6" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CLm-UM-HwM">
-                            <rect key="frame" x="56" y="0.0" width="50" height="19"/>
+                            <rect key="frame" x="57" y="0.0" width="50" height="19"/>
                             <subviews>
                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Zn6-D2-iFY">
                                     <rect key="frame" x="0.0" y="0.0" width="13" height="19"/>

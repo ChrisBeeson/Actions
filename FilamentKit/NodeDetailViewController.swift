@@ -20,8 +20,12 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
     @IBOutlet weak var titleStackView: NSStackView!
     @IBOutlet weak var eventStackView: NSStackView!
 
+    @IBOutlet weak var rulesTitleStackView: NSStackView!
+    @IBOutlet weak var addNodeButton: NSButton!
     
     var nodePresenter: NodePresenter?
+    
+    var addNodePopover: NSPopover?
     
     private var rulePresenters = [RulePresenter]()
     private var currentlyDisplayedRuleDetailController : RuleViewController?
@@ -40,8 +44,11 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
         
         titleTextField.stringValue = nodePresenter!.title
         notesTextField.stringValue = nodePresenter!.notes
-
+        
         /*
+        
+        https://github.com/mattt/FormatterKit
+        
         if nodePresenter!.type == NodeType.Action {
             if let date = nodePresenter!.event?.startDate {
                 dateTextField.stringValue = date.formattedDateWithStyle(.LongStyle)
@@ -98,12 +105,7 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
     }
     
     
-    @IBAction func calendarLinkButtonPressed(sender: AnyObject) {
-        
-        //mainStackView.animator().addArrangedSubview(testStack)
-        
-        // titleTextField.selectable = false
-}
+
     
     //MARK: RuleTokenField Delegate 
     
@@ -118,4 +120,25 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
         }
 */
     }
+    
+    @IBAction func addNodeButtonPressed(sender: AnyObject) {
+        
+        if addNodePopover == nil {
+            
+            addNodePopover = NSPopover()
+            addNodePopover!.animates = true
+            addNodePopover!.behavior = .Semitransient
+            addNodePopover!.appearance = NSAppearance(named: NSAppearanceNameAqua)
+        }
+        
+        let viewController = AvailableRulesViewController(nibName:"AvailableRulesViewController", bundle:NSBundle(identifier:"com.andris.FilamentKit"))
+        
+        viewController!.nodePresenter = nodePresenter
+        
+        addNodePopover?.contentViewController = viewController
+    
+        addNodePopover?.showRelativeToRect(addNodeButton.frame, ofView: rulesTitleStackView, preferredEdge:.MaxX )
+
+    }
+    
 }
