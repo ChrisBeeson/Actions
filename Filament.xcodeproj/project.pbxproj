@@ -75,6 +75,7 @@
 		47D6165B1B9C1FAA00F72155 /* SequenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D6165A1B9C1FAA00F72155 /* SequenceTests.swift */; };
 		47F2FBC41BA8CFEE0041B291 /* Solver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F2FBC31BA8CFEE0041B291 /* Solver.swift */; };
 		47F5E82B1BF495D8004C0D16 /* AddFilamentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F5E82A1BF495D8004C0D16 /* AddFilamentViewController.swift */; };
+		83260A341C856C6700F74DBD /* RulePillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83260A331C856C6700F74DBD /* RulePillView.swift */; };
 		8329DE9B1C63DF10001B3A2F /* SequenceCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8329DE9A1C63DF10001B3A2F /* SequenceCollectionView.swift */; };
 		832BA20A1C740686004331A7 /* NodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832BA2091C740686004331A7 /* NodeView.swift */; };
 		833366C81C838F5E001FE4CD /* WaitForUserRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833366C71C838F5E001FE4CD /* WaitForUserRule.swift */; };
@@ -218,6 +219,7 @@
 		47D6165A1B9C1FAA00F72155 /* SequenceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceTests.swift; sourceTree = "<group>"; };
 		47F2FBC31BA8CFEE0041B291 /* Solver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Solver.swift; sourceTree = "<group>"; };
 		47F5E82A1BF495D8004C0D16 /* AddFilamentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFilamentViewController.swift; sourceTree = "<group>"; };
+		83260A331C856C6700F74DBD /* RulePillView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulePillView.swift; sourceTree = "<group>"; };
 		8329DE9A1C63DF10001B3A2F /* SequenceCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceCollectionView.swift; sourceTree = "<group>"; };
 		832BA2091C740686004331A7 /* NodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeView.swift; sourceTree = "<group>"; };
 		833366C71C838F5E001FE4CD /* WaitForUserRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitForUserRule.swift; sourceTree = "<group>"; };
@@ -604,6 +606,7 @@
 				83CE36371C84E35100D3A556 /* RuleCollectionView.swift */,
 				83CE36391C84E4AA00D3A556 /* RuleCollectionItem.swift */,
 				83CE363B1C84E53F00D3A556 /* RuleCollectionItem.xib */,
+				83260A331C856C6700F74DBD /* RulePillView.swift */,
 			);
 			name = RuleCollectionView;
 			sourceTree = "<group>";
@@ -960,6 +963,7 @@
 				47ACA9571BB54B82000CAC61 /* EventDurationWithMinimumDuration.swift in Sources */,
 				4720B5001C6E7EF200229734 /* NodePresenter.swift in Sources */,
 				471279C51C82CA9D0090426C /* NextUnitRule.swift in Sources */,
+				83260A341C856C6700F74DBD /* RulePillView.swift in Sources */,
 				4735747F1B9A919500493CA0 /* SequencePresenter.swift in Sources */,
 				4778C0AA1C657D8F00F5A259 /* NodeCollectionViewItem.swift in Sources */,
 				83CE363A1C84E4AA00D3A556 /* RuleCollectionItem.swift in Sources */,

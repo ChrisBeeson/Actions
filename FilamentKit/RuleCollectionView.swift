@@ -28,7 +28,6 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
         
         self.dataSource = self
         self.delegate = self
-        //    self.wantsLayer = true
         
         let nib = NSNib(nibNamed: "RuleCollectionItem", bundle: NSBundle(identifier:"com.andris.FilamentKit"))
         self.registerNib(nib, forItemWithIdentifier: "RuleCollectionItem")
@@ -39,23 +38,15 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     
     //MARK: Datasource
     
-    public func numberOfSectionsInCollectionView(collectionView: NSCollectionView) -> Int {
-        return 1
-    }
-    
-    
     public func collectionView(collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 20
-        
+        return 10
     }
     
     
     public func collectionView(collectionView: NSCollectionView, itemForRepresentedObjectAtIndexPath indexPath: NSIndexPath) -> NSCollectionViewItem {
 
             let item = makeItemWithIdentifier("RuleCollectionItem", forIndexPath: indexPath)
-        
-        Swift.print(item)
             return item
     }
     
@@ -64,15 +55,13 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     //MARK: Collection View Delegate
     
     public func collectionView(collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> NSSize {
-        
-        
 
                 if let item = collectionView.itemAtIndex(indexPath.item) {
                     return item.view.intrinsicContentSize
                     
                 } else {
                     
-                    return NSSize(width: 82, height: 27)
+                    return NSSize(width: 65, height: 20)
              
                     /*
                     let string:NSString = node.title as NSString
@@ -87,7 +76,7 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     }
     
     public func collectionView(collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 0.0
+        return 5.0
     }
     
     public func collectionView(collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {

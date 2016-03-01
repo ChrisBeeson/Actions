@@ -45,7 +45,7 @@
                                 </textField>
                                 <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="soW-a3-LlD">
                                     <rect key="frame" x="-2" y="0.0" width="255" height="14"/>
-                                    <textFieldCell key="cell" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" title="Add Location" placeholderString="Notes" id="NHT-jn-ZJs">
+                                    <textFieldCell key="cell" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" title="Location" placeholderString="Notes" id="NHT-jn-ZJs">
                                         <font key="font" metaFont="smallSystem"/>
                                         <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>

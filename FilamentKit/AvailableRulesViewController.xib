@@ -28,24 +28,26 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <scrollView misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aiL-Yw-GyX">
+                        <scrollView misplaced="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aiL-Yw-GyX">
                             <rect key="frame" x="0.0" y="0.0" width="336" height="65"/>
-                            <clipView key="contentView" id="l2I-kV-dzm">
-                                <rect key="frame" x="1" y="1" width="334" height="63"/>
+                            <clipView key="contentView" drawsBackground="NO" id="l2I-kV-dzm">
+                                <rect key="frame" x="0.0" y="0.0" width="336" height="65"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <collectionView id="1Cs-xj-n4s" customClass="RuleCollectionView" customModule="FilamentKit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="334" height="63"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="348" height="33"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" scrollDirection="horizontal" id="Rwa-4I-LmX">
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="5" scrollDirection="horizontal" id="Rwa-4I-LmX">
                                             <size key="itemSize" width="50" height="50"/>
+                                            <edgeInsets key="sectionInset" left="5" right="5" top="10" bottom="0.0"/>
                                         </collectionViewFlowLayout>
-                                        <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="primaryBackgroundColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
                                     </collectionView>
                                 </subviews>
+                                <color key="backgroundColor" white="0.93025323275862071" alpha="0.0" colorSpace="calibratedWhite"/>
                             </clipView>
-                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="Qmm-Nm-ujD">
-                                <rect key="frame" x="1" y="144" width="233" height="15"/>
+                            <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="Qmm-Nm-ujD">
+                                <rect key="frame" x="0.0" y="49" width="336" height="16"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </scroller>
                             <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="C92-60-ZCj">

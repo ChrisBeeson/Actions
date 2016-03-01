@@ -242,6 +242,7 @@ public class AppConfiguration: NSObject {
     // Colours 
     
     public struct Palette {
+        
         public static let selectionBlue = NSColor(red: 0.6, green: 0.75, blue: 0.9, alpha: 1.0)
         public static let lightGreyStroke = NSColor(calibratedWhite:0.65, alpha:1.0)
         public static let lightGreyFill = NSColor(calibratedWhite:0.95, alpha:1.0)
@@ -254,6 +255,12 @@ public class AppConfiguration: NSObject {
         
         public static let blueFill = NSColor(calibratedRed: 0.9, green: 0.9, blue: 1.0, alpha: 1.0)
         public static let blueStroke = NSColor(calibratedRed: 0.1, green: 0.1, blue: 0.8, alpha: 1.0)
+        
+        public static let tokenBlue = NSColor(calibratedRed: 0.745, green: 0.839, blue: 0.922, alpha:1.0)
+        public static let tokenBlueSelected = NSColor(calibratedRed: 0.745, green: 0.839, blue: 0.922, alpha:1.0)
+        
+        public static let buttonSelectionBlue = NSColor(calibratedRed: 0.329, green: 0.604, blue: 0.988, alpha: 1)
+        
     }
     
     // Beta Helpers 

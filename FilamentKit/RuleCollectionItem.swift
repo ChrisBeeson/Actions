@@ -9,5 +9,11 @@
 import Foundation
 
 public class RuleCollectionItem : NSCollectionViewItem {
+
+    @IBOutlet weak var rulePillView: RulePillView!
+    @IBOutlet weak var label: NSTextField!
+    
+    
+    
     
 }
