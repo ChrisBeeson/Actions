@@ -34,6 +34,7 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
         
         self.dataSource = self
         self.delegate = self
+        self.collectionViewLayout = LeftAlignedCollectionViewFlowLayout()
         
         self.backgroundColors = [NSColor.clearColor()]
         
@@ -75,15 +76,15 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
                     return NSSize(width: size.width + 30, height: 16)
                 }
     }
-    /*
+    
     public func collectionView(collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 1.0
+        return 3.0
     }
     
     public func collectionView(collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 3.0
+        return 2.0
     }
-    */
+    
     
     public func collectionView(collectionView: NSCollectionView, willDisplayItem item: NSCollectionViewItem, forRepresentedObjectAtIndexPath indexPath: NSIndexPath) {
         
