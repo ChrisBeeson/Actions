@@ -16,12 +16,12 @@
                     <rect key="frame" x="0.0" y="0.0" width="65" height="16"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Ka-cc-yUo">
-                            <rect key="frame" x="13" y="-2" width="39" height="14"/>
+                            <rect key="frame" x="13" y="2" width="39" height="14"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="14" id="cq4-9t-iUq"/>
                             </constraints>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="GKg-ec-bxx">
-                                <font key="font" metaFont="cellTitle"/>
+                                <font key="font" metaFont="system" size="12"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
@@ -29,7 +29,7 @@
                     </subviews>
                     <constraints>
                         <constraint firstItem="8Ka-cc-yUo" firstAttribute="leading" secondItem="eoi-SA-h1p" secondAttribute="leading" constant="15" id="2H7-fZ-HuU"/>
-                        <constraint firstItem="8Ka-cc-yUo" firstAttribute="top" secondItem="eoi-SA-h1p" secondAttribute="top" constant="4" id="SEF-P0-8Jl"/>
+                        <constraint firstItem="8Ka-cc-yUo" firstAttribute="top" secondItem="eoi-SA-h1p" secondAttribute="top" id="SEF-P0-8Jl"/>
                         <constraint firstAttribute="trailing" secondItem="8Ka-cc-yUo" secondAttribute="trailing" constant="15" id="ZOK-EL-x1k"/>
                     </constraints>
                 </customView>

@@ -70,18 +70,10 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
                     
                 } else {
                     
-                    return NSSize(width: 65, height: 20)
-             
-                    /*
-                    let string:NSString = node.title as NSString
-                    let size: CGSize = string.sizeWithAttributes([NSFontAttributeName: NSFont.systemFontOfSize(14.0, weight:NSFontWeightThin) ])
-                    return NSSize(width: size.width + 30.5, height: 35)
-                    
-                    */
+                    let string:NSString = rules![indexPath.item].name as NSString
+                    let size: CGSize = string.sizeWithAttributes([NSFontAttributeName: NSFont.systemFontOfSize(12.0, weight:NSFontWeightThin) ])
+                    return NSSize(width: size.width + 30, height: 16)
                 }
-                
-
-    
     }
     /*
     public func collectionView(collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
