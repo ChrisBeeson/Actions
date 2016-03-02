@@ -8,9 +8,10 @@
 
 import Foundation
 
-public class NodeDetailViewController : NSViewController, NodePresenterDelegate, RuleTokenFieldDelegate {
+public class NodeDetailViewController : NSViewController, NodePresenterDelegate {
     
-    @IBOutlet weak var tokenField: RuleTokenField!
+    @IBOutlet weak var ruleCollectionView: RuleCollectionView!
+
     @IBOutlet weak var titleTextField: NSTextField!
     @IBOutlet weak var notesTextField: NSTextField!
     @IBOutlet weak var dateTextField: NSTextField!
@@ -33,9 +34,11 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
     
     override public func viewDidLoad() {
         
-        tokenField.nodePresenter = nodePresenter!
-        tokenField.ruleDetailDelegate = self
-        nodePresenter!.addDelegate(tokenField)
+        // create rulePresenters for each of the rules
+        rulePresenters = nodePresenter!.rules.map { RulePresenter.rulePresenterForRule($0) }
+        
+        Swift.print(rulePresenters)
+        ruleCollectionView.rules = rulePresenters
     }
     
     
@@ -108,21 +111,6 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
     
     
     
-    
-    //MARK: RuleTokenField Delegate
-    
-    public func ruleTokenFieldDidSelectObjects(tokenField:RuleTokenField, rules:[AnyObject]?) {
-        /*
-        if let rules = rules {
-        
-        let rule = rules[0] as! Rule
-        displayViewForRule(rule)
-        } else {
-        displayViewForRule(nil)
-        }
-        */
-    }
-    
     @IBAction func addNodeButtonPressed(sender: AnyObject) {
         
         let popover = NSPopover()
@@ -135,6 +123,5 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
         viewController!.nodePresenter = nodePresenter
         popover.contentViewController = viewController
         popover.showRelativeToRect(addNodeButton.frame, ofView: rulesTitleStackView, preferredEdge:.MaxX )
-        
     }
 }

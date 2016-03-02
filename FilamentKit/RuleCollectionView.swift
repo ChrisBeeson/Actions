@@ -35,7 +35,6 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
         self.dataSource = self
         self.delegate = self
         self.collectionViewLayout = LeftAlignedCollectionViewFlowLayout()
-        
         self.backgroundColors = [NSColor.clearColor()]
         
         let nib = NSNib(nibNamed: "RuleCollectionItem", bundle: NSBundle(identifier:"com.andris.FilamentKit"))

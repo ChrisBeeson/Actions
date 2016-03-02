@@ -13,10 +13,10 @@
                 <outlet property="dateTextField" destination="Irr-Jp-XxP" id="alr-9D-dFA"/>
                 <outlet property="mainStackView" destination="fns-Wr-QDB" id="JcT-4E-8ky"/>
                 <outlet property="notesTextField" destination="GRN-nw-n6Q" id="U0V-TS-Aqy"/>
+                <outlet property="ruleCollectionView" destination="Vh4-gK-Teh" id="PxV-ih-qFd"/>
                 <outlet property="rulesTitleStackView" destination="fgA-j6-eLf" id="ala-hy-Dkd"/>
                 <outlet property="titleStackView" destination="Pna-jH-CKI" id="wDw-re-Axf"/>
                 <outlet property="titleTextField" destination="vQH-96-PCB" id="Wqu-Py-zpu"/>
-                <outlet property="tokenField" destination="wJR-fV-6hP" id="6fT-9X-7ab"/>
                 <outlet property="view" destination="c22-O7-iKe" id="EkG-En-0xY"/>
             </connections>
         </customObject>
@@ -26,11 +26,11 @@
             <rect key="frame" x="0.0" y="0.0" width="291" height="234"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" verticalHuggingPriority="260" verticalCompressionResistancePriority="760" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fns-Wr-QDB">
-                    <rect key="frame" x="20" y="20" width="251" height="194"/>
+                <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" verticalHuggingPriority="260" verticalCompressionResistancePriority="760" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fns-Wr-QDB">
+                    <rect key="frame" x="20" y="12" width="251" height="202"/>
                     <subviews>
-                        <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pna-jH-CKI">
-                            <rect key="frame" x="0.0" y="156" width="251" height="38"/>
+                        <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pna-jH-CKI">
+                            <rect key="frame" x="0.0" y="164" width="251" height="38"/>
                             <subviews>
                                 <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vQH-96-PCB">
                                     <rect key="frame" x="-2" y="16" width="255" height="22"/>
@@ -61,31 +61,31 @@
                                 <real value="3.4028234663852886e+38"/>
                             </customSpacing>
                         </stackView>
-                        <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="UmE-hs-F2b">
-                            <rect key="frame" x="0.0" y="143" width="251" height="5"/>
+                        <box verticalHuggingPriority="750" misplaced="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="UmE-hs-F2b">
+                            <rect key="frame" x="0.0" y="151" width="251" height="5"/>
                             <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                             <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <font key="titleFont" metaFont="system"/>
                         </box>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Irr-Jp-XxP">
-                            <rect key="frame" x="-2" y="118" width="224" height="17"/>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Irr-Jp-XxP">
+                            <rect key="frame" x="-2" y="126" width="224" height="17"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Weds 16th June 2016 - 2pm To 3pm" id="MIt-CR-HeM">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="F17-XD-WdX">
-                            <rect key="frame" x="0.0" y="105" width="251" height="5"/>
+                        <box verticalHuggingPriority="750" misplaced="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="F17-XD-WdX">
+                            <rect key="frame" x="0.0" y="113" width="251" height="5"/>
                             <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                             <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <font key="titleFont" metaFont="system"/>
                         </box>
-                        <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="3" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6EG-as-AJv">
-                            <rect key="frame" x="0.0" y="24" width="250" height="73"/>
+                        <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="3" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6EG-as-AJv">
+                            <rect key="frame" x="0.0" y="24" width="250" height="81"/>
                             <subviews>
-                                <stackView distribution="fill" orientation="horizontal" alignment="baseline" spacing="210" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fgA-j6-eLf">
-                                    <rect key="frame" x="0.0" y="53" width="250" height="20"/>
+                                <stackView distribution="fill" orientation="horizontal" alignment="baseline" spacing="210" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fgA-j6-eLf">
+                                    <rect key="frame" x="0.0" y="61" width="250" height="20"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="706-Bj-ymx">
                                             <rect key="frame" x="-2" y="0.0" width="33" height="14"/>
@@ -95,7 +95,7 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N1L-WR-Md3">
+                                        <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N1L-WR-Md3">
                                             <rect key="frame" x="239" y="0.0" width="11" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="u4g-VA-YdV"/>
@@ -118,39 +118,43 @@
                                         <real value="3.4028234663852886e+38"/>
                                     </customSpacing>
                                 </stackView>
-                                <box focusRingType="none" title="Box" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="NP2-3d-F33">
-                                    <rect key="frame" x="-3" y="-4" width="256" height="56"/>
-                                    <view key="contentView" focusRingType="none" id="Ke5-T2-pIc">
-                                        <rect key="frame" x="1" y="1" width="254" height="54"/>
+                                <box ambiguous="YES" misplaced="YES" title="Box" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="jYC-LU-8Wf">
+                                    <rect key="frame" x="-2" y="-4" width="255" height="64"/>
+                                    <view key="contentView" focusRingType="none" ambiguous="YES" id="dvN-xw-Gnb">
+                                        <rect key="frame" x="1" y="1" width="253" height="62"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <tokenField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wJR-fV-6hP" customClass="RuleTokenField" customModule="FilamentKit">
-                                                <rect key="frame" x="1" y="5" width="250" height="44"/>
-                                                <tokenFieldCell key="cell" selectable="YES" focusRingType="none" alignment="left" allowsEditingTextAttributes="YES" id="9YM-tk-fdz">
-                                                    <font key="font" metaFont="cellTitle"/>
-                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                </tokenFieldCell>
-                                            </tokenField>
+                                            <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0R7-Oc-1ih">
+                                                <rect key="frame" x="7" y="6" width="241" height="50"/>
+                                                <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="Eha-Pe-gdp">
+                                                    <rect key="frame" x="0.0" y="0.0" width="241" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <subviews>
+                                                        <collectionView ambiguous="YES" selectable="YES" id="Vh4-gK-Teh" customClass="RuleCollectionView" customModule="FilamentKit">
+                                                            <rect key="frame" x="0.0" y="0.0" width="241" height="50"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" scrollDirection="horizontal" id="o8Y-fR-MuF">
+                                                                <size key="itemSize" width="50" height="50"/>
+                                                            </collectionViewFlowLayout>
+                                                            <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        </collectionView>
+                                                    </subviews>
+                                                </clipView>
+                                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="s5h-Lp-Qjv">
+                                                    <rect key="frame" x="1" y="144" width="233" height="15"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </scroller>
+                                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="qp7-dY-PNL">
+                                                    <rect key="frame" x="234" y="1" width="15" height="143"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </scroller>
+                                            </scrollView>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstItem="wJR-fV-6hP" firstAttribute="top" secondItem="Ke5-T2-pIc" secondAttribute="top" constant="5" id="7sp-AP-Lnd"/>
-                                            <constraint firstAttribute="bottom" secondItem="wJR-fV-6hP" secondAttribute="bottom" constant="5" id="Kjv-By-P4m"/>
-                                            <constraint firstItem="wJR-fV-6hP" firstAttribute="leading" secondItem="Ke5-T2-pIc" secondAttribute="leading" constant="3" id="nS3-v5-sQU"/>
-                                            <constraint firstAttribute="trailing" secondItem="wJR-fV-6hP" secondAttribute="trailing" constant="5" id="w73-kX-z87"/>
-                                        </constraints>
                                     </view>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="50" id="CAQ-fp-TpZ"/>
-                                    </constraints>
                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </box>
                             </subviews>
-                            <constraints>
-                                <constraint firstItem="NP2-3d-F33" firstAttribute="leading" secondItem="6EG-as-AJv" secondAttribute="leading" id="Jzm-ln-8MH"/>
-                                <constraint firstAttribute="trailing" secondItem="NP2-3d-F33" secondAttribute="trailing" id="lJe-qZ-rZL"/>
-                            </constraints>
                             <visibilityPriorities>
                                 <integer value="1000"/>
                                 <integer value="1000"/>
