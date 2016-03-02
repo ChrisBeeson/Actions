@@ -48,14 +48,14 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     
     public func collectionView(collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 10
+        return rules!.count
     }
     
     
     public func collectionView(collectionView: NSCollectionView, itemForRepresentedObjectAtIndexPath indexPath: NSIndexPath) -> NSCollectionViewItem {
 
-            let item = makeItemWithIdentifier("RuleCollectionItem", forIndexPath: indexPath)
-        Swift.print(item)
+            let item = makeItemWithIdentifier("RuleCollectionItem", forIndexPath: indexPath) as! RuleCollectionItem
+            item.label.stringValue = rules![indexPath.item].name as String
             return item
     }
     

@@ -17,8 +17,15 @@ public class AvailableRulesViewController : NSViewController,NSTokenFieldDelegat
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-        // collectionView.nodePresenter = nodePresenter
+        assert(nodePresenter != nil)
         
+        // Make a rule presenter for each available rule
+        
+        var rps = [RulePresenter]()
+        for rule in nodePresenter!.availableRules() {
+            rps.append(RulePresenter(rule: rule))
+        }
+         collectionView.rules = rps
     }
     
     override public func viewWillLayout() {

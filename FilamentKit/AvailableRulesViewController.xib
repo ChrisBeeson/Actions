@@ -8,6 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="AvailableRulesViewController" customModule="FilamentKit" customModuleProvider="target">
             <connections>
+                <outlet property="collectionView" destination="g5u-x9-ncy" id="9g3-53-gWW"/>
                 <outlet property="view" destination="c22-O7-iKe" id="Ae2-FV-lRM"/>
             </connections>
         </customObject>
