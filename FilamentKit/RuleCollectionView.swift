@@ -10,6 +10,12 @@ import Foundation
 
 public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout {
     
+    var rules : [RulePresenter]?
+    var showDetailView = false
+    var allowDrops = false
+    var allowDeletions = false
+    
+    
     // MARK: Life Cycle
     
     public required init(coder aDecoder: NSCoder)  {
@@ -47,6 +53,7 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     public func collectionView(collectionView: NSCollectionView, itemForRepresentedObjectAtIndexPath indexPath: NSIndexPath) -> NSCollectionViewItem {
 
             let item = makeItemWithIdentifier("RuleCollectionItem", forIndexPath: indexPath)
+        Swift.print(item)
             return item
     }
     
@@ -76,11 +83,11 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     }
     
     public func collectionView(collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 5.0
+        return 3.0
     }
     
     public func collectionView(collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 0.0
+        return 3.0
     }
     
     

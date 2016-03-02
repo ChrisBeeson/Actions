@@ -10,31 +10,23 @@ import Foundation
 
 public class AvailableRulesViewController : NSViewController,NSTokenFieldDelegate {
     
-    @IBOutlet weak var tokenField: NSTokenField!
+    @IBOutlet weak var collectionView: RuleCollectionView!
     
     var nodePresenter: NodePresenter?
     
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-        //   tokenField.delegate = self
+        // collectionView.nodePresenter = nodePresenter
+        
     }
     
     override public func viewWillLayout() {
         super.viewWillLayout()
         
-        if nodePresenter != nil  {
-            //       tokenField.objectValue = nodePresenter!.availableRules()
-        }
     }
     
     
     //MARK:Delegate
-    
-    public func tokenField(tokenField: NSTokenField, displayStringForRepresentedObject representedObject: AnyObject) -> String? {
-        
-        let rule = representedObject as! Rule
-        return rule.name
-    }
     
 }
