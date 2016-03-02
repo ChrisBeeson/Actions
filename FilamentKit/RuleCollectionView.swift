@@ -35,6 +35,8 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
         self.dataSource = self
         self.delegate = self
         
+        self.backgroundColors = [NSColor.clearColor()]
+        
         let nib = NSNib(nibNamed: "RuleCollectionItem", bundle: NSBundle(identifier:"com.andris.FilamentKit"))
         self.registerNib(nib, forItemWithIdentifier: "RuleCollectionItem")
     }
@@ -81,15 +83,15 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
 
     
     }
-    
+    /*
     public func collectionView(collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 3.0
+        return 1.0
     }
     
     public func collectionView(collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
         return 3.0
     }
-    
+    */
     
     public func collectionView(collectionView: NSCollectionView, willDisplayItem item: NSCollectionViewItem, forRepresentedObjectAtIndexPath indexPath: NSIndexPath) {
         

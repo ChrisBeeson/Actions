@@ -19,13 +19,13 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
     @IBOutlet weak var mainStackView: NSStackView!
     @IBOutlet weak var titleStackView: NSStackView!
     @IBOutlet weak var eventStackView: NSStackView!
-
+    
     @IBOutlet weak var rulesTitleStackView: NSStackView!
     @IBOutlet weak var addNodeButton: NSButton!
     
     var nodePresenter: NodePresenter?
     
-    var addNodePopover: NSPopover?
+    var popover: NSPopover?
     
     private var rulePresenters = [RulePresenter]()
     private var currentlyDisplayedRuleDetailController : RuleViewController?
@@ -52,13 +52,13 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
         https://github.com/mattt/FormatterKit
         
         if nodePresenter!.type == NodeType.Action {
-            if let date = nodePresenter!.event?.startDate {
-                dateTextField.stringValue = date.formattedDateWithStyle(.LongStyle)
-            } else {
-                dateTextField.stringValue = ""
-            }
+        if let date = nodePresenter!.event?.startDate {
+        dateTextField.stringValue = date.formattedDateWithStyle(.LongStyle)
         } else {
-             dateTextField.stringValue = ""
+        dateTextField.stringValue = ""
+        }
+        } else {
+        dateTextField.stringValue = ""
         }
         */
     }
@@ -91,9 +91,9 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
         } else {
             
             if viewController != currentlyDisplayedRuleDetailController {
-            mainStackView.removeArrangedSubview(currentlyDisplayedRuleDetailController!.view)
-            mainStackView.addArrangedSubview(viewController.view)
-             currentlyDisplayedRuleDetailController = viewController
+                mainStackView.removeArrangedSubview(currentlyDisplayedRuleDetailController!.view)
+                mainStackView.addArrangedSubview(viewController.view)
+                currentlyDisplayedRuleDetailController = viewController
             } else {
                 Swift.print("It's the same view controller so doing nothing")
             }
@@ -107,37 +107,34 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
     }
     
     
-
     
-    //MARK: RuleTokenField Delegate 
+    
+    //MARK: RuleTokenField Delegate
     
     public func ruleTokenFieldDidSelectObjects(tokenField:RuleTokenField, rules:[AnyObject]?) {
-      /*
+        /*
         if let rules = rules {
         
         let rule = rules[0] as! Rule
         displayViewForRule(rule)
         } else {
-               displayViewForRule(nil)
+        displayViewForRule(nil)
         }
-*/
+        */
     }
     
     @IBAction func addNodeButtonPressed(sender: AnyObject) {
         
-        if addNodePopover == nil {
-            
-            addNodePopover = NSPopover()
-            addNodePopover!.animates = true
-            addNodePopover!.behavior = .Transient
-            addNodePopover!.appearance = NSAppearance(named: NSAppearanceNameAqua)
-        }
+        let popover = NSPopover()
+        popover.animates = true
+        popover.behavior = .Transient
+        popover.appearance = NSAppearance(named: NSAppearanceNameAqua)
         
         let viewController = AvailableRulesViewController(nibName:"AvailableRulesViewController", bundle:NSBundle(identifier:"com.andris.FilamentKit"))
         
         viewController!.nodePresenter = nodePresenter
-        addNodePopover?.contentViewController = viewController
-        addNodePopover?.showRelativeToRect(addNodeButton.frame, ofView: rulesTitleStackView, preferredEdge:.MaxX )
-
+        popover.contentViewController = viewController
+        popover.showRelativeToRect(addNodeButton.frame, ofView: rulesTitleStackView, preferredEdge:.MaxX )
+        
     }
 }

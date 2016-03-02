@@ -16,7 +16,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="65" height="16"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Ka-cc-yUo">
-                            <rect key="frame" x="13" y="-1" width="39" height="14"/>
+                            <rect key="frame" x="13" y="-2" width="39" height="14"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="14" id="cq4-9t-iUq"/>
                             </constraints>
@@ -29,7 +29,7 @@
                     </subviews>
                     <constraints>
                         <constraint firstItem="8Ka-cc-yUo" firstAttribute="leading" secondItem="eoi-SA-h1p" secondAttribute="leading" constant="15" id="2H7-fZ-HuU"/>
-                        <constraint firstItem="8Ka-cc-yUo" firstAttribute="top" secondItem="eoi-SA-h1p" secondAttribute="top" constant="3" id="SEF-P0-8Jl"/>
+                        <constraint firstItem="8Ka-cc-yUo" firstAttribute="top" secondItem="eoi-SA-h1p" secondAttribute="top" constant="4" id="SEF-P0-8Jl"/>
                         <constraint firstAttribute="trailing" secondItem="8Ka-cc-yUo" secondAttribute="trailing" constant="15" id="ZOK-EL-x1k"/>
                     </constraints>
                 </customView>

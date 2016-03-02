@@ -28,16 +28,16 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3FQ-PP-6lR">
+                        <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3FQ-PP-6lR">
                             <rect key="frame" x="0.0" y="0.0" width="342" height="64"/>
-                            <clipView key="contentView" id="fHX-Sk-bFi">
-                                <rect key="frame" x="1" y="1" width="340" height="62"/>
+                            <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="fHX-Sk-bFi">
+                                <rect key="frame" x="0.0" y="0.0" width="342" height="64"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <collectionView id="g5u-x9-ncy" customClass="RuleCollectionView" customModule="FilamentKit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="340" height="62"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="342" height="64"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="4" minimumLineSpacing="1" id="j29-yU-Jf2">
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="1" minimumLineSpacing="1" id="j29-yU-Jf2">
                                             <size key="itemSize" width="50" height="50"/>
                                             <edgeInsets key="sectionInset" left="5" right="5" top="1" bottom="5"/>
                                         </collectionViewFlowLayout>
