@@ -91,6 +91,7 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
         
         rulePresenters.insert(droppedRulePresenter, atIndex: atIndex)
         ruleCollectionView.rules = rulePresenters
-        ruleCollectionView.animator().insertItemsAtIndexPaths([NSIndexPath(forItem: atIndex, inSection: 0)])
+        ruleCollectionView.reloadData()
+        //  ruleCollectionView.animator().insertItemsAtIndexPaths([NSIndexPath(forItem: atIndex, inSection: 0)])
     }
 }

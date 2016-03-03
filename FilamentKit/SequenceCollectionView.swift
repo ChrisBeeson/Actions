@@ -37,8 +37,9 @@ import Async
         
         self.dataSource = self
         self.delegate = self
+        //self.collectionViewLayout = LeftAlignedCollectionViewFlowLayout()
         
-         self.wantsLayer = true
+        //self.wantsLayer = true
         
         let nib = NSNib(nibNamed: "DateNodeCollectionViewItem", bundle: NSBundle(identifier:"com.andris.FilamentKit"))
         self.registerNib(nib, forItemWithIdentifier: "DateNodeCollectionViewItem")

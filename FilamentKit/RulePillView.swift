@@ -32,6 +32,10 @@ class RulePillView : NSView {
     }
     
     func setColour(colour:CGColorRef) {
-         pathLayer.fillColor = colour
+        
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
+        pathLayer.fillColor = colour
+        CATransaction.commit()
     }
 }
