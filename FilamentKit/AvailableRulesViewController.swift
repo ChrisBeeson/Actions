@@ -12,10 +12,27 @@ public class AvailableRulesViewController : NSViewController,NSTokenFieldDelegat
     
     @IBOutlet weak var collectionView: RuleCollectionView!
     
-    var nodePresenter: NodePresenter?
+    var nodePresenter: NodePresenter? {
+        didSet {
+            reloadCollectionView()
+        }
+    }
     
     override public func viewDidLoad() {
         super.viewDidLoad()
+        
+
+    }
+    
+    override public func viewWillLayout() {
+        super.viewWillLayout()
+        
+        reloadCollectionView()
+    }
+    
+    func reloadCollectionView() {
+        
+        guard collectionView != nil else { return }
         
         assert(nodePresenter != nil)
         
@@ -25,15 +42,7 @@ public class AvailableRulesViewController : NSViewController,NSTokenFieldDelegat
         for rule in nodePresenter!.availableRules() {
             rps.append(RulePresenter(rule: rule))
         }
-         collectionView.rules = rps
+        collectionView.rules = rps
+        collectionView.reloadData()
     }
-    
-    override public func viewWillLayout() {
-        super.viewWillLayout()
-        
-    }
-    
-    
-    //MARK:Delegate
-    
 }

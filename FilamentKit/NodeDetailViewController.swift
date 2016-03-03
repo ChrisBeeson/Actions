@@ -27,6 +27,7 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
     var nodePresenter: NodePresenter?
     private var rulePresenters = [RulePresenter]()
 
+    var availableNodesViewController: AvailableRulesViewController?
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -74,24 +75,30 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
         popover.behavior = .Transient
         popover.appearance = NSAppearance(named: NSAppearanceNameAqua)
         
-        let viewController = AvailableRulesViewController(nibName:"AvailableRulesViewController", bundle:NSBundle(identifier:"com.andris.FilamentKit"))
-        
-        viewController!.nodePresenter = nodePresenter
-        popover.contentViewController = viewController
+        if availableNodesViewController == nil {
+            availableNodesViewController  = AvailableRulesViewController(nibName:"AvailableRulesViewController", bundle:NSBundle(identifier:"com.andris.FilamentKit"))
+        }
+        availableNodesViewController!.nodePresenter = nodePresenter
+        popover.contentViewController = availableNodesViewController
         popover.showRelativeToRect(addNodeButton.frame, ofView: rulesTitleStackView, preferredEdge:.MaxX )
     }
     
+    
+    func reloadRulesCollectionView() {
+        
+    }
     
     
     //MARK: Delegates
     
     public func didAcceptDrop(collectionView: RuleCollectionView, droppedRulePresenter: RulePresenter, atIndex: Int) {
         
-        Swift.print(atIndex)
-        
+        nodePresenter?.insertRulePresenter(droppedRulePresenter, atIndex:atIndex)
         rulePresenters.insert(droppedRulePresenter, atIndex: atIndex)
         ruleCollectionView.rules = rulePresenters
         ruleCollectionView.reloadData()
-        //  ruleCollectionView.animator().insertItemsAtIndexPaths([NSIndexPath(forItem: atIndex, inSection: 0)])
+        availableNodesViewController?.reloadCollectionView()
+        
+        //  ruleCollectionView.animator().insertItemsAtIndexPaths([NSIndexPath(forItem: atIndex, inSection: 0)]) <- bug
     }
 }

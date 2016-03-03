@@ -186,6 +186,12 @@ class NodePresenter : NSObject {
     }
     
     
+    
+    func insertRulePresenter(rulePresenter:RulePresenter, atIndex:Int) {
+        
+        node.rules.insert(rulePresenter.rule, atIndex: atIndex)
+    }
+    
     func insertRules(rules:[Rule]) {
         
         node.rules.appendContentsOf(rules)
