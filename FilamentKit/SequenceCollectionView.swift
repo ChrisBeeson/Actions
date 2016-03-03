@@ -121,15 +121,15 @@ import Async
         self.performBatchUpdates({ () -> Void in
             
             if insertedNodes.count > 0 {
-                self.insertItemsAtIndexPaths(insertedNodes)
+                self.animator().insertItemsAtIndexPaths(insertedNodes)
             }
             
             if deletedNodes.count > 0 {
-                self.deleteItemsAtIndexPaths(deletedNodes)
+                self.animator().deleteItemsAtIndexPaths(deletedNodes)
             }
             }) { (completed) -> Void in
         }
-            self.reloadData()
+              self.reloadData()
     }
     }
     

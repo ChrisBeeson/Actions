@@ -11,4 +11,21 @@ import Foundation
 class EventFixedStartAndEndDate : Rule {
     
       override var name: String { return "RULE_NAME_FIXED".localized }
+    
+    override init() {
+        super.init()
+    }
+    
+    private struct SerializationKeys {
+        // static let duration = "duration"
+        //   static let minDuration = "minDuration"
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        //   calendars = aDecoder.decodeObjectForKey("calendars") as! [EKCalendar]
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        //aCoder.encodeObject(calendars, forKey:"calendars")
+    }
 }

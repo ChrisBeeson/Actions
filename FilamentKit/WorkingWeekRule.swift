@@ -26,4 +26,24 @@ import DateTools
      var workingDay: DTTimePeriod?
      var breaks: [DTTimePeriod]?     //default lunch 12.30 -> 13.30
     
+    override init() {
+        super.init()
+    }
+    
+    // MARK: NSCoding
+    
+    private struct SerializationKeys {
+        // static let duration = "duration"
+        //   static let minDuration = "minDuration"
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        //   calendars = aDecoder.decodeObjectForKey("calendars") as! [EKCalendar]
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        //aCoder.encodeObject(calendars, forKey:"calendars")
+    }
+    
+    
 }

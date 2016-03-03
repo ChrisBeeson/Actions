@@ -37,6 +37,8 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
         self.collectionViewLayout = LeftAlignedCollectionViewFlowLayout()
         self.backgroundColors = [NSColor.clearColor()]
         
+        self.registerForDraggedTypes([AppConfiguration.UTI.rule])
+        
         let nib = NSNib(nibNamed: "RuleCollectionItem", bundle: NSBundle(identifier:"com.andris.FilamentKit"))
         self.registerNib(nib, forItemWithIdentifier: "RuleCollectionItem")
     }
@@ -89,13 +91,51 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
         
     }
     
+    
+    // Drop and Drag
+    
+    
     public func collectionView(collectionView: NSCollectionView, canDragItemsAtIndexPaths indexPaths: Set<NSIndexPath>, withEvent event: NSEvent) -> Bool {
         
         return true
     }
     
+    public func collectionView(collectionView: NSCollectionView, pasteboardWriterForItemAtIndexPath indexPath: NSIndexPath) -> NSPasteboardWriting? {
+        
+        let data = NSKeyedArchiver.archivedDataWithRootObject(rules![indexPath.item].rule)
+        let item = NSPasteboardItem()
+        item.setData(data, forType: AppConfiguration.UTI.rule)
+        return item
+    }
     
-    /////////////
+    
+    /*
+    public func collectionView(collectionView: NSCollectionView, draggingImageForItemsAtIndexPaths indexPaths: Set<NSIndexPath>, withEvent event: NSEvent, offset dragImageOffset: NSPointPointer) -> NSImage {
+        
+    }
+*/
+    
+    // drop
+    
+    
+    public func collectionView(collectionView: NSCollectionView, validateDrop draggingInfo: NSDraggingInfo, proposedIndexPath proposedDropIndexPath: AutoreleasingUnsafeMutablePointer<NSIndexPath?>, dropOperation proposedDropOperation: UnsafeMutablePointer<NSCollectionViewDropOperation>) -> NSDragOperation {
+        
+        return NSDragOperation.Copy
+    }
+    
+    
+    public func collectionView(collectionView: NSCollectionView, acceptDrop draggingInfo: NSDraggingInfo, indexPath: NSIndexPath, dropOperation: NSCollectionViewDropOperation) -> Bool {
+    
+       /*
+        NSPasteboard *pBoard = [draggingInfo draggingPasteboard];
+        NSData *indexData = [pBoard dataForType:@"my_drag_type_id"];
+        NSIndexSet *indexes = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
+        NSInteger draggedCell = [indexes firstIndex];
+        */
+        return true
+    }
+    
+    
     
     public func collectionView(collectionView: NSCollectionView, shouldChangeItemsAtIndexPaths indexPaths: Set<NSIndexPath>, toHighlightState highlightState: NSCollectionViewItemHighlightState) -> Set<NSIndexPath> {
         return indexPaths
@@ -105,22 +145,17 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
         
     }
     
-    /* Sent during interactive selection, to inform the delegate that the CollectionView would like to select the items at the specified "indexPaths".  In addition to optionally reacting to the proposed change, you can approve it (by returning "indexPaths" as-is), or selectively refuse some or all of the proposed selection changes (by returning a modified autoreleased mutableCopy of indexPaths, or an empty indexPaths instance).
-    */
-    
+
     public func collectionView(collectionView: NSCollectionView, shouldSelectItemsAtIndexPaths indexPaths: Set<NSIndexPath>) -> Set<NSIndexPath> {
         return indexPaths
     }
     
-    /* Sent during interactive selection, to inform the delegate that the CollectionView would like to de-select the items at the specified "indexPaths".  In addition to optionally reacting to the proposed change, you can approve it (by returning "indexPaths" as-is), or selectively refuse some or all of the proposed selection changes (by returning a modified autoreleased mutableCopy of indexPaths, or an empty indexPaths instance). */
-    
+
     public func collectionView(collectionView: NSCollectionView, shouldDeselectItemsAtIndexPaths indexPaths: Set<NSIndexPath>) -> Set<NSIndexPath> {
         return indexPaths
         
     }
     
-    /* Sent at the end of interactive selection, to inform the delegate that the CollectionView has selected the items at the specified "indexPaths".
-    */
     
     public func collectionView(collectionView: NSCollectionView, didSelectItemsAtIndexPaths indexPaths: Set<NSIndexPath>) {
         
@@ -128,23 +163,17 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
         
     }
     
-    /* Sent at the end of interactive selection, to inform the delegate that the CollectionView has de-selected the items at the specified "indexPaths".
-    */
     
     public func collectionView(collectionView: NSCollectionView, didDeselectItemsAtIndexPaths indexPaths: Set<NSIndexPath>) {
         self.window?.makeFirstResponder(self.superview?.superview?.superview?.superview?.superview?.superview)
     }
     
-    
-    /* Sent to notify the delegate that the CollectionView is about to add a supplementary view (e.g. a section header or footer view).  Each NSCollectionViewLayout class defines its own possible values and associated meanings for "elementKind".  (For example, NSCollectionViewFlowLayout declares NSCollectionElementKindSectionHeader and NSCollectionElementKindSectionFooter.)
-    */
+
     
     public func collectionView(collectionView: NSCollectionView, willDisplaySupplementaryView view: NSView, forElementKind elementKind: String, atIndexPath indexPath: NSIndexPath) {
         
     }
     
-    /* Sent to notify the delegate that the CollectionView is no longer displaying the given NSCollectionViewItem instance.  This happens when the model changes, or when an item is scrolled out of view.  You should perform any actions necessary to help decommission the item (such as releasing expensive resources).  The CollectionView may retain the item instance and later reuse it to represent the same or a different model object.
-    */
     
     public func collectionView(collectionView: NSCollectionView, didEndDisplayingItem item: NSCollectionViewItem, forRepresentedObjectAtIndexPath indexPath: NSIndexPath) {
         

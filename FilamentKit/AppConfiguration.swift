@@ -260,6 +260,13 @@ public class AppConfiguration: NSObject {
         public static let tokenBlueSelected = NSColor(calibratedRed: 0.435, green: 0.694, blue: 0.933, alpha: 1.00)
         
         public static let buttonSelectionBlue = NSColor(calibratedRed: 0.329, green: 0.604, blue: 0.988, alpha: 1)
+    }
+    
+    
+    public struct UTI {
+        
+        public static let rule = "com.andris.filament.pasteboard.rule"
+        public static let node = "com.andris.filament.pasteboard.node"
         
     }
     
