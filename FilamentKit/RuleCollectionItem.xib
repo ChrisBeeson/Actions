@@ -21,10 +21,13 @@
                                 <constraint firstAttribute="height" constant="14" id="cq4-9t-iUq"/>
                             </constraints>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="GKg-ec-bxx">
-                                <font key="font" metaFont="system" size="12"/>
+                                <font key="font" metaFont="cellTitle"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="translatesAutoresizingMaskIntoConstraints" value="NO"/>
+                            </userDefinedRuntimeAttributes>
                         </textField>
                     </subviews>
                     <constraints>
@@ -32,6 +35,9 @@
                         <constraint firstItem="8Ka-cc-yUo" firstAttribute="top" secondItem="eoi-SA-h1p" secondAttribute="top" id="SEF-P0-8Jl"/>
                         <constraint firstAttribute="trailing" secondItem="8Ka-cc-yUo" secondAttribute="trailing" constant="15" id="ZOK-EL-x1k"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="translatesAutoresizingMaskIntoConstraints" value="NO"/>
+                    </userDefinedRuntimeAttributes>
                 </customView>
             </subviews>
             <constraints>
@@ -40,6 +46,9 @@
                 <constraint firstItem="eoi-SA-h1p" firstAttribute="leading" secondItem="d7v-ga-NYQ" secondAttribute="leading" id="LZm-QR-Nv3"/>
                 <constraint firstItem="eoi-SA-h1p" firstAttribute="top" secondItem="d7v-ga-NYQ" secondAttribute="top" id="fb8-6m-us1"/>
             </constraints>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="translatesAutoresizingMaskIntoConstraints" value="NO"/>
+            </userDefinedRuntimeAttributes>
             <point key="canvasLocation" x="241.5" y="395"/>
         </customView>
         <collectionViewItem id="jay-p9-D1P" customClass="RuleCollectionItem" customModule="FilamentKit" customModuleProvider="target">

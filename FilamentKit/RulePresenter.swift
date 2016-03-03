@@ -17,14 +17,41 @@ public class RulePresenter : NSObject {
     
     var rule : Rule
     
+    var name : NSString {
+        return rule.name
+    }
+    
+    
+    //MARK: Inits
+    
+    
     init(rule: Rule) {
         self.rule = rule
         super.init()
     }
     
-    var name : NSString {
-        return rule.name
+    init(draggingItem: NSPasteboardItem) {
+        
+        if let data = draggingItem.dataForType(AppConfiguration.UTI.rule) {
+            self.rule = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! Rule
+        } else {
+            fatalError("DraggingItem didn't contain Rule")
+        }
+        super.init()
     }
+    
+    
+    
+    //MARK: Pasteboard
+    
+    func draggingItem() -> NSPasteboardItem {
+    
+        let data = NSKeyedArchiver.archivedDataWithRootObject(self.rule)
+        let item = NSPasteboardItem()
+        item.setData(data, forType: AppConfiguration.UTI.rule)
+        return item
+    }
+    
     
     
     //MARK: Factory class
@@ -43,6 +70,8 @@ public class RulePresenter : NSObject {
             fatalError("Unable to find rule presenter for rule \(rule.className)")
         }
     }
+    
+    
     
     
     

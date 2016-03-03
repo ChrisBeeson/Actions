@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class NodeDetailViewController : NSViewController, NodePresenterDelegate {
+public class NodeDetailViewController : NSViewController, NodePresenterDelegate, RuleCollectionViewDelegate {
     
     @IBOutlet weak var ruleCollectionView: RuleCollectionView!
 
@@ -25,20 +25,17 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate 
     @IBOutlet weak var addNodeButton: NSButton!
     
     var nodePresenter: NodePresenter?
-    
-    var popover: NSPopover?
-    
     private var rulePresenters = [RulePresenter]()
-    private var currentlyDisplayedRuleDetailController : RuleViewController?
-    
+
     
     override public func viewDidLoad() {
+        super.viewDidLoad()
         
         // create rulePresenters for each of the rules
         rulePresenters = nodePresenter!.rules.map { RulePresenter.rulePresenterForRule($0) }
-        
-        Swift.print(rulePresenters)
+        ruleCollectionView.ruleCollectionViewDelegate = self
         ruleCollectionView.rules = rulePresenters
+        ruleCollectionView.allowDrops = true
     }
     
     
@@ -49,9 +46,7 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate 
         notesTextField.stringValue = nodePresenter!.notes
         addNodeButton.hidden = nodePresenter!.availableRules().count > 0 ? false : true
         
-        
         /*
-        
         https://github.com/mattt/FormatterKit
         
         if nodePresenter!.type == NodeType.Action {
@@ -65,50 +60,11 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate 
         }
         */
     }
-    
-    func displayViewForRule(rule:Rule?) {
-        
-        if rule == nil {
-            if currentlyDisplayedRuleDetailController != nil {
-                //  mainStackView.removeArrangedSubview(currentlyDisplayedRuleDetailController!.view)
-                mainStackView.removeView(currentlyDisplayedRuleDetailController!.view)
-                currentlyDisplayedRuleDetailController = nil
-            }
-            return
-        }
-        
-        var rulePresenter: RulePresenter?
-        
-        rulePresenter = rulePresenters.filter({$0.rule == rule}).first
-        
-        if rulePresenter == nil {
-            rulePresenter = RulePresenter.rulePresenterForRule(rule!)
-            rulePresenters.append(rulePresenter!)
-        }
-        
-        let viewController = rulePresenter!.detailViewController()
-        
-        if currentlyDisplayedRuleDetailController == nil {
-            currentlyDisplayedRuleDetailController = viewController
-            mainStackView.addArrangedSubview(currentlyDisplayedRuleDetailController!.view)
-        } else {
-            
-            if viewController != currentlyDisplayedRuleDetailController {
-                mainStackView.removeArrangedSubview(currentlyDisplayedRuleDetailController!.view)
-                mainStackView.addArrangedSubview(viewController.view)
-                currentlyDisplayedRuleDetailController = viewController
-            } else {
-                Swift.print("It's the same view controller so doing nothing")
-            }
-        }
-    }
-    
-    
+
     @IBAction func titleTextFieldDidFinishEditing(sender: AnyObject) {
         
         nodePresenter!.title = titleTextField.stringValue
     }
-    
     
     
     @IBAction func addNodeButtonPressed(sender: AnyObject) {
@@ -123,5 +79,18 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate 
         viewController!.nodePresenter = nodePresenter
         popover.contentViewController = viewController
         popover.showRelativeToRect(addNodeButton.frame, ofView: rulesTitleStackView, preferredEdge:.MaxX )
+    }
+    
+    
+    
+    //MARK: Delegates
+    
+    public func didAcceptDrop(collectionView: RuleCollectionView, droppedRulePresenter: RulePresenter, atIndex: Int) {
+        
+        Swift.print(atIndex)
+        
+        rulePresenters.insert(droppedRulePresenter, atIndex: atIndex)
+        ruleCollectionView.rules = rulePresenters
+        ruleCollectionView.animator().insertItemsAtIndexPaths([NSIndexPath(forItem: atIndex, inSection: 0)])
     }
 }

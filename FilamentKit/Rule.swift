@@ -9,7 +9,7 @@
 import Foundation
 import DateTools
 
- protocol RuleType {
+protocol RuleType {
     
     var name: String {get}
     var description: String {get}
@@ -34,7 +34,7 @@ import DateTools
 
 }
 
- class Rule: NSObject, RuleType {
+class Rule: NSObject, RuleType {
     
      var name: String {get {return "Not set"} }
      var Description: String {get {return "NOT SET"} }

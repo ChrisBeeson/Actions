@@ -10,13 +10,13 @@ import Foundation
 
 class RulePillView : NSView {
     
-    var pathLayer: CAShapeLayer
+    var pathLayer = CAShapeLayer()
     
     required init?(coder: NSCoder) {
         
-        pathLayer = CAShapeLayer()
-        
         super.init(coder: coder)
+        
+        self.translatesAutoresizingMaskIntoConstraints = false
 
         pathLayer.path = NSBezierPath(roundedRect: self.bounds, xRadius: 4.0, yRadius: 4.0).CGPath(forceClose: false)
         pathLayer.shouldRasterize = false

@@ -8,12 +8,19 @@
 
 import Foundation
 
+public protocol RuleCollectionViewDelegate {
+    
+    func didAcceptDrop(collectionView: RuleCollectionView, droppedRulePresenter: RulePresenter, atIndex: Int)
+}
+
+
 public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout {
     
     var rules : [RulePresenter]?
     var showDetailView = false
     var allowDrops = false
     var allowDeletions = false
+    var ruleCollectionViewDelegate : RuleCollectionViewDelegate?
     
     
     // MARK: Life Cycle
@@ -58,6 +65,7 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
         
         let item = makeItemWithIdentifier("RuleCollectionItem", forIndexPath: indexPath) as! RuleCollectionItem
         item.label.stringValue = rules![indexPath.item].name as String
+        // item.view.translatesAutoresizingMaskIntoConstraints = false
         return item
     }
     
@@ -98,15 +106,11 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     public func collectionView(collectionView: NSCollectionView, canDragItemsAtIndexPaths indexPaths: Set<NSIndexPath>, withEvent event: NSEvent) -> Bool {
         
         return true
-        
     }
     
     public func collectionView(collectionView: NSCollectionView, pasteboardWriterForItemAtIndexPath indexPath: NSIndexPath) -> NSPasteboardWriting? {
         
-        let data = NSKeyedArchiver.archivedDataWithRootObject(rules![indexPath.item].rule)
-        let item = NSPasteboardItem()
-        item.setData(data, forType: AppConfiguration.UTI.rule)
-        return item
+        return rules?[indexPath.item].draggingItem()
     }
     
     
@@ -121,30 +125,31 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     
     public func collectionView(collectionView: NSCollectionView, validateDrop draggingInfo: NSDraggingInfo, proposedIndexPath proposedDropIndexPath: AutoreleasingUnsafeMutablePointer<NSIndexPath?>, dropOperation proposedDropOperation: UnsafeMutablePointer<NSCollectionViewDropOperation>) -> NSDragOperation {
         
-        //return allowDrops
-        return NSDragOperation.Copy
+        if allowDrops {
+            return NSDragOperation.Copy
+        } else {
+            return NSDragOperation.None
+        }
     }
     
     
     public func collectionView(collectionView: NSCollectionView, acceptDrop draggingInfo: NSDraggingInfo, indexPath: NSIndexPath, dropOperation: NSCollectionViewDropOperation) -> Bool {
         
-        
         draggingInfo.enumerateDraggingItemsWithOptions([], forView: self, classes: [NSPasteboardItem.self], searchOptions: [NSPasteboardURLReadingFileURLsOnlyKey: false]) {draggingItem, idx, stop in
             
             if let type = draggingItem.item.types {
+                
                 switch type![0] {
+                    
                 case AppConfiguration.UTI.rule:
                     
-                    if let data = (draggingItem.item as! NSPasteboardItem).dataForType(AppConfiguration.UTI.rule) {
-                        let rule = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! Rule
-                        Swift.print(rule)
-                    }
+                    let newRulePresenter = RulePresenter(draggingItem:(draggingItem.item as! NSPasteboardItem))
+                    self.ruleCollectionViewDelegate?.didAcceptDrop(self, droppedRulePresenter: newRulePresenter, atIndex:indexPath.item)
                     
-                default: break
+                     default: break
+                    }
                 }
-            }
         }
-        
         return true
     }
     

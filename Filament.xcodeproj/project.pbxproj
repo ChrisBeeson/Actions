@@ -427,20 +427,12 @@
 		473853B31C7A5956000AB1E2 /* Rule Presenters */ = {
 			isa = PBXGroup;
 			children = (
-				473D9F561C7AEF4A00E81D39 /* base */,
+				473853B41C7A596E000AB1E2 /* RulePresenter.swift */,
+				473853B61C7A5A43000AB1E2 /* RulePresenterDelegate.swift */,
 				473D9F571C7AEF7500E81D39 /* TransitionDurationWithVarianceRulePresenter.swift */,
 				473D9F591C7AF53800E81D39 /* EventDurationWithMinimumDurationRulePresenter.swift */,
 			);
 			name = "Rule Presenters";
-			sourceTree = "<group>";
-		};
-		473D9F561C7AEF4A00E81D39 /* base */ = {
-			isa = PBXGroup;
-			children = (
-				473853B41C7A596E000AB1E2 /* RulePresenter.swift */,
-				473853B61C7A5A43000AB1E2 /* RulePresenterDelegate.swift */,
-			);
-			name = base;
 			sourceTree = "<group>";
 		};
 		475927AF1C6C723D00D24DE9 /* Helpers */ = {
