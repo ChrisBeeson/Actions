@@ -55,10 +55,10 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     
     
     public func collectionView(collectionView: NSCollectionView, itemForRepresentedObjectAtIndexPath indexPath: NSIndexPath) -> NSCollectionViewItem {
-
-            let item = makeItemWithIdentifier("RuleCollectionItem", forIndexPath: indexPath) as! RuleCollectionItem
-            item.label.stringValue = rules![indexPath.item].name as String
-            return item
+        
+        let item = makeItemWithIdentifier("RuleCollectionItem", forIndexPath: indexPath) as! RuleCollectionItem
+        item.label.stringValue = rules![indexPath.item].name as String
+        return item
     }
     
     
@@ -66,16 +66,16 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     //MARK: Collection View Delegate
     
     public func collectionView(collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> NSSize {
-
-                if let item = collectionView.itemAtIndex(indexPath.item) {
-                    return item.view.intrinsicContentSize
-                    
-                } else {
-                    
-                    let string:NSString = rules![indexPath.item].name as NSString
-                    let size: CGSize = string.sizeWithAttributes([NSFontAttributeName: NSFont.systemFontOfSize(12.0, weight:NSFontWeightThin) ])
-                    return NSSize(width: size.width + 30, height: 16)
-                }
+        
+        if let item = collectionView.itemAtIndex(indexPath.item) {
+            return item.view.intrinsicContentSize
+            
+        } else {
+            
+            let string:NSString = rules![indexPath.item].name as NSString
+            let size: CGSize = string.sizeWithAttributes([NSFontAttributeName: NSFont.systemFontOfSize(12.0, weight:NSFontWeightThin) ])
+            return NSSize(width: size.width + 30, height: 16)
+        }
     }
     
     public func collectionView(collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
@@ -98,6 +98,7 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     public func collectionView(collectionView: NSCollectionView, canDragItemsAtIndexPaths indexPaths: Set<NSIndexPath>, withEvent event: NSEvent) -> Bool {
         
         return true
+        
     }
     
     public func collectionView(collectionView: NSCollectionView, pasteboardWriterForItemAtIndexPath indexPath: NSIndexPath) -> NSPasteboardWriting? {
@@ -111,27 +112,39 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     
     /*
     public func collectionView(collectionView: NSCollectionView, draggingImageForItemsAtIndexPaths indexPaths: Set<NSIndexPath>, withEvent event: NSEvent, offset dragImageOffset: NSPointPointer) -> NSImage {
-        
+    
     }
-*/
+    */
     
     // drop
     
     
     public func collectionView(collectionView: NSCollectionView, validateDrop draggingInfo: NSDraggingInfo, proposedIndexPath proposedDropIndexPath: AutoreleasingUnsafeMutablePointer<NSIndexPath?>, dropOperation proposedDropOperation: UnsafeMutablePointer<NSCollectionViewDropOperation>) -> NSDragOperation {
         
+        //return allowDrops
         return NSDragOperation.Copy
     }
     
     
     public func collectionView(collectionView: NSCollectionView, acceptDrop draggingInfo: NSDraggingInfo, indexPath: NSIndexPath, dropOperation: NSCollectionViewDropOperation) -> Bool {
-    
-       /*
-        NSPasteboard *pBoard = [draggingInfo draggingPasteboard];
-        NSData *indexData = [pBoard dataForType:@"my_drag_type_id"];
-        NSIndexSet *indexes = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
-        NSInteger draggedCell = [indexes firstIndex];
-        */
+        
+        
+        draggingInfo.enumerateDraggingItemsWithOptions([], forView: self, classes: [NSPasteboardItem.self], searchOptions: [NSPasteboardURLReadingFileURLsOnlyKey: false]) {draggingItem, idx, stop in
+            
+            if let type = draggingItem.item.types {
+                switch type![0] {
+                case AppConfiguration.UTI.rule:
+                    
+                    if let data = (draggingItem.item as! NSPasteboardItem).dataForType(AppConfiguration.UTI.rule) {
+                        let rule = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! Rule
+                        Swift.print(rule)
+                    }
+                    
+                default: break
+                }
+            }
+        }
+        
         return true
     }
     
@@ -145,12 +158,12 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
         
     }
     
-
+    
     public func collectionView(collectionView: NSCollectionView, shouldSelectItemsAtIndexPaths indexPaths: Set<NSIndexPath>) -> Set<NSIndexPath> {
         return indexPaths
     }
     
-
+    
     public func collectionView(collectionView: NSCollectionView, shouldDeselectItemsAtIndexPaths indexPaths: Set<NSIndexPath>) -> Set<NSIndexPath> {
         return indexPaths
         
@@ -168,7 +181,7 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
         self.window?.makeFirstResponder(self.superview?.superview?.superview?.superview?.superview?.superview)
     }
     
-
+    
     
     public func collectionView(collectionView: NSCollectionView, willDisplaySupplementaryView view: NSView, forElementKind elementKind: String, atIndexPath indexPath: NSIndexPath) {
         
@@ -178,5 +191,5 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     public func collectionView(collectionView: NSCollectionView, didEndDisplayingItem item: NSCollectionViewItem, forRepresentedObjectAtIndexPath indexPath: NSIndexPath) {
         
     }
-
+    
 }
