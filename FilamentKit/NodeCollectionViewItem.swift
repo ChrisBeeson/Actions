@@ -12,10 +12,8 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     
     @IBOutlet weak var titleTextField: NSTextField!
     @IBOutlet weak var nodeView: NodeView!
-
     
     var indexPath : NSIndexPath?
-    var popover: NSPopover?
     var detailViewController: NodeDetailViewController?
     
     var presenter: NodePresenter?  {
@@ -36,11 +34,12 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     override func viewWillLayout() {
         super.viewWillLayout()
         
-         refreshView()
+        refreshView()
     }
     
     override func viewWillAppear() {
         super.viewWillAppear()
+        refreshView()
     }
     
     
@@ -59,19 +58,16 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
         
         if theEvent.clickCount < 2 {return }
         
-        if popover == nil {
-            
-            popover = NSPopover()
-            popover!.animates = true
-            popover!.behavior = .Semitransient
-            popover!.appearance = NSAppearance(named: NSAppearanceNameAqua)
-            
-            if detailViewController == nil {
-                detailViewController = NodeDetailViewController(nibName:"NodeDetailViewController", bundle:NSBundle(identifier:"com.andris.FilamentKit"))
-            }
-            
-            popover!.contentViewController = detailViewController
+        let popover = NSPopover()
+        popover.animates = true
+        popover.behavior = .Semitransient
+        popover.appearance = NSAppearance(named: NSAppearanceNameAqua)
+        
+        if detailViewController == nil {
+            detailViewController = NodeDetailViewController(nibName:"NodeDetailViewController", bundle:NSBundle(identifier:"com.andris.FilamentKit"))
         }
+        
+        popover.contentViewController = detailViewController
         
         detailViewController!.nodePresenter = presenter!
         presenter!.addDelegate(detailViewController!)
@@ -82,10 +78,10 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
         switch presenter!.type {
         case .Action:
             frame.size = NSSize(width: frame.size.width-10.0, height: frame.size.height)
-            popover?.showRelativeToRect(frame, ofView: self.view.superview!, preferredEdge:.MaxX )
+            popover.showRelativeToRect(frame, ofView: self.view.superview!, preferredEdge:.MaxX )
         case .Transition:
             frame.size = NSSize(width: frame.size.width-10.0, height: frame.size.height)
-            popover?.showRelativeToRect(frame, ofView: self.view.superview!, preferredEdge:.MaxY )
+            popover.showRelativeToRect(frame, ofView: self.view.superview!, preferredEdge:.MaxY )
         default: break
         }
     }
@@ -94,7 +90,7 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     //Mark: NodePresenter delegate calls
     
     func nodePresenterDidChangeStatus(presenter: NodePresenter, toStatus: NodeStatus) {
-    
+        
         guard presenter == self.presenter else { return }
         
         if presenter.type == .Action {
@@ -104,14 +100,14 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
         if toStatus == .Ready {
             
             if let indexPath = indexPath {
-        
-            delay(Double(indexPath.item) * 0.1) {
-                self.nodeView.currentStatus = .Ready
+                
+                delay(Double(indexPath.item) * 0.1) {
+                    self.nodeView.currentStatus = .Ready
                 }} else {
-                 self.nodeView.currentStatus = .Ready
+                self.nodeView.currentStatus = .Ready
             }
         } else {
-             self.nodeView.currentStatus = toStatus
+            self.nodeView.currentStatus = toStatus
         }
     }
     
@@ -129,7 +125,7 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
         return true
     }
     
-
+    
     
 }
 
