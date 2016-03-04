@@ -12,7 +12,7 @@ import DateTools
 
 enum NodeStatus: Int { case Inactive, Ready, Running, WaitingForUserInput, Completed, Error, Void }
 
-class NodePresenter : NSObject {
+public class NodePresenter : NSObject {
     
     var undoManager: NSUndoManager?
     var sequencePresenter: SequencePresenter?
@@ -26,6 +26,11 @@ class NodePresenter : NSObject {
     var node: Node {
         didSet {
         }
+    }
+    
+    override init() {
+        self.node = Node()
+        super.init()
     }
     
     init(node:Node) {

@@ -12,7 +12,7 @@ public class AvailableRulesViewController : NSViewController,NSTokenFieldDelegat
     
     @IBOutlet weak var collectionView: RuleCollectionView!
     
-    var nodePresenter: NodePresenter? {
+    public var nodePresenter: NodePresenter? {
         didSet {
             //  reloadCollectionView()
         }
@@ -34,7 +34,7 @@ public class AvailableRulesViewController : NSViewController,NSTokenFieldDelegat
         //  reloadCollectionView()
     }
     
-    func reloadCollectionView() {
+    public func reloadCollectionView() {
         
         guard collectionView != nil else { return }
         

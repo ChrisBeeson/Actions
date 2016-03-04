@@ -57,6 +57,8 @@
 		477C2CB31C409C660071467C /* ActionNodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477C2CB21C409C660071467C /* ActionNodeView.swift */; };
 		477C2CB51C40B3AD0071467C /* TransitionNodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477C2CB41C40B3AD0071467C /* TransitionNodeView.swift */; };
 		4794B99E1C78522B009CE617 /* NSTimer+Closure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4794B99D1C78522B009CE617 /* NSTimer+Closure.swift */; };
+		47967FF01C895C7200358199 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47967FEF1C895C7200358199 /* Context.swift */; };
+		47967FF21C895F5400358199 /* ContextPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47967FF11C895F5400358199 /* ContextPresenter.swift */; };
 		479CD2861C1B8AE700C8D1D6 /* FilamentTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479CD2851C1B8AE700C8D1D6 /* FilamentTableCellView.swift */; };
 		47A14E811C21384F00B45F86 /* DirectoryMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A14E801C21384F00B45F86 /* DirectoryMonitor.swift */; };
 		47ACA9541BB5464C000CAC61 /* DateToolsExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9531BB5464C000CAC61 /* DateToolsExtenstions.swift */; };
@@ -206,6 +208,8 @@
 		477C2CB21C409C660071467C /* ActionNodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionNodeView.swift; sourceTree = "<group>"; };
 		477C2CB41C40B3AD0071467C /* TransitionNodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionNodeView.swift; sourceTree = "<group>"; };
 		4794B99D1C78522B009CE617 /* NSTimer+Closure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTimer+Closure.swift"; sourceTree = "<group>"; };
+		47967FEF1C895C7200358199 /* Context.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
+		47967FF11C895F5400358199 /* ContextPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextPresenter.swift; sourceTree = "<group>"; };
 		479CD2851C1B8AE700C8D1D6 /* FilamentTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilamentTableCellView.swift; path = FilamentKit/FilamentTableCellView.swift; sourceTree = SOURCE_ROOT; };
 		47A14E801C21384F00B45F86 /* DirectoryMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectoryMonitor.swift; sourceTree = "<group>"; };
 		47ACA9531BB5464C000CAC61 /* DateToolsExtenstions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateToolsExtenstions.swift; sourceTree = "<group>"; };
@@ -388,6 +392,7 @@
 				47CD21C01BDF7A2600AF25BE /* Sequence+NodeLogic.swift */,
 				47CD21C51BDF807900AF25BE /* Sequence+EventLogic.swift */,
 				835740B11C77AD0700CFBB1B /* TimeEvent.swift */,
+				47967FEF1C895C7200358199 /* Context.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -400,6 +405,7 @@
 				473574811B9A91A200493CA0 /* SequencePresenterDelegate.swift */,
 				4720B4FF1C6E7EF200229734 /* NodePresenter.swift */,
 				4720B5011C6E7F0400229734 /* NodePresenterDelegate.swift */,
+				47967FF11C895F5400358199 /* ContextPresenter.swift */,
 				473574881B9A91BE00493CA0 /* Presenter Helpers */,
 			);
 			name = Presenters;
@@ -972,6 +978,7 @@
 				835619CA1C6D6AAA00488E99 /* NodeDetailViewController.swift in Sources */,
 				473574851B9A91A200493CA0 /* SequencePresenterDelegate.swift in Sources */,
 				833366CA1C838F99001FE4CD /* EventAlarmRule.swift in Sources */,
+				47967FF21C895F5400358199 /* ContextPresenter.swift in Sources */,
 				4778C0A81C656B2500F5A259 /* DateNodeCollectionViewItem.swift in Sources */,
 				473574751B9A689B00493CA0 /* Node.swift in Sources */,
 				8329DE9B1C63DF10001B3A2F /* SequenceCollectionView.swift in Sources */,
@@ -989,6 +996,7 @@
 				4720B5021C6E7F0400229734 /* NodePresenterDelegate.swift in Sources */,
 				4720B5081C6F00B300229734 /* DateTimePickerViewController.swift in Sources */,
 				4794B99E1C78522B009CE617 /* NSTimer+Closure.swift in Sources */,
+				47967FF01C895C7200358199 /* Context.swift in Sources */,
 				8359A7731C7CF2F400ED87D9 /* DurationWithVarianceViewController.swift in Sources */,
 				47CD21C31BDF7B0900AF25BE /* Sequence+NodeLogic.swift in Sources */,
 				47ACA9541BB5464C000CAC61 /* DateToolsExtenstions.swift in Sources */,

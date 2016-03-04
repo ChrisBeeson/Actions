@@ -883,19 +883,8 @@ AwEVARgBHQAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAEfA
                                     <outlet property="menu" destination="eIN-Wq-dHo" id="UKh-tx-0gF"/>
                                 </connections>
                             </scrollView>
-                            <tokenField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BvH-dV-EpJ">
-                                <rect key="frame" x="22" y="6" width="430" height="16"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="16" id="saH-yg-Uz8"/>
-                                </constraints>
-                                <tokenFieldCell key="cell" selectable="YES" focusRingType="none" alignment="left" title="Avoid Calendars" allowsEditingTextAttributes="YES" usesSingleLineMode="YES" id="QBT-Yh-xR4">
-                                    <font key="font" metaFont="systemLight" size="12"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
-                                </tokenFieldCell>
-                            </tokenField>
                             <button focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nhi-CS-B6T">
-                                <rect key="frame" x="4" y="5" width="21" height="19"/>
+                                <rect key="frame" x="4" y="4" width="21" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="19" id="3XO-Xs-QNk"/>
                                     <constraint firstAttribute="width" constant="21" id="vl6-6J-6EU"/>
@@ -904,21 +893,52 @@ AwEVARgBHQAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAEfA
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="addGenericRuleButtonPressed:" target="JYT-iR-wrv" id="1Ht-3v-vRd"/>
+                                </connections>
                             </button>
+                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E2A-qE-shG">
+                                <rect key="frame" x="30" y="3" width="420" height="20"/>
+                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="kMJ-MC-kjx">
+                                    <rect key="frame" x="0.0" y="0.0" width="420" height="20"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <collectionView focusRingType="none" selectable="YES" id="e0D-Ol-Ewg" customClass="RuleCollectionView" customModule="FilamentKit">
+                                            <rect key="frame" x="0.0" y="0.0" width="423" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" scrollDirection="horizontal" id="rLe-8S-bKf">
+                                                <size key="itemSize" width="50" height="50"/>
+                                            </collectionViewFlowLayout>
+                                            <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </collectionView>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="lrW-ka-zWL">
+                                    <rect key="frame" x="0.0" y="4" width="420" height="16"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="heu-8R-dyQ">
+                                    <rect key="frame" x="-100" y="-100" width="15" height="143"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="BvH-dV-EpJ" firstAttribute="leading" secondItem="onh-9G-uCj" secondAttribute="leading" constant="24" id="0GA-4t-3dJ"/>
-                            <constraint firstAttribute="trailing" secondItem="BvH-dV-EpJ" secondAttribute="trailing" id="7w6-BH-yXj"/>
+                            <constraint firstItem="E2A-qE-shG" firstAttribute="leading" secondItem="nhi-CS-B6T" secondAttribute="trailing" constant="5" id="1Jg-zP-qZW"/>
+                            <constraint firstItem="E2A-qE-shG" firstAttribute="top" secondItem="nmd-ka-rWP" secondAttribute="bottom" constant="4" id="7AS-w4-muo"/>
                             <constraint firstAttribute="bottom" secondItem="nmd-ka-rWP" secondAttribute="bottom" constant="27" id="B5t-mp-eAe"/>
                             <constraint firstItem="nmd-ka-rWP" firstAttribute="leading" secondItem="onh-9G-uCj" secondAttribute="leading" id="Mvu-VM-8AM"/>
-                            <constraint firstAttribute="bottom" secondItem="BvH-dV-EpJ" secondAttribute="bottom" constant="6" id="UFo-qk-SrL"/>
+                            <constraint firstAttribute="bottom" secondItem="E2A-qE-shG" secondAttribute="bottom" constant="3" id="a2E-Qy-Br5"/>
                             <constraint firstItem="nmd-ka-rWP" firstAttribute="top" secondItem="onh-9G-uCj" secondAttribute="top" id="bVL-5t-6Nq"/>
                             <constraint firstItem="nhi-CS-B6T" firstAttribute="leading" secondItem="onh-9G-uCj" secondAttribute="leading" constant="4" id="fAr-Ea-7TC"/>
-                            <constraint firstAttribute="bottom" secondItem="nhi-CS-B6T" secondAttribute="bottom" constant="5" id="fao-3w-nMS"/>
+                            <constraint firstAttribute="bottom" secondItem="nhi-CS-B6T" secondAttribute="bottom" constant="4" id="fao-3w-nMS"/>
                             <constraint firstAttribute="trailing" secondItem="nmd-ka-rWP" secondAttribute="trailing" id="lvi-Em-SVp"/>
+                            <constraint firstAttribute="trailing" secondItem="E2A-qE-shG" secondAttribute="trailing" id="sJw-yg-Tdq"/>
                         </constraints>
                     </visualEffectView>
                     <connections>
+                        <outlet property="addGenericRuleButton" destination="nhi-CS-B6T" id="yfk-9a-7bi"/>
+                        <outlet property="genericRulesCollectionView" destination="e0D-Ol-Ewg" id="ghR-Aa-YhX"/>
                         <outlet property="tableView" destination="8Qp-fL-QNJ" id="8Js-IO-ipe"/>
                     </connections>
                 </viewController>

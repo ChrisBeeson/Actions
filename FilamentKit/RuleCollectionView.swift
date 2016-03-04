@@ -17,12 +17,12 @@ public protocol RuleCollectionViewDelegate {
 
 public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout {
     
-    var rulePresenters : [RulePresenter]?
-    var showDetailView = false
-    var allowDrops = false
-    var allowDeletions = false
-    var ruleCollectionViewDelegate : RuleCollectionViewDelegate?
-    var doubleClickDisplaysItemsDetailView = true
+    public var rulePresenters : [RulePresenter]?
+    public var showDetailView = false
+    public var allowDrops = false
+    public var allowDeletions = false
+    public var ruleCollectionViewDelegate : RuleCollectionViewDelegate?
+    public var doubleClickDisplaysItemsDetailView = true
     
     
     // MARK: Life Cycle
@@ -70,6 +70,8 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     //MARK: Datasource
     
     public func collectionView(collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        guard rulePresenters != nil else { return 0 }
         
         return rulePresenters!.count
     }

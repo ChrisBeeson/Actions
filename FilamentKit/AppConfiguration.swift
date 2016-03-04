@@ -11,6 +11,8 @@ import AppKit
 
 public class AppConfiguration: NSObject {
     
+    private var _contextPresenter: ContextPresenter?
+    
     public class var sharedConfiguration: AppConfiguration {
         
         struct Singleton {
@@ -23,6 +25,9 @@ public class AppConfiguration: NSObject {
     override init() {
         super.init()
     }
+    
+    
+    
     
     // Names
     
@@ -93,6 +98,7 @@ public class AppConfiguration: NSObject {
     }
     
     
+    
     // Storage
     
     public enum Storage: Int { case NotSet = 0, Local, Cloud }
@@ -146,6 +152,27 @@ public class AppConfiguration: NSObject {
         return NSURL()
     }
 
+    
+    
+    //MARK: Context File
+    
+    public func saveContext() {
+        
+        self._contextPresenter?.save()
+    }
+    
+    public func contextPresenter() -> ContextPresenter {
+        
+        if self._contextPresenter == nil {
+            
+            let filePath = storageDirectory().URLByAppendingPathComponent("System_Context.plist")
+            self._contextPresenter =  ContextPresenter(filePath:filePath)
+        }
+        
+        return self._contextPresenter!
+    }
+    
+    
     
     // MARK: Ubiquity Identity Token Handling (Account Change Info)
 
