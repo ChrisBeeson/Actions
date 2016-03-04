@@ -14,6 +14,7 @@
                 <outlet property="mainStackView" destination="fns-Wr-QDB" id="JcT-4E-8ky"/>
                 <outlet property="notesTextField" destination="GRN-nw-n6Q" id="U0V-TS-Aqy"/>
                 <outlet property="ruleCollectionView" destination="Vh4-gK-Teh" id="PxV-ih-qFd"/>
+                <outlet property="ruleStackView" destination="6EG-as-AJv" id="HqQ-Sf-Mrg"/>
                 <outlet property="rulesTitleStackView" destination="fgA-j6-eLf" id="ala-hy-Dkd"/>
                 <outlet property="titleStackView" destination="Pna-jH-CKI" id="wDw-re-Axf"/>
                 <outlet property="titleTextField" destination="vQH-96-PCB" id="Wqu-Py-zpu"/>
@@ -131,7 +132,7 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <collectionView ambiguous="YES" selectable="YES" id="Vh4-gK-Teh" customClass="RuleCollectionView" customModule="FilamentKit">
-                                                            <rect key="frame" x="0.0" y="0.0" width="237" height="77"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="236" height="79"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" scrollDirection="horizontal" id="o8Y-fR-MuF">
                                                                 <size key="itemSize" width="50" height="50"/>

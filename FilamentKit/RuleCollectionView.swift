@@ -22,6 +22,7 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     var allowDrops = false
     var allowDeletions = false
     var ruleCollectionViewDelegate : RuleCollectionViewDelegate?
+    var doubleClickDisplaysItemsDetailView = true
     
     
     // MARK: Life Cycle
@@ -58,7 +59,6 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
         guard allowDeletions == true else { return }
         
         if theEvent.keyCode == 51 || theEvent.keyCode == 117  {
-            
             for index in self.selectionIndexPaths {
                 ruleCollectionViewDelegate?.didDeleteRulePresenter(self, deletedRulePresenter: rulePresenters![index.item])
             }
@@ -79,6 +79,7 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
         
         let item = makeItemWithIdentifier("RuleCollectionItem", forIndexPath: indexPath) as! RuleCollectionItem
         item.rulePresenter = rulePresenters![indexPath.item]
+        item.doubleClickDisplaysDetailView = doubleClickDisplaysItemsDetailView
         return item
     }
     

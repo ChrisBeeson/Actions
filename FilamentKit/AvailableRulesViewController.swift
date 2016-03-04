@@ -25,7 +25,8 @@ public class AvailableRulesViewController : NSViewController,NSTokenFieldDelegat
     override public func viewWillLayout() {
         super.viewWillLayout()
         
-          reloadCollectionView()
+        collectionView.doubleClickDisplaysItemsDetailView = false
+        reloadCollectionView()
     }
     
     override public func viewWillAppear() {

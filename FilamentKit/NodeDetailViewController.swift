@@ -21,6 +21,7 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
     @IBOutlet weak var titleStackView: NSStackView!
     @IBOutlet weak var eventStackView: NSStackView!
     
+    @IBOutlet weak var ruleStackView: NSStackView!
     @IBOutlet weak var rulesTitleStackView: NSStackView!
     @IBOutlet weak var addNodeButton: NSButton!
     
@@ -82,8 +83,11 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
         }
         availableNodesViewController!.nodePresenter = nodePresenter
         popover.contentViewController = availableNodesViewController
-        popover.showRelativeToRect(addNodeButton.frame, ofView: rulesTitleStackView, preferredEdge:.MaxX )
-        //  popover.showRelativeToRect(ruleCollectionView.frame, ofView: ruleCollectionView, preferredEdge:.MinY )
+       
+        //TODO: Select between preferred Edges..
+        
+        popover.showRelativeToRect(addNodeButton.bounds, ofView: rulesTitleStackView, preferredEdge:.MaxY )
+        // popover.showRelativeToRect(ruleCollectionView.bounds, ofView: ruleStackView, preferredEdge:.MaxY )
     }
     
     
