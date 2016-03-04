@@ -14,7 +14,7 @@ public class AvailableRulesViewController : NSViewController,NSTokenFieldDelegat
     
     var nodePresenter: NodePresenter? {
         didSet {
-            reloadCollectionView()
+            //  reloadCollectionView()
         }
     }
     
@@ -25,7 +25,12 @@ public class AvailableRulesViewController : NSViewController,NSTokenFieldDelegat
     override public func viewWillLayout() {
         super.viewWillLayout()
         
-        reloadCollectionView()
+          reloadCollectionView()
+    }
+    
+    override public func viewWillAppear() {
+        super.viewWillAppear()
+        //  reloadCollectionView()
     }
     
     func reloadCollectionView() {

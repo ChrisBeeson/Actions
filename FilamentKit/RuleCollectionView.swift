@@ -79,7 +79,6 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
         
         let item = makeItemWithIdentifier("RuleCollectionItem", forIndexPath: indexPath) as! RuleCollectionItem
         item.label.stringValue = rules![indexPath.item].name as String
-        // item.view.translatesAutoresizingMaskIntoConstraints = false
         return item
     }
     
@@ -95,7 +94,7 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
         } else {
             
             let string:NSString = rules![indexPath.item].name as NSString
-            let size: CGSize = string.sizeWithAttributes([NSFontAttributeName: NSFont.systemFontOfSize(12.0, weight:NSFontWeightThin) ])
+            let size: CGSize = string.sizeWithAttributes([NSFontAttributeName: NSFont.systemFontOfSize(12.0, weight:NSFontWeightRegular) ])
             return NSSize(width: size.width + 30, height: 16)
         }
     }

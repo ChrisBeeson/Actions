@@ -31,11 +31,7 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        
         nodePresenter?.addDelegate(self)
-        
-        // create rulePresenters for each of the rules
-        rulePresenters = nodePresenter!.rules.map { RulePresenter.rulePresenterForRule($0) }
         ruleCollectionView.ruleCollectionViewDelegate = self
         ruleCollectionView.rules = rulePresenters
         ruleCollectionView.allowDrops = true
@@ -43,12 +39,15 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
     }
     
     
-    override public func viewWillAppear() {
-        super.viewWillAppear()
-        
+    override public func viewWillLayout() {
+        super.viewWillLayout()
         titleTextField.stringValue = nodePresenter!.title
         notesTextField.stringValue = nodePresenter!.notes
-        addNodeButton.hidden = nodePresenter!.availableRules().count > 0 ? false : true
+        reloadRulesCollectionView()
+    }
+    
+    override public func viewWillAppear() {
+        super.viewWillAppear()
         
         /*
         https://github.com/mattt/FormatterKit
@@ -84,11 +83,17 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
         availableNodesViewController!.nodePresenter = nodePresenter
         popover.contentViewController = availableNodesViewController
         popover.showRelativeToRect(addNodeButton.frame, ofView: rulesTitleStackView, preferredEdge:.MaxX )
+        //  popover.showRelativeToRect(ruleCollectionView.frame, ofView: ruleCollectionView, preferredEdge:.MinY )
     }
     
     
     func reloadRulesCollectionView() {
         
+        rulePresenters = nodePresenter!.rules.map { RulePresenter.rulePresenterForRule($0) }
+        ruleCollectionView.rules = rulePresenters
+        ruleCollectionView.reloadData()
+        availableNodesViewController?.reloadCollectionView()
+        // addNodeButton.hidden = nodePresenter!.availableRules().count > 0 ? false : true
     }
     
     
@@ -112,9 +117,6 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
         // let diff = presenter.allRulePresenters().diff(rulePresenters)  // get the diff if I want to animate these things later...
         //  ruleCollectionView.animator().insertItemsAtIndexPaths([NSIndexPath(forItem: atIndex, inSection: 0)]) <- bug
         
-        rulePresenters = nodePresenter!.rules.map { RulePresenter.rulePresenterForRule($0) }
-        ruleCollectionView.rules = rulePresenters
-        ruleCollectionView.reloadData()
-        availableNodesViewController?.reloadCollectionView()
+        reloadRulesCollectionView()
     }
 }
