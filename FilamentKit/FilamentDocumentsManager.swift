@@ -99,6 +99,24 @@ public class FilamentDocumentsManager : DirectoryMonitorDelegate {
 }
 
 
+// MARK: Export 
+
+
+/*
+
+EXPORT AS XML
+
+NSMutableData *data = [NSMutableData data];
+NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+[archiver setOutputFormat:NSPropertyListXMLFormat_v1_0];
+[archiver encodeObject:artistCollection forKey:@"root"];
+[archiver finishEncoding];
+[data writeToFile:@"/Users/fgx/Desktop/stuff" atomically:YES];
+[archiver release];
+
+*/
+
+
 // MARK: Filesystem Helpers
 
 public extension FilamentDocumentsManager {
