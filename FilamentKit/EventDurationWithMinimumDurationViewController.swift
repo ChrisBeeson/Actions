@@ -17,9 +17,9 @@ class EventDurationWithMinimumDurationViewController : RuleViewController, NSCom
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        refreshComboBoxes()
+        //  refreshComboBoxes()
     }
-    
+    /*
     
     func refreshComboBoxes() {
      
@@ -54,4 +54,5 @@ class EventDurationWithMinimumDurationViewController : RuleViewController, NSCom
         
         refreshComboBoxes()
     }
+*/
 }
