@@ -27,8 +27,8 @@ class RulePillView : NSView {
     
     override func layout() {
         super.layout()
-        
         pathLayer.path =  NSBezierPath(roundedRect: self.bounds, xRadius: 4.0, yRadius: 4.0).CGPath(forceClose: false)
+
     }
     
     func setColour(colour:CGColorRef) {
