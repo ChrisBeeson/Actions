@@ -33,7 +33,7 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
         super.viewDidLoad()
         nodePresenter?.addDelegate(self)
         ruleCollectionView.ruleCollectionViewDelegate = self
-        ruleCollectionView.rules = rulePresenters
+        ruleCollectionView.rulePresenters = rulePresenters
         ruleCollectionView.allowDrops = true
         ruleCollectionView.allowDeletions = true
     }
@@ -90,7 +90,7 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
     func reloadRulesCollectionView() {
         
         rulePresenters = nodePresenter!.rules.map { RulePresenter.rulePresenterForRule($0) }
-        ruleCollectionView.rules = rulePresenters
+        ruleCollectionView.rulePresenters = rulePresenters
         ruleCollectionView.reloadData()
         availableNodesViewController?.reloadCollectionView()
         // addNodeButton.hidden = nodePresenter!.availableRules().count > 0 ? false : true

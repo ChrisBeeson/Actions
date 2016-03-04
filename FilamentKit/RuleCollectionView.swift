@@ -17,7 +17,7 @@ public protocol RuleCollectionViewDelegate {
 
 public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout {
     
-    var rules : [RulePresenter]?
+    var rulePresenters : [RulePresenter]?
     var showDetailView = false
     var allowDrops = false
     var allowDeletions = false
@@ -60,7 +60,7 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
         if theEvent.keyCode == 51 || theEvent.keyCode == 117  {
             
             for index in self.selectionIndexPaths {
-                ruleCollectionViewDelegate?.didDeleteRulePresenter(self, deletedRulePresenter: rules![index.item])
+                ruleCollectionViewDelegate?.didDeleteRulePresenter(self, deletedRulePresenter: rulePresenters![index.item])
             }
         }
     }
@@ -71,14 +71,14 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     
     public func collectionView(collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return rules!.count
+        return rulePresenters!.count
     }
     
     
     public func collectionView(collectionView: NSCollectionView, itemForRepresentedObjectAtIndexPath indexPath: NSIndexPath) -> NSCollectionViewItem {
         
         let item = makeItemWithIdentifier("RuleCollectionItem", forIndexPath: indexPath) as! RuleCollectionItem
-        item.label.stringValue = rules![indexPath.item].name as String
+        item.rulePresenter = rulePresenters![indexPath.item]
         return item
     }
     
@@ -88,7 +88,7 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     
     public func collectionView(collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> NSSize {
         
-            let string:NSString = rules![indexPath.item].name as NSString
+            let string:NSString = rulePresenters![indexPath.item].name as NSString
             let size: CGSize = string.sizeWithAttributes([NSFontAttributeName: NSFont.systemFontOfSize(12.0, weight:NSFontWeightRegular) ])
             return NSSize(width: size.width + 30, height: 16)
     }
@@ -117,13 +117,16 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     
     public func collectionView(collectionView: NSCollectionView, pasteboardWriterForItemAtIndexPath indexPath: NSIndexPath) -> NSPasteboardWriting? {
         
-        return rules?[indexPath.item].draggingItem()
+        return rulePresenters?[indexPath.item].draggingItem()
     }
     
+  /*
     
-    /*
     public func collectionView(collectionView: NSCollectionView, draggingImageForItemsAtIndexPaths indexPaths: Set<NSIndexPath>, withEvent event: NSEvent, offset dragImageOffset: NSPointPointer) -> NSImage {
-    
+    let item = self.itemAtIndex(indexPaths[0].item)
+        
+        let dataOfView = view.dataWithPDFInsideRect(view.bounds)
+        let imageOfView = NSImage(data: dataOfView)
     }
     */
     

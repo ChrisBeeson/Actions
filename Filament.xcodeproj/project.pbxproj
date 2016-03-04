@@ -84,6 +84,7 @@
 		833AE3301C67F85B002F35C1 /* ActionNodeCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 833AE32F1C67F85B002F35C1 /* ActionNodeCollectionViewItem.xib */; };
 		833AE3321C67FB6D002F35C1 /* TransitionNodeCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 833AE3311C67FB6D002F35C1 /* TransitionNodeCollectionViewItem.xib */; };
 		8343519D1BA297650094428B /* TransitionDurationWithVariance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8343519C1BA297650094428B /* TransitionDurationWithVariance.swift */; };
+		834C6CD41C89330600266709 /* EmptyRuleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 834C6CD31C89330600266709 /* EmptyRuleViewController.xib */; };
 		834F85CF1C6ACF5E009CC72F /* AddNewNodeCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F85CE1C6ACF5E009CC72F /* AddNewNodeCollectionViewItem.swift */; };
 		834F85D11C6ACFA2009CC72F /* AddNewNodeCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 834F85D01C6ACFA2009CC72F /* AddNewNodeCollectionViewItem.xib */; };
 		835289D21C840D8F001CD0DE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 835289D41C840D8F001CD0DE /* Localizable.strings */; };
@@ -229,6 +230,7 @@
 		833AE32F1C67F85B002F35C1 /* ActionNodeCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionNodeCollectionViewItem.xib; sourceTree = "<group>"; };
 		833AE3311C67FB6D002F35C1 /* TransitionNodeCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransitionNodeCollectionViewItem.xib; sourceTree = "<group>"; };
 		8343519C1BA297650094428B /* TransitionDurationWithVariance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionDurationWithVariance.swift; sourceTree = "<group>"; };
+		834C6CD31C89330600266709 /* EmptyRuleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyRuleViewController.xib; sourceTree = "<group>"; };
 		834F85CE1C6ACF5E009CC72F /* AddNewNodeCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewNodeCollectionViewItem.swift; sourceTree = "<group>"; };
 		834F85D01C6ACFA2009CC72F /* AddNewNodeCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddNewNodeCollectionViewItem.xib; sourceTree = "<group>"; };
 		835289D31C840D8F001CD0DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -420,6 +422,7 @@
 				471279B61C80615C0090426C /* EventDurationWithMinimumDurationViewController.swift */,
 				83B74FAC1C7FDC0F005E5E22 /* DurationWithVarianceViewController.xib */,
 				8359A7721C7CF2F400ED87D9 /* DurationWithVarianceViewController.swift */,
+				834C6CD31C89330600266709 /* EmptyRuleViewController.xib */,
 			);
 			name = RuleViewControllers;
 			sourceTree = "<group>";
@@ -832,6 +835,7 @@
 			files = (
 				471279B91C8061A20090426C /* EventDurationWithMinimumDurationViewController.xib in Resources */,
 				4720B50A1C6F00E500229734 /* DateTimePickerViewController.xib in Resources */,
+				834C6CD41C89330600266709 /* EmptyRuleViewController.xib in Resources */,
 				833AE3301C67F85B002F35C1 /* ActionNodeCollectionViewItem.xib in Resources */,
 				83CE363C1C84E53F00D3A556 /* RuleCollectionItem.xib in Resources */,
 				833AE32E1C67E463002F35C1 /* DateNodeCollectionViewItem.xib in Resources */,

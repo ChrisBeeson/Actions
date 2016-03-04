@@ -45,7 +45,7 @@ public class AvailableRulesViewController : NSViewController,NSTokenFieldDelegat
         for rule in nodePresenter!.availableRules() {
             rps.append(RulePresenter(rule: rule))
         }
-        collectionView.rules = rps
+        collectionView.rulePresenters = rps
         collectionView.reloadData()
     }
 }

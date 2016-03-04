@@ -53,9 +53,8 @@ public class TransitionDurationWithVarianceRulePresenter : RulePresenter {
         
         if ruleViewController == nil {
             ruleViewController = DurationWithVarianceViewController(nibName:"DurationWithVarianceViewController", bundle: NSBundle(identifier:"com.andris.FilamentKit"))!
+            ruleViewController!.rulePresenter = self
         }
-        
-        ruleViewController!.rulePresenter = self
         
         return ruleViewController!
     }

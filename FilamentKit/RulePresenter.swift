@@ -45,13 +45,12 @@ public class RulePresenter : NSObject {
     //MARK: Pasteboard
     
     func draggingItem() -> NSPasteboardItem {
-    
+        
         let data = NSKeyedArchiver.archivedDataWithRootObject(self.rule)
         let item = NSPasteboardItem()
         item.setData(data, forType: AppConfiguration.UTI.rule)
         return item
     }
-    
     
     
     //MARK: Factory class
@@ -71,9 +70,6 @@ public class RulePresenter : NSObject {
             //  fatalError("Unable to find rule presenter for rule \(rule.className)")
         }
     }
-    
-    
-    
     
     
     //MARK: Delegate helpers
@@ -96,8 +92,8 @@ public class RulePresenter : NSObject {
     }
     
     
-    
     public func detailViewController() -> RuleViewController {
-        fatalError("This needs to be subclassed")
+        
+        return RuleViewController(nibName:"EmptyRuleViewController", bundle: NSBundle(identifier:"com.andris.FilamentKit"))!
     }
 }
