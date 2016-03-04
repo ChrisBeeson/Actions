@@ -9,7 +9,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NodeDetailViewController" customModule="FilamentKit">
             <connections>
-                <outlet property="addNodeButton" destination="N1L-WR-Md3" id="dAU-jc-Owa"/>
+                <outlet property="addRuleButton" destination="N1L-WR-Md3" id="ClE-bw-1g0"/>
                 <outlet property="dateTextField" destination="Irr-Jp-XxP" id="alr-9D-dFA"/>
                 <outlet property="mainStackView" destination="fns-Wr-QDB" id="JcT-4E-8ky"/>
                 <outlet property="notesTextField" destination="GRN-nw-n6Q" id="U0V-TS-Aqy"/>
@@ -96,7 +96,7 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N1L-WR-Md3">
+                                        <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N1L-WR-Md3">
                                             <rect key="frame" x="239" y="0.0" width="11" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="u4g-VA-YdV"/>
@@ -106,7 +106,7 @@
                                                 <font key="font" metaFont="miniSystem"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="addNodeButtonPressed:" target="-2" id="0yz-4X-VVg"/>
+                                                <action selector="addRuleButtonPressed:" target="-2" id="tky-bk-ubb"/>
                                             </connections>
                                         </button>
                                     </subviews>

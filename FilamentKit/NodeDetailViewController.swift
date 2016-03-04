@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class NodeDetailViewController : NSViewController, NodePresenterDelegate, RuleCollectionViewDelegate {
+public class NodeDetailViewController : NSViewController, NodePresenterDelegate, RuleCollectionViewDelegate, NSPopoverDelegate {
     
     @IBOutlet weak var ruleCollectionView: RuleCollectionView!
 
@@ -23,7 +23,9 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
     
     @IBOutlet weak var ruleStackView: NSStackView!
     @IBOutlet weak var rulesTitleStackView: NSStackView!
-    @IBOutlet weak var addNodeButton: NSButton!
+    @IBOutlet weak var addRuleButton: NSButton!
+    
+    private var popoverVisible = false
     
     var nodePresenter: NodePresenter?
     private var rulePresenters = [RulePresenter]()
@@ -71,12 +73,15 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
     }
     
     
-    @IBAction func addNodeButtonPressed(sender: AnyObject) {
+    @IBAction func addRuleButtonPressed(sender: AnyObject) {
+        
+        guard popoverVisible == false else { return }
         
         let popover = NSPopover()
         popover.animates = true
         popover.behavior = .Transient
         popover.appearance = NSAppearance(named: NSAppearanceNameAqua)
+        popover.delegate = self
         
         if availableNodesViewController == nil {
             availableNodesViewController  = AvailableRulesViewController(nibName:"AvailableRulesViewController", bundle:NSBundle(identifier:"com.andris.FilamentKit"))
@@ -86,7 +91,7 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
        
         //TODO: Select between preferred Edges..
         
-        popover.showRelativeToRect(addNodeButton.bounds, ofView: rulesTitleStackView, preferredEdge:.MaxY )
+        popover.showRelativeToRect(addRuleButton.frame, ofView: rulesTitleStackView, preferredEdge:.MinX )
         // popover.showRelativeToRect(ruleCollectionView.bounds, ofView: ruleStackView, preferredEdge:.MaxY )
     }
     
@@ -123,4 +128,15 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
         
         reloadRulesCollectionView()
     }
+    
+    // MARK: Popover delegate
+    
+    public func popoverWillShow(notification: NSNotification) {
+        popoverVisible = true
+    }
+    
+    public func popoverDidClose(notification: NSNotification) {
+         popoverVisible = false
+    }
+    
 }
