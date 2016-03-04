@@ -18,6 +18,8 @@ public class AvailableRulesViewController : NSViewController,NSTokenFieldDelegat
         }
     }
     
+    public var collectionViewDelegate: RuleCollectionViewDelegate?
+    
     override public func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -31,6 +33,8 @@ public class AvailableRulesViewController : NSViewController,NSTokenFieldDelegat
     
     override public func viewWillAppear() {
         super.viewWillAppear()
+        
+        collectionView.ruleCollectionViewDelegate = collectionViewDelegate
         //  reloadCollectionView()
     }
     

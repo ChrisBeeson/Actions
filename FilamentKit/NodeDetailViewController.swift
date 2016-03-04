@@ -30,7 +30,7 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
     var nodePresenter: NodePresenter?
     private var rulePresenters = [RulePresenter]()
 
-    var availableNodesViewController: AvailableRulesViewController?
+    var availableRulesViewController: AvailableRulesViewController?
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -83,11 +83,12 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
         popover.appearance = NSAppearance(named: NSAppearanceNameAqua)
         popover.delegate = self
         
-        if availableNodesViewController == nil {
-            availableNodesViewController  = AvailableRulesViewController(nibName:"AvailableRulesViewController", bundle:NSBundle(identifier:"com.andris.FilamentKit"))
+        if availableRulesViewController == nil {
+            availableRulesViewController  = AvailableRulesViewController(nibName:"AvailableRulesViewController", bundle:NSBundle(identifier:"com.andris.FilamentKit"))
         }
-        availableNodesViewController!.nodePresenter = nodePresenter
-        popover.contentViewController = availableNodesViewController
+        availableRulesViewController!.nodePresenter = nodePresenter
+        availableRulesViewController!.collectionViewDelegate = self
+        popover.contentViewController = availableRulesViewController
        
         //TODO: Select between preferred Edges..
         
@@ -101,7 +102,7 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
         rulePresenters = nodePresenter!.rules.map { RulePresenter.rulePresenterForRule($0) }
         ruleCollectionView.rulePresenters = rulePresenters
         ruleCollectionView.reloadData()
-        availableNodesViewController?.reloadCollectionView()
+        availableRulesViewController?.reloadCollectionView()
         // addNodeButton.hidden = nodePresenter!.availableRules().count > 0 ? false : true
     }
     
@@ -116,6 +117,10 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
     public func didDeleteRulePresenter(collectionView: RuleCollectionView, deletedRulePresenter: RulePresenter) {
         
         nodePresenter?.deleteRulePresenter(deletedRulePresenter)
+    }
+    
+    public func didDoubleClick(collectionView: RuleCollectionView, selectedRulePresenter: RulePresenter) {
+        nodePresenter?.insertRulePresenter(selectedRulePresenter, atIndex:nodePresenter!.rules.count)
     }
     
     

@@ -12,6 +12,7 @@ public protocol RuleCollectionViewDelegate {
     
     func didAcceptDrop(collectionView: RuleCollectionView, droppedRulePresenter: RulePresenter, atIndex: Int)
     func didDeleteRulePresenter(collectionView: RuleCollectionView, deletedRulePresenter: RulePresenter)
+    func didDoubleClick(collectionView: RuleCollectionView, selectedRulePresenter: RulePresenter)
 }
 
 
@@ -52,7 +53,7 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
         self.registerNib(nib, forItemWithIdentifier: "RuleCollectionItem")
     }
     
-    
+    //MARK: Events
     
     override public func keyDown(theEvent: NSEvent) {
         
@@ -62,6 +63,18 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
             for index in self.selectionIndexPaths {
                 ruleCollectionViewDelegate?.didDeleteRulePresenter(self, deletedRulePresenter: rulePresenters![index.item])
             }
+        }
+    }
+    
+    override public func mouseDown(theEvent: NSEvent) {
+        super.mouseDown(theEvent)
+        
+        if theEvent.clickCount < 2 { return }
+        if doubleClickDisplaysItemsDetailView == true { return }
+        
+        if self.selectionIndexPaths.count > 0 {
+            let presenter = rulePresenters![self.selectionIndexPaths.first!.item]
+            ruleCollectionViewDelegate?.didDoubleClick(self, selectedRulePresenter: presenter)
         }
     }
     
@@ -91,9 +104,9 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     
     public func collectionView(collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> NSSize {
         
-            let string:NSString = rulePresenters![indexPath.item].name as NSString
-            let size: CGSize = string.sizeWithAttributes([NSFontAttributeName: NSFont.systemFontOfSize(13.0, weight:NSFontWeightRegular) ])
-            return NSSize(width: size.width + 33, height: 16)
+        let string:NSString = rulePresenters![indexPath.item].name as NSString
+        let size: CGSize = string.sizeWithAttributes([NSFontAttributeName: NSFont.systemFontOfSize(13.0, weight:NSFontWeightRegular) ])
+        return NSSize(width: size.width + 33, height: 16)
     }
     
     public func collectionView(collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
@@ -123,13 +136,13 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
         return rulePresenters?[indexPath.item].draggingItem()
     }
     
-  /*
+    /*
     
     public func collectionView(collectionView: NSCollectionView, draggingImageForItemsAtIndexPaths indexPaths: Set<NSIndexPath>, withEvent event: NSEvent, offset dragImageOffset: NSPointPointer) -> NSImage {
     let item = self.itemAtIndex(indexPaths[0].item)
-        
-        let dataOfView = view.dataWithPDFInsideRect(view.bounds)
-        let imageOfView = NSImage(data: dataOfView)
+    
+    let dataOfView = view.dataWithPDFInsideRect(view.bounds)
+    let imageOfView = NSImage(data: dataOfView)
     }
     */
     
@@ -159,9 +172,9 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
                     let newRulePresenter = RulePresenter(draggingItem:(draggingItem.item as! NSPasteboardItem))
                     self.ruleCollectionViewDelegate?.didAcceptDrop(self, droppedRulePresenter: newRulePresenter, atIndex:indexPath.item)
                     
-                     default: break
-                    }
+                default: break
                 }
+            }
         }
         return true
     }
@@ -209,5 +222,8 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     public func collectionView(collectionView: NSCollectionView, didEndDisplayingItem item: NSCollectionViewItem, forRepresentedObjectAtIndexPath indexPath: NSIndexPath) {
         
     }
+    
+    
+    
     
 }

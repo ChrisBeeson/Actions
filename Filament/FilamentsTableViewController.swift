@@ -217,6 +217,7 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
            availableGenericRulesViewController = AvailableRulesViewController(nibName:"AvailableRulesViewController", bundle:NSBundle(identifier:"com.andris.FilamentKit"))
         }
         availableGenericRulesViewController!.nodePresenter = AppConfiguration.sharedConfiguration.contextPresenter()   /// A bit of a stretch!!
+        availableGenericRulesViewController!.collectionViewDelegate = self
         popover.contentViewController = availableGenericRulesViewController
         
         //TODO: Select between preferred Edges..
@@ -244,6 +245,13 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     public func didDeleteRulePresenter(collectionView: RuleCollectionView, deletedRulePresenter: RulePresenter) {
         
         AppConfiguration.sharedConfiguration.contextPresenter().removeRulePresenter(deletedRulePresenter)
+        refreshGenericRulesCollectionView()
+    }
+    
+    public func didDoubleClick(collectionView: RuleCollectionView, selectedRulePresenter: RulePresenter) {
+        
+        let context = AppConfiguration.sharedConfiguration.contextPresenter()
+        context.addGenericRulePresenter(selectedRulePresenter, atIndex: context.genericRulePresenters().count)
         refreshGenericRulesCollectionView()
     }
     
