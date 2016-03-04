@@ -132,7 +132,7 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     
     public func collectionView(collectionView: NSCollectionView, validateDrop draggingInfo: NSDraggingInfo, proposedIndexPath proposedDropIndexPath: AutoreleasingUnsafeMutablePointer<NSIndexPath?>, dropOperation proposedDropOperation: UnsafeMutablePointer<NSCollectionViewDropOperation>) -> NSDragOperation {
         
-        if allowDrops  {
+        if allowDrops && draggingInfo.draggingSource()! !== self {
             return NSDragOperation.Copy
         } else {
             return NSDragOperation.None

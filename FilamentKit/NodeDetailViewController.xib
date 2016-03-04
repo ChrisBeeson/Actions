@@ -124,17 +124,19 @@
                                         <rect key="frame" x="1" y="1" width="255" height="54"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <scrollView ambiguous="YES" misplaced="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0R7-Oc-1ih">
-                                                <rect key="frame" x="6" y="6" width="243" height="42"/>
+                                            <scrollView ambiguous="YES" misplaced="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="0R7-Oc-1ih">
+                                                <rect key="frame" x="6" y="6" width="243" height="43"/>
                                                 <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="Eha-Pe-gdp">
-                                                    <rect key="frame" x="0.0" y="0.0" width="243" height="42"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="243" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <collectionView ambiguous="YES" selectable="YES" id="Vh4-gK-Teh" customClass="RuleCollectionView" customModule="FilamentKit">
-                                                            <rect key="frame" x="0.0" y="0.0" width="243" height="42"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="237" height="77"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" scrollDirection="horizontal" id="o8Y-fR-MuF">
                                                                 <size key="itemSize" width="50" height="50"/>
+                                                                <size key="headerReferenceSize" width="0.0" height="6"/>
+                                                                <edgeInsets key="sectionInset" left="0.0" right="0.0" top="30" bottom="6"/>
                                                             </collectionViewFlowLayout>
                                                             <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </collectionView>
@@ -144,15 +146,15 @@
                                                     <rect key="frame" x="1" y="144" width="233" height="15"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </scroller>
-                                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="qp7-dY-PNL">
-                                                    <rect key="frame" x="234" y="1" width="15" height="143"/>
+                                                <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="qp7-dY-PNL">
+                                                    <rect key="frame" x="227" y="0.0" width="16" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </scroller>
                                             </scrollView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="0R7-Oc-1ih" secondAttribute="trailing" constant="6" id="FBp-Q1-epV"/>
-                                            <constraint firstAttribute="bottom" secondItem="0R7-Oc-1ih" secondAttribute="bottom" constant="6" id="I2Z-gc-Kha"/>
+                                            <constraint firstAttribute="bottom" secondItem="0R7-Oc-1ih" secondAttribute="bottom" constant="2" id="I2Z-gc-Kha"/>
                                             <constraint firstItem="0R7-Oc-1ih" firstAttribute="top" secondItem="dvN-xw-Gnb" secondAttribute="top" constant="6" id="c1w-go-Cb9"/>
                                             <constraint firstItem="0R7-Oc-1ih" firstAttribute="leading" secondItem="dvN-xw-Gnb" secondAttribute="leading" constant="6" id="uHo-3z-2wJ"/>
                                         </constraints>
