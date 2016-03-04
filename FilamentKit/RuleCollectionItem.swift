@@ -18,15 +18,7 @@ public class RuleCollectionItem : NSCollectionViewItem {
     
     override public var selected: Bool {
         didSet {
-            
-            switch selected {
-            case true:
-                label.textColor = NSColor.whiteColor()
-                rulePillView.setColour(AppConfiguration.Palette.tokenBlueSelected.CGColor)
-            case false:
-                rulePillView.setColour(AppConfiguration.Palette.tokenBlue.CGColor)
-                label.textColor = NSColor.blackColor()
-            }
+            updateView()
         }
     }
     
@@ -34,6 +26,24 @@ public class RuleCollectionItem : NSCollectionViewItem {
         super.viewWillLayout()
         
         if rulePresenter != nil { label.stringValue = rulePresenter!.name as String }
+    }
+    
+    override public func viewWillAppear() {
+        super.viewWillAppear()
+        updateView()
+    }
+    
+    
+    func updateView() {
+        
+        switch selected {
+        case true:
+            label.textColor = NSColor.whiteColor()
+            rulePillView.setColour(AppConfiguration.Palette.tokenBlueSelected.CGColor)
+        case false:
+            rulePillView.setColour(AppConfiguration.Palette.tokenBlue.CGColor)
+            label.textColor = NSColor.blackColor()
+        }
     }
     
     
