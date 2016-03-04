@@ -190,11 +190,19 @@ class NodePresenter : NSObject {
     func insertRulePresenter(rulePresenter:RulePresenter, atIndex:Int) {
         
         node.rules.insert(rulePresenter.rule, atIndex: atIndex)
+        delegates.forEach { $0.nodePresenterDidChangeRules(self) }
     }
     
     func insertRules(rules:[Rule]) {
         
         node.rules.appendContentsOf(rules)
+        delegates.forEach { $0.nodePresenterDidChangeRules(self) }
+    }
+    
+    
+    func deleteRulePresenter(deletedRulePresenter: RulePresenter) {
+      
+        node.rules.removeObject(deletedRulePresenter.rule)
         delegates.forEach { $0.nodePresenterDidChangeRules(self) }
     }
     

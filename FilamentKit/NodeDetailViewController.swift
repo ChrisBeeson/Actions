@@ -32,11 +32,14 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
     override public func viewDidLoad() {
         super.viewDidLoad()
         
+        nodePresenter?.addDelegate(self)
+        
         // create rulePresenters for each of the rules
         rulePresenters = nodePresenter!.rules.map { RulePresenter.rulePresenterForRule($0) }
         ruleCollectionView.ruleCollectionViewDelegate = self
         ruleCollectionView.rules = rulePresenters
         ruleCollectionView.allowDrops = true
+        ruleCollectionView.allowDeletions = true
     }
     
     
@@ -89,16 +92,29 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
     }
     
     
-    //MARK: Delegates
+    //MARK: RuleCollectionView Delegates
     
     public func didAcceptDrop(collectionView: RuleCollectionView, droppedRulePresenter: RulePresenter, atIndex: Int) {
         
         nodePresenter?.insertRulePresenter(droppedRulePresenter, atIndex:atIndex)
-        rulePresenters.insert(droppedRulePresenter, atIndex: atIndex)
+    }
+    
+    public func didDeleteRulePresenter(collectionView: RuleCollectionView, deletedRulePresenter: RulePresenter) {
+        
+        nodePresenter?.deleteRulePresenter(deletedRulePresenter)
+    }
+    
+    
+    // MARK: NodePresenter Delegate Calls
+    
+    func nodePresenterDidChangeRules(presenter: NodePresenter) {
+        
+        // let diff = presenter.allRulePresenters().diff(rulePresenters)  // get the diff if I want to animate these things later...
+        //  ruleCollectionView.animator().insertItemsAtIndexPaths([NSIndexPath(forItem: atIndex, inSection: 0)]) <- bug
+        
+        rulePresenters = nodePresenter!.rules.map { RulePresenter.rulePresenterForRule($0) }
         ruleCollectionView.rules = rulePresenters
         ruleCollectionView.reloadData()
         availableNodesViewController?.reloadCollectionView()
-        
-        //  ruleCollectionView.animator().insertItemsAtIndexPaths([NSIndexPath(forItem: atIndex, inSection: 0)]) <- bug
     }
 }

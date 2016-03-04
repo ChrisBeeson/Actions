@@ -11,6 +11,7 @@ import Foundation
 public protocol RuleCollectionViewDelegate {
     
     func didAcceptDrop(collectionView: RuleCollectionView, droppedRulePresenter: RulePresenter, atIndex: Int)
+    func didDeleteRulePresenter(collectionView: RuleCollectionView, deletedRulePresenter: RulePresenter)
 }
 
 
@@ -50,6 +51,19 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
         self.registerNib(nib, forItemWithIdentifier: "RuleCollectionItem")
     }
     
+    
+    
+    override public func keyDown(theEvent: NSEvent) {
+        
+        guard allowDeletions == true else { return }
+        
+        if theEvent.keyCode == 51 || theEvent.keyCode == 117  {
+            
+            for index in self.selectionIndexPaths {
+                ruleCollectionViewDelegate?.didDeleteRulePresenter(self, deletedRulePresenter: rules![index.item])
+            }
+        }
+    }
     
     
     

@@ -67,7 +67,8 @@ public class RulePresenter : NSObject {
             return TransitionDurationWithVarianceRulePresenter(rule: rule)
             
         default:
-            fatalError("Unable to find rule presenter for rule \(rule.className)")
+            return RulePresenter(rule: rule)
+            //  fatalError("Unable to find rule presenter for rule \(rule.className)")
         }
     }
     

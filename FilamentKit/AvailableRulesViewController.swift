@@ -20,8 +20,6 @@ public class AvailableRulesViewController : NSViewController,NSTokenFieldDelegat
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        
-
     }
     
     override public func viewWillLayout() {
