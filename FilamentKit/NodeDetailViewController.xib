@@ -82,11 +82,11 @@
                             <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <font key="titleFont" metaFont="system"/>
                         </box>
-                        <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="3" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6EG-as-AJv">
-                            <rect key="frame" x="0.0" y="24" width="251" height="73"/>
+                        <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="3" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6EG-as-AJv">
+                            <rect key="frame" x="0.0" y="24" width="250" height="73"/>
                             <subviews>
                                 <stackView distribution="fill" orientation="horizontal" alignment="baseline" spacing="210" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fgA-j6-eLf">
-                                    <rect key="frame" x="1" y="53" width="250" height="20"/>
+                                    <rect key="frame" x="0.0" y="53" width="250" height="20"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="706-Bj-ymx">
                                             <rect key="frame" x="-2" y="0.0" width="33" height="14"/>
@@ -96,7 +96,7 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N1L-WR-Md3">
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N1L-WR-Md3">
                                             <rect key="frame" x="239" y="0.0" width="11" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="u4g-VA-YdV"/>
@@ -120,19 +120,19 @@
                                     </customSpacing>
                                 </stackView>
                                 <box ambiguous="YES" misplaced="YES" title="Box" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="jYC-LU-8Wf">
-                                    <rect key="frame" x="-3" y="-4" width="257" height="56"/>
+                                    <rect key="frame" x="-3" y="-4" width="256" height="56"/>
                                     <view key="contentView" focusRingType="none" ambiguous="YES" id="dvN-xw-Gnb">
-                                        <rect key="frame" x="1" y="1" width="255" height="54"/>
+                                        <rect key="frame" x="1" y="1" width="254" height="54"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <scrollView ambiguous="YES" misplaced="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="0R7-Oc-1ih">
-                                                <rect key="frame" x="6" y="6" width="243" height="43"/>
+                                                <rect key="frame" x="6" y="3" width="242" height="45"/>
                                                 <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="Eha-Pe-gdp">
-                                                    <rect key="frame" x="0.0" y="0.0" width="243" height="43"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="242" height="45"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <collectionView ambiguous="YES" selectable="YES" id="Vh4-gK-Teh" customClass="RuleCollectionView" customModule="FilamentKit">
-                                                            <rect key="frame" x="0.0" y="0.0" width="236" height="79"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="234" height="83"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" scrollDirection="horizontal" id="o8Y-fR-MuF">
                                                                 <size key="itemSize" width="50" height="50"/>
@@ -148,7 +148,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </scroller>
                                                 <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="qp7-dY-PNL">
-                                                    <rect key="frame" x="227" y="0.0" width="16" height="43"/>
+                                                    <rect key="frame" x="226" y="0.0" width="16" height="45"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </scroller>
                                             </scrollView>
