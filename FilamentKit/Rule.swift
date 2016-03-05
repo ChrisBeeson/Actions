@@ -56,7 +56,7 @@ class Rule: NSObject, RuleType {
         var ruleClasses = [Rule]()
         ruleClasses.append(TransitionDurationWithVariance())
         ruleClasses.append(EventDurationWithMinimumDuration())
-        ruleClasses.append(AvoidCalendarEvents())
+        ruleClasses.append(AvoidCalendarEventsRule())
         ruleClasses.append(WorkingWeekRule())
         ruleClasses.append(TransitionDurationBasedOnTravelTime())
         ruleClasses.append(EventFixedStartAndEndDate())

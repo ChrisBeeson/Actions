@@ -24,6 +24,8 @@ public class ContextPresenter : NodePresenter {
             self.context = NSKeyedUnarchiver.unarchiveObjectWithFile(filePath.path!) as? Context
         } else {
             self.context = Context()
+            let avoidCals = AvoidCalendarEventsRule()
+            context?.genericRules.append(avoidCals)
         }
     }
     

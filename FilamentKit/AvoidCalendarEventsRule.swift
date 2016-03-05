@@ -10,7 +10,7 @@ import Foundation
 import DateTools
 import EventKit
 
-class AvoidCalendarEvents: Rule, NSCoding {
+class AvoidCalendarEventsRule: Rule, NSCoding {
     
     // This rule sits the duration of an event.
     // It allows the event to be shortened to a minimum duration if required.
@@ -21,7 +21,6 @@ class AvoidCalendarEvents: Rule, NSCoding {
     override var options: RoleOptions { get { return RoleOptions.RequiresInterestWindow } }
     
     var calendars = [Calendar]()
-    
     
     override init() {
         super.init()
