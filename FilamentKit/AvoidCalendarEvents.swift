@@ -10,59 +10,32 @@ import Foundation
 import DateTools
 import EventKit
 
-// We only deal with calendar Identifiers
-
 class AvoidCalendarEvents: Rule, NSCoding {
     
     // This rule sits the duration of an event.
     // It allows the event to be shortened to a minimum duration if required.
     
-     override var name: String { return "RULE_NAME_AVOID_CALS".localized }
-     override var availableToNodeType:NodeType { return .All}
-     override var conflictingRules: [Rule]? { return nil }
-     override var options: RoleOptions { get { return RoleOptions.RequiresInterestWindow } }
+    override var name: String { return "RULE_NAME_AVOID_CALS".localized }
+    override var availableToNodeType:NodeType { return .All}
+    override var conflictingRules: [Rule]? { return nil }
+    override var options: RoleOptions { get { return RoleOptions.RequiresInterestWindow } }
+    
+    var calendars = [Calendar]()
     
     
-    // Custom Vars
-    
-    var calendarDictionary = [String : Bool]()
-    
-     init(calendarIdenifier:String) {
-        super.init()
-        addCalendarIdentifier(calendarIdenifier, avoid: true)
-    }
-
-    
-     override init() {
+    override init() {
         super.init()
     }
     
     
-    func addCalendarIdentifier(identifier: String, avoid: Bool) {
-        
-        calendarDictionary[identifier] = avoid
-    }
-    
-    
-     override var avoidPeriods: [DTTimePeriod]? {
+    override var avoidPeriods: [DTTimePeriod]? {
         
         get {
             
             if interestPeriod == nil { return nil }
             
-            // 1. Find the calendar events for the time period.
-            // var identifiers : [String] = calendars.filter{ $0.selected == true }.map { $0.calendarIdentifier }
-            
-            var ids = [String]()
-            
-            for (id , active) in calendarDictionary {
-                if active == true {
-                  ids.append(id)
-                }
-            }
-          
-            guard let events = CalendarManager.sharedInstance.events(interestPeriod!, calendarIdentifiers:ids) else {
-                 return nil
+            guard let events = CalendarManager.sharedInstance.events(interestPeriod!, calendars:calendars) else {
+                return nil
             }
             
             // 2. Turn each event into a time period.
@@ -84,11 +57,11 @@ class AvoidCalendarEvents: Rule, NSCoding {
     
     // MARK: NSCoding
     
-     required init?(coder aDecoder: NSCoder) {
-       calendarDictionary = aDecoder.decodeObjectForKey("calendarDictionary") as! Dictionary
+    required init?(coder aDecoder: NSCoder) {
+        calendars = aDecoder.decodeObjectForKey("calendars") as! Array
     }
     
-     func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(calendarDictionary, forKey:"calendarDictionary")
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(calendars, forKey:"calendars")
     }
 }

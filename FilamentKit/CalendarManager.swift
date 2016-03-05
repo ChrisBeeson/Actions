@@ -30,24 +30,26 @@ public class CalendarManager: NSObject {
     }
     
     
-    func events(timePeriod: DTTimePeriod, calendarIdentifiers: [String]) -> [EKEvent]? {
+    func events(timePeriod: DTTimePeriod, calendars: [Calendar]) -> [EKEvent]? {
         
         // Find each calendar
         
-        var calendars = [EKCalendar]()
+        var systemCalendars = [EKCalendar]()
         
-        for id in calendarIdentifiers {
+        for cal in calendars {
             
-            if let cal = store.calendarWithIdentifier(id) {
-                calendars.append(cal)
+            if let id = cal.identifier {
+                if let cal = store.calendarWithIdentifier(id) {
+                    systemCalendars.append(cal)
+                }
             }
         }
         
-        let predicate = store.predicateForEventsWithStartDate(timePeriod.StartDate, endDate: timePeriod.EndDate, calendars: calendars)
+        let predicate = store.predicateForEventsWithStartDate(timePeriod.StartDate, endDate: timePeriod.EndDate, calendars: systemCalendars)
         return store.eventsMatchingPredicate(predicate)
     }
     
-
+    
     
     
     

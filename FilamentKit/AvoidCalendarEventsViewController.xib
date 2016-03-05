@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
+        <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="AvoidCalendarEventsViewController" customModule="FilamentKit" customModuleProvider="target">
+            <connections>
+                <outlet property="vertStackView" destination="JoJ-eE-bvN" id="ClR-kI-45P"/>
+                <outlet property="view" destination="c22-O7-iKe" id="DLr-Be-D2C"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="156" height="57"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JoJ-eE-bvN">
+                    <rect key="frame" x="20" y="20" width="116" height="17"/>
+                    <subviews>
+                        <stackView focusRingType="none" distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" translatesAutoresizingMaskIntoConstraints="NO" id="cEA-Uz-C0g">
+                            <rect key="frame" x="0.0" y="0.0" width="116" height="17"/>
+                            <subviews>
+                                <button translatesAutoresizingMaskIntoConstraints="NO" id="rPL-hy-EMD">
+                                    <rect key="frame" x="-2" y="0.0" width="22" height="18"/>
+                                    <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="79u-kS-s36">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                </button>
+                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="2Ce-Km-E6z">
+                                    <rect key="frame" x="24" y="0.0" width="94" height="17"/>
+                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="CalendarName" id="gqY-cx-hCb">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                            </subviews>
+                            <visibilityPriorities>
+                                <integer value="1000"/>
+                                <integer value="1000"/>
+                            </visibilityPriorities>
+                            <customSpacing>
+                                <real value="3.4028234663852886e+38"/>
+                                <real value="3.4028234663852886e+38"/>
+                            </customSpacing>
+                        </stackView>
+                    </subviews>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="JoJ-eE-bvN" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="20" id="MPX-YE-uZ8"/>
+                <constraint firstAttribute="bottom" secondItem="JoJ-eE-bvN" secondAttribute="bottom" constant="20" id="c8o-rD-r21"/>
+                <constraint firstAttribute="trailing" secondItem="JoJ-eE-bvN" secondAttribute="trailing" constant="20" id="ceH-3S-prU"/>
+                <constraint firstItem="JoJ-eE-bvN" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="20" id="tXK-VP-5d5"/>
+            </constraints>
+            <point key="canvasLocation" x="152" y="131.5"/>
+        </customView>
+    </objects>
+</document>

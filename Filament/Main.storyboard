@@ -773,7 +773,7 @@ CA
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="FilamentCellView" toolTip="Filament Sequence" wantsLayer="YES" focusRingType="exterior" id="FDm-hf-wGf" customClass="FilamentTableCellView" customModule="Filament" customModuleProvider="target">
+                                                        <tableCellView identifier="FilamentCellView" wantsLayer="YES" focusRingType="exterior" id="FDm-hf-wGf" customClass="FilamentTableCellView" customModule="Filament" customModuleProvider="target">
                                                             <rect key="frame" x="1" y="0.0" width="447" height="95"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -873,7 +873,7 @@ AwEVARgBHQAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAEfA
                                 </clipView>
                                 <edgeInsets key="contentInsets" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="DJU-Eb-WNM">
-                                    <rect key="frame" x="1" y="283" width="448" height="16"/>
+                                    <rect key="frame" x="0.0" y="255" width="450" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="ZsI-Gg-9NC">
@@ -884,20 +884,20 @@ AwEVARgBHQAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAEfA
                                     <outlet property="menu" destination="eIN-Wq-dHo" id="UKh-tx-0gF"/>
                                 </connections>
                             </scrollView>
-                            <box misplaced="YES" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Vcz-j7-Nxo">
-                                <rect key="frame" x="26" y="0.0" width="421" height="27"/>
+                            <box title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Vcz-j7-Nxo">
+                                <rect key="frame" x="26" y="0.0" width="423" height="27"/>
                                 <view key="contentView" id="K4r-Cb-8ax">
-                                    <rect key="frame" x="2" y="2" width="417" height="23"/>
+                                    <rect key="frame" x="2" y="2" width="419" height="23"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <scrollView misplaced="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="E2A-qE-shG">
-                                            <rect key="frame" x="6" y="2" width="406" height="18"/>
+                                        <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="E2A-qE-shG">
+                                            <rect key="frame" x="6" y="2" width="408" height="18"/>
                                             <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="kMJ-MC-kjx">
-                                                <rect key="frame" x="0.0" y="0.0" width="406" height="18"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="408" height="18"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <collectionView focusRingType="none" selectable="YES" id="e0D-Ol-Ewg" customClass="RuleCollectionView" customModule="FilamentKit">
-                                                        <rect key="frame" x="0.0" y="0.0" width="410" height="18"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="412" height="18"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" scrollDirection="horizontal" id="rLe-8S-bKf">
                                                             <size key="itemSize" width="50" height="50"/>
@@ -907,7 +907,7 @@ AwEVARgBHQAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAEfA
                                                 </subviews>
                                             </clipView>
                                             <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="lrW-ka-zWL">
-                                                <rect key="frame" x="0.0" y="2" width="406" height="16"/>
+                                                <rect key="frame" x="0.0" y="2" width="408" height="16"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="heu-8R-dyQ">
@@ -926,11 +926,11 @@ AwEVARgBHQAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAEfA
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="kCL-hZ-9OH"/>
                                 </constraints>
-                                <color key="borderColor" white="0.74039300063560753" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="fillColor" white="0.80000000000000004" alpha="0.59884751773049649" colorSpace="deviceWhite"/>
+                                <color key="borderColor" white="0.74039300063560753" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="fillColor" white="0.80000000000000004" alpha="0.0" colorSpace="deviceWhite"/>
                             </box>
-                            <button focusRingType="none" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nhi-CS-B6T">
-                                <rect key="frame" x="0.0" y="4" width="21" height="19"/>
+                            <button focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nhi-CS-B6T">
+                                <rect key="frame" x="6" y="6" width="21" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="19" id="3XO-Xs-QNk"/>
                                     <constraint firstAttribute="width" constant="21" id="vl6-6J-6EU"/>
