@@ -424,11 +424,9 @@
 			isa = PBXGroup;
 			children = (
 				473853B11C7A590A000AB1E2 /* RuleViewController.swift */,
-				471279B81C8061A20090426C /* EventDurationWithMinimumDurationViewController.xib */,
-				471279B61C80615C0090426C /* EventDurationWithMinimumDurationViewController.swift */,
-				83B74FAC1C7FDC0F005E5E22 /* DurationWithVarianceViewController.xib */,
-				8359A7721C7CF2F400ED87D9 /* DurationWithVarianceViewController.swift */,
 				834C6CD31C89330600266709 /* EmptyRuleViewController.xib */,
+				47967FF31C8AA71C00358199 /* DurationWithMinDuration */,
+				47967FF41C8AA73000358199 /* DurationWithVariance */,
 			);
 			name = RuleViewControllers;
 			sourceTree = "<group>";
@@ -475,12 +473,30 @@
 			name = NodeViews;
 			sourceTree = "<group>";
 		};
+		47967FF31C8AA71C00358199 /* DurationWithMinDuration */ = {
+			isa = PBXGroup;
+			children = (
+				471279B81C8061A20090426C /* EventDurationWithMinimumDurationViewController.xib */,
+				471279B61C80615C0090426C /* EventDurationWithMinimumDurationViewController.swift */,
+			);
+			name = DurationWithMinDuration;
+			sourceTree = "<group>";
+		};
+		47967FF41C8AA73000358199 /* DurationWithVariance */ = {
+			isa = PBXGroup;
+			children = (
+				83B74FAC1C7FDC0F005E5E22 /* DurationWithVarianceViewController.xib */,
+				8359A7721C7CF2F400ED87D9 /* DurationWithVarianceViewController.swift */,
+			);
+			name = DurationWithVariance;
+			sourceTree = "<group>";
+		};
 		479CD2841C1B8AA300C8D1D6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				4778C0AB1C657F6500F5A259 /* SequenceCollectionView */,
 				83CE36361C84E33900D3A556 /* RuleCollectionView */,
 				47DF1C451C6879D700482390 /* DetailViewControllers */,
-				4778C0AB1C657F6500F5A259 /* SequenceCollectionView */,
 			);
 			name = UI;
 			sourceTree = "<group>";

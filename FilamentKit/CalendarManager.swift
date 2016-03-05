@@ -30,11 +30,26 @@ public class CalendarManager: NSObject {
     }
     
     
-    func events(timePeriod: DTTimePeriod, calendars: [EKCalendar]) -> [EKEvent]? {
+    func events(timePeriod: DTTimePeriod, calendarIdentifiers: [String]) -> [EKEvent]? {
+        
+        // Find each calendar
+        
+        var calendars = [EKCalendar]()
+        
+        for id in calendarIdentifiers {
+            
+            if let cal = store.calendarWithIdentifier(id) {
+                calendars.append(cal)
+            }
+        }
         
         let predicate = store.predicateForEventsWithStartDate(timePeriod.StartDate, endDate: timePeriod.EndDate, calendars: calendars)
         return store.eventsMatchingPredicate(predicate)
     }
+    
+
+    
+    
     
     
     func retrieveApplicationCalendar() {
@@ -60,8 +75,6 @@ public class CalendarManager: NSObject {
                     print("Unresolved error \(error), \(error.userInfo)")
                 }
             }
-            
-            
         }
     }
     

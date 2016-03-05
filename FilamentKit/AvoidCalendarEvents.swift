@@ -10,7 +10,9 @@ import Foundation
 import DateTools
 import EventKit
 
- class AvoidCalendarEvents: Rule, NSCoding {
+// We only deal with calendar Identifiers
+
+class AvoidCalendarEvents: Rule, NSCoding {
     
     // This rule sits the duration of an event.
     // It allows the event to be shortened to a minimum duration if required.
@@ -23,14 +25,22 @@ import EventKit
     
     // Custom Vars
     
-     var calendars = [EKCalendar]()
+    var calendarDictionary = [String : Bool]()
     
-     init(calendars:[EKCalendar]) {
-        self.calendars = calendars
+     init(calendarIdenifier:String) {
+        
+        addCalendarIdentifier(calendarIdenifier, avoid: true)
     }
+
     
      override init() {
         super.init()
+    }
+    
+    
+    func addCalendarIdentifier(identifier: String, avoid: Bool) {
+        
+        calendarDictionary[identifier] = avoid
     }
     
     
@@ -41,8 +51,17 @@ import EventKit
             if interestPeriod == nil { return nil }
             
             // 1. Find the calendar events for the time period.
+            // var identifiers : [String] = calendars.filter{ $0.selected == true }.map { $0.calendarIdentifier }
+            
+            var ids = [String]()
+            
+            for (id , active) in calendarDictionary {
+                if active == true {
+                  ids.append(id)
+                }
+            }
           
-            guard let events = CalendarManager.sharedInstance.events(interestPeriod!, calendars: calendars) else {
+            guard let events = CalendarManager.sharedInstance.events(interestPeriod!, calendarIdentifiers:ids) else {
                  return nil
             }
             
@@ -51,9 +70,7 @@ import EventKit
             var periods = [DTTimePeriod]()
             
             for event in events {
-                
                 let period = DTTimePeriod(startDate: event.startDate, endDate: event.endDate)
-                
                 periods.append(period)
             }
             
@@ -61,22 +78,17 @@ import EventKit
         }
         
         set {
-            self.avoidPeriods = newValue
+            self.avoidPeriods = newValue   // For testing only
         }
     }
     
     // MARK: NSCoding
     
-    private struct SerializationKeys {
-        static let duration = "duration"
-        static let minDuration = "minDuration"
-    }
-    
      required init?(coder aDecoder: NSCoder) {
-       calendars = aDecoder.decodeObjectForKey("calendars") as! [EKCalendar]
+       calendarDictionary = aDecoder.decodeObjectForKey("calendarDictionary") as! Dictionary
     }
     
      func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(calendars, forKey:"calendars")
+        aCoder.encodeObject(calendarDictionary, forKey:"calendarDictionary")
     }
 }

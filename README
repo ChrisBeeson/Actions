@@ -11,3 +11,17 @@ Rule:  Warn if calendar Event changes more than x
 Todo list / time management on steriods
 
 Fuse
+
+
+Todo
+-------
+
+
+
+
+Known Issues
+----------------
+
+If the calendar on the users computer has a full resync then the identifiers of calendars and Events will be regenerated and will not be recognised.  (the clunky solution is to store the name, time, and color of events and cals and then refind it)
+
+

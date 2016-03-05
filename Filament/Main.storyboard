@@ -890,14 +890,14 @@ AwEVARgBHQAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAEfA
                                     <rect key="frame" x="2" y="2" width="417" height="23"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <scrollView misplaced="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E2A-qE-shG">
+                                        <scrollView misplaced="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="E2A-qE-shG">
                                             <rect key="frame" x="6" y="2" width="406" height="18"/>
                                             <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="kMJ-MC-kjx">
                                                 <rect key="frame" x="0.0" y="0.0" width="406" height="18"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <collectionView focusRingType="none" selectable="YES" id="e0D-Ol-Ewg" customClass="RuleCollectionView" customModule="FilamentKit">
-                                                        <rect key="frame" x="0.0" y="0.0" width="406" height="18"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="410" height="18"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" scrollDirection="horizontal" id="rLe-8S-bKf">
                                                             <size key="itemSize" width="50" height="50"/>
@@ -906,8 +906,8 @@ AwEVARgBHQAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAEfA
                                                     </collectionView>
                                                 </subviews>
                                             </clipView>
-                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="lrW-ka-zWL">
-                                                <rect key="frame" x="0.0" y="-16" width="0.0" height="16"/>
+                                            <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="lrW-ka-zWL">
+                                                <rect key="frame" x="0.0" y="2" width="406" height="16"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="heu-8R-dyQ">

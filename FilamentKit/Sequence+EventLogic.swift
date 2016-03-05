@@ -27,7 +27,7 @@ extension Sequence {
             
             // Avoid filament calendar
             
-            rules.append(AvoidCalendarEvents(calendars: [CalendarManager.sharedInstance.applicationCalendar!]))
+            // rules.append(AvoidCalendarEvents(calendars: [CalendarManager.sharedInstance.applicationCalendar!]))
             
             // TODO: app generic rules
             
