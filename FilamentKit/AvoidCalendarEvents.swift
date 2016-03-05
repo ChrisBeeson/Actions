@@ -28,7 +28,7 @@ class AvoidCalendarEvents: Rule, NSCoding {
     var calendarDictionary = [String : Bool]()
     
      init(calendarIdenifier:String) {
-        
+        super.init()
         addCalendarIdentifier(calendarIdenifier, avoid: true)
     }
 
