@@ -65,9 +65,11 @@ public class RulePresenter : NSObject {
         case "FilamentKit.TransitionDurationWithVariance":
             return TransitionDurationWithVarianceRulePresenter(rule: rule)
             
+        case "FilamentKit.AvoidCalendarEventsRule":
+            return AvoidCalendarEventsPresenter(rule: rule)
+            
         default:
             return RulePresenter(rule: rule)
-            //  fatalError("Unable to find rule presenter for rule \(rule.className)")
         }
     }
     

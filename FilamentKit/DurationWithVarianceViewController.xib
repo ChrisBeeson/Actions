@@ -23,10 +23,10 @@
                     <rect key="frame" x="10" y="10" width="195" height="53"/>
                     <subviews>
                         <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c0g-xf-Jcd">
-                            <rect key="frame" x="0.0" y="30" width="195" height="23"/>
+                            <rect key="frame" x="0.0" y="31" width="195" height="22"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m0a-4M-3zp">
-                                    <rect key="frame" x="-2" y="5" width="49" height="14"/>
+                                    <rect key="frame" x="-2" y="4" width="49" height="14"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Duration" id="Poc-tG-yll">
                                         <font key="font" metaFont="smallSystem"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -34,7 +34,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VG3-fI-5qI">
-                                    <rect key="frame" x="53" y="1" width="63" height="22"/>
+                                    <rect key="frame" x="53" y="0.0" width="63" height="22"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XJe-pj-Hqf">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="22"/>
@@ -101,10 +101,10 @@
                             </customSpacing>
                         </stackView>
                         <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fhv-LF-fN9">
-                            <rect key="frame" x="28" y="0.0" width="167" height="22"/>
+                            <rect key="frame" x="28" y="0.0" width="167" height="23"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Quh-7u-zjW">
-                                    <rect key="frame" x="-2" y="4" width="21" height="14"/>
+                                    <rect key="frame" x="-2" y="5" width="21" height="14"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="+/-" id="moh-5K-u9m">
                                         <font key="font" metaFont="smallSystem"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -112,7 +112,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ugU-Fd-ppy">
-                                    <rect key="frame" x="25" y="0.0" width="63" height="22"/>
+                                    <rect key="frame" x="25" y="1" width="63" height="22"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="icZ-Co-o2t">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="22"/>

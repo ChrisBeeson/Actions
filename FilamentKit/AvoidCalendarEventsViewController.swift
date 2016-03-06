@@ -7,23 +7,53 @@
 //
 
 import Foundation
+import AppKit
 
-class AvoidCalendarEventsViewController : NSViewController {
+class AvoidCalendarEventsViewController : RuleViewController , RulePresenterDelegate  {
 
     @IBOutlet weak var vertStackView: NSStackView!
     
-    var rulePresenter: RulePresenter?
+    var calendars = [Calendar]()
+    var calendarCheckboxes = [Calendar : NSButton]()
     
-    override func viewWillLayout() {
-        super.viewWillLayout()
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        guard rulePresenter != nil else { return }
+        calendars = (rulePresenter as! AvoidCalendarEventsPresenter).calendars()
         
-        
-        // Build the stack view.  Use tags on the checkbox to inform the presenter of any changes.
-        
-        // for calendar
+        for cal in calendars {
+            let view = stackViewForCalendar(cal)
+            vertStackView.addArrangedSubview(view)
+        }
     }
     
     
+    override func viewWillLayout() {
+        super.viewWillLayout()
+    }
+    
+    
+    func stackViewForCalendar(calendar:Calendar) -> NSView {
+        
+        let checkbox = NSButton()
+        checkbox.setButtonType(.SwitchButton)
+        if let name = calendar.name {
+            checkbox.title = name
+        } else {
+            checkbox.title = ""
+        }
+        
+        checkbox.state = calendar.avoid ? NSOnState : NSOffState
+        checkbox.wantsLayer = true
+
+        let filter = CIFilter(name: "CIColorMonochrome")
+
+        //Swift.print(filter?.attributes)
+        let colour = CIColor(color: calendar.colour!)
+        filter?.setValue(colour, forKey: "inputColor")
+        checkbox.layer!.filters = [filter!]
+
+        calendarCheckboxes[calendar] = checkbox
+        return checkbox
+    }
 }

@@ -7,3 +7,42 @@
 //
 
 import Foundation
+
+public class AvoidCalendarEventsPresenter : RulePresenter {
+    
+    public func calendars() -> [Calendar] {
+        
+        // Calendars stored in Rule
+        var currentCalendars = (rule as! AvoidCalendarEventsRule).calendars
+        
+        // Get all system calendars
+        let systemCalendars = CalendarManager.sharedInstance.systemCalendarsAsCalendars()
+        
+        let diff = currentCalendars.diff(systemCalendars)
+        
+        if diff.results.count > 0 {
+         
+            Swift.print("Calendar Diff count \(diff.results.count)")
+                
+            let inserts = diff.insertions.map{ $0.value }
+            currentCalendars.appendContentsOf(inserts)
+            
+            let deletions = diff.deletions.map{ $0.value }
+            currentCalendars.removeObjects(deletions)
+        }
+        
+        (rule as! AvoidCalendarEventsRule).calendars = currentCalendars
+        
+        return currentCalendars
+    }
+    
+    public override func detailViewController() -> RuleViewController {
+        
+        if ruleViewController == nil {
+            let bundle = NSBundle(identifier:"com.andris.FilamentKit")
+            ruleViewController = AvoidCalendarEventsViewController(nibName:"AvoidCalendarEventsViewController", bundle:bundle)!
+            ruleViewController!.rulePresenter = self
+        }
+        return ruleViewController!
+    }
+}

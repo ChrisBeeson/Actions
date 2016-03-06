@@ -7,13 +7,26 @@
 //
 
 import Foundation
+import EventKit
 
-class Calendar : NSObject, NSCoding {
+public class Calendar : NSObject, NSCoding {
     
     var identifier : String?
     var name : String?
     var colour : NSColor?
     var avoid = true
+    
+    public convenience init(systemCalendar:EKCalendar) {
+        
+        self.init()
+        self.identifier = systemCalendar.calendarIdentifier
+        self.name = systemCalendar.title
+        self.colour = systemCalendar.color
+    }
+    
+    override init() {
+        super.init()
+    }
     
 
     // MARK: NSCoding
@@ -25,7 +38,7 @@ class Calendar : NSObject, NSCoding {
         static let avoid = "avoid"
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         identifier = aDecoder.decodeObjectForKey(SerializationKeys.identifier) as? String
         name = aDecoder.decodeObjectForKey(SerializationKeys.name) as? String
         colour = aDecoder.decodeObjectForKey(SerializationKeys.colour) as? NSColor
@@ -33,10 +46,23 @@ class Calendar : NSObject, NSCoding {
         super.init()
     }
     
-    func encodeWithCoder(encoder: NSCoder) {
+    public func encodeWithCoder(encoder: NSCoder) {
         encoder.encodeObject(identifier, forKey: SerializationKeys.identifier)
         encoder.encodeObject(name, forKey: SerializationKeys.name)
         encoder.encodeObject(colour, forKey: SerializationKeys.colour)
         encoder.encodeObject(avoid, forKey: SerializationKeys.avoid)
+    }
+    
+    // MARK: Equality
+    
+    override  public func isEqual(object: AnyObject?) -> Bool {
+        
+        if let cal = object as? Calendar {
+            if self.name == cal.name && self.colour!.isEqual(cal.colour) {
+                return true
+            }
+            return false
+        }
+        return false
     }
 }

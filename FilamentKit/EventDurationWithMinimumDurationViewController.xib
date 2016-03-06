@@ -20,10 +20,10 @@
                 <stackView distribution="fill" orientation="vertical" alignment="trailing" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eKs-mj-Tvn">
                     <rect key="frame" x="10" y="10" width="248" height="53"/>
                     <subviews>
-                        <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sbd-na-zGN">
+                        <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sbd-na-zGN">
                             <rect key="frame" x="6" y="30" width="242" height="23"/>
                             <subviews>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UIX-Ta-Kkk">
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UIX-Ta-Kkk">
                                     <rect key="frame" x="-2" y="5" width="97" height="14"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Prefered Duration" id="oMx-95-1aw">
                                         <font key="font" metaFont="smallSystem"/>
@@ -31,7 +31,7 @@
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bul-Rs-Pn6">
+                                <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bul-Rs-Pn6">
                                     <rect key="frame" x="101" y="1" width="63" height="22"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fyx-Fa-ujK">
@@ -66,7 +66,7 @@
                                         <real value="3.4028234663852886e+38"/>
                                     </customSpacing>
                                 </stackView>
-                                <popUpButton verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RkP-Zh-Nr6">
+                                <popUpButton verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RkP-Zh-Nr6">
                                     <rect key="frame" x="172" y="2" width="70" height="19"/>
                                     <popUpButtonCell key="cell" type="roundTextured" title="Minutes" bezelStyle="texturedRounded" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="G07-PG-S1E" id="yit-ix-XXD">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -99,10 +99,10 @@
                                 <real value="3.4028234663852886e+38"/>
                             </customSpacing>
                         </stackView>
-                        <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rH2-r5-4WU">
+                        <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rH2-r5-4WU">
                             <rect key="frame" x="3" y="0.0" width="245" height="22"/>
                             <subviews>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sBz-Uk-Orw">
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sBz-Uk-Orw">
                                     <rect key="frame" x="-2" y="4" width="100" height="14"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Minimum Duration" id="B85-ap-2MK">
                                         <font key="font" metaFont="smallSystem"/>
@@ -110,7 +110,7 @@
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OtB-kB-bIr">
+                                <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OtB-kB-bIr">
                                     <rect key="frame" x="104" y="0.0" width="63" height="22"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gqo-iC-abQ">
@@ -145,7 +145,7 @@
                                         <real value="3.4028234663852886e+38"/>
                                     </customSpacing>
                                 </stackView>
-                                <popUpButton verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="diW-mj-Kl7">
+                                <popUpButton verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="diW-mj-Kl7">
                                     <rect key="frame" x="175" y="1" width="70" height="19"/>
                                     <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="center" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="TdN-jX-0L7">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

@@ -53,6 +53,11 @@ public class CalendarManager: NSObject {
         return systemCalendars
     }
     
+    func systemCalendarsAsCalendars() -> [Calendar] {
+
+        return store.calendarsForEntityType(EKEntityType.Event).map{ Calendar(systemCalendar:$0) }
+    }
+    
 
     func retrieveApplicationCalendar() {
         

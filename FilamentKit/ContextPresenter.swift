@@ -52,7 +52,7 @@ public class ContextPresenter : NodePresenter {
         
         guard context != nil else { print("context is Nil"); return [RulePresenter]() }
         
-        return context!.genericRules.map{ RulePresenter(rule: $0) }
+        return context!.genericRules.map{ RulePresenter.rulePresenterForRule($0) }
     }
     
     

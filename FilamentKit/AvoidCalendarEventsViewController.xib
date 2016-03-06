@@ -20,42 +20,6 @@
             <subviews>
                 <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JoJ-eE-bvN">
                     <rect key="frame" x="20" y="20" width="116" height="17"/>
-                    <subviews>
-                        <stackView focusRingType="none" distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" translatesAutoresizingMaskIntoConstraints="NO" id="cEA-Uz-C0g">
-                            <rect key="frame" x="0.0" y="0.0" width="116" height="17"/>
-                            <subviews>
-                                <button translatesAutoresizingMaskIntoConstraints="NO" id="rPL-hy-EMD">
-                                    <rect key="frame" x="-2" y="0.0" width="22" height="18"/>
-                                    <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="79u-kS-s36">
-                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                    </buttonCell>
-                                </button>
-                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="2Ce-Km-E6z">
-                                    <rect key="frame" x="24" y="0.0" width="94" height="17"/>
-                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="CalendarName" id="gqY-cx-hCb">
-                                        <font key="font" metaFont="system"/>
-                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                    </textFieldCell>
-                                </textField>
-                            </subviews>
-                            <visibilityPriorities>
-                                <integer value="1000"/>
-                                <integer value="1000"/>
-                            </visibilityPriorities>
-                            <customSpacing>
-                                <real value="3.4028234663852886e+38"/>
-                                <real value="3.4028234663852886e+38"/>
-                            </customSpacing>
-                        </stackView>
-                    </subviews>
-                    <visibilityPriorities>
-                        <integer value="1000"/>
-                    </visibilityPriorities>
-                    <customSpacing>
-                        <real value="3.4028234663852886e+38"/>
-                    </customSpacing>
                 </stackView>
             </subviews>
             <constraints>
@@ -66,5 +30,23 @@
             </constraints>
             <point key="canvasLocation" x="152" y="131.5"/>
         </customView>
+        <button wantsLayer="YES" id="ihN-J6-t4o">
+            <rect key="frame" x="0.0" y="0.0" width="61" height="18"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <contentFilters>
+                <ciFilter name="CIColorMonochrome">
+                    <configuration>
+                        <ciColor key="inputColor" red="0.9753067129629619" green="0.46999999999999997" blue="0.58342013888888888" alpha="1"/>
+                        <null key="inputImage"/>
+                        <real key="inputIntensity" value="1"/>
+                    </configuration>
+                </ciFilter>
+            </contentFilters>
+            <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="hJS-eh-wez">
+                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                <font key="font" metaFont="system"/>
+            </buttonCell>
+            <point key="canvasLocation" x="209.5" y="304"/>
+        </button>
     </objects>
 </document>
