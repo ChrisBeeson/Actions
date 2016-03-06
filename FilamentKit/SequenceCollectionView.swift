@@ -88,10 +88,10 @@ import Async
             
             switch node.type {
                 
-            case .Action:
+            case NodeType.Action:
                  item = makeItemWithIdentifier("ActionNodeCollectionViewItem", forIndexPath: indexPath) as! NodeCollectionViewItem
                 
-            case .Transition:
+            case NodeType.Transition:
                  item = makeItemWithIdentifier("TransitionNodeCollectionViewItem", forIndexPath: indexPath) as! NodeCollectionViewItem
                 
             default:
@@ -194,7 +194,7 @@ import Async
             
             switch node.type {
             
-            case .Action:
+            case [.Action]:
                 
                 if let item = collectionView.itemAtIndex(indexPath.item) {
                     return item.view.intrinsicContentSize
@@ -205,7 +205,7 @@ import Async
                     return NSSize(width: size.width + 30.5, height: 35)
                 }
                 
-            case .Transition:
+            case [.Transition]:
                 
                 if let item = collectionView.itemAtIndex(indexPath.item) {
                     return item.view.intrinsicContentSize

@@ -172,9 +172,13 @@ public class NodePresenter : NSObject {
     }
     
     
+    // rules that are available to this node
+    
     func availableRules() -> [Rule] {
         
         var avalRules = Rule.RuleClasses()
+        
+        // no rules that are already being used by this node
         
         for aRule in avalRules {
             for rule in rules {
@@ -183,7 +187,10 @@ public class NodePresenter : NSObject {
                 }
             }
             
-            if aRule.availableToNodeType != .All && aRule.availableToNodeType != self.type {
+            
+            // include rules that are only available to this node
+            
+            if aRule.availableToNodeType == [self.type] {
                 avalRules = avalRules.filter{ $0.className != aRule.className }
             }
         }

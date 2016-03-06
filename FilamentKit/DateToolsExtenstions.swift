@@ -176,3 +176,47 @@ extension DTTimePeriodCollection {
         return string
     }
 }
+
+
+
+
+// TIMESIZE
+
+
+class TimeSize: NSObject, NSCoding  {
+    
+    var unit: DTTimePeriodSize
+    var amount: Int
+    
+    init (unit:DTTimePeriodSize, amount:Int) {
+        
+        self.unit = unit
+        self.amount = amount
+        super.init()
+    }
+    
+    func inSeconds() -> Int {
+        
+        switch unit {
+        case .Second: return self.amount
+        case .Minute: return self.amount*60
+        case .Hour: return  self.amount*60*60
+        case .Day: return self.amount*60*60*24
+        case .Week: return self.amount*60*60*24*7
+        case .Month: return self.amount*60*60*24*7*(365/12)
+        case .Year:return self.amount*60*60*24*7*52
+        }
+    }
+    
+    required  init?(coder aDecoder: NSCoder) {
+        
+        unit = DTTimePeriodSize(rawValue: UInt(aDecoder.decodeIntegerForKey("unit")))!
+        amount = aDecoder.decodeIntegerForKey("amount")
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        
+        aCoder.encodeInteger(Int(unit.rawValue), forKey: "unit")
+        aCoder.encodeInteger(amount, forKey: "amount")
+    }
+}

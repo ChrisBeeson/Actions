@@ -16,7 +16,17 @@ Fuse
 Todo
 -------
 
+When Rule collection view loses focus it should deselect all cells
 
+
+changing start time can only be done before start of 1st node
+ - changing start ignores calendar event of that seq
+
+Changing rules, updates nodes only right of that node
+
+
+
+Tabs - Each tab has it's only generic rules - solves the work / life issue
 
 
 Known Issues

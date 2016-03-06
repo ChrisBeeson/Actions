@@ -15,7 +15,7 @@ import DateTools
     // It allows the event to be shortened to a minimum duration if required.
     
      override var name: String { return "RULE_NAME_DURATION_WITH_MIN".localized  }
-     override var availableToNodeType:NodeType { return .Action}
+     override var availableToNodeType:NodeType { return .Action }
      override var conflictingRules: [Rule]? { return nil }
     
      override init() {

@@ -9,7 +9,18 @@
 import Foundation
 import DateTools
 
-enum NodeType: Int { case Action = 0, Transition, All, None }
+struct NodeType : OptionSetType {
+    
+    let rawValue : Int
+    init(rawValue:Int){ self.rawValue = rawValue}
+    
+    static let void = NodeType (rawValue:0)
+    static let Action = NodeType (rawValue:1)
+    static let Transition = NodeType (rawValue:2)
+    static let Generic = NodeType (rawValue:4)
+    static let All = NodeType (rawValue:8)
+}
+
 
 class Node: NSObject, NSCoding {
     
@@ -36,9 +47,14 @@ class Node: NSObject, NSCoding {
         // Add default rules if there arn't any already
         
         if self.rules.count == 0 {
+            
             switch type {
-            case .Action: self.rules.append(EventDurationWithMinimumDuration ())
-            case .Transition: self.rules.append(TransitionDurationWithVariance())
+            case NodeType.Action:
+                self.rules.append(EventDurationWithMinimumDuration ())
+                
+            case NodeType.Transition:
+                self.rules.append(TransitionDurationWithVariance())
+                
             default: break
             }
         }
@@ -50,6 +66,7 @@ class Node: NSObject, NSCoding {
     override init() {
         super.init()
     }
+    
     
     // MARK: NSCoding
     
@@ -71,7 +88,7 @@ class Node: NSObject, NSCoding {
         title = aDecoder.decodeObjectForKey(SerializationKeys.title) as! String
         notes = aDecoder.decodeObjectForKey(SerializationKeys.notes) as! String
         rules = aDecoder.decodeObjectForKey(SerializationKeys.rules) as! [Rule]
-        type = NodeType(rawValue: aDecoder.decodeIntegerForKey(SerializationKeys.type))!
+        type = NodeType(rawValue: aDecoder.decodeIntegerForKey(SerializationKeys.type))
         UUID = aDecoder.decodeObjectForKey(SerializationKeys.uuid) as! NSUUID
         leftTransitionNode = aDecoder.decodeObjectForKey(SerializationKeys.leftTransitionNode) as? Node
         rightTransitionNode = aDecoder.decodeObjectForKey(SerializationKeys.rightTransitionNode) as? Node

@@ -16,7 +16,7 @@ import DateTools
     // Eg Next event should happen in 5 hours, give or take 30mins
     
      override var name: String { return "RULE_NAME_DURATION_WITH_VARIANCE".localized }
-     override var availableToNodeType:NodeType { return NodeType.Transition }
+     override var availableToNodeType: NodeType { return NodeType.Transition }
      override var conflictingRules: [Rule]? { return nil }
     
     // Rule user input

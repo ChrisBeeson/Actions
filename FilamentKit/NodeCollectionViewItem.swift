@@ -75,13 +75,17 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
         // Popover position & show
         
         var frame = self.view.frame
+        
         switch presenter!.type {
-        case .Action:
+            
+        case [.Action]:
             frame.size = NSSize(width: frame.size.width-10.0, height: frame.size.height)
-            popover.showRelativeToRect(frame, ofView: self.view.superview!, preferredEdge:.MaxX )
-        case .Transition:
+            popover.showRelativeToRect(frame, ofView: self.view.superview!, preferredEdge:.MaxX)
+            
+        case [.Transition]:
             frame.size = NSSize(width: frame.size.width-10.0, height: frame.size.height)
-            popover.showRelativeToRect(frame, ofView: self.view.superview!, preferredEdge:.MaxY )
+            popover.showRelativeToRect(frame, ofView: self.view.superview!, preferredEdge:.MaxY)
+            
         default: break
         }
     }
