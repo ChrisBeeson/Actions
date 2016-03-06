@@ -36,6 +36,15 @@ public class AvoidCalendarEventsPresenter : RulePresenter {
         return currentCalendars
     }
     
+    
+    public func setCalendarAvoidState(calendar:Calendar, avoid:Bool) {
+        
+        if let index = (rule as! AvoidCalendarEventsRule).calendars.indexOf(calendar) where index != -1 {
+            let cal = (rule as! AvoidCalendarEventsRule).calendars[index]
+            cal.avoid = avoid
+        }
+    }
+    
     public override func detailViewController() -> RuleViewController {
         
         if ruleViewController == nil {

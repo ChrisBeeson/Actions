@@ -33,6 +33,17 @@ class AvoidCalendarEventsViewController : RuleViewController , RulePresenterDele
     }
     
     
+    override func viewWillDisappear() {
+        super.viewWillDisappear()
+        
+        let presenter = rulePresenter as! AvoidCalendarEventsPresenter
+        
+        for cal in calendarCheckboxes {
+            let state = (cal.1.state == NSOnState) ? true : false
+            presenter.setCalendarAvoidState(cal.0, avoid:state)
+        }
+    }
+    
     func stackViewForCalendar(calendar:Calendar) -> NSView {
         
         let checkbox = NSButton()
@@ -46,11 +57,12 @@ class AvoidCalendarEventsViewController : RuleViewController , RulePresenterDele
         checkbox.state = calendar.avoid ? NSOnState : NSOffState
         checkbox.wantsLayer = true
 
+        //TODO: Color checkbox to colour of Calendar
         let filter = CIFilter(name: "CIColorMonochrome")
-
         //Swift.print(filter?.attributes)
         let colour = CIColor(color: calendar.colour!)
-        filter?.setValue(colour, forKey: "inputColor")
+        filter!.setDefaults()
+        filter!.setValue(colour, forKey: "inputColor")
         checkbox.layer!.filters = [filter!]
 
         calendarCheckboxes[calendar] = checkbox

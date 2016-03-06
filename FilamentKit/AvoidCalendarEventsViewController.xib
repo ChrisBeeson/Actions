@@ -36,7 +36,7 @@
             <contentFilters>
                 <ciFilter name="CIColorMonochrome">
                     <configuration>
-                        <ciColor key="inputColor" red="0.9753067129629619" green="0.46999999999999997" blue="0.58342013888888888" alpha="1"/>
+                        <ciColor key="inputColor" red="0.97530671300000005" green="0.46999999999999997" blue="0.5834201389" alpha="1"/>
                         <null key="inputImage"/>
                         <real key="inputIntensity" value="1"/>
                     </configuration>
