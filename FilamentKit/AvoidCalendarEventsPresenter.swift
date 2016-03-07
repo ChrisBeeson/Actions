@@ -21,9 +21,7 @@ public class AvoidCalendarEventsPresenter : RulePresenter {
         let diff = currentCalendars.diff(systemCalendars)
         
         if diff.results.count > 0 {
-         
-            Swift.print("Calendar Diff count \(diff.results.count)")
-                
+            
             let inserts = diff.insertions.map{ $0.value }
             currentCalendars.appendContentsOf(inserts)
             
@@ -32,7 +30,6 @@ public class AvoidCalendarEventsPresenter : RulePresenter {
         }
         
         (rule as! AvoidCalendarEventsRule).calendars = currentCalendars
-        
         return currentCalendars
     }
     

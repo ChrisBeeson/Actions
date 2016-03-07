@@ -18,7 +18,6 @@ struct NodeType : OptionSetType {
     static let Action = NodeType (rawValue:1)
     static let Transition = NodeType (rawValue:2)
     static let Generic = NodeType (rawValue:4)
-    static let All = NodeType (rawValue:8)
 }
 
 
@@ -49,6 +48,7 @@ class Node: NSObject, NSCoding {
         if self.rules.count == 0 {
             
             switch type {
+                
             case NodeType.Action:
                 self.rules.append(EventDurationWithMinimumDuration ())
                 
