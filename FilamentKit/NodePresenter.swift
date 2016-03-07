@@ -186,13 +186,7 @@ public class NodePresenter : NSObject {
                     avalRules = avalRules.filter{ $0.className != rule.className }
                 }
             }
-            
-            
-            // include rules that are only available to this node
-            
-            if aRule.availableToNodeType == [self.type] {
-                avalRules = avalRules.filter{ $0.className != aRule.className }
-            }
+            //  avalRules = avalRules.filter{ $0.availableToNodeType.contains(self.type) }
         }
         return avalRules
     }

@@ -88,6 +88,7 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
         }
         availableRulesViewController!.nodePresenter = nodePresenter
         availableRulesViewController!.collectionViewDelegate = self
+        availableRulesViewController!.filterNodeType = nodePresenter!.type
         popover.contentViewController = availableRulesViewController
        
         //TODO: Select between preferred Edges..

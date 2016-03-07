@@ -21,6 +21,9 @@ public class RulePresenter : NSObject {
         return rule.name
     }
     
+    var availableToNodeType : NodeType {
+        return rule.availableToNodeType
+    }
     
     //MARK: Inits
     

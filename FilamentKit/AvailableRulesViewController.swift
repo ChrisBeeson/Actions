@@ -8,9 +8,11 @@
 
 import Foundation
 
-public class AvailableRulesViewController : NSViewController,NSTokenFieldDelegate {
+public class AvailableRulesViewController : NSViewController, NSTokenFieldDelegate {
     
     @IBOutlet weak var collectionView: RuleCollectionView!
+    
+    public var filterNodeType : NodeType?
     
     public var nodePresenter: NodePresenter? {
         didSet {
@@ -41,14 +43,16 @@ public class AvailableRulesViewController : NSViewController,NSTokenFieldDelegat
     public func reloadCollectionView() {
         
         guard collectionView != nil else { return }
-        
         assert(nodePresenter != nil)
         
         // Make a rule presenter for each available rule
-        
         var rps = [RulePresenter]()
         for rule in nodePresenter!.availableRules() {
             rps.append(RulePresenter(rule: rule))
+        }
+        
+        if filterNodeType != nil {
+            rps = rps.filter { $0.availableToNodeType.contains(filterNodeType!)}
         }
         collectionView.rulePresenters = rps
         collectionView.reloadData()

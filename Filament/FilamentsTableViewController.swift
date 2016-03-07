@@ -217,11 +217,11 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
            availableGenericRulesViewController = AvailableRulesViewController(nibName:"AvailableRulesViewController", bundle:NSBundle(identifier:"com.andris.FilamentKit"))
         }
         availableGenericRulesViewController!.nodePresenter = AppConfiguration.sharedConfiguration.contextPresenter()   /// A bit of a stretch!!
+        availableGenericRulesViewController!.filterNodeType = [.Generic]
         availableGenericRulesViewController!.collectionViewDelegate = self
         popover.contentViewController = availableGenericRulesViewController
         
         //TODO: Select between preferred Edges..
-        
         popover.showRelativeToRect(addGenericRuleButton.frame, ofView:self.view, preferredEdge:.MaxY )
     }
     

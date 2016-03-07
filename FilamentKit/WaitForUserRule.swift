@@ -11,6 +11,7 @@ import Foundation
 class WaitForUserRule : Rule {
     
     override var name: String { return "RULE_NAME_WAIT".localized }
+    override var availableToNodeType: NodeType { return [.Action] }
     
     override init() {
         super.init()

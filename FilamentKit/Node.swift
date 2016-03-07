@@ -9,15 +9,15 @@
 import Foundation
 import DateTools
 
-struct NodeType : OptionSetType {
+public struct NodeType : OptionSetType {
     
-    let rawValue : Int
-    init(rawValue:Int){ self.rawValue = rawValue}
+    public let rawValue : Int
+    public init(rawValue:Int){ self.rawValue = rawValue}
     
-    static let void = NodeType (rawValue:0)
-    static let Action = NodeType (rawValue:1)
-    static let Transition = NodeType (rawValue:2)
-    static let Generic = NodeType (rawValue:4)
+    static public let Void = NodeType (rawValue:0)
+    static public let Action = NodeType (rawValue:1)
+    static public let Transition = NodeType (rawValue:2)
+    static public let Generic = NodeType (rawValue:4)
 }
 
 
@@ -26,7 +26,7 @@ class Node: NSObject, NSCoding {
     var title = ""
     var notes = ""
     var rules = [Rule]()
-    var type = NodeType.Action
+    var type:NodeType = [.Action]
     var leftTransitionNode: Node?
     var rightTransitionNode: Node?
     var UUID = NSUUID()
@@ -34,7 +34,7 @@ class Node: NSObject, NSCoding {
     
     // MARK: Initializers
     
-    init(text: String, type: NodeType = .Action, rules:[Rule]?) {
+    init(text: String, type: NodeType = [.Action], rules:[Rule]?) {
         
         self.title = text
         self.type = type
@@ -49,10 +49,10 @@ class Node: NSObject, NSCoding {
             
             switch type {
                 
-            case NodeType.Action:
+            case [.Action]:
                 self.rules.append(EventDurationWithMinimumDuration ())
                 
-            case NodeType.Transition:
+            case [.Transition]:
                 self.rules.append(TransitionDurationWithVariance())
                 
             default: break

@@ -11,6 +11,7 @@ import Foundation
 class EventAlarmRule : Rule {
     
     override var name: String { return "RULE_NAME_ALARM".localized}
+    override var availableToNodeType: NodeType { return [.Action] }
     
     override init() {
         super.init()

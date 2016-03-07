@@ -11,7 +11,8 @@ import Foundation
 
 class TransitionDurationBasedOnTravelTime: Rule {
     
-      override var name: String { return "RULE_NAME_TRAVEL_DUR".localized }
+    override var name: String { return "RULE_NAME_TRAVEL_DUR".localized }
+    override var availableToNodeType: NodeType { return [.Transition] }
     
     override init() {
         super.init()

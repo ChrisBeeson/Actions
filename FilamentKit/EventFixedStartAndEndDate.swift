@@ -11,6 +11,7 @@ import Foundation
 class EventFixedStartAndEndDate : Rule {
     
       override var name: String { return "RULE_NAME_FIXED".localized }
+      override var availableToNodeType: NodeType { return [.Action] }
     
     override init() {
         super.init()

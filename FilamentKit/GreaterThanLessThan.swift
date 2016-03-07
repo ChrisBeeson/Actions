@@ -11,6 +11,7 @@ import Foundation
 class GreaterThanLessThan : Rule {
     
     override var name: String { return "RULE_NAME_GREATER_LESS".localized }
+     override var availableToNodeType: NodeType { return [.Transition] }
     
     override init() {
         super.init()

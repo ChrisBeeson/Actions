@@ -11,6 +11,7 @@ import Foundation
 class NextUnitRule : Rule {
     
     override var name: String { return "RULE_NAME_NEXT".localized }
+    override var availableToNodeType: NodeType { return [.Transition] }
     
     override init() {
         super.init()

@@ -132,7 +132,7 @@ extension Sequence {
         if right.leftTransitionNode != nil { transitionNodes.removeObject(right.leftTransitionNode!) }
         
         let name = ""
-        let transitionNode = Node(text: name, type: .Transition, rules: nil)
+        let transitionNode = Node(text: name, type: [.Transition], rules: nil)
         
         left.rightTransitionNode = transitionNode
         right.leftTransitionNode = transitionNode
@@ -152,7 +152,7 @@ extension Sequence {
         case 0: result = .StartingAction
         case let x where x == actionNodes.count-1: result = .EndingAction
         case let x where x.isEven(): result = .Action
-        default: result = .Action // .Tansaction
+        default: result = .Action // .Transaction
         }
         
         return result

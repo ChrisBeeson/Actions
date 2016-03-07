@@ -34,7 +34,7 @@ class Rule: NSObject, RuleType {
     
      var name: String {get {return "Not set"} }
      var Description: String {get {return "NOT SET"} }
-     var availableToNodeType: NodeType {get {return NodeType.void} }
+     var availableToNodeType: NodeType {get {return NodeType.Void} }
      var conflictingRules: [Rule]? {get {return nil} }
      var options: RoleOptions {get { return RoleOptions.None } }
      var inputDate: NSDate?
