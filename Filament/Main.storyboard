@@ -885,19 +885,19 @@ AwEVARgBHQAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAEfA
                                 </connections>
                             </scrollView>
                             <box title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Vcz-j7-Nxo">
-                                <rect key="frame" x="26" y="0.0" width="423" height="27"/>
+                                <rect key="frame" x="26" y="0.0" width="421" height="27"/>
                                 <view key="contentView" id="K4r-Cb-8ax">
-                                    <rect key="frame" x="2" y="2" width="419" height="23"/>
+                                    <rect key="frame" x="2" y="2" width="417" height="23"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="E2A-qE-shG">
-                                            <rect key="frame" x="6" y="2" width="408" height="18"/>
+                                            <rect key="frame" x="6" y="2" width="406" height="18"/>
                                             <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="kMJ-MC-kjx">
-                                                <rect key="frame" x="0.0" y="0.0" width="408" height="18"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="406" height="18"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <collectionView focusRingType="none" selectable="YES" id="e0D-Ol-Ewg" customClass="RuleCollectionView" customModule="FilamentKit">
-                                                        <rect key="frame" x="0.0" y="0.0" width="412" height="18"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="410" height="18"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" scrollDirection="horizontal" id="rLe-8S-bKf">
                                                             <size key="itemSize" width="50" height="50"/>
@@ -907,7 +907,7 @@ AwEVARgBHQAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAEfA
                                                 </subviews>
                                             </clipView>
                                             <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="lrW-ka-zWL">
-                                                <rect key="frame" x="0.0" y="2" width="408" height="16"/>
+                                                <rect key="frame" x="0.0" y="2" width="406" height="16"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="heu-8R-dyQ">
@@ -945,7 +945,7 @@ AwEVARgBHQAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAEfA
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Vcz-j7-Nxo" secondAttribute="trailing" constant="4" id="0yw-F7-GNb"/>
+                            <constraint firstAttribute="trailing" secondItem="Vcz-j7-Nxo" secondAttribute="trailing" constant="6" id="0yw-F7-GNb"/>
                             <constraint firstAttribute="bottom" secondItem="nmd-ka-rWP" secondAttribute="bottom" constant="29" id="B5t-mp-eAe"/>
                             <constraint firstItem="nmd-ka-rWP" firstAttribute="leading" secondItem="onh-9G-uCj" secondAttribute="leading" id="Mvu-VM-8AM"/>
                             <constraint firstAttribute="bottom" secondItem="Vcz-j7-Nxo" secondAttribute="bottom" constant="4" id="UAi-Bc-ID8"/>

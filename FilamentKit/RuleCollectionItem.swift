@@ -31,6 +31,7 @@ public class RuleCollectionItem : NSCollectionViewItem {
     override public func viewWillAppear() {
         super.viewWillAppear()
         updateView()
+        rulePillView.frame = self.view.bounds   // layout not working 100% and this seems to be a hacky solution
     }
     
     

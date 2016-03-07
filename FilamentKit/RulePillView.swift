@@ -31,6 +31,13 @@ class RulePillView : NSView {
 
     }
     
+    
+    override func viewWillDraw() {
+         pathLayer.path =  NSBezierPath(roundedRect: self.bounds, xRadius: 4.0, yRadius: 4.0).CGPath(forceClose: false)
+    }
+    
+    
+    
     func setColour(colour:CGColorRef) {
         
         CATransaction.begin()

@@ -13,16 +13,16 @@ class ActionNodeView: NodeView {
     override func calculatePath() -> CGPath {
         
         let tailOff:CGFloat = 15.0
-        let frame = self.frame
+        let fr = self.frame   // CGRectInset(self.frame, 2.0, 2.0)
         let padding:CGFloat = 0.5
         
         let path = NSBezierPath()
-        path.moveToPoint(NSPoint(x: frame.size.width - tailOff , y: frame.size.height - padding))
-        path.lineToPoint(NSPoint(x: padding , y:frame.size.height - padding))
+        path.moveToPoint(NSPoint(x: fr.size.width - tailOff , y: fr.size.height - padding))
+        path.lineToPoint(NSPoint(x: padding , y:fr.size.height - padding))
         path.lineToPoint(NSPoint(x: padding , y:padding))
-        path.lineToPoint(NSPoint(x: frame.size.width - tailOff , y:padding))
-        path.lineToPoint(NSPoint(x: frame.size.width - padding, y:frame.size.height/2))   // point
-        path.lineToPoint(NSPoint(x: frame.size.width - tailOff , y: frame.size.height - padding))
+        path.lineToPoint(NSPoint(x: fr.size.width - tailOff , y:padding))
+        path.lineToPoint(NSPoint(x: fr.size.width - padding, y:fr.size.height/2))   // point
+        path.lineToPoint(NSPoint(x: fr.size.width - tailOff , y: fr.size.height - padding))
         return path.CGPath(forceClose: false)!
     }
 }

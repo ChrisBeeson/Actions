@@ -10,37 +10,32 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <collectionViewItem id="jay-p9-D1P" customClass="RuleCollectionItem" customModule="FilamentKit" customModuleProvider="target">
             <connections>
-                <outlet property="label" destination="8Ka-cc-yUo" id="EUh-Rj-AM1"/>
+                <outlet property="label" destination="6vI-G5-Ve1" id="oX4-M9-Hlu"/>
                 <outlet property="rulePillView" destination="eoi-SA-h1p" id="PU8-Ff-qnI"/>
                 <outlet property="view" destination="d7v-ga-NYQ" id="bT4-WI-xMh"/>
             </connections>
         </collectionViewItem>
         <customView id="d7v-ga-NYQ">
-            <rect key="frame" x="0.0" y="0.0" width="81" height="16"/>
+            <rect key="frame" x="0.0" y="0.0" width="63" height="17"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <customView focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="eoi-SA-h1p" customClass="RulePillView" customModule="FilamentKit" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="81" height="16"/>
+                    <rect key="frame" x="0.0" y="0.0" width="63" height="17"/>
                     <subviews>
-                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Ka-cc-yUo">
-                            <rect key="frame" x="15" y="3" width="51" height="14"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="14" id="cq4-9t-iUq"/>
-                            </constraints>
-                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" focusRingType="none" alignment="center" title="t" drawsBackground="YES" id="GKg-ec-bxx">
+                        <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="6vI-G5-Ve1">
+                            <rect key="frame" x="13" y="1" width="37" height="17"/>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="cv5-yV-2av">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="boolean" keyPath="translatesAutoresizingMaskIntoConstraints" value="NO"/>
-                            </userDefinedRuntimeAttributes>
                         </textField>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="8Ka-cc-yUo" firstAttribute="leading" secondItem="eoi-SA-h1p" secondAttribute="leading" constant="15" id="2H7-fZ-HuU"/>
-                        <constraint firstItem="8Ka-cc-yUo" firstAttribute="top" secondItem="eoi-SA-h1p" secondAttribute="top" constant="-1" id="SEF-P0-8Jl"/>
-                        <constraint firstAttribute="trailing" secondItem="8Ka-cc-yUo" secondAttribute="trailing" constant="15" id="ZOK-EL-x1k"/>
+                        <constraint firstAttribute="bottom" secondItem="6vI-G5-Ve1" secondAttribute="bottom" constant="1" id="4DC-fJ-hbO"/>
+                        <constraint firstAttribute="trailing" secondItem="6vI-G5-Ve1" secondAttribute="trailing" constant="15" id="9Do-Xp-zAL"/>
+                        <constraint firstItem="6vI-G5-Ve1" firstAttribute="top" secondItem="eoi-SA-h1p" secondAttribute="top" constant="-1" id="bJR-Vn-mvW"/>
+                        <constraint firstItem="6vI-G5-Ve1" firstAttribute="leading" secondItem="eoi-SA-h1p" secondAttribute="leading" constant="15" id="gak-u4-dK0"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="translatesAutoresizingMaskIntoConstraints" value="NO"/>
@@ -48,15 +43,15 @@
                 </customView>
             </subviews>
             <constraints>
-                <constraint firstItem="eoi-SA-h1p" firstAttribute="leading" secondItem="d7v-ga-NYQ" secondAttribute="leading" id="Ozi-5s-ZvM"/>
-                <constraint firstAttribute="bottom" secondItem="eoi-SA-h1p" secondAttribute="bottom" id="apP-Kv-0du"/>
-                <constraint firstItem="eoi-SA-h1p" firstAttribute="top" secondItem="d7v-ga-NYQ" secondAttribute="top" id="fb8-6m-us1"/>
-                <constraint firstAttribute="trailing" secondItem="eoi-SA-h1p" secondAttribute="trailing" id="jfJ-HI-UKV"/>
+                <constraint firstItem="eoi-SA-h1p" firstAttribute="leading" secondItem="d7v-ga-NYQ" secondAttribute="leading" id="Q7T-Bj-FWh"/>
+                <constraint firstAttribute="bottom" secondItem="eoi-SA-h1p" secondAttribute="bottom" id="hhz-fn-CVu"/>
+                <constraint firstAttribute="trailing" secondItem="eoi-SA-h1p" secondAttribute="trailing" id="wFz-4d-ZEy"/>
+                <constraint firstItem="eoi-SA-h1p" firstAttribute="top" secondItem="d7v-ga-NYQ" secondAttribute="top" id="yMm-ww-ZcU"/>
             </constraints>
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="boolean" keyPath="translatesAutoresizingMaskIntoConstraints" value="NO"/>
             </userDefinedRuntimeAttributes>
-            <point key="canvasLocation" x="19.5" y="253"/>
+            <point key="canvasLocation" x="9" y="343"/>
         </customView>
     </objects>
 </document>

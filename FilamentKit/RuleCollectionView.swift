@@ -98,7 +98,7 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
         return item
     }
     
-    
+
     
     //MARK: Collection View Delegate
     
@@ -119,6 +119,8 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     
     
     public func collectionView(collectionView: NSCollectionView, willDisplayItem item: NSCollectionViewItem, forRepresentedObjectAtIndexPath indexPath: NSIndexPath) {
+        
+        // self.
         
     }
     

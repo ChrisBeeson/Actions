@@ -29,6 +29,7 @@ class NodeView: NSView {
         
         self.wantsLayer = true
         self.layer?.addSublayer(pathLayer)
+        self.layer?.masksToBounds = false
     }
     
     
@@ -39,6 +40,7 @@ class NodeView: NSView {
         //   performAnimationsForNewStatus(currentStatus)
     }
     
+    override var wantsDefaultClipping: Bool { return false }
     
     deinit {
     }
