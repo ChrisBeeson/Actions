@@ -916,6 +916,7 @@ AwEVARgBHQAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAEfA
                                                                 <constraint firstItem="bTc-Dp-Ybh" firstAttribute="leading" secondItem="FDm-hf-wGf" secondAttribute="leading" constant="10" id="jQ2-OF-rs5"/>
                                                             </constraints>
                                                             <connections>
+                                                                <outlet property="addGenericRuleButton" destination="82I-cw-iqA" id="gKG-bZ-Uc0"/>
                                                                 <outlet property="backgroundView" destination="bTc-Dp-Ybh" id="RVm-3F-Rqz"/>
                                                                 <outlet property="favouriteButton" destination="RmA-Ls-UWH" id="S30-aX-N5t"/>
                                                                 <outlet property="generalRulesCollectionView" destination="xO8-s9-ULg" id="Wn2-qy-363"/>

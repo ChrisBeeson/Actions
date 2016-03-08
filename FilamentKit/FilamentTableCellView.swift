@@ -9,7 +9,7 @@
 import Cocoa
 import FilamentKit
 
-public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate {
+public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, RuleCollectionViewDelegate {
     
     override public var acceptsFirstResponder: Bool { return true }
     
@@ -18,8 +18,11 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate {
     @IBOutlet weak var sequenceCollectionView: SequenceCollectionView!
     @IBOutlet weak var scrollview: NSScrollView!
     
+    @IBOutlet weak var addGenericRuleButton: NSButton!
     @IBOutlet weak var favouriteButton: NSButton!
     @IBOutlet weak var generalRulesCollectionView: RuleCollectionView!
+    
+    private var availableGeneralRulesViewController : AvailableRulesViewController?
     
     
     public var presenter: SequencePresenter? {
@@ -80,7 +83,35 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate {
 
     
     @IBAction func addGeneralRuleButtonPressed(sender: AnyObject) {
+        
+        let popover = NSPopover()
+        popover.animates = true
+        popover.behavior = .Transient
+        popover.appearance = NSAppearance(named: NSAppearanceNameAqua)
+        
+        if availableGeneralRulesViewController == nil {
+            availableGeneralRulesViewController = AvailableRulesViewController(nibName:"AvailableRulesViewController", bundle:NSBundle(identifier:"com.andris.FilamentKit"))
+        }
+        availableGeneralRulesViewController!.nodePresenter = AppConfiguration.sharedConfiguration.contextPresenter()   /// A bit of a stretch!!
+        availableGeneralRulesViewController!.filterNodeType = [.Generic]
+        availableGeneralRulesViewController!.collectionViewDelegate = self
+        popover.contentViewController = availableGeneralRulesViewController
+        
+        //TODO: Select between preferred Edges..
+        popover.showRelativeToRect(addGenericRuleButton.frame, ofView:self, preferredEdge:.MaxY )
+        
     }
+    
+    
+    func refreshGeneralRulesCollectionView() {
+        
+        let context = AppConfiguration.sharedConfiguration.contextPresenter()
+        generalRulesCollectionView.rulePresenters = context.genericRulePresenters()
+        generalRulesCollectionView.reloadData()
+        availableGeneralRulesViewController?.reloadCollectionView()
+    }
+    
+    
     
     
     @IBAction func favouriteButtonPressed(sender: AnyObject) {
@@ -101,53 +132,30 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate {
         //  self.collectionView.toolTip = String(presenter!.status)
     }
     
-    /*
-    
-    Context Menu
-    
-    -(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
-    if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-    CGPoint p = [gestureRecognizer locationInView: self.tableView];
-    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
-    if (indexPath != nil) {
-    
-    [self becomeFirstResponder];
-    UIMenuItem *delete = [[UIMenuItem alloc] initWithTitle:@"Delete" action:@selector(customDelete:)];
-    
-    UIMenuController *menu = [UIMenuController sharedMenuController];
-    [menu setMenuItems:[NSArray arrayWithObjects:delete, nil]];
-    [menu setTargetRect:[self.tableView rectForRowAtIndexPath:indexPath] inView:self.tableView];
-    [menu setMenuVisible:YES animated:YES];
-    }
-    }
-    }
-    
-    - (void)customDelete:(id)sender {
-    //
-    }
-    */
     
     
-    /*
-    public func performClose(sender: AnyObject) {
-    Swift.print("Export")
-    }
     
-    public override func keyDown(theEvent: NSEvent) {
-    Swift.print(theEvent)
-    }
-    */
+    //MARK: RuleCollectionView Delegates
     
-    /*
-    public override func mouseUp(theEvent: NSEvent) {
+    public func didAcceptDrop(collectionView: RuleCollectionView, droppedRulePresenter: RulePresenter, atIndex: Int) {
         
-        Swift.print(self.window!.firstResponder)
-        self.nextResponder?.mouseDown(theEvent)
-        
-        // TODO: Context menu please
-        
+        AppConfiguration.sharedConfiguration.contextPresenter().addGenericRulePresenter(droppedRulePresenter, atIndex: atIndex)
+        refreshGeneralRulesCollectionView()
     }
-*/
+    
+    public func didDeleteRulePresenter(collectionView: RuleCollectionView, deletedRulePresenter: RulePresenter) {
+        
+        AppConfiguration.sharedConfiguration.contextPresenter().removeRulePresenter(deletedRulePresenter)
+        refreshGeneralRulesCollectionView()
+    }
+    
+    public func didDoubleClick(collectionView: RuleCollectionView, selectedRulePresenter: RulePresenter) {
+        
+        let context = AppConfiguration.sharedConfiguration.contextPresenter()
+        context.addGenericRulePresenter(selectedRulePresenter, atIndex: context.genericRulePresenters().count)
+        refreshGeneralRulesCollectionView()
+    }
+    
 }
 
 
