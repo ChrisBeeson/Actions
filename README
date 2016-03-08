@@ -17,6 +17,7 @@ Todo
 -------
 
 When Rule collection view loses focus it should deselect all cells
+RuleCollectionView accectDrops from only filtered Rules
 
 
 changing start time can only be done before start of 1st node
@@ -24,7 +25,7 @@ changing start time can only be done before start of 1st node
 
 Changing rules, updates nodes only right of that node
 
-
+Recreate calendar Events if they have been deleted.
 
 *** Tabs - Each tab has it's only generic rules **
 

@@ -685,16 +685,16 @@ CA
                                 <toolbarItem implicitItemIdentifier="7E7386E5-7D3E-4C6F-BC4F-291D90CA2271" label="Filter" paletteLabel="Filter" id="pwS-u7-meo">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="227" height="23"/>
-                                    <size key="maxSize" width="255" height="32"/>
+                                    <size key="maxSize" width="311" height="32"/>
                                     <segmentedControl key="view" verticalHuggingPriority="750" allowsExpansionToolTips="YES" springLoaded="YES" id="Wcx-wK-bYT">
-                                        <rect key="frame" x="0.0" y="14" width="255" height="25"/>
+                                        <rect key="frame" x="0.0" y="14" width="284" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <segmentedCell key="cell" scrollable="YES" lineBreakMode="clipping" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="8mg-Ga-2zM">
                                             <font key="font" metaFont="system"/>
                                             <segments>
-                                                <segment label="Active" imageScaling="proportionallyUpOrDown" width="85" selected="YES"/>
-                                                <segment label="Completed" imageScaling="none" width="86" tag="1"/>
-                                                <segment label="Favourite"/>
+                                                <segment label="Active" imageScaling="proportionallyUpOrDown" width="96" selected="YES"/>
+                                                <segment label="Completed" imageScaling="none" width="97" tag="1"/>
+                                                <segment label="Favourites"/>
                                             </segments>
                                         </segmentedCell>
                                         <connections>
@@ -737,7 +737,7 @@ CA
                     </connections>
                 </windowController>
             </objects>
-            <point key="canvasLocation" x="322" y="-716"/>
+            <point key="canvasLocation" x="370" y="-784"/>
         </scene>
         <!--Filaments Table View Controller-->
         <scene sceneID="wKY-Q1-6mt">
@@ -977,7 +977,7 @@ AwEVARgBHQAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAEfA
                     </items>
                 </menu>
             </objects>
-            <point key="canvasLocation" x="925" y="-741"/>
+            <point key="canvasLocation" x="985" y="-641"/>
         </scene>
         <!--Add Filament View Controller-->
         <scene sceneID="25o-ws-mZY">
