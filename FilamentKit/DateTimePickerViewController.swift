@@ -18,24 +18,19 @@ public class DateTimePickerViewController : NSViewController {
     
     @IBOutlet weak var datePicker: PopDatePicker!
     @IBOutlet weak var timePicker: PopDatePicker!
+    @IBOutlet weak var setButton: NSButton!
     
     var delegate: DateTimePickerViewDelegate?
     
     public var date:NSDate?
-    var trashPressed = false
-    
     
     public override func viewDidLoad() {
+        super.viewDidLoad()
         
-        datePicker.shouldShowPopover = {
-            return true
-        }
+        let pstyle = NSMutableParagraphStyle()
+        pstyle.alignment = .Center
         
-        timePicker.shouldShowPopover = {
-            return false
-        }
-        
-        datePicker.preferredPopoverEdge = .MinY
+        setButton.attributedTitle = NSAttributedString(string: "Set", attributes: [ NSForegroundColorAttributeName : AppConfiguration.Palette.buttonSelectionBlue, NSParagraphStyleAttributeName : pstyle, NSFontAttributeName : NSFont.systemFontOfSize(10.0) ])
     }
     
     
@@ -44,42 +39,40 @@ public class DateTimePickerViewController : NSViewController {
         
         if date == nil {
             date = NSDate()
-        } else if date!.isEarlierThan(NSDate()) {
-            date = NSDate()
+        } else {
+            datePicker.dateValue = date!
+            timePicker.dateValue = date!
         }
-        
-        datePicker.dateValue = date!
-        timePicker.dateValue = date!
     }
     
     
     public  override func viewWillDisappear() {
         super.viewWillDisappear()
         
-        if trashPressed == false {
-            delegate?.dateTimePickerDidChangeDate(combineDateWithTime(datePicker.dateValue, time: timePicker.dateValue))
-        }
-        trashPressed = false
     }
     
+    @IBAction func setPressed(sender: AnyObject) {
+        
+    delegate?.dateTimePickerDidChangeDate(combineDateWithTime(datePicker.dateValue, time: timePicker.dateValue))
+    }
     
     @IBAction func trashPressed(sender: AnyObject) {
         
         delegate?.dateTimePickerDidChangeDate(nil)
-        trashPressed = true
-        
-       
     }
     
     
     @IBAction func nowPressed(sender: AnyObject) {
         
         datePicker.dateValue = NSDate()
+        datePicker.setNeedsDisplay()
         timePicker.dateValue = NSDate()
+        timePicker.setNeedsDisplay()
     }
     
     
     func combineDateWithTime(date: NSDate, time: NSDate) -> NSDate {
+        
         let calendar = NSCalendar.currentCalendar()
         let dateComponents = calendar.components([.Year, .Month, .Day], fromDate: date)
         let timeComponents = calendar.components([.Hour, .Minute, .Second], fromDate: time)
