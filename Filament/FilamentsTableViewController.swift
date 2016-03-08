@@ -216,7 +216,7 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         if availableGenericRulesViewController == nil {
            availableGenericRulesViewController = AvailableRulesViewController(nibName:"AvailableRulesViewController", bundle:NSBundle(identifier:"com.andris.FilamentKit"))
         }
-        availableGenericRulesViewController!.nodePresenter = AppConfiguration.sharedConfiguration.contextPresenter()   /// A bit of a stretch!!
+        availableGenericRulesViewController!.rulePresenters = AppConfiguration.sharedConfiguration.contextPresenter()   /// A bit of a stretch!!
         availableGenericRulesViewController!.filterNodeType = [.Generic]
         availableGenericRulesViewController!.collectionViewDelegate = self
         popover.contentViewController = availableGenericRulesViewController
@@ -228,7 +228,7 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     func refreshGenericRulesCollectionView() {
         
         let context = AppConfiguration.sharedConfiguration.contextPresenter()
-        genericRulesCollectionView.rulePresenters = context.genericRulePresenters()
+        genericRulesCollectionView.rulePresenters = context.availableRulePresenters()
         genericRulesCollectionView.reloadData()
         availableGenericRulesViewController?.reloadCollectionView()
     }
@@ -251,7 +251,7 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     public func didDoubleClick(collectionView: RuleCollectionView, selectedRulePresenter: RulePresenter) {
         
         let context = AppConfiguration.sharedConfiguration.contextPresenter()
-        context.addGenericRulePresenter(selectedRulePresenter, atIndex: context.genericRulePresenters().count)
+        context.addGenericRulePresenter(selectedRulePresenter, atIndex: context.availableRulePresenters().count)
         refreshGenericRulesCollectionView()
     }
     

@@ -17,13 +17,14 @@ SequencePresenter is responsible for : SequenceStatus & NodePresenters associate
 
 public enum SequenceStatus: Int { case NoStartDateSet, WaitingForStart, Running, Paused, HasFailedNode, Completed, Void }
 
-public class SequencePresenter : NSObject {
+public class SequencePresenter : NSObject, AvailableRulesArray {
     
     // MARK: Properties
     
     private var sequence: Sequence?
     private var delegates = [SequencePresenterDelegate]()
     private var nodePresenters = [NodePresenter]()
+    private var _generalRulePresenters = [RulePresenter]()
     private var currentStatus = SequenceStatus.Void
     public var undoManager: NSUndoManager?
     public var representingDocument: FilamentDocument? {
@@ -289,6 +290,34 @@ public class SequencePresenter : NSObject {
         nodePresenters.append(newPresenter)
         return newPresenter
     }
+    
+    
+    //MARK: General Rules
+    
+    public func availableRulePresenters() -> [RulePresenter] {
+        
+        guard sequence != nil else { return [RulePresenter]() }
+        
+        _generalRulePresenters = sequence!.generalRules.map{ RulePresenter.rulePresenterForRule($0) }
+        return _generalRulePresenters
+    }
+    
+    public func addGeneralRulePresenter(rule:RulePresenter, atIndex:Int) {
+        
+        guard sequence != nil else { return }
+        guard atIndex > -1 && atIndex <= sequence!.generalRules.count else { return }
+        sequence!.generalRules.insert(rule.rule, atIndex: atIndex)
+        delegates.forEach{ $0.sequencePresenterDidChangeGeneralRules(self) }
+    }
+    
+    public func removeRulePresenter(rule:RulePresenter) {
+        
+        guard sequence != nil else { return }
+        sequence!.generalRules.removeObject(rule.rule)
+        delegates.forEach{ $0.sequencePresenterDidChangeGeneralRules(self) }
+    }
+    
+    
     
     
 //MARK: Delegate helpers

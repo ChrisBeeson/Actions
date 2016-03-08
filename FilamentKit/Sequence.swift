@@ -15,10 +15,12 @@ import Foundation
     var transitionNodes = [Node]()
     var date: NSDate?
     var startsAtDate = true    // false means the sequence is back timed to end at the date
+    var generalRules = [Rule]()
+    var isFavourite = false
+    var isTemplate = false    // If we're a template, we're only a placeholder and are never instanted with a day, but copies are made.
+    var parentTemplateId = NSUUID()   // is the unique id of the owner of this instance, only if we're not a template
     var uuid = NSUUID()
 
-    //  var calendarsToAvoid = [EKCalendar]()
-    
     // MARK: Initializers
     
     override  init () {
@@ -46,6 +48,7 @@ import Foundation
         static let startsAtDate = "startsAtDate"
         static let events = "events"
         static let uuid = "uuid"
+        static let generalRules = "generalRules"
     }
     
      required init?(coder aDecoder: NSCoder) {
@@ -55,6 +58,7 @@ import Foundation
         date = aDecoder.decodeObjectForKey(SerializationKeys.date) as? NSDate
         startsAtDate = aDecoder.decodeObjectForKey(SerializationKeys.startsAtDate) as! Bool
         uuid = aDecoder.decodeObjectForKey(SerializationKeys.uuid) as! NSUUID
+        generalRules = aDecoder.decodeObjectForKey(SerializationKeys.generalRules) as! [Rule]
     }
     
      func encodeWithCoder(aCoder: NSCoder) {
@@ -64,6 +68,7 @@ import Foundation
         aCoder.encodeObject(date, forKey: SerializationKeys.date)
         aCoder.encodeObject(startsAtDate, forKey: SerializationKeys.startsAtDate)
         aCoder.encodeObject(uuid, forKey: SerializationKeys.uuid)
+        aCoder.encodeObject(generalRules, forKey: SerializationKeys.generalRules)
     }
     
     
@@ -76,6 +81,7 @@ import Foundation
         clone.transitionNodes = NSArray(array:transitionNodes, copyItems: true) as! [Node]
         clone.date = date
         clone.startsAtDate = startsAtDate
+        clone.generalRules =  NSArray(array:generalRules, copyItems: true) as! [Rule]
         return clone
     }
     

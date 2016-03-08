@@ -86,7 +86,7 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
         if availableRulesViewController == nil {
             availableRulesViewController  = AvailableRulesViewController(nibName:"AvailableRulesViewController", bundle:NSBundle(identifier:"com.andris.FilamentKit"))
         }
-        availableRulesViewController!.nodePresenter = nodePresenter
+        availableRulesViewController!.rulePresenters = nodePresenter
         availableRulesViewController!.collectionViewDelegate = self
         availableRulesViewController!.filterNodeType = nodePresenter!.type
         popover.contentViewController = availableRulesViewController

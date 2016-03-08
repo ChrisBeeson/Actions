@@ -98,7 +98,7 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
         if availableGeneralRulesViewController == nil {
             availableGeneralRulesViewController = AvailableRulesViewController(nibName:"AvailableRulesViewController", bundle:NSBundle(identifier:"com.andris.FilamentKit"))
         }
-        availableGeneralRulesViewController!.nodePresenter = AppConfiguration.sharedConfiguration.contextPresenter()   /// A bit of a stretch!!
+        availableGeneralRulesViewController!.rulePresenters = presenter
         availableGeneralRulesViewController!.filterNodeType = [.Generic]
         availableGeneralRulesViewController!.collectionViewDelegate = self
         popover.contentViewController = availableGeneralRulesViewController
@@ -111,8 +111,7 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
     
     func refreshGeneralRulesCollectionView() {
         
-        let context = AppConfiguration.sharedConfiguration.contextPresenter()
-        generalRulesCollectionView.rulePresenters = context.genericRulePresenters()
+        generalRulesCollectionView.rulePresenters = presenter!.availableRulePresenters()
         generalRulesCollectionView.reloadData()
         availableGeneralRulesViewController?.reloadCollectionView()
     }
@@ -138,6 +137,11 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
         //  self.collectionView.toolTip = String(presenter!.status)
     }
     
+    public func sequencePresenterDidChangeGeneralRules(sequencePresenter: SequencePresenter) {
+    
+        refreshGeneralRulesCollectionView()
+    }
+    
     
     
     
@@ -158,7 +162,7 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
     public func didDoubleClick(collectionView: RuleCollectionView, selectedRulePresenter: RulePresenter) {
         
         let context = AppConfiguration.sharedConfiguration.contextPresenter()
-        context.addGenericRulePresenter(selectedRulePresenter, atIndex: context.genericRulePresenters().count)
+        context.addGenericRulePresenter(selectedRulePresenter, atIndex: context.availableRulePresenters().count)
         refreshGeneralRulesCollectionView()
     }
     

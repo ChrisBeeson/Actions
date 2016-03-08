@@ -8,19 +8,19 @@
 
 import Foundation
 
-public class AvailableRulesViewController : NSViewController, NSTokenFieldDelegate {
+public protocol AvailableRulesArray {
+    
+    func availableRulePresenters() -> [RulePresenter]
+}
+
+public class AvailableRulesViewController : NSViewController {
     
     @IBOutlet weak var collectionView: RuleCollectionView!
+    public var collectionViewDelegate: RuleCollectionViewDelegate?
     
     public var filterNodeType : NodeType?
-    
-    public var nodePresenter: NodePresenter? {
-        didSet {
-            //  reloadCollectionView()
-        }
-    }
-    
-    public var collectionViewDelegate: RuleCollectionViewDelegate?
+    public var rulePresenters: AvailableRulesArray?
+
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -43,13 +43,9 @@ public class AvailableRulesViewController : NSViewController, NSTokenFieldDelega
     public func reloadCollectionView() {
         
         guard collectionView != nil else { return }
-        assert(nodePresenter != nil)
+        assert(rulePresenters != nil)
         
-        // Make a rule presenter for each available rule
         var rps = [RulePresenter]()
-        for rule in nodePresenter!.availableRules() {
-            rps.append(RulePresenter(rule: rule))
-        }
         
         if filterNodeType != nil {
             rps = rps.filter { $0.availableToNodeType.contains(filterNodeType!)}

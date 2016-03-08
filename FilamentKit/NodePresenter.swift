@@ -12,7 +12,7 @@ import DateTools
 
 enum NodeStatus: Int { case Inactive, Ready, Running, WaitingForUserInput, Completed, Error, Void }
 
-public class NodePresenter : NSObject {
+public class NodePresenter : NSObject, AvailableRulesArray {
     
     var undoManager: NSUndoManager?
     var sequencePresenter: SequencePresenter?
@@ -174,7 +174,7 @@ public class NodePresenter : NSObject {
     
     // rules that are available to this node
     
-    func availableRules() -> [Rule] {
+    public func availableRulePresenters() -> [RulePresenter] {
         
         var avalRules = Rule.RuleClasses()
         
@@ -188,7 +188,10 @@ public class NodePresenter : NSObject {
             }
             //  avalRules = avalRules.filter{ $0.availableToNodeType.contains(self.type) }
         }
-        return avalRules
+        
+        let presenters = avalRules.map{ RulePresenter(rule: $0) }
+        
+        return presenters
     }
     
     

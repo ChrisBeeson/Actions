@@ -48,7 +48,7 @@ public class ContextPresenter : NodePresenter {
     }
    
     
-    public func genericRulePresenters() -> [RulePresenter] {
+    public override func availableRulePresenters() -> [RulePresenter] {
         
         guard context != nil else { print("context is Nil"); return [RulePresenter]() }
         
