@@ -62,6 +62,12 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
     }
     
     
+    override public func viewWillDraw() {
+        super.viewWillDraw()
+         generalRulesCollectionView.collectionViewLayout = RightAlignedCollectionViewFlowLayout()
+    }
+    
+    
     func updateCellView() {
         
         scrollview.horizontalScroller?.alphaValue = 0.0

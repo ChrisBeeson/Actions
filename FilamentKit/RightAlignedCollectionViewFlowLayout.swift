@@ -8,11 +8,11 @@
 
 import Foundation
 
-class RightAlignedCollectionViewFlowLayout: NSCollectionViewFlowLayout {
+public class RightAlignedCollectionViewFlowLayout: NSCollectionViewFlowLayout {
     
     var maximumCellSpacing = CGFloat(2.0)
     
-    override func layoutAttributesForElementsInRect(rect: NSRect) -> [NSCollectionViewLayoutAttributes] {
+    override public func layoutAttributesForElementsInRect(rect: NSRect) -> [NSCollectionViewLayoutAttributes] {
         
         let attributesToReturn = super.layoutAttributesForElementsInRect(rect)
         
@@ -24,7 +24,7 @@ class RightAlignedCollectionViewFlowLayout: NSCollectionViewFlowLayout {
         return attributesToReturn
     }
     
-    override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> NSCollectionViewLayoutAttributes? {
+    override public func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> NSCollectionViewLayoutAttributes? {
         
         let curAttributes = super.layoutAttributesForItemAtIndexPath(indexPath)
         // let sectionInset = (self.collectionView?.collectionViewLayout as! NSCollectionViewFlowLayout).sectionInset
