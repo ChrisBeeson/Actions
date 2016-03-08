@@ -217,11 +217,11 @@ import Async
                 }
                 
             default:
-                return NSSize(width: 30,height: 50)
+                return NSSize(width: 30,height: 35)
             }
         } else {
             
-            return NSSize(width: 40,height: 50)
+            return NSSize(width: 40,height: 35)
         }
     }
     

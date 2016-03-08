@@ -13,16 +13,19 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate {
     
     override public var acceptsFirstResponder: Bool { return true }
     
-    // UI Properties
     @IBOutlet weak var backgroundView: NSView!
     @IBOutlet weak var titleTextField: NSTextField!
-    @IBOutlet weak var collectionView: SequenceCollectionView!
+    @IBOutlet weak var sequenceCollectionView: SequenceCollectionView!
     @IBOutlet weak var scrollview: NSScrollView!
+    
+    @IBOutlet weak var favouriteButton: NSButton!
+    @IBOutlet weak var generalRulesCollectionView: RuleCollectionView!
+    
     
     public var presenter: SequencePresenter? {
         
         didSet {
-            collectionView.presenter = presenter
+            sequenceCollectionView.presenter = presenter
             if presenter != nil {
                 presenter!.addDelegate(self)
             }
@@ -41,7 +44,7 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate {
             case false:
                 backgroundView.layer?.borderWidth = 0
                 titleTextField.editable = false
-                collectionView.deselectAll(self)
+                sequenceCollectionView.deselectAll(self)
             }
         }
     }
@@ -64,8 +67,8 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate {
         if presenter != nil {
             
             titleTextField.stringValue = presenter!.title
-            self.collectionView.toolTip = String(presenter!.status)
-            collectionView.reloadData()
+            self.sequenceCollectionView.toolTip = String(presenter!.status)
+            sequenceCollectionView.reloadData()
         }
     }
     
@@ -75,6 +78,14 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate {
         presenter!.renameTitle(sender.stringValue)
     }
 
+    
+    @IBAction func addGeneralRuleButtonPressed(sender: AnyObject) {
+    }
+    
+    
+    @IBAction func favouriteButtonPressed(sender: AnyObject) {
+    }
+    
     
 
     
