@@ -84,9 +84,7 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     //MARK: Datasource
     
     public func collectionView(collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         guard rulePresenters != nil else { return 0 }
-        
         return rulePresenters!.count
     }
     
@@ -121,8 +119,6 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     
     public func collectionView(collectionView: NSCollectionView, willDisplayItem item: NSCollectionViewItem, forRepresentedObjectAtIndexPath indexPath: NSIndexPath) {
         
-        // self.
-        
     }
     
     
@@ -137,7 +133,6 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     public func collectionView(collectionView: NSCollectionView, pasteboardWriterForItemAtIndexPath indexPath: NSIndexPath) -> NSPasteboardWriting? {
         
         if rulePresenters == nil { Swift.print("Nil") }
-        
         return rulePresenters?[indexPath.item].draggingItem()
     }
     
@@ -259,6 +254,4 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
         self.deselectAll(self)
         return true
     }
-    
-    
 }
