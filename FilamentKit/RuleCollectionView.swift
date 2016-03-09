@@ -10,6 +10,7 @@ import Foundation
 
 public protocol RuleCollectionViewDelegate {
     
+    // func shouldAcceptDrop(collectionView: RuleCollectionView, proposedRulePresenter: RulePresenter) -> Bool
     func didAcceptDrop(collectionView: RuleCollectionView, droppedRulePresenter: RulePresenter, atIndex: Int)
     func didDeleteRulePresenter(collectionView: RuleCollectionView, deletedRulePresenter: RulePresenter)
     func didDoubleClick(collectionView: RuleCollectionView, selectedRulePresenter: RulePresenter)
@@ -21,6 +22,7 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     public var rulePresenters : [RulePresenter]?
     public var showDetailView = false
     public var allowDrops = false
+    public var allowDropsFromType:NodeType = [.Void]
     public var allowDeletions = false
     public var ruleCollectionViewDelegate : RuleCollectionViewDelegate?
     public var doubleClickDisplaysItemsDetailView = true
@@ -35,7 +37,6 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     }
     
     override init(frame: CGRect) {
-        
         super.init(frame: frame)
         commonInit()
     }
@@ -153,36 +154,51 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     
     public func collectionView(collectionView: NSCollectionView, validateDrop draggingInfo: NSDraggingInfo, proposedIndexPath proposedDropIndexPath: AutoreleasingUnsafeMutablePointer<NSIndexPath?>, dropOperation proposedDropOperation: UnsafeMutablePointer<NSCollectionViewDropOperation>) -> NSDragOperation {
         
-        if allowDrops && draggingInfo.draggingSource()! !== self {
-            return NSDragOperation.Copy
-        } else {
-            return NSDragOperation.None
+        if allowDrops == false { return NSDragOperation.None }
+        if draggingInfo.draggingSource()! === self { return NSDragOperation.None }
+        
+        if let presenter = rulePresenterFromDraggingItem(draggingInfo) {
+            
+            if presenter.availableToNodeType.contains(self.allowDropsFromType) {
+                
+                for rule in self.rulePresenters! {
+                    if rule.name == presenter.name { return NSDragOperation.None }
+                }
+                return NSDragOperation.Copy
+            }
         }
+         return NSDragOperation.None
     }
     
     
     public func collectionView(collectionView: NSCollectionView, acceptDrop draggingInfo: NSDraggingInfo, indexPath: NSIndexPath, dropOperation: NSCollectionViewDropOperation) -> Bool {
         
+        if let presenter = rulePresenterFromDraggingItem(draggingInfo) {
+            self.ruleCollectionViewDelegate?.didAcceptDrop(self, droppedRulePresenter: presenter, atIndex:indexPath.item)
+            return true
+        }
+        return false
+    }
+    
+    func rulePresenterFromDraggingItem(draggingInfo: NSDraggingInfo) -> RulePresenter? {
+        
+        var presenter : RulePresenter?
+
         draggingInfo.enumerateDraggingItemsWithOptions([], forView: self, classes: [NSPasteboardItem.self], searchOptions: [NSPasteboardURLReadingFileURLsOnlyKey: false]) {draggingItem, idx, stop in
             
             if let type = draggingItem.item.types {
-                
                 switch type![0] {
-                    
                 case AppConfiguration.UTI.rule:
-                    
-                    let newRulePresenter = RulePresenter(draggingItem:(draggingItem.item as! NSPasteboardItem))
-                    self.ruleCollectionViewDelegate?.didAcceptDrop(self, droppedRulePresenter: newRulePresenter, atIndex:indexPath.item)
+                    presenter = RulePresenter(draggingItem:(draggingItem.item as! NSPasteboardItem))
                     
                 default: break
                 }
             }
         }
-        return true
+        return presenter
     }
-    
-    
-    
+
+
     public func collectionView(collectionView: NSCollectionView, shouldChangeItemsAtIndexPaths indexPaths: Set<NSIndexPath>, toHighlightState highlightState: NSCollectionViewItemHighlightState) -> Set<NSIndexPath> {
         return indexPaths
     }

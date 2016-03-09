@@ -59,12 +59,17 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
         
         selected = false
         super.init(coder: coder)
+        
     }
     
     
     override public func viewWillDraw() {
         super.viewWillDraw()
-         generalRulesCollectionView.collectionViewLayout = RightAlignedCollectionViewFlowLayout()
+        generalRulesCollectionView.collectionViewLayout = RightAlignedCollectionViewFlowLayout()
+        generalRulesCollectionView.ruleCollectionViewDelegate = self
+        generalRulesCollectionView.allowDrops = true
+        generalRulesCollectionView.allowDropsFromType = [.Generic]
+        generalRulesCollectionView.allowDeletions = true
     }
     
     

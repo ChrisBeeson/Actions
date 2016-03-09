@@ -26,7 +26,7 @@ public class AvailableRulesViewController : NSViewController {
     override public func viewWillLayout() {
         super.viewWillLayout()
         
-        collectionView.doubleClickDisplaysItemsDetailView = false
+        collectionView?.doubleClickDisplaysItemsDetailView = false
         reloadCollectionView()
     }
     

@@ -32,6 +32,7 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         
         genericRulesCollectionView.ruleCollectionViewDelegate = self
         genericRulesCollectionView.allowDrops = true
+        genericRulesCollectionView.allowDropsFromType = [.Generic]
         genericRulesCollectionView.allowDeletions = true
         
     }

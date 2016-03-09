@@ -40,6 +40,7 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
         ruleCollectionView.ruleCollectionViewDelegate = self
         ruleCollectionView.rulePresenters = nodePresenter!.currentRulePresenters()
         ruleCollectionView.allowDrops = true
+        ruleCollectionView.allowDropsFromType = nodePresenter!.type
         ruleCollectionView.allowDeletions = true
     }
     
