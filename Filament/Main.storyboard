@@ -684,17 +684,16 @@ CA
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="LHQ-N4-856"/>
                                 <toolbarItem implicitItemIdentifier="7E7386E5-7D3E-4C6F-BC4F-291D90CA2271" label="Filter" paletteLabel="Filter" id="pwS-u7-meo">
                                     <nil key="toolTip"/>
-                                    <size key="minSize" width="227" height="23"/>
+                                    <size key="minSize" width="200" height="23"/>
                                     <size key="maxSize" width="311" height="32"/>
                                     <segmentedControl key="view" verticalHuggingPriority="750" allowsExpansionToolTips="YES" springLoaded="YES" id="Wcx-wK-bYT">
-                                        <rect key="frame" x="0.0" y="14" width="284" height="25"/>
+                                        <rect key="frame" x="0.0" y="14" width="206" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <segmentedCell key="cell" scrollable="YES" lineBreakMode="clipping" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="8mg-Ga-2zM">
                                             <font key="font" metaFont="system"/>
                                             <segments>
-                                                <segment label="Active" imageScaling="proportionallyUpOrDown" width="96" selected="YES"/>
-                                                <segment label="Completed" imageScaling="none" width="97" tag="1"/>
-                                                <segment label="Favourites"/>
+                                                <segment label="Active" imageScaling="proportionallyUpOrDown" width="99" selected="YES"/>
+                                                <segment label="Completed" imageScaling="none" width="100" tag="1"/>
                                             </segments>
                                         </segmentedCell>
                                         <connections>
@@ -721,6 +720,7 @@ CA
                                 </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
+                                <toolbarItem reference="k8e-Ff-DV8"/>
                                 <toolbarItem reference="k8e-Ff-DV8"/>
                                 <toolbarItem reference="pwS-u7-meo"/>
                                 <toolbarItem reference="k8e-Ff-DV8"/>
@@ -886,7 +886,7 @@ CA
                                                                         <constraint firstAttribute="trailing" secondItem="wWa-CA-nxC" secondAttribute="trailing" id="bcg-8b-Xg5"/>
                                                                         <constraint firstAttribute="bottom" secondItem="bXv-qw-0g8" secondAttribute="bottom" constant="3" id="e4I-5d-7nb"/>
                                                                         <constraint firstItem="bXv-qw-0g8" firstAttribute="top" secondItem="wWa-CA-nxC" secondAttribute="bottom" constant="5" id="hja-XC-iLd"/>
-                                                                        <constraint firstItem="wWa-CA-nxC" firstAttribute="top" secondItem="BeT-IN-UXD" secondAttribute="bottom" constant="8" id="nos-I7-QCy"/>
+                                                                        <constraint firstItem="wWa-CA-nxC" firstAttribute="top" secondItem="BeT-IN-UXD" secondAttribute="bottom" constant="10" id="nos-I7-QCy"/>
                                                                         <constraint firstAttribute="trailing" secondItem="82I-cw-iqA" secondAttribute="trailing" constant="6" id="p9R-Xu-0ce"/>
                                                                         <constraint firstItem="RmA-Ls-UWH" firstAttribute="leading" secondItem="bTc-Dp-Ybh" secondAttribute="leading" constant="6" id="pJR-cV-DJY"/>
                                                                         <constraint firstItem="bXv-qw-0g8" firstAttribute="leading" secondItem="bTc-Dp-Ybh" secondAttribute="leading" id="ztT-Wa-kVZ"/>

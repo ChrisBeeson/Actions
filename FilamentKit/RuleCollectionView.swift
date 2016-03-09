@@ -136,6 +136,8 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     
     public func collectionView(collectionView: NSCollectionView, pasteboardWriterForItemAtIndexPath indexPath: NSIndexPath) -> NSPasteboardWriting? {
         
+        if rulePresenters == nil { Swift.print("Nil") }
+        
         return rulePresenters?[indexPath.item].draggingItem()
     }
     
@@ -242,6 +244,21 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     }
     
     
+    //MARK: First responder 
+    
+    override public func becomeFirstResponder() -> Bool {
+        
+        if self.superview?.superview?.superview?.superview?.isKindOfClass(NSTableCellView) == true {
+            NSNotificationCenter.defaultCenter().postNotificationName("FilamentTableViewSelectCellForView", object: self.superview)
+        }
+        
+        return true
+    }
+    
+    override public func resignFirstResponder() -> Bool {
+        self.deselectAll(self)
+        return true
+    }
     
     
 }
