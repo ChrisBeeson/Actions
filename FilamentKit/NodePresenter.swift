@@ -12,7 +12,7 @@ import DateTools
 
 enum NodeStatus: Int { case Inactive, Ready, Running, WaitingForUserInput, Completed, Error, Void }
 
-public class NodePresenter : NSObject, AvailableRulesArray {
+public class NodePresenter : NSObject, RuleAvailabiltiy {
     
     var undoManager: NSUndoManager?
     var sequencePresenter: SequencePresenter?
@@ -38,23 +38,6 @@ public class NodePresenter : NSObject, AvailableRulesArray {
         super.init()
     }
     
-    var type: NodeType {
-        get {
-            return node.type
-        }
-    }
-    
-    var currentStatus:NodeStatus {
-        
-        get {
-            return calcNodeStatus()
-        }
-        set {
-            _currentStatus = newValue
-        }
-    }
-    
-    
     var title: String {
         get {
             return node.title
@@ -68,6 +51,19 @@ public class NodePresenter : NSObject, AvailableRulesArray {
         }
     }
     
+    public var type: NodeType {
+        get {
+            return node.type
+        }
+    }
+    
+    public var rules:[Rule] {
+        get {
+            return node.rules
+        }
+    }
+    
+    
     var notes: String {
         get {
             return node.notes
@@ -79,9 +75,12 @@ public class NodePresenter : NSObject, AvailableRulesArray {
     }
     
     
-    var rules:[Rule] {
+    var currentStatus:NodeStatus {
         get {
-            return node.rules
+            return calcNodeStatus()
+        }
+        set {
+            _currentStatus = newValue
         }
     }
     
@@ -150,6 +149,7 @@ public class NodePresenter : NSObject, AvailableRulesArray {
     
     //MARK: Rules
     
+    /*
     func rulePresenterForRule(rule:Rule) -> RulePresenter {
         
         let presenter = rulePresenters.filter {$0.rule === rule}
@@ -161,39 +161,7 @@ public class NodePresenter : NSObject, AvailableRulesArray {
         return newPresenter
     }
     
-    
-    func allRulePresenters() -> [RulePresenter] {
-        
-        var presenters = [RulePresenter]()
-        for rule in node.rules {
-           presenters.append(rulePresenterForRule(rule))
-        }
-        return presenters
-    }
-    
-    
-    // rules that are available to this node
-    
-    public func availableRulePresenters() -> [RulePresenter] {
-        
-        var avalRules = Rule.RuleClasses()
-        
-        // no rules that are already being used by this node
-        
-        for aRule in avalRules {
-            for rule in rules {
-                if aRule.className == rule.className {
-                    avalRules = avalRules.filter{ $0.className != rule.className }
-                }
-            }
-            //  avalRules = avalRules.filter{ $0.availableToNodeType.contains(self.type) }
-        }
-        
-        let presenters = avalRules.map{ RulePresenter(rule: $0) }
-        
-        return presenters
-    }
-    
+    */
     
     
     func insertRulePresenter(rulePresenter:RulePresenter, atIndex:Int) {

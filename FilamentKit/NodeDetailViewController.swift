@@ -86,9 +86,9 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
         if availableRulesViewController == nil {
             availableRulesViewController  = AvailableRulesViewController(nibName:"AvailableRulesViewController", bundle:NSBundle(identifier:"com.andris.FilamentKit"))
         }
-        availableRulesViewController!.rulePresenters = nodePresenter
+        availableRulesViewController!.availableRules = nodePresenter
         availableRulesViewController!.collectionViewDelegate = self
-        availableRulesViewController!.filterNodeType = nodePresenter!.type
+        availableRulesViewController!.displayRulesForNodeType = nodePresenter!.type
         popover.contentViewController = availableRulesViewController
        
         //TODO: Select between preferred Edges..

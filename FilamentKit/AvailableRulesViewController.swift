@@ -8,18 +8,15 @@
 
 import Foundation
 
-public protocol AvailableRulesArray {
-    
-    func availableRulePresenters() -> [RulePresenter]
-}
+
 
 public class AvailableRulesViewController : NSViewController {
     
     @IBOutlet weak var collectionView: RuleCollectionView!
     public var collectionViewDelegate: RuleCollectionViewDelegate?
     
-    public var filterNodeType : NodeType?
-    public var rulePresenters: AvailableRulesArray?
+    public var displayRulesForNodeType : NodeType?
+    public var availableRules : RuleAvailabiltiy?
 
     
     override public func viewDidLoad() {
@@ -43,14 +40,16 @@ public class AvailableRulesViewController : NSViewController {
     public func reloadCollectionView() {
         
         guard collectionView != nil else { return }
-        assert(rulePresenters != nil)
+        assert(availableRules != nil)
         
         var rps = [RulePresenter]()
         
-        if filterNodeType != nil {
-            rps = rps.filter { $0.availableToNodeType.contains(filterNodeType!)}
+        
+        Swift.print(availableRules!.availableRulePresenters())
+        if displayRulesForNodeType != nil {
+            rps = availableRules!.availableRulePresenters().filter { $0.availableToNodeType.contains(displayRulesForNodeType!)}
         }
-        collectionView.rulePresenters = rps
+        collectionView.rulePresenters = availableRules!.availableRulePresenters()
         collectionView.reloadData()
     }
 }

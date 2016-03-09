@@ -98,8 +98,8 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
         if availableGeneralRulesViewController == nil {
             availableGeneralRulesViewController = AvailableRulesViewController(nibName:"AvailableRulesViewController", bundle:NSBundle(identifier:"com.andris.FilamentKit"))
         }
-        availableGeneralRulesViewController!.rulePresenters = presenter
-        availableGeneralRulesViewController!.filterNodeType = [.Generic]
+        availableGeneralRulesViewController!.availableRules = presenter
+        availableGeneralRulesViewController!.displayRulesForNodeType = [.Generic]
         availableGeneralRulesViewController!.collectionViewDelegate = self
         popover.contentViewController = availableGeneralRulesViewController
         

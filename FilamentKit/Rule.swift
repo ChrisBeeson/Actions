@@ -30,7 +30,7 @@ protocol RuleType {
     var avoidPeriods: [DTTimePeriod]? {get set}
 }
 
-class Rule: NSObject, RuleType {
+public class Rule: NSObject, RuleType {
     
      var name: String {get {return "Not set"} }
      var Description: String {get {return "NOT SET"} }

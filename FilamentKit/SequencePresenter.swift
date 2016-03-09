@@ -17,14 +17,13 @@ SequencePresenter is responsible for : SequenceStatus & NodePresenters associate
 
 public enum SequenceStatus: Int { case NoStartDateSet, WaitingForStart, Running, Paused, HasFailedNode, Completed, Void }
 
-public class SequencePresenter : NSObject, AvailableRulesArray {
+public class SequencePresenter : NSObject, RuleAvailabiltiy {
     
     // MARK: Properties
     
     private var sequence: Sequence?
     private var delegates = [SequencePresenterDelegate]()
     private var nodePresenters = [NodePresenter]()
-    private var _generalRulePresenters = [RulePresenter]()
     private var currentStatus = SequenceStatus.Void
     public var undoManager: NSUndoManager?
     public var representingDocument: FilamentDocument? {
@@ -50,6 +49,18 @@ public class SequencePresenter : NSObject, AvailableRulesArray {
         return sequence!.nodeChain()
     }
     
+    /// RuleAvailablity
+    
+    public var type: NodeType { get { return [.Generic] } }
+    
+    public var rules:[Rule] {
+        get {
+            return sequence!.generalRules
+        }
+    }
+    
+    /// Date handling
+    
     public var date : NSDate? {
         return sequence!.date
     }
@@ -65,6 +76,7 @@ public class SequencePresenter : NSObject, AvailableRulesArray {
         }
     }
     
+    // Status
     
     public var status:SequenceStatus {
         return currentStatus
@@ -294,13 +306,6 @@ public class SequencePresenter : NSObject, AvailableRulesArray {
     
     //MARK: General Rules
     
-    public func availableRulePresenters() -> [RulePresenter] {
-        
-        guard sequence != nil else { return [RulePresenter]() }
-        
-        _generalRulePresenters = sequence!.generalRules.map{ RulePresenter.rulePresenterForRule($0) }
-        return _generalRulePresenters
-    }
     
     public func addGeneralRulePresenter(rule:RulePresenter, atIndex:Int) {
         

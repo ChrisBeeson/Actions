@@ -30,7 +30,7 @@ public class ContextPresenter : NodePresenter {
     }
     
     
-    override var rules:[Rule] {
+    override public var rules:[Rule] {
         get {
             if let con = context {
                 return con.genericRules
@@ -40,20 +40,15 @@ public class ContextPresenter : NodePresenter {
         }
     }
     
-
+    override public var type: NodeType { get { return [.Generic] } }
     
+
     public func save() {
         
        NSKeyedArchiver.archiveRootObject(self.context!, toFile: self.filePath.path!)
     }
    
     
-    public override func availableRulePresenters() -> [RulePresenter] {
-        
-        guard context != nil else { print("context is Nil"); return [RulePresenter]() }
-        
-        return context!.genericRules.map{ RulePresenter.rulePresenterForRule($0) }
-    }
     
     
     public func addGenericRulePresenter(rule:RulePresenter, atIndex:Int) {

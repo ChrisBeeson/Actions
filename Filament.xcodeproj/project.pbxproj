@@ -99,6 +99,7 @@
 		835619CC1C6D6AD100488E99 /* NodeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */; };
 		835619CD1C6D6E4B00488E99 /* NodeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */; };
 		835740B21C77AD0700CFBB1B /* TimeEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835740B11C77AD0700CFBB1B /* TimeEvent.swift */; };
+		835878BC1C8FEAB000F2CCFB /* RuleAvailabiltiy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835878BB1C8FEAB000F2CCFB /* RuleAvailabiltiy.swift */; };
 		8359A7731C7CF2F400ED87D9 /* DurationWithVarianceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8359A7721C7CF2F400ED87D9 /* DurationWithVarianceViewController.swift */; };
 		836896341C807FEF00F3F547 /* AvailableRulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836896331C807FEF00F3F547 /* AvailableRulesViewController.swift */; };
 		836896361C80801900F3F547 /* AvailableRulesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 836896351C80801900F3F547 /* AvailableRulesViewController.xib */; };
@@ -252,6 +253,7 @@
 		835619C91C6D6AAA00488E99 /* NodeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDetailViewController.swift; sourceTree = "<group>"; };
 		835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NodeDetailViewController.xib; sourceTree = "<group>"; };
 		835740B11C77AD0700CFBB1B /* TimeEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeEvent.swift; sourceTree = "<group>"; };
+		835878BB1C8FEAB000F2CCFB /* RuleAvailabiltiy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleAvailabiltiy.swift; sourceTree = "<group>"; };
 		8359A7721C7CF2F400ED87D9 /* DurationWithVarianceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationWithVarianceViewController.swift; sourceTree = "<group>"; };
 		836896331C807FEF00F3F547 /* AvailableRulesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableRulesViewController.swift; sourceTree = "<group>"; };
 		836896351C80801900F3F547 /* AvailableRulesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AvailableRulesViewController.xib; sourceTree = "<group>"; };
@@ -420,6 +422,7 @@
 				4720B5011C6E7F0400229734 /* NodePresenterDelegate.swift */,
 				47967FF11C895F5400358199 /* ContextPresenter.swift */,
 				473574881B9A91BE00493CA0 /* Presenter Helpers */,
+				835878BB1C8FEAB000F2CCFB /* RuleAvailabiltiy.swift */,
 			);
 			name = Presenters;
 			sourceTree = "<group>";
@@ -1024,6 +1027,7 @@
 				833366CA1C838F99001FE4CD /* EventAlarmRule.swift in Sources */,
 				47967FF21C895F5400358199 /* ContextPresenter.swift in Sources */,
 				4778C0A81C656B2500F5A259 /* DateNodeCollectionViewItem.swift in Sources */,
+				835878BC1C8FEAB000F2CCFB /* RuleAvailabiltiy.swift in Sources */,
 				473574751B9A689B00493CA0 /* Node.swift in Sources */,
 				8329DE9B1C63DF10001B3A2F /* SequenceCollectionView.swift in Sources */,
 				47967FFB1C8ABC4F00358199 /* AvoidCalendarEventsPresenter.swift in Sources */,
