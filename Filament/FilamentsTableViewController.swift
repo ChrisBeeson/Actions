@@ -239,7 +239,7 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     
     public func didAcceptDrop(collectionView: RuleCollectionView, droppedRulePresenter: RulePresenter, atIndex: Int) {
         
-        AppConfiguration.sharedConfiguration.contextPresenter().addGenericRulePresenter(droppedRulePresenter, atIndex: atIndex)
+        AppConfiguration.sharedConfiguration.contextPresenter().addRulePresenter(droppedRulePresenter, atIndex: atIndex)
         refreshGenericRulesCollectionView()
     }
     
@@ -252,7 +252,7 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     public func didDoubleClick(collectionView: RuleCollectionView, selectedRulePresenter: RulePresenter) {
         
         let context = AppConfiguration.sharedConfiguration.contextPresenter()
-        context.addGenericRulePresenter(selectedRulePresenter, atIndex: context.availableRulePresenters().count)
+        context.addRulePresenter(selectedRulePresenter, atIndex: context.currentRulePresenters().count)
         refreshGenericRulesCollectionView()
     }
     

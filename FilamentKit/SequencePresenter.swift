@@ -307,7 +307,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     //MARK: General Rules
     
     
-    public func addGeneralRulePresenter(rule:RulePresenter, atIndex:Int) {
+    public func addRulePresenter(rule:RulePresenter, atIndex:Int) {
         
         guard sequence != nil else { return }
         guard atIndex > -1 && atIndex <= sequence!.generalRules.count else { return }

@@ -39,17 +39,18 @@ public class RightAlignedCollectionViewFlowLayout: NSCollectionViewFlowLayout {
       
         
         var curFrame = curAttributes!.frame
+        
+        /*
         let stretchedCurFrame = CGRectMake(0, curFrame.origin.y, self.collectionView!.frame.size.width, curFrame.size.height)
         
         if CGRectIntersectsRect(prevFrame, stretchedCurFrame) {
             curAttributes!.rightAlignFrameOnWidth(self.collectionView!.frame.size.width)
              return curAttributes
         }
-        
+        */
         let prevFrameLeftPoint = prevFrame.origin.x
         curFrame.origin.x = prevFrameLeftPoint - maximumCellSpacing - curFrame.size.width
         curAttributes!.frame = curFrame
-
         return curAttributes
     }
 }

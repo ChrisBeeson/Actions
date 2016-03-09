@@ -79,6 +79,8 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
             self.sequenceCollectionView.toolTip = String(presenter!.status)
             sequenceCollectionView.reloadData()
         }
+        
+        refreshGeneralRulesCollectionView()
     }
     
     
@@ -92,7 +94,7 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
         
         let popover = NSPopover()
         popover.animates = true
-        popover.behavior = .Transient
+        popover.behavior = .Semitransient
         popover.appearance = NSAppearance(named: NSAppearanceNameAqua)
         
         if availableGeneralRulesViewController == nil {
@@ -111,7 +113,7 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
     
     func refreshGeneralRulesCollectionView() {
         
-        generalRulesCollectionView.rulePresenters = presenter!.availableRulePresenters()
+        generalRulesCollectionView.rulePresenters = presenter?.currentRulePresenters()
         generalRulesCollectionView.reloadData()
         availableGeneralRulesViewController?.reloadCollectionView()
     }
@@ -149,21 +151,18 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
     
     public func didAcceptDrop(collectionView: RuleCollectionView, droppedRulePresenter: RulePresenter, atIndex: Int) {
         
-        AppConfiguration.sharedConfiguration.contextPresenter().addGenericRulePresenter(droppedRulePresenter, atIndex: atIndex)
-        refreshGeneralRulesCollectionView()
+        presenter?.addRulePresenter(droppedRulePresenter, atIndex: atIndex)
+        // refreshGeneralRulesCollectionView()
     }
     
     public func didDeleteRulePresenter(collectionView: RuleCollectionView, deletedRulePresenter: RulePresenter) {
-        
-        AppConfiguration.sharedConfiguration.contextPresenter().removeRulePresenter(deletedRulePresenter)
-        refreshGeneralRulesCollectionView()
+        presenter?.removeRulePresenter(deletedRulePresenter)
+        //refreshGeneralRulesCollectionView()
     }
     
     public func didDoubleClick(collectionView: RuleCollectionView, selectedRulePresenter: RulePresenter) {
         
-        let context = AppConfiguration.sharedConfiguration.contextPresenter()
-        context.addGenericRulePresenter(selectedRulePresenter, atIndex: context.availableRulePresenters().count)
-        refreshGeneralRulesCollectionView()
+        presenter?.addRulePresenter(selectedRulePresenter, atIndex: presenter!.currentRulePresenters().count)
     }
     
 }

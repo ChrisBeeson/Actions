@@ -42,13 +42,6 @@ public class AvailableRulesViewController : NSViewController {
         guard collectionView != nil else { return }
         assert(availableRules != nil)
         
-        var rps = [RulePresenter]()
-        
-        
-        Swift.print(availableRules!.availableRulePresenters())
-        if displayRulesForNodeType != nil {
-            rps = availableRules!.availableRulePresenters().filter { $0.availableToNodeType.contains(displayRulesForNodeType!)}
-        }
         collectionView.rulePresenters = availableRules!.availableRulePresenters()
         collectionView.reloadData()
     }

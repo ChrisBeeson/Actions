@@ -49,9 +49,7 @@ public class ContextPresenter : NodePresenter {
     }
    
     
-    
-    
-    public func addGenericRulePresenter(rule:RulePresenter, atIndex:Int) {
+    public func addRulePresenter(rule:RulePresenter, atIndex:Int) {
         
         guard context != nil else { return }
         guard atIndex > -1 && atIndex <= context!.genericRules.count else { return }

@@ -28,15 +28,17 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
     private var popoverVisible = false
     
     var nodePresenter: NodePresenter?
-    private var rulePresenters = [RulePresenter]()
 
     var availableRulesViewController: AvailableRulesViewController?
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        nodePresenter?.addDelegate(self)
+        
+        guard nodePresenter != nil else { fatalError() }
+        
+        nodePresenter!.addDelegate(self)
         ruleCollectionView.ruleCollectionViewDelegate = self
-        ruleCollectionView.rulePresenters = rulePresenters
+        ruleCollectionView.rulePresenters = nodePresenter!.currentRulePresenters()
         ruleCollectionView.allowDrops = true
         ruleCollectionView.allowDeletions = true
     }
@@ -100,8 +102,7 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
     
     func reloadRulesCollectionView() {
         
-        rulePresenters = nodePresenter!.rules.map { RulePresenter.rulePresenterForRule($0) }
-        ruleCollectionView.rulePresenters = rulePresenters
+        ruleCollectionView.rulePresenters = nodePresenter!.currentRulePresenters()
         ruleCollectionView.reloadData()
         availableRulesViewController?.reloadCollectionView()
         // addNodeButton.hidden = nodePresenter!.availableRules().count > 0 ? false : true
