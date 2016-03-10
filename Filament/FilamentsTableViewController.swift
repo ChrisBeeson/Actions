@@ -10,14 +10,15 @@ import Cocoa
 import FilamentKit
 import Async
 
-public class FilamentsTableViewController:  NSViewController, NSTableViewDataSource, NSTableViewDelegate, FilamentDocumentsManagerDelegate, RuleCollectionViewDelegate {
+public class FilamentsTableViewController:  NSViewController, NSTableViewDataSource, NSTableViewDelegate, FilamentDocumentsManagerDelegate, RuleCollectionViewDelegate, NSPopoverDelegate {
     
     @IBOutlet weak var addGenericRuleButton: NSButton!
     @IBOutlet weak var genericRulesCollectionView: RuleCollectionView!
     @IBOutlet weak var tableView: NSTableView!
-    
+
     private var sortedDocuments = [FilamentDocument]()
     private var availableGenericRulesViewController : AvailableRulesViewController?
+    private var displayedPopover:NSPopover?
     
     override public func viewDidLoad() {
         
@@ -215,20 +216,22 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     
     @IBAction func addGenericRuleButtonPressed(sender: AnyObject) {
         
+        if displayedPopover != nil { return }
+        
         let popover = NSPopover()
         popover.animates = true
         popover.behavior = .Transient
         popover.appearance = NSAppearance(named: NSAppearanceNameAqua)
+        popover.delegate = self
         
         if availableGenericRulesViewController == nil {
            availableGenericRulesViewController = AvailableRulesViewController(nibName:"AvailableRulesViewController", bundle:NSBundle(identifier:"com.andris.FilamentKit"))
         }
-        availableGenericRulesViewController!.availableRules = AppConfiguration.sharedConfiguration.contextPresenter()   /// A bit of a stretch!!
+        availableGenericRulesViewController!.availableRules = AppConfiguration.sharedConfiguration.contextPresenter()
         availableGenericRulesViewController!.displayRulesForNodeType = [.Generic]
         availableGenericRulesViewController!.collectionViewDelegate = self
         popover.contentViewController = availableGenericRulesViewController
         
-        //TODO: Select between preferred Edges..
         popover.showRelativeToRect(addGenericRuleButton.frame, ofView:self.view, preferredEdge:.MaxY )
     }
     
@@ -260,8 +263,19 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         
         let context = AppConfiguration.sharedConfiguration.contextPresenter()
         context.addRulePresenter(selectedRulePresenter, atIndex: context.currentRulePresenters().count)
+        displayedPopover?.close()
         refreshGenericRulesCollectionView()
     }
     
+    
+    //MARK: NSPopover Delegate
+    
+    public func popoverWillShow(notification: NSNotification) {
+        displayedPopover = notification.object as? NSPopover
+    }
+    
+    public func popoverDidClose(notification: NSNotification) {
+        displayedPopover = nil
+    }
 }
 

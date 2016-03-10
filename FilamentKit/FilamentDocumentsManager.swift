@@ -24,7 +24,7 @@ public class FilamentDocumentsManager : DirectoryMonitorDelegate {
     
     init() {
         
-         print("Directory: \(FilamentDocumentsManager.documentDirectoryList())")
+         print("Directory: \(AppConfiguration.sharedConfiguration.storageDirectory())")
         documents = FilamentDocumentsManager.documentsForURLs(FilamentDocumentsManager.documentDirectoryList())
        
         directoryMonitor = DirectoryMonitor(URL: AppConfiguration.sharedConfiguration.storageDirectory())

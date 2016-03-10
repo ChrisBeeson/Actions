@@ -35,5 +35,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationShouldTerminateAfterLastWindowClosed(sender: NSApplication) -> Bool {
         return true
     }
+    
+    func applicationDidBecomeActive(notification: NSNotification) {
+        print("Did be come Active")
+    }
+    
+    func applicationDidUnhide(notification: NSNotification) {
+         print("Did unhide")
+    }
+    
 }
 

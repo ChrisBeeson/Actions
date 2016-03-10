@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AppKit
 
 extension Array where Element: Equatable {
     
@@ -55,3 +56,27 @@ extension String {
     }
 }
 
+
+
+//TODO: Redo this copy and paste job.  It looks nasty.
+// but better than  po self.superview!.superview!.superview!.superview!.superview!.superview!.superview!.superview!
+
+extension NSView {
+    
+    func findSuperViewWithClass<T>(superViewClass : T.Type) -> NSView? {
+        
+        var xsuperView : NSView!  = self.superview!
+        var foundSuperView : NSView!
+        
+        while (xsuperView != nil && foundSuperView == nil) {
+            
+            if xsuperView.self is T {
+                foundSuperView = xsuperView
+            } else {
+                xsuperView = xsuperView.superview
+            }
+        }
+        return foundSuperView
+    }
+    
+}

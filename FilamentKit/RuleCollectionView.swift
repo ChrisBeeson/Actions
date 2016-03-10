@@ -76,6 +76,7 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
         if self.selectionIndexPaths.count > 0 {
             let presenter = rulePresenters![self.selectionIndexPaths.first!.item]
             ruleCollectionViewDelegate?.didDoubleClick(self, selectedRulePresenter: presenter)
+            
         }
     }
     

@@ -12,8 +12,10 @@ public class RuleViewController : NSViewController, NSMenuDelegate {
     
     public var rulePresenter: RulePresenter?
     
-    public func menuDidClose(menu: NSMenu) {
+    public override func viewWillDisappear() {
+        super.viewWillDisappear()
         
-        rulePresenter?.sequencePresenter?.updateSequenceEvents()
+         rulePresenter?.sequencePresenter?.updateSequenceEvents()
     }
+    
 }

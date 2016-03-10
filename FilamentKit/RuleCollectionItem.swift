@@ -61,9 +61,6 @@ public class RuleCollectionItem : NSCollectionViewItem {
         popover.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
         
         let detailView = rulePresenter!.detailViewController()
-        // detailView.nodePresenter = presenter!
-        //  presenter!.addDelegate(detailView)
-        
         popover.contentViewController = detailView
         popover.showRelativeToRect(self.view.frame, ofView: self.view.superview!, preferredEdge:.MaxY )
     }

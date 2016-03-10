@@ -9,7 +9,7 @@
 import Cocoa
 import FilamentKit
 
-public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, RuleCollectionViewDelegate {
+public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, RuleCollectionViewDelegate, NSPopoverDelegate {
     
     override public var acceptsFirstResponder: Bool { return true }
     
@@ -23,6 +23,7 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
     @IBOutlet weak var generalRulesCollectionView: RuleCollectionView!
     
     private var availableGeneralRulesViewController : AvailableRulesViewController?
+    private var displayedPopover: NSPopover?
     
     
     public var presenter: SequencePresenter? {
@@ -97,10 +98,13 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
     
     @IBAction func addGeneralRuleButtonPressed(sender: AnyObject) {
         
+        if displayedPopover != nil { return }
+        
         let popover = NSPopover()
         popover.animates = true
         popover.behavior = .Semitransient
         popover.appearance = NSAppearance(named: NSAppearanceNameAqua)
+        popover.delegate = self
         
         if availableGeneralRulesViewController == nil {
             availableGeneralRulesViewController = AvailableRulesViewController(nibName:"AvailableRulesViewController", bundle:NSBundle(identifier:"com.andris.FilamentKit"))
@@ -111,7 +115,7 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
         popover.contentViewController = availableGeneralRulesViewController
         
         //TODO: Select between preferred Edges..
-        popover.showRelativeToRect(addGenericRuleButton.frame, ofView:self, preferredEdge:.MaxY )
+        popover.showRelativeToRect(addGenericRuleButton.bounds, ofView:self, preferredEdge:.MaxY )
         
     }
     
@@ -151,7 +155,6 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
     
     
     
-    
     //MARK: RuleCollectionView Delegates
     
     public func didAcceptDrop(collectionView: RuleCollectionView, droppedRulePresenter: RulePresenter, atIndex: Int) {
@@ -168,6 +171,19 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
     public func didDoubleClick(collectionView: RuleCollectionView, selectedRulePresenter: RulePresenter) {
         
         presenter?.addRulePresenter(selectedRulePresenter, atIndex: presenter!.currentRulePresenters().count)
+        displayedPopover?.close()
+    }
+    
+
+    
+    //MARK: NSPopover Delegate
+    
+    public func popoverWillShow(notification: NSNotification) {
+        displayedPopover = notification.object as? NSPopover
+    }
+    
+    public func popoverDidClose(notification: NSNotification) {
+        displayedPopover = nil
     }
     
 }

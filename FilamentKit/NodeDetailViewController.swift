@@ -25,7 +25,7 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
     @IBOutlet weak var rulesTitleStackView: NSStackView!
     @IBOutlet weak var addRuleButton: NSButton!
     
-    private var popoverVisible = false
+    private var displayedPopover:NSPopover?
     
     var nodePresenter: NodePresenter?
 
@@ -78,7 +78,7 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
     
     @IBAction func addRuleButtonPressed(sender: AnyObject) {
         
-        guard popoverVisible == false else { return }
+        if displayedPopover != nil { return }
         
         let popover = NSPopover()
         popover.animates = true
@@ -124,6 +124,7 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
     
     public func didDoubleClick(collectionView: RuleCollectionView, selectedRulePresenter: RulePresenter) {
         nodePresenter?.insertRulePresenter(selectedRulePresenter, atIndex:nodePresenter!.rules.count)
+        displayedPopover?.close()
     }
     
     
@@ -139,12 +140,14 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
     
     // MARK: Popover delegate
     
+    //MARK: NSPopover Delegate
+    
     public func popoverWillShow(notification: NSNotification) {
-        popoverVisible = true
+        displayedPopover = notification.object as? NSPopover
     }
     
     public func popoverDidClose(notification: NSNotification) {
-         popoverVisible = false
+        displayedPopover = nil
     }
     
 }
