@@ -9,7 +9,7 @@
 import Foundation
 import Async
 
-enum NodeColour: Int { case LightGrey, Green, Red, Blue}
+enum NodeColour: Int { case VeryLightGrey, LightGrey, Green, Red, Blue}
 
 class NodeView: NSView {
     
@@ -21,7 +21,7 @@ class NodeView: NSView {
         
         super.init(coder: coder)
         
-        pathLayer.lineWidth = 1.0
+        pathLayer.lineWidth = 0.5
         pathLayer.path = calculatePath()
         pathLayer.shouldRasterize = false
         pathLayer.strokeColor = drawingContextColour(.LightGrey).stroke
@@ -57,7 +57,7 @@ class NodeView: NSView {
                 }
                 
             } else {
-                pathLayer.lineWidth = 1.0
+                pathLayer.lineWidth = 0.5
                 pathLayer.strokeColor = drawingContextColour(colourForStatus(currentStatus)).stroke
             }
             CATransaction.commit()
@@ -88,8 +88,8 @@ class NodeView: NSView {
         switch newStatus {
             
         case .Inactive:
-            pathLayer.strokeColor = drawingContextColour(.LightGrey).stroke
-            pathLayer.fillColor = drawingContextColour(.LightGrey).fill
+            pathLayer.strokeColor = drawingContextColour(.VeryLightGrey).stroke
+            pathLayer.fillColor = drawingContextColour(.VeryLightGrey).fill
             
         case .Ready:
             CATransaction.begin()
@@ -132,8 +132,8 @@ class NodeView: NSView {
             pathLayer.fillColor = drawingContextColour(.Red).fill
             
         case .Completed:
-            pathLayer.strokeColor = NSColor.lightGrayColor().CGColor
-            pathLayer.fillColor = drawingContextColour(.LightGrey).fill
+            pathLayer.strokeColor = drawingContextColour(.VeryLightGrey).stroke
+            pathLayer.fillColor = drawingContextColour(.VeryLightGrey).fill
             
         case .Void: fatalError("Trying to add animation when statusNode = .Void")
         }
@@ -157,6 +157,8 @@ class NodeView: NSView {
 func drawingContextColour(colour:NodeColour) -> (fill:CGColor, stroke:CGColor) {
     
     switch colour {
+    case .VeryLightGrey:
+        return (AppConfiguration.Palette.verylightGreyFill.CGColor, AppConfiguration.Palette.verylightGreyStroke.CGColor)
     case .LightGrey:
         return (AppConfiguration.Palette.lightGreyFill.CGColor, AppConfiguration.Palette.lightGreyStroke.CGColor)
     case .Green:

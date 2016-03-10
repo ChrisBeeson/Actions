@@ -24,17 +24,23 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         FilamentDocumentsManager.sharedManager.delegate = self
         sortedDocuments  = FilamentDocumentsManager.sharedManager.documents
         
+        genericRulesCollectionView.ruleCollectionViewDelegate = self
+        genericRulesCollectionView.allowDrops = true
+        genericRulesCollectionView.allowDropsFromType = [.Generic]
+        genericRulesCollectionView.allowDeletions = true
+        
         NSNotificationCenter.defaultCenter().addObserverForName("FilamentTableViewSelectCellForView", object: nil, queue: nil) { (notification) -> Void in
             
             let row = self.tableView.rowForView(notification.object as! NSView)
             self.tableView.selectRowIndexes((NSIndexSet(index: row)), byExtendingSelection: false)
         }
         
-        genericRulesCollectionView.ruleCollectionViewDelegate = self
-        genericRulesCollectionView.allowDrops = true
-        genericRulesCollectionView.allowDropsFromType = [.Generic]
-        genericRulesCollectionView.allowDeletions = true
         
+        NSNotificationCenter.defaultCenter().addObserverForName("RefreshAllSequences", object: nil, queue: nil) { (notification) -> Void in
+            
+            let row = self.tableView.rowForView(notification.object as! NSView)
+            self.tableView.selectRowIndexes((NSIndexSet(index: row)), byExtendingSelection: false)
+        }
     }
     
     

@@ -58,6 +58,8 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     
     func updateView() {
         
+        self.view.alphaValue = self.sequencePresenter?.status == .Completed ? 0.5 : 1.0
+        
         let hidden = (sequencePresenter!.date == nil) ? true : false
         month.hidden = hidden
         day.hidden = hidden

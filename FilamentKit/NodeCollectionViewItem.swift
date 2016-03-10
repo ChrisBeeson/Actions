@@ -97,11 +97,11 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
         
         guard presenter == self.presenter else { return }
         
-        if presenter.type == .Action {
-            titleTextField?.textColor = toStatus == .Completed ?  NSColor.lightGrayColor() : NSColor.blackColor()
-        }
+        titleTextField?.textColor = toStatus == .Completed ?  AppConfiguration.Palette.verylightGreyStroke : NSColor.blackColor()
         
-        if toStatus == .Ready {
+        switch toStatus {
+            
+        case .Ready :
             
             if let indexPath = indexPath {
                 
@@ -110,8 +110,9 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
                 }} else {
                 self.nodeView.currentStatus = .Ready
             }
-        } else {
-            self.nodeView.currentStatus = toStatus
+            
+        default:
+             self.nodeView.currentStatus = toStatus
         }
     }
     
@@ -125,7 +126,6 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     override var acceptsFirstResponder: Bool { return true }
     
     override func becomeFirstResponder() -> Bool {
-        
         return true
     }
     
