@@ -6,14 +6,19 @@
   Copyright © 2016 Andris Ltd. All rights reserved.
 */
 
+
+// DOCUMENT CREATION
+"NEW_DOCUMENT_1ST_ACTION" = "Action 1";
+"NEW_DOCUMENT_2ND_ACTION" = "Action 2";
+
+
+// ALERTS
 "TABLEVIEW_DELETE_SEQ_TITLE" = "Are you sure you want to delete this sequence?";
 "TABLEVIEW_DELETE_SEQ_DELETE" = "Delete";
 "TABLEVIEW_DELETE_SEQ_CANCEL" = "Cancel";
 
 
-
 // RULES
-
 "RULE_NAME_DURATION_WITH_VARIANCE" = "+/- Duration";
 "RULE_DESC_DURATION_WITH_VARIANCE" = "Set the duration and allow for a custom variance to aviod other events.";
 
