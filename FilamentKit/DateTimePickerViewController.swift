@@ -39,10 +39,10 @@ public class DateTimePickerViewController : NSViewController {
         
         if date == nil {
             date = NSDate()
-        } else {
-            datePicker.dateValue = date!
-            timePicker.dateValue = date!
         }
+    
+        datePicker.dateValue = date!
+        timePicker.dateValue = date!
     }
     
     
