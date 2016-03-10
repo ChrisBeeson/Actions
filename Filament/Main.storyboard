@@ -682,26 +682,6 @@ CA
                         <toolbar key="toolbar" implicitIdentifier="A6F18C0C-925A-4A85-BF6F-1FE0777CC213" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconOnly" sizeMode="regular" id="aab-Bf-DFT">
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="LHQ-N4-856"/>
-                                <toolbarItem implicitItemIdentifier="7E7386E5-7D3E-4C6F-BC4F-291D90CA2271" label="Filter" paletteLabel="Filter" id="pwS-u7-meo">
-                                    <nil key="toolTip"/>
-                                    <size key="minSize" width="200" height="23"/>
-                                    <size key="maxSize" width="311" height="32"/>
-                                    <segmentedControl key="view" verticalHuggingPriority="750" allowsExpansionToolTips="YES" springLoaded="YES" id="Wcx-wK-bYT">
-                                        <rect key="frame" x="0.0" y="14" width="206" height="25"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <segmentedCell key="cell" scrollable="YES" lineBreakMode="clipping" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="8mg-Ga-2zM">
-                                            <font key="font" metaFont="system"/>
-                                            <segments>
-                                                <segment label="Active" imageScaling="proportionallyUpOrDown" width="99" selected="YES"/>
-                                                <segment label="Completed" imageScaling="none" width="100" tag="1"/>
-                                            </segments>
-                                        </segmentedCell>
-                                        <connections>
-                                            <action selector="segmentedControlAction:" target="Pec-jz-yQ8" id="mEJ-jC-ibd"/>
-                                        </connections>
-                                    </segmentedControl>
-                                </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="k8e-Ff-DV8"/>
                                 <toolbarItem implicitItemIdentifier="4C8194B7-A84F-4C24-8387-074419CCA166" label="Add" paletteLabel="Add" image="NSAddTemplate" id="Qk1-m1-u3B">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="36" height="32"/>
@@ -718,12 +698,28 @@ CA
                                         <segue destination="vBF-It-k9g" kind="popover" popoverAnchorView="Qk1-m1-u3B" popoverBehavior="t" preferredEdge="maxY" id="6FB-Qq-ClC"/>
                                     </connections>
                                 </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="F52A2B35-33F2-4591-91A7-B94B440073C8" label="Custom View" paletteLabel="Custom View" id="Kov-73-Ysr">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="72" height="24"/>
+                                    <size key="maxSize" width="167" height="24"/>
+                                    <segmentedControl key="view" verticalHuggingPriority="750" id="HyT-e8-Sfv">
+                                        <rect key="frame" x="0.0" y="14" width="167" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="8Wq-ou-bCq">
+                                            <font key="font" metaFont="system"/>
+                                            <segments>
+                                                <segment label="Active" width="80" selected="YES"/>
+                                                <segment label="Completed" width="80" tag="1"/>
+                                            </segments>
+                                        </segmentedCell>
+                                    </segmentedControl>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="fVQ-v2-x0z"/>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
-                                <toolbarItem reference="k8e-Ff-DV8"/>
-                                <toolbarItem reference="k8e-Ff-DV8"/>
-                                <toolbarItem reference="pwS-u7-meo"/>
-                                <toolbarItem reference="k8e-Ff-DV8"/>
+                                <toolbarItem reference="fVQ-v2-x0z"/>
+                                <toolbarItem reference="Kov-73-Ysr"/>
+                                <toolbarItem reference="fVQ-v2-x0z"/>
                                 <toolbarItem reference="Qk1-m1-u3B"/>
                             </defaultToolbarItems>
                         </toolbar>

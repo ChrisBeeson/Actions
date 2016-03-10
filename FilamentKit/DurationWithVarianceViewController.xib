@@ -8,8 +8,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="DurationWithVarianceViewController" customModule="FilamentKit" customModuleProvider="target">
             <connections>
-                <outlet property="durationUnitComboBox" destination="Vsf-2Z-BQS" id="crX-Pk-wmQ"/>
-                <outlet property="variationUnitComboBox" destination="gvB-6O-63N" id="ors-s7-aRL"/>
                 <outlet property="view" destination="c22-O7-iKe" id="Hwx-YP-6QY"/>
             </connections>
         </customObject>
@@ -23,10 +21,10 @@
                     <rect key="frame" x="10" y="10" width="195" height="53"/>
                     <subviews>
                         <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c0g-xf-Jcd">
-                            <rect key="frame" x="0.0" y="31" width="195" height="22"/>
+                            <rect key="frame" x="1" y="30" width="194" height="23"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m0a-4M-3zp">
-                                    <rect key="frame" x="-2" y="4" width="49" height="14"/>
+                                    <rect key="frame" x="-2" y="5" width="49" height="14"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Duration" id="Poc-tG-yll">
                                         <font key="font" metaFont="smallSystem"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -34,7 +32,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VG3-fI-5qI">
-                                    <rect key="frame" x="53" y="0.0" width="63" height="22"/>
+                                    <rect key="frame" x="53" y="1" width="63" height="22"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XJe-pj-Hqf">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="22"/>
@@ -68,26 +66,27 @@
                                         <real value="3.4028234663852886e+38"/>
                                     </customSpacing>
                                 </stackView>
-                                <comboBox focusRingType="none" verticalHuggingPriority="750" ambiguous="YES" tag="1" preferredMaxLayoutWidth="95" translatesAutoresizingMaskIntoConstraints="NO" id="Vsf-2Z-BQS">
-                                    <rect key="frame" x="124" y="-1" width="74" height="23"/>
-                                    <comboBoxCell key="cell" sendsActionOnEndEditing="YES" borderStyle="bezel" focusRingType="none" title="Seconds" buttonBordered="NO" completes="NO" numberOfVisibleItems="7" id="hwf-NW-vLF">
+                                <popUpButton verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vgK-Je-EU5">
+                                    <rect key="frame" x="124" y="2" width="70" height="19"/>
+                                    <popUpButtonCell key="cell" type="roundTextured" title="Minutes" bezelStyle="texturedRounded" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="eI0-8M-Pj3" id="ThN-Jt-cjs">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="smallSystem"/>
-                                        <color key="textColor" white="0.26055386022285176" alpha="1" colorSpace="calibratedWhite"/>
-                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        <objectValues>
-                                            <string>Seconds</string>
-                                            <string>Minutes</string>
-                                            <string>Hours</string>
-                                            <string>Days</string>
-                                            <string>Weeks</string>
-                                            <string>Months</string>
-                                            <string>Years</string>
-                                        </objectValues>
-                                    </comboBoxCell>
+                                        <menu key="menu" id="n8k-NG-KKe">
+                                            <items>
+                                                <menuItem title="Seconds" id="kWZ-kd-fi3"/>
+                                                <menuItem title="Minutes" state="on" id="eI0-8M-Pj3"/>
+                                                <menuItem title="Hours" id="k33-h6-Mb6"/>
+                                                <menuItem title="Days" id="hYX-s3-V3x"/>
+                                                <menuItem title="Weeks" id="fDD-4r-u45"/>
+                                                <menuItem title="Months" id="hBn-Sp-hRR"/>
+                                                <menuItem title="Years" id="E81-6t-zeg" userLabel="Years"/>
+                                            </items>
+                                        </menu>
+                                    </popUpButtonCell>
                                     <connections>
-                                        <outlet property="delegate" destination="-2" id="cSp-nY-Gd3"/>
+                                        <binding destination="-2" name="selectedIndex" keyPath="self.rulePresenter.durationUnit" id="WUE-W4-huv"/>
                                     </connections>
-                                </comboBox>
+                                </popUpButton>
                             </subviews>
                             <visibilityPriorities>
                                 <integer value="1000"/>
@@ -101,18 +100,18 @@
                             </customSpacing>
                         </stackView>
                         <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fhv-LF-fN9">
-                            <rect key="frame" x="28" y="0.0" width="167" height="23"/>
+                            <rect key="frame" x="29" y="0.0" width="166" height="22"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Quh-7u-zjW">
-                                    <rect key="frame" x="-2" y="5" width="21" height="14"/>
+                                    <rect key="frame" x="-2" y="4" width="21" height="14"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="+/-" id="moh-5K-u9m">
                                         <font key="font" metaFont="smallSystem"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ugU-Fd-ppy">
-                                    <rect key="frame" x="25" y="1" width="63" height="22"/>
+                                <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ugU-Fd-ppy">
+                                    <rect key="frame" x="25" y="0.0" width="63" height="22"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="icZ-Co-o2t">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="22"/>
@@ -146,26 +145,27 @@
                                         <real value="3.4028234663852886e+38"/>
                                     </customSpacing>
                                 </stackView>
-                                <comboBox verticalHuggingPriority="750" ambiguous="YES" tag="2" preferredMaxLayoutWidth="95" translatesAutoresizingMaskIntoConstraints="NO" id="gvB-6O-63N">
-                                    <rect key="frame" x="96" y="-1" width="74" height="23"/>
-                                    <comboBoxCell key="cell" sendsActionOnEndEditing="YES" borderStyle="bezel" title="Seconds" buttonBordered="NO" completes="NO" numberOfVisibleItems="7" id="t1K-03-Q44">
+                                <popUpButton verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qzd-KX-ZTz">
+                                    <rect key="frame" x="96" y="1" width="70" height="19"/>
+                                    <popUpButtonCell key="cell" type="roundTextured" title="Minutes" bezelStyle="texturedRounded" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="dOe-Vu-0QD" id="Igt-pE-RrA">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="smallSystem"/>
-                                        <color key="textColor" white="0.26055386019999999" alpha="1" colorSpace="calibratedWhite"/>
-                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        <objectValues>
-                                            <string>Seconds</string>
-                                            <string>Minutes</string>
-                                            <string>Hours</string>
-                                            <string>Days</string>
-                                            <string>Weeks</string>
-                                            <string>Months</string>
-                                            <string>Years</string>
-                                        </objectValues>
-                                    </comboBoxCell>
+                                        <menu key="menu" id="MRA-Ry-Wii">
+                                            <items>
+                                                <menuItem title="Seconds" id="Ach-29-efh"/>
+                                                <menuItem title="Minutes" state="on" id="dOe-Vu-0QD"/>
+                                                <menuItem title="Hours" id="0mB-AB-f2G"/>
+                                                <menuItem title="Days" id="W8w-bc-xUx"/>
+                                                <menuItem title="Weeks" id="XJB-fa-KLu"/>
+                                                <menuItem title="Months" id="ACC-t8-5j3"/>
+                                                <menuItem title="Years" id="ei0-Dv-seP" userLabel="Years"/>
+                                            </items>
+                                        </menu>
+                                    </popUpButtonCell>
                                     <connections>
-                                        <outlet property="delegate" destination="-2" id="DfW-md-WVl"/>
+                                        <binding destination="-2" name="selectedIndex" keyPath="self.rulePresenter.varianceUnit" id="Mg2-3q-4Kj"/>
                                     </connections>
-                                </comboBox>
+                                </popUpButton>
                             </subviews>
                             <visibilityPriorities>
                                 <integer value="1000"/>
