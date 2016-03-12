@@ -16,14 +16,16 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     @IBOutlet weak var genericRulesCollectionView: RuleCollectionView!
     @IBOutlet weak var tableView: NSTableView!
 
-    private var sortedDocuments = [FilamentDocument]()
+    private var allDocuments = [FilamentDocument]()
+    private var filteredDocuments = [FilamentDocument]()
+    private var filter = DocumentFilterType.Active
     private var availableGenericRulesViewController : AvailableRulesViewController?
     private var displayedPopover:NSPopover?
     
     override public func viewDidLoad() {
         
         FilamentDocumentsManager.sharedManager.delegate = self
-        sortedDocuments  = FilamentDocumentsManager.sharedManager.documents
+        allDocuments  = FilamentDocumentsManager.sharedManager.documents
         
         genericRulesCollectionView.ruleCollectionViewDelegate = self
         genericRulesCollectionView.allowDrops = true
@@ -37,40 +39,73 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         }
         
         
-        NSNotificationCenter.defaultCenter().addObserverForName("RefreshAllSequences", object: nil, queue: nil) { (notification) -> Void in
-            
-            let row = self.tableView.rowForView(notification.object as! NSView)
-            self.tableView.selectRowIndexes((NSIndexSet(index: row)), byExtendingSelection: false)
+        NSNotificationCenter.defaultCenter().addObserverForName("RefreshMainTableView", object: nil, queue: nil) { (notification) -> Void in
+                self.updateTableViewContent(true)
         }
     }
     
     
     override public func viewWillAppear() {
 
-            self.tableView!.reloadData()
-            self.tableView.deselectAll(self)
+            updateTableViewContent(false)
             self.refreshGenericRulesCollectionView()
     }
     
     
-    func sortDocuments() {
+    func setTableViewFilter(filter: DocumentFilterType) {
+        
+        if self.filter != filter {
+            self.filter = filter
+            updateTableViewContent(false)
+        }
     }
     
+    
+    func updateTableViewContent(animated:Bool) {
+        
+        let newFilteredDocuments = FilamentDocumentsManager.filterDocumentsForFilterType(allDocuments, filterType: self.filter)
+
+        if animated == false {
+            filteredDocuments = newFilteredDocuments
+            self.tableView!.reloadData()
+            self.tableView.deselectAll(self)
+            return
+        }
+        
+        let oldRows = filteredDocuments
+        let newRows = newFilteredDocuments
+        let diff = oldRows.diff(newRows)
+        
+        filteredDocuments = newFilteredDocuments
+        
+        if (diff.results.count > 0) {
+            
+            let insertionIndexPaths = NSMutableIndexSet()
+            diff.insertions.forEach { insertionIndexPaths.addIndex($0.idx) }
+            let deletionIndexPaths = NSMutableIndexSet()
+            diff.deletions.forEach { deletionIndexPaths.addIndex($0.idx) }
+            
+            dispatch_async(dispatch_get_main_queue(), {
+            self.tableView?.beginUpdates()
+            self.tableView?.insertRowsAtIndexes(insertionIndexPaths, withAnimation: NSTableViewAnimationOptions.SlideRight)
+            self.tableView?.removeRowsAtIndexes(deletionIndexPaths, withAnimation: NSTableViewAnimationOptions.EffectFade)
+            self.tableView?.endUpdates()
+            })
+        }
+    }
     
     
     // MARK: TableView DataSource
     
     public func numberOfRowsInTableView(tableView: NSTableView) -> Int {
         
-        //TODO: Presenter to facilitate segmented control selection?
-        
-        return sortedDocuments.count
+        return filteredDocuments.count
     }
     
     public func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
         let cellView = tableView.makeViewWithIdentifier("FilamentCellView", owner: self) as! FilamentTableCellView
-        cellView.presenter = sortedDocuments[row].sequencePresenter
+        cellView.presenter = filteredDocuments[row].sequencePresenter
         return cellView
     }
     
@@ -85,82 +120,18 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     }
     
     
-    
     // MARK: Filaments Manager Delegate
-    
-    
+
     public func filamentsDocumentsManagerDidUpdateContents(inserted inserted:[FilamentDocument], removed:[FilamentDocument]) {
-        /*
-        DIFF NOT WORKING
         
-        let currentDocuments  = sortedDocuments
-        
-        sortedDocuments.appendContentsOf(inserted)
-        sortedDocuments.removeObjects(removed)
-        
-        let difference = currentDocuments.diff(sortedDocuments)
-        
-        if difference.results.count > 0 {
-        
-        difference.insertion.forEach {
-        }
-        }
-        
-        if (diff.results.count > 0) {
-        let insertedNodes = diff.insertions.map { ($0, $0.idx) }
-        let deletedNodes = diff.deletions.map { ($0, $0.idx) }
-        
-        delegates.forEach { $0.sequencePresenterDidUpdateChainContents(insertedNodes, deletedNodes:deletedNodes) }
-        }
-        
-        updateSequenceStatus()
-        */
-        Async.main{
-            self.tableView.deselectAll(self)
-            self.tableView.beginUpdates()
-        }
-        
-        if removed.count > 0 {
-            
-            let indxs = NSMutableIndexSet()
-            
-            for doc in removed {
-                
-                let index = sortedDocuments.indexOf(doc)
-                
-                if index != -1 { indxs.addIndex(index!) }
-                
-            }
-            Async.main{ [unowned self] in
-                self.tableView.removeRowsAtIndexes(indxs, withAnimation: .EffectFade)
-            }
-            
-            sortedDocuments.removeObjects(removed)
-        }
-        
-        if inserted.count > 0 {
-            sortedDocuments.appendContentsOf(inserted)
-            
-            let indxs = NSMutableIndexSet()
-            
-            for doc in inserted {
-                if let index = FilamentDocumentsManager.sharedManager.documents.indexOf(doc) {
-                    if index != -1 { indxs.addIndex(index) }
-                }
-            }
-            Async.main{ [unowned self] in
-                self.tableView.insertRowsAtIndexes(indxs, withAnimation: .SlideLeft)
-            }
-        }
-        Async.main{
-            self.tableView.endUpdates()
-        }
+        allDocuments.removeObjects(removed)
+        allDocuments.appendContentsOf(inserted)
+        updateTableViewContent(true)
     }
     
     
     
     // MARK: First Responder Events
-    
     
     public func delete(theEvent: NSEvent) {   // TODO: Muliple
         
@@ -216,7 +187,7 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     
     @IBAction func addGenericRuleButtonPressed(sender: AnyObject) {
         
-        if displayedPopover != nil { return }
+        if displayedPopover != nil {return }
         
         let popover = NSPopover()
         popover.animates = true

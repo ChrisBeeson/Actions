@@ -166,4 +166,48 @@ public extension FilamentDocumentsManager {
     }
 }
 
+public enum DocumentFilterType: Int { case Active = 0, Completed = 1 }
+
+public extension FilamentDocumentsManager {
+    
+    public class func filterDocumentsForFilterType(documents:[FilamentDocument], filterType:DocumentFilterType) -> [FilamentDocument] {
+        
+        // First update all sequence statuses
+        documents.forEach{ $0.sequencePresenter?.updateSequenceStatus() }
+        
+        var returnDocuments = [FilamentDocument]()
+        
+        switch filterType {
+            
+        case .Active:
+            
+            // Active sequence are sorted in this order
+            // 0. Waiting for user
+            // 1. Running sequence, soonest to end is first
+            // 2. WaitingForStart, soonest to start first
+            // 3. how do errors fit in?
+            
+            
+        returnDocuments = documents.filter{ $0.sequencePresenter?.status == SequenceStatus.Paused }
+            
+        let running = documents.filter{ $0.sequencePresenter?.status == SequenceStatus.Running }.sort({ $0.sequencePresenter!.completionDate!.compare($1.sequencePresenter!.completionDate!) == .OrderedAscending })
+        returnDocuments.appendContentsOf(running)
+        
+        let errors = documents.filter{ $0.sequencePresenter?.status == SequenceStatus.HasFailedNode }.sort({ $0.sequencePresenter!.completionDate!.compare($1.sequencePresenter!.completionDate!) == .OrderedAscending })
+        returnDocuments.appendContentsOf(errors)
+        
+        let waitingForStart = documents.filter{ $0.sequencePresenter?.status == SequenceStatus.WaitingForStart }.sort({ $0.sequencePresenter!.date!.compare($1.sequencePresenter!.date!) == .OrderedAscending })
+        returnDocuments.appendContentsOf(waitingForStart)
+            
+        let NoStartDate = documents.filter{ $0.sequencePresenter?.status == SequenceStatus.NoStartDateSet }.sort({ $0.fileModificationDate!.compare($1.fileModificationDate!) == .OrderedAscending })            
+            returnDocuments.appendContentsOf(NoStartDate)
+
+
+        case .Completed:
+            
+            returnDocuments = documents.filter{ $0.sequencePresenter?.status == SequenceStatus.Completed }
+        }
+        return returnDocuments
+    }
+}
 

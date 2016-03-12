@@ -18,6 +18,7 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
     @IBOutlet weak var sequenceCollectionView: SequenceCollectionView!
     @IBOutlet weak var scrollview: NSScrollView!
     
+    @IBOutlet weak var mainStackView: NSStackView!
     @IBOutlet weak var addGenericRuleButton: NSButton!
     @IBOutlet weak var favouriteButton: NSButton!
     @IBOutlet weak var generalRulesCollectionView: RuleCollectionView!
@@ -46,7 +47,8 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
                 titleTextField.editable = true
                 
             case false:
-                backgroundView.layer?.borderWidth = 0
+                backgroundView.layer?.borderWidth = 0.2
+                backgroundView.layer?.borderColor = NSColor.blackColor().CGColor
                 titleTextField.editable = false
                 sequenceCollectionView.deselectAll(self)
             }
@@ -78,6 +80,8 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
         
         scrollview.horizontalScroller?.alphaValue = 0.0
         backgroundView.backgroundColor = NSColor.whiteColor()
+        backgroundView.layer?.borderWidth = 0.2
+        backgroundView.layer?.borderColor = NSColor.blackColor().CGColor
         
         if presenter != nil {
             

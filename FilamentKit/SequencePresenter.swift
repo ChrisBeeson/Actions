@@ -260,6 +260,10 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         return status
     }
     
+    
+    
+    /// Update the sequence, without processing the calendar Events
+    
     func updateSequenceStatus() {
         
         let status = calcCurrentStatus()
@@ -280,12 +284,6 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
             }
         default: break
         }
-        
-        updateAllNodesStatus()
-    }
-    
-    
-    func updateAllNodesStatus() {
         
         nodePresenters.forEach{ $0.updateNodeStatus() }
     }

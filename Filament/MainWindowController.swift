@@ -28,6 +28,8 @@ class MainWindowController: NSWindowController {
     
     @IBAction func segmentedControlAction(sender: NSSegmentedControl) {
         
-        AppConfiguration.featureNotYetImplimented()
+        //  AppConfiguration.featureNotYetImplimented()
+        
+        (self.contentViewController as! FilamentsTableViewController).setTableViewFilter(DocumentFilterType(rawValue: sender.selectedSegment)!)
     }
 }
