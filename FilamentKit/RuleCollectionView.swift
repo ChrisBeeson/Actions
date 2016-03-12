@@ -244,8 +244,13 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     
     override public func becomeFirstResponder() -> Bool {
         
-        if self.superview?.superview?.superview?.superview?.isKindOfClass(NSTableCellView) == true {
+        if let view = self.findSuperViewWithClass(NSTableCellView) {
+            
             NSNotificationCenter.defaultCenter().postNotificationName("FilamentTableViewSelectCellForView", object: self.superview)
+            
+            if self.selectionIndexes.count == 0 {
+                self.window?.makeFirstResponder(view)
+            }
         }
         
         return true
