@@ -149,6 +149,13 @@ import Async
         return true
     }
     
+    
+    
+    public func copy(event: NSEvent) {
+        Swift.print("seq collection copy")
+    }
+    
+    
      public func delete(theEvent: NSEvent) {
     
         var nodesToDelete = [Node]()

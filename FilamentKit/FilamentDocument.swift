@@ -68,6 +68,7 @@ public class FilamentDocument: NSDocument {
         return url
     }
     
+    
     public class func newSequenceDocument(title: String) -> FilamentDocument {
         
         let newDoc = FilamentDocument()
@@ -75,21 +76,36 @@ public class FilamentDocument: NSDocument {
         let actionNodes = [Node(text: "NEW_DOCUMENT_1ST_ACTION".localized, type: .Action, rules: nil), Node(text:  "NEW_DOCUMENT_2ND_ACTION".localized, type: .Action, rules: nil)]
         let sequence = Sequence(name: title, actionNodes: actionNodes)
         
-        // sequence.title = title
-
+        sequence.title = !title.isEmpty ? title : "NEW_DOCUMENT_DEFAULT_TITLE".localized
         newDoc.unarchivedSequence = sequence
+        saveNewDocument(newDoc)
+        return newDoc
+    }
+    
+    
+    public class func newSequenceDocumentFromArchive(data: NSData) -> FilamentDocument {
+        
+        let sequence = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! Sequence
+        let newDoc = FilamentDocument()
+         newDoc.unarchivedSequence = sequence
+          saveNewDocument(newDoc)
+        return newDoc
+    }
+    
+    
+     public class func saveNewDocument(document: FilamentDocument) {
         
         let storageDir = AppConfiguration.sharedConfiguration.storageDirectory
-        let url = storageDir().URLByAppendingPathComponent(sequence.filename)
+        let url = storageDir().URLByAppendingPathComponent(document.unarchivedSequence!.filename)
         
-        newDoc.saveToURL(url, ofType: AppConfiguration.filamentFileExtension , forSaveOperation:.SaveOperation, completionHandler: { (Err: NSError?) -> Void in
+        document.saveToURL(url, ofType: AppConfiguration.filamentFileExtension , forSaveOperation:.SaveOperation, completionHandler: { (Err: NSError?) -> Void in
             if Err != nil {
                 print(Err!.localizedDescription)
             }
         })
         
-        return newDoc
     }
+    
     
     public func save() {
         

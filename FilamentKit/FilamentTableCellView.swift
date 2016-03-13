@@ -65,7 +65,6 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
         
     }
     
-    
     override public func viewWillDraw() {
         super.viewWillDraw()
         generalRulesCollectionView.collectionViewLayout = RightAlignedCollectionViewFlowLayout()
@@ -132,10 +131,14 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
     }
     
     
-    
-    
-    @IBAction func favouriteButtonPressed(sender: AnyObject) {
+    //MARK: Events
+    /*
+    public func copy(event: NSEvent) {
+       
+        
+        
     }
+    */
     
     
 

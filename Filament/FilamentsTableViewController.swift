@@ -163,8 +163,26 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     */
     
     public func copy(event: NSEvent) {
-        Swift.print("copy")
+        
+        guard self.tableView.selectedRow != -1 else { return }
+        
+        let pasteboard = NSPasteboard.generalPasteboard()
+        pasteboard.clearContents()
+        
+        if let sequence = filteredDocuments[self.tableView.selectedRow].sequencePresenter {
+           let item = sequence.pasteboardItem()
+           pasteboard.writeObjects([item])
+        }
     }
+    
+    public func paste(event: NSEvent) {
+        
+        let pasteboard = NSPasteboard.generalPasteboard()
+        if let data = pasteboard.dataForType(AppConfiguration.UTI.sequence) {
+             FilamentDocument.newSequenceDocumentFromArchive(data)
+        }
+    }
+    
     public func cut(event: NSEvent) {
         Swift.print(event)
     }
@@ -184,6 +202,25 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
             tableView.deselectAll(nil)
         }
     }
+    
+    
+    //MARK: Menu
+ 
+    public override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
+    
+        switch menuItem.action {
+            
+        case Selector("paste:"):
+            let pasteboard = NSPasteboard.generalPasteboard()
+            return pasteboard.canReadItemWithDataConformingToTypes([AppConfiguration.UTI.sequence])
+            
+        case Selector("copy:"), Selector("cut:"), Selector("delete:") :
+            return self.tableView.selectedRowIndexes.count > 0 ? true : false
+            
+        default: return false
+        }
+    }
+    
     
     //MARK: Generic Rules Collection View
     

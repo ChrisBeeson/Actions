@@ -23,7 +23,7 @@ import Foundation
 
     // MARK: Initializers
     
-    override  init () {
+    override init () {
         super.init()
     }
     
@@ -96,6 +96,8 @@ import Foundation
      override var description: String {
         return " \(title)"
     }
+    
+    
     
     // MARK: Equality
     

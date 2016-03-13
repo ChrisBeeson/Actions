@@ -121,7 +121,6 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
             default: return "Invaid Type"
                 
             }
-            return "Nil"
         }
     }
     

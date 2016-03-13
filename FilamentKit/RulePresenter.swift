@@ -44,7 +44,6 @@ public class RulePresenter : NSObject {
     }
     
     
-    
     //MARK: Pasteboard
     
     func draggingItem() -> NSPasteboardItem {

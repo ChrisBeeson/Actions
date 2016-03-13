@@ -320,7 +320,19 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         sequence!.generalRules.removeObject(rule.rule)
         delegates.forEach{ $0.sequencePresenterDidChangeGeneralRules(self) }
     }
+   
     
+    //MARK: Pasteboard
+    
+    public func pasteboardItem() -> NSPasteboardItem {
+        
+        guard sequence != nil else { return NSPasteboardItem()}
+        
+        let data = NSKeyedArchiver.archivedDataWithRootObject(self.sequence!.copy())
+        let item = NSPasteboardItem()
+        item.setData(data, forType: AppConfiguration.UTI.sequence)
+        return item
+    }
     
     
     

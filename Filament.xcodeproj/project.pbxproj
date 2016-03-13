@@ -209,6 +209,7 @@
 		475927B01C6C725700D24DE9 /* Dwifft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dwifft.swift; sourceTree = "<group>"; };
 		477212051BED699500D5E988 /* FilamentDocumentsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilamentDocumentsManager.swift; sourceTree = "<group>"; };
 		477212071BED9DCB00D5E988 /* Filament.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Filament.entitlements; path = Filament/Filament.entitlements; sourceTree = "<group>"; };
+		4773D5451C95547000758B5A /* Sequence+PasteBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sequence+PasteBoard.swift"; sourceTree = "<group>"; };
 		477626931C53823B00C35599 /* FilamentKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilamentKit.h; sourceTree = "<group>"; };
 		4778C0A71C656B2500F5A259 /* DateNodeCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateNodeCollectionViewItem.swift; sourceTree = "<group>"; };
 		4778C0A91C657D8F00F5A259 /* NodeCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeCollectionViewItem.swift; sourceTree = "<group>"; };
@@ -403,6 +404,7 @@
 				473574741B9A689B00493CA0 /* Node.swift */,
 				4720B50B1C71193600229734 /* Node+Event.swift */,
 				473574761B9A68AC00493CA0 /* Sequence.swift */,
+				4773D5451C95547000758B5A /* Sequence+PasteBoard.swift */,
 				47CD21C01BDF7A2600AF25BE /* Sequence+NodeLogic.swift */,
 				47CD21C51BDF807900AF25BE /* Sequence+EventLogic.swift */,
 				835740B11C77AD0700CFBB1B /* TimeEvent.swift */,
