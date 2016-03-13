@@ -30,6 +30,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(aNotification: NSNotification) {
       
         FilamentDocumentsManager.sharedManager.saveAllDocuments()
+        AppConfiguration.sharedConfiguration.saveContext()
     }
     
     func applicationShouldTerminateAfterLastWindowClosed(sender: NSApplication) -> Bool {
@@ -38,6 +39,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidBecomeActive(notification: NSNotification) {
         print("Did be come Active")
+        
+        NSNotificationCenter.defaultCenter().postNotificationName("RefreshMainTableView", object: nil)
     }
     
     func applicationDidUnhide(notification: NSNotification) {

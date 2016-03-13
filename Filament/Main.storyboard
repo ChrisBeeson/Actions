@@ -961,7 +961,7 @@ CA
                                                     </collectionView>
                                                 </subviews>
                                             </clipView>
-                                            <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="0.25000000000000822" horizontal="YES" id="lrW-ka-zWL">
+                                            <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="0.24999999999999178" horizontal="YES" id="lrW-ka-zWL">
                                                 <rect key="frame" x="0.0" y="2" width="400" height="16"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>

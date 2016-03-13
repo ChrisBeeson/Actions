@@ -15,6 +15,7 @@ class AvoidCalendarEventsViewController : RuleViewController , RulePresenterDele
     
     var calendars = [Calendar]()
     var calendarCheckboxes = [Calendar : NSButton]()
+    var saveToContext = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +43,8 @@ class AvoidCalendarEventsViewController : RuleViewController , RulePresenterDele
             let state = (cal.1.state == NSOnState) ? true : false
             presenter.setCalendarAvoidState(cal.0, avoid:state)
         }
+        
+        if saveToContext == true { AppConfiguration.sharedConfiguration.saveContext() }
     }
     
     func stackViewForCalendar(calendar:Calendar) -> NSView {

@@ -33,7 +33,12 @@ class AvoidCalendarEventsRule: Rule, NSCoding {
             
             if interestPeriod == nil { return nil }
             
-            guard let events = CalendarManager.sharedInstance.events(interestPeriod!, calendars:calendars) else {
+            let activeCalendars = calendars.filter({ $0.avoid == true })
+            
+            print("Calendars")
+            for cal in activeCalendars {  print(cal.name) }
+            
+            guard let events = CalendarManager.sharedInstance.events(interestPeriod!, calendars:activeCalendars) else {
                 return nil
             }
             

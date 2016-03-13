@@ -38,7 +38,6 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
             self.tableView.selectRowIndexes((NSIndexSet(index: row)), byExtendingSelection: false)
         }
         
-        
         NSNotificationCenter.defaultCenter().addObserverForName("RefreshMainTableView", object: nil, queue: nil) { (notification) -> Void in
                 self.updateTableViewContent(true)
         }

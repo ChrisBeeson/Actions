@@ -193,7 +193,7 @@ public extension FilamentDocumentsManager {
         let running = documents.filter{ $0.sequencePresenter?.status == SequenceStatus.Running }.sort({ $0.sequencePresenter!.completionDate!.compare($1.sequencePresenter!.completionDate!) == .OrderedAscending })
         returnDocuments.appendContentsOf(running)
         
-        let errors = documents.filter{ $0.sequencePresenter?.status == SequenceStatus.HasFailedNode }.sort({ $0.sequencePresenter!.completionDate!.compare($1.sequencePresenter!.completionDate!) == .OrderedAscending })
+        let errors = documents.filter{ $0.sequencePresenter?.status == SequenceStatus.HasFailedNode }.sort({ $0.sequencePresenter!.date!.compare($1.sequencePresenter!.date!) == .OrderedAscending })
         returnDocuments.appendContentsOf(errors)
         
         let waitingForStart = documents.filter{ $0.sequencePresenter?.status == SequenceStatus.WaitingForStart }.sort({ $0.sequencePresenter!.date!.compare($1.sequencePresenter!.date!) == .OrderedAscending })

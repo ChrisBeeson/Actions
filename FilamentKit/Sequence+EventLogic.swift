@@ -21,16 +21,15 @@ extension Sequence {
             
             var solvedPeriod: SolvedPeriod?
             
-            // Add Rules
-            
             var rules = node.rules
             
-            // Avoid filament calendar
+            // add general sequence Rules
+              rules.appendContentsOf(self.generalRules)
             
-            // rules.append(AvoidCalendarEvents(calendars: [CalendarManager.sharedInstance.applicationCalendar!]))
-            
-            // TODO: app generic rules
-            
+            // add generic app wide rules, if the sequence hasn't overruled them
+            // if an event for this event already exists we need to remove it so it doesn't clash with its self.
+              let genericRules = AppConfiguration.sharedConfiguration.contextPresenter().rules.filter { !self.generalRules.contains($0) }
+             rules.appendContentsOf(genericRules)
             
             switch postion(node) {
                 
@@ -57,16 +56,11 @@ extension Sequence {
             }
             
             if solvedPeriod == nil || solvedPeriod!.solved == false {
-                
-                print("Failed at node: \(node.title)")
-                
                 processEventsForTransitionPeriods()
-                
                 return (false, node)
             }
             
             time = solvedPeriod!.period!.EndDate
-            
             node.setEventPeriod(solvedPeriod!.period!)
         }
         

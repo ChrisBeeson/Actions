@@ -241,6 +241,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
                 presenter.currentStatus = .Error
             }
         }
+        
         updateSequenceStatus()
     }
     
