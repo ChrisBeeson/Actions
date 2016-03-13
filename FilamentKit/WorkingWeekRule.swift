@@ -11,7 +11,7 @@ import DateTools
 
 //TODO: Working Week
 
- class WorkingWeekRule: Rule {
+ class WorkingWeekRule: Rule, NSCoding {
     
     // This rule sits the duration of an event.
     // It allows the event to be shortened to a minimum duration if required.

@@ -32,6 +32,11 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         }
     }
     
+    
+    // document  updateChangeCount:
+    
+    
+    
     public var title: String {
         get {
             return sequence!.title

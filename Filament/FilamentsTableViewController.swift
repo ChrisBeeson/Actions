@@ -45,7 +45,7 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     
     
     override public func viewWillAppear() {
-
+        
             updateTableViewContent(false)
             self.refreshGenericRulesCollectionView()
     }
@@ -86,7 +86,7 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
             
             dispatch_async(dispatch_get_main_queue(), {
             self.tableView?.beginUpdates()
-            self.tableView?.insertRowsAtIndexes(insertionIndexPaths, withAnimation: NSTableViewAnimationOptions.SlideRight)
+            self.tableView?.insertRowsAtIndexes(insertionIndexPaths, withAnimation: NSTableViewAnimationOptions.SlideLeft)
             self.tableView?.removeRowsAtIndexes(deletionIndexPaths, withAnimation: NSTableViewAnimationOptions.EffectFade)
             self.tableView?.endUpdates()
             })
@@ -163,7 +163,6 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     */
     
     public func copy(event: NSEvent) {
-        
         guard self.tableView.selectedRow != -1 else { return }
         
         let pasteboard = NSPasteboard.generalPasteboard()

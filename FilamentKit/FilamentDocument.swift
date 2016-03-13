@@ -45,12 +45,12 @@ public class FilamentDocument: NSDocument {
     }
     
     public override class func preservesVersions() -> Bool {
-     return false
+        return false
     }
     
     // MARK: NSDocument Overrides
     
-
+    
     override public func defaultDraftName() -> String {
         
         return AppConfiguration.defaultFilamentDraftName
@@ -58,7 +58,7 @@ public class FilamentDocument: NSDocument {
     
     /*
     override public func isDocumentEdited() -> Bool {
-        return true
+    return true
     }
     */
     
@@ -72,7 +72,6 @@ public class FilamentDocument: NSDocument {
     public class func newSequenceDocument(title: String) -> FilamentDocument {
         
         let newDoc = FilamentDocument()
-        
         let actionNodes = [Node(text: "NEW_DOCUMENT_1ST_ACTION".localized, type: .Action, rules: nil), Node(text:  "NEW_DOCUMENT_2ND_ACTION".localized, type: .Action, rules: nil)]
         let sequence = Sequence(name: title, actionNodes: actionNodes)
         
@@ -87,13 +86,14 @@ public class FilamentDocument: NSDocument {
         
         let sequence = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! Sequence
         let newDoc = FilamentDocument()
-         newDoc.unarchivedSequence = sequence
-          saveNewDocument(newDoc)
+        newDoc.unarchivedSequence = sequence
+        sequence.uuid =  NSUUID()
+        saveNewDocument(newDoc)
         return newDoc
     }
     
     
-     public class func saveNewDocument(document: FilamentDocument) {
+    public class func saveNewDocument(document: FilamentDocument) {
         
         let storageDir = AppConfiguration.sharedConfiguration.storageDirectory
         let url = storageDir().URLByAppendingPathComponent(document.unarchivedSequence!.filename)
@@ -103,7 +103,6 @@ public class FilamentDocument: NSDocument {
                 print(Err!.localizedDescription)
             }
         })
-        
     }
     
     
@@ -155,5 +154,5 @@ public class FilamentDocument: NSDocument {
             NSLocalizedFailureReasonErrorKey: NSLocalizedString("No presenter was available for the document", comment: "Archive failure reason")
             ])
     }
-
+    
 }

@@ -48,7 +48,7 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
                 
             case false:
                 backgroundView.layer?.borderWidth = 0.2
-                backgroundView.layer?.borderColor = NSColor.blackColor().CGColor
+                backgroundView.layer?.borderColor = NSColor.grayColor().CGColor
                 titleTextField.editable = false
                 sequenceCollectionView.deselectAll(self)
             }
@@ -80,7 +80,7 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
         scrollview.horizontalScroller?.alphaValue = 0.0
         backgroundView.backgroundColor = NSColor.whiteColor()
         backgroundView.layer?.borderWidth = 0.2
-        backgroundView.layer?.borderColor = NSColor.blackColor().CGColor
+        backgroundView.layer?.borderColor = NSColor.grayColor().CGColor
         
         if presenter != nil {
             
