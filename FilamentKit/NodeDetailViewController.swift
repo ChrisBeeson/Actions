@@ -16,6 +16,8 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
     @IBOutlet weak var notesTextField: NSTextField!
     @IBOutlet weak var dateTextField: NSTextField!
     
+    @IBOutlet weak var eventStringStackView: NSStackView!
+    
     // StackView Views
     @IBOutlet weak var mainStackView: NSStackView!
     @IBOutlet weak var titleStackView: NSStackView!
@@ -42,37 +44,29 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
         ruleCollectionView.allowDrops = true
         ruleCollectionView.allowDropsFromType = nodePresenter!.type
         ruleCollectionView.allowDeletions = true
+      /*
+        mainStackView.detachesHiddenViews = false
+        if nodePresenter!.type == NodeType.Transition {
+            eventStringStackView.hidden = true
+        }
+*/
+        
+         reloadRulesCollectionView()
     }
     
     
     override public func viewWillLayout() {
         super.viewWillLayout()
-        titleTextField.stringValue = nodePresenter!.title
-        notesTextField.stringValue = nodePresenter!.notes
-        reloadRulesCollectionView()
+       
     }
     
     override public func viewWillAppear() {
         super.viewWillAppear()
-        
-        /*
-        https://github.com/mattt/FormatterKit
-        
-        if nodePresenter!.type == NodeType.Action {
-        if let date = nodePresenter!.event?.startDate {
-        dateTextField.stringValue = date.formattedDateWithStyle(.LongStyle)
-        } else {
-        dateTextField.stringValue = ""
-        }
-        } else {
-        dateTextField.stringValue = ""
-        }
-        */
     }
 
     @IBAction func titleTextFieldDidFinishEditing(sender: AnyObject) {
         
-        nodePresenter!.title = titleTextField.stringValue
+        //       nodePresenter!.title = titleTextField.stringValue
     }
     
     

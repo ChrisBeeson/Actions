@@ -51,6 +51,26 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
         }
     }
     
+    var location: String {
+        get {
+            return node.location
+        }
+        set {
+            node.location = newValue
+        }
+    }
+    
+    
+    var notes: String {
+        get {
+            // if node.notes.isEmpty { return nil }
+            return node.notes
+        }
+        set {
+            node.notes = newValue
+        }
+    }
+    
     public var type: NodeType {
         get {
             return node.type
@@ -63,16 +83,6 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
         }
     }
     
-    
-    var notes: String {
-        get {
-            return node.notes
-        }
-        set {
-            node.notes = newValue
-            delegates.forEach { $0.nodePresenterDidChangeNotes(self) }
-        }
-    }
     
     
     var currentStatus:NodeStatus {
@@ -88,6 +98,30 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     var event: TimeEvent? {
         get {
             return node.event
+        }
+    }
+    
+    var humanReadableEventString : String {
+        get {
+
+            switch self.type {
+            case NodeType.Action:
+                if self.event == nil {
+                    return "NODE_EVENT_STRING_NO_EVENT".localized
+                }
+            
+                var string = self.event!.startDate.formattedDateWithFormat("dd MMMM HH:mm")
+                string.appendContentsOf(" to ")
+                string.appendContentsOf(self.event!.endDate.formattedDateWithFormat("HH:mm"))
+                return string
+                
+            case NodeType.Transition: return "Transition"
+                
+                // Do we have events
+            default: return "Invaid Type"
+                
+            }
+            return "Nil"
         }
     }
     

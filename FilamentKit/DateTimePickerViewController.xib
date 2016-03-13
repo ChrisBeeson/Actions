@@ -24,10 +24,10 @@
                     <rect key="frame" x="12" y="10" width="174" height="230"/>
                     <subviews>
                         <stackView distribution="fillProportionally" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mzY-86-1zT">
-                            <rect key="frame" x="33" y="175" width="107" height="55"/>
+                            <rect key="frame" x="34" y="175" width="107" height="55"/>
                             <subviews>
                                 <datePicker focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Uuy-rS-CJ3">
-                                    <rect key="frame" x="0.0" y="10" width="107" height="34"/>
+                                    <rect key="frame" x="0.0" y="11" width="107" height="34"/>
                                     <datePickerCell key="cell" refusesFirstResponder="YES" focusRingType="none" alignment="left" drawsBackground="NO" datePickerStyle="textField" id="zYn-bQ-h42">
                                         <font key="font" metaFont="systemLight" size="24"/>
                                         <calendarDate key="date" timeIntervalSinceReferenceDate="-595929600" calendarFormat="%Y-%m-%d %H:%M:%S %z">
@@ -48,7 +48,7 @@
                             </customSpacing>
                         </stackView>
                         <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vcl-AO-cHR">
-                            <rect key="frame" x="17" y="23" width="139" height="148"/>
+                            <rect key="frame" x="18" y="23" width="139" height="148"/>
                             <datePickerCell key="cell" alignment="left" drawsBackground="NO" datePickerStyle="clockAndCalendar" id="eo8-Kd-2Yx">
                                 <font key="font" metaFont="systemLight" size="13"/>
                                 <calendarDate key="date" timeIntervalSinceReferenceDate="-595929600" calendarFormat="%Y-%m-%d %H:%M:%S %z">

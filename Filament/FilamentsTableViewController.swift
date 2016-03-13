@@ -162,6 +162,9 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     }
     */
     
+    public func copy(event: NSEvent) {
+        Swift.print("copy")
+    }
     public func cut(event: NSEvent) {
         Swift.print(event)
     }

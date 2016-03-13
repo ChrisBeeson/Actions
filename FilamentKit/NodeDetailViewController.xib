@@ -11,6 +11,7 @@
             <connections>
                 <outlet property="addRuleButton" destination="N1L-WR-Md3" id="ClE-bw-1g0"/>
                 <outlet property="dateTextField" destination="Irr-Jp-XxP" id="alr-9D-dFA"/>
+                <outlet property="eventStringStackView" destination="zFS-JX-ETv" id="fge-sj-EIo"/>
                 <outlet property="mainStackView" destination="fns-Wr-QDB" id="JcT-4E-8ky"/>
                 <outlet property="notesTextField" destination="GRN-nw-n6Q" id="U0V-TS-Aqy"/>
                 <outlet property="ruleCollectionView" destination="Vh4-gK-Teh" id="PxV-ih-qFd"/>
@@ -23,18 +24,17 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView wantsLayer="YES" id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="291" height="234"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+        <customView autoresizesSubviews="NO" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="294" height="219"/>
             <subviews>
-                <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" verticalHuggingPriority="260" verticalCompressionResistancePriority="760" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fns-Wr-QDB">
-                    <rect key="frame" x="20" y="20" width="251" height="194"/>
+                <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="7" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="1000" verticalHuggingPriority="1000" verticalCompressionResistancePriority="250" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fns-Wr-QDB">
+                    <rect key="frame" x="20" y="20" width="254" height="179"/>
                     <subviews>
                         <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pna-jH-CKI">
-                            <rect key="frame" x="0.0" y="156" width="251" height="38"/>
+                            <rect key="frame" x="0.0" y="141" width="254" height="38"/>
                             <subviews>
                                 <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vQH-96-PCB">
-                                    <rect key="frame" x="-2" y="16" width="255" height="22"/>
+                                    <rect key="frame" x="-2" y="16" width="258" height="22"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="left" title="My Text" placeholderString="Name" usesSingleLineMode="YES" id="00O-nu-52x">
                                         <font key="font" metaFont="system" size="18"/>
                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -42,15 +42,26 @@
                                     </textFieldCell>
                                     <connections>
                                         <action selector="titleTextFieldDidFinishEditing:" target="-2" id="3SM-wX-Qea"/>
+                                        <binding destination="-2" name="value" keyPath="self.nodePresenter.title" id="6CN-I3-A9f"/>
                                     </connections>
                                 </textField>
-                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="soW-a3-LlD">
-                                    <rect key="frame" x="-2" y="0.0" width="255" height="14"/>
-                                    <textFieldCell key="cell" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" title="Location" placeholderString="Notes" id="NHT-jn-ZJs">
+                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="soW-a3-LlD">
+                                    <rect key="frame" x="0.0" y="0.0" width="254" height="14"/>
+                                    <textFieldCell key="cell" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="left" title="Location" placeholderString="Location" drawsBackground="YES" id="NHT-jn-ZJs">
                                         <font key="font" metaFont="smallSystem"/>
                                         <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                                     </textFieldCell>
+                                    <connections>
+                                        <binding destination="-2" name="value" keyPath="self.nodePresenter.location" id="wlp-ud-wk0">
+                                            <dictionary key="options">
+                                                <string key="NSMultipleValuesPlaceholder">Location</string>
+                                                <string key="NSNoSelectionPlaceholder">Location</string>
+                                                <string key="NSNotApplicablePlaceholder">Location</string>
+                                                <string key="NSNullPlaceholder">Location</string>
+                                            </dictionary>
+                                        </binding>
+                                    </connections>
                                 </textField>
                             </subviews>
                             <visibilityPriorities>
@@ -62,31 +73,49 @@
                                 <real value="3.4028234663852886e+38"/>
                             </customSpacing>
                         </stackView>
-                        <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="UmE-hs-F2b">
-                            <rect key="frame" x="0.0" y="143" width="251" height="5"/>
-                            <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                            <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <font key="titleFont" metaFont="system"/>
-                        </box>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Irr-Jp-XxP">
-                            <rect key="frame" x="-2" y="118" width="224" height="17"/>
-                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Weds 16th June 2016 - 2pm To 3pm" id="MIt-CR-HeM">
-                                <font key="font" metaFont="system"/>
-                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                            </textFieldCell>
-                        </textField>
-                        <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="F17-XD-WdX">
-                            <rect key="frame" x="0.0" y="105" width="251" height="5"/>
-                            <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                            <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <font key="titleFont" metaFont="system"/>
-                        </box>
+                        <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="260" ambiguous="YES" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zFS-JX-ETv">
+                            <rect key="frame" x="0.0" y="99" width="254" height="35"/>
+                            <subviews>
+                                <box verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="UmE-hs-F2b">
+                                    <rect key="frame" x="0.0" y="32" width="254" height="5"/>
+                                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <font key="titleFont" metaFont="system"/>
+                                </box>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Irr-Jp-XxP">
+                                    <rect key="frame" x="-2" y="9" width="54" height="17"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="MIt-CR-HeM">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                    <connections>
+                                        <binding destination="-2" name="value" keyPath="self.nodePresenter.humanReadableEventString" id="XvA-BZ-Fmm"/>
+                                    </connections>
+                                </textField>
+                                <box verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="F17-XD-WdX">
+                                    <rect key="frame" x="0.0" y="-2" width="254" height="5"/>
+                                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <font key="titleFont" metaFont="system"/>
+                                </box>
+                            </subviews>
+                            <visibilityPriorities>
+                                <integer value="1000"/>
+                                <integer value="1000"/>
+                                <integer value="1000"/>
+                            </visibilityPriorities>
+                            <customSpacing>
+                                <real value="3.4028234663852886e+38"/>
+                                <real value="3.4028234663852886e+38"/>
+                                <real value="3.4028234663852886e+38"/>
+                            </customSpacing>
+                        </stackView>
                         <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="3" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6EG-as-AJv">
-                            <rect key="frame" x="0.0" y="24" width="250" height="73"/>
+                            <rect key="frame" x="0.0" y="21" width="250" height="71"/>
                             <subviews>
                                 <stackView distribution="fill" orientation="horizontal" alignment="baseline" spacing="210" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fgA-j6-eLf">
-                                    <rect key="frame" x="0.0" y="53" width="250" height="20"/>
+                                    <rect key="frame" x="0.0" y="55" width="250" height="16"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="706-Bj-ymx">
                                             <rect key="frame" x="-2" y="0.0" width="33" height="14"/>
@@ -96,11 +125,8 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N1L-WR-Md3">
-                                            <rect key="frame" x="239" y="0.0" width="11" height="20"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="20" id="u4g-VA-YdV"/>
-                                            </constraints>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N1L-WR-Md3">
+                                            <rect key="frame" x="239" y="1" width="11" height="15"/>
                                             <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" controlSize="mini" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="1WI-q0-neY">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="miniSystem"/>
@@ -120,19 +146,19 @@
                                     </customSpacing>
                                 </stackView>
                                 <box ambiguous="YES" misplaced="YES" title="Box" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="jYC-LU-8Wf">
-                                    <rect key="frame" x="-3" y="-4" width="256" height="56"/>
+                                    <rect key="frame" x="-3" y="-4" width="256" height="58"/>
                                     <view key="contentView" focusRingType="none" ambiguous="YES" id="dvN-xw-Gnb">
-                                        <rect key="frame" x="1" y="1" width="254" height="54"/>
+                                        <rect key="frame" x="1" y="1" width="254" height="56"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <scrollView ambiguous="YES" misplaced="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="0R7-Oc-1ih">
-                                                <rect key="frame" x="6" y="3" width="242" height="45"/>
+                                                <rect key="frame" x="5" y="6" width="242" height="53"/>
                                                 <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="Eha-Pe-gdp">
-                                                    <rect key="frame" x="0.0" y="0.0" width="242" height="45"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="242" height="53"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <collectionView ambiguous="YES" selectable="YES" id="Vh4-gK-Teh" customClass="RuleCollectionView" customModule="FilamentKit">
-                                                            <rect key="frame" x="0.0" y="0.0" width="234" height="83"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="235" height="204"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" scrollDirection="horizontal" id="o8Y-fR-MuF">
                                                                 <size key="itemSize" width="50" height="50"/>
@@ -148,16 +174,16 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </scroller>
                                                 <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="qp7-dY-PNL">
-                                                    <rect key="frame" x="226" y="0.0" width="16" height="45"/>
+                                                    <rect key="frame" x="226" y="0.0" width="16" height="53"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </scroller>
                                             </scrollView>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="0R7-Oc-1ih" secondAttribute="trailing" constant="6" id="FBp-Q1-epV"/>
-                                            <constraint firstAttribute="bottom" secondItem="0R7-Oc-1ih" secondAttribute="bottom" constant="2" id="I2Z-gc-Kha"/>
-                                            <constraint firstItem="0R7-Oc-1ih" firstAttribute="top" secondItem="dvN-xw-Gnb" secondAttribute="top" constant="6" id="c1w-go-Cb9"/>
-                                            <constraint firstItem="0R7-Oc-1ih" firstAttribute="leading" secondItem="dvN-xw-Gnb" secondAttribute="leading" constant="6" id="uHo-3z-2wJ"/>
+                                            <constraint firstItem="0R7-Oc-1ih" firstAttribute="leading" secondItem="dvN-xw-Gnb" secondAttribute="leading" constant="5" id="5iQ-rb-I43"/>
+                                            <constraint firstAttribute="trailing" secondItem="0R7-Oc-1ih" secondAttribute="trailing" constant="7" id="ZPI-Nx-43n"/>
+                                            <constraint firstAttribute="bottom" secondItem="0R7-Oc-1ih" secondAttribute="bottom" constant="6" id="fC8-22-7O8"/>
+                                            <constraint firstItem="0R7-Oc-1ih" firstAttribute="top" secondItem="dvN-xw-Gnb" secondAttribute="top" constant="5" id="fom-6D-f8d"/>
                                         </constraints>
                                     </view>
                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
@@ -173,18 +199,26 @@
                                 <real value="3.4028234663852886e+38"/>
                             </customSpacing>
                         </stackView>
-                        <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="GRN-nw-n6Q">
-                            <rect key="frame" x="-2" y="0.0" width="255" height="14"/>
+                        <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GRN-nw-n6Q">
+                            <rect key="frame" x="-2" y="0.0" width="258" height="14"/>
                             <textFieldCell key="cell" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" placeholderString="Notes" id="XC6-4J-Vzk">
                                 <font key="font" metaFont="smallSystem"/>
                                 <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                             </textFieldCell>
+                            <connections>
+                                <binding destination="-2" name="value" keyPath="self.nodePresenter.notes" id="y4Q-Rl-k0o">
+                                    <dictionary key="options">
+                                        <string key="NSMultipleValuesPlaceholder">Notes</string>
+                                        <string key="NSNoSelectionPlaceholder">Notes</string>
+                                        <string key="NSNotApplicablePlaceholder">Notes</string>
+                                        <string key="NSNullPlaceholder">Notes</string>
+                                    </dictionary>
+                                </binding>
+                            </connections>
                         </textField>
                     </subviews>
                     <visibilityPriorities>
-                        <integer value="1000"/>
-                        <integer value="1000"/>
                         <integer value="1000"/>
                         <integer value="1000"/>
                         <integer value="1000"/>
@@ -195,20 +229,19 @@
                         <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
-                        <real value="3.4028234663852886e+38"/>
-                        <real value="3.4028234663852886e+38"/>
                     </customSpacing>
                 </stackView>
             </subviews>
             <constraints>
-                <constraint firstItem="fns-Wr-QDB" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="20" id="JvQ-OB-SK0"/>
-                <constraint firstItem="fns-Wr-QDB" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="20" id="bmX-Hv-Tfz"/>
-                <constraint firstAttribute="trailing" secondItem="fns-Wr-QDB" secondAttribute="trailing" constant="20" id="pgi-jQ-EEF"/>
-                <constraint firstAttribute="bottom" secondItem="fns-Wr-QDB" secondAttribute="bottom" constant="20" id="wTu-KQ-RlI"/>
+                <constraint firstAttribute="bottom" secondItem="fns-Wr-QDB" secondAttribute="bottom" constant="20" id="P89-WH-Xiq"/>
+                <constraint firstItem="fns-Wr-QDB" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="20" id="nAf-Gd-8gU"/>
+                <constraint firstItem="fns-Wr-QDB" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="20" id="q1o-Je-KRw"/>
+                <constraint firstAttribute="trailing" secondItem="fns-Wr-QDB" secondAttribute="trailing" constant="20" id="zo2-2m-rZO"/>
             </constraints>
-            <point key="canvasLocation" x="-362.5" y="38"/>
+            <point key="canvasLocation" x="-361" y="30.5"/>
         </customView>
         <dateFormatter dateStyle="medium" timeStyle="short" id="ige-uG-4DW"/>
+        <userDefaultsController representsSharedInstance="YES" id="Xci-zi-wnM"/>
     </objects>
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>

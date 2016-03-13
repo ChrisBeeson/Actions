@@ -25,6 +25,7 @@ class Node: NSObject, NSCoding {
     
     var title = ""
     var notes = ""
+    var location = ""
     var rules = [Rule]()
     var type:NodeType = [.Action]
     var leftTransitionNode: Node?
@@ -73,6 +74,7 @@ class Node: NSObject, NSCoding {
     private struct SerializationKeys {
         static let title = "title"
         static let notes = "notes"
+        static let location = "location"
         static let rules = "rules"
         static let type = "type"
         static let uuid = "uuid"
@@ -87,6 +89,7 @@ class Node: NSObject, NSCoding {
         
         title = aDecoder.decodeObjectForKey(SerializationKeys.title) as! String
         notes = aDecoder.decodeObjectForKey(SerializationKeys.notes) as! String
+        location = aDecoder.decodeObjectForKey(SerializationKeys.location) as! String
         rules = aDecoder.decodeObjectForKey(SerializationKeys.rules) as! [Rule]
         type = NodeType(rawValue: aDecoder.decodeIntegerForKey(SerializationKeys.type))
         UUID = aDecoder.decodeObjectForKey(SerializationKeys.uuid) as! NSUUID
@@ -104,6 +107,7 @@ class Node: NSObject, NSCoding {
         
         encoder.encodeObject(title, forKey: SerializationKeys.title)
         encoder.encodeObject(notes, forKey: SerializationKeys.notes)
+        encoder.encodeObject(location, forKey: SerializationKeys.location)
         encoder.encodeObject(rules, forKey: SerializationKeys.rules)
         encoder.encodeInteger(type.rawValue, forKey: SerializationKeys.type)
         encoder.encodeObject(UUID, forKey: SerializationKeys.uuid)
@@ -121,6 +125,7 @@ class Node: NSObject, NSCoding {
         
         let clone = Node(text: title, type: type, rules: rules)
         clone.notes = notes.copy() as! String
+        clone.location = location.copy() as! String
         clone.UUID = UUID.copy() as! NSUUID
         clone.event  = event?.copy() as? TimeEvent
         //     for rule in rules { clone.rules.append(rule) }

@@ -35,3 +35,7 @@
 "RULE_NAME_NEXT" = "Next";
 "RULE_NAME_WAIT" = "Wait";
 "RULE_NAME_ALARM" = "Alarm";
+
+// NODES
+
+"NODE_EVENT_STRING_NO_EVENT" = "No Calendar Event";

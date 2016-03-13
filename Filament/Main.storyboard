@@ -754,7 +754,7 @@ CA
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView appearanceType="aqua" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnReordering="NO" columnResizing="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="103" viewBased="YES" floatsGroupRows="NO" id="8Qp-fL-QNJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="444" height="272"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="444" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="0.0"/>
                                             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
@@ -961,7 +961,7 @@ CA
                                                     </collectionView>
                                                 </subviews>
                                             </clipView>
-                                            <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="0.24999999999999178" horizontal="YES" id="lrW-ka-zWL">
+                                            <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="lrW-ka-zWL">
                                                 <rect key="frame" x="0.0" y="2" width="400" height="16"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
