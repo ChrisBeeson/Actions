@@ -47,28 +47,43 @@ class AvoidCalendarEventsViewController : RuleViewController , RulePresenterDele
         if saveToContext == true { AppConfiguration.sharedConfiguration.saveContext() }
     }
     
+    
     func stackViewForCalendar(calendar:Calendar) -> NSView {
         
         let checkbox = NSButton()
         checkbox.setButtonType(.SwitchButton)
-        if let name = calendar.name {
-            checkbox.title = name
-        } else {
-            checkbox.title = ""
-        }
-        
+        checkbox.title = ""
         checkbox.state = calendar.avoid ? NSOnState : NSOffState
         checkbox.wantsLayer = true
-
-        //TODO: Color checkbox to colour of Calendar
+        checkbox.layerUsesCoreImageFilters = true
         let filter = CIFilter(name: "CIColorMonochrome")
-        //Swift.print(filter?.attributes)
         let colour = CIColor(color: calendar.colour!)
         filter!.setDefaults()
         filter!.setValue(colour, forKey: "inputColor")
         checkbox.layer!.filters = [filter!]
-
+        checkbox.layer!.needsDisplay()
         calendarCheckboxes[calendar] = checkbox
-        return checkbox
+        
+        let textBox = NSTextField()
+        textBox.bordered = false
+        textBox.backgroundColor = NSColor.clearColor()
+        textBox.editable = false
+        textBox.bezeled = false
+        textBox.font = NSFont.systemFontOfSize(12.0)
+        
+        if let name = calendar.name {
+             textBox.stringValue = name
+        } else {
+             textBox.stringValue  = ""
+        }
+        
+        let stackView = NSStackView()
+        stackView.addArrangedSubview(checkbox)
+        stackView.addArrangedSubview(textBox)
+        stackView.spacing = 2.0
+
+        return stackView
     }
+    
+
 }
