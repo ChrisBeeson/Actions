@@ -484,6 +484,7 @@ CA
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="fVQ-v2-x0z"/>
+                                <toolbarItem reference="LHQ-N4-856"/>
                                 <toolbarItem reference="Kov-73-Ysr"/>
                                 <toolbarItem reference="fVQ-v2-x0z"/>
                                 <toolbarItem reference="Qk1-m1-u3B"/>
@@ -545,7 +546,7 @@ CA
                                                                         <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="5" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nZV-IB-3op">
                                                                             <rect key="frame" x="0.0" y="2" width="418" height="85"/>
                                                                             <subviews>
-                                                                                <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Df-YY-f5y">
+                                                                                <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Df-YY-f5y">
                                                                                     <rect key="frame" x="0.0" y="68" width="416" height="17"/>
                                                                                     <subviews>
                                                                                         <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BeT-IN-UXD">

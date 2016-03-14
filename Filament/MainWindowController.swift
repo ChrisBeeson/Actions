@@ -13,11 +13,15 @@ class MainWindowController: NSWindowController {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.window!.titleVisibility = NSWindowTitleVisibility.Hidden
-        
         addObserver(self, forKeyPath: "self.window.firstResponder", options: [.Initial, .Old, .New], context: nil)
     }
     
+    
+    
+    override func  windowDidLoad() {
+        super.windowDidLoad()
+         self.window!.titleVisibility = NSWindowTitleVisibility.Hidden
+    }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String: AnyObject]?, context: UnsafeMutablePointer<Void>) {
         
@@ -27,9 +31,6 @@ class MainWindowController: NSWindowController {
     
     
     @IBAction func segmentedControlAction(sender: NSSegmentedControl) {
-        
-        //  AppConfiguration.featureNotYetImplimented()
-        
         (self.contentViewController as! FilamentsTableViewController).setTableViewFilter(DocumentFilterType(rawValue: sender.selectedSegment)!)
     }
 }
