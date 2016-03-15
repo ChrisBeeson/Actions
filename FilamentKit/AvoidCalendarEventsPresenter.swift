@@ -23,10 +23,14 @@ public class AvoidCalendarEventsPresenter : RulePresenter {
         if diff.results.count > 0 {
             
             let inserts = diff.insertions.map{ $0.value }
-            inserts.filter({$0.name!.lowercaseString.containsString("birthday")})
-                .filter({$0.name!.lowercaseString.containsString("holidays")})
-                .forEach {$0.avoid = false }
-
+            
+            inserts.forEach{ if $0.name!.lowercaseString.containsString("birthday") == false && $0.name!.lowercaseString.containsString("holidays") == false {
+                $0.avoid = true
+            } else {
+                $0.avoid = false
+                }
+            }
+            
             currentCalendars.appendContentsOf(inserts)
             
             let deletions = diff.deletions.map{ $0.value }
