@@ -83,7 +83,6 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
         backgroundView.layer?.borderColor = NSColor.grayColor().CGColor
         
         if presenter != nil {
-            
             titleTextField.stringValue = presenter!.title
             self.sequenceCollectionView.toolTip = String(presenter!.status)
             sequenceCollectionView.reloadData()
@@ -152,7 +151,7 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
     
     public func sequencePresenterDidChangeStatus(sequencePresenter: SequencePresenter, toStatus:SequenceStatus){
         
-        //  self.collectionView.toolTip = String(presenter!.status)
+        self.sequenceCollectionView.toolTip = String(sequencePresenter.status)
     }
     
     public func sequencePresenterDidChangeGeneralRules(sequencePresenter: SequencePresenter) {

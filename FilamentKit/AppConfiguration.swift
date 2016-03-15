@@ -274,8 +274,8 @@ public class AppConfiguration: NSObject {
         public static let lightGreyStroke = NSColor(calibratedWhite:0.65, alpha:1.0)
         public static let lightGreyFill = NSColor(calibratedWhite:0.93, alpha:1.0)
         
-        public static let verylightGreyStroke = NSColor(calibratedWhite:0.82, alpha:1.0)
-        public static let verylightGreyFill = NSColor(calibratedWhite:0.98, alpha:1.0)
+        public static let verylightGreyStroke = NSColor(calibratedWhite:0.78, alpha:1.0)
+        public static let verylightGreyFill = NSColor(calibratedWhite:0.95, alpha:1.0)
         
         public static let greenFill = NSColor(calibratedRed: 0.9, green: 1.0, blue: 0.9, alpha: 1.0)
         public static let greenStroke = NSColor(calibratedRed: 0.1, green: 0.8, blue: 0.1, alpha: 1.0)

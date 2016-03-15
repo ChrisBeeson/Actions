@@ -132,6 +132,7 @@ class TimeEvent : NSObject {
         do {
             try CalendarManager.sharedInstance.store.removeEvent(calendarEvent!, span: .ThisEvent, commit: true)
             self.calendarEventId = ""
+            self.calendarEvent = nil
             
         } catch let error as NSError {
             print("Unresolved error \(error), \(error.userInfo)")

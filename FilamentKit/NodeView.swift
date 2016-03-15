@@ -21,7 +21,7 @@ class NodeView: NSView {
         
         super.init(coder: coder)
         
-        pathLayer.lineWidth = 1.0
+        pathLayer.lineWidth = 0.8
         pathLayer.path = calculatePath()
         pathLayer.shouldRasterize = false
         pathLayer.strokeColor = drawingContextColour(.LightGrey).stroke
@@ -57,7 +57,7 @@ class NodeView: NSView {
                 }
                 
             } else {
-                pathLayer.lineWidth = 1.0
+                pathLayer.lineWidth = 0.8
                 pathLayer.strokeColor = drawingContextColour(colourForStatus(currentStatus)).stroke
             }
             CATransaction.commit()

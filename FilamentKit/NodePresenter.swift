@@ -86,6 +86,7 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     
     
     var currentStatus:NodeStatus {
+        
         get {
             return calcNodeStatus()
         }
@@ -103,13 +104,13 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     
     var humanReadableEventString : String {
         get {
-
+            
             switch self.type {
             case NodeType.Action:
                 if self.event == nil {
                     return "NODE_EVENT_STRING_NO_EVENT".localized
                 }
-            
+                
                 var string = self.event!.startDate.formattedDateWithFormat("dd MMMM HH:mm")
                 string.appendContentsOf(" to ")
                 string.appendContentsOf(self.event!.endDate.formattedDateWithFormat("HH:mm"))
@@ -137,27 +138,30 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     func updateNodeStatus() {
         
         let newStatus = calcNodeStatus()
+        if _currentStatus == newStatus { return }
         
-        switch newStatus {
-            
-        case .Ready:
-            let secsToStart = node.event!.startDate.secondsLaterThan(NSDate())
-            NSTimer.schedule(delay: secsToStart+0.1) { timer in
-                self.updateNodeStatus()
+        if let event = node.event {
+            switch newStatus {
+                
+            case .Ready:
+                let secsToStart = event.startDate.secondsLaterThan(NSDate())
+                NSTimer.schedule(delay: secsToStart+0.1) { timer in
+                    self.updateNodeStatus()
+                }
+                
+            case .Running:
+                let secsToComplete = event.endDate.secondsLaterThan(NSDate())
+                NSTimer.schedule(delay: secsToComplete+0.1) { timer in
+                    self.updateNodeStatus()
+                }
+            default: break
             }
-            
-        case .Running:
-            let secsToComplete = node.event!.endDate.secondsLaterThan(NSDate())
-            NSTimer.schedule(delay: secsToComplete+0.1) { timer in
-                self.updateNodeStatus()
-            }
-            
-        default: break
         }
         
-        delegates.forEach { $0.nodePresenterDidChangeStatus(self, toStatus:newStatus) }
-        //    print("Node \(node.title) : \(newStatus)")
+        print("Node \(node.title):  From \(_currentStatus)  to \(newStatus)")
         _currentStatus = newStatus
+        
+        delegates.forEach { $0.nodePresenterDidChangeStatus(self, toStatus:newStatus) }
     }
     
     
@@ -165,18 +169,29 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
         
         // if the node has an error it cannot be removed here - not sure why but it's a rule I've made up
         if _currentStatus == .Error { return .Error }
+        guard node.event != nil else { return .Inactive }
         
         var newStatus = NodeStatus.Void
-        
-        if node.event == nil { return .Inactive }
         if node.event!.startDate.isLaterThan(NSDate())  { newStatus = .Ready }
         if node.event!.startDate.isEarlierThanOrEqualTo(NSDate()) && node.event!.endDate.isLaterThanOrEqualTo(NSDate())  {
             newStatus = .Running
         }
         if node.event!.endDate.isEarlierThanOrEqualTo(NSDate()) { newStatus = .Completed }
-        
         assert(newStatus != .Void, "updateNodeStatus came up with Void")
         return newStatus
+    }
+    
+    func removeCalandarEvent(updateStatus:Bool) {
+        node.deleteEvent()
+        if updateStatus == true { updateNodeStatus() }
+    }
+    
+    
+    func setHasError() {
+        if _currentStatus == .Error { return }
+        _currentStatus = .Error
+        removeCalandarEvent(false)
+        delegates.forEach { $0.nodePresenterDidChangeStatus(self, toStatus:.Error) }
     }
     
     
@@ -184,14 +199,14 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     
     /*
     func rulePresenterForRule(rule:Rule) -> RulePresenter {
-        
-        let presenter = rulePresenters.filter {$0.rule === rule}
-        if presenter.count == 1 { return presenter[0] }
-        
-        let newPresenter = RulePresenter.rulePresenterForRule(rule)
-        newPresenter.undoManager = self.undoManager
-        rulePresenters.append(newPresenter)
-        return newPresenter
+    
+    let presenter = rulePresenters.filter {$0.rule === rule}
+    if presenter.count == 1 { return presenter[0] }
+    
+    let newPresenter = RulePresenter.rulePresenterForRule(rule)
+    newPresenter.undoManager = self.undoManager
+    rulePresenters.append(newPresenter)
+    return newPresenter
     }
     
     */
@@ -211,7 +226,7 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     
     
     func deleteRulePresenter(deletedRulePresenter: RulePresenter) {
-      
+        
         node.rules.removeObject(deletedRulePresenter.rule)
         delegates.forEach { $0.nodePresenterDidChangeRules(self) }
     }

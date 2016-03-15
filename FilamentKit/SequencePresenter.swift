@@ -127,8 +127,9 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         
         self.sequence!.date = date
         self.sequence!.startsAtDate = isStartDate
-        self.delegates.forEach { $0.sequencePresenterUpdatedDate(self) }
         
+        if date == nil { prepareForCompleteDeletion() }
+        self.delegates.forEach { $0.sequencePresenterUpdatedDate(self) }
         updateSequenceEvents()
     }
     
@@ -184,11 +185,9 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     
     
     public func prepareForCompleteDeletion() {
-        
         if currentStatus != .Completed {
-            
-            for node in nodes! {
-                node.deleteEvent()
+            for presenter in nodePresenters {
+                presenter.removeCalandarEvent(true)
             }
         }
     }
@@ -221,14 +220,11 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         if date == nil {
             nodes!.forEach{ $0.deleteEvent() }
             nodePresenters.forEach{ $0.currentStatus = .Inactive }
-            currentStatus = .NoStartDateSet
             return
         }
         
         let result = sequence!.UpdateEvents()
-        
-        nodePresenters.forEach{ $0.currentStatus = .Inactive  }  //first reset all nodes
-        currentStatus = .Void
+        // nodePresenters.forEach{ $0.currentStatus = .Inactive  }  //first reset all nodes
         
         if result.success == true {
             updateSequenceStatus()
@@ -242,17 +238,13 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
             return
         }
         
-        currentStatus = .HasFailedNode
-        
         if let index = nodes?.indexOf(result.firstFailedNode!) where index != -1 {
             
             for index in index...nodes!.count-1 {
                 let presenter = presenterForNode(nodes![index])
-                nodes![index].deleteEvent()
-                presenter.currentStatus = .Error
+                presenter.setHasError()
             }
         }
-        
         updateSequenceStatus()
     }
     
@@ -260,10 +252,12 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     // MARK: Status
     
     internal func calcCurrentStatus() -> SequenceStatus {
-        
-        guard currentStatus != .HasFailedNode else { return .HasFailedNode }
-        
+    
         var status = SequenceStatus.Void
+        
+        nodePresenters.forEach{ if $0.currentStatus == .Error { return status = .HasFailedNode  } }
+        if status == .HasFailedNode { return status }  // Better way to tighen this?
+        
         if date == nil { status = .NoStartDateSet }
         if date?.isLaterThan(NSDate()) == true { status = .WaitingForStart }
         if date?.isEarlierThan(NSDate()) == true { status = .Running }
@@ -282,7 +276,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         
         if currentStatus != status {
             currentStatus = status
-            // Swift.print("Sequence Status changed: \(currentStatus)")
+            Swift.print("Sequence Status changed: \(currentStatus)")
             delegates.forEach{ $0.sequencePresenterDidChangeStatus(self, toStatus:currentStatus)}
         }
         
@@ -296,7 +290,6 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
             }
         default: break
         }
-        
         nodePresenters.forEach{ $0.updateNodeStatus() }
     }
     

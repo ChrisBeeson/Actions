@@ -163,6 +163,7 @@ class Node: NSObject, NSCoding {
     func deleteEvent() {
         if self.event == nil { return }
         self.event!.deleteCalenderEvent()
+        self.event = nil
     }
     
     
