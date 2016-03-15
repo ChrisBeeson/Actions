@@ -241,7 +241,7 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         availableGenericRulesViewController!.collectionViewDelegate = self
         popover.contentViewController = availableGenericRulesViewController
         
-        popover.showRelativeToRect(addGenericRuleButton.frame, ofView:self.view, preferredEdge:.MaxY )
+        popover.showRelativeToRect(addGenericRuleButton.frame, ofView:self.view.superview!, preferredEdge:.MaxY )
     }
     
     

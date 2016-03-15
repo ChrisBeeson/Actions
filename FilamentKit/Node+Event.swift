@@ -63,7 +63,7 @@ extension Node {
             self.eventID = event.eventIdentifier
             
         } catch let error as NSError {
-            NSLog("Unresolved error \(error), \(error.userInfo)")
+            print("!Event + Node: Unresolved error \(error), \(error.userInfo)")
         }
     }
     

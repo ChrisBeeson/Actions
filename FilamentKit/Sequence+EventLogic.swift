@@ -36,7 +36,7 @@ extension Sequence {
             case .StartingAction:
                 
                 let startRule = TransitionDurationWithVariance()
-                startRule.eventStartsInDuration = TimeSize(unit: .Hour, amount: 0)
+                startRule.eventStartsInDuration = TimeSize(unit: .Hour, amount: 0)     /// TODO: This can't be user modified
                 rules.append(startRule)
                 
                 solvedPeriod = Solver.calculateEventPeriod(time, rules:rules)
@@ -47,6 +47,11 @@ extension Sequence {
                 if let transistionRules = node.leftTransitionNode?.rules {
                     for rule in transistionRules {
                         rules.append(rule) }
+                }
+                
+                rules.forEach { if $0.isKindOfClass(AvoidCalendarEventsRule) == true {
+                    ($0 as! AvoidCalendarEventsRule).ignoreCurrentEventsForSequence = self  // Is there a better way to do this?
+                    }
                 }
                 
                 solvedPeriod = Solver.calculateEventPeriod(time, rules:rules)

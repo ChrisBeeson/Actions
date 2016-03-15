@@ -15,7 +15,11 @@ public class RuleViewController : NSViewController, NSMenuDelegate {
     public override func viewWillDisappear() {
         super.viewWillDisappear()
         
-         rulePresenter?.sequencePresenter?.updateSequenceEvents()
+        if let seqPresenter = rulePresenter?.sequencePresenter {
+            seqPresenter.updateSequenceEvents()
+        } else {
+            // It's a generic rule so need to update all sequences
+            NSNotificationCenter.defaultCenter().postNotificationName("UpdateAllSequences", object: nil)
+        }
     }
-    
 }

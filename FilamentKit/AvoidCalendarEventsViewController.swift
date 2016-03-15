@@ -35,7 +35,6 @@ class AvoidCalendarEventsViewController : RuleViewController , RulePresenterDele
     
     
     override func viewWillDisappear() {
-        super.viewWillDisappear()
         
         let presenter = rulePresenter as! AvoidCalendarEventsPresenter
         
@@ -45,6 +44,8 @@ class AvoidCalendarEventsViewController : RuleViewController , RulePresenterDele
         }
         
         if saveToContext == true { AppConfiguration.sharedConfiguration.saveContext() }
+        
+        super.viewWillDisappear()
     }
     
     

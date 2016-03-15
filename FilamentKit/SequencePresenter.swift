@@ -35,7 +35,13 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     
     // document  updateChangeCount:
     
-    
+    override init() {
+        super.init()
+        
+        NSNotificationCenter.defaultCenter().addObserverForName("UpdateAllSequences", object: nil, queue: nil) { (notification) -> Void in
+            self.updateSequenceEvents()
+        }
+    }
     
     public var title: String {
         get {

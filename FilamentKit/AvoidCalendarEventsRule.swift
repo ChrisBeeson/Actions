@@ -21,6 +21,7 @@ class AvoidCalendarEventsRule: Rule, NSCoding {
     override var options: RoleOptions { get { return RoleOptions.RequiresInterestWindow } }
     
     var calendars = [Calendar]()
+    var ignoreCurrentEventsForSequence: Sequence?
     
     override init() {
         super.init()
@@ -30,14 +31,9 @@ class AvoidCalendarEventsRule: Rule, NSCoding {
     override var avoidPeriods: [DTTimePeriod]? {
         
         get {
-            
             if interestPeriod == nil { return nil }
             
             let activeCalendars = calendars.filter({ $0.avoid == true })
-            
-            //  print("Calendars")
-            //for cal in activeCalendars {  print(cal.name) }
-            
             guard let events = CalendarManager.sharedInstance.events(interestPeriod!, calendars:activeCalendars) else {
                 return nil
             }
@@ -45,12 +41,23 @@ class AvoidCalendarEventsRule: Rule, NSCoding {
             // 2. Turn each event into a time period.
             
             var periods = [DTTimePeriod]()
-            
             for event in events {
                 let period = DTTimePeriod(startDate: event.startDate, endDate: event.endDate)
                 periods.append(period)
             }
             
+            // 3. remove any periods we should ignore (ie. events from the sequence we are solving)
+            
+            if let ignore = ignorePeriods() {
+                for period in periods {
+                    for ignore in ignore {
+                        if period.isEqualToPeriod(ignore) {
+                            periods.removeObject(period)
+                            print("removing \(period)")
+                        }
+                    }
+                }
+            }
             return periods
         }
         
@@ -58,6 +65,23 @@ class AvoidCalendarEventsRule: Rule, NSCoding {
             self.avoidPeriods = newValue   // For testing only
         }
     }
+    
+    
+    func ignorePeriods() -> [DTTimePeriod]? {
+        guard ignoreCurrentEventsForSequence != nil else { return nil }
+        
+        // get timePeriods of any events in this sequence 
+        var periods = [DTTimePeriod]()
+        
+        for node in ignoreCurrentEventsForSequence!.nodeChain() {
+            if let event = node.event {
+                let period = DTTimePeriod(startDate: event.startDate, endDate: event.endDate)
+                periods.append(period)
+            }
+        }
+        return periods
+    }
+    
     
     // MARK: NSCoding
     

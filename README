@@ -3,10 +3,7 @@ Feature List
 Transition Rule: Time to travel from one address to another. + traffic  = So if you're house hunting and need to get to various houses you can estimate when you'll get there...'
 
 
-Rule:  Warn if calendar Event changes more than x
-
-
-
+Rule:  Warn if calendar Event changes more than X
 
 Todo list / time management on steriods
 
@@ -16,20 +13,21 @@ Fuse
 Todo
 -------
 
-When Rule collection view loses focus it should deselect all cells
-RuleCollectionView accectDrops from only filtered Rules
+Changing any rules, reprocesses all events - avoid calanders
+Import / Export
+Document dirtying
+Undo
+Current rule polishing and input validation
+New rules
 
-
+When Rule collection view loses focus it should deselect all cells  x
+RuleCollectionView accectDrops from only filtered Rules x
+Sort by current time, desc  x
 changing start time can only be done before start of 1st node
  - changing start ignores calendar event of that seq
-
 Changing rules, updates nodes only right of that node
-
 Recreate calendar Events if they have been deleted.
 
-*** Tabs - Each tab has it's only generic rules **
-
-Sort by current time, desc
 
 
 Known Issues

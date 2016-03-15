@@ -209,7 +209,7 @@ import Async
                 } else {
                     let string:NSString = node.title as NSString
                     let size: CGSize = string.sizeWithAttributes([NSFontAttributeName: NSFont.systemFontOfSize(14.0, weight:NSFontWeightThin) ])
-                    return NSSize(width: size.width + 30.5, height: 35)
+                    return NSSize(width: size.width + 30.2, height: 35)
                 }
                 
             case [.Transition]:

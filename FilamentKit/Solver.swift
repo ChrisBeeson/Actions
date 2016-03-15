@@ -15,25 +15,16 @@ import DateTools
 
 Window 1                       |----------------------------------|     <- Event can be only within this period
 prefered time                              ^
-
-
 Window 2                 |-------------------|
-
 Action Dur Max           |---------|
-
 Action Dur Min           |--|
-
-
-
 Cal avoiding          |------------|            |---|   |----|
-
                                        |----|
 Timeslot found                         ^^^^^^
+
 */
 
-
 typealias SolvedPeriod = (solved: Bool, period:DTTimePeriod?)
-
 
 class Solver {
 

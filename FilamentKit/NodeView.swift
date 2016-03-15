@@ -88,8 +88,8 @@ class NodeView: NSView {
         switch newStatus {
             
         case .Inactive:
-            pathLayer.strokeColor = drawingContextColour(.VeryLightGrey).stroke
-            pathLayer.fillColor = drawingContextColour(.VeryLightGrey).fill
+            self.pathLayer.strokeColor = drawingContextColour(.LightGrey).stroke
+            self.pathLayer.fillColor = drawingContextColour(.LightGrey).fill
             
         case .Ready:
             CATransaction.begin()

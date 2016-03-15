@@ -13,6 +13,6 @@ class EventDurationWithMinimumDurationViewController : RuleViewController, RuleP
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
     }
-
 }

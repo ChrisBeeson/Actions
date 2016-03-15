@@ -23,6 +23,7 @@ class MainWindowController: NSWindowController {
          self.window!.titleVisibility = NSWindowTitleVisibility.Hidden
     }
     
+    
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String: AnyObject]?, context: UnsafeMutablePointer<Void>) {
         
         self.window!.title = "Filament - " + window!.firstResponder.className

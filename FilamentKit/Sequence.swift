@@ -16,9 +16,6 @@ import Foundation
     var date: NSDate?
     var startsAtDate = true    // false means the sequence is back timed to end at the date
     var generalRules = [Rule]()
-    //var isFavourite = false
-    //var isTemplate = false    // If we're a template, we're only a placeholder and are never instanted with a day, but copies are made.
-    //var parentTemplateId = NSUUID()   // is the unique id of the owner of this instance, only if we're not a template
     var uuid = NSUUID()
 
     // MARK: Initializers

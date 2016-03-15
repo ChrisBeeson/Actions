@@ -35,14 +35,21 @@
                             <subviews>
                                 <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vQH-96-PCB">
                                     <rect key="frame" x="-2" y="16" width="258" height="22"/>
-                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="left" title="My Text" placeholderString="Name" usesSingleLineMode="YES" id="00O-nu-52x">
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" alignment="left" placeholderString="Description" usesSingleLineMode="YES" id="00O-nu-52x">
                                         <font key="font" metaFont="system" size="18"/>
                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                                     </textFieldCell>
                                     <connections>
                                         <action selector="titleTextFieldDidFinishEditing:" target="-2" id="3SM-wX-Qea"/>
-                                        <binding destination="-2" name="value" keyPath="self.nodePresenter.title" id="6CN-I3-A9f"/>
+                                        <binding destination="-2" name="value" keyPath="self.nodePresenter.title" id="RoE-kM-hCX">
+                                            <dictionary key="options">
+                                                <string key="NSMultipleValuesPlaceholder">Description</string>
+                                                <string key="NSNoSelectionPlaceholder">Description</string>
+                                                <string key="NSNotApplicablePlaceholder">Description</string>
+                                                <string key="NSNullPlaceholder">Description</string>
+                                            </dictionary>
+                                        </binding>
                                     </connections>
                                 </textField>
                                 <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="soW-a3-LlD">
@@ -158,7 +165,7 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <collectionView ambiguous="YES" selectable="YES" id="Vh4-gK-Teh" customClass="RuleCollectionView" customModule="FilamentKit">
-                                                            <rect key="frame" x="0.0" y="0.0" width="235" height="204"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="235" height="196"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" scrollDirection="horizontal" id="o8Y-fR-MuF">
                                                                 <size key="itemSize" width="50" height="50"/>
