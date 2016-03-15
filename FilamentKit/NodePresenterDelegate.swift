@@ -13,7 +13,7 @@ protocol NodePresenterDelegate : class  {
     func nodePresenterDidChangeTitle(presenter: NodePresenter)
     func nodePresenterDidChangeNotes(presenter: NodePresenter)
     func nodePresenterDidChangeRules(presenter: NodePresenter)
-    func nodePresenterDidChangeStatus(presenter: NodePresenter, toStatus: NodeStatus)
+    func nodePresenterDidChangeStatus(presenter: NodePresenter, toStatus: NodeStatus, options:[String]?)
 
 }
 
@@ -22,7 +22,7 @@ extension  NodePresenterDelegate {
     func nodePresenterDidChangeTitle(presenter: NodePresenter) {}
     func nodePresenterDidChangeNotes(presenter: NodePresenter) {}
     func nodePresenterDidChangeRules(presenter: NodePresenter) {}
-    func nodePresenterDidChangeStatus(presenter: NodePresenter, toStatus: NodeStatus) {}
+    func nodePresenterDidChangeStatus(presenter: NodePresenter, toStatus: NodeStatus, options:[String]?) {}
     
     // public func sequencePresenterDidRefreshCompleteLayout(sequencePresenter: SequencePresenter) {}
 }

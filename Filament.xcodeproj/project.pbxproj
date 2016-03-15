@@ -106,6 +106,7 @@
 		83861F2B1BEEA25F00A44122 /* FilamentDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83861F2A1BEEA25F00A44122 /* FilamentDocument.swift */; };
 		83AD7EBC1C7BA4E60097BD61 /* RuleTokenField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AD7EBB1C7BA4E60097BD61 /* RuleTokenField.swift */; };
 		83AF6D741C878A3600D48129 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AF6D731C878A3600D48129 /* LeftAlignedCollectionViewFlowLayout.swift */; };
+		83B500601C981FE800B0F5AA /* NodeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B5005F1C981FE800B0F5AA /* NodeStatus.swift */; };
 		83B74FAD1C7FDC0F005E5E22 /* DurationWithVarianceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83B74FAC1C7FDC0F005E5E22 /* DurationWithVarianceViewController.xib */; };
 		83C73E0D1BE31C4F0045973C /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C73E0B1BE31BF20045973C /* AppConfiguration.swift */; };
 		83C73E0E1BE31C4F0045973C /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C73E0B1BE31BF20045973C /* AppConfiguration.swift */; };
@@ -261,6 +262,7 @@
 		83861F2A1BEEA25F00A44122 /* FilamentDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilamentDocument.swift; sourceTree = "<group>"; };
 		83AD7EBB1C7BA4E60097BD61 /* RuleTokenField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleTokenField.swift; sourceTree = "<group>"; };
 		83AF6D731C878A3600D48129 /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		83B5005F1C981FE800B0F5AA /* NodeStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeStatus.swift; sourceTree = "<group>"; };
 		83B74FAC1C7FDC0F005E5E22 /* DurationWithVarianceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DurationWithVarianceViewController.xib; sourceTree = "<group>"; };
 		83C73E0B1BE31BF20045973C /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		83CE36371C84E35100D3A556 /* RuleCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleCollectionView.swift; sourceTree = "<group>"; };
@@ -421,6 +423,7 @@
 				4735747E1B9A919500493CA0 /* SequencePresenter.swift */,
 				473574811B9A91A200493CA0 /* SequencePresenterDelegate.swift */,
 				4720B4FF1C6E7EF200229734 /* NodePresenter.swift */,
+				83B5005F1C981FE800B0F5AA /* NodeStatus.swift */,
 				4720B5011C6E7F0400229734 /* NodePresenterDelegate.swift */,
 				47967FF11C895F5400358199 /* ContextPresenter.swift */,
 				473574881B9A91BE00493CA0 /* Presenter Helpers */,
@@ -1066,6 +1069,7 @@
 				473853B21C7A590A000AB1E2 /* RuleViewController.swift in Sources */,
 				473574771B9A68AC00493CA0 /* Sequence.swift in Sources */,
 				473853B71C7A5A43000AB1E2 /* RulePresenterDelegate.swift in Sources */,
+				83B500601C981FE800B0F5AA /* NodeStatus.swift in Sources */,
 				835740B21C77AD0700CFBB1B /* TimeEvent.swift in Sources */,
 				4720B50E1C71C32100229734 /* EmptyNodeView.swift in Sources */,
 				836896341C807FEF00F3F547 /* AvailableRulesViewController.swift in Sources */,

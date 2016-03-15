@@ -15,7 +15,15 @@ SequencePresenter is responsible for : SequenceStatus & NodePresenters associate
 
 */
 
-public enum SequenceStatus: Int { case NoStartDateSet, WaitingForStart, Running, Paused, HasFailedNode, Completed, Void }
+public enum SequenceStatus {
+    case NoStartDateSet
+    case WaitingForStart
+    case Running
+    case Paused
+    case HasFailedNode
+    case Completed
+    case Void
+}
 
 public class SequencePresenter : NSObject, RuleAvailabiltiy {
     
@@ -218,8 +226,8 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         guard sequence != nil else { return }
        
         if date == nil {
-            nodes!.forEach{ $0.deleteEvent() }
-            nodePresenters.forEach{ $0.currentStatus = .Inactive }
+            nodePresenters.forEach{ $0.currentStatus.toInactive($0) }
+            updateSequenceStatus()
             return
         }
         
@@ -227,6 +235,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         // nodePresenters.forEach{ $0.currentStatus = .Inactive  }  //first reset all nodes
         
         if result.success == true {
+            nodePresenters.forEach{ $0.currentStatus.toReady($0) }
             updateSequenceStatus()
             return
         }
@@ -242,7 +251,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
             
             for index in index...nodes!.count-1 {
                 let presenter = presenterForNode(nodes![index])
-                presenter.setHasError()
+                presenter.currentStatus.toError(presenter)
             }
         }
         updateSequenceStatus()

@@ -10,15 +10,14 @@ import Foundation
 import EventKit
 import DateTools
 
-enum NodeStatus: Int { case Inactive, Ready, Running, WaitingForUserInput, Completed, Error, Void }
+
 
 public class NodePresenter : NSObject, RuleAvailabiltiy {
-    
+   
     var undoManager: NSUndoManager?
     var sequencePresenter: SequencePresenter?
-    private var delegates = [NodePresenterDelegate]()
-    private var _currentStatus = NodeStatus.Void
-    private var _hasRuleError = false
+    var delegates = [NodePresenterDelegate]()
+    private var _currentStatus = NodeStatus.Inactive
     private var rulePresenters = [RulePresenter]()
     
     //MARK: Properties
@@ -85,10 +84,10 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     
     
     
-    var currentStatus:NodeStatus {
+    var currentStatus: NodeStatus {
         
         get {
-            return calcNodeStatus()
+            return calculateNodeStatus()
         }
         set {
             _currentStatus = newValue
@@ -137,38 +136,12 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     
     func updateNodeStatus() {
         
-        let newStatus = calcNodeStatus()
-        if _currentStatus == newStatus { return }
-        
-        if let event = node.event {
-            switch newStatus {
-                
-            case .Ready:
-                let secsToStart = event.startDate.secondsLaterThan(NSDate())
-                NSTimer.schedule(delay: secsToStart+0.1) { timer in
-                    self.updateNodeStatus()
-                }
-                
-            case .Running:
-                let secsToComplete = event.endDate.secondsLaterThan(NSDate())
-                NSTimer.schedule(delay: secsToComplete+0.1) { timer in
-                    self.updateNodeStatus()
-                }
-            default: break
-            }
-        }
-        
-        print("Node \(node.title):  From \(_currentStatus)  to \(newStatus)")
-        _currentStatus = newStatus
-        
-        delegates.forEach { $0.nodePresenterDidChangeStatus(self, toStatus:newStatus) }
+        _currentStatus = _currentStatus.toStatus(calculateNodeStatus(), presenter: self)
     }
     
     
-    func calcNodeStatus() -> NodeStatus {
+    func calculateNodeStatus() -> NodeStatus {
         
-        // if the node has an error it cannot be removed here - not sure why but it's a rule I've made up
-        if _currentStatus == .Error { return .Error }
         guard node.event != nil else { return .Inactive }
         
         var newStatus = NodeStatus.Void
@@ -181,36 +154,15 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
         return newStatus
     }
     
+    
     func removeCalandarEvent(updateStatus:Bool) {
         node.deleteEvent()
         if updateStatus == true { updateNodeStatus() }
     }
     
     
-    func setHasError() {
-        if _currentStatus == .Error { return }
-        _currentStatus = .Error
-        removeCalandarEvent(false)
-        delegates.forEach { $0.nodePresenterDidChangeStatus(self, toStatus:.Error) }
-    }
-    
     
     //MARK: Rules
-    
-    /*
-    func rulePresenterForRule(rule:Rule) -> RulePresenter {
-    
-    let presenter = rulePresenters.filter {$0.rule === rule}
-    if presenter.count == 1 { return presenter[0] }
-    
-    let newPresenter = RulePresenter.rulePresenterForRule(rule)
-    newPresenter.undoManager = self.undoManager
-    rulePresenters.append(newPresenter)
-    return newPresenter
-    }
-    
-    */
-    
     
     func insertRulePresenter(rulePresenter:RulePresenter, atIndex:Int) {
         

@@ -93,7 +93,7 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     
     //Mark: NodePresenter delegate calls
     
-    func nodePresenterDidChangeStatus(presenter: NodePresenter, toStatus: NodeStatus) {
+    func nodePresenterDidChangeStatus(presenter: NodePresenter, toStatus: NodeStatus, options:[String]? ) {
         
         guard presenter == self.presenter else { return }
         
