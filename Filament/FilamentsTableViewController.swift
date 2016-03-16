@@ -108,6 +108,11 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         return cellView
     }
     
+    public func tableView(tableView: NSTableView, willDisplayCell cell: AnyObject, forTableColumn tableColumn: NSTableColumn?, row: Int) {
+        let cellView = cell as! FilamentTableCellView
+        cellView.updateCellView()
+    }
+    
     public func tableViewSelectionDidChange(notification: NSNotification) {
         
         for (var row = 0; row < tableView.numberOfRows ; row++)

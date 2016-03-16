@@ -66,26 +66,25 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
         
         selected = false
         super.init(coder: coder)
-        
     }
     
     override public func viewWillDraw() {
         super.viewWillDraw()
+        
         generalRulesCollectionView.collectionViewLayout = RightAlignedCollectionViewFlowLayout()
         generalRulesCollectionView.ruleCollectionViewDelegate = self
         generalRulesCollectionView.allowDrops = true
         generalRulesCollectionView.allowDropsFromType = [.Generic]
         generalRulesCollectionView.allowDeletions = true
-        updateCellView()
-    }
-    
-    
-    func updateCellView() {
         
         scrollview.horizontalScroller?.alphaValue = 0.0
         backgroundView.backgroundColor = NSColor.whiteColor()
         backgroundView.layer?.borderWidth = 0.2
         backgroundView.layer?.borderColor = NSColor.grayColor().CGColor
+    }
+    
+    
+    func updateCellView() {
         
         if let presenter = presenter {
             presenter.updateState()
