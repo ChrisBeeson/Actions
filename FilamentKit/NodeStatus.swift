@@ -143,5 +143,4 @@ enum NodeStatus: Int {
         // print("\(self) - Calculated node status to be \(newStatus)")
         return newStatus
     }
-    
 }

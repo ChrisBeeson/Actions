@@ -9,30 +9,14 @@ import Foundation
 import DateTools
 import Async
 
-/*
-
-SequencePresenter is responsible for : SequenceStatus & NodePresenters associated with this sequence.
-
-*/
-
-public enum SequenceStatus {
-    case NoStartDateSet
-    case WaitingForStart
-    case Running
-    case Paused
-    case HasFailedNode
-    case Completed
-    case Void
-}
-
 public class SequencePresenter : NSObject, RuleAvailabiltiy {
     
     // MARK: Properties
     
-    private var sequence: Sequence?
-    private var delegates = [SequencePresenterDelegate]()
-    private var nodePresenters = [NodePresenter]()
-    private var currentStatus = SequenceStatus.Void
+    private var _sequence: Sequence?
+    var delegates = [SequencePresenterDelegate]()
+    var nodePresenters = [NodePresenter]()
+    private var _currentState = SequenceState.Void
     public var undoManager: NSUndoManager?
     public var representingDocument: FilamentDocument? {
         didSet {
@@ -45,7 +29,6 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     
     override init() {
         super.init()
-        
         NSNotificationCenter.defaultCenter().addObserverForName("UpdateAllSequences", object: nil, queue: nil) { (notification) -> Void in
             self.updateSequenceEvents()
         }
@@ -53,19 +36,20 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     
     public var title: String {
         get {
-            return sequence!.title
+            return _sequence!.title
         }
         set {
-            sequence!.title = newValue
+            _sequence!.title = newValue
         }
     }
     
-    var archiveableSeq: Sequence {
-        return sequence!
+    var sequence: Sequence {
+       assert (_sequence != nil, "Sequence is NULL, and should never be")
+        return _sequence!
     }
     
     var nodes:[Node]? {
-        return sequence!.nodeChain()
+        return _sequence!.nodeChain()
     }
     
     /// RuleAvailablity
@@ -74,14 +58,14 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     
     public var rules:[Rule] {
         get {
-            return sequence!.generalRules
+            return _sequence!.generalRules
         }
     }
     
     /// Date handling
     
     public var date : NSDate? {
-        return sequence!.date
+        return _sequence!.date
     }
     
     public var completionDate : NSDate? {
@@ -97,8 +81,8 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     
     // Status
     
-    public var status:SequenceStatus {
-        return currentStatus
+    public var currentState: SequenceState {
+        return _currentState
     }
     
     
@@ -106,9 +90,9 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     
 
     func setSequence(sequence: Sequence) {
-        guard sequence != self.sequence else { return }
+        guard sequence != self._sequence else { return }
         
-        self.sequence = sequence
+        self._sequence = sequence
         updateSequenceEvents()
         
         delegates.forEach{ $0.sequencePresenterDidRefreshCompleteLayout(self) }
@@ -126,18 +110,16 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     
     public func setDate(date:NSDate?, isStartDate:Bool) {
         
-        if date != nil && sequence!.date != nil && date!.isEqualToDate(sequence!.date!) && isStartDate == sequence?.startsAtDate { return }
+        if date != nil && _sequence!.date != nil && date!.isEqualToDate(_sequence!.date!) && isStartDate == _sequence?.startsAtDate { return }
         
         self.undoManager?.prepareWithInvocationTarget(self).setDate(self.date, isStartDate: true)
         let undoActionName = NSLocalizedString("Change Date", comment: "")
         self.undoManager?.setActionName(undoActionName)
         
-        self.sequence!.date = date
-        self.sequence!.startsAtDate = isStartDate
+        self._sequence!.date = date
+        self._sequence!.startsAtDate = isStartDate
         
-        if date == nil { prepareForCompleteDeletion() }
-        self.delegates.forEach { $0.sequencePresenterUpdatedDate(self) }
-        updateSequenceEvents()
+        _currentState.toNewStartDate(self)
     }
     
 
@@ -153,8 +135,8 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
             node = Node(text: AppConfiguration.defaultActionNodeName, type: .Action, rules: nil)
         }
         
-        let oldNodes = sequence!.nodeChain()
-        sequence!.insertActionNode(node!, index: index)
+        let oldNodes = _sequence!.nodeChain()
+        _sequence!.insertActionNode(node!, index: index)
         informDelegatesOfChangesToNodeChain(oldNodes)
         
         undoManager?.prepareWithInvocationTarget(self).deleteNodes([node!])
@@ -171,11 +153,11 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         
         if nodes.isEmpty { return }
         
-        let oldNodes = sequence!.nodeChain()
+        let oldNodes = _sequence!.nodeChain()
         
         for node in nodes {
             nodePresenters = nodePresenters.filter {$0.node != node}
-            sequence!.removeActionNode(node)
+            _sequence!.removeActionNode(node)
         }
         
         informDelegatesOfChangesToNodeChain(oldNodes)
@@ -192,7 +174,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     
     
     public func prepareForCompleteDeletion() {
-        if currentStatus != .Completed {
+        if _currentState != .Completed {
             for presenter in nodePresenters {
                 presenter.removeCalandarEvent(false)
             }
@@ -201,7 +183,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     
     func informDelegatesOfChangesToNodeChain(oldNodes:[Node]) {
         
-        let diff = oldNodes.diff(sequence!.nodeChain())
+        let diff = oldNodes.diff(_sequence!.nodeChain())
         
         if (diff.results.count > 0) {
             
@@ -220,62 +202,16 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     
     public func updateSequenceEvents() {
 
-        guard sequence != nil else { return }
-       
-        if date == nil {
-            nodePresenters.forEach{ $0.currentStatus.toInactive($0) }
-            updateSequenceStatus()
-            return
-        }
+        guard _sequence != nil else { return }
+        //guard date != nil else { updateSequenceStatus() ;  return }
         
-        let result = sequence!.UpdateEvents()
-        
-        if result.success == true {
-            nodePresenters.forEach{ $0.currentStatus.toReady($0, ignoreErrors:true) }
-            updateSequenceStatus()
-            return
-        }
-        
-        // the sequence failed, flag node has an error, and all future nodes.
-        
-        guard result.firstFailedNode != nil else {
-            Swift.print("Was expecting the failed Node, but got nothing")
-            return
-        }
-        
-        if let index = nodes?.indexOf(result.firstFailedNode!) where index != -1 {
-            
-            for index in index...nodes!.count-1 {
-                let presenter = presenterForNode(nodes![index])
-                presenter.currentStatus.toError(presenter)
-            }
-        }
-        updateSequenceStatus()
+        _currentState.update(self)
+
+        //updateSequenceStatus()
     }
     
     
     // MARK: Status
-    
-    internal func calcCurrentStatus() -> SequenceStatus {
-    
-        var status = SequenceStatus.Void
-        
-        for presenter in nodePresenters {
-            if presenter.currentStatus == .Error {
-                status = .HasFailedNode
-                break
-            }
-        }
-        
-        if status == .HasFailedNode { return status }  // Better way to tighen this?
-        
-        if date == nil { status = .NoStartDateSet }
-        if date?.isLaterThan(NSDate()) == true { status = .WaitingForStart }
-        if date?.isEarlierThan(NSDate()) == true { status = .Running }
-        if completionDate?.isEarlierThan(NSDate()) == true { status = .Completed }
-        assert(status != .Void)
-        return status
-    }
     
     
     
@@ -283,24 +219,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     
     func updateSequenceStatus() {
         
-        let status = calcCurrentStatus()
-        
-        if currentStatus != status {
-            currentStatus = status
-            Swift.print("Sequence Status changed: \(currentStatus)")
-            delegates.forEach{ $0.sequencePresenterDidChangeStatus(self, toStatus:currentStatus)}
-        }
-        
-        switch currentStatus {
-            
-        case .WaitingForStart:
-            assert(date != nil)
-            let secsToStart = date!.secondsLaterThan(NSDate())
-            NSTimer.schedule(delay: secsToStart+0.1) { timer in
-                self.updateSequenceStatus()
-            }
-        default: break
-        }
+    
         nodePresenters.forEach{ $0.updateNodeStatus() }
     }
     
@@ -323,16 +242,14 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     
     public func addRulePresenter(rule:RulePresenter, atIndex:Int) {
         
-        guard sequence != nil else { return }
-        guard atIndex > -1 && atIndex <= sequence!.generalRules.count else { return }
-        sequence!.generalRules.insert(rule.rule, atIndex: atIndex)
+        guard atIndex > -1 && atIndex <= sequence.generalRules.count else { return }
+        sequence.generalRules.insert(rule.rule, atIndex: atIndex)
         delegates.forEach{ $0.sequencePresenterDidChangeGeneralRules(self) }
     }
     
     public func removeRulePresenter(rule:RulePresenter) {
         
-        guard sequence != nil else { return }
-        sequence!.generalRules.removeObject(rule.rule)
+        sequence.generalRules.removeObject(rule.rule)
         delegates.forEach{ $0.sequencePresenterDidChangeGeneralRules(self) }
     }
    
@@ -340,10 +257,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     //MARK: Pasteboard
     
     public func pasteboardItem() -> NSPasteboardItem {
-        
-        guard sequence != nil else { return NSPasteboardItem()}
-        
-        let data = NSKeyedArchiver.archivedDataWithRootObject(self.sequence!.copy())
+        let data = NSKeyedArchiver.archivedDataWithRootObject(self.sequence.copy())
         let item = NSPasteboardItem()
         item.setData(data, forType: AppConfiguration.UTI.sequence)
         return item

@@ -90,7 +90,7 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
         if let presenter = presenter {
             presenter.updateSequenceEvents()
             titleTextField.stringValue = presenter.title
-            self.sequenceCollectionView.toolTip = String(presenter.status)
+            self.sequenceCollectionView.toolTip = String(presenter.currentState)
             sequenceCollectionView.reloadData()
         } else {
             Swift.print("Cannot update sequence Cell as presenter is null")
@@ -157,9 +157,9 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
     }
     
     
-    public func sequencePresenterDidChangeStatus(sequencePresenter: SequencePresenter, toStatus:SequenceStatus){
+    public func sequencePresenterDidChangeStatus(sequencePresenter: SequencePresenter, toStatus:SequenceState){
         
-        self.sequenceCollectionView.toolTip = String(sequencePresenter.status)
+        self.sequenceCollectionView.toolTip = String(sequencePresenter.currentState)
     }
     
     public func sequencePresenterDidChangeGeneralRules(sequencePresenter: SequencePresenter) {

@@ -106,7 +106,7 @@ public class FilamentDocument: NSDocument {
     public func save() {
         
         let storageDir = AppConfiguration.sharedConfiguration.storageDirectory
-        let url = storageDir().URLByAppendingPathComponent(_sequencePresenter!.archiveableSeq.filename)
+        let url = storageDir().URLByAppendingPathComponent(_sequencePresenter!.sequence.filename)
         
         self.saveToURL(url, ofType: AppConfiguration.filamentFileExtension , forSaveOperation:.SaveOperation, completionHandler: { (Err: NSError?) -> Void in
             
@@ -140,7 +140,7 @@ public class FilamentDocument: NSDocument {
         
         if _sequencePresenter != nil {
             print("Saving")
-            return NSKeyedArchiver.archivedDataWithRootObject(_sequencePresenter!.archiveableSeq)
+            return NSKeyedArchiver.archivedDataWithRootObject(_sequencePresenter!.sequence)
         } else if unarchivedSequence != nil {
             print("Saving")
             return NSKeyedArchiver.archivedDataWithRootObject(unarchivedSequence!)
