@@ -16,7 +16,7 @@ public class RuleViewController : NSViewController, NSMenuDelegate {
         super.viewWillDisappear()
         
         if let seqPresenter = rulePresenter?.sequencePresenter {
-            seqPresenter.updateSequenceEvents()
+            seqPresenter.updateState()
         } else {
             // It's a generic rule so need to update all sequences
             NSNotificationCenter.defaultCenter().postNotificationName("UpdateAllSequences", object: nil)

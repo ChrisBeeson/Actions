@@ -51,7 +51,7 @@ public class RuleTokenField : NSTokenField, NodePresenterDelegate, NSTokenFieldD
     
     public func tokenField(tokenField: NSTokenField, hasMenuForRepresentedObject representedObject: AnyObject) -> Bool {
         
-        switch nodePresenter!.currentStatus {
+        switch nodePresenter!.currentState {
             case .Inactive, .Ready, .Error : return true
             case .Running, .WaitingForUserInput, .Completed, .Void: return false
         }

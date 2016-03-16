@@ -172,8 +172,8 @@ public extension FilamentDocumentsManager {
     
     public class func filterDocumentsForFilterType(documents:[FilamentDocument], filterType:DocumentFilterType) -> [FilamentDocument] {
         
-        // First update all sequence statuses
-        documents.forEach{ $0.sequencePresenter?.updateSequenceStatus() }
+        // First update all sequence statees
+        documents.forEach{ $0.sequencePresenter?.updateState() }
         
         var returnDocuments = [FilamentDocument]()
         

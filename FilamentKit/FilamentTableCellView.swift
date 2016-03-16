@@ -88,7 +88,7 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
         backgroundView.layer?.borderColor = NSColor.grayColor().CGColor
         
         if let presenter = presenter {
-            presenter.updateSequenceEvents()
+            presenter.updateState()
             titleTextField.stringValue = presenter.title
             self.sequenceCollectionView.toolTip = String(presenter.currentState)
             sequenceCollectionView.reloadData()

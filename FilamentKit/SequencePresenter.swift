@@ -30,7 +30,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     override init() {
         super.init()
         NSNotificationCenter.defaultCenter().addObserverForName("UpdateAllSequences", object: nil, queue: nil) { (notification) -> Void in
-            self.updateSequenceEvents()
+            self.updateState()
         }
     }
     
@@ -79,7 +79,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         }
     }
     
-    // Status
+    // State
     
     public var currentState: SequenceState {
         return _currentState
@@ -93,7 +93,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         guard sequence != self._sequence else { return }
         
         self._sequence = sequence
-        updateSequenceEvents()
+        updateState()
         
         delegates.forEach{ $0.sequencePresenterDidRefreshCompleteLayout(self) }
     }
@@ -145,7 +145,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         
         delegates.forEach { $0.sequencePresenterDidFinishChangingNodeLayout(self) }
         
-        updateSequenceEvents()
+        updateState()
     }
     
     
@@ -169,7 +169,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         }
         */
         
-        updateSequenceEvents()
+        updateState()
     }
     
     
@@ -192,35 +192,15 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
             
             delegates.forEach { $0.sequencePresenterDidUpdateChainContents(insertedNodes, deletedNodes:deletedNodes) }
         }
-        updateSequenceStatus()
+        updateState()
     }
     
     
-    // MARK: Events
+    // MARK: State
     
-    /* This is the entry to requesting the sequence to recalculate all events */
-    
-    public func updateSequenceEvents() {
-
+    public func updateState() {
         guard _sequence != nil else { return }
-        //guard date != nil else { updateSequenceStatus() ;  return }
-        
         _currentState.update(self)
-
-        //updateSequenceStatus()
-    }
-    
-    
-    // MARK: Status
-    
-    
-    
-    /// Update the sequence, without processing the calendar Events
-    
-    func updateSequenceStatus() {
-        
-    
-        nodePresenters.forEach{ $0.updateNodeStatus() }
     }
     
     

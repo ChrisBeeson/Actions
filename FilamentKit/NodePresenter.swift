@@ -17,7 +17,7 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     var undoManager: NSUndoManager?
     var sequencePresenter: SequencePresenter?
     var delegates = [NodePresenterDelegate]()
-    private var _currentStatus = NodeStatus.Inactive
+    private var _currentState = NodeState.Inactive
     private var rulePresenters = [RulePresenter]()
     
     //MARK: Properties
@@ -84,15 +84,15 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     
     
     
-    var currentStatus: NodeStatus {
+    var currentState: NodeState {
         
         get {
-            //   _currentStatus.update(self)
-            return _currentStatus
+            //   _currentState.update(self)
+            return _currentState
         }
         
         set {
-            _currentStatus = newValue
+            _currentState = newValue
         }
     }
     
@@ -143,15 +143,15 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     }
     
     
-    func updateNodeStatus() {
+    func updateNodeState() {
         
-        _currentStatus.update(self)
+        _currentState.update(self)
     }
     
 
-    func removeCalandarEvent(updateStatus:Bool) {
+    func removeCalandarEvent(updateState:Bool) {
         node.deleteEvent()
-        if updateStatus == true { updateNodeStatus() }
+        if updateState == true { updateNodeState() }
     }
     
     

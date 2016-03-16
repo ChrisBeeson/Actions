@@ -51,22 +51,22 @@ class NodeView: NSView {
             
             if selected {
                 pathLayer.lineWidth = 2.0
-                if currentStatus == .Inactive || currentStatus == .Ready || currentStatus == .Completed {
+                if currentState == .Inactive || currentState == .Ready || currentState == .Completed {
                     pathLayer.strokeColor = AppConfiguration.Palette.selectionBlue.CGColor
                 }
                 
             } else {
                 pathLayer.lineWidth = 0.8
-                pathLayer.strokeColor = drawingContextColour(colourForStatus(currentStatus)).stroke
+                pathLayer.strokeColor = drawingContextColour(colourForState(currentState)).stroke
             }
             CATransaction.commit()
         }
     }
     
-    var currentStatus:NodeStatus = .Inactive {
+    var currentState:NodeState = .Inactive {
         willSet {
-            if newValue == currentStatus { return }
-            performAnimationsForNewStatus(newValue)
+            if newValue == currentState { return }
+            performAnimationsForNewState(newValue)
         }
         didSet {
             self.needsLayout = true
@@ -78,13 +78,13 @@ class NodeView: NSView {
     }
     
     
-    func performAnimationsForNewStatus(newStatus:NodeStatus) {
+    func performAnimationsForNewState(newState:NodeState) {
         
-        if newStatus != NodeStatus.Running && self.pathLayer.animationKeys()?.contains("RunningFill") == true  {
+        if newState != NodeState.Running && self.pathLayer.animationKeys()?.contains("RunningFill") == true  {
             self.pathLayer.removeAllAnimations()
         }
         
-        switch newStatus {
+        switch newState {
             
         case .Inactive:
             self.pathLayer.strokeColor = drawingContextColour(.LightGrey).stroke
@@ -134,21 +134,21 @@ class NodeView: NSView {
             pathLayer.strokeColor = drawingContextColour(.VeryLightGrey).stroke
             pathLayer.fillColor = drawingContextColour(.VeryLightGrey).fill
             
-        case .Void: fatalError("Trying to add animation when statusNode = .Void")
+        case .Void: fatalError("Trying to add animation when stateNode = .Void")
         }
     }
     
     
-    func colourForStatus(status:NodeStatus) -> NodeColour {
+    func colourForState(state:NodeState) -> NodeColour {
         
-        switch status {
+        switch state {
         case .Inactive: return .LightGrey
         case .Ready: return .LightGrey
         case .Running: return .Green
         case .Completed: return .LightGrey
         case .WaitingForUserInput: return .Blue
         case .Error: return .Red
-        case .Void: fatalError("Trying to find colour for a Void Status")
+        case .Void: fatalError("Trying to find colour for a Void State")
         }
     }
 }

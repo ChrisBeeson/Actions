@@ -47,8 +47,8 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
         
         if presenter != nil {
             titleTextField.stringValue = presenter!.title
-            presenter!.updateNodeStatus()
-            nodeView.currentStatus = presenter!.currentStatus
+            presenter!.updateNodeState()
+            nodeView.currentState = presenter!.currentState
         }
     }
     
@@ -93,26 +93,26 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     
     //Mark: NodePresenter delegate calls
     
-    func nodePresenterDidChangeStatus(presenter: NodePresenter, toStatus: NodeStatus, options:[String]? ) {
+    func nodePresenterDidChangeState(presenter: NodePresenter, toState: NodeState, options:[String]? ) {
         
         guard presenter == self.presenter else { return }
         
-        titleTextField?.textColor = toStatus == .Completed ?  AppConfiguration.Palette.verylightGreyStroke : NSColor.blackColor()
+        titleTextField?.textColor = toState == .Completed ?  AppConfiguration.Palette.verylightGreyStroke : NSColor.blackColor()
         
-        switch toStatus {
+        switch toState {
             
         case .Ready :
             
             if let indexPath = indexPath {
                 
                 delay(Double(indexPath.item) * 0.1) {
-                    self.nodeView.currentStatus = .Ready
+                    self.nodeView.currentState = .Ready
                 }} else {
-                self.nodeView.currentStatus = .Ready
+                self.nodeView.currentState = .Ready
             }
             
         default:
-             self.nodeView.currentStatus = toStatus
+             self.nodeView.currentState = toState
         }
     }
     

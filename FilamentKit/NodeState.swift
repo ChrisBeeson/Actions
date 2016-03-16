@@ -1,5 +1,5 @@
 //
-//  NodeStatus.swift
+//  NodeState.swift
 //  Filament
 //
 //  Created by Chris on 15/03/2016.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum NodeStatus: Int {
+enum NodeState: Int {
     
     case Inactive = 1            // has no calendar Event
     case Ready                   // has calendar Event
@@ -19,57 +19,57 @@ enum NodeStatus: Int {
     case Void                    // illegal state that we should never be in
     
     
-    internal mutating func changeToStatus(newStatus: NodeStatus, presenter:NodePresenter, options:[String]?) -> NodeStatus {
-        presenter.delegates.forEach { $0.nodePresenterDidChangeStatus(presenter, toStatus:newStatus, options:nil) }
-        print("Node \(presenter.title):  From \(self)  to \(newStatus)")
-        if self == newStatus {
-            print("Self is equal to the new status")
-        }
+    internal mutating func changeToState(newState: NodeState, presenter:NodePresenter, options:[String]?) -> NodeState {
         
-          self = newStatus
-        return newStatus
+        presenter.delegates.forEach { $0.nodePresenterDidChangeState(presenter, toState:newState, options:nil) }
+       
+        print("Node \(presenter.title):  From \(self)  to \(newState)")
+        if self == newState { print("Self is equal to the new state") }
+        
+        self = newState
+        return newState
     }
     
-    mutating func toStatus(status: NodeStatus, presenter: NodePresenter) -> NodeStatus {
-        if status == self { return self }
+    mutating func toState(state: NodeState, presenter: NodePresenter) -> NodeState {
+        if state == self { return self }
         
-        switch status {
+        switch state {
         case Inactive : return toInactive(presenter)
         case Ready : return toReady(presenter, ignoreErrors: false)
         case Running : return toRunning(presenter)
         case WaitingForUserInput : return toWaitingForUserInput(presenter)
         case Completed : return toCompleted(presenter)
         case Error : return toError(presenter)
-        case Void : fatalError("Void Node Status")
+        case Void : fatalError("Void Node State")
         }
     }
     
-    mutating func toInactive(presenter: NodePresenter) -> NodeStatus {
+    mutating func toInactive(presenter: NodePresenter) -> NodeState {
         guard self != .Inactive else { return self }
         
         presenter.removeCalandarEvent(false)
-        return changeToStatus(Inactive, presenter: presenter, options: nil)
+        return changeToState(Inactive, presenter: presenter, options: nil)
     }
     
     
-    mutating func toReady(presenter: NodePresenter, ignoreErrors:Bool) -> NodeStatus {
+    mutating func toReady(presenter: NodePresenter, ignoreErrors:Bool) -> NodeState {
         guard self != .Ready else { return self }
         
         // Moving to ready may mean we are actually in a different state.
         // The only thing it can't be is .Error
         
-        let calculatedState = calculateNodeStatus(presenter, ignoreError:ignoreErrors)
+        let calculatedState = calculateNodeState(presenter, ignoreError:ignoreErrors)
         if calculatedState == self { return self }
         
         switch calculatedState {
             
-            // add a timer to refresh when status change is due
+            // add a timer to refresh when state change is due
             
         case .Ready:
             if let event = presenter.node.event {
                 let secsToStart = event.startDate.secondsLaterThan(NSDate())
                 NSTimer.schedule(delay: secsToStart+0.1) { timer in
-                    presenter.updateNodeStatus()
+                    presenter.updateNodeState()
                 }
             }
             
@@ -77,39 +77,39 @@ enum NodeStatus: Int {
             if let event = presenter.node.event {
                 let secsToComplete = event.endDate.secondsLaterThan(NSDate())
                 NSTimer.schedule(delay: secsToComplete+0.1) { timer in
-                    presenter.updateNodeStatus()
+                    presenter.updateNodeState()
                 }
             }
         default: break
         }
-        return changeToStatus(calculatedState, presenter: presenter, options: nil)
+        return changeToState(calculatedState, presenter: presenter, options: nil)
     }
     
     
-    mutating func toRunning(presenter: NodePresenter) -> NodeStatus {
+    mutating func toRunning(presenter: NodePresenter) -> NodeState {
         guard self != .Running else { return self }
         
-        return changeToStatus(.Running, presenter:presenter, options: nil)
+        return changeToState(.Running, presenter:presenter, options: nil)
     }
     
     
     
-    mutating func toCompleted(presenter: NodePresenter) -> NodeStatus {
+    mutating func toCompleted(presenter: NodePresenter) -> NodeState {
         guard self != .Completed else { return self }
         presenter.isCompleted = true
-        return changeToStatus(.Completed, presenter:presenter, options: nil)
+        return changeToState(.Completed, presenter:presenter, options: nil)
     }
     
     
     
-    mutating func toError(presenter: NodePresenter) -> NodeStatus {
+    mutating func toError(presenter: NodePresenter) -> NodeState {
         guard self != .Error else { return self }
         presenter.removeCalandarEvent(false)
-        return changeToStatus(.Error, presenter:presenter, options: nil)
+        return changeToState(.Error, presenter:presenter, options: nil)
     }
     
     
-    mutating func toWaitingForUserInput(presenter: NodePresenter) -> NodeStatus {
+    mutating func toWaitingForUserInput(presenter: NodePresenter) -> NodeState {
         guard self != .WaitingForUserInput else { return self }
         switch self {
             
@@ -119,28 +119,28 @@ enum NodeStatus: Int {
             break
         }
         
-        return changeToStatus(.WaitingForUserInput, presenter:presenter, options: nil)
+        return changeToState(.WaitingForUserInput, presenter:presenter, options: nil)
     }
     
     
     mutating func update(presenter: NodePresenter) {
-        let calcStatus = calculateNodeStatus(presenter, ignoreError: false)
-        toStatus(calcStatus, presenter: presenter)
+        let calcState = calculateNodeState(presenter, ignoreError: false)
+        toState(calcState, presenter: presenter)
     }
     
-    func calculateNodeStatus(presenter: NodePresenter, ignoreError:Bool) -> NodeStatus {
+    func calculateNodeState(presenter: NodePresenter, ignoreError:Bool) -> NodeState {
         
         if presenter.isCompleted == true { return .Completed }
         if ignoreError == false && self == .Error { return .Error }
         guard presenter.event != nil else { return .Inactive }
         
-        var newStatus = NodeStatus.Void
-        if presenter.event!.startDate.isLaterThan(NSDate())  { newStatus = .Ready }
+        var newState = NodeState.Void
+        if presenter.event!.startDate.isLaterThan(NSDate())  { newState = .Ready }
         if presenter.event!.startDate.isEarlierThanOrEqualTo(NSDate()) && presenter.node.event!.endDate.isLaterThanOrEqualTo(NSDate())  {
-            newStatus = .Running
+            newState = .Running
         }
-        if presenter.event!.endDate.isEarlierThanOrEqualTo(NSDate()) { newStatus = .Completed }
-        // print("\(self) - Calculated node status to be \(newStatus)")
-        return newStatus
+        if presenter.event!.endDate.isEarlierThanOrEqualTo(NSDate()) { newState = .Completed }
+        // print("\(self) - Calculated node state to be \(newState)")
+        return newState
     }
 }

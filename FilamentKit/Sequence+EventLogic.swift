@@ -24,12 +24,13 @@ extension Sequence {
             var rules = node.rules
             
             // add general sequence Rules
-              rules.appendContentsOf(self.generalRules)
+            rules.appendContentsOf(self.generalRules)
             
             // add generic app wide rules, if the sequence hasn't overruled them
             // if an event for this event already exists we need to remove it so it doesn't clash with its self.
-              let genericRules = AppConfiguration.sharedConfiguration.contextPresenter().rules.filter { !self.generalRules.contains($0) }
-             rules.appendContentsOf(genericRules)
+            
+            let genericRules = AppConfiguration.sharedConfiguration.contextPresenter().rules.filter { !self.generalRules.contains($0) }
+            rules.appendContentsOf(genericRules)
             
             switch postion(node) {
                 
