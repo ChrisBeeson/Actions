@@ -105,14 +105,13 @@ public class FilamentDocument: NSDocument {
         
         let storageDir = AppConfiguration.sharedConfiguration.storageDirectory
         let url = storageDir().URLByAppendingPathComponent(_sequencePresenter!.sequence.filename)
-        
-        self.saveToURL(url, ofType: AppConfiguration.filamentFileExtension , forSaveOperation:.SaveOperation, completionHandler: { (Err: NSError?) -> Void in
-            
-            if Err != nil {
-                print(Err!.localizedDescription)
-            } else {
+        do {
+         try self.writeSafelyToURL(url, ofType: AppConfiguration.filamentFileExtension, forSaveOperation: .SaveOperation)
+        } catch {
+            do {
+                print(error)
             }
-        })
+        }
     }
     
     
@@ -135,7 +134,7 @@ public class FilamentDocument: NSDocument {
     
     
     override public func dataOfType(typeName: String) throws -> NSData {
-        
+    
         if _sequencePresenter != nil {
             print("Saving")
             return NSKeyedArchiver.archivedDataWithRootObject(_sequencePresenter!.sequence)

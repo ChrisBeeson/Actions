@@ -17,6 +17,8 @@ public class TransitionDurationWithVarianceRulePresenter : RulePresenter {
         }
         set {
             (rule as! TransitionDurationWithVariance).eventStartsInDuration.amount = newValue
+            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+            informDelegatesOfChangesToContent()
         }
     }
     
@@ -26,6 +28,7 @@ public class TransitionDurationWithVarianceRulePresenter : RulePresenter {
         }
         set {
             (rule as! TransitionDurationWithVariance).eventStartsInDuration.unit = DTTimePeriodSize(rawValue: newValue)!
+            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
             informDelegatesOfChangesToContent()
         }
     }
@@ -36,6 +39,8 @@ public class TransitionDurationWithVarianceRulePresenter : RulePresenter {
         }
         set {
             (rule as! TransitionDurationWithVariance).variance.amount = newValue
+            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+            informDelegatesOfChangesToContent()
         }
     }
     
@@ -45,6 +50,7 @@ public class TransitionDurationWithVarianceRulePresenter : RulePresenter {
         }
         set {
             (rule as! TransitionDurationWithVariance).variance.unit = DTTimePeriodSize(rawValue: newValue)!
+            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
             informDelegatesOfChangesToContent()
         }
     }

@@ -24,9 +24,6 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         }
     }
     
-    
-    // document  updateChangeCount:
-    
     override init() {
         super.init()
         NSNotificationCenter.defaultCenter().addObserverForName("UpdateAllSequences", object: nil, queue: nil) { (notification) -> Void in
@@ -40,6 +37,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         }
         set {
             _sequence!.title = newValue
+            representingDocument?.updateChangeCount(.ChangeDone)
         }
     }
     
@@ -118,6 +116,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         
         self._sequence!.date = date
         self._sequence!.startsAtDate = isStartDate
+        representingDocument?.updateChangeCount(.ChangeDone)
         
         _currentState.toNewStartDate(self)
     }
@@ -137,6 +136,8 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         
         let oldNodes = _sequence!.nodeChain()
         _sequence!.insertActionNode(node!, index: index)
+         representingDocument?.updateChangeCount(.ChangeDone)
+        
         informDelegatesOfChangesToNodeChain(oldNodes)
         
         undoManager?.prepareWithInvocationTarget(self).deleteNodes([node!])
@@ -160,6 +161,8 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
             _sequence!.removeActionNode(node)
         }
         
+        representingDocument?.updateChangeCount(.ChangeDone)
+        
         informDelegatesOfChangesToNodeChain(oldNodes)
         /*
         for node in nodes.reverse() {
@@ -179,6 +182,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
                 presenter.removeCalandarEvent(false)
             }
         }
+         representingDocument?.updateChangeCount(.ChangeDone)
     }
     
     func informDelegatesOfChangesToNodeChain(oldNodes:[Node]) {
@@ -225,12 +229,14 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         guard atIndex > -1 && atIndex <= sequence.generalRules.count else { return }
         sequence.generalRules.insert(rule.rule, atIndex: atIndex)
         delegates.forEach{ $0.sequencePresenterDidChangeGeneralRules(self) }
+        representingDocument?.updateChangeCount(.ChangeDone)
     }
     
     public func removeRulePresenter(rule:RulePresenter) {
         
         sequence.generalRules.removeObject(rule.rule)
         delegates.forEach{ $0.sequencePresenterDidChangeGeneralRules(self) }
+        representingDocument?.updateChangeCount(.ChangeDone)
     }
    
     
@@ -254,7 +260,6 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
 //MARK: Delegate helpers
     
     public func addDelegate(delegate:SequencePresenterDelegate) {
-        
         if !delegates.contains({$0 === delegate}) {
             delegates.append(delegate)
         }
@@ -263,6 +268,5 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     public func removeDelegate(delegate:SequencePresenterDelegate) {
         
         delegates = delegates.filter { return $0 !== delegate }
-        //delegates.removeObject(delegate)
     }
 }

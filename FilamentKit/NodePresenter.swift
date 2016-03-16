@@ -56,6 +56,7 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
         }
         set {
             node.location = newValue
+            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
         }
     }
     
@@ -67,6 +68,7 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
         }
         set {
             node.notes = newValue
+            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
         }
     }
     
@@ -109,6 +111,7 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
         }
         set {
             node.isCompleted = isCompleted
+            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
         }
     }
     
@@ -138,22 +141,22 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     
     func renameTitle(title:String) {
         node.title = title
-        node.event?.synchronizeCalendarEvent()
+        sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+        sequencePresenter?.representingDocument?.scheduleAutosaving()
+        node.event?.synchronizeCalendarEvent()  //FIXME:
         delegates.forEach { $0.nodePresenterDidChangeTitle(self) }
     }
-    
     
     func updateNodeState() {
         
         _currentState.update(self)
     }
     
-
     func removeCalandarEvent(updateState:Bool) {
         node.deleteEvent()
+        sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
         if updateState == true { updateNodeState() }
     }
-    
     
     
     //MARK: Rules
@@ -161,12 +164,14 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     func insertRulePresenter(rulePresenter:RulePresenter, atIndex:Int) {
         
         node.rules.insert(rulePresenter.rule, atIndex: atIndex)
+        sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
         delegates.forEach { $0.nodePresenterDidChangeRules(self) }
     }
     
     func insertRules(rules:[Rule]) {
         
         node.rules.appendContentsOf(rules)
+        sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
         delegates.forEach { $0.nodePresenterDidChangeRules(self) }
     }
     
@@ -174,14 +179,10 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     func deleteRulePresenter(deletedRulePresenter: RulePresenter) {
         
         node.rules.removeObject(deletedRulePresenter.rule)
+        sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
         delegates.forEach { $0.nodePresenterDidChangeRules(self) }
     }
     
-    
-    func removeRules(rules:[Rule]) {
-        
-        // delegates.forEach { $0.nodePresenterDidChangeRules(self) }
-    }
     
     
     // MARK: Delegate management

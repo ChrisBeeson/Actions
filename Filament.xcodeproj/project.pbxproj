@@ -404,13 +404,13 @@
 		4735747A1B9A692F00493CA0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				8343519B1BA2973C0094428B /* Rules */,
-				473574741B9A689B00493CA0 /* Node.swift */,
-				4720B50B1C71193600229734 /* Node+Event.swift */,
 				473574761B9A68AC00493CA0 /* Sequence.swift */,
 				4773D5451C95547000758B5A /* Sequence+PasteBoard.swift */,
 				47CD21C01BDF7A2600AF25BE /* Sequence+NodeLogic.swift */,
 				47CD21C51BDF807900AF25BE /* Sequence+EventLogic.swift */,
+				473574741B9A689B00493CA0 /* Node.swift */,
+				4720B50B1C71193600229734 /* Node+Event.swift */,
+				8343519B1BA2973C0094428B /* Rules */,
 				835740B11C77AD0700CFBB1B /* TimeEvent.swift */,
 				47967FEF1C895C7200358199 /* Context.swift */,
 				47D56FA01C8AC9E80025D156 /* Calendar.swift */,
@@ -421,16 +421,11 @@
 		4735747D1B9A915800493CA0 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
+				83F4AC001C9A0F19008D29A5 /* Sequence Presenter */,
+				83F4AC011C9A0F23008D29A5 /* Node Presenter */,
 				473853B31C7A5956000AB1E2 /* Rule Presenters */,
-				4735747E1B9A919500493CA0 /* SequencePresenter.swift */,
-				83B9DF5A1C9922AA008E3F26 /* SequenceState.swift */,
-				473574811B9A91A200493CA0 /* SequencePresenterDelegate.swift */,
-				4720B4FF1C6E7EF200229734 /* NodePresenter.swift */,
-				83B5005F1C981FE800B0F5AA /* NodeState.swift */,
-				4720B5011C6E7F0400229734 /* NodePresenterDelegate.swift */,
-				47967FF11C895F5400358199 /* ContextPresenter.swift */,
+				83F4AC021C9A0F52008D29A5 /* Context Presenter */,
 				473574881B9A91BE00493CA0 /* Presenter Helpers */,
-				835878BB1C8FEAB000F2CCFB /* RuleAvailabiltiy.swift */,
 			);
 			name = Presenters;
 			sourceTree = "<group>";
@@ -460,6 +455,7 @@
 			isa = PBXGroup;
 			children = (
 				473853B41C7A596E000AB1E2 /* RulePresenter.swift */,
+				835878BB1C8FEAB000F2CCFB /* RuleAvailabiltiy.swift */,
 				473853B61C7A5A43000AB1E2 /* RulePresenterDelegate.swift */,
 				473D9F571C7AEF7500E81D39 /* TransitionDurationWithVarianceRulePresenter.swift */,
 				473D9F591C7AF53800E81D39 /* EventDurationWithMinimumDurationRulePresenter.swift */,
@@ -666,6 +662,34 @@
 				83FB2BF81C8ECCC800AF291D /* RightAlignedCollectionViewFlowLayout.swift */,
 			);
 			name = RuleCollectionView;
+			sourceTree = "<group>";
+		};
+		83F4AC001C9A0F19008D29A5 /* Sequence Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				4735747E1B9A919500493CA0 /* SequencePresenter.swift */,
+				83B9DF5A1C9922AA008E3F26 /* SequenceState.swift */,
+				473574811B9A91A200493CA0 /* SequencePresenterDelegate.swift */,
+			);
+			name = "Sequence Presenter";
+			sourceTree = "<group>";
+		};
+		83F4AC011C9A0F23008D29A5 /* Node Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				4720B4FF1C6E7EF200229734 /* NodePresenter.swift */,
+				83B5005F1C981FE800B0F5AA /* NodeState.swift */,
+				4720B5011C6E7F0400229734 /* NodePresenterDelegate.swift */,
+			);
+			name = "Node Presenter";
+			sourceTree = "<group>";
+		};
+		83F4AC021C9A0F52008D29A5 /* Context Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				47967FF11C895F5400358199 /* ContextPresenter.swift */,
+			);
+			name = "Context Presenter";
 			sourceTree = "<group>";
 		};
 		83F6B94E1B994652002A5AAF = {

@@ -22,6 +22,7 @@ public class AvoidCalendarEventsPresenter : RulePresenter {
             let cal = (rule as! AvoidCalendarEventsRule).calendars[index]
             cal.avoid = avoid
         }
+        sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
     }
     
     public override func detailViewController() -> RuleViewController {

@@ -17,6 +17,8 @@ public class EventDurationWithMinimumDurationRulePresenter : RulePresenter {
         }
         set {
             (rule as! EventDurationWithMinimumDuration).duration.amount = newValue
+            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+            informDelegatesOfChangesToContent()
         }
     }
     
@@ -26,6 +28,7 @@ public class EventDurationWithMinimumDurationRulePresenter : RulePresenter {
         }
         set {
             (rule as! EventDurationWithMinimumDuration).duration.unit = DTTimePeriodSize(rawValue: newValue)!
+            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
             informDelegatesOfChangesToContent()
         }
     }
@@ -36,6 +39,8 @@ public class EventDurationWithMinimumDurationRulePresenter : RulePresenter {
         }
         set {
             (rule as! EventDurationWithMinimumDuration).minDuration.amount = newValue
+            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+            informDelegatesOfChangesToContent()
         }
     }
     
@@ -45,6 +50,7 @@ public class EventDurationWithMinimumDurationRulePresenter : RulePresenter {
         }
         set {
             (rule as! EventDurationWithMinimumDuration).minDuration.unit = DTTimePeriodSize(rawValue: newValue)!
+            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
             informDelegatesOfChangesToContent()
         }
     }
