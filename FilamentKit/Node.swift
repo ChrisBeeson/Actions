@@ -32,6 +32,7 @@ class Node: NSObject, NSCoding {
     var rightTransitionNode: Node?
     var UUID = NSUUID()
     var event: TimeEvent?
+    var isCompleted = false
     
     // MARK: Initializers
     
@@ -81,6 +82,7 @@ class Node: NSObject, NSCoding {
         static let leftTransitionNode = "leftTransitionNode"
         static let rightTransitionNode = "rightTransitionNode"
         static let event = "event"
+        static let isCompleted = "isCompleted"
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -96,6 +98,7 @@ class Node: NSObject, NSCoding {
         leftTransitionNode = aDecoder.decodeObjectForKey(SerializationKeys.leftTransitionNode) as? Node
         rightTransitionNode = aDecoder.decodeObjectForKey(SerializationKeys.rightTransitionNode) as? Node
         event = aDecoder.decodeObjectForKey(SerializationKeys.event) as? TimeEvent
+        isCompleted = aDecoder.decodeObjectForKey(SerializationKeys.isCompleted) as! Bool
         
         if event != nil {
             event!.owner = self
@@ -114,6 +117,7 @@ class Node: NSObject, NSCoding {
         encoder.encodeObject(leftTransitionNode, forKey: SerializationKeys.leftTransitionNode)
         encoder.encodeObject(rightTransitionNode, forKey: SerializationKeys.rightTransitionNode)
         encoder.encodeObject(event, forKey: SerializationKeys.event)
+        encoder.encodeObject(isCompleted, forKey: SerializationKeys.isCompleted)
     }
     
     

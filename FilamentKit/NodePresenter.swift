@@ -87,8 +87,10 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     var currentStatus: NodeStatus {
         
         get {
-            return calculateNodeStatus()
+            //   _currentStatus.update(self)
+            return _currentStatus
         }
+        
         set {
             _currentStatus = newValue
         }
@@ -98,6 +100,15 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     var event: TimeEvent? {
         get {
             return node.event
+        }
+    }
+    
+    var isCompleted: Bool {
+        get {
+            return node.isCompleted
+        }
+        set {
+            node.isCompleted = isCompleted
         }
     }
     
@@ -116,8 +127,6 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
                 return string
                 
             case NodeType.Transition: return "Transition"
-                
-                // Do we have events
             default: return "Invaid Type"
                 
             }
@@ -136,25 +145,10 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     
     func updateNodeStatus() {
         
-        _currentStatus = _currentStatus.toStatus(calculateNodeStatus(), presenter: self)
+        _currentStatus.update(self)
     }
     
-    
-    func calculateNodeStatus() -> NodeStatus {
-        
-        guard node.event != nil else { return .Inactive }
-        
-        var newStatus = NodeStatus.Void
-        if node.event!.startDate.isLaterThan(NSDate())  { newStatus = .Ready }
-        if node.event!.startDate.isEarlierThanOrEqualTo(NSDate()) && node.event!.endDate.isLaterThanOrEqualTo(NSDate())  {
-            newStatus = .Running
-        }
-        if node.event!.endDate.isEarlierThanOrEqualTo(NSDate()) { newStatus = .Completed }
-        assert(newStatus != .Void, "updateNodeStatus came up with Void")
-        return newStatus
-    }
-    
-    
+
     func removeCalandarEvent(updateStatus:Bool) {
         node.deleteEvent()
         if updateStatus == true { updateNodeStatus() }

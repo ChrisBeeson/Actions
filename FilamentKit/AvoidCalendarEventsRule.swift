@@ -53,7 +53,7 @@ class AvoidCalendarEventsRule: Rule, NSCoding {
                     for ignore in ignore {
                         if period.isEqualToPeriod(ignore) {
                             periods.removeObject(period)
-                            print("removing \(period)")
+                            // print("removing \(period)")
                         }
                     }
                 }

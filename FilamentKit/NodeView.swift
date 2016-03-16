@@ -37,7 +37,6 @@ class NodeView: NSView {
         super.layout()
         
         pathLayer.path = calculatePath()
-        //   performAnimationsForNewStatus(currentStatus)
     }
     
     override var wantsDefaultClipping: Bool { return false }

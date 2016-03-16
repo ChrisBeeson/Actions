@@ -87,7 +87,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     public var completionDate : NSDate? {
         
         if nodes == nil { return nil}
-        if nodes!.count == 0 { return nodes![nodes!.count-1].event?.endDate }
+        if nodes!.count == 0 { return nodes![nodes!.count].event?.endDate }
         if let event = nodes![nodes!.count-1].event {
             return event.endDate
         } else {
@@ -106,7 +106,6 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     
 
     func setSequence(sequence: Sequence) {
-        
         guard sequence != self.sequence else { return }
         
         self.sequence = sequence
@@ -195,7 +194,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     public func prepareForCompleteDeletion() {
         if currentStatus != .Completed {
             for presenter in nodePresenters {
-                presenter.removeCalandarEvent(true)
+                presenter.removeCalandarEvent(false)
             }
         }
     }
@@ -219,10 +218,8 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     
     /* This is the entry to requesting the sequence to recalculate all events */
     
-    func updateSequenceEvents() {
-        
-        //TODO: Process from starting Node
-        
+    public func updateSequenceEvents() {
+
         guard sequence != nil else { return }
        
         if date == nil {
@@ -232,10 +229,9 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         }
         
         let result = sequence!.UpdateEvents()
-        // nodePresenters.forEach{ $0.currentStatus = .Inactive  }  //first reset all nodes
         
         if result.success == true {
-            nodePresenters.forEach{ $0.currentStatus.toReady($0) }
+            nodePresenters.forEach{ $0.currentStatus.toReady($0, ignoreErrors:true) }
             updateSequenceStatus()
             return
         }
@@ -264,7 +260,13 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     
         var status = SequenceStatus.Void
         
-        nodePresenters.forEach{ if $0.currentStatus == .Error { return status = .HasFailedNode  } }
+        for presenter in nodePresenters {
+            if presenter.currentStatus == .Error {
+                status = .HasFailedNode
+                break
+            }
+        }
+        
         if status == .HasFailedNode { return status }  // Better way to tighen this?
         
         if date == nil { status = .NoStartDateSet }

@@ -38,9 +38,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func applicationDidBecomeActive(notification: NSNotification) {
-        print("Did be come Active")
         
-        NSNotificationCenter.defaultCenter().postNotificationName("RefreshMainTableView", object: nil)
+        //NSNotificationCenter.defaultCenter().postNotificationName("RefreshMainTableView", object: nil)
     }
     
     func applicationDidUnhide(notification: NSNotification) {

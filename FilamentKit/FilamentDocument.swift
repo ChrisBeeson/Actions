@@ -26,9 +26,8 @@ public class FilamentDocument: NSDocument {
                     _sequencePresenter!.representingDocument = self
                 }
                 return _sequencePresenter
-                
             } else  {
-                return nil
+                fatalError("_sequencePresenter is NULL")
             }
         }
     }
@@ -56,11 +55,7 @@ public class FilamentDocument: NSDocument {
         return AppConfiguration.defaultFilamentDraftName
     }
     
-    /*
-    override public func isDocumentEdited() -> Bool {
-    return true
-    }
-    */
+    
     
     public func storageURL() -> NSURL {
         let storageDir = AppConfiguration.sharedConfiguration.storageDirectory

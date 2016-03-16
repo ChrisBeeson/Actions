@@ -79,11 +79,11 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         
         if (diff.results.count > 0) {
             
-            let insertionIndexPaths = NSMutableIndexSet()
-            diff.insertions.forEach { insertionIndexPaths.addIndex($0.idx) }
             let deletionIndexPaths = NSMutableIndexSet()
             diff.deletions.forEach { deletionIndexPaths.addIndex($0.idx) }
-            
+            let insertionIndexPaths = NSMutableIndexSet()
+            diff.insertions.forEach { insertionIndexPaths.addIndex($0.idx) }
+   
             dispatch_async(dispatch_get_main_queue(), {
             self.tableView?.beginUpdates()
             self.tableView?.insertRowsAtIndexes(insertionIndexPaths, withAnimation: NSTableViewAnimationOptions.SlideLeft)

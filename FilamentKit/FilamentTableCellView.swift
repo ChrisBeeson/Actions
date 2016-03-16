@@ -29,12 +29,16 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
     
     public var presenter: SequencePresenter? {
         
-        didSet {
-            sequenceCollectionView.presenter = presenter
-            if presenter != nil {
+        set {
+            presenter?.removeDelegate(self)
+            sequenceCollectionView.presenter = newValue
+            if newValue != nil {
                 presenter!.addDelegate(self)
             }
-            updateCellView()
+        }
+        
+        get {
+            return sequenceCollectionView.presenter
         }
     }
     
@@ -72,6 +76,7 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
         generalRulesCollectionView.allowDrops = true
         generalRulesCollectionView.allowDropsFromType = [.Generic]
         generalRulesCollectionView.allowDeletions = true
+        updateCellView()
     }
     
     
@@ -82,10 +87,13 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
         backgroundView.layer?.borderWidth = 0.2
         backgroundView.layer?.borderColor = NSColor.grayColor().CGColor
         
-        if presenter != nil {
-            titleTextField.stringValue = presenter!.title
-            self.sequenceCollectionView.toolTip = String(presenter!.status)
+        if let presenter = presenter {
+            presenter.updateSequenceEvents()
+            titleTextField.stringValue = presenter.title
+            self.sequenceCollectionView.toolTip = String(presenter.status)
             sequenceCollectionView.reloadData()
+        } else {
+            Swift.print("Cannot update sequence Cell as presenter is null")
         }
         
         refreshGeneralRulesCollectionView()
