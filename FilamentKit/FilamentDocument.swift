@@ -80,8 +80,6 @@ public class FilamentDocument: NSDocument {
     public class func newSequenceDocumentFromArchive(data: NSData) -> FilamentDocument {
         
         let sequence = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! Sequence
-        sequence.date = nil
-        sequence.startsAtDate = true
         let newDoc = FilamentDocument()
         newDoc.unarchivedSequence = sequence
         sequence.uuid =  NSUUID()

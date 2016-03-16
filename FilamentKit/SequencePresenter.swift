@@ -237,7 +237,13 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     //MARK: Pasteboard
     
     public func pasteboardItem() -> NSPasteboardItem {
-        let data = NSKeyedArchiver.archivedDataWithRootObject(self.sequence.copy())
+        
+        let seqCopy = self.sequence.copy() as! Sequence
+        seqCopy.date = nil
+        seqCopy.startsAtDate = true
+        seqCopy.nodeChain().forEach { $0.event = nil ; $0.isCompleted = false }
+        
+        let data = NSKeyedArchiver.archivedDataWithRootObject(seqCopy)
         let item = NSPasteboardItem()
         item.setData(data, forType: AppConfiguration.UTI.sequence)
         return item

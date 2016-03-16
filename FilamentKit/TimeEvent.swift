@@ -11,11 +11,14 @@ import EventKit
 import Async
 import DateTools
 
-class TimeEvent : NSObject {
+class TimeEvent : NSObject, NSCoding, NSCopying {
     
     var startDate: NSDate
     var endDate: NSDate
     var publish = false
+    var owner: Node?
+    var calendarEventId = ""
+    var calendarEvent:EKEvent?
     
     var period:DTTimePeriod? {
         willSet {
@@ -24,9 +27,12 @@ class TimeEvent : NSObject {
         }
     }
     
-    var owner: Node?
-    var calendarEventId = ""
-    var calendarEvent:EKEvent?
+    override init() {
+        startDate = NSDate.distantPast()
+        endDate = NSDate.distantPast()
+        super.init()
+    }
+
     
     init(period:DTTimePeriod, owner:Node) {
         
@@ -161,5 +167,17 @@ class TimeEvent : NSObject {
         encoder.encodeObject(endDate, forKey: SerializationKeys.endDate)
         encoder.encodeObject(calendarEventId, forKey: SerializationKeys.calendarEventId)
         encoder.encodeObject(publish, forKey: SerializationKeys.publish)
+    }
+    
+    // MARK: NSCopying
+    
+    func copyWithZone(zone: NSZone) -> AnyObject  {
+
+        let clone = TimeEvent()
+        clone.startDate = self.startDate.copy() as! NSDate
+        clone.endDate = self.endDate.copy() as! NSDate
+        clone.publish = self.publish
+        clone.calendarEventId = self.calendarEventId.copy() as! String
+        return clone
     }
 }

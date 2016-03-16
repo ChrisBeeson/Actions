@@ -70,7 +70,6 @@ public enum SequenceState : Int {
         presenter.delegates.forEach { $0.sequencePresenterUpdatedDate(presenter) }
         
         if presenter.date == nil {
-            presenter.nodePresenters.forEach { $0.removeCalandarEvent(false) }
             presenter.nodePresenters.forEach { $0.currentState.toInactive($0) }
             return changeToState(.NoStartDateSet, presenter: presenter, options: nil)
         }
@@ -122,8 +121,6 @@ public enum SequenceState : Int {
     }
     
     
-    
-
     func processCalanderEvents(presenter: SequencePresenter) -> SequenceState {
         
         guard presenter.date != nil else { return .NoStartDateSet }
