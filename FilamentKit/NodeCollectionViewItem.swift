@@ -33,17 +33,17 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     
     override func viewWillLayout() {
         super.viewWillLayout()
-        
-        refreshView()
+    
     }
     
     override func viewWillAppear() {
         super.viewWillAppear()
-        refreshView()
+ 
+         updateView()
     }
     
     
-    func refreshView() {
+    func updateView() {
         
         if presenter != nil {
             titleTextField.stringValue = presenter!.title

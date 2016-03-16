@@ -79,6 +79,7 @@ import Async
             let item = makeItemWithIdentifier("DateNodeCollectionViewItem", forIndexPath: indexPath) as! DateNodeCollectionViewItem
             item.sequencePresenter = self.presenter!
             presenter?.addDelegate(item)
+            item.updateView()
             return item
             
         } else if indexPath.item < nodes.count+1 {
@@ -99,7 +100,7 @@ import Async
             }
             
             item.presenter = presenter!.presenterForNode(node)
-            item.presenter!.updateNodeStatus()
+            item.updateView()
             item.indexPath = indexPath
             return item
       
@@ -224,11 +225,11 @@ import Async
                 }
                 
             default:
-                return NSSize(width: 30,height: 35)
+                return NSSize(width: 30,height: 25)
             }
         } else {
             
-            return NSSize(width: 40,height: 35)
+            return NSSize(width: 40,height: 25)
         }
     }
     

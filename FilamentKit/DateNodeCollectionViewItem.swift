@@ -29,7 +29,6 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     override public func viewWillAppear() {
         super.viewWillAppear()
 
-        updateView()
     }
     
     
@@ -56,7 +55,7 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
         popover?.showRelativeToRect(self.dayString!.frame, ofView: self.view, preferredEdge:.MinX )
     }
     
-    func updateView() {
+    public func updateView() {
         
         self.view.alphaValue = self.sequencePresenter?.status == .Completed ? 0.5 : 1.0
         
@@ -78,6 +77,8 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
             day.stringValue = String(date.day())
             dateFormatter.dateFormat = "HH:mm"
             time.objectValue = dateFormatter.stringFromDate(date)
+        
+       
     }
     
     

@@ -20,18 +20,18 @@
             </connections>
         </collectionViewItem>
         <customView id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="60" height="33"/>
+            <rect key="frame" x="0.0" y="0.0" width="60" height="35"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lxw-2o-cB3" customClass="EmptyNodeView" customModule="FilamentKit" customModuleProvider="target">
-                    <rect key="frame" x="23" y="9" width="15" height="15"/>
+                    <rect key="frame" x="23" y="10" width="15" height="15"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="15" id="AMb-tJ-psw"/>
                         <constraint firstAttribute="height" constant="15" id="tYJ-sj-0b3"/>
                     </constraints>
                 </customView>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="2Hp-Nn-vAM" customClass="TransitionNodeView" customModule="FilamentKit" customModuleProvider="target">
-                    <rect key="frame" x="38" y="0.0" width="22" height="33"/>
+                    <rect key="frame" x="38" y="0.0" width="22" height="35"/>
                 </customView>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="93f-2C-0vr">
                     <rect key="frame" x="0.0" y="0.0" width="59" height="33"/>
