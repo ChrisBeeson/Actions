@@ -20,7 +20,7 @@ class AvoidCalendarEventsViewController : RuleViewController , RulePresenterDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        calendars = (rulePresenter as! AvoidCalendarEventsPresenter).calendars()
+        calendars = (rulePresenter as! AvoidCalendarEventsPresenter).calendars
         
         for cal in calendars {
             let view = stackViewForCalendar(cal)

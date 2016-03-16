@@ -25,6 +25,8 @@ class AvoidCalendarEventsRule: Rule, NSCoding {
     
     override init() {
         super.init()
+        
+        populateCalendars()
     }
     
     
@@ -81,6 +83,35 @@ class AvoidCalendarEventsRule: Rule, NSCoding {
         }
         return periods
     }
+    
+
+    
+     func populateCalendars() {
+        
+        // Calendars stored in Rule
+        var currentCalendars = self.calendars
+        
+        // Get all system calendars
+        let systemCalendars = CalendarManager.sharedInstance.systemCalendarsAsCalendars()
+        
+        let diff = currentCalendars.diff(systemCalendars)
+        
+        if diff.results.count > 0 {
+            
+            let inserts = diff.insertions.map{ $0.value }
+            inserts.filter({$0.name!.lowercaseString.containsString("birthday") == true}).forEach {$0.avoid = false }
+            inserts.filter({$0.name!.lowercaseString.containsString("holidays") == true}).forEach {$0.avoid = false }
+            currentCalendars.appendContentsOf(inserts)
+            
+            let deletions = diff.deletions.map{ $0.value }
+            currentCalendars.removeObjects(deletions)
+        }
+        
+       self.calendars = currentCalendars
+    }
+    
+
+    
     
     
     // MARK: NSCoding
