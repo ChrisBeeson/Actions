@@ -142,7 +142,6 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     func renameTitle(title:String) {
         node.title = title
         sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
-        sequencePresenter?.representingDocument?.scheduleAutosaving()
         node.event?.synchronizeCalendarEvent()  //FIXME:
         delegates.forEach { $0.nodePresenterDidChangeTitle(self) }
     }

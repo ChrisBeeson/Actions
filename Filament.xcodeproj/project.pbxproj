@@ -474,6 +474,61 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
+		476C8D351C9A98AC0068E44F /* Main Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				4778C0A91C657D8F00F5A259 /* NodeCollectionViewItem.swift */,
+				833AE3311C67FB6D002F35C1 /* TransitionNodeCollectionViewItem.xib */,
+				833AE32F1C67F85B002F35C1 /* ActionNodeCollectionViewItem.xib */,
+			);
+			name = "Main Nodes";
+			sourceTree = "<group>";
+		};
+		476C8D361C9A98CF0068E44F /* Date Node */ = {
+			isa = PBXGroup;
+			children = (
+				833AE32D1C67E463002F35C1 /* DateNodeCollectionViewItem.xib */,
+				4778C0A71C656B2500F5A259 /* DateNodeCollectionViewItem.swift */,
+			);
+			name = "Date Node";
+			sourceTree = "<group>";
+		};
+		476C8D371C9A98DE0068E44F /* Add New Node */ = {
+			isa = PBXGroup;
+			children = (
+				834F85D01C6ACFA2009CC72F /* AddNewNodeCollectionViewItem.xib */,
+				834F85CE1C6ACF5E009CC72F /* AddNewNodeCollectionViewItem.swift */,
+			);
+			name = "Add New Node";
+			sourceTree = "<group>";
+		};
+		476C8D381C9A9EBD0068E44F /* Node Detail view */ = {
+			isa = PBXGroup;
+			children = (
+				835619C91C6D6AAA00488E99 /* NodeDetailViewController.swift */,
+				835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */,
+			);
+			name = "Node Detail view";
+			sourceTree = "<group>";
+		};
+		476C8D391C9A9ED00068E44F /* Date Time Picker */ = {
+			isa = PBXGroup;
+			children = (
+				4720B5071C6F00B300229734 /* DateTimePickerViewController.swift */,
+				4720B5091C6F00E500229734 /* DateTimePickerViewController.xib */,
+			);
+			name = "Date Time Picker";
+			sourceTree = "<group>";
+		};
+		476C8D3A1C9A9EE00068E44F /* AvailableRules */ = {
+			isa = PBXGroup;
+			children = (
+				836896331C807FEF00F3F547 /* AvailableRulesViewController.swift */,
+				836896351C80801900F3F547 /* AvailableRulesViewController.xib */,
+			);
+			name = AvailableRules;
+			sourceTree = "<group>";
+		};
 		4778C0AB1C657F6500F5A259 /* SequenceCollectionView */ = {
 			isa = PBXGroup;
 			children = (
@@ -528,7 +583,7 @@
 			children = (
 				4778C0AB1C657F6500F5A259 /* SequenceCollectionView */,
 				83CE36361C84E33900D3A556 /* RuleCollectionView */,
-				47DF1C451C6879D700482390 /* ViewControllers */,
+				47DF1C451C6879D700482390 /* Detail ViewControllers */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -578,19 +633,16 @@
 			name = UI;
 			sourceTree = "<group>";
 		};
-		47DF1C451C6879D700482390 /* ViewControllers */ = {
+		47DF1C451C6879D700482390 /* Detail ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				476C8D381C9A9EBD0068E44F /* Node Detail view */,
+				476C8D391C9A9ED00068E44F /* Date Time Picker */,
+				476C8D3A1C9A9EE00068E44F /* AvailableRules */,
 				473853B01C7A5892000AB1E2 /* RuleViewControllers */,
-				835619C91C6D6AAA00488E99 /* NodeDetailViewController.swift */,
-				835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */,
-				4720B5071C6F00B300229734 /* DateTimePickerViewController.swift */,
-				4720B5091C6F00E500229734 /* DateTimePickerViewController.xib */,
 				83AD7EBB1C7BA4E60097BD61 /* RuleTokenField.swift */,
-				836896331C807FEF00F3F547 /* AvailableRulesViewController.swift */,
-				836896351C80801900F3F547 /* AvailableRulesViewController.xib */,
 			);
-			name = ViewControllers;
+			name = "Detail ViewControllers";
 			sourceTree = "<group>";
 		};
 		69793A9D031B4179C7761969 /* Pods */ = {
@@ -632,13 +684,9 @@
 		837C29451C7193E7006C8B02 /* CollectionViewItems */ = {
 			isa = PBXGroup;
 			children = (
-				833AE3311C67FB6D002F35C1 /* TransitionNodeCollectionViewItem.xib */,
-				833AE32F1C67F85B002F35C1 /* ActionNodeCollectionViewItem.xib */,
-				833AE32D1C67E463002F35C1 /* DateNodeCollectionViewItem.xib */,
-				834F85D01C6ACFA2009CC72F /* AddNewNodeCollectionViewItem.xib */,
-				4778C0A71C656B2500F5A259 /* DateNodeCollectionViewItem.swift */,
-				4778C0A91C657D8F00F5A259 /* NodeCollectionViewItem.swift */,
-				834F85CE1C6ACF5E009CC72F /* AddNewNodeCollectionViewItem.swift */,
+				476C8D361C9A98CF0068E44F /* Date Node */,
+				476C8D351C9A98AC0068E44F /* Main Nodes */,
+				476C8D371C9A98DE0068E44F /* Add New Node */,
 			);
 			name = CollectionViewItems;
 			sourceTree = "<group>";

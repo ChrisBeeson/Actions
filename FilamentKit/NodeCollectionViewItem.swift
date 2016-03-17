@@ -13,6 +13,10 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     @IBOutlet weak var titleTextField: NSTextField!
     @IBOutlet weak var nodeView: NodeView!
     
+    @IBOutlet weak var statusField: NSTextField?
+    @IBOutlet weak var statusFieldBackground: NSTextField?
+    
+    
     var indexPath : NSIndexPath?
 
     var presenter: NodePresenter?  {
@@ -37,18 +41,21 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     
     override func viewWillAppear() {
         super.viewWillAppear()
- 
-         updateView()
+        presenter!.updateNodeState()
+        updateView()
     }
     
     
     func updateView() {
+        guard presenter != nil else { Swift.print("Presenter for Node Collection View is NULL"); return }
         
-        if presenter != nil {
-            titleTextField.stringValue = presenter!.title
-            presenter!.updateNodeState()
-            nodeView.currentState = presenter!.currentState
-        }
+        titleTextField.stringValue = presenter!.title
+        nodeView.currentState = presenter!.currentState
+        
+        let hidden = presenter!.currentState == .Completed ? false : true
+        statusField?.hidden = hidden
+        statusFieldBackground?.hidden = hidden
+        
     }
     
     
@@ -91,9 +98,9 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     
     func nodePresenterDidChangeState(presenter: NodePresenter, toState: NodeState, options:[String]? ) {
         
-        guard presenter == self.presenter else { return }
+        Swift.print("Node Collection View Item: nodePresenterDidChangeState")
         
-        titleTextField?.textColor = toState == .Completed ?  AppConfiguration.Palette.verylightGreyStroke : NSColor.blackColor()
+        updateView()
         
         switch toState {
             
@@ -116,6 +123,8 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     func nodePresenterDidChangeTitle(presenter: NodePresenter) {
         
         self.collectionView.reloadData()
+        
+        //  self.collectionView.reloadItemsAtIndexPaths(Set(arrayLiteral: self.indexPath!))
     }
     
     

@@ -25,6 +25,10 @@ public class RulePresenter : NSObject {
         return rule.availableToNodeType
     }
     
+    var editable: Bool {
+        return sequencePresenter?.currentState != .Completed
+    }
+    
     //MARK: Inits
     
     

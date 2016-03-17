@@ -15,6 +15,7 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
     @IBOutlet weak var titleTextField: NSTextField!
     @IBOutlet weak var notesTextField: NSTextField!
     @IBOutlet weak var dateTextField: NSTextField!
+    @IBOutlet weak var locationTextField: NSTextField!
     
     @IBOutlet weak var eventStringStackView: NSStackView!
     
@@ -50,7 +51,6 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
             eventStringStackView.hidden = true
         }
 */
-        
          reloadRulesCollectionView()
     }
     
@@ -62,6 +62,15 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
     
     override public func viewWillAppear() {
         super.viewWillAppear()
+        
+        if nodePresenter!.currentState == .Completed {
+            titleTextField.editable = false
+            notesTextField.editable = false
+            locationTextField.editable = false
+            ruleCollectionView.allowDrops = false
+            ruleCollectionView.allowDeletions = false
+            addRuleButton.hidden = true
+        }
     }
 
     @IBAction func titleTextFieldDidFinishEditing(sender: AnyObject) {

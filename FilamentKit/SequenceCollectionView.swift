@@ -136,22 +136,8 @@ import Async
     }
     
     
-    //MARK: First Responder Events
-    
-    override public var acceptsFirstResponder: Bool { return true }
-    
-    override public func becomeFirstResponder() -> Bool {
-        
-        NSNotificationCenter.defaultCenter().postNotificationName("FilamentTableViewSelectCellForView", object: self.superview)
-        
-        if self.selectionIndexes.count == 0 {
-            self.window?.makeFirstResponder(self.superview?.superview?.superview?.superview?.superview?.superview)
-        }
-        return true
-    }
-    
-    
-    
+    //MARK: Events
+
     public func copy(event: NSEvent) {
         Swift.print("seq collection copy")
     }
@@ -183,8 +169,7 @@ import Async
         }
     }
 
-
-
+    
     //MARK: Collection View Delegate
     
     public func collectionView(collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> NSSize {
@@ -262,50 +247,49 @@ import Async
         
     }
     
-    /* Sent during interactive selection, to inform the delegate that the CollectionView would like to select the items at the specified "indexPaths".  In addition to optionally reacting to the proposed change, you can approve it (by returning "indexPaths" as-is), or selectively refuse some or all of the proposed selection changes (by returning a modified autoreleased mutableCopy of indexPaths, or an empty indexPaths instance).
-    */
-
     public func collectionView(collectionView: NSCollectionView, shouldSelectItemsAtIndexPaths indexPaths: Set<NSIndexPath>) -> Set<NSIndexPath> {
        return indexPaths
     }
     
-    /* Sent during interactive selection, to inform the delegate that the CollectionView would like to de-select the items at the specified "indexPaths".  In addition to optionally reacting to the proposed change, you can approve it (by returning "indexPaths" as-is), or selectively refuse some or all of the proposed selection changes (by returning a modified autoreleased mutableCopy of indexPaths, or an empty indexPaths instance). */
-
     public func collectionView(collectionView: NSCollectionView, shouldDeselectItemsAtIndexPaths indexPaths: Set<NSIndexPath>) -> Set<NSIndexPath> {
         return indexPaths
         
     }
     
-    /* Sent at the end of interactive selection, to inform the delegate that the CollectionView has selected the items at the specified "indexPaths".
-    */
-
     public func collectionView(collectionView: NSCollectionView, didSelectItemsAtIndexPaths indexPaths: Set<NSIndexPath>) {
         
         self.window?.makeFirstResponder(self)
         
     }
     
-    /* Sent at the end of interactive selection, to inform the delegate that the CollectionView has de-selected the items at the specified "indexPaths".
-    */
 
     public func collectionView(collectionView: NSCollectionView, didDeselectItemsAtIndexPaths indexPaths: Set<NSIndexPath>) {
         self.window?.makeFirstResponder(self.superview?.superview?.superview?.superview?.superview?.superview)
     }
     
     
-    /* Sent to notify the delegate that the CollectionView is about to add a supplementary view (e.g. a section header or footer view).  Each NSCollectionViewLayout class defines its own possible values and associated meanings for "elementKind".  (For example, NSCollectionViewFlowLayout declares NSCollectionElementKindSectionHeader and NSCollectionElementKindSectionFooter.)
-    */
     
     public func collectionView(collectionView: NSCollectionView, willDisplaySupplementaryView view: NSView, forElementKind elementKind: String, atIndexPath indexPath: NSIndexPath) {
         
     }
     
-    /* Sent to notify the delegate that the CollectionView is no longer displaying the given NSCollectionViewItem instance.  This happens when the model changes, or when an item is scrolled out of view.  You should perform any actions necessary to help decommission the item (such as releasing expensive resources).  The CollectionView may retain the item instance and later reuse it to represent the same or a different model object.
-    */
    
     public func collectionView(collectionView: NSCollectionView, didEndDisplayingItem item: NSCollectionViewItem, forRepresentedObjectAtIndexPath indexPath: NSIndexPath) {
         
     }
     
+    //MARK: First Responder Events
+    
+    override public var acceptsFirstResponder: Bool { return true }
+    
+    override public func becomeFirstResponder() -> Bool {
+        
+        NSNotificationCenter.defaultCenter().postNotificationName("FilamentTableViewSelectCellForView", object: self.superview)
+        
+        if self.selectionIndexes.count == 0 {
+            self.window?.makeFirstResponder(self.superview?.superview?.superview?.superview?.superview?.superview)
+        }
+        return true
+    }
     
 }

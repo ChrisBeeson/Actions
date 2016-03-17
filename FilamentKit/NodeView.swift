@@ -111,9 +111,7 @@ class NodeView: NSView {
             anim.duration = 0.5
             anim.autoreverses = true
             self.pathLayer.addAnimation(anim, forKey: "RunningFill")
-            //   }
             
-            // if self.pathLayer.animationKeys()?.contains("RunningStroke") == false {
             let animStroke = CABasicAnimation(keyPath: "strokeColor")
             animStroke.toValue = drawingContextColour(.Green).stroke
             animStroke.fromValue = drawingContextColour(.LightGrey).stroke
@@ -131,8 +129,8 @@ class NodeView: NSView {
             pathLayer.fillColor = drawingContextColour(.Red).fill
             
         case .Completed:
-            pathLayer.strokeColor = drawingContextColour(.VeryLightGrey).stroke
-            pathLayer.fillColor = drawingContextColour(.VeryLightGrey).fill
+            self.pathLayer.strokeColor = drawingContextColour(.LightGrey).stroke
+            self.pathLayer.fillColor = drawingContextColour(.LightGrey).fill
             
         case .Void: fatalError("Trying to add animation when stateNode = .Void")
         }

@@ -26,7 +26,6 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
     private var availableGeneralRulesViewController : AvailableRulesViewController?
     private var displayedPopover: NSPopover?
     
-    
     public var presenter: SequencePresenter? {
         
         set {
@@ -85,17 +84,21 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
     
     
     func updateCellView() {
+        guard presenter != nil else { fatalError() }
         
-        if let presenter = presenter {
-            presenter.updateState()
-            titleTextField.stringValue = presenter.title
-            self.sequenceCollectionView.toolTip = String(presenter.currentState)
-            sequenceCollectionView.reloadData()
-        } else {
-            Swift.print("Cannot update sequence Cell as presenter is null")
-        }
-        
+        presenter!.updateState()
+        titleTextField.stringValue = presenter!.title
+        self.sequenceCollectionView.toolTip = String(presenter!.currentState)
+        sequenceCollectionView.reloadData()
         refreshGeneralRulesCollectionView()
+        
+        // Hide & disable things if we're .Completed
+        
+        let isCompleted = presenter!.currentState == .Completed ? true : false
+        titleTextField.enabled = !isCompleted
+        addGenericRuleButton.hidden = isCompleted
+        generalRulesCollectionView.allowDrops = !isCompleted
+        generalRulesCollectionView.allowDeletions = !isCompleted
     }
     
     
@@ -106,8 +109,7 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
 
     
     @IBAction func addGeneralRuleButtonPressed(sender: AnyObject) {
-        
-        if displayedPopover != nil { return }
+        guard displayedPopover == nil else { return }
         
         let popover = NSPopover()
         popover.animates = true
@@ -140,14 +142,10 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
     //MARK: Events
     /*
     public func copy(event: NSEvent) {
-       
-        
-        
+    
     }
     */
     
-    
-
     
     // MARK: Presenter Delegate
     
@@ -157,15 +155,12 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
     
     
     public func sequencePresenterDidChangeStatus(sequencePresenter: SequencePresenter, toStatus:SequenceState){
-        
         self.sequenceCollectionView.toolTip = String(sequencePresenter.currentState)
     }
     
     public func sequencePresenterDidChangeGeneralRules(sequencePresenter: SequencePresenter) {
-    
         refreshGeneralRulesCollectionView()
     }
-    
     
     
     //MARK: RuleCollectionView Delegates
@@ -198,7 +193,6 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
     public func popoverDidClose(notification: NSNotification) {
         displayedPopover = nil
     }
-    
 }
 
 
