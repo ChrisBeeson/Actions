@@ -51,11 +51,10 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
         
         titleTextField.stringValue = presenter!.title
         nodeView.currentState = presenter!.currentState
-        
+  
         let hidden = presenter!.currentState == .Completed ? false : true
         statusField?.hidden = hidden
         statusFieldBackground?.hidden = hidden
-        
     }
     
     
@@ -97,9 +96,7 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     //Mark: NodePresenter delegate calls
     
     func nodePresenterDidChangeState(presenter: NodePresenter, toState: NodeState, options:[String]? ) {
-        
-        Swift.print("Node Collection View Item: nodePresenterDidChangeState")
-        
+    
         updateView()
         
         switch toState {
@@ -123,7 +120,6 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     func nodePresenterDidChangeTitle(presenter: NodePresenter) {
         
         self.collectionView.reloadData()
-        
         //  self.collectionView.reloadItemsAtIndexPaths(Set(arrayLiteral: self.indexPath!))
     }
     
@@ -133,9 +129,6 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     override func becomeFirstResponder() -> Bool {
         return true
     }
-    
-    
-    
 }
 
 

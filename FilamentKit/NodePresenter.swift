@@ -17,7 +17,7 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     var undoManager: NSUndoManager?
     var sequencePresenter: SequencePresenter?
     var delegates = [NodePresenterDelegate]()
-    private var _currentState = NodeState.Inactive
+    var currentState = NodeState.Inactive
     private var rulePresenters = [RulePresenter]()
     
     //MARK: Properties
@@ -86,19 +86,6 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     
     
     
-    var currentState: NodeState {
-        
-        get {
-            //   _currentState.update(self)
-            return _currentState
-        }
-        
-        set {
-            _currentState = newValue
-        }
-    }
-    
-    
     var event: TimeEvent? {
         get {
             return node.event
@@ -148,7 +135,7 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     
     func updateNodeState() {
         
-        _currentState.update(self)
+        currentState.update(self)
     }
     
     func removeCalandarEvent(updateState:Bool) {

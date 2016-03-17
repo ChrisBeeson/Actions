@@ -21,7 +21,7 @@ public enum SequenceState : Int {
     
     internal mutating func changeToState(newState: SequenceState, presenter:SequencePresenter, options:[String]?) -> SequenceState {
  
-        //   print("Sequence \(presenter.title):  From \(self)  to \(newState)")
+        print("Sequence \(presenter.title):  From \(self)  to \(newState)")
         if self == newState { print("Self is equal to the new State") }
        
         self = newState
@@ -57,6 +57,7 @@ public enum SequenceState : Int {
     
     mutating func toNoStartDateSet(presenter: SequencePresenter) -> SequenceState {
         guard self != .NoStartDateSet else { return self }
+        if presenter.date != nil { return toNewStartDate(presenter) }
         
         presenter.nodePresenters.forEach{ $0.currentState.toInactive($0) }
         
@@ -73,13 +74,17 @@ public enum SequenceState : Int {
             return changeToState(.NoStartDateSet, presenter: presenter, options: nil)
         }
         
-        return toState(processCalanderEvents(presenter), presenter: presenter)
+        let result = processCalanderEvents(presenter)
+         presenter.nodePresenters.forEach{ $0.currentState.update($0) }
+        
+        return toState(result, presenter: presenter)
     }
     
     
     mutating func toWaitingForStart(presenter: SequencePresenter, ignoreHasFailedNodes:Bool) -> SequenceState {
         guard self != .WaitingForStart else { return self }
         guard presenter.date != nil else { fatalError("Date is NULL") }
+        if presenter.date!.isEarlierThanOrEqualTo(NSDate()) == true { return toRunning(presenter)}
     
         // add timer to refresh on StartDate
         let secsToStart = presenter.date!.secondsLaterThan(NSDate())
@@ -93,6 +98,10 @@ public enum SequenceState : Int {
     
     mutating func toRunning(presenter: SequencePresenter) -> SequenceState {
         guard self != .Running else { return self }
+        if presenter.date!.isLaterThan(NSDate()) == true { return toWaitingForStart(presenter, ignoreHasFailedNodes: false) }
+        if let completeDate = presenter.completionDate {
+            if completeDate.isEarlierThan(NSDate()) == true { return toCompleted(presenter) }
+        }
         
         return changeToState(.Running, presenter:presenter, options: nil)
     }
@@ -106,6 +115,9 @@ public enum SequenceState : Int {
     
     mutating func toCompleted(presenter: SequencePresenter) -> SequenceState {
         guard self != .Completed else { return self }
+        
+        //TODO: Animation
+        //  NSNotificationCenter.defaultCenter().postNotificationName("RefreshMainTableView", object: nil)
     
         return changeToState(.Completed, presenter:presenter, options: nil)
     }

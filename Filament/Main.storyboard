@@ -15,25 +15,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="346" height="184"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lE3-oK-IQ6">
+                            <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="1" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lE3-oK-IQ6">
                                 <rect key="frame" x="10" y="10" width="326" height="164"/>
                                 <subviews>
-                                    <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" spacing="24" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uh5-FO-zWq">
-                                        <rect key="frame" x="23" y="21" width="280" height="143"/>
+                                    <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" spacing="24" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uh5-FO-zWq">
+                                        <rect key="frame" x="23" y="14" width="280" height="150"/>
                                         <subviews>
                                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Iy5-8s-h5p">
-                                                <rect key="frame" x="0.0" y="8" width="128" height="128"/>
+                                                <rect key="frame" x="0.0" y="11" width="128" height="128"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="128" id="NSb-Je-Sta"/>
                                                     <constraint firstAttribute="width" constant="128" id="mJZ-aj-7Rj"/>
                                                 </constraints>
                                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AppIcon" id="feY-eR-E96"/>
                                             </imageView>
-                                            <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DPa-Fa-LHs">
-                                                <rect key="frame" x="152" y="44" width="128" height="55"/>
+                                            <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DPa-Fa-LHs">
+                                                <rect key="frame" x="152" y="52" width="128" height="47"/>
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tsv-iX-MTb">
-                                                        <rect key="frame" x="15" y="22" width="98" height="33"/>
+                                                        <rect key="frame" x="15" y="14" width="98" height="33"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Actions" id="7Qb-7x-W9F">
                                                             <font key="font" metaFont="system" size="27"/>
                                                             <color key="textColor" white="0.39537037037037037" alpha="1" colorSpace="calibratedWhite"/>

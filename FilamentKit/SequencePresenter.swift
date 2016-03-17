@@ -18,11 +18,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     var nodePresenters = [NodePresenter]()
     private var _currentState = SequenceState.Void
     public var undoManager: NSUndoManager?
-    public var representingDocument: FilamentDocument? {
-        didSet {
-            undoManager = representingDocument?.undoManager
-        }
-    }
+    public var representingDocument: FilamentDocument?
     
     override init() {
         super.init()
@@ -103,6 +99,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         undoManager?.setActionName(undoActionName)
         
         title = newTitle
+        representingDocument?.updateChangeCount(.ChangeDone)
     }
     
     public func setDate(date:NSDate?, isStartDate:Bool) {
