@@ -100,10 +100,7 @@ class Node: NSObject, NSCoding {
         event = aDecoder.decodeObjectForKey(SerializationKeys.event) as? TimeEvent
         isCompleted = aDecoder.decodeObjectForKey(SerializationKeys.isCompleted) as! Bool
         
-        if event != nil {
-            event!.owner = self
-            event!.synchronizeCalendarEvent()
-        }
+        if event != nil { event!.owner = self }
     }
     
     func encodeWithCoder(encoder: NSCoder) {

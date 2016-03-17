@@ -77,15 +77,12 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
             day.stringValue = String(date.day())
             dateFormatter.dateFormat = "HH:mm"
             time.objectValue = dateFormatter.stringFromDate(date)
-        
-       
     }
     
     
     // MARK: DateTimePicker delegate
     
     public func dateTimePickerDidChangeDate(date:NSDate?) {
-        
         self.sequencePresenter!.setDate(date, isStartDate:true)
         updateView()
     }

@@ -21,20 +21,19 @@ public enum SequenceState : Int {
     
     internal mutating func changeToState(newState: SequenceState, presenter:SequencePresenter, options:[String]?) -> SequenceState {
  
-        print("Sequence \(presenter.title):  From \(self)  to \(newState)")
+        //print("Sequence \(presenter.title):  From \(self)  to \(newState)")
         if self == newState { print("Self is equal to the new State") }
        
         self = newState
-        
         presenter.delegates.forEach{ $0.sequencePresenterDidChangeState(presenter, toState:newState)}
         presenter.nodePresenters.forEach{ $0.currentState.update($0) }
-        
         return newState
     }
     
     
     mutating func update(presenter: SequencePresenter) {
-        let calcState = processCalanderEvents(presenter)
+        // let calcState = processCalanderEvents(presenter)
+        let calcState = calculateSequenceState(presenter, ignoreHasFailedNode: false)
         toState(calcState, presenter: presenter)
     }
     

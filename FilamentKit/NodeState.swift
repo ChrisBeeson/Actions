@@ -21,7 +21,7 @@ enum NodeState: Int {
     
     internal mutating func changeToState(newState: NodeState, presenter:NodePresenter, options:[String]?) -> NodeState {
         
-        print("Node \(presenter.title):  From \(self)  to \(newState)")
+        // print("Node \(presenter.title):  From \(self)  to \(newState)")
         if self == newState { print("Self is equal to the new state") }
         
         self = newState
@@ -61,8 +61,9 @@ enum NodeState: Int {
     
     mutating func toReady(presenter: NodePresenter, ignoreErrors:Bool) -> NodeState {
         guard self != .Ready else { return self }
+        if presenter.isCompleted == true { return toCompleted(presenter) }
         
-        //FIXME: Create Calendar Event should go here
+        presenter.event!.synchronizeCalendarEvent()
         
         // Moving to ready may mean we are actually in a different state.
         let calculatedState = calculateNodeState(presenter, ignoreError:ignoreErrors)
@@ -94,6 +95,8 @@ enum NodeState: Int {
     
     mutating func toRunning(presenter: NodePresenter) -> NodeState {
         guard self != .Running else { return self }
+        
+        presenter.event!.synchronizeCalendarEvent()
         
         return changeToState(.Running, presenter:presenter, options: nil)
     }
