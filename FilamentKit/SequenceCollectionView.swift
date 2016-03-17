@@ -66,7 +66,13 @@ import Async
     
     public func collectionView(collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
     
-        return presenter!.nodes!.count + 2
+        switch presenter!.currentState {
+            
+        case .Completed:
+            return presenter!.nodes!.count + 1
+        default:
+            return presenter!.nodes!.count + 2
+        }
     }
     
     

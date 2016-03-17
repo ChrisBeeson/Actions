@@ -12,6 +12,8 @@ class TransitionNodeView: NodeView {
     
     override func calculatePath() -> CGPath {
         
+        pathLayer.lineWidth = 1.0
+        
         let frame = self.frame
         let path = NSBezierPath()
         path.moveToPoint(NSPoint(x: 0 , y: (frame.size.height/2)-(path.lineWidth/4)))

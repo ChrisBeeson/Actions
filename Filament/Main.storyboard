@@ -10,7 +10,7 @@
         <!--Info-->
         <scene sceneID="jw0-hT-vgf">
             <objects>
-                <viewController title="Info" showSeguePresentationStyle="single" id="V04-Ff-GEc" sceneMemberID="viewController">
+                <viewController title="Info" showSeguePresentationStyle="single" id="V04-Ff-GEc" customClass="InfoViewController" customModule="Filament" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" focusRingType="none" id="o0E-DB-cWO">
                         <rect key="frame" x="0.0" y="0.0" width="346" height="184"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -47,6 +47,9 @@
                                                             <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
+                                                        <connections>
+                                                            <binding destination="V04-Ff-GEc" name="value" keyPath="self.version" id="sMr-ZO-Bda"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                                 <visibilityPriorities>

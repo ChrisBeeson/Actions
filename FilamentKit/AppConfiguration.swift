@@ -177,7 +177,6 @@ public class AppConfiguration: NSObject {
     // MARK: Ubiquity Identity Token Handling (Account Change Info)
 
 /*
-
     public func hasAccountChanged() -> Bool {
         
         var hasChanged = false
@@ -232,20 +231,9 @@ public class AppConfiguration: NSObject {
         
         return storedToken
     }
-    
     */
 
     // Bundle
-    
-    /*
-    The value of the `LISTER_BUNDLE_PREFIX` user-defined build setting is written to the Info.plist file of
-    every target in Swift version of the Lister project. Specifically, the value of `LISTER_BUNDLE_PREFIX`
-    is used as the string value for a key of `AAPLListerBundlePrefix`. This value is loaded from the target's
-    bundle by the lazily evaluated static variable "prefix" from the nested "Bundle" struct below the first
-    time that "Bundle.prefix" is accessed. This avoids the need for developers to edit both `LISTER_BUNDLE_PREFIX`
-    and the code below. The value of `Bundle.prefix` is then used as part of an interpolated string to insert
-    the user-defined value of `LISTER_BUNDLE_PREFIX` into several static string constants below.
-    */
     
     private struct Bundle {
         
@@ -272,7 +260,7 @@ public class AppConfiguration: NSObject {
         
         public static let selectionBlue = NSColor(red: 0.6, green: 0.75, blue: 0.9, alpha: 1.0)
         public static let lightGreyStroke = NSColor(calibratedWhite:0.70, alpha:1.0)
-        public static let lightGreyFill = NSColor(calibratedWhite:0.95, alpha:1.0)
+        public static let lightGreyFill = NSColor(calibratedWhite:0.96, alpha:1.0)
         
         public static let verylightGreyStroke = NSColor(calibratedWhite:0.85, alpha:1.0)
         public static let verylightGreyFill = NSColor(calibratedWhite:0.98, alpha:1.0)

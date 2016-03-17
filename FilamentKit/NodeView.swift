@@ -21,7 +21,7 @@ class NodeView: NSView {
         
         super.init(coder: coder)
         
-        pathLayer.lineWidth = 0.8
+        pathLayer.lineWidth = 0.5
         pathLayer.path = calculatePath()
         pathLayer.shouldRasterize = false
         pathLayer.strokeColor = drawingContextColour(.LightGrey).stroke

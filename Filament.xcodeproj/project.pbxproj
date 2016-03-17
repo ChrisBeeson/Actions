@@ -50,6 +50,7 @@
 		473EAEE61BA3AD0300AFEA2A /* RuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473EAEE41BA3AD0300AFEA2A /* RuleTests.swift */; };
 		4753D3AF1BE378720071DB59 /* WorkingWeekRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4753D3AE1BE378720071DB59 /* WorkingWeekRule.swift */; };
 		475927B11C6C725700D24DE9 /* Dwifft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475927B01C6C725700D24DE9 /* Dwifft.swift */; };
+		476C8D3C1C9AB8E40068E44F /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476C8D3B1C9AB8E40068E44F /* InfoViewController.swift */; };
 		477212061BED699500D5E988 /* FilamentDocumentsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477212051BED699500D5E988 /* FilamentDocumentsManager.swift */; };
 		477626951C53839B00C35599 /* FilamentKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 477626931C53823B00C35599 /* FilamentKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4778C0A81C656B2500F5A259 /* DateNodeCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4778C0A71C656B2500F5A259 /* DateNodeCollectionViewItem.swift */; };
@@ -209,6 +210,7 @@
 		473EAEE41BA3AD0300AFEA2A /* RuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleTests.swift; sourceTree = "<group>"; };
 		4753D3AE1BE378720071DB59 /* WorkingWeekRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkingWeekRule.swift; sourceTree = "<group>"; };
 		475927B01C6C725700D24DE9 /* Dwifft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dwifft.swift; sourceTree = "<group>"; };
+		476C8D3B1C9AB8E40068E44F /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		477212051BED699500D5E988 /* FilamentDocumentsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilamentDocumentsManager.swift; sourceTree = "<group>"; };
 		477212071BED9DCB00D5E988 /* Filament.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Filament.entitlements; path = Filament/Filament.entitlements; sourceTree = "<group>"; };
 		4773D5451C95547000758B5A /* Sequence+PasteBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sequence+PasteBoard.swift"; sourceTree = "<group>"; };
@@ -629,6 +631,7 @@
 				47B696441BE5645400260C2A /* FilamentsTableViewController.swift */,
 				479CD2851C1B8AE700C8D1D6 /* FilamentTableCellView.swift */,
 				47F5E82A1BF495D8004C0D16 /* AddFilamentViewController.swift */,
+				476C8D3B1C9AB8E40068E44F /* InfoViewController.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -1192,6 +1195,7 @@
 				47B696471BE564DC00260C2A /* MainWindowController.swift in Sources */,
 				83F7DE691C77D768008BEDCC /* GeneralExtensions.swift in Sources */,
 				47F5E82B1BF495D8004C0D16 /* AddFilamentViewController.swift in Sources */,
+				476C8D3C1C9AB8E40068E44F /* InfoViewController.swift in Sources */,
 				479CD2861C1B8AE700C8D1D6 /* FilamentTableCellView.swift in Sources */,
 				83F6B95D1B994652002A5AAF /* AppDelegate.swift in Sources */,
 				47B696451BE5645400260C2A /* FilamentsTableViewController.swift in Sources */,

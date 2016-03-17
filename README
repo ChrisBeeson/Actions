@@ -13,6 +13,7 @@ Fuse
 Todo
 -------
 
+Make a smaller Rule Collection View Item for Sequences
 Changing any rules, reprocesses all events - avoid calanders
 Date not being saved x
 Import / Export
@@ -28,6 +29,15 @@ changing start time can only be done before start of 1st node
  - changing start ignores calendar event of that seq
 Changing rules, updates nodes only right of that node
 Recreate calendar Events if they have been deleted.
+
+
+Later Versions
+-----------------
+Calendar events become a rule
+Rules can also be notifications
+Rules is not the right name any more.
+
+right click a node and set a new start time for it.
 
 
 
