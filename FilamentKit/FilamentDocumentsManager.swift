@@ -155,6 +155,7 @@ public extension FilamentDocumentsManager {
     
     public class func permanentlyDeleteDocument(document: FilamentDocument) {
         
+        document.updateChangeCount(.ChangeCleared)
         let url = document.storageURL()
         let fileManager = NSFileManager.defaultManager()
         

@@ -83,11 +83,11 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
             diff.deletions.forEach { deletionIndexPaths.addIndex($0.idx) }
             let insertionIndexPaths = NSMutableIndexSet()
             diff.insertions.forEach { insertionIndexPaths.addIndex($0.idx) }
-   
+  
             dispatch_async(dispatch_get_main_queue(), {
             self.tableView?.beginUpdates()
-            self.tableView?.insertRowsAtIndexes(insertionIndexPaths, withAnimation: NSTableViewAnimationOptions.SlideLeft)
             self.tableView?.removeRowsAtIndexes(deletionIndexPaths, withAnimation: NSTableViewAnimationOptions.EffectFade)
+            self.tableView?.insertRowsAtIndexes(insertionIndexPaths, withAnimation: NSTableViewAnimationOptions.SlideLeft)
             self.tableView?.endUpdates()
             })
         }
@@ -105,14 +105,15 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         
         let cellView = tableView.makeViewWithIdentifier("FilamentCellView", owner: self) as! FilamentTableCellView
         cellView.presenter = filteredDocuments[row].sequencePresenter
+         cellView.updateCellView()
         return cellView
     }
-    
+    /*
     public func tableView(tableView: NSTableView, willDisplayCell cell: AnyObject, forTableColumn tableColumn: NSTableColumn?, row: Int) {
         let cellView = cell as! FilamentTableCellView
         cellView.updateCellView()
     }
-    
+*/
     public func tableViewSelectionDidChange(notification: NSNotification) {
         
         for (var row = 0; row < tableView.numberOfRows ; row++)

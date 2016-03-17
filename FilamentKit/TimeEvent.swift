@@ -99,6 +99,7 @@ class TimeEvent : NSObject, NSCoding, NSCopying {
     }
     
     func updateCalendarData() {
+        
         guard calendarEvent != nil else { return }
         guard publish == true else { return }
         // guard startDate != nil else { return }
@@ -121,6 +122,8 @@ class TimeEvent : NSObject, NSCoding, NSCopying {
     
     
     private func saveCalendarEvent() {
+        
+        
         guard calendarEvent != nil else { return }
         do {
             try CalendarManager.sharedInstance.store.saveEvent(calendarEvent!, span: .ThisEvent, commit: true)
@@ -133,8 +136,8 @@ class TimeEvent : NSObject, NSCoding, NSCopying {
     
     
     func deleteCalenderEvent() {
-        guard calendarEvent != nil else { return }
         
+        guard calendarEvent != nil else { return }
         do {
             try CalendarManager.sharedInstance.store.removeEvent(calendarEvent!, span: .ThisEvent, commit: true)
             self.calendarEventId = ""

@@ -23,12 +23,19 @@ enum NodeState: Int {
         
         presenter.delegates.forEach { $0.nodePresenterDidChangeState(presenter, toState:newState, options:nil) }
        
-        print("Node \(presenter.title):  From \(self)  to \(newState)")
+        //   print("Node \(presenter.title):  From \(self)  to \(newState)")
         if self == newState { print("Self is equal to the new state") }
         
         self = newState
         return newState
     }
+    
+    
+    mutating func update(presenter: NodePresenter) {
+        let calcState = calculateNodeState(presenter, ignoreError: false)
+        toState(calcState, presenter: presenter)
+    }
+
     
     mutating func toState(state: NodeState, presenter: NodePresenter) -> NodeState {
         if state == self { return self }
@@ -55,16 +62,15 @@ enum NodeState: Int {
     mutating func toReady(presenter: NodePresenter, ignoreErrors:Bool) -> NodeState {
         guard self != .Ready else { return self }
         
-        // Moving to ready may mean we are actually in a different state.
-        // The only thing it can't be is .Error
+        //FIXME: Create Calendar Event should go here
         
+        // Moving to ready may mean we are actually in a different state.
         let calculatedState = calculateNodeState(presenter, ignoreError:ignoreErrors)
         if calculatedState == self { return self }
         
         switch calculatedState {
             
             // add a timer to refresh when state change is due
-            
         case .Ready:
             if let event = presenter.node.event {
                 let secsToStart = event.startDate.secondsLaterThan(NSDate())
@@ -122,12 +128,7 @@ enum NodeState: Int {
         return changeToState(.WaitingForUserInput, presenter:presenter, options: nil)
     }
     
-    
-    mutating func update(presenter: NodePresenter) {
-        let calcState = calculateNodeState(presenter, ignoreError: false)
-        toState(calcState, presenter: presenter)
-    }
-    
+        
     func calculateNodeState(presenter: NodePresenter, ignoreError:Bool) -> NodeState {
         
         if presenter.isCompleted == true { return .Completed }
@@ -140,7 +141,6 @@ enum NodeState: Int {
             newState = .Running
         }
         if presenter.event!.endDate.isEarlierThanOrEqualTo(NSDate()) { newState = .Completed }
-        // print("\(self) - Calculated node state to be \(newState)")
         return newState
     }
 }

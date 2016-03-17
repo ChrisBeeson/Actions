@@ -14,8 +14,7 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     @IBOutlet weak var nodeView: NodeView!
     
     var indexPath : NSIndexPath?
-    var detailViewController: NodeDetailViewController?
-    
+
     var presenter: NodePresenter?  {
         
         didSet {
@@ -63,14 +62,11 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
         popover.behavior = .Semitransient
         popover.appearance = NSAppearance(named: NSAppearanceNameAqua)
         
-        if detailViewController == nil {
-            detailViewController = NodeDetailViewController(nibName:"NodeDetailViewController", bundle:NSBundle(identifier:"com.andris.FilamentKit"))
-        }
-        
-        popover.contentViewController = detailViewController
-        
+        let detailViewController = NodeDetailViewController(nibName:"NodeDetailViewController", bundle:NSBundle(identifier:"com.andris.FilamentKit"))
         detailViewController!.nodePresenter = presenter!
         presenter!.addDelegate(detailViewController!)
+        
+        popover.contentViewController = detailViewController
         
         // Popover position & show
         

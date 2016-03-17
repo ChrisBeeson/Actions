@@ -20,7 +20,6 @@ extension Sequence {
         for node in self.actionNodes {
             
             var solvedPeriod: SolvedPeriod?
-            
             var rules = node.rules
             
             // add general sequence Rules

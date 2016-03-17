@@ -103,6 +103,8 @@ public class FilamentDocument: NSDocument {
     
     public func save() {
         
+        if self.hasUnautosavedChanges == false { return }
+        
         let storageDir = AppConfiguration.sharedConfiguration.storageDirectory
         let url = storageDir().URLByAppendingPathComponent(_sequencePresenter!.sequence.filename)
         do {

@@ -92,7 +92,6 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         
         self._sequence = sequence
         updateState()
-        
         delegates.forEach{ $0.sequencePresenterDidRefreshCompleteLayout(self) }
     }
     
@@ -175,15 +174,21 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         updateState()
     }
     
-    
-    public func prepareForCompleteDeletion() {
-        if _currentState != .Completed {
-            for presenter in nodePresenters {
-                presenter.removeCalandarEvent(false)
-            }
-        }
-         representingDocument?.updateChangeCount(.ChangeDone)
+    // MARK: Presenter
+
+    func presenterForNode(node:Node) -> NodePresenter {
+        
+        let presenter = nodePresenters.filter {$0.node === node}
+        if presenter.count == 1 { return presenter[0] }
+        
+        let newPresenter = NodePresenter(node: node)
+        newPresenter.undoManager = representingDocument?.undoManager
+        newPresenter.sequencePresenter = self
+        nodePresenters.append(newPresenter)
+        return newPresenter
     }
+    
+    
     
     func informDelegatesOfChangesToNodeChain(oldNodes:[Node]) {
         
@@ -207,21 +212,17 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         _currentState.update(self)
     }
     
-    
-    func presenterForNode(node:Node) -> NodePresenter {
-        
-        let presenter = nodePresenters.filter {$0.node === node}
-        if presenter.count == 1 { return presenter[0] }
-        
-        let newPresenter = NodePresenter(node: node)
-        newPresenter.undoManager = representingDocument?.undoManager
-        newPresenter.sequencePresenter = self
-        nodePresenters.append(newPresenter)
-        return newPresenter
+    public func prepareForCompleteDeletion() {
+        if _currentState != .Completed {
+            for presenter in nodePresenters {
+                presenter.removeCalandarEvent(false)
+            }
+        }
+        representingDocument?.updateChangeCount(.ChangeDone)
     }
     
     
-    //MARK: General Rules
+    //MARK: Rules
     
     
     public func addRulePresenter(rule:RulePresenter, atIndex:Int) {

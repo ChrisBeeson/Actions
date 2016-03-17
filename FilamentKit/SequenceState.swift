@@ -21,7 +21,7 @@ public enum SequenceState : Int {
     
     internal mutating func changeToState(newState: SequenceState, presenter:SequencePresenter, options:[String]?) -> SequenceState {
  
-        print("Sequence \(presenter.title):  From \(self)  to \(newState)")
+        //   print("Sequence \(presenter.title):  From \(self)  to \(newState)")
         if self == newState { print("Self is equal to the new State") }
        
         self = newState
@@ -55,7 +55,6 @@ public enum SequenceState : Int {
     }
     
     
-    
     mutating func toNoStartDateSet(presenter: SequencePresenter) -> SequenceState {
         guard self != .NoStartDateSet else { return self }
         
@@ -78,12 +77,11 @@ public enum SequenceState : Int {
     }
     
     
-    
     mutating func toWaitingForStart(presenter: SequencePresenter, ignoreHasFailedNodes:Bool) -> SequenceState {
         guard self != .WaitingForStart else { return self }
         guard presenter.date != nil else { fatalError("Date is NULL") }
     
-        
+        // add timer to refresh on StartDate
         let secsToStart = presenter.date!.secondsLaterThan(NSDate())
         NSTimer.schedule(delay: secsToStart+0.1) { timer in
             presenter.updateState()
@@ -140,7 +138,6 @@ public enum SequenceState : Int {
         }
         
         if let index = presenter.nodes?.indexOf(result.firstFailedNode!) where index != -1 {
-            
             for index in index...presenter.nodes!.count-1 {
                 let presenter = presenter.presenterForNode(presenter.nodes![index])
                 presenter.currentState.toError(presenter)
