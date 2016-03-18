@@ -123,13 +123,11 @@ class Solver {
         }
         
         // does the corrent node have an event, with a timePeriod that fits into a free Period?
-        
         if node.event != nil {
             for free in freePeriods.periods()! {
                 let relation = node.event!.timePeriod().relationToPeriod(free) as DTTimePeriodRelation
                 switch relation {
                 case .ExactMatch, .Inside:
-                    print("Node: \(node.title) fits in a free period.  starts: \(node.event!.startDate)")
                     return (true, node.event!.timePeriod())
                 default:break
                 }
@@ -137,7 +135,6 @@ class Solver {
         }
         
         // no? lets find the best period
-        
         var bestPeriod: DTTimePeriod?
         
         for free in freePeriods.periods()! {
@@ -157,7 +154,6 @@ class Solver {
             var possiblePeriod: DTTimePeriod?
             
             //  after (right) the prefered date...
-            
             if  free.StartDate.isLaterThanOrEqualTo(preferedPeriod.StartDate) {
                 
                 possiblePeriod = DTTimePeriod()
@@ -166,11 +162,8 @@ class Solver {
                 let freeDurSecs = abs(free.StartDate.secondsFrom(free.EndDate))
                 
                 if freeDurSecs >= preferedPeriod.durationInSeconds()  {
-                    
                     possiblePeriod!.EndDate = free.StartDate.dateByAddingSeconds(Int(preferedPeriod.durationInSeconds()))
-                    
                 } else {
-                    
                     possiblePeriod!.EndDate = free.EndDate!
                     
                     // does it longer than min Dur?
@@ -183,21 +176,17 @@ class Solver {
             // or left
             
             if possiblePeriod == nil && free.StartDate.isEarlierThan(preferedPeriod.StartDate) {
-                
                 possiblePeriod = DTTimePeriod()
                 
                 // lets back date it
                 possiblePeriod!.EndDate = free.EndDate!
                 
                 let freeDurSecs = abs(free.StartDate.secondsFrom(free.EndDate))
-                
                 if freeDurSecs >= preferedPeriod.durationInSeconds()  {
                     possiblePeriod!.StartDate = free.EndDate.dateBySubtractingSeconds(Int(preferedPeriod.durationInSeconds()))
                     
                 } else {
-                    
                     possiblePeriod!.StartDate = free.StartDate!
-                    
                     let posDur = Int(possiblePeriod!.durationInSeconds())
                     let avgMinDur = averageMinDuration!.inSeconds()
                     
@@ -218,12 +207,10 @@ class Solver {
             
             let possDistToStart =  abs(possiblePeriod!.StartDate.secondsFrom(preferedPeriod.StartDate))
             let bestDistToStart = abs(bestPeriod!.StartDate.secondsFrom(preferedPeriod.StartDate))
-            
             if possDistToStart < bestDistToStart { bestPeriod = possiblePeriod }
             
             // remove this period from free Periods..
         }
-        
         if bestPeriod != nil { return (true, bestPeriod) }
         else { return (false,nil) }
     }

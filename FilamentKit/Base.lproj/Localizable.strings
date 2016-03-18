@@ -26,7 +26,7 @@
 
 
 // RULES
-"RULE_NAME_DURATION_WITH_VARIANCE" = "+/- Duration";
+"RULE_NAME_DURATION_WITH_VARIANCE" = "Duration +/-";
 "RULE_DESC_DURATION_WITH_VARIANCE" = "Set the duration and allow for a custom variance to aviod other events.";
 
 "RULE_NAME_DURATION_WITH_MIN" = "Event Duration";
@@ -39,10 +39,12 @@
 "RULE_NAME_WORK_HOURS" = "Work Hours";
 "RULE_NAME_TRAVEL_DUR" = "Travel Duration";
 "RULE_NAME_FIXED" = "Fixed";
-"RULE_NAME_GREATER_LESS" = "Greater Less";
-"RULE_NAME_NEXT" = "Next";
-"RULE_NAME_WAIT" = "Wait";
+"RULE_NAME_GREATER_LESS" = "Greater|Less";
+"RULE_NAME_NEXT" = "Next...";
+"RULE_NAME_WAIT" = "Wait For User";
 "RULE_NAME_ALARM" = "Alarm";
+"RULE_NAME_CALENDAR_EVENT" = "Calendar Event";
+
 
 // NODES
 

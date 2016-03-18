@@ -407,11 +407,9 @@
 			isa = PBXGroup;
 			children = (
 				473574761B9A68AC00493CA0 /* Sequence.swift */,
-				4773D5451C95547000758B5A /* Sequence+PasteBoard.swift */,
 				47CD21C01BDF7A2600AF25BE /* Sequence+NodeLogic.swift */,
 				47CD21C51BDF807900AF25BE /* Sequence+EventLogic.swift */,
 				473574741B9A689B00493CA0 /* Node.swift */,
-				4720B50B1C71193600229734 /* Node+Event.swift */,
 				8343519B1BA2973C0094428B /* Rules */,
 				835740B11C77AD0700CFBB1B /* TimeEvent.swift */,
 				47967FEF1C895C7200358199 /* Context.swift */,
@@ -660,6 +658,8 @@
 		831BF9E71C16B554007B4CD5 /* Old */ = {
 			isa = PBXGroup;
 			children = (
+				4773D5451C95547000758B5A /* Sequence+PasteBoard.swift */,
+				4720B50B1C71193600229734 /* Node+Event.swift */,
 			);
 			name = Old;
 			sourceTree = "<group>";

@@ -139,7 +139,6 @@ class TimeEvent : NSObject, NSCoding, NSCopying {
         guard calendarEvent != nil else { return }
         
         do {
-           
             try CalendarManager.sharedInstance.store.saveEvent(calendarEvent!, span: .ThisEvent, commit: true)
             self.calendarEventId = calendarEvent!.calendarItemExternalIdentifier
             

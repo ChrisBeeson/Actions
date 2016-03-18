@@ -26,11 +26,10 @@ extension Sequence {
             rules.appendContentsOf(self.generalRules)
             
             // add generic app wide rules, if the sequence hasn't overruled them
-            // if an event for this event already exists we need to remove it so it doesn't clash with its self.
-            
             let genericRules = AppConfiguration.sharedConfiguration.contextPresenter().rules.filter { !self.generalRules.contains($0) }
             rules.appendContentsOf(genericRules)
             
+            // Add rules unique to the postion of the node
             switch postion(node) {
                 
             case .StartingAction:
@@ -38,28 +37,26 @@ extension Sequence {
                 let startRule = TransitionDurationWithVariance()
                 startRule.eventStartsInDuration = TimeSize(unit: .Hour, amount: 0)     /// TODO: This can't be user modified
                 rules.append(startRule)
-                
-                solvedPeriod = Solver.calculateEventPeriod(time, node: node, rules:rules)
-                
-                
+
             case .Action, .EndingAction:   // add the left hand transistion rules to the rules.
                 
                 if let transistionRules = node.leftTransitionNode?.rules {
                     for rule in transistionRules {
                         rules.append(rule) }
                 }
-                
-                rules.forEach { if $0.isKindOfClass(AvoidCalendarEventsRule) == true {
-                    ($0 as! AvoidCalendarEventsRule).ignoreCurrentEventsForSequence = self  // Is there a better way to do this?
-                    }
-                }
-                
-                solvedPeriod = Solver.calculateEventPeriod(time, node: node, rules:rules)
-                
+        
             default: break
-                
             }
             
+            // Remove any calendar events that are created by this node, so it doesn't avoid it's self.
+            rules.forEach { if $0.isKindOfClass(AvoidCalendarEventsRule) == true {
+                ($0 as! AvoidCalendarEventsRule).ignoreCurrentEventsForSequence = self  // Is there a better way to do this?
+                }
+            }
+            
+            solvedPeriod = Solver.calculateEventPeriod(time, node: node, rules:rules)
+            
+            // we failed
             if solvedPeriod == nil || solvedPeriod!.solved == false {
                 processEventsForTransitionPeriods()
                 return (false, node)
@@ -70,7 +67,6 @@ extension Sequence {
         }
         
         processEventsForTransitionPeriods()
-        
         return (true,nil)
     }
     
