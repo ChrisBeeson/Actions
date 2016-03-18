@@ -29,7 +29,7 @@
 "RULE_NAME_DURATION_WITH_VARIANCE" = "+/- Duration";
 "RULE_DESC_DURATION_WITH_VARIANCE" = "Set the duration and allow for a custom variance to aviod other events.";
 
-"RULE_NAME_DURATION_WITH_MIN" = "Min Duration";
+"RULE_NAME_DURATION_WITH_MIN" = "Event Duration";
 "RULE_DESC_DURATION_WITH_MIN" = "Set the duration with an optional minimum duration";
 
 "RULE_NAME_AVOID_CALS" = "Avoid Calendars";

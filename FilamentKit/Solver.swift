@@ -19,7 +19,7 @@ Window 2                 |-------------------|
 Action Dur Max           |---------|
 Action Dur Min           |--|
 Cal avoiding          |------------|            |---|   |----|
-                                       |----|
+|----|
 Timeslot found                         ^^^^^^
 
 */
@@ -27,7 +27,7 @@ Timeslot found                         ^^^^^^
 typealias SolvedPeriod = (solved: Bool, period:DTTimePeriod?)
 
 class Solver {
-
+    
     class func calculateEventPeriod(inputDate: NSDate, node: Node, rules:[Rule]) -> SolvedPeriod {
         
         var averageStartWindow: DTTimePeriod?
@@ -118,28 +118,29 @@ class Solver {
         //print("avoid periods: \(avoidPeriods.debugDescription)")
         //print("--------------------------------------------------")
         
-        var bestPeriod: DTTimePeriod?
-        
         if freePeriods.periods() == nil {
             return (false, nil)
         }
         
         // does the corrent node have an event, with a timePeriod that fits into a free Period?
-    
+        
         if node.event != nil {
-        for free in freePeriods.periods()! {
-            if free.contains(node.event!.timePeriod()) == true {
-            print("found time period")
-            return (true, node.event!.timePeriod())
+            for free in freePeriods.periods()! {
+                let relation = node.event!.timePeriod().relationToPeriod(free) as DTTimePeriodRelation
+                switch relation {
+                case .ExactMatch, .Inside:
+                    print("Node: \(node.title) fits in a free period.  starts: \(node.event!.startDate)")
+                    return (true, node.event!.timePeriod())
+                default:break
+                }
             }
         }
-        }
         
-        // no, lets find the best period
+        // no? lets find the best period
+        
+        var bestPeriod: DTTimePeriod?
         
         for free in freePeriods.periods()! {
-            
-            //print("free Period: \(free.debugDescription)")
             
             // Lets evaluate this free period
             

@@ -158,7 +158,12 @@ class Node: NSObject, NSCoding {
             event = TimeEvent(period:period, owner: self)
         } else {
             if period.isEqualToPeriod(event!.period) == false {
+                
+                print("The period is not equal to current period")
+                print("self: \(self.event!.startDate)  vs new period start: \(period.StartDate)")
             event!.period = period
+            } else {
+                print("period is equal")
             }
         }
     }
