@@ -93,7 +93,7 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
         refreshGeneralRulesCollectionView()
         
         // Hide & disable things if we're .Completed
-        
+        Swift.print("updating Cell view to state \(presenter!.currentState)")
         let isCompleted = presenter!.currentState == .Completed ? true : false
         titleTextField.enabled = !isCompleted
         addGenericRuleButton.hidden = isCompleted

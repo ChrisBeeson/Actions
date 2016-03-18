@@ -18,7 +18,7 @@
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="1" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lE3-oK-IQ6">
                                 <rect key="frame" x="10" y="10" width="326" height="164"/>
                                 <subviews>
-                                    <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" spacing="24" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uh5-FO-zWq">
+                                    <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" spacing="24" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uh5-FO-zWq">
                                         <rect key="frame" x="23" y="14" width="280" height="150"/>
                                         <subviews>
                                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Iy5-8s-h5p">
@@ -536,7 +536,6 @@ CA
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="fVQ-v2-x0z"/>
-                                <toolbarItem reference="LHQ-N4-856"/>
                                 <toolbarItem reference="Kov-73-Ysr"/>
                                 <toolbarItem reference="fVQ-v2-x0z"/>
                                 <toolbarItem reference="Qk1-m1-u3B"/>

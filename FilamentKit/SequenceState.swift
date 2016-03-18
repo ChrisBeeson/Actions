@@ -127,7 +127,7 @@ public enum SequenceState : Int {
         guard self != .Completed else { return self }
         
         //TODO: Animation
-        //  NSNotificationCenter.defaultCenter().postNotificationName("RefreshMainTableView", object: nil)
+         NSNotificationCenter.defaultCenter().postNotificationName("RefreshMainTableView", object: nil)
     
         return changeToState(.Completed, presenter:presenter, options: nil)
     }

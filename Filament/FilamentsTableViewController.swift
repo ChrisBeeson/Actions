@@ -106,15 +106,17 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         let cellView = tableView.makeViewWithIdentifier("FilamentCellView", owner: self) as! FilamentTableCellView
         cellView.presenter = filteredDocuments[row].sequencePresenter
         cellView.presenter?.undoManager = self.undoManager
-         cellView.updateCellView()
+        cellView.updateCellView()
         return cellView
     }
+    
     /*
     public func tableView(tableView: NSTableView, willDisplayCell cell: AnyObject, forTableColumn tableColumn: NSTableColumn?, row: Int) {
         let cellView = cell as! FilamentTableCellView
         cellView.updateCellView()
     }
 */
+
     public func tableViewSelectionDidChange(notification: NSNotification) {
         
         for (var row = 0; row < tableView.numberOfRows ; row++)

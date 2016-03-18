@@ -17,7 +17,6 @@ class MainWindowController: NSWindowController {
     }
     
     
-    
     override func  windowDidLoad() {
         super.windowDidLoad()
          self.window!.titleVisibility = NSWindowTitleVisibility.Hidden
@@ -32,13 +31,12 @@ class MainWindowController: NSWindowController {
             alert.runModal()
         }
     }
-    
+        
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String: AnyObject]?, context: UnsafeMutablePointer<Void>) {
         
         self.window!.title = "Filament - " + window!.firstResponder.className
     }
-    
     
     
     @IBAction func segmentedControlAction(sender: NSSegmentedControl) {
