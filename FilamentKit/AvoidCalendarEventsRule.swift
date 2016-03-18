@@ -118,6 +118,8 @@ class AvoidCalendarEventsRule: Rule, NSCoding {
     
     required init?(coder aDecoder: NSCoder) {
         calendars = aDecoder.decodeObjectForKey("calendars") as! Array
+        super.init()
+        self.populateCalendars()
     }
     
     func encodeWithCoder(aCoder: NSCoder) {

@@ -63,7 +63,7 @@ enum NodeState: Int {
         guard self != .Ready else { return self }
         if presenter.isCompleted == true { return toCompleted(presenter) }
         
-        presenter.event!.synchronizeCalendarEvent()
+        // presenter.event!.synchronizeCalendarEvent()
         
         // Moving to ready may mean we are actually in a different state.
         let calculatedState = calculateNodeState(presenter, ignoreError:ignoreErrors)

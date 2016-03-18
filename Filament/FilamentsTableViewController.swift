@@ -105,6 +105,7 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         
         let cellView = tableView.makeViewWithIdentifier("FilamentCellView", owner: self) as! FilamentTableCellView
         cellView.presenter = filteredDocuments[row].sequencePresenter
+        cellView.presenter?.undoManager = self.undoManager
          cellView.updateCellView()
         return cellView
     }
@@ -221,6 +222,9 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
             
         case Selector("copy:"), Selector("cut:"), Selector("delete:") :
             return self.tableView.selectedRowIndexes.count > 0 ? true : false
+            
+        case Selector("undo:"):
+            return self.undoManager!.canUndo
             
         default: return false
         }

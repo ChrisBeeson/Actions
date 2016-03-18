@@ -15,6 +15,7 @@ public class CalendarManager: NSObject {
     public static let sharedInstance = CalendarManager()
     public let store = EKEventStore()
     public var applicationCalendar: EKCalendar?
+    public var authorized = false
     
     override init() {
         
@@ -94,15 +95,20 @@ public class CalendarManager: NSObject {
             store.requestAccessToEntityType(.Event, completion: { granted, error in
                 switch granted {
                 case true: print("Granted Access to calendar")
-                case false: print("NOT Granted Access to calendar")
+                case false: print("NOT Granted Access to calendar") ; self.handleUnauthorizedCalendar()
                 }
             })
         case .Authorized: print("Access to calendar is Authorized")
+        authorized = true
         store.requestAccessToEntityType(.Event, completion: { (success, error) -> Void in
         })
             
-        case .Denied: print("Access to calendar is denied")
-        case .Restricted: print("Access to calendar is Restricted")
+        case .Denied: print("Access to calendar is denied") ; handleUnauthorizedCalendar()
+        case .Restricted: print("Access to calendar is Restricted"); handleUnauthorizedCalendar()
         }
+    }
+    
+    func handleUnauthorizedCalendar() {
+        NSNotificationCenter.defaultCenter().postNotificationName("DisplayCannotAccessCalendarAlert",object: nil)
     }
 }

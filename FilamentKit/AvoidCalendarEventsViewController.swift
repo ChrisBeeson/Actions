@@ -10,7 +10,7 @@ import Foundation
 import AppKit
 
 class AvoidCalendarEventsViewController : RuleViewController , RulePresenterDelegate  {
-
+    
     @IBOutlet weak var vertStackView: NSStackView!
     
     var calendars = [Calendar]()
@@ -20,11 +20,25 @@ class AvoidCalendarEventsViewController : RuleViewController , RulePresenterDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        calendars = (rulePresenter as! AvoidCalendarEventsPresenter).calendars
-        
-        for cal in calendars {
-            let view = stackViewForCalendar(cal)
-            vertStackView.addArrangedSubview(view)
+        if CalendarManager.sharedInstance.authorized == true {
+            
+            calendars = (rulePresenter as! AvoidCalendarEventsPresenter).calendars
+            
+            for cal in calendars {
+                let view = stackViewForCalendar(cal)
+                vertStackView.addArrangedSubview(view)
+            }
+            
+        } else {
+
+            let textBox = NSTextField()
+            textBox.bordered = false
+            textBox.backgroundColor = NSColor.clearColor()
+            textBox.editable = false
+            textBox.bezeled = false
+            textBox.font = NSFont.systemFontOfSize(12.0)
+            textBox.stringValue = "RULE_AVOID_CALS_UNAUTHORIZED".localized
+            vertStackView.addArrangedSubview(textBox)
         }
     }
     
@@ -35,15 +49,17 @@ class AvoidCalendarEventsViewController : RuleViewController , RulePresenterDele
     
     
     override func viewWillDisappear() {
-        
-        let presenter = rulePresenter as! AvoidCalendarEventsPresenter
-        
-        for cal in calendarCheckboxes {
-            let state = (cal.1.state == NSOnState) ? true : false
-            presenter.setCalendarAvoidState(cal.0, avoid:state)
+        if CalendarManager.sharedInstance.authorized == true {
+            
+            let presenter = rulePresenter as! AvoidCalendarEventsPresenter
+            
+            for cal in calendarCheckboxes {
+                let state = (cal.1.state == NSOnState) ? true : false
+                presenter.setCalendarAvoidState(cal.0, avoid:state)
+            }
+            
+            if saveToContext == true { AppConfiguration.sharedConfiguration.saveContext() }
         }
-        
-        if saveToContext == true { AppConfiguration.sharedConfiguration.saveContext() }
         
         super.viewWillDisappear()
     }
@@ -73,18 +89,16 @@ class AvoidCalendarEventsViewController : RuleViewController , RulePresenterDele
         textBox.font = NSFont.systemFontOfSize(12.0)
         
         if let name = calendar.name {
-             textBox.stringValue = name
+            textBox.stringValue = name
         } else {
-             textBox.stringValue  = ""
+            textBox.stringValue  = ""
         }
         
         let stackView = NSStackView()
         stackView.addArrangedSubview(checkbox)
         stackView.addArrangedSubview(textBox)
         stackView.spacing = 2.0
-
+        
         return stackView
     }
-    
-
 }

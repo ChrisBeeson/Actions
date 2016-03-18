@@ -49,6 +49,7 @@ class TimeEvent : NSObject, NSCoding, NSCopying {
     func synchronizeCalendarEvent() {
         
         guard publish == true else { return }
+        guard CalendarManager.sharedInstance.authorized == true else { return }
         
         guard calendarEventId.isEmpty == false  else {
             //  Async.utility { [unowned self] in
@@ -75,6 +76,7 @@ class TimeEvent : NSObject, NSCoding, NSCopying {
     
     
     private func createCalendarEvent() {
+         guard CalendarManager.sharedInstance.authorized == true else { return }
         
         calendarEvent = EKEvent(eventStore: CalendarManager.sharedInstance.store)
         
@@ -88,6 +90,7 @@ class TimeEvent : NSObject, NSCoding, NSCopying {
     
     
     private func updateCalendarDates(startDate:NSDate, endDate:NSDate) {
+         guard CalendarManager.sharedInstance.authorized == true else { return }
  
         if self.startDate.isEqualToDate(startDate) && self.endDate.isEqualToDate(endDate) {
             return
@@ -99,6 +102,7 @@ class TimeEvent : NSObject, NSCoding, NSCopying {
     }
     
     func updateCalendarData() {
+         guard CalendarManager.sharedInstance.authorized == true else { return }
         
         guard calendarEvent != nil else { return }
         guard publish == true else { return }
@@ -122,6 +126,7 @@ class TimeEvent : NSObject, NSCoding, NSCopying {
     
     
     private func saveCalendarEvent() {
+         guard CalendarManager.sharedInstance.authorized == true else { return }
         
         
         guard calendarEvent != nil else { return }
@@ -136,6 +141,7 @@ class TimeEvent : NSObject, NSCoding, NSCopying {
     
     
     func deleteCalenderEvent() {
+         guard CalendarManager.sharedInstance.authorized == true else { return }
         
         guard calendarEvent != nil else { return }
         do {

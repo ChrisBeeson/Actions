@@ -124,7 +124,7 @@ import Async
     
     public func sequencePresenterDidUpdateChainContents(insertedNodes:Set<NSIndexPath>, deletedNodes:Set<NSIndexPath>) {
         
-        Async.main { [unowned self] in
+        // Async.main { [unowned self] in
             
         self.performBatchUpdates({ () -> Void in
             
@@ -138,7 +138,7 @@ import Async
             }) { (completed) -> Void in
         }
               self.reloadData()
-    }
+    
     }
     
     

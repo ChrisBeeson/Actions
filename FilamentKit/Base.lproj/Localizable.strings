@@ -18,6 +18,12 @@
 "TABLEVIEW_DELETE_SEQ_DELETE" = "Delete";
 "TABLEVIEW_DELETE_SEQ_CANCEL" = "Cancel";
 
+"MAINWINDOW_CALENDAR_UNAUTHORIZED_TITLE" = "Access to your Calendar is Unauthorized";
+"MAINWINDOW_CALENDAR_UNAUTHORIZED_BODY" = "Go to System Preferences -> Security & Privacy and give calendar access to 'Actions' to use the full features of this application.";
+"MAINWINDOW_CALENDAR_UNAUTHORIZED_OK" = "Ok";
+
+
+
 
 // RULES
 "RULE_NAME_DURATION_WITH_VARIANCE" = "+/- Duration";
@@ -28,6 +34,7 @@
 
 "RULE_NAME_AVOID_CALS" = "Avoid Calendars";
 "RULE_DESC_AVOID_CALS" = "Select calendars you wish to avoid conflicting with";
+"RULE_AVOID_CALS_UNAUTHORIZED" = "Access to your Calendars is Unauthorised";
 
 "RULE_NAME_WORK_HOURS" = "Work Hours";
 "RULE_NAME_TRAVEL_DUR" = "Travel Duration";

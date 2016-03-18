@@ -21,6 +21,16 @@ class MainWindowController: NSWindowController {
     override func  windowDidLoad() {
         super.windowDidLoad()
          self.window!.titleVisibility = NSWindowTitleVisibility.Hidden
+        
+        NSNotificationCenter.defaultCenter().addObserverForName("DisplayCannotAccessCalendarAlert", object: nil, queue: nil) { (notification) -> Void in
+            
+            let alert = NSAlert()
+            alert.informativeText = "MAINWINDOW_CALENDAR_UNAUTHORIZED_BODY".localized
+            alert.messageText = "MAINWINDOW_CALENDAR_UNAUTHORIZED_TITLE".localized
+            alert.showsHelp = false
+            alert.addButtonWithTitle("MAINWINDOW_CALENDAR_UNAUTHORIZED_OK".localized)
+            alert.runModal()
+        }
     }
     
     
@@ -34,4 +44,6 @@ class MainWindowController: NSWindowController {
     @IBAction func segmentedControlAction(sender: NSSegmentedControl) {
         (self.contentViewController as! FilamentsTableViewController).setTableViewFilter(DocumentFilterType(rawValue: sender.selectedSegment)!)
     }
+    
+
 }
