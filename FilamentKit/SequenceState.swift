@@ -34,8 +34,17 @@ public enum SequenceState : Int {
     
     
     mutating func update(presenter: SequencePresenter) {
-         let calcState = processCalanderEvents(presenter)
-        //let calcState = calculateSequenceState(presenter, ignoreHasFailedNode: false)
+        
+        let currentState = calculateSequenceState(presenter, ignoreHasFailedNode: false)
+        
+        if currentState == .Completed {
+            toState(.Completed, presenter: presenter)
+            return
+        }
+    
+        let calcState = processCalanderEvents(presenter)
+        toState(calcState, presenter: presenter)
+    
         toState(calcState, presenter: presenter)
     }
     

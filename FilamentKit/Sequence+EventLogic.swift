@@ -39,7 +39,7 @@ extension Sequence {
                 startRule.eventStartsInDuration = TimeSize(unit: .Hour, amount: 0)     /// TODO: This can't be user modified
                 rules.append(startRule)
                 
-                solvedPeriod = Solver.calculateEventPeriod(time, rules:rules)
+                solvedPeriod = Solver.calculateEventPeriod(time, node: node, rules:rules)
                 
                 
             case .Action, .EndingAction:   // add the left hand transistion rules to the rules.
@@ -54,7 +54,7 @@ extension Sequence {
                     }
                 }
                 
-                solvedPeriod = Solver.calculateEventPeriod(time, rules:rules)
+                solvedPeriod = Solver.calculateEventPeriod(time, node: node, rules:rules)
                 
             default: break
                 

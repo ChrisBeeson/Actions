@@ -157,7 +157,9 @@ class Node: NSObject, NSCoding {
         if event == nil {
             event = TimeEvent(period:period, owner: self)
         } else {
+            if period.isEqualToPeriod(event!.period) == false {
             event!.period = period
+            }
         }
     }
     

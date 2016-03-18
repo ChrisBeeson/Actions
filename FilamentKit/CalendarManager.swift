@@ -40,6 +40,16 @@ public class CalendarManager: NSObject {
     }
     
     
+    func findEventsInApplicationCalendar(timePeriod: DTTimePeriod) -> [EKEvent]? {
+        guard applicationCalendar != nil else { print("Application Calendar is NULL") ; return nil }
+        
+        let predicate = store.predicateForEventsWithStartDate(timePeriod.StartDate, endDate: timePeriod.EndDate, calendars: [applicationCalendar!])
+        return store.eventsMatchingPredicate(predicate)
+    }
+    
+    
+    
+    
     func systemCalendarsForCalendars(calendars: [Calendar]) -> [EKCalendar] {
     
         var systemCalendars = [EKCalendar]()

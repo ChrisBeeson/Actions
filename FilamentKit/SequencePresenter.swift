@@ -11,19 +11,20 @@ import Async
 
 public class SequencePresenter : NSObject, RuleAvailabiltiy {
     
-    // MARK: Properties
-    
-    private var _sequence: Sequence?
+    public var currentState = SequenceState.Void
+    public var undoManager: NSUndoManager?
+    weak public var representingDocument: FilamentDocument?
     var delegates = [SequencePresenterDelegate]()
     var nodePresenters = [NodePresenter]()
-    private var _currentState = SequenceState.Void
-    public var undoManager: NSUndoManager?
-    public var representingDocument: FilamentDocument?
+    private var _sequence: Sequence?
+
     
     override init() {
         super.init()
         NSNotificationCenter.defaultCenter().addObserverForName("UpdateAllSequences", object: nil, queue: nil) { (notification) -> Void in
-            self.updateState()
+            if self.representingDocument != nil {
+                self.updateState()
+            }
         }
     }
     
@@ -73,13 +74,6 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         }
     }
     
-    // State
-    
-    public var currentState: SequenceState {
-        return _currentState
-    }
-    
-    
     // MARK: Methods
     
 
@@ -114,7 +108,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         self._sequence!.startsAtDate = isStartDate
         representingDocument?.updateChangeCount(.ChangeDone)
         
-        _currentState.toNewStartDate(self)
+        currentState.toNewStartDate(self)
     }
     
 
@@ -206,11 +200,11 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     
     public func updateState() {
         guard _sequence != nil else { return }
-        _currentState.update(self)
+        currentState.update(self)
     }
     
     public func prepareForCompleteDeletion() {
-        if _currentState != .Completed {
+        if currentState != .Completed {
             for presenter in nodePresenters {
                 presenter.removeCalandarEvent(false)
             }

@@ -28,7 +28,7 @@ typealias SolvedPeriod = (solved: Bool, period:DTTimePeriod?)
 
 class Solver {
 
-    class func calculateEventPeriod(inputDate: NSDate, rules:[Rule]) -> SolvedPeriod {
+    class func calculateEventPeriod(inputDate: NSDate, node: Node, rules:[Rule]) -> SolvedPeriod {
         
         var averageStartWindow: DTTimePeriod?
         var preferedStartTime: NSDate?
@@ -123,6 +123,19 @@ class Solver {
         if freePeriods.periods() == nil {
             return (false, nil)
         }
+        
+        // does the corrent node have an event, with a timePeriod that fits into a free Period?
+    
+        if node.event != nil {
+        for free in freePeriods.periods()! {
+            if free.contains(node.event!.timePeriod()) == true {
+            print("found time period")
+            return (true, node.event!.timePeriod())
+            }
+        }
+        }
+        
+        // no, lets find the best period
         
         for free in freePeriods.periods()! {
             

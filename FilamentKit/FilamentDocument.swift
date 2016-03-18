@@ -14,7 +14,7 @@ public class FilamentDocument: NSDocument {
     
     var unarchivedSequence: Sequence?
     
-    private var _sequencePresenter: SequencePresenter?
+    weak private var _sequencePresenter: SequencePresenter?
     
     public var sequencePresenter: SequencePresenter? {
         get {
