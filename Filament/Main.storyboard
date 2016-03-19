@@ -114,7 +114,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Actions" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="About Actions" id="5kV-Vb-QxS" userLabel="About Lister">
+                                        <menuItem title="About Actions" id="5kV-Vb-QxS" userLabel="About">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <segue destination="V04-Ff-GEc" kind="modal" id="oJm-8a-93m"/>
@@ -126,7 +126,7 @@
                                             <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
-                                        <menuItem title="Hide Filament" keyEquivalent="h" id="Olw-nP-bQN">
+                                        <menuItem title="Hide Actions" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
                                                 <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
                                             </connections>
@@ -144,7 +144,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                                        <menuItem title="Quit Filament" keyEquivalent="q" id="4sb-4s-VLi">
+                                        <menuItem title="Quit Actions" keyEquivalent="q" id="4sb-4s-VLi">
                                             <connections>
                                                 <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
                                             </connections>
@@ -162,14 +162,16 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="m54-Is-iLE"/>
-                                        <menuItem title="Import" keyEquivalent="S" id="Bw7-FT-i3A">
+                                        <menuItem title="Import" id="Bw7-FT-i3A">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="saveDocumentAs:" target="Ady-hI-5gd" id="mDf-zr-I0C"/>
+                                                <action selector="openDocument:" target="Ady-hI-5gd" id="Yzk-Mf-4Ap"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Export" keyEquivalent="w" id="DVo-aG-piG">
+                                        <menuItem title="Export" id="DVo-aG-piG">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="performClose:" target="Ady-hI-5gd" id="HmO-Ls-i7Q"/>
+                                                <action selector="saveDocumentAs:" target="Ady-hI-5gd" id="nnG-TX-1a9"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -386,9 +388,6 @@ CA
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="View" id="H8h-7b-M4v">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
                             <menuItem title="Window" id="aUF-d1-5bR">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Window" systemMenu="window" id="Td7-aD-5lo">
@@ -550,7 +549,7 @@ CA
                                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="W31-zO-bj3">
                                                                     <rect key="frame" x="10" y="3" width="418" height="94"/>
                                                                     <subviews>
-                                                                        <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="5" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nZV-IB-3op">
+                                                                        <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="5" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nZV-IB-3op">
                                                                             <rect key="frame" x="0.0" y="2" width="418" height="85"/>
                                                                             <subviews>
                                                                                 <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Df-YY-f5y">
@@ -711,7 +710,7 @@ CA
                                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                                 </clipView>
                                 <edgeInsets key="contentInsets" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
-                                <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="DJU-Eb-WNM">
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="DJU-Eb-WNM">
                                     <rect key="frame" x="0.0" y="256" width="444" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -745,7 +744,7 @@ CA
                                                     </collectionView>
                                                 </subviews>
                                             </clipView>
-                                            <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="0.82431796430930371" horizontal="YES" id="lrW-ka-zWL">
+                                            <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="0.74999999999999778" horizontal="YES" id="lrW-ka-zWL">
                                                 <rect key="frame" x="0.0" y="2" width="400" height="16"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>

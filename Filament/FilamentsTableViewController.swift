@@ -139,7 +139,7 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     
     // MARK: First Responder Events
     
-    public func delete(theEvent: NSEvent) {   // TODO: Muliple
+    public func delete(theEvent: NSEvent) { 
         
         if self.tableView.selectedRowIndexes.count == 0 { return }
         
@@ -169,8 +169,16 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     }
     */
     
-    public func new(event: NSEvent) {
+    public func newDocument(event: NSEvent) {
         FilamentDocument.newSequenceDocument("NEW_DOCUMENT_DEFAULT_TITLE".localized)
+    }
+    
+    public func openDocument(event: NSEvent) {
+        FilamentDocument.newSequenceDocument("IMPORT NOT YET IMPLIMENTED".localized) //TODO:IMPORT
+    }
+    
+    public func saveDocumentAs(event: NSEvent) {
+        FilamentDocument.newSequenceDocument("EXPORT NOT YET IMPLIMENTED".localized) //TODO:EXPORT
     }
     
     public func copy(event: NSEvent) {
@@ -220,14 +228,17 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     
         switch menuItem.action {
             
-        case Selector("new:"):
+        case Selector("newDocument:"):
             return true
             
+        case Selector("openDocument:"):
+            return true
+ 
         case Selector("paste:"):
             let pasteboard = NSPasteboard.generalPasteboard()
             return pasteboard.canReadItemWithDataConformingToTypes([AppConfiguration.UTI.sequence])
             
-        case Selector("copy:"), Selector("cut:"), Selector("delete:") :
+        case Selector("copy:"), Selector("cut:"), Selector("delete:"), Selector("saveDocumentAs:"):
             return self.tableView.selectedRowIndexes.count > 0 ? true : false
             
         case Selector("undo:"):
