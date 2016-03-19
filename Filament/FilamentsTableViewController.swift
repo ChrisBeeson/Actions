@@ -169,6 +169,10 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     }
     */
     
+    public func new(event: NSEvent) {
+        FilamentDocument.newSequenceDocument("NEW_DOCUMENT_DEFAULT_TITLE".localized)
+    }
+    
     public func copy(event: NSEvent) {
         guard self.tableView.selectedRow != -1 else { return }
         
@@ -215,6 +219,9 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     public override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
     
         switch menuItem.action {
+            
+        case Selector("new:"):
+            return true
             
         case Selector("paste:"):
             let pasteboard = NSPasteboard.generalPasteboard()

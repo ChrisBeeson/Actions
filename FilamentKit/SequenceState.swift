@@ -125,7 +125,9 @@ public enum SequenceState : Int {
     mutating func toCompleted(presenter: SequencePresenter) -> SequenceState {
         guard self != .Completed else { return self }
         
-        //TODO: Animation
+        presenter.nodePresenters.forEach { $0.currentState.toCompleted($0) }
+        
+        //TODO: Maybe some kinda fancy tick Animation
         
        delay(1.0, closure: {
          NSNotificationCenter.defaultCenter().postNotificationName("RefreshMainTableView", object: nil)
