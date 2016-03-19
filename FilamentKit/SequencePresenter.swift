@@ -215,6 +215,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
             }
         }
         delegates.removeAll()
+        nodePresenters.forEach{ $0.prepareForDeletion() }
         nodePresenters.removeAll()
         NSNotificationCenter.defaultCenter().removeObserver(self)
         representingDocument?.updateChangeCount(.ChangeDone)

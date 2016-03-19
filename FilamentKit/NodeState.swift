@@ -96,7 +96,7 @@ enum NodeState: Int {
     mutating func toRunning(presenter: NodePresenter) -> NodeState {
         guard self != .Running else { return self }
         
-        presenter.event!.synchronizeCalendarEvent()
+        // presenter.event!.synchronizeCalendarEvent()
         
         return changeToState(.Running, presenter:presenter, options: nil)
     }

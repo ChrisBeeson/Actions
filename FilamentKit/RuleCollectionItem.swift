@@ -67,7 +67,6 @@ public class RuleCollectionItem : NSCollectionViewItem {
             label.textColor = NSColor.whiteColor()
             rulePillView.setColour(AppConfiguration.Palette.tokenError.CGColor)
         }
-        self.label.needsDisplay = true
         self.view.needsDisplay = true
     }
     

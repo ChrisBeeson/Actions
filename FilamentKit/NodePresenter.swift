@@ -129,7 +129,7 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     func renameTitle(title:String) {
         node.title = title
         sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
-        node.event?.synchronizeCalendarEvent()  //FIXME:
+        node.event?.synchronizeCalendarEvent()
         delegates.forEach { $0.nodePresenterDidChangeTitle(self) }
     }
     
@@ -169,6 +169,13 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
         delegates.forEach { $0.nodePresenterDidChangeRules(self) }
     }
     
+    
+    func prepareForDeletion() {
+        rulePresenters.removeAll()
+        node.event = nil
+        delegates.removeAll()
+        sequencePresenter = nil
+    }
     
     
     // MARK: Delegate management

@@ -19,10 +19,13 @@ class TimeEvent : NSObject, NSCoding, NSCopying {
     weak var owner: Node?
     var calendarEventId = ""
     var calendarEvent:EKEvent?
+    private var processing = false
     
     var period:DTTimePeriod? {
         willSet {
             guard newValue != nil else { return }
+            guard processing != true else { return }
+            processing = true
             self.startDate = newValue!.StartDate
             self.endDate = newValue!.EndDate
             synchronizeCalendarEvent()
@@ -60,6 +63,7 @@ class TimeEvent : NSObject, NSCoding, NSCopying {
         
         if calendarEventId.isEmpty == true{
             self.createCalendarEvent()
+            processing = false
             return
         }
         
@@ -93,7 +97,7 @@ class TimeEvent : NSObject, NSCoding, NSCopying {
             // make a new Event
             CalendarManager.sharedInstance.incrementChangeCount()
             calendarEvent = EKEvent(eventStore: CalendarManager.sharedInstance.store)
-            print("Creating new event")
+            //print("Creating new event for owner \(owner)")
             
             if let appCal = CalendarManager.sharedInstance.applicationCalendar {
                 calendarEvent!.calendar = appCal
@@ -123,6 +127,7 @@ class TimeEvent : NSObject, NSCoding, NSCopying {
         if dirty == true {
                 self.saveCalendarEvent()
         }
+        processing = false
     }
     
     

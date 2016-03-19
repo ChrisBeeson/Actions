@@ -45,8 +45,6 @@ public enum SequenceState : Int {
     
         let calcState = processCalanderEvents(presenter)
         toState(calcState, presenter: presenter)
-    
-        toState(calcState, presenter: presenter)
     }
     
     

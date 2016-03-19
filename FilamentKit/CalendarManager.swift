@@ -25,9 +25,8 @@ public class CalendarManager: NSObject {
         retrieveApplicationCalendar()
         
         NSNotificationCenter.defaultCenter().addObserverForName(EKEventStoreChangedNotification, object: nil, queue: nil) { (notification) -> Void in
-            if self.changeCount > 0 { self.changeCount-- ; print("dec Change count \(self.changeCount)")} else {
+            if self.changeCount > 0 { self.changeCount-- } else {
                 NSNotificationCenter.defaultCenter().postNotificationName("UpdateAllSequences", object: self)
-                print("Calendar changed, and I don't think it was me")
             }
         }
     }
@@ -43,7 +42,6 @@ public class CalendarManager: NSObject {
     
     func incrementChangeCount() {
         changeCount++
-        print("incremented Change count \(changeCount)")
     }
     
     func events(timePeriod: DTTimePeriod, calendars: [Calendar]) -> [EKEvent]? {

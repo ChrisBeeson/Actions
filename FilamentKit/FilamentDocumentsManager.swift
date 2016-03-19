@@ -56,8 +56,6 @@ public class FilamentDocumentsManager : DirectoryMonitorDelegate {
     
     func processChangeToLocalDocumentsDirectory() {
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { [unowned self] in
-            
             let newURLs = FilamentDocumentsManager.documentDirectoryList()
             let oldURLS = self.documents.map ( {$0.fileURL! })
             
@@ -68,7 +66,7 @@ public class FilamentDocumentsManager : DirectoryMonitorDelegate {
             self.documents.appendContentsOf(insertedDocs)
             
             // removed Urls
-            
+    
             let removedURLs = oldURLS.filter { !newURLs.contains($0) }
             
             var removedDocs = [FilamentDocument]()
@@ -81,19 +79,15 @@ public class FilamentDocumentsManager : DirectoryMonitorDelegate {
             }
             
             self.documents.removeObjects(removedDocs)
-            
             self.delegate?.filamentsDocumentsManagerDidUpdateContents(inserted:insertedDocs, removed:removedDocs)
-        }
     }
     
     public func deleteDocumentForPresenter(presenter:SequencePresenter) {
-        
         let docToDel = self.documentForSequence(presenter.sequence)
-        FilamentDocumentsManager.permanentlyDeleteDocument(docToDel)
+        permanentlyDeleteDocument(docToDel)
     }
     
     func documentForSequence(sequence: Sequence) -> FilamentDocument {
-        
         return documents.filter{$0.unarchivedSequence! == sequence}.first!
     }
 }
@@ -153,9 +147,10 @@ public extension FilamentDocumentsManager {
         return docs
     }
     
-    public class func permanentlyDeleteDocument(document: FilamentDocument) {
+    public func permanentlyDeleteDocument(document: FilamentDocument) {
         document.sequencePresenter?.prepareForCompleteDeletion()
-        print(document.sequencePresenter)
+        document.updateChangeCount(.ChangeCleared)
+        
         let url = document.storageURL()
         let fileManager = NSFileManager.defaultManager()
         
@@ -172,9 +167,6 @@ public enum DocumentFilterType: Int { case Active = 0, Completed = 1 }
 public extension FilamentDocumentsManager {
     
     public class func filterDocumentsForFilterType(documents:[FilamentDocument], filterType:DocumentFilterType) -> [FilamentDocument] {
-        
-        // First update all sequence statees
-        documents.forEach{ $0.sequencePresenter?.updateState() }
         
         var returnDocuments = [FilamentDocument]()
         
