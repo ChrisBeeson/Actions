@@ -38,7 +38,6 @@ import Async
         self.dataSource = self
         self.delegate = self
         //self.collectionViewLayout = LeftAlignedCollectionViewFlowLayout()
-        
         //self.wantsLayer = true
         
         let nib = NSNib(nibNamed: "DateNodeCollectionViewItem", bundle: NSBundle(identifier:"com.andris.FilamentKit"))
@@ -141,9 +140,7 @@ import Async
             }
             }) { (completed) -> Void in
         }
-        
         self.reloadData()
-    
     }
     
     
@@ -188,7 +185,6 @@ import Async
         let nodes = presenter!.nodes!
         
         if indexPath.item == 0 {
-            
             return NSSize(width: 60,height: 35)
         }
             
@@ -202,18 +198,16 @@ import Async
                 
                 if let item = collectionView.itemAtIndex(indexPath.item) {
                     return item.view.intrinsicContentSize
-                    
                 } else {
                     let string:NSString = node.title as NSString
                     let size: CGSize = string.sizeWithAttributes([NSFontAttributeName: NSFont.systemFontOfSize(14.0, weight:NSFontWeightThin) ])
-                    return NSSize(width: size.width + 30.2, height: 35)
+                    return NSSize(width: size.width + 30.5, height: 35)
                 }
                 
             case [.Transition]:
                 
                 if let item = collectionView.itemAtIndex(indexPath.item) {
                     return item.view.intrinsicContentSize
-                    
                 } else {
                     let string:NSString = node.title as NSString
                     let size: CGSize = string.sizeWithAttributes([NSFontAttributeName: NSFont.systemFontOfSize(9, weight:NSFontWeightRegular) ])
@@ -239,7 +233,10 @@ import Async
     
     
     public func collectionView(collectionView: NSCollectionView, willDisplayItem item: NSCollectionViewItem, forRepresentedObjectAtIndexPath indexPath: NSIndexPath) {
-    
+        
+        if item.isKindOfClass(NodeCollectionViewItem) == true {
+            (item as! NodeCollectionViewItem).updateView()
+        }
     }
     
     public func collectionView(collectionView: NSCollectionView, canDragItemsAtIndexPaths indexPaths: Set<NSIndexPath>, withEvent event: NSEvent) -> Bool {

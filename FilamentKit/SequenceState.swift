@@ -161,17 +161,19 @@ public enum SequenceState : Int {
             return .Void
         }
         
+        // Update nodes: those not failed refresh(clearing Error), the others flag as Error
+        // This is the only place Errors can be removed.
+        
         if let index = presenter.nodes?.indexOf(result.firstFailedNode!) {
-            if index > 0 {
-            for idx in 0...index-1 {
-                let presenter = presenter.presenterForNode(presenter.nodes![idx])
-                let calcNodeState = presenter.currentState.calculateNodeState(presenter, ignoreError: true)
-                presenter.currentState.toState(calcNodeState, presenter: presenter)
-            }
-            }
-            for index in index...presenter.nodes!.count-1 {
-                let presenter = presenter.presenterForNode(presenter.nodes![index])
-                presenter.currentState.toError(presenter)
+            for (idx, node) in presenter.nodes!.enumerate() {
+                let presenter = presenter.presenterForNode(node)
+                if idx < index {
+                    let calcNodeState = presenter.currentState.calculateNodeState(presenter, ignoreError: true)
+                    print("changing \(presenter.title) to state \(calcNodeState)")
+                    presenter.currentState.toState(calcNodeState, presenter: presenter, ignoreError: true)
+                } else {
+                     presenter.currentState.toError(presenter)
+                }
             }
         }
         return .HasFailedNode

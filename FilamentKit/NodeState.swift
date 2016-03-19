@@ -16,7 +16,7 @@ enum NodeState: Int {
     case WaitingForUserInput
     case Completed               // has past an event
     case Error
-    case Void                    // illegal state that we should never be in
+    case Void                    // illegal state that we should never be in apart from init
     
     
     internal mutating func changeToState(newState: NodeState, presenter:NodePresenter, options:[String]?) -> NodeState {
@@ -33,16 +33,16 @@ enum NodeState: Int {
     
     mutating func update(presenter: NodePresenter) {
         let calcState = calculateNodeState(presenter, ignoreError: false)
-        toState(calcState, presenter: presenter)
+        toState(calcState, presenter: presenter, ignoreError: false)
     }
 
     
-    mutating func toState(state: NodeState, presenter: NodePresenter) -> NodeState {
+    mutating func toState(state: NodeState, presenter: NodePresenter, ignoreError:Bool) -> NodeState {
         if state == self { return self }
         
         switch state {
         case Inactive : return toInactive(presenter)
-        case Ready : return toReady(presenter, ignoreErrors: false)
+        case Ready : return toReady(presenter, ignoreErrors: ignoreError)
         case Running : return toRunning(presenter)
         case WaitingForUserInput : return toWaitingForUserInput(presenter)
         case Completed : return toCompleted(presenter)
@@ -63,10 +63,9 @@ enum NodeState: Int {
         guard self != .Ready else { return self }
         if presenter.isCompleted == true { return toCompleted(presenter) }
         
-        // presenter.event!.synchronizeCalendarEvent()
-        
         // Moving to ready may mean we are actually in a different state.
         let calculatedState = calculateNodeState(presenter, ignoreError:ignoreErrors)
+        print("To ready \(self) and calc \(calculatedState)")
         if calculatedState == self { return self }
         
         switch calculatedState {
@@ -113,6 +112,7 @@ enum NodeState: Int {
     
     mutating func toError(presenter: NodePresenter) -> NodeState {
         guard self != .Error else { return self }
+        guard self != .Completed else { return self }
         presenter.removeCalandarEvent(false)
         return changeToState(.Error, presenter:presenter, options: nil)
     }
