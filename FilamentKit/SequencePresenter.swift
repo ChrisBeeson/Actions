@@ -44,7 +44,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     }
     
     var sequence: Sequence {
-        //  assert (_sequence != nil, "Sequence is NULL, and should never be")
+        assert (_sequence != nil, "Sequence is NULL, and should never be")
         return _sequence!
     }
     
@@ -216,7 +216,6 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         }
         delegates.removeAll()
         nodePresenters.removeAll()
-        _sequence = nil
         NSNotificationCenter.defaultCenter().removeObserver(self)
         representingDocument?.updateChangeCount(.ChangeDone)
     }

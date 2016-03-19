@@ -16,12 +16,11 @@ class TimeEvent : NSObject, NSCoding, NSCopying {
     var startDate: NSDate
     var endDate: NSDate
     var publish = false
-    var owner: Node?
+    weak var owner: Node?
     var calendarEventId = ""
     var calendarEvent:EKEvent?
     
     var period:DTTimePeriod? {
-        
         willSet {
             guard newValue != nil else { return }
             self.startDate = newValue!.StartDate
@@ -92,6 +91,7 @@ class TimeEvent : NSObject, NSCoding, NSCopying {
             self.calendarEvent = events![0]
         } else  {
             // make a new Event
+            CalendarManager.sharedInstance.incrementChangeCount()
             calendarEvent = EKEvent(eventStore: CalendarManager.sharedInstance.store)
             print("Creating new event")
             
@@ -101,7 +101,6 @@ class TimeEvent : NSObject, NSCoding, NSCopying {
                 print("No Application Calendar")
             }
         }
-        
         updateSystemCalendarData()
     }
     
@@ -122,9 +121,7 @@ class TimeEvent : NSObject, NSCoding, NSCopying {
         }
         
         if dirty == true {
-            //   Async.background { [unowned self] in
                 self.saveCalendarEvent()
-            //     }
         }
     }
     

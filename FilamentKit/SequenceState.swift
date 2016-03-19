@@ -163,7 +163,14 @@ public enum SequenceState : Int {
             return .Void
         }
         
-        if let index = presenter.nodes?.indexOf(result.firstFailedNode!) where index != -1 {
+        if let index = presenter.nodes?.indexOf(result.firstFailedNode!) {
+            if index > 0 {
+            for idx in 0...index-1 {
+                let presenter = presenter.presenterForNode(presenter.nodes![idx])
+                let calcNodeState = presenter.currentState.calculateNodeState(presenter, ignoreError: true)
+                presenter.currentState.toState(calcNodeState, presenter: presenter)
+            }
+            }
             for index in index...presenter.nodes!.count-1 {
                 let presenter = presenter.presenterForNode(presenter.nodes![index])
                 presenter.currentState.toError(presenter)
