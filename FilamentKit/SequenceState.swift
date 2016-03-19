@@ -22,7 +22,7 @@ public enum SequenceState : Int {
     
     internal mutating func changeToState(newState: SequenceState, presenter:SequencePresenter, options:[String]?) -> SequenceState {
  
-        print("Sequence \(presenter.title):  From \(self)  to \(newState)")
+        //print("Sequence \(presenter.title):  From \(self)  to \(newState)")
         if self == newState {
             print("Sequence: Self is equal to the new State  \(newState)")
         }
@@ -171,7 +171,6 @@ public enum SequenceState : Int {
         }
         return .HasFailedNode
     }
-    
     
     
     func calculateSequenceState(presenter: SequencePresenter, ignoreHasFailedNode:Bool) -> SequenceState {

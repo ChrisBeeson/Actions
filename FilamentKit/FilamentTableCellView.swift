@@ -94,7 +94,7 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
         sequenceCollectionView.reloadData()
         
         // Hide & disable things if we're .Completed
-        Swift.print("updating Cell view to state \(presenter!.currentState)")
+        //  Swift.print("updating Cell view to state \(presenter!.currentState)")
         let isCompleted = presenter!.currentState == .Completed ? true : false
         titleTextField.enabled = !isCompleted
         titleTextField.setNeedsDisplay()

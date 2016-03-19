@@ -27,7 +27,6 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     public var ruleCollectionViewDelegate : RuleCollectionViewDelegate?
     public var doubleClickDisplaysItemsDetailView = true
     
-    
     // MARK: Life Cycle
     
     public required init(coder aDecoder: NSCoder)  {
@@ -76,11 +75,8 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
         if self.selectionIndexPaths.count > 0 {
             let presenter = rulePresenters![self.selectionIndexPaths.first!.item]
             ruleCollectionViewDelegate?.didDoubleClick(self, selectedRulePresenter: presenter)
-            
         }
     }
-    
-    
     
     //MARK: Datasource
     
@@ -245,14 +241,11 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     override public func becomeFirstResponder() -> Bool {
         
         if let view = self.findSuperViewWithClass(NSTableCellView) {
-            
             NSNotificationCenter.defaultCenter().postNotificationName("FilamentTableViewSelectCellForView", object: self.superview)
-            
             if self.selectionIndexes.count == 0 {
                 self.window?.makeFirstResponder(view)
             }
         }
-        
         return true
     }
     
