@@ -184,10 +184,9 @@ public extension FilamentDocumentsManager {
             
             // Active sequence are sorted in this order
             // 0. Waiting for user
-            // 1. Running sequence, soonest to end is first
-            // 2. WaitingForStart, soonest to start first
-            // 3. how do errors fit in?
-            
+            // 1. Sequences with Errors
+            // 2. Running sequence, soonest to end is first
+            // 3. WaitingForStart, soonest to start first
             
         returnDocuments = documents.filter{ $0.sequencePresenter?.currentState == SequenceState.Paused }
             
@@ -205,7 +204,6 @@ public extension FilamentDocumentsManager {
 
 
         case .Completed:
-            
             returnDocuments = documents.filter{ $0.sequencePresenter?.currentState == SequenceState.Completed }
         }
         return returnDocuments

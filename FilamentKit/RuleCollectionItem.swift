@@ -16,34 +16,56 @@ public class RuleCollectionItem : NSCollectionViewItem {
     var doubleClickDisplaysDetailView = true
     var rulePresenter: RulePresenter?
     
+    var currentState: RuleState {
+        if rulePresenter == nil { return .Inactive }
+        return rulePresenter!.currentState
+    }
+    
     override public var selected: Bool {
         didSet {
             updateView()
         }
     }
     
+    override public func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
     override public func viewWillLayout() {
         super.viewWillLayout()
         
-        if rulePresenter != nil { label.stringValue = rulePresenter!.name as String }
+       
     }
     
     override public func viewWillAppear() {
         super.viewWillAppear()
         updateView()
-        rulePillView.frame = self.view.bounds   // layout not working 100% and this seems to be a hacky solution
+        //   rulePillView.frame = self.view.bounds   // layout not working 100% and this seems to be a hacky solution
     }
     
     
     func updateView() {
         
-        switch selected {
-        case true:
+        if rulePresenter != nil { label.stringValue = rulePresenter!.name as String }
+        
+        switch currentState {
+        case .Active:
+            switch selected {
+            case true:
+                label.textColor = NSColor.whiteColor()
+                rulePillView.setColour(AppConfiguration.Palette.tokenBlueSelected.CGColor)
+            case false:
+                rulePillView.setColour(AppConfiguration.Palette.tokenBlue.CGColor)
+                label.textColor = NSColor.blackColor()
+            }
+        case .Inactive:
             label.textColor = NSColor.whiteColor()
-            rulePillView.setColour(AppConfiguration.Palette.tokenBlueSelected.CGColor)
-        case false:
-            rulePillView.setColour(AppConfiguration.Palette.tokenBlue.CGColor)
-            label.textColor = NSColor.blackColor()
+            rulePillView.setColour(AppConfiguration.Palette.tokenInactive.CGColor)
+            
+        case .Error:
+            label.textColor = NSColor.whiteColor()
+            rulePillView.setColour(AppConfiguration.Palette.tokenError.CGColor)
         }
     }
     
@@ -51,6 +73,7 @@ public class RuleCollectionItem : NSCollectionViewItem {
     override public func mouseDown(theEvent: NSEvent) {
         super.mouseDown(theEvent)
         
+        if currentState == .Inactive { return }
         if theEvent.clickCount < 2 { return }
         if doubleClickDisplaysDetailView == false { return }
         guard rulePresenter != nil else { fatalError("Trying to display Rule detail view, when presenter is Nil") }

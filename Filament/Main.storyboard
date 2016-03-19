@@ -594,7 +594,7 @@ CA
                                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="W31-zO-bj3">
                                                                     <rect key="frame" x="10" y="3" width="418" height="94"/>
                                                                     <subviews>
-                                                                        <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="5" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nZV-IB-3op">
+                                                                        <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="5" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nZV-IB-3op">
                                                                             <rect key="frame" x="0.0" y="2" width="418" height="85"/>
                                                                             <subviews>
                                                                                 <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Df-YY-f5y">
@@ -603,7 +603,7 @@ CA
                                                                                         <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BeT-IN-UXD">
                                                                                             <rect key="frame" x="10" y="0.0" width="408" height="17"/>
                                                                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" alignment="left" title="UNTITLED" placeholderString="Title" id="chR-lv-cWb">
-                                                                                                <font key="font" size="13" name="Helvetica-Bold"/>
+                                                                                                <font key="font" metaFont="systemBold"/>
                                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                                 <color key="backgroundColor" red="1" green="0.0036222628740000002" blue="0.7509055657" alpha="0.0" colorSpace="calibratedRGB"/>
                                                                                             </textFieldCell>

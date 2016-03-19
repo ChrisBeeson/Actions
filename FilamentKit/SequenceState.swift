@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Async
 
 public enum SequenceState : Int {
     
@@ -127,7 +128,10 @@ public enum SequenceState : Int {
         guard self != .Completed else { return self }
         
         //TODO: Animation
+        
+       delay(1.0, closure: {
          NSNotificationCenter.defaultCenter().postNotificationName("RefreshMainTableView", object: nil)
+        })
     
         return changeToState(.Completed, presenter:presenter, options: nil)
     }

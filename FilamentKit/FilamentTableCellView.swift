@@ -96,9 +96,17 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
         Swift.print("updating Cell view to state \(presenter!.currentState)")
         let isCompleted = presenter!.currentState == .Completed ? true : false
         titleTextField.enabled = !isCompleted
+        titleTextField.setNeedsDisplay()
         addGenericRuleButton.hidden = isCompleted
         generalRulesCollectionView.allowDrops = !isCompleted
         generalRulesCollectionView.allowDeletions = !isCompleted
+        generalRulesCollectionView.reloadData()
+        self.needsDisplay = true
+    }
+    
+    var isEditable: Bool {
+        if presenter == nil { return true }
+    return presenter!.currentState == .Completed ? false : true
     }
     
     
@@ -133,7 +141,12 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
     
     func refreshGeneralRulesCollectionView() {
         
-        generalRulesCollectionView.rulePresenters = presenter?.currentRulePresenters()
+        let rulePresenters = presenter?.currentRulePresenters()
+        if presenter != nil {
+            rulePresenters?.forEach{ $0.sequencePresenter = presenter }
+        }
+        
+        generalRulesCollectionView.rulePresenters = rulePresenters
         generalRulesCollectionView.reloadData()
         availableGeneralRulesViewController?.reloadCollectionView()
     }

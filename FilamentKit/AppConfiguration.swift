@@ -276,7 +276,9 @@ public class AppConfiguration: NSObject {
         
         public static let tokenBlue = NSColor(calibratedRed: 0.745, green: 0.839, blue: 0.922, alpha:1.0)
         public static let tokenBlueSelected = NSColor(calibratedRed: 0.435, green: 0.694, blue: 0.933, alpha: 1.00)
-        
+        public static let tokenInactive = NSColor(calibratedWhite:0.85, alpha:1.0)
+        public static let tokenError = NSColor(calibratedRed: 1.0, green: 0.1, blue: 0.1, alpha: 1.0)
+
         public static let buttonSelectionBlue = NSColor(calibratedRed: 0.075, green: 0.345, blue: 1.0, alpha: 1.00)
     }
     

@@ -15,27 +15,24 @@
                 <outlet property="view" destination="d7v-ga-NYQ" id="bT4-WI-xMh"/>
             </connections>
         </collectionViewItem>
-        <customView id="d7v-ga-NYQ">
-            <rect key="frame" x="0.0" y="0.0" width="51" height="17"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+        <customView translatesAutoresizingMaskIntoConstraints="NO" id="d7v-ga-NYQ">
+            <rect key="frame" x="0.0" y="0.0" width="52" height="17"/>
             <subviews>
                 <customView focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="eoi-SA-h1p" customClass="RulePillView" customModule="FilamentKit" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="51" height="17"/>
+                    <rect key="frame" x="0.0" y="0.0" width="52" height="17"/>
                     <subviews>
                         <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="6vI-G5-Ve1">
-                            <rect key="frame" x="8" y="1" width="35" height="16"/>
+                            <rect key="frame" x="8" y="1" width="36" height="16"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="cv5-yV-2av">
-                                <font key="font" metaFont="system" size="12"/>
+                                <font key="font" metaFont="system" size="12.5"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="6vI-G5-Ve1" secondAttribute="bottom" constant="1" id="4DC-fJ-hbO"/>
-                        <constraint firstAttribute="trailing" secondItem="6vI-G5-Ve1" secondAttribute="trailing" constant="10" id="9Do-Xp-zAL"/>
-                        <constraint firstItem="6vI-G5-Ve1" firstAttribute="top" secondItem="eoi-SA-h1p" secondAttribute="top" id="bJR-Vn-mvW"/>
-                        <constraint firstItem="6vI-G5-Ve1" firstAttribute="leading" secondItem="eoi-SA-h1p" secondAttribute="leading" constant="10" id="gak-u4-dK0"/>
+                        <constraint firstItem="6vI-G5-Ve1" firstAttribute="centerY" secondItem="eoi-SA-h1p" secondAttribute="centerY" id="f0T-5c-7Xp"/>
+                        <constraint firstItem="6vI-G5-Ve1" firstAttribute="centerX" secondItem="eoi-SA-h1p" secondAttribute="centerX" id="s81-nG-zpb"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="translatesAutoresizingMaskIntoConstraints" value="NO"/>

@@ -8,11 +8,19 @@
 
 import Foundation
 
+public enum RuleState : Int {
+    
+    case Active = 1
+    case Inactive
+    case Error
+}
+
+
 public class RulePresenter : NSObject {
     
     private var delegates = [RulePresenterDelegate]()
     var undoManager: NSUndoManager?
-    var sequencePresenter: SequencePresenter?
+    public var sequencePresenter: SequencePresenter?
     var ruleViewController : RuleViewController?
     
     var rule : Rule
@@ -27,6 +35,12 @@ public class RulePresenter : NSObject {
     
     var editable: Bool {
         return sequencePresenter?.currentState != .Completed
+    }
+    
+    var currentState: RuleState {
+        if sequencePresenter == nil { return .Active }
+        if sequencePresenter!.currentState == .Completed { return .Inactive }
+        return .Active
     }
     
     //MARK: Inits

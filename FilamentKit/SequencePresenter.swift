@@ -258,7 +258,6 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     }
     
     public func removeDelegate(delegate:SequencePresenterDelegate) {
-        
         delegates = delegates.filter { return $0 !== delegate }
     }
 }
