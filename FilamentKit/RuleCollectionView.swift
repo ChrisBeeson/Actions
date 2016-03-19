@@ -101,8 +101,8 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     public func collectionView(collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> NSSize {
         
         let string:NSString = rulePresenters![indexPath.item].name as NSString
-        let size: CGSize = string.sizeWithAttributes([NSFontAttributeName: NSFont.systemFontOfSize(12.5, weight:NSFontWeightRegular) ])
-        return NSSize(width: size.width + 20, height: 15)
+        let size: CGSize = string.sizeWithAttributes([NSFontAttributeName: NSFont.systemFontOfSize(11.5, weight:NSFontWeightRegular) ])
+        return NSSize(width: size.width + 20, height: 16)
     }
     
     public func collectionView(collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {

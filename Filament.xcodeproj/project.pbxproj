@@ -81,6 +81,9 @@
 		47CD21C71BDF807900AF25BE /* Sequence+EventLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CD21C51BDF807900AF25BE /* Sequence+EventLogic.swift */; };
 		47D56FA11C8AC9E80025D156 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D56FA01C8AC9E80025D156 /* Calendar.swift */; };
 		47D6165B1B9C1FAA00F72155 /* SequenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D6165A1B9C1FAA00F72155 /* SequenceTests.swift */; };
+		47ED142A1C9D5281002F4B4E /* WorkingWeekViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47ED14291C9D5281002F4B4E /* WorkingWeekViewController.xib */; };
+		47ED142C1C9D52A0002F4B4E /* WorkingWeekViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ED142B1C9D52A0002F4B4E /* WorkingWeekViewController.swift */; };
+		47ED142E1C9D534B002F4B4E /* WorkingWeekRulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ED142D1C9D534B002F4B4E /* WorkingWeekRulePresenter.swift */; };
 		47F2FBC41BA8CFEE0041B291 /* Solver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F2FBC31BA8CFEE0041B291 /* Solver.swift */; };
 		47F5E82B1BF495D8004C0D16 /* AddFilamentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F5E82A1BF495D8004C0D16 /* AddFilamentViewController.swift */; };
 		83260A341C856C6700F74DBD /* RulePillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83260A331C856C6700F74DBD /* RulePillView.swift */; };
@@ -240,6 +243,9 @@
 		47CD21C51BDF807900AF25BE /* Sequence+EventLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sequence+EventLogic.swift"; sourceTree = "<group>"; };
 		47D56FA01C8AC9E80025D156 /* Calendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
 		47D6165A1B9C1FAA00F72155 /* SequenceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceTests.swift; sourceTree = "<group>"; };
+		47ED14291C9D5281002F4B4E /* WorkingWeekViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorkingWeekViewController.xib; sourceTree = "<group>"; };
+		47ED142B1C9D52A0002F4B4E /* WorkingWeekViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkingWeekViewController.swift; sourceTree = "<group>"; };
+		47ED142D1C9D534B002F4B4E /* WorkingWeekRulePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkingWeekRulePresenter.swift; sourceTree = "<group>"; };
 		47F2FBC31BA8CFEE0041B291 /* Solver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Solver.swift; sourceTree = "<group>"; };
 		47F5E82A1BF495D8004C0D16 /* AddFilamentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFilamentViewController.swift; sourceTree = "<group>"; };
 		83260A331C856C6700F74DBD /* RulePillView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulePillView.swift; sourceTree = "<group>"; };
@@ -444,6 +450,7 @@
 			children = (
 				473853B11C7A590A000AB1E2 /* RuleViewController.swift */,
 				834C6CD31C89330600266709 /* EmptyRuleViewController.xib */,
+				47ED14281C9D5261002F4B4E /* WorkingWeek */,
 				47967FF51C8ABBA400358199 /* AvoidCalendars */,
 				47967FF31C8AA71C00358199 /* DurationWithMinDuration */,
 				47967FF41C8AA73000358199 /* DurationWithVariance */,
@@ -460,6 +467,7 @@
 				473D9F571C7AEF7500E81D39 /* TransitionDurationWithVarianceRulePresenter.swift */,
 				473D9F591C7AF53800E81D39 /* EventDurationWithMinimumDurationRulePresenter.swift */,
 				47967FFA1C8ABC4F00358199 /* AvoidCalendarEventsPresenter.swift */,
+				47ED142D1C9D534B002F4B4E /* WorkingWeekRulePresenter.swift */,
 			);
 			name = "Rule Presenters";
 			sourceTree = "<group>";
@@ -644,6 +652,15 @@
 				83AD7EBB1C7BA4E60097BD61 /* RuleTokenField.swift */,
 			);
 			name = "Detail ViewControllers";
+			sourceTree = "<group>";
+		};
+		47ED14281C9D5261002F4B4E /* WorkingWeek */ = {
+			isa = PBXGroup;
+			children = (
+				47ED14291C9D5281002F4B4E /* WorkingWeekViewController.xib */,
+				47ED142B1C9D52A0002F4B4E /* WorkingWeekViewController.swift */,
+			);
+			name = WorkingWeek;
 			sourceTree = "<group>";
 		};
 		69793A9D031B4179C7761969 /* Pods */ = {
@@ -970,6 +987,7 @@
 				471279B91C8061A20090426C /* EventDurationWithMinimumDurationViewController.xib in Resources */,
 				4720B50A1C6F00E500229734 /* DateTimePickerViewController.xib in Resources */,
 				834C6CD41C89330600266709 /* EmptyRuleViewController.xib in Resources */,
+				47ED142A1C9D5281002F4B4E /* WorkingWeekViewController.xib in Resources */,
 				833AE3301C67F85B002F35C1 /* ActionNodeCollectionViewItem.xib in Resources */,
 				83CE363C1C84E53F00D3A556 /* RuleCollectionItem.xib in Resources */,
 				833AE32E1C67E463002F35C1 /* DateNodeCollectionViewItem.xib in Resources */,
@@ -1120,6 +1138,7 @@
 				471279B71C80615C0090426C /* EventDurationWithMinimumDurationViewController.swift in Sources */,
 				473853B51C7A596E000AB1E2 /* RulePresenter.swift in Sources */,
 				471279BB1C8298C80090426C /* TransitionDurationBasedOnTravelTime.swift in Sources */,
+				47ED142C1C9D52A0002F4B4E /* WorkingWeekViewController.swift in Sources */,
 				477C2CB51C40B3AD0071467C /* TransitionNodeView.swift in Sources */,
 				473574791B9A68BE00493CA0 /* Rule.swift in Sources */,
 				832BA20A1C740686004331A7 /* NodeView.swift in Sources */,
@@ -1152,6 +1171,7 @@
 				4720B50E1C71C32100229734 /* EmptyNodeView.swift in Sources */,
 				836896341C807FEF00F3F547 /* AvailableRulesViewController.swift in Sources */,
 				473574841B9A91A200493CA0 /* ListPresenterAlgorithms.swift in Sources */,
+				47ED142E1C9D534B002F4B4E /* WorkingWeekRulePresenter.swift in Sources */,
 				83B9DF5B1C9922AA008E3F26 /* SequenceState.swift in Sources */,
 				47F2FBC41BA8CFEE0041B291 /* Solver.swift in Sources */,
 				8343519D1BA297650094428B /* TransitionDurationWithVariance.swift in Sources */,

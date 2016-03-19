@@ -16,15 +16,15 @@
             </connections>
         </collectionViewItem>
         <customView translatesAutoresizingMaskIntoConstraints="NO" id="d7v-ga-NYQ">
-            <rect key="frame" x="0.0" y="0.0" width="52" height="17"/>
+            <rect key="frame" x="0.0" y="0.0" width="44" height="17"/>
             <subviews>
                 <customView focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="eoi-SA-h1p" customClass="RulePillView" customModule="FilamentKit" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="52" height="17"/>
+                    <rect key="frame" x="0.0" y="0.0" width="44" height="17"/>
                     <subviews>
-                        <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="6vI-G5-Ve1">
-                            <rect key="frame" x="8" y="1" width="36" height="16"/>
+                        <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6vI-G5-Ve1">
+                            <rect key="frame" x="6" y="2" width="34" height="14"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="cv5-yV-2av">
-                                <font key="font" metaFont="system" size="12.5"/>
+                                <font key="font" metaFont="system" size="11.5"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
@@ -48,7 +48,7 @@
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="boolean" keyPath="translatesAutoresizingMaskIntoConstraints" value="NO"/>
             </userDefinedRuntimeAttributes>
-            <point key="canvasLocation" x="8.5" y="342"/>
+            <point key="canvasLocation" x="4" y="341.5"/>
         </customView>
     </objects>
 </document>
