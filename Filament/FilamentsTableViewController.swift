@@ -69,8 +69,10 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
 
         if animated == false {
             filteredDocuments = newFilteredDocuments
+            CATransaction.begin() ; CATransaction.setDisableActions(true)
             self.tableView!.reloadData()
             self.tableView.deselectAll(self)
+            CATransaction.commit()
             return
         }
         

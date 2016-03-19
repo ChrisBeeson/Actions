@@ -65,7 +65,6 @@ enum NodeState: Int {
         
         // Moving to ready may mean we are actually in a different state.
         let calculatedState = calculateNodeState(presenter, ignoreError:ignoreErrors)
-        print("To ready \(self) and calc \(calculatedState)")
         if calculatedState == self { return self }
         
         switch calculatedState {

@@ -169,7 +169,6 @@ public enum SequenceState : Int {
                 let presenter = presenter.presenterForNode(node)
                 if idx < index {
                     let calcNodeState = presenter.currentState.calculateNodeState(presenter, ignoreError: true)
-                    print("changing \(presenter.title) to state \(calcNodeState)")
                     presenter.currentState.toState(calcNodeState, presenter: presenter, ignoreError: true)
                 } else {
                      presenter.currentState.toError(presenter)

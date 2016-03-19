@@ -542,10 +542,10 @@
 		4778C0AC1C657F7B00F5A259 /* NodeViews */ = {
 			isa = PBXGroup;
 			children = (
+				832BA2091C740686004331A7 /* NodeView.swift */,
 				477C2CB21C409C660071467C /* ActionNodeView.swift */,
 				477C2CB41C40B3AD0071467C /* TransitionNodeView.swift */,
 				4720B50D1C71C32100229734 /* EmptyNodeView.swift */,
-				832BA2091C740686004331A7 /* NodeView.swift */,
 			);
 			name = NodeViews;
 			sourceTree = "<group>";
