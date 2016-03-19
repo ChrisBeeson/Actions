@@ -8,6 +8,7 @@
 
 import Cocoa
 import FilamentKit
+import Async
 
 public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, RuleCollectionViewDelegate, NSPopoverDelegate {
     
@@ -23,6 +24,7 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
     @IBOutlet weak var favouriteButton: NSButton!
     @IBOutlet weak var generalRulesCollectionView: RuleCollectionView!
     
+    @IBOutlet weak var rulesStackView: NSStackView!
     private var availableGeneralRulesViewController : AvailableRulesViewController?
     private var displayedPopover: NSPopover?
     
@@ -90,7 +92,6 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
         titleTextField.stringValue = presenter!.title
         self.sequenceCollectionView.toolTip = String(presenter!.currentState)
         sequenceCollectionView.reloadData()
-        refreshGeneralRulesCollectionView()
         
         // Hide & disable things if we're .Completed
         Swift.print("updating Cell view to state \(presenter!.currentState)")
@@ -100,13 +101,8 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
         addGenericRuleButton.hidden = isCompleted
         generalRulesCollectionView.allowDrops = !isCompleted
         generalRulesCollectionView.allowDeletions = !isCompleted
-        generalRulesCollectionView.reloadData()
+        refreshGeneralRulesCollectionView()
         self.needsDisplay = true
-    }
-    
-    var isEditable: Bool {
-        if presenter == nil { return true }
-    return presenter!.currentState == .Completed ? false : true
     }
     
     
@@ -132,9 +128,7 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
         availableGeneralRulesViewController!.displayRulesForNodeType = [.Generic]
         availableGeneralRulesViewController!.collectionViewDelegate = self
         popover.contentViewController = availableGeneralRulesViewController
-        
-        //TODO: Select between preferred Edges..
-        popover.showRelativeToRect(addGenericRuleButton.bounds, ofView:self, preferredEdge:.MaxY )
+        popover.showRelativeToRect(addGenericRuleButton.frame, ofView:rulesStackView, preferredEdge:.MaxX )
         
     }
     
@@ -146,9 +140,26 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
             rulePresenters?.forEach{ $0.sequencePresenter = presenter }
         }
         
-        generalRulesCollectionView.rulePresenters = rulePresenters
-        generalRulesCollectionView.reloadData()
-        availableGeneralRulesViewController?.reloadCollectionView()
+        // Hide Add General Rules button if there are no available rules
+        
+        if self.presenter!.currentState != .Completed {
+        if self.presenter!.availableRulePresenters().count == 0 {
+            if addGenericRuleButton.hidden == false {
+                addGenericRuleButton.animator().hidden = true
+            }
+        } else {
+           if addGenericRuleButton.hidden == true {
+             addGenericRuleButton.animator().hidden = false
+            }
+        }
+        }
+        
+        // Async.main(after:0.05) {
+        self.generalRulesCollectionView.rulePresenters = rulePresenters
+        self.generalRulesCollectionView.reloadData()
+        //  self.generalRulesCollectionView.needsDisplay = true
+        self.availableGeneralRulesViewController?.reloadCollectionView()
+        // }
     }
     
     
@@ -165,7 +176,6 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
     public func sequencePresenterDidRefreshCompleteLayout(sequencePresenter: SequencePresenter) {
         updateCellView()
     }
-    
     
     public func sequencePresenterDidChangeStatus(sequencePresenter: SequencePresenter, toStatus:SequenceState){
         self.sequenceCollectionView.toolTip = String(sequencePresenter.currentState)

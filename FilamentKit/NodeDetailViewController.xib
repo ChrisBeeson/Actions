@@ -166,7 +166,7 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <collectionView ambiguous="YES" selectable="YES" id="Vh4-gK-Teh" customClass="RuleCollectionView" customModule="FilamentKit">
-                                                            <rect key="frame" x="0.0" y="0.0" width="235" height="143"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="235" height="135"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" scrollDirection="horizontal" id="o8Y-fR-MuF">
                                                                 <size key="itemSize" width="50" height="50"/>

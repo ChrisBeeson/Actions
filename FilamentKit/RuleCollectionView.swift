@@ -119,7 +119,7 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     
     
     public func collectionView(collectionView: NSCollectionView, willDisplayItem item: NSCollectionViewItem, forRepresentedObjectAtIndexPath indexPath: NSIndexPath) {
-        
+          (item as! RuleCollectionItem).updateView()
     }
     
     

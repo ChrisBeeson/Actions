@@ -594,7 +594,7 @@ CA
                                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="W31-zO-bj3">
                                                                     <rect key="frame" x="10" y="3" width="418" height="94"/>
                                                                     <subviews>
-                                                                        <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="5" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nZV-IB-3op">
+                                                                        <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="5" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nZV-IB-3op">
                                                                             <rect key="frame" x="0.0" y="2" width="418" height="85"/>
                                                                             <subviews>
                                                                                 <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Df-YY-f5y">
@@ -736,6 +736,7 @@ CA
                                                                 <outlet property="backgroundView" destination="W31-zO-bj3" id="AVt-uM-yJb"/>
                                                                 <outlet property="generalRulesCollectionView" destination="xO8-s9-ULg" id="Wn2-qy-363"/>
                                                                 <outlet property="mainStackView" destination="nZV-IB-3op" id="1Zd-gG-sQd"/>
+                                                                <outlet property="rulesStackView" destination="rye-7b-Xyd" id="Any-IH-iIO"/>
                                                                 <outlet property="scrollview" destination="wWa-CA-nxC" id="jDy-BS-7oD"/>
                                                                 <outlet property="sequenceCollectionView" destination="8np-EO-BYI" id="A37-k5-sC5"/>
                                                                 <outlet property="textField" destination="BeT-IN-UXD" id="PVO-Gh-Ozv"/>

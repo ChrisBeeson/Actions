@@ -41,12 +41,12 @@ public class RuleCollectionItem : NSCollectionViewItem {
     override public func viewWillAppear() {
         super.viewWillAppear()
         updateView()
-        //   rulePillView.frame = self.view.bounds   // layout not working 100% and this seems to be a hacky solution
+        rulePillView.frame = self.view.bounds   // layout not working 100% and this seems to be a hacky solution
     }
     
     
     func updateView() {
-        
+
         if rulePresenter != nil { label.stringValue = rulePresenter!.name as String }
         
         switch currentState {
@@ -67,8 +67,9 @@ public class RuleCollectionItem : NSCollectionViewItem {
             label.textColor = NSColor.whiteColor()
             rulePillView.setColour(AppConfiguration.Palette.tokenError.CGColor)
         }
+        self.label.needsDisplay = true
+        self.view.needsDisplay = true
     }
-    
     
     override public func mouseDown(theEvent: NSEvent) {
         super.mouseDown(theEvent)
