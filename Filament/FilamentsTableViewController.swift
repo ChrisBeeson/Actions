@@ -43,6 +43,9 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         }
     }
     
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
     
     override public func viewWillAppear() {
         
@@ -150,7 +153,6 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         case NSAlertFirstButtonReturn:   // Delete
             if let cellView = tableView.viewAtColumn(0, row: tableView.selectedRow, makeIfNecessary: false) as? FilamentTableCellView {
                 Async.userInitiated {
-                cellView.presenter!.prepareForCompleteDeletion()
                 FilamentDocumentsManager.sharedManager.deleteDocumentForPresenter(cellView.presenter!)
                 cellView.presenter = nil
                 }

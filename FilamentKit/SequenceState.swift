@@ -174,7 +174,6 @@ public enum SequenceState : Int {
     
     
     func calculateSequenceState(presenter: SequencePresenter, ignoreHasFailedNode:Bool) -> SequenceState {
-
         guard presenter.date != nil else { return .NoStartDateSet }
         
         for presenter in presenter.nodePresenters {
@@ -190,7 +189,6 @@ public enum SequenceState : Int {
         if let completeDate = presenter.completionDate {
             if completeDate.isEarlierThan(NSDate()) == true { state = .Completed }
         }
-        
         return state
     }
 }

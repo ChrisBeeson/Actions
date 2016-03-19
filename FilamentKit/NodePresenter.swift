@@ -15,7 +15,7 @@ import DateTools
 public class NodePresenter : NSObject, RuleAvailabiltiy {
    
     var undoManager: NSUndoManager?
-    var sequencePresenter: SequencePresenter?
+    weak var sequencePresenter: SequencePresenter?
     var delegates = [NodePresenterDelegate]()
     var currentState = NodeState.Inactive
     private var rulePresenters = [RulePresenter]()

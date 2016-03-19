@@ -253,4 +253,7 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
         self.deselectAll(self)
         return true
     }
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
 }

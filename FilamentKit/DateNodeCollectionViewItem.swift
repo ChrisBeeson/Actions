@@ -18,7 +18,7 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     @IBOutlet weak var circleView: EmptyNodeView!
     @IBOutlet weak var transitionView: TransitionNodeView!
     
-    var sequencePresenter: SequencePresenter?
+    weak var sequencePresenter: SequencePresenter?
     var popover: NSPopover?
     var dateTimePickerViewController : DateTimePickerViewController?
     

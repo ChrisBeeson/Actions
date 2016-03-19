@@ -12,7 +12,7 @@ public class AddNewNodeCollectionViewItem : NSCollectionViewItem {
     
     @IBOutlet weak var plusButton: NSButton!
     
-    var sequencePresenter : SequencePresenter?
+    weak var sequencePresenter : SequencePresenter?
     
     override public func viewDidLoad() {
         

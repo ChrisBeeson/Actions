@@ -31,7 +31,11 @@ class MainWindowController: NSWindowController {
             alert.runModal()
         }
     }
-        
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String: AnyObject]?, context: UnsafeMutablePointer<Void>) {
         
@@ -42,6 +46,4 @@ class MainWindowController: NSWindowController {
     @IBAction func segmentedControlAction(sender: NSSegmentedControl) {
         (self.contentViewController as! FilamentsTableViewController).setTableViewFilter(DocumentFilterType(rawValue: sender.selectedSegment)!)
     }
-    
-
 }

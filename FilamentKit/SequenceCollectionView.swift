@@ -13,7 +13,7 @@ import Async
     
     enum ItemType: Int { case DateNode, ActionNode, TransitionNode, NewNode }
 
-    public var presenter : SequencePresenter? {
+    public weak var presenter : SequencePresenter? {
         didSet {
             presenter?.addDelegate(self)
         }

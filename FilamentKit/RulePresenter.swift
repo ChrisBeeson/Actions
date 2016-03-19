@@ -20,7 +20,7 @@ public class RulePresenter : NSObject {
     
     private var delegates = [RulePresenterDelegate]()
     var undoManager: NSUndoManager?
-    public var sequencePresenter: SequencePresenter?
+    public weak var sequencePresenter: SequencePresenter?
     var ruleViewController : RuleViewController?
     
     var rule : Rule

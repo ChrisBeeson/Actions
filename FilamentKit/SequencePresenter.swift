@@ -28,6 +28,11 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         }
     }
     
+    deinit {
+        print("SequencePresenter deinit")
+        
+    }
+    
     public var title: String {
         get {
             return _sequence!.title
@@ -39,7 +44,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     }
     
     var sequence: Sequence {
-       assert (_sequence != nil, "Sequence is NULL, and should never be")
+        //  assert (_sequence != nil, "Sequence is NULL, and should never be")
         return _sequence!
     }
     
@@ -209,6 +214,10 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
                 presenter.removeCalandarEvent(false)
             }
         }
+        delegates.removeAll()
+        nodePresenters.removeAll()
+        _sequence = nil
+        NSNotificationCenter.defaultCenter().removeObserver(self)
         representingDocument?.updateChangeCount(.ChangeDone)
     }
     

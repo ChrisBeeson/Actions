@@ -28,7 +28,7 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
     private var availableGeneralRulesViewController : AvailableRulesViewController?
     private var displayedPopover: NSPopover?
     
-    public var presenter: SequencePresenter? {
+    public weak var presenter: SequencePresenter? {
         
         set {
             presenter?.removeDelegate(self)

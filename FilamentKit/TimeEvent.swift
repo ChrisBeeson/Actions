@@ -48,7 +48,6 @@ class TimeEvent : NSObject, NSCoding, NSCopying {
         self.endDate = period.EndDate
         self.owner = owner
        
-        
         super.init()
          if owner.type == .Action { publish = true}
         
@@ -90,13 +89,9 @@ class TimeEvent : NSObject, NSCoding, NSCopying {
         let events = CalendarManager.sharedInstance.findEventsInApplicationCalendar(DTTimePeriod(startDate: self.startDate, endDate: self.endDate))
         
         if events != nil && events!.count>0 {
-            
             self.calendarEvent = events![0]
-            
         } else  {
-            
             // make a new Event
-            
             calendarEvent = EKEvent(eventStore: CalendarManager.sharedInstance.store)
             print("Creating new event")
             
@@ -127,9 +122,9 @@ class TimeEvent : NSObject, NSCoding, NSCopying {
         }
         
         if dirty == true {
-            //Async.utility { [unowned self] in
+            //   Async.background { [unowned self] in
                 self.saveCalendarEvent()
-             //}
+            //     }
         }
     }
     
@@ -139,6 +134,7 @@ class TimeEvent : NSObject, NSCoding, NSCopying {
         guard calendarEvent != nil else { return }
         
         do {
+            CalendarManager.sharedInstance.incrementChangeCount()
             try CalendarManager.sharedInstance.store.saveEvent(calendarEvent!, span: .ThisEvent, commit: true)
             self.calendarEventId = calendarEvent!.calendarItemExternalIdentifier
             
@@ -153,6 +149,7 @@ class TimeEvent : NSObject, NSCoding, NSCopying {
         guard calendarEvent != nil else { return }
         
         do {
+            CalendarManager.sharedInstance.incrementChangeCount()
             try CalendarManager.sharedInstance.store.removeEvent(calendarEvent!, span: .ThisEvent, commit: true)
             self.calendarEventId = ""
             self.calendarEvent = nil

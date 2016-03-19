@@ -16,20 +16,33 @@ public class CalendarManager: NSObject {
     public let store = EKEventStore()
     public var applicationCalendar: EKCalendar?
     public var authorized = false
+    var changeCount = 0
     
     override init() {
         
         super.init()
         verifyUserEventAuthorization()
         retrieveApplicationCalendar()
+        
+        NSNotificationCenter.defaultCenter().addObserverForName(EKEventStoreChangedNotification, object: nil, queue: nil) { (notification) -> Void in
+            if self.changeCount > 0 { self.changeCount-- } else {
+                NSNotificationCenter.defaultCenter().postNotificationName("UpdateAllSequences", object: self)
+            }
+        }
     }
     
+    deinit {
+       NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
     
     func calendars() -> [EKCalendar] {
         
         return store.calendarsForEntityType(.Event)
     }
     
+    func incrementChangeCount() {
+        changeCount++
+    }
     
     func events(timePeriod: DTTimePeriod, calendars: [Calendar]) -> [EKEvent]? {
 
