@@ -129,7 +129,11 @@ import Async
         self.performBatchUpdates({ () -> Void in
             
             if insertedNodes.count > 0 {
-                self.animator().insertItemsAtIndexPaths(insertedNodes)
+                self.insertItemsAtIndexPaths(insertedNodes)
+                // animate to that new item
+                Async.main(after: 0.1) {
+                self.scrollToItemsAtIndexPaths(insertedNodes, scrollPosition: .CenteredHorizontally)
+                }
             }
             
             if deletedNodes.count > 0 {
@@ -137,7 +141,8 @@ import Async
             }
             }) { (completed) -> Void in
         }
-              self.reloadData()
+        
+        self.reloadData()
     
     }
     
@@ -158,10 +163,10 @@ import Async
             if let object = self.itemAtIndexPath(indexPath) {
             
             if object.isKindOfClass(NodeCollectionViewItem) {
-                
                 let item = object as! NodeCollectionViewItem
-                assert(item.presenter!.type == .Action,"Trying to delete a non .Action node")
+                if item.presenter!.type == .Action {
                 nodesToDelete.append(item.presenter!.node)
+                }
             }
             }
         }
