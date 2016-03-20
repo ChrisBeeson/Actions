@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4707377E1C9E0E31008E0FBC /* DateTimeHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4707377D1C9E0E31008E0FBC /* DateTimeHelpers.swift */; };
 		471279B71C80615C0090426C /* EventDurationWithMinimumDurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471279B61C80615C0090426C /* EventDurationWithMinimumDurationViewController.swift */; };
 		471279B91C8061A20090426C /* EventDurationWithMinimumDurationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 471279B81C8061A20090426C /* EventDurationWithMinimumDurationViewController.xib */; };
 		471279BB1C8298C80090426C /* TransitionDurationBasedOnTravelTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471279BA1C8298C80090426C /* TransitionDurationBasedOnTravelTime.swift */; };
@@ -176,6 +177,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4707377D1C9E0E31008E0FBC /* DateTimeHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTimeHelpers.swift; sourceTree = "<group>"; };
 		471279B61C80615C0090426C /* EventDurationWithMinimumDurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDurationWithMinimumDurationViewController.swift; sourceTree = "<group>"; };
 		471279B81C8061A20090426C /* EventDurationWithMinimumDurationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDurationWithMinimumDurationViewController.xib; sourceTree = "<group>"; };
 		471279BA1C8298C80090426C /* TransitionDurationBasedOnTravelTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionDurationBasedOnTravelTime.swift; sourceTree = "<group>"; };
@@ -478,6 +480,7 @@
 				47CD21BE1BDF797B00AF25BE /* GeneralExtensions.swift */,
 				475927B01C6C725700D24DE9 /* Dwifft.swift */,
 				4794B99D1C78522B009CE617 /* NSTimer+Closure.swift */,
+				4707377D1C9E0E31008E0FBC /* DateTimeHelpers.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -1120,6 +1123,7 @@
 				83260A341C856C6700F74DBD /* RulePillView.swift in Sources */,
 				4735747F1B9A919500493CA0 /* SequencePresenter.swift in Sources */,
 				4778C0AA1C657D8F00F5A259 /* NodeCollectionViewItem.swift in Sources */,
+				4707377E1C9E0E31008E0FBC /* DateTimeHelpers.swift in Sources */,
 				83CE363A1C84E4AA00D3A556 /* RuleCollectionItem.swift in Sources */,
 				4753D3AF1BE378720071DB59 /* WorkingWeekRule.swift in Sources */,
 				83CE36381C84E35100D3A556 /* RuleCollectionView.swift in Sources */,

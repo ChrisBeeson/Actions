@@ -15,6 +15,10 @@ public class RuleViewController : NSViewController, NSMenuDelegate {
     public override func viewWillDisappear() {
         super.viewWillDisappear()
         
+        updateSequence()
+    }
+    
+    func updateSequence() {
         if let seqPresenter = rulePresenter?.sequencePresenter {
             seqPresenter.updateState()
         } else {
@@ -22,4 +26,5 @@ public class RuleViewController : NSViewController, NSMenuDelegate {
             NSNotificationCenter.defaultCenter().postNotificationName("UpdateAllSequences", object: nil)
         }
     }
+    
 }

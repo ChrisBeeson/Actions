@@ -15,7 +15,6 @@ public enum RuleState : Int {
     case Error
 }
 
-
 public class RulePresenter : NSObject {
     
     private var delegates = [RulePresenterDelegate]()
@@ -87,6 +86,9 @@ public class RulePresenter : NSObject {
             
         case "FilamentKit.AvoidCalendarEventsRule":
             return AvoidCalendarEventsPresenter(rule: rule)
+            
+        case "FilamentKit.WorkingWeekRule":
+            return WorkingWeekRulePresenter(rule: rule)
             
         default:
             return RulePresenter(rule: rule)
