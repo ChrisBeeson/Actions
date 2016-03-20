@@ -21,9 +21,9 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
     
     @IBOutlet weak var mainStackView: NSStackView!
     @IBOutlet weak var addGenericRuleButton: NSButton!
-    @IBOutlet weak var favouriteButton: NSButton!
     @IBOutlet weak var generalRulesCollectionView: RuleCollectionView!
     
+    @IBOutlet weak var statusTextField: NSTextField!
     @IBOutlet weak var rulesStackView: NSStackView!
     private var availableGeneralRulesViewController : AvailableRulesViewController?
     private var displayedPopover: NSPopover?
@@ -102,6 +102,10 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
         generalRulesCollectionView.allowDrops = !isCompleted
         generalRulesCollectionView.allowDeletions = !isCompleted
         refreshGeneralRulesCollectionView()
+        statusTextField.animator().textColor = colourForCurrentState()
+        
+        self.sequenceCollectionView.toolTip = String(presenter!.currentState)
+        
         self.needsDisplay = true
     }
     
@@ -177,8 +181,9 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
         updateCellView()
     }
     
-    public func sequencePresenterDidChangeStatus(sequencePresenter: SequencePresenter, toStatus:SequenceState){
-        self.sequenceCollectionView.toolTip = String(sequencePresenter.currentState)
+    
+    public func sequencePresenterDidChangeState(sequencePresenter: SequencePresenter, toState:SequenceState) {
+        updateCellView()
     }
     
     public func sequencePresenterDidChangeGeneralRules(sequencePresenter: SequencePresenter) {
@@ -215,6 +220,22 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
     
     public func popoverDidClose(notification: NSNotification) {
         displayedPopover = nil
+    }
+    
+    // Colour
+    
+    func colourForCurrentState() -> NSColor {
+        guard presenter != nil else { return NSColor.blackColor() }
+        
+        switch presenter!.currentState {
+        case .NoStartDateSet: return AppConfiguration.Palette.verylightGreyStroke
+        case .WaitingForStart: return AppConfiguration.Palette.greenStroke
+        case .Running: return AppConfiguration.Palette.greenStroke
+        case .Completed: return AppConfiguration.Palette.lightGreyStroke
+        case .Paused: return AppConfiguration.Palette.blueStroke
+        case .HasFailedNode: return AppConfiguration.Palette.redStroke
+        default : return NSColor.blackColor()
+        }
     }
 }
 

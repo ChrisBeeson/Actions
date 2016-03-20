@@ -22,6 +22,7 @@ class AvoidCalendarEventsRule: Rule, NSCoding {
     
     var calendars = [Calendar]()
     var ignoreCurrentEventsForSequence: Sequence?
+    var ignoreCurrentEventForNode: Node?
     
     override init() {
         super.init()
@@ -69,21 +70,28 @@ class AvoidCalendarEventsRule: Rule, NSCoding {
     
     
     func ignorePeriods() -> [DTTimePeriod]? {
-        guard ignoreCurrentEventsForSequence != nil else { return nil }
-        
-        // get timePeriods of any events in this sequence 
+        // get timePeriods of any events in this sequence
+      
         var periods = [DTTimePeriod]()
         
+        if ignoreCurrentEventForNode != nil {
+            if let event = ignoreCurrentEventForNode!.event {
+                let period = DTTimePeriod(startDate: event.startDate, endDate: event.endDate)
+                periods.append(period)
+            }
+        }
+        
+        if ignoreCurrentEventsForSequence != nil {
         for node in ignoreCurrentEventsForSequence!.nodeChain() {
             if let event = node.event {
                 let period = DTTimePeriod(startDate: event.startDate, endDate: event.endDate)
                 periods.append(period)
             }
         }
+        }
         return periods
     }
     
-
     
      func populateCalendars() {
         
@@ -108,10 +116,6 @@ class AvoidCalendarEventsRule: Rule, NSCoding {
         
        self.calendars = currentCalendars
     }
-    
-
-    
-    
     
     // MARK: NSCoding
     

@@ -17,6 +17,8 @@ extension Sequence {
         
         guard var time = date else { return (false,nil) }
         
+        var solvedPeriodsToAvoid = [DTTimePeriod]()
+        
         for node in self.actionNodes {
             
             var solvedPeriod: SolvedPeriod?
@@ -48,12 +50,19 @@ extension Sequence {
             default: break
             }
             
-            // Remove any calendar events that are created by this node, so it doesn't avoid it's self.
+            // Remove any calendar events that are created by this sequence, so it doesn't avoid it's self.
             rules.forEach { if $0.isKindOfClass(AvoidCalendarEventsRule) == true {
-                ($0 as! AvoidCalendarEventsRule).ignoreCurrentEventsForSequence = self  // Is there a better way to do this?
+                ($0 as! AvoidCalendarEventsRule).ignoreCurrentEventsForSequence = self
+                //  ($0 as! AvoidCalendarEventsRule).ignoreCurrentEventForNode = node
                 }
             }
             
+            // add a rule that returns avoid periods of the periods that have been solved
+            let avoidSolvedPeriodsRule = Rule()
+            avoidSolvedPeriodsRule.avoidPeriods = solvedPeriodsToAvoid
+            rules.append(avoidSolvedPeriodsRule)
+            
+            // Solve it!
             solvedPeriod = Solver.calculateEventPeriod(time, node: node, rules:rules)
             
             // we failed
@@ -62,7 +71,9 @@ extension Sequence {
                 return (false, node)
             }
             
+            // We did it!
             time = solvedPeriod!.period!.EndDate
+            solvedPeriodsToAvoid.append(solvedPeriod!.period!)
             node.setEventPeriod(solvedPeriod!.period!)
         }
         

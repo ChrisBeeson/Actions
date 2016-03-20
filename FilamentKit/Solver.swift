@@ -98,7 +98,6 @@ class Solver {
             }
         }
         
-        
         //  Step 3. Invert the avoid periods to free times
         
         avoidPeriods.flatten()
@@ -140,6 +139,13 @@ class Solver {
         for free in freePeriods.periods()! {
             
             // Lets evaluate this free period
+            
+            /*
+            if averageStartWindow!.relationToPeriod(free) == DTTimePeriodRelation.Inside || averageStartWindow!.relationToPeriod(free) == DTTimePeriodRelation.After {
+                print("Free period not related to Average Start window, so skipping")
+                continue
+            }
+*/
             
             // Does our preferred window fit into this free period?
             if preferedPeriod.relationToPeriod(free) == DTTimePeriodRelation.Inside || preferedPeriod.relationToPeriod(free) == DTTimePeriodRelation.ExactMatch {

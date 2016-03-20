@@ -143,6 +143,9 @@ import Async
         self.reloadData()
     }
     
+    public func sequencePresenterDidChangeState(sequencePresenter: SequencePresenter, toState:SequenceState) {
+    }
+    
     
     //MARK: Events
 
@@ -201,7 +204,7 @@ import Async
                 } else {
                     let string:NSString = node.title as NSString
                     let size: CGSize = string.sizeWithAttributes([NSFontAttributeName: NSFont.systemFontOfSize(14.0, weight:NSFontWeightThin) ])
-                    return NSSize(width: size.width + 30.5, height: 35)
+                    return NSSize(width: size.width + 30.4, height: 35)
                 }
                 
             case [.Transition]:
@@ -211,7 +214,7 @@ import Async
                 } else {
                     let string:NSString = node.title as NSString
                     let size: CGSize = string.sizeWithAttributes([NSFontAttributeName: NSFont.systemFontOfSize(9, weight:NSFontWeightRegular) ])
-                    return NSSize(width: size.width + 30, height: 25)
+                    return NSSize(width: size.width + 40, height: 25)
                 }
                 
             default:

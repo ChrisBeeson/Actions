@@ -230,6 +230,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         guard atIndex > -1 && atIndex <= sequence.generalRules.count else { return }
         sequence.generalRules.insert(rule.rule, atIndex: atIndex)
         delegates.forEach{ $0.sequencePresenterDidChangeGeneralRules(self) }
+        updateState()
         representingDocument?.updateChangeCount(.ChangeDone)
     }
     
@@ -237,6 +238,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         
         sequence.generalRules.removeObject(rule.rule)
         delegates.forEach{ $0.sequencePresenterDidChangeGeneralRules(self) }
+        updateState()
         representingDocument?.updateChangeCount(.ChangeDone)
     }
    

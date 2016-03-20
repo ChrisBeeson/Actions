@@ -26,7 +26,11 @@ extension  SequencePresenterDelegate {
     public func sequencePresenterWillChangeNodeLayout(sequencePresenter: SequencePresenter) {}
     public func sequencePresenterDidUpdateChainContents(insertedNodes:Set<NSIndexPath>, deletedNodes:Set<NSIndexPath>) {}
     public func sequencePresenterUpdatedDate(sequencePresenter: SequencePresenter) {}
-    public func sequencePresenterDidChangeState(sequencePresenter: SequencePresenter, toState:SequenceState) {}
+    //  public func sequencePresenterDidChangeState(sequencePresenter: SequencePresenter, toState:SequenceState) {
+    
+    //     print("did change state EXTENSION")
+  
+    //  }
     public func sequencePresenterDidChangeGeneralRules(sequencePresenter: SequencePresenter) {}
     
     

@@ -47,10 +47,10 @@ class WorkingWeekRule: Rule, NSCoding {
             
             for day in 0...numberOfDays! {
                 
-                if workingDayEnabled == true {
+                let dayNumber = interestPeriod!.StartDate.dateByAddingDays(day).weekday()
+                if enabledDays[dayNumber] == true {
                     
-                    let dayNumber = interestPeriod!.StartDate.dateByAddingDays(day).weekday()
-                    if enabledDays[dayNumber] == true {
+                    if workingDayEnabled == true {
                         
                         // go from midnight to the working day start Time
                         let midnight = NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: NSDate(string: "00:00", formatString: "HH:mm"))
@@ -64,13 +64,13 @@ class WorkingWeekRule: Rule, NSCoding {
                         let endToMidnight = DTTimePeriod(startDate: workdayEnd, endDate: nearlyMidnight)
                         periods.append(endToMidnight)
                     }
-                }
-                
-                if lunchBreakEnabled == true {
-                    let lunchStart =  NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: lunchBreakStartTime)
-                    let lunchEnd =  NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: lunchBreakEndTime)
-                    let lunch =  DTTimePeriod(startDate: lunchStart, endDate: lunchEnd)
-                    periods.append(lunch)
+                    
+                    if lunchBreakEnabled == true {
+                        let lunchStart =  NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: lunchBreakStartTime)
+                        let lunchEnd =  NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: lunchBreakEndTime)
+                        let lunch =  DTTimePeriod(startDate: lunchStart, endDate: lunchEnd)
+                        periods.append(lunch)
+                    }
                 }
             }
             

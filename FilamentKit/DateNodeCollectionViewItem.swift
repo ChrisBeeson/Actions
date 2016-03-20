@@ -86,4 +86,7 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
         self.sequencePresenter!.setDate(date, isStartDate:true)
         updateView()
     }
+    
+    public func sequencePresenterDidChangeState(sequencePresenter: SequencePresenter, toState:SequenceState) {
+    }
 }
