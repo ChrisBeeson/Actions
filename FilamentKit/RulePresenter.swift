@@ -91,6 +91,9 @@ public class RulePresenter : NSObject {
         case "FilamentKit.WorkingWeekRule":
             return WorkingWeekRulePresenter(rule: rule)
             
+        case "FilamentKit.GreaterThanLessThanRule":
+            return GreaterThanLessThanRulePresenter(rule: rule)
+            
         default:
             return RulePresenter(rule: rule)
         }
