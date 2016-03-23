@@ -65,29 +65,27 @@ class RuleTests: XCTestCase {
     }
     
     func testWorkingWeekRule() {
-        
         let rule = WorkingWeekRule()
         rule.interestPeriod = DTTimePeriod(startDate: NSDate.dateFromString("2015-1-1 08:00:00"), endDate:NSDate.dateFromString("2015-1-1 19:00:00"))
         let avoidPeriods = rule.avoidPeriods
-        
-        print("Avoid Periods :")
-        avoidPeriods?.forEach{ print($0.log()) }
+        // print("Avoid Periods :")
+        //avoidPeriods?.forEach{ print($0.log()) }
         
         XCTAssertNotNil(avoidPeriods)
         XCTAssert(avoidPeriods!.count == 3)
         
         let beforeWork = avoidPeriods![0]
-        print("beforeWork: \(beforeWork.log())")
+        //print("beforeWork: \(beforeWork.log())")
         XCTAssert(beforeWork.StartDate!.isEqualToDate(NSDate(string: "2015-01-01 00:00", formatString: "YYYY-MM-DD HH:mm")))
         XCTAssert(beforeWork.EndDate!.isEqualToDate(NSDate(string: "2015-01-01 08:59", formatString: "YYYY-MM-DD HH:mm")))
 
         let afterWork = avoidPeriods![1]
-        print("AfterWork:\(afterWork.log())")
+        // print("AfterWork:\(afterWork.log())")
         XCTAssert(afterWork.StartDate!.isEqualToDate(NSDate(string: "2015-01-01 17:30", formatString: "YYYY-MM-DD HH:mm")))
         XCTAssert(afterWork.EndDate!.isEqualToDate(NSDate(string: "2015-01-01 23:59", formatString: "YYYY-MM-DD HH:mm")))
         
         let lunch = avoidPeriods![2]
-         print(lunch.log())
+        // print(lunch.log())
         XCTAssert(lunch.StartDate!.isEqualToDate(NSDate(string: "2015-01-01 12:30", formatString: "YYYY-MM-DD HH:mm")))
         XCTAssert(lunch.EndDate!.isEqualToDate(NSDate(string: "2015-01-01 13:29", formatString: "YYYY-MM-DD HH:mm")))
     }

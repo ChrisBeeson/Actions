@@ -52,7 +52,7 @@ class WorkingWeekRule: Rule, NSCoding {
                         // go from midnight to the working day start Time
                         let midnight = NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: NSDate(string: "00:00", formatString: "HH:mm"))
                         var startDate = NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: workingDayStartTime)
-                        startDate = startDate.dateBySubtractingMinutes(1)
+                        //  startDate = startDate.dateBySubtractingMinutes(1)
                         let midnightToStart = DTTimePeriod(startDate: midnight, endDate: startDate)
                         periods.append(midnightToStart)
                         
