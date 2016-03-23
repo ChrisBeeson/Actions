@@ -4,8 +4,8 @@ FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Crashlytics/OSX" "${PODS_ROO
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Crashlytics" "${PODS_ROOT}/Headers/Public/Fabric"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/../Frameworks' '@loader_path/Frameworks'
-OTHER_CFLAGS = $(inherited) -iquote "$CONFIGURATION_BUILD_DIR/Async.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/CCNStatusItem.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/DateTools.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/FormatterKit.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/PopDatePicker.framework/Headers" -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/Crashlytics" -isystem "${PODS_ROOT}/Headers/Public/Fabric"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"c++" -l"z" -framework "Async" -framework "CCNStatusItem" -framework "Crashlytics" -framework "DateTools" -framework "Fabric" -framework "FormatterKit" -framework "PopDatePicker" -framework "Security" -framework "SystemConfiguration"
+OTHER_CFLAGS = $(inherited) -iquote "$CONFIGURATION_BUILD_DIR/Async.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/CCNStatusItem.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/DateTools.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/FormatterKit.framework/Headers" -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/Crashlytics" -isystem "${PODS_ROOT}/Headers/Public/Fabric"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"c++" -l"z" -framework "Async" -framework "CCNStatusItem" -framework "Crashlytics" -framework "DateTools" -framework "Fabric" -framework "FormatterKit" -framework "Security" -framework "SystemConfiguration"
 OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
 PODS_FRAMEWORK_BUILD_PATH = $(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods-Filament
 PODS_ROOT = ${SRCROOT}/Pods

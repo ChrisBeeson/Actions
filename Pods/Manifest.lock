@@ -4,7 +4,7 @@ PODS:
   - Crashlytics (3.7.0):
     - Fabric (~> 1.6.3)
   - DateTools (1.7.0)
-  - Fabric (1.6.6)
+  - Fabric (1.6.7)
   - FormatterKit (1.8.0):
     - FormatterKit/AddressFormatter (= 1.8.0)
     - FormatterKit/ArrayFormatter (= 1.8.0)
@@ -24,7 +24,6 @@ PODS:
   - FormatterKit/TimeIntervalFormatter (1.8.0)
   - FormatterKit/UnitOfInformationFormatter (1.8.0)
   - FormatterKit/URLRequestFormatter (1.8.0)
-  - PopDatePicker (0.2.0)
 
 DEPENDENCIES:
   - AsyncSwift
@@ -33,15 +32,13 @@ DEPENDENCIES:
   - DateTools (~> 1.7)
   - Fabric
   - FormatterKit
-  - PopDatePicker
 
 SPEC CHECKSUMS:
   AsyncSwift: 46a78bceb11f0e5bb52747f740d9692ec78d2d7c
   CCNStatusItem: 5b0e49dcfc21f65b530985ec838c737b1d2195ca
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
-  Fabric: 1abc1e59f11fa39ede6f690ef7309d8563e3ec59
+  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   FormatterKit: bddde83e054edf9d9ee14f9de3b3a5103db256f4
-  PopDatePicker: 4174617721c776bd14039c683959d8a0b896cdd6
 
 COCOAPODS: 0.39.0

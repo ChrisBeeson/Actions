@@ -20,7 +20,7 @@ public class RuleViewController : NSViewController, NSMenuDelegate {
     
     func updateSequence() {
         if let seqPresenter = rulePresenter?.sequencePresenter {
-            seqPresenter.updateState()
+            seqPresenter.updateState(true)
         } else {
             // It's a generic rule so need to update all sequences
             NSNotificationCenter.defaultCenter().postNotificationName("UpdateAllSequences", object: nil)

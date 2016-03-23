@@ -23,7 +23,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         super.init()
         NSNotificationCenter.defaultCenter().addObserverForName("UpdateAllSequences", object: nil, queue: nil) { (notification) -> Void in
             if self.representingDocument != nil {
-                self.updateState()
+                self.updateState(true)
             }
         }
     }
@@ -84,9 +84,8 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
 
     func setSequence(sequence: Sequence) {
         guard sequence != self._sequence else { return }
-        
         self._sequence = sequence
-        updateState()
+        updateState(false)
         delegates.forEach{ $0.sequencePresenterDidRefreshCompleteLayout(self) }
     }
     
@@ -144,8 +143,6 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         undoManager?.setActionName(undoActionName)
         
         delegates.forEach { $0.sequencePresenterDidFinishChangingNodeLayout(self) }
-        
-        updateState()
     }
     
     
@@ -170,8 +167,6 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         undoManager?.setActionName(undoActionName)
         }
         */
-        
-        updateState()
     }
     
     // MARK: Presenter
@@ -201,15 +196,16 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
             
             delegates.forEach { $0.sequencePresenterDidUpdateChainContents(insertedNodes, deletedNodes:deletedNodes) }
         }
-        updateState()
+        updateState(true)
     }
     
     
     // MARK: State
     
-    public func updateState() {
+    public func updateState(processEvents: Bool) {
+        
         guard _sequence != nil else { return }
-        currentState.update(self)
+        currentState.update(processEvents, presenter: self)
     }
     
     public func prepareForCompleteDeletion() {
@@ -234,7 +230,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         guard atIndex > -1 && atIndex <= sequence.generalRules.count else { return }
         sequence.generalRules.insert(rule.rule, atIndex: atIndex)
         delegates.forEach{ $0.sequencePresenterDidChangeGeneralRules(self) }
-        updateState()
+        updateState(true)
         representingDocument?.updateChangeCount(.ChangeDone)
     }
     
@@ -242,7 +238,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         
         sequence.generalRules.removeObject(rule.rule)
         delegates.forEach{ $0.sequencePresenterDidChangeGeneralRules(self) }
-        updateState()
+        updateState(true)
         representingDocument?.updateChangeCount(.ChangeDone)
     }
    
