@@ -49,6 +49,12 @@ extension NSDate {
 extension DTTimePeriod {
     
      override public var description: String { return "\(StartDate) ->  \(EndDate)"}
+    
+    public func log() ->String {
+        let startTime = self.StartDate.formattedDateWithFormat("hh:mm")
+        let endTime = self.EndDate.formattedDateWithFormat("hh:mm")
+        return("\(startTime) -> \(endTime)")
+    }
 }
 
 extension DTTimePeriodGroup {
@@ -62,6 +68,10 @@ extension DTTimePeriodGroup {
         return periods
     }
 }
+
+
+
+
 
 
 extension DTTimePeriodCollection {

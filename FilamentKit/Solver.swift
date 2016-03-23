@@ -27,11 +27,10 @@ Timeslot found                         ^^^^^^
 ------------------------------------------------------------------------------------------------
 
 Start time of the solved period MUST fall within the averageStartWindow
-
 */
 
-typealias SolvedPeriod = (solved: Bool, period:DTTimePeriod?)
 
+typealias SolvedPeriod = (solved: Bool, period:DTTimePeriod?)
 
 class Solver: NSObject {
     
@@ -99,6 +98,11 @@ class Solver: NSObject {
             return (false,nil)
         }
         
+        // if the averageStartWindow start and end dates are the same, offset the endDate by a second.
+        if averageStartWindow!.StartDate.isEqualToDate(averageStartWindow!.EndDate) {
+            averageStartWindow!.EndDate = averageStartWindow!.StartDate.dateByAddingSeconds(1)
+        }
+        
 
         //////////////////////////////////////////////////////////////////////////
         ///  Phase 4: 
@@ -106,9 +110,7 @@ class Solver: NSObject {
         //////////////////////////////////////////////////////////////////////////
         
         let windowOfinterest = DTTimePeriod(startDate: averageStartWindow!.StartDate!, endDate: averageStartWindow!.EndDate!.dateByAddTimeSize(averageDuration!))
-       
-        //printDebug("Window of interest \(windowOfinterest)")
-        
+
         for rule in rules {
             if rule.options.contains(RoleOptions.RequiresInterestWindow) {
                 rule.interestPeriod = windowOfinterest
@@ -134,29 +136,26 @@ class Solver: NSObject {
         
         let preferedPeriod = DTTimePeriod(startDate: preferedStartTime!, endDate: preferedStartTime?.dateByAddTimeSize(averageDuration!))
         
-        //printDebug("Free Period: \(freePeriods[0].StartDate!),\(freePeriods[0].StartDate!), \(freePeriods[0].EndDate!)")
-        //printDebug("Preferred Period:,\(preferedPeriod.StartDate), \(preferedPeriod.EndDate!)")
-        
-        
         //////////////////////////////////////////////////////////////////////////
         ///  Phase 6: 
         ///  The Main Algorithm
         //////////////////////////////////////////////////////////////////////////
+        
         printDebug("\n\n--------------------------------------------------")
         printDebug("----- Node: \(node.title)")
         printDebug("--------------------------------------------------")
         printDebug("Prefered Period: \(preferedPeriod.log())")
         printDebug("Start Window: \(averageStartWindow?.log())")
         printDebug("Avoid periods: \(avoidPeriods.debugDescription)")
-        printDebug("--------------------------------------------------")
+
         
         if freePeriods.periods() == nil {
             printDebug("Failed: There are no Free Periods")
             return (false, nil)
         }
         
-        // does the corrent node have an event, with a timePeriod that fits into a free Period?
-        
+        // Does the corrent node have an event, with a timePeriod that fits into a free Period?
+        // Implementing this means events are in their prefered period. But are still valid. Perhaps a setting?
         /*
         if node.event != nil {
             for free in freePeriods.periods()! {
@@ -170,40 +169,33 @@ class Solver: NSObject {
         }
         */
         
-        // no? lets find the best period
+        // No? lets find the best period
+        
         var bestPeriod: DTTimePeriod?
         
         for free in freePeriods.periods()! {
             
             // Lets evaluate this free period
             printDebug("--------- Processing New Free Period  ---------")
-            
+            printDebug(free.log())
             printDebug("StartWindow Relation to free period: \(averageStartWindow!.relationToPeriod(free).rawValue)")
             
-            /*
-            if averageStartWindow!.relationToPeriod(free) != DTTimePeriodRelation.Inside {
-                print("Free period not related to Average Start window, so skipping")
+            // Make sure that the free period contains the startTimeWindow
+            if averageStartWindow!.relationToPeriod(free) == DTTimePeriodRelation.After ||
+                averageStartWindow!.relationToPeriod(free) == DTTimePeriodRelation.Before ||
+            averageStartWindow!.relationToPeriod(free) == DTTimePeriodRelation.None {
+                print("StartWindow is not in the Free period, so skipping")
                 continue
             }
-            */
-            
-            /*
-            if averageStartWindow!.relationToPeriod(free) == DTTimePeriodRelation.Inside || averageStartWindow!.relationToPeriod(free) == DTTimePeriodRelation.After {
-                print("Free period not related to Average Start window, so skipping")
-                continue
-            }
-            */
             
             // Does our preferred window fit into this free period?
             if preferedPeriod.relationToPeriod(free) == DTTimePeriodRelation.Inside ||
                 preferedPeriod.relationToPeriod(free) == DTTimePeriodRelation.ExactMatch {
-                
                 printDebug("SOLVED: PreferedPeriod fits")
                 return (true, preferedPeriod)
             }
             
             // create a possible period
-            
             var possiblePeriod: DTTimePeriod?
             
             // ok so the free period is wider than the min spec.
@@ -211,10 +203,8 @@ class Solver: NSObject {
             //  after (right) the prefered date...
             
             if  free.StartDate.isLaterThanOrEqualTo(preferedPeriod.StartDate) {
-                
                 possiblePeriod = DTTimePeriod()
                 possiblePeriod!.StartDate = free.StartDate!
-                
                 let freeDurSecs = abs(free.StartDate.secondsFrom(free.EndDate))
                 
                 if freeDurSecs >= preferedPeriod.durationInSeconds()  {
@@ -257,30 +247,20 @@ class Solver: NSObject {
             
             // we have a possible period
             printDebug("Found Possible Period: \(possiblePeriod?.log())")
-            
             if bestPeriod == nil { bestPeriod = possiblePeriod; continue }
             
             // compare with the best Period as see if this is closer to the startTime.
             let possDistToStart =  abs(possiblePeriod!.StartDate.secondsFrom(preferedPeriod.StartDate))
             let bestDistToStart = abs(bestPeriod!.StartDate.secondsFrom(preferedPeriod.StartDate))
             if possDistToStart < bestDistToStart { bestPeriod = possiblePeriod }
-            
-            // remove this period from free Periods..
         }
-        
-        
-        if bestPeriod != nil { printDebug("Found Best Period: \(bestPeriod?.log())"); return (true, bestPeriod) }
-        else { printDebug("Failed to solve"); return (false,nil) }
+    
+        if bestPeriod != nil {
+            printDebug("Found Best Period: \(bestPeriod?.log())")
+            return (true, bestPeriod) }
+        else {
+            printDebug("Failed to solve");
+            return (false,nil) }
     }
 }
-
-
-extension DTTimePeriod {
-public func log() ->String {
-    let startTime = self.StartDate.formattedDateWithFormat("hh:mm")
-    let endTime = self.StartDate.formattedDateWithFormat("hh:mm")
-    return("\(startTime) -> \(endTime)")
-}
-}
-
 

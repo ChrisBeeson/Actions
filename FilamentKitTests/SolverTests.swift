@@ -74,6 +74,33 @@ class SolverTests: XCTestCase {
         XCTAssert(output.solved == false)
     }
 
+    
+    func testCalculateEventPeriodWithTransitionDurationWithVariance () {
+        
+        let durationWithNoVariance = TransitionDurationWithVariance()
+        durationWithNoVariance.eventStartsInDuration = TimeSize(unit: .Hour, amount: 1)
+        durationWithNoVariance.variance = TimeSize(unit: .Second, amount: 0)
+        
+        
+        var rules:[Rule] = [EventDurationWithMinimumDuration(), durationWithNoVariance]
+        let node = Node()
+        
+        var output = Solver.calculateEventPeriod(NSDate.dateFromString("2015-1-1 10:00:00"),node:node, rules: rules)
+        XCTAssert(output.solved == true)
+        XCTAssert(output.period!.StartDate!.isEqualToDate(NSDate.dateFromString("2015-1-1 11:00:00")))
+        
+        // put something right in the way, as variance is 0 it should just fail.
+        
+        let avoid = DummyAvoids()
+        avoid.avoidPeriods = [DTTimePeriod(startDate: NSDate.dateFromString("2015-1-1 10:59:00"), endDate: NSDate.dateFromString("2015-1-1 11:05:00"))]
+        rules.append(avoid)
+        
+         output = Solver.calculateEventPeriod(NSDate.dateFromString("2015-1-1 10:00:00"),node:node, rules: rules)
+         XCTAssert(output.solved == false)
+        
+    }
+    
+    
     /*
     func testPerformanceExample() {
         // This is an example of a performance test case.
