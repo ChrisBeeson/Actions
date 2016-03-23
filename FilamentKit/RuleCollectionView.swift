@@ -180,11 +180,12 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
 
         draggingInfo.enumerateDraggingItemsWithOptions([], forView: self, classes: [NSPasteboardItem.self], searchOptions: [NSPasteboardURLReadingFileURLsOnlyKey: false]) {draggingItem, idx, stop in
             
-            if let type = draggingItem.item.types {
-                switch type![0] {
+            let types = (draggingItem.item as! NSPasteboardItem).types
+            
+            if types.count > 0 {
+                switch types[0] {
                 case AppConfiguration.UTI.rule:
                     presenter = RulePresenter(draggingItem:(draggingItem.item as! NSPasteboardItem))
-                    
                 default: break
                 }
             }

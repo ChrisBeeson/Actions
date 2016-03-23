@@ -121,21 +121,25 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         If node and Int is nil then insertNode will create a new untitled node, and place it at the end of the list.
     */
     
-    func insertActionNode(var node: Node?, index: Int?) {
+    func insertActionNode(node: Node?, index: Int?) {
         
         delegates.forEach { $0.sequencePresenterWillChangeNodeLayout(self) }
         
+        var nodeToinsert: Node
+        
         if node == nil {
-            node = Node(text: AppConfiguration.defaultActionNodeName, type: .Action, rules: nil)
+            nodeToinsert = Node(text: AppConfiguration.defaultActionNodeName, type: .Action, rules: nil)
+        } else {
+            nodeToinsert = node!
         }
         
         let oldNodes = _sequence!.nodeChain()
-        _sequence!.insertActionNode(node!, index: index)
+        _sequence!.insertActionNode(nodeToinsert, index: index)
          representingDocument?.updateChangeCount(.ChangeDone)
         
         informDelegatesOfChangesToNodeChain(oldNodes)
         
-        undoManager?.prepareWithInvocationTarget(self).deleteNodes([node!])
+        undoManager?.prepareWithInvocationTarget(self).deleteNodes([nodeToinsert])
         let undoActionName = NSLocalizedString("Insert Node", comment: "")
         undoManager?.setActionName(undoActionName)
         

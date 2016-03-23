@@ -35,7 +35,12 @@ import DateTools
         
         if  inputDate != nil {
             
-            return DTTimePeriod(startDate: eventPreferedStartDate!.dateBySubtractingTimeSize(variance), endDate: eventPreferedStartDate!.dateByAddTimeSize(variance))
+            let startWindow = DTTimePeriod(startDate: eventPreferedStartDate!.dateBySubtractingTimeSize(variance), endDate: eventPreferedStartDate!.dateByAddTimeSize(variance))
+            
+            // print(eventPreferedStartDate?.formattedDateWithStyle(.LongStyle))
+            //print("EventStartWindow: \(startWindow)")
+            
+            return startWindow
             
         } else { return nil }
         
@@ -45,7 +50,6 @@ import DateTools
      override var eventPreferedStartDate: NSDate? { get {
         
         return inputDate?.dateByAddTimeSize(eventStartsInDuration)
-        
         }
     }
     

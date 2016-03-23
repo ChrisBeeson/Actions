@@ -516,13 +516,13 @@ CA
                         <rect key="frame" x="0.0" y="0.0" width="444" height="301"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="107" horizontalPageScroll="10" verticalLineScroll="107" verticalPageScroll="10" usesPredominantAxisScrolling="NO" scrollerKnobStyle="dark" translatesAutoresizingMaskIntoConstraints="NO" id="nmd-ka-rWP">
+                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="105" horizontalPageScroll="10" verticalLineScroll="105" verticalPageScroll="10" usesPredominantAxisScrolling="NO" scrollerKnobStyle="dark" translatesAutoresizingMaskIntoConstraints="NO" id="nmd-ka-rWP">
                                 <rect key="frame" x="0.0" y="29" width="444" height="272"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="gkJ-4N-H0Y">
                                     <rect key="frame" x="0.0" y="0.0" width="444" height="272"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView appearanceType="aqua" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnReordering="NO" columnResizing="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="107" viewBased="YES" floatsGroupRows="NO" id="8Qp-fL-QNJ">
+                                        <tableView appearanceType="aqua" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnReordering="NO" columnResizing="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="105" viewBased="YES" floatsGroupRows="NO" id="8Qp-fL-QNJ">
                                             <rect key="frame" x="0.0" y="0.0" width="444" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="0.0"/>
@@ -552,19 +552,19 @@ CA
                                                                         <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="5" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nZV-IB-3op">
                                                                             <rect key="frame" x="0.0" y="2" width="418" height="85"/>
                                                                             <subviews>
-                                                                                <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Df-YY-f5y">
-                                                                                    <rect key="frame" x="0.0" y="68" width="410" height="17"/>
+                                                                                <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Df-YY-f5y">
+                                                                                    <rect key="frame" x="0.0" y="68" width="418" height="17"/>
                                                                                     <subviews>
                                                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yBE-ij-SR3">
-                                                                                            <rect key="frame" x="8" y="2" width="14" height="14"/>
+                                                                                            <rect key="frame" x="5" y="1.5" width="14" height="14"/>
                                                                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="" id="ckd-xb-O8v">
                                                                                                 <font key="font" size="11" name="FontAwesome"/>
                                                                                                 <color key="textColor" red="0.0" green="0.95159143518518519" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                                             </textFieldCell>
                                                                                         </textField>
-                                                                                        <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BeT-IN-UXD">
-                                                                                            <rect key="frame" x="22" y="0.0" width="390" height="17"/>
+                                                                                        <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="BeT-IN-UXD">
+                                                                                            <rect key="frame" x="19" y="0.0" width="401" height="17"/>
                                                                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" alignment="left" title="UNTITLED" placeholderString="Title" id="chR-lv-cWb">
                                                                                                 <font key="font" metaFont="systemBold"/>
                                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -575,7 +575,7 @@ CA
                                                                                             </connections>
                                                                                         </textField>
                                                                                     </subviews>
-                                                                                    <edgeInsets key="edgeInsets" left="10" right="0.0" top="0.0" bottom="0.0"/>
+                                                                                    <edgeInsets key="edgeInsets" left="7" right="0.0" top="0.0" bottom="0.0"/>
                                                                                     <visibilityPriorities>
                                                                                         <integer value="1000"/>
                                                                                         <integer value="1000"/>

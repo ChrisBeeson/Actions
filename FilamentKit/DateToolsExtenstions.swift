@@ -58,7 +58,7 @@ extension DTTimePeriodGroup {
         if self.count() == 0 { return nil }
         
         var periods = [DTTimePeriod]()
-        for var i = 0 ; i < self.count() ; ++i { periods.append(self[UInt(i)] as! DTTimePeriod) }
+        for i in 0  ..< self.count()  { periods.append(self[UInt(i)] as! DTTimePeriod) }
         return periods
     }
 }
@@ -97,7 +97,7 @@ extension DTTimePeriodCollection {
         flattenedPeriods.append(flatdate.copy())
         
         // delete all periods
-        for var i = 0 ; i < periods.count ; i++ { self.removeTimePeriodAtIndex(0) }
+        for _ in 0  ..< periods.count  { self.removeTimePeriodAtIndex(0) }
         
         // add flattened periods to self
         
@@ -141,7 +141,7 @@ extension DTTimePeriodCollection {
     
         // void periods in between the periods
         
-        for var i = 0 ; i < periods.count ; ++i {
+        for i in 0  ..< periods.count  {
             
             if i < (periods.count - 1) {
                 

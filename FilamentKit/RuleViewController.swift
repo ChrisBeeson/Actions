@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AppKit
 
 public class RuleViewController : NSViewController, NSMenuDelegate {
     

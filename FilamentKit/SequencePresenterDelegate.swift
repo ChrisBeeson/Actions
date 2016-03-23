@@ -5,6 +5,7 @@
 //  Copyright (c) 2016 Andris Ltd. All rights reserved.
 //
 
+import AppKit
 
 public protocol SequencePresenterDelegate : class {
 

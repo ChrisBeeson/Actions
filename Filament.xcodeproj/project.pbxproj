@@ -64,7 +64,6 @@
 		47967FF71C8ABBD100358199 /* AvoidCalendarEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47967FF61C8ABBD100358199 /* AvoidCalendarEventsViewController.swift */; };
 		47967FF91C8ABBED00358199 /* AvoidCalendarEventsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47967FF81C8ABBED00358199 /* AvoidCalendarEventsViewController.xib */; };
 		47967FFB1C8ABC4F00358199 /* AvoidCalendarEventsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47967FFA1C8ABC4F00358199 /* AvoidCalendarEventsPresenter.swift */; };
-		47967FFE1C8ABE3A00358199 /* AvoidCalendarEventsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47967FFD1C8ABE3A00358199 /* AvoidCalendarEventsTableViewCell.swift */; };
 		479CD2861C1B8AE700C8D1D6 /* FilamentTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479CD2851C1B8AE700C8D1D6 /* FilamentTableCellView.swift */; };
 		47A14E811C21384F00B45F86 /* DirectoryMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A14E801C21384F00B45F86 /* DirectoryMonitor.swift */; };
 		47ACA9541BB5464C000CAC61 /* DateToolsExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9531BB5464C000CAC61 /* DateToolsExtenstions.swift */; };
@@ -114,11 +113,43 @@
 		83B500601C981FE800B0F5AA /* NodeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B5005F1C981FE800B0F5AA /* NodeState.swift */; };
 		83B74FAD1C7FDC0F005E5E22 /* DurationWithVarianceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83B74FAC1C7FDC0F005E5E22 /* DurationWithVarianceViewController.xib */; };
 		83B9DF5B1C9922AA008E3F26 /* SequenceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B9DF5A1C9922AA008E3F26 /* SequenceState.swift */; };
-		83C73E0D1BE31C4F0045973C /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C73E0B1BE31BF20045973C /* AppConfiguration.swift */; };
 		83C73E0E1BE31C4F0045973C /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C73E0B1BE31BF20045973C /* AppConfiguration.swift */; };
 		83CE36381C84E35100D3A556 /* RuleCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CE36371C84E35100D3A556 /* RuleCollectionView.swift */; };
 		83CE363A1C84E4AA00D3A556 /* RuleCollectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CE36391C84E4AA00D3A556 /* RuleCollectionItem.swift */; };
 		83CE363C1C84E53F00D3A556 /* RuleCollectionItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83CE363B1C84E53F00D3A556 /* RuleCollectionItem.xib */; };
+		83CE4A081CA21765005691FD /* WorkingWeekRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4753D3AE1BE378720071DB59 /* WorkingWeekRule.swift */; };
+		83CE4A091CA21768005691FD /* TransitionDurationBasedOnTravelTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471279BA1C8298C80090426C /* TransitionDurationBasedOnTravelTime.swift */; };
+		83CE4A0A1CA2176B005691FD /* EventFixedStartAndEndDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471279BC1C8298FA0090426C /* EventFixedStartAndEndDate.swift */; };
+		83CE4A0B1CA2176F005691FD /* GreaterThanLessThan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471279C21C82CA730090426C /* GreaterThanLessThan.swift */; };
+		83CE4A0C1CA21772005691FD /* NextUnitRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471279C41C82CA9D0090426C /* NextUnitRule.swift */; };
+		83CE4A0D1CA21774005691FD /* WaitForUserRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833366C71C838F5E001FE4CD /* WaitForUserRule.swift */; };
+		83CE4A0E1CA21778005691FD /* EventAlarmRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833366C91C838F99001FE4CD /* EventAlarmRule.swift */; };
+		83CE4A0F1CA2177D005691FD /* TimeEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835740B11C77AD0700CFBB1B /* TimeEvent.swift */; };
+		83CE4A101CA21780005691FD /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47967FEF1C895C7200358199 /* Context.swift */; };
+		83CE4A111CA21786005691FD /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D56FA01C8AC9E80025D156 /* Calendar.swift */; };
+		83CE4A121CA2184D005691FD /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C73E0B1BE31BF20045973C /* AppConfiguration.swift */; };
+		83CE4A131CA21856005691FD /* ContextPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47967FF11C895F5400358199 /* ContextPresenter.swift */; };
+		83CE4A141CA21877005691FD /* DateTimeHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4707377D1C9E0E31008E0FBC /* DateTimeHelpers.swift */; };
+		83CE4A151CA21914005691FD /* RulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473853B41C7A596E000AB1E2 /* RulePresenter.swift */; };
+		83CE4A161CA2192D005691FD /* SequencePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4735747E1B9A919500493CA0 /* SequencePresenter.swift */; };
+		83CE4A171CA2192F005691FD /* SequenceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B9DF5A1C9922AA008E3F26 /* SequenceState.swift */; };
+		83CE4A181CA21932005691FD /* SequencePresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574811B9A91A200493CA0 /* SequencePresenterDelegate.swift */; };
+		83CE4A191CA21935005691FD /* NodePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4720B4FF1C6E7EF200229734 /* NodePresenter.swift */; };
+		83CE4A1A1CA21938005691FD /* NodeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B5005F1C981FE800B0F5AA /* NodeState.swift */; };
+		83CE4A1B1CA2193B005691FD /* NodePresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4720B5011C6E7F0400229734 /* NodePresenterDelegate.swift */; };
+		83CE4A1C1CA2193F005691FD /* RuleAvailabiltiy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835878BB1C8FEAB000F2CCFB /* RuleAvailabiltiy.swift */; };
+		83CE4A1D1CA21942005691FD /* RulePresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473853B61C7A5A43000AB1E2 /* RulePresenterDelegate.swift */; };
+		83CE4A1E1CA21947005691FD /* TransitionDurationWithVarianceRulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473D9F571C7AEF7500E81D39 /* TransitionDurationWithVarianceRulePresenter.swift */; };
+		83CE4A1F1CA2194A005691FD /* EventDurationWithMinimumDurationRulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473D9F591C7AF53800E81D39 /* EventDurationWithMinimumDurationRulePresenter.swift */; };
+		83CE4A201CA2194C005691FD /* AvoidCalendarEventsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47967FFA1C8ABC4F00358199 /* AvoidCalendarEventsPresenter.swift */; };
+		83CE4A211CA21950005691FD /* WorkingWeekRulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ED142D1C9D534B002F4B4E /* WorkingWeekRulePresenter.swift */; };
+		83CE4A221CA2198C005691FD /* RuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473853B11C7A590A000AB1E2 /* RuleViewController.swift */; };
+		83CE4A231CA21A4E005691FD /* FilamentDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83861F2A1BEEA25F00A44122 /* FilamentDocument.swift */; };
+		83CE4A241CA21A8C005691FD /* WorkingWeekViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ED142B1C9D52A0002F4B4E /* WorkingWeekViewController.swift */; };
+		83CE4A251CA21A92005691FD /* AvoidCalendarEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47967FF61C8ABBD100358199 /* AvoidCalendarEventsViewController.swift */; };
+		83CE4A271CA21AA5005691FD /* EventDurationWithMinimumDurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471279B61C80615C0090426C /* EventDurationWithMinimumDurationViewController.swift */; };
+		83CE4A281CA21AA9005691FD /* DurationWithVarianceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8359A7721C7CF2F400ED87D9 /* DurationWithVarianceViewController.swift */; };
+		83CE4A291CA21AAE005691FD /* NSTimer+Closure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4794B99D1C78522B009CE617 /* NSTimer+Closure.swift */; };
 		83DDAA4F1B997C9A001A4DBE /* SystemTrayMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83DDAA4E1B997C9A001A4DBE /* SystemTrayMenu.xib */; };
 		83F6B95D1B994652002A5AAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F6B95C1B994652002A5AAF /* AppDelegate.swift */; };
 		83F6B9611B994652002A5AAF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83F6B9601B994652002A5AAF /* Images.xcassets */; };
@@ -230,7 +261,6 @@
 		47967FF61C8ABBD100358199 /* AvoidCalendarEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvoidCalendarEventsViewController.swift; sourceTree = "<group>"; };
 		47967FF81C8ABBED00358199 /* AvoidCalendarEventsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AvoidCalendarEventsViewController.xib; sourceTree = "<group>"; };
 		47967FFA1C8ABC4F00358199 /* AvoidCalendarEventsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvoidCalendarEventsPresenter.swift; sourceTree = "<group>"; };
-		47967FFD1C8ABE3A00358199 /* AvoidCalendarEventsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvoidCalendarEventsTableViewCell.swift; sourceTree = "<group>"; };
 		479CD2851C1B8AE700C8D1D6 /* FilamentTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilamentTableCellView.swift; path = FilamentKit/FilamentTableCellView.swift; sourceTree = SOURCE_ROOT; };
 		47A14E801C21384F00B45F86 /* DirectoryMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectoryMonitor.swift; sourceTree = "<group>"; };
 		47ACA9531BB5464C000CAC61 /* DateToolsExtenstions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateToolsExtenstions.swift; sourceTree = "<group>"; };
@@ -584,7 +614,6 @@
 			children = (
 				47967FF61C8ABBD100358199 /* AvoidCalendarEventsViewController.swift */,
 				47967FF81C8ABBED00358199 /* AvoidCalendarEventsViewController.xib */,
-				47967FFD1C8ABE3A00358199 /* AvoidCalendarEventsTableViewCell.swift */,
 			);
 			name = AvoidCalendars;
 			sourceTree = "<group>";
@@ -1161,7 +1190,6 @@
 				47967FF71C8ABBD100358199 /* AvoidCalendarEventsViewController.swift in Sources */,
 				473574871B9A91A200493CA0 /* ListPresenterUtilities.swift in Sources */,
 				47CD21BF1BDF797B00AF25BE /* GeneralExtensions.swift in Sources */,
-				47967FFE1C8ABE3A00358199 /* AvoidCalendarEventsTableViewCell.swift in Sources */,
 				477212061BED699500D5E988 /* FilamentDocumentsManager.swift in Sources */,
 				47CD21C61BDF807900AF25BE /* Sequence+EventLogic.swift in Sources */,
 				47A14E811C21384F00B45F86 /* DirectoryMonitor.swift in Sources */,
@@ -1192,23 +1220,55 @@
 			files = (
 				47CD21C71BDF807900AF25BE /* Sequence+EventLogic.swift in Sources */,
 				473EAEE61BA3AD0300AFEA2A /* RuleTests.swift in Sources */,
+				83CE4A231CA21A4E005691FD /* FilamentDocument.swift in Sources */,
+				83CE4A251CA21A92005691FD /* AvoidCalendarEventsViewController.swift in Sources */,
 				4724651C1BBFE610004DE4DE /* Rule.swift in Sources */,
 				4724651F1BBFE64B004DE4DE /* Solver.swift in Sources */,
+				83CE4A0E1CA21778005691FD /* EventAlarmRule.swift in Sources */,
+				83CE4A271CA21AA5005691FD /* EventDurationWithMinimumDurationViewController.swift in Sources */,
+				83CE4A0C1CA21772005691FD /* NextUnitRule.swift in Sources */,
+				83CE4A211CA21950005691FD /* WorkingWeekRulePresenter.swift in Sources */,
+				83CE4A0A1CA2176B005691FD /* EventFixedStartAndEndDate.swift in Sources */,
 				472465211BBFE656004DE4DE /* EventDurationWithMinimumDuration.swift in Sources */,
+				83CE4A081CA21765005691FD /* WorkingWeekRule.swift in Sources */,
+				83CE4A1E1CA21947005691FD /* TransitionDurationWithVarianceRulePresenter.swift in Sources */,
 				4724651B1BBFE595004DE4DE /* DateToolsExtenstions.swift in Sources */,
 				47CD21C21BDF7B0400AF25BE /* Sequence+NodeLogic.swift in Sources */,
 				47D6165B1B9C1FAA00F72155 /* SequenceTests.swift in Sources */,
+				83CE4A191CA21935005691FD /* NodePresenter.swift in Sources */,
 				472465231BBFE665004DE4DE /* Sequence.swift in Sources */,
+				83CE4A1A1CA21938005691FD /* NodeState.swift in Sources */,
+				83CE4A241CA21A8C005691FD /* WorkingWeekViewController.swift in Sources */,
+				83CE4A281CA21AA9005691FD /* DurationWithVarianceViewController.swift in Sources */,
+				83CE4A141CA21877005691FD /* DateTimeHelpers.swift in Sources */,
+				83CE4A0D1CA21774005691FD /* WaitForUserRule.swift in Sources */,
 				472465221BBFE65D004DE4DE /* AvoidCalendarEventsRule.swift in Sources */,
-				83C73E0D1BE31C4F0045973C /* AppConfiguration.swift in Sources */,
+				83CE4A171CA2192F005691FD /* SequenceState.swift in Sources */,
 				47CD21BD1BDF373A00AF25BE /* Sequence+EventLogicTests.swift in Sources */,
+				83CE4A101CA21780005691FD /* Context.swift in Sources */,
 				83FE26051BCB8FC200AC20B5 /* SolverTests.swift in Sources */,
+				83CE4A161CA2192D005691FD /* SequencePresenter.swift in Sources */,
 				473574691B9A687400493CA0 /* FilamentKitTests.swift in Sources */,
+				83CE4A0B1CA2176F005691FD /* GreaterThanLessThan.swift in Sources */,
+				83CE4A1D1CA21942005691FD /* RulePresenterDelegate.swift in Sources */,
+				83CE4A1B1CA2193B005691FD /* NodePresenterDelegate.swift in Sources */,
+				83CE4A221CA2198C005691FD /* RuleViewController.swift in Sources */,
+				83CE4A0F1CA2177D005691FD /* TimeEvent.swift in Sources */,
+				83CE4A291CA21AAE005691FD /* NSTimer+Closure.swift in Sources */,
+				83CE4A201CA2194C005691FD /* AvoidCalendarEventsPresenter.swift in Sources */,
+				83CE4A091CA21768005691FD /* TransitionDurationBasedOnTravelTime.swift in Sources */,
+				83CE4A121CA2184D005691FD /* AppConfiguration.swift in Sources */,
 				4724651E1BBFE647004DE4DE /* CalendarManager.swift in Sources */,
 				472465191BBFD0DA004DE4DE /* DateToolsExtensionsTests.swift in Sources */,
 				4724651D1BBFE623004DE4DE /* Node.swift in Sources */,
+				83CE4A1F1CA2194A005691FD /* EventDurationWithMinimumDurationRulePresenter.swift in Sources */,
 				472465201BBFE652004DE4DE /* TransitionDurationWithVariance.swift in Sources */,
 				47CD21C41BDF7B0C00AF25BE /* GeneralExtensions.swift in Sources */,
+				83CE4A131CA21856005691FD /* ContextPresenter.swift in Sources */,
+				83CE4A151CA21914005691FD /* RulePresenter.swift in Sources */,
+				83CE4A1C1CA2193F005691FD /* RuleAvailabiltiy.swift in Sources */,
+				83CE4A111CA21786005691FD /* Calendar.swift in Sources */,
+				83CE4A181CA21932005691FD /* SequencePresenterDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

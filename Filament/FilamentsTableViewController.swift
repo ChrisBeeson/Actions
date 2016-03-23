@@ -15,7 +15,7 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     @IBOutlet weak var addGenericRuleButton: NSButton!
     @IBOutlet weak var genericRulesCollectionView: RuleCollectionView!
     @IBOutlet weak var tableView: NSTableView!
-
+    
     private var allDocuments = [FilamentDocument]()
     private var filteredDocuments = [FilamentDocument]()
     private var filter = DocumentFilterType.Active
@@ -23,6 +23,7 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     private var displayedPopover:NSPopover?
     
     override public func viewDidLoad() {
+        super.viewDidLoad()
         
         FilamentDocumentsManager.sharedManager.delegate = self
         allDocuments  = FilamentDocumentsManager.sharedManager.documents
@@ -39,7 +40,7 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         }
         
         NSNotificationCenter.defaultCenter().addObserverForName("RefreshMainTableView", object: nil, queue: nil) { (notification) -> Void in
-                self.updateTableViewContent(true)
+            self.updateTableViewContent(true)
         }
     }
     
@@ -48,10 +49,13 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     }
     
     override public func viewWillAppear() {
+        super.viewWillAppear()
         
-            updateTableViewContent(false)
-            self.refreshGenericRulesCollectionView()
+        updateTableViewContent(false)
+        refreshGenericRulesCollectionView()
     }
+    
+    
     
     
     func setTableViewFilter(filter: DocumentFilterType) {
@@ -66,7 +70,7 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     func updateTableViewContent(animated:Bool) {
         
         let newFilteredDocuments = FilamentDocumentsManager.filterDocumentsForFilterType(allDocuments, filterType: self.filter)
-
+        
         if animated == false {
             filteredDocuments = newFilteredDocuments
             CATransaction.begin() ; CATransaction.setDisableActions(true)
@@ -88,12 +92,12 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
             diff.deletions.forEach { deletionIndexPaths.addIndex($0.idx) }
             let insertionIndexPaths = NSMutableIndexSet()
             diff.insertions.forEach { insertionIndexPaths.addIndex($0.idx) }
-  
+            
             dispatch_async(dispatch_get_main_queue(), {
-            self.tableView?.beginUpdates()
-            self.tableView?.removeRowsAtIndexes(deletionIndexPaths, withAnimation: NSTableViewAnimationOptions.EffectFade)
-            self.tableView?.insertRowsAtIndexes(insertionIndexPaths, withAnimation: NSTableViewAnimationOptions.SlideLeft)
-            self.tableView?.endUpdates()
+                self.tableView?.beginUpdates()
+                self.tableView?.removeRowsAtIndexes(deletionIndexPaths, withAnimation: NSTableViewAnimationOptions.EffectFade)
+                self.tableView?.insertRowsAtIndexes(insertionIndexPaths, withAnimation: NSTableViewAnimationOptions.SlideLeft)
+                self.tableView?.endUpdates()
             })
         }
     }
@@ -118,8 +122,7 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     
     public func tableViewSelectionDidChange(notification: NSNotification) {
         
-        for (var row = 0; row < tableView.numberOfRows ; row++)
-        {
+        for row in 0 ..< tableView.numberOfRows {
             if let cellView = tableView.viewAtColumn(0, row: row, makeIfNecessary: false) as? FilamentTableCellView {
                 cellView.selected = tableView.isRowSelected(row)
             }
@@ -128,7 +131,7 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     
     
     // MARK: Filaments Manager Delegate
-
+    
     public func filamentsDocumentsManagerDidUpdateContents(inserted inserted:[FilamentDocument], removed:[FilamentDocument]) {
         
         allDocuments.removeObjects(removed)
@@ -140,7 +143,7 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     
     // MARK: First Responder Events
     
-    public func delete(theEvent: NSEvent) { 
+    public func delete(theEvent: NSEvent) {
         
         if self.tableView.selectedRowIndexes.count == 0 { return }
         
@@ -156,8 +159,8 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         case NSAlertFirstButtonReturn:   // Delete
             if let cellView = tableView.viewAtColumn(0, row: tableView.selectedRow, makeIfNecessary: false) as? FilamentTableCellView {
                 Async.userInitiated {
-                FilamentDocumentsManager.sharedManager.deleteDocumentForPresenter(cellView.presenter!)
-                cellView.presenter = nil
+                    FilamentDocumentsManager.sharedManager.deleteDocumentForPresenter(cellView.presenter!)
+                    cellView.presenter = nil
                 }
             }
         default: break
@@ -189,16 +192,15 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         pasteboard.clearContents()
         
         if let sequence = filteredDocuments[self.tableView.selectedRow].sequencePresenter {
-           let item = sequence.pasteboardItem()
-           pasteboard.writeObjects([item])
+            let item = sequence.pasteboardItem()
+            pasteboard.writeObjects([item])
         }
     }
     
     public func paste(event: NSEvent) {
-        
         let pasteboard = NSPasteboard.generalPasteboard()
         if let data = pasteboard.dataForType(AppConfiguration.UTI.sequence) {
-             FilamentDocument.newSequenceDocumentFromArchive(data)
+            FilamentDocument.newSequenceDocumentFromArchive(data)
         }
     }
     
@@ -224,25 +226,28 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     
     
     //MARK: Menu
- 
-    public override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
     
+    public override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
+        
         switch menuItem.action {
             
-        case Selector("newDocument:"):
+        case #selector(FilamentsTableViewController.newDocument(_:)):
             return true
             
-        case Selector("openDocument:"):
+        case #selector(FilamentsTableViewController.openDocument(_:)):
             return true
- 
-        case Selector("paste:"):
+            
+        case #selector(FilamentsTableViewController.paste(_:)):
             let pasteboard = NSPasteboard.generalPasteboard()
             return pasteboard.canReadItemWithDataConformingToTypes([AppConfiguration.UTI.sequence])
             
-        case Selector("copy:"), Selector("cut:"), Selector("delete:"), Selector("saveDocumentAs:"):
+        case #selector(FilamentsTableViewController.copy(_:)),
+             #selector(FilamentsTableViewController.cut(_:)),
+             #selector(FilamentsTableViewController.delete(_:)),
+             #selector(FilamentsTableViewController.saveDocumentAs(_:)):
             return self.tableView.selectedRowIndexes.count > 0 ? true : false
             
-        case Selector("undo:"):
+        case #selector(FilamentsTableViewController.undo(_:)):
             return self.undoManager!.canUndo
             
         default: return false
@@ -263,7 +268,7 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         popover.delegate = self
         
         if availableGenericRulesViewController == nil {
-           availableGenericRulesViewController = AvailableRulesViewController(nibName:"AvailableRulesViewController", bundle:NSBundle(identifier:"com.andris.FilamentKit"))
+            availableGenericRulesViewController = AvailableRulesViewController(nibName:"AvailableRulesViewController", bundle:NSBundle(identifier:"com.andris.FilamentKit"))
         }
         availableGenericRulesViewController!.availableRules = AppConfiguration.sharedConfiguration.contextPresenter()
         availableGenericRulesViewController!.displayRulesForNodeType = [.Generic]
@@ -289,12 +294,14 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         
         AppConfiguration.sharedConfiguration.contextPresenter().addRulePresenter(droppedRulePresenter, atIndex: atIndex)
         refreshGenericRulesCollectionView()
+        NSNotificationCenter.defaultCenter().postNotificationName("UpdateAllSequences", object: nil)
     }
     
     public func didDeleteRulePresenter(collectionView: RuleCollectionView, deletedRulePresenter: RulePresenter) {
         
         AppConfiguration.sharedConfiguration.contextPresenter().removeRulePresenter(deletedRulePresenter)
         refreshGenericRulesCollectionView()
+        NSNotificationCenter.defaultCenter().postNotificationName("UpdateAllSequences", object: nil)
     }
     
     public func didDoubleClick(collectionView: RuleCollectionView, selectedRulePresenter: RulePresenter) {

@@ -35,13 +35,13 @@ extension Sequence {
         if actionNodes.count == 1 { return actionNodes[1].rightTransitionNode == nil ? true : false }
         if actionNodes[actionNodes.count-1].rightTransitionNode != nil { return false }
         
-        for var index = 0 ; index < actionNodes.count-1 ; ++index {
+        for index in 0 ..< actionNodes.count-1  {
             if actionNodes[index].rightTransitionNode != actionNodes[index+1].leftTransitionNode { return false }
         }
         
         let nodes = nodeChain()
         
-        for var index = 0 ; index < nodes.count-1 ; ++index {
+        for index in 0 ..< nodes.count-1  {
             if index.isEven() && nodes[index].type != .Action { return false }
         }
         
@@ -113,10 +113,9 @@ extension Sequence {
             return;
         }
         
-        for var index = 0 ; index < actionNodes.count-1 ; ++index {
+        for index in 0  ..< actionNodes.count-1  {
             
             if actionNodes[index].rightTransitionNode === nil {
-                
                 addTransistionNodeToActionNodes(actionNodes[index], right:actionNodes[index+1])
             }
         }
