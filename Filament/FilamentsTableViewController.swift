@@ -34,7 +34,6 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         genericRulesCollectionView.allowDeletions = true
         
         NSNotificationCenter.defaultCenter().addObserverForName("FilamentTableViewSelectCellForView", object: nil, queue: nil) { (notification) -> Void in
-            
             let row = self.tableView.rowForView(notification.object as! NSView)
             self.tableView.selectRowIndexes((NSIndexSet(index: row)), byExtendingSelection: false)
         }
@@ -44,9 +43,11 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         }
     }
     
+    
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
+    
     
     override public func viewWillAppear() {
         super.viewWillAppear()
@@ -59,7 +60,6 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     
     
     func setTableViewFilter(filter: DocumentFilterType) {
-        
         if self.filter != filter {
             self.filter = filter
             updateTableViewContent(false)
@@ -83,11 +83,9 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         let oldRows = filteredDocuments
         let newRows = newFilteredDocuments
         let diff = oldRows.diff(newRows)
-        
         filteredDocuments = newFilteredDocuments
         
         if (diff.results.count > 0) {
-            
             let deletionIndexPaths = NSMutableIndexSet()
             diff.deletions.forEach { deletionIndexPaths.addIndex($0.idx) }
             let insertionIndexPaths = NSMutableIndexSet()
@@ -106,7 +104,6 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     // MARK: TableView DataSource
     
     public func numberOfRowsInTableView(tableView: NSTableView) -> Int {
-        
         return filteredDocuments.count
     }
     
@@ -231,20 +228,23 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         
         switch menuItem.action {
             
-        case Selector("newDocument:"):
+        case #selector(FilamentsTableViewController.newDocument(_:)):
             return true
             
-        case Selector("openDocument:"):
+        case #selector(FilamentsTableViewController.openDocument(_:)):
             return true
             
-        case Selector("paste:"):
+        case #selector(FilamentsTableViewController.paste(_:)):
             let pasteboard = NSPasteboard.generalPasteboard()
             return pasteboard.canReadItemWithDataConformingToTypes([AppConfiguration.UTI.sequence])
             
-        case Selector("copy:"), Selector("cut:"), Selector("delete:"), Selector("saveDocumentAs:"):
+        case #selector(FilamentsTableViewController.copy(_:)),
+             #selector(FilamentsTableViewController.cut(_:)),
+             #selector(FilamentsTableViewController.delete(_:)),
+             #selector(FilamentsTableViewController.saveDocumentAs(_:)):
             return self.tableView.selectedRowIndexes.count > 0 ? true : false
             
-        case Selector("undo:"):
+        case #selector(FilamentsTableViewController.undo(_:)):
             return self.undoManager!.canUndo
             
         default: return false

@@ -180,7 +180,7 @@ class Solver: NSObject {
             printDebug(free.log())
             printDebug("StartWindow Relation to free period: \(averageStartWindow!.relationToPeriod(free).rawValue)")
             
-            // Make sure that the free period contains the startTimeWindow
+            // The free period must contain the startTimeWindow
             if averageStartWindow!.relationToPeriod(free) == DTTimePeriodRelation.After ||
                 averageStartWindow!.relationToPeriod(free) == DTTimePeriodRelation.Before ||
             averageStartWindow!.relationToPeriod(free) == DTTimePeriodRelation.None {
@@ -195,12 +195,13 @@ class Solver: NSObject {
                 return (true, preferedPeriod)
             }
             
-            // create a possible period
+            // Create a possible period
             var possiblePeriod: DTTimePeriod?
             
-            // ok so the free period is wider than the min spec.
-            // is it eariler (left) or after (right)? the prefered date...
-            //  after (right) the prefered date...
+            // The free period is wider than the min spec.
+            // So is it earlier(left) or after(right) of the prefered date?
+            
+            // 1. After(right) the prefered date?
             
             if  free.StartDate.isLaterThanOrEqualTo(preferedPeriod.StartDate) {
                 possiblePeriod = DTTimePeriod()
@@ -212,14 +213,18 @@ class Solver: NSObject {
                 } else {
                     possiblePeriod!.EndDate = free.EndDate!
                     
-                    // does it longer than min Dur?
+                    // Is it shorter than min Dur?
                     let possDur = Int(possiblePeriod!.durationInSeconds())
                     let avgMinDur = averageMinDuration!.inSeconds()
-                    if possDur < avgMinDur { possiblePeriod = nil }
+                    if  possDur < avgMinDur {
+                        printDebug("Poss period cancelled because Dur: \(possDur)  avgMinDur:\(avgMinDur)")
+                        possiblePeriod = nil
+                    }
                 }
             }
             
-            // or left
+            // 2. Or Before?
+            
             if possiblePeriod == nil && free.StartDate.isEarlierThan(preferedPeriod.StartDate) {
                 possiblePeriod = DTTimePeriod()
                 
@@ -234,7 +239,6 @@ class Solver: NSObject {
                     possiblePeriod!.StartDate = free.StartDate!
                     let posDur = Int(possiblePeriod!.durationInSeconds())
                     let avgMinDur = averageMinDuration!.inSeconds()
-                    
                     if  posDur < avgMinDur {
                         printDebug("Poss period cancelled because Dur: \(posDur)  avgMinDur:\(avgMinDur)")
                         possiblePeriod = nil

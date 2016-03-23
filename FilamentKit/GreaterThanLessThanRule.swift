@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import DateTools
 
 class GreaterThanLessThanRule : Rule {
     
@@ -21,10 +22,29 @@ class GreaterThanLessThanRule : Rule {
         super.init()
     }
     
-    
     //TODO: Starttime window!!!
     
+    // Rule output
     
+    override var eventStartTimeWindow: DTTimePeriod? { get {
+        if  inputDate != nil {
+            let startTime = inputDate!.dateByAddTimeSize(greaterThan)
+            let endTime = inputDate!.dateByAddTimeSize(lessThan)
+            return DTTimePeriod(startDate: startTime, endDate: endTime)
+        } else {
+            return nil
+        }
+    }
+    }
+
+    override var eventPreferedStartDate: NSDate? { get {
+        
+        // Sits in the middle
+        
+        // return inputDate?.dateByAddTimeSize(eventStartsInDuration)
+         return nil
+        }
+    }
     
     private struct SerializationKeys {
          static let greaterThan = "greaterThan"
