@@ -15,20 +15,10 @@ class RuleTests: XCTestCase {
     var sequence:Sequence = Sequence()
     
     override func setUp() {
-        
         super.setUp()
-        
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        
-        /*
-        let actionNodes = [Node(text: "Action 1", type: .Action, rules: nil), Node(text: "Action 2", type: .Action, rules: nil)]
-        
-        sequence = Sequence(name: "Sequence Test", actionNodes: actionNodes)
-*/
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
     
@@ -72,5 +62,33 @@ class RuleTests: XCTestCase {
         window = rule.eventStartTimeWindow!
         XCTAssert(window.StartDate.isEqualToDate(NSDate.dateFromString("2015-1-29 10:00:00")))
         XCTAssert(window.EndDate.isEqualToDate(NSDate.dateFromString("2015-2-4 10:00:00")))
+    }
+    
+    func testWorkingWeekRule() {
+        
+        let rule = WorkingWeekRule()
+        rule.interestPeriod = DTTimePeriod(startDate: NSDate.dateFromString("2015-1-1 08:00:00"), endDate:NSDate.dateFromString("2015-1-1 19:00:00"))
+        let avoidPeriods = rule.avoidPeriods
+        
+        print("Avoid Periods :")
+        avoidPeriods?.forEach{ print($0.log()) }
+        
+        XCTAssertNotNil(avoidPeriods)
+        XCTAssert(avoidPeriods!.count == 3)
+        
+        let beforeWork = avoidPeriods![0]
+        print("beforeWork: \(beforeWork.log())")
+        XCTAssert(beforeWork.StartDate!.isEqualToDate(NSDate(string: "2015-01-01 00:00", formatString: "YYYY-MM-DD HH:mm")))
+        XCTAssert(beforeWork.EndDate!.isEqualToDate(NSDate(string: "2015-01-01 08:59", formatString: "YYYY-MM-DD HH:mm")))
+
+        let afterWork = avoidPeriods![1]
+        print("AfterWork:\(afterWork.log())")
+        XCTAssert(afterWork.StartDate!.isEqualToDate(NSDate(string: "2015-01-01 17:30", formatString: "YYYY-MM-DD HH:mm")))
+        XCTAssert(afterWork.EndDate!.isEqualToDate(NSDate(string: "2015-01-01 23:59", formatString: "YYYY-MM-DD HH:mm")))
+        
+        let lunch = avoidPeriods![2]
+         print(lunch.log())
+        XCTAssert(lunch.StartDate!.isEqualToDate(NSDate(string: "2015-01-01 12:30", formatString: "YYYY-MM-DD HH:mm")))
+        XCTAssert(lunch.EndDate!.isEqualToDate(NSDate(string: "2015-01-01 13:29", formatString: "YYYY-MM-DD HH:mm")))
     }
 }

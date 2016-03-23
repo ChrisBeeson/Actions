@@ -231,23 +231,20 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         
         switch menuItem.action {
             
-        case #selector(FilamentsTableViewController.newDocument(_:)):
+        case Selector("newDocument:"):
             return true
             
-        case #selector(FilamentsTableViewController.openDocument(_:)):
+        case Selector("openDocument:"):
             return true
             
-        case #selector(FilamentsTableViewController.paste(_:)):
+        case Selector("paste:"):
             let pasteboard = NSPasteboard.generalPasteboard()
             return pasteboard.canReadItemWithDataConformingToTypes([AppConfiguration.UTI.sequence])
             
-        case #selector(FilamentsTableViewController.copy(_:)),
-             #selector(FilamentsTableViewController.cut(_:)),
-             #selector(FilamentsTableViewController.delete(_:)),
-             #selector(FilamentsTableViewController.saveDocumentAs(_:)):
+        case Selector("copy:"), Selector("cut:"), Selector("delete:"), Selector("saveDocumentAs:"):
             return self.tableView.selectedRowIndexes.count > 0 ? true : false
             
-        case #selector(FilamentsTableViewController.undo(_:)):
+        case Selector("undo:"):
             return self.undoManager!.canUndo
             
         default: return false
