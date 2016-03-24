@@ -32,6 +32,7 @@ class TimeEvent : NSObject, NSCoding, NSCopying {
         }
     }
     
+
     
     func timePeriod() -> DTTimePeriod {
         return DTTimePeriod(startDate: startDate, endDate: endDate)

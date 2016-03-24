@@ -25,7 +25,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         CalendarManager.sharedInstance // TODO: Request 1st time validation at the right time & handle if user denys
         
         //   CCNStatusItem.sharedInstance().presentStatusItemWithImage(NSImage(named: "SystemTrayIcon"), contentViewController: nil)
-        
     }
     
     

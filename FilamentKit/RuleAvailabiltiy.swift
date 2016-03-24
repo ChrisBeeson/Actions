@@ -22,7 +22,7 @@ extension RuleAvailabiltiy {
     
     public func availableRulePresenters() -> [RulePresenter] {
         
-        var allRules = Rule.RuleClasses()
+        var allRules = Rule.RegisteredRuleClasses()
         
         for aRule in allRules {
             for rule in self.rules {
