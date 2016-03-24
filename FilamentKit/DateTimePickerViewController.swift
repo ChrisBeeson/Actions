@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import PopDatePicker
 
 public protocol DateTimePickerViewDelegate {
     
@@ -16,8 +15,8 @@ public protocol DateTimePickerViewDelegate {
 
 public class DateTimePickerViewController : NSViewController {
     
-    @IBOutlet weak var datePicker: PopDatePicker!
-    @IBOutlet weak var timePicker: PopDatePicker!
+    @IBOutlet weak var datePicker: NSDatePicker!
+    @IBOutlet weak var timePicker: NSDatePicker!
     @IBOutlet weak var setButton: NSButton!
     
     var delegate: DateTimePickerViewDelegate?

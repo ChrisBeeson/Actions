@@ -40,7 +40,13 @@ class WorkingWeekRule: Rule, NSCoding {
         get {
             if interestPeriod == nil { return nil }
             
-            let numberOfDays = interestPeriod?.EndDate.daysLaterThan(interestPeriod?.StartDate)
+            var numberOfDays = interestPeriod?.EndDate.daysLaterThan(interestPeriod?.StartDate)
+            // numberOfDays = interestPeriod?.StartDate.daysFrom(interestPeriod?.EndDate)
+              numberOfDays! += 1
+            
+            print("Working Week Interest Period: \(interestPeriod!.log())")
+            print("Number of Days: \(numberOfDays)")
+            
             var periods = [DTTimePeriod]()
             
             for day in 0...numberOfDays! {
@@ -65,8 +71,8 @@ class WorkingWeekRule: Rule, NSCoding {
                     
                     if lunchBreakEnabled == true {
                         let lunchStart =  NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: lunchBreakStartTime)
-                        var lunchEnd =  NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: lunchBreakEndTime)
-                        lunchEnd = lunchEnd.dateBySubtractingMinutes(1)
+                        let lunchEnd =  NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: lunchBreakEndTime)
+                        // lunchEnd = lunchEnd.dateBySubtractingMinutes(1)
                         let lunch =  DTTimePeriod(startDate: lunchStart, endDate: lunchEnd)
                         periods.append(lunch)
                     }

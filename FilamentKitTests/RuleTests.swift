@@ -89,4 +89,5 @@ class RuleTests: XCTestCase {
         XCTAssert(lunch.StartDate!.isEqualToDate(NSDate(string: "2015-01-01 12:30", formatString: "YYYY-MM-DD HH:mm")))
         XCTAssert(lunch.EndDate!.isEqualToDate(NSDate(string: "2015-01-01 13:29", formatString: "YYYY-MM-DD HH:mm")))
     }
+    
 }

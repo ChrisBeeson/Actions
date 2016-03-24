@@ -101,19 +101,36 @@ class SolverTests: XCTestCase {
         
         let transitionDuration = TransitionDurationWithVariance()
         
-        let dummyInterest = DummyAvoids()
-        dummyInterest.interestPeriod = DTTimePeriod(startDate: NSDate.dateFromString("2015-1-1 07:00:00"), endDate: NSDate.dateFromString("2015-1-1 22:50:00"))
+        //  let dummyInterest = DummyAvoids()
+        //dummyInterest.interestPeriod = DTTimePeriod(startDate: NSDate.dateFromString("2015-1-1 07:00:00"), endDate: NSDate.dateFromString("2015-1-1 22:50:00"))
     
-        let rules:[Rule] = [EventDurationWithMinimumDuration(), transitionDuration, workingWeek, dummyInterest]
+        let rules:[Rule] = [EventDurationWithMinimumDuration(), transitionDuration, workingWeek]
         let node = Node()
     
         // First, lets test the start time by trying to start an event before the work hours start time
         
-        let output = Solver.calculateEventPeriod(NSDate.dateFromString("2015-1-1 08:50:00"),node:node, rules: rules)
+        var output = Solver.calculateEventPeriod(NSDate(string: "2015-01-01 07:50", formatString: "YYYY-MM-DD hh:mm"),node:node, rules: rules)
         
         XCTAssert(output.solved == true)
-        XCTAssert(output.period!.StartDate!.isEqualToDate(NSDate.dateFromString("2015-1-1 09:00:00")))
+        XCTAssert(output.period!.StartDate!.isEqualToDate(NSDate(string: "2015-01-01 09:00", formatString: "YYYY-MM-DD hh:mm")))
+        
+        // Next event clashes with lunch
+        output = Solver.calculateEventPeriod(NSDate(string: "2015-01-01 12:20", formatString: "YYYY-MM-DD HH:mm"),node:node, rules: rules)
+        XCTAssert(output.solved == true)
+        XCTAssert(output.period!.StartDate!.isEqualToDate(NSDate(string: "2015-01-01 13:30", formatString: "YYYY-MM-DD HH:mm")))
+        
+        // lets put an event at the end of the day.  Force it to start at 9am the next day...
+        
+        let greaterThan = GreaterThanLessThanRule()
+        greaterThan.greaterThan = TimeSize(unit: .Hour, amount: 2)
+        greaterThan.lessThan = TimeSize(unit: .Hour, amount: 16)
+        
+        let newRules = [EventDurationWithMinimumDuration(), greaterThan, workingWeek]
+        output = Solver.calculateEventPeriod(NSDate(string: "2015-01-01 17:25", formatString: "YYYY-MM-DD HH:mm"), node:node, rules: newRules)
+        XCTAssert(output.solved == true)
+        XCTAssert(output.period!.StartDate!.isEqualToDate(NSDate(string: "2015-01-02 09:00", formatString: "YYYY-MM-DD HH:mm")))
     }
+    
     
     /*
     func testPerformanceExample() {

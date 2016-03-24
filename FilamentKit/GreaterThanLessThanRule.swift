@@ -22,38 +22,42 @@ class GreaterThanLessThanRule : Rule {
         super.init()
     }
     
-    //TODO: Starttime window!!!
-    
     // Rule output
     
     override var eventStartTimeWindow: DTTimePeriod? { get {
         if  inputDate != nil {
             let startTime = inputDate!.dateByAddTimeSize(greaterThan)
             let endTime = inputDate!.dateByAddTimeSize(lessThan)
-            return DTTimePeriod(startDate: startTime, endDate: endTime)
+            let window = DTTimePeriod(startDate: startTime, endDate: endTime)
+            print("GreaterThanLessThan createdThisStartWindow : \(window.log())")
+            return window
         } else {
             return nil
         }
+        }
     }
-    }
-
+    
     override var eventPreferedStartDate: NSDate? { get {
+        guard inputDate != nil else { return nil }
         
-        // Sits in the middle
+        let startTime = inputDate!.dateByAddTimeSize(greaterThan)
+        let endTime = inputDate!.dateByAddTimeSize(lessThan)
         
-        // return inputDate?.dateByAddTimeSize(eventStartsInDuration)
-         return nil
+        var seconds = startTime.secondsEarlierThan(endTime)
+        seconds = seconds / 2
+        return startTime.dateByAddingSeconds(Int(seconds))
+        
         }
     }
     
     private struct SerializationKeys {
-         static let greaterThan = "greaterThan"
-         static let lessThan = "lessThan"
+        static let greaterThan = "greaterThan"
+        static let lessThan = "lessThan"
     }
     
     required init?(coder aDecoder: NSCoder) {
-       greaterThan = aDecoder.decodeObjectForKey(SerializationKeys.greaterThan) as! TimeSize
-       lessThan = aDecoder.decodeObjectForKey(SerializationKeys.lessThan) as! TimeSize
+        greaterThan = aDecoder.decodeObjectForKey(SerializationKeys.greaterThan) as! TimeSize
+        lessThan = aDecoder.decodeObjectForKey(SerializationKeys.lessThan) as! TimeSize
     }
     
     func encodeWithCoder(aCoder: NSCoder) {

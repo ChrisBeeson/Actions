@@ -109,11 +109,11 @@ class Solver: NSObject {
         ///  Create window of interest and update any rules that need it
         //////////////////////////////////////////////////////////////////////////
         
-        let windowOfinterest = DTTimePeriod(startDate: averageStartWindow!.StartDate!, endDate: averageStartWindow!.EndDate!.dateByAddTimeSize(averageDuration!))
+        let windowOfInterest = DTTimePeriod(startDate: averageStartWindow!.StartDate!, endDate: averageStartWindow!.EndDate!.dateByAddTimeSize(averageDuration!))
 
         for rule in rules {
             if rule.options.contains(RoleOptions.RequiresInterestWindow) {
-                rule.interestPeriod = windowOfinterest
+                rule.interestPeriod = windowOfInterest
             }
             
             // Combine Avoid periods
@@ -132,7 +132,7 @@ class Solver: NSObject {
         //////////////////////////////////////////////////////////////////////////
         
         avoidPeriods.flatten()
-        let freePeriods = avoidPeriods.voidPeriods(windowOfinterest)
+        let freePeriods = avoidPeriods.voidPeriods(windowOfInterest)
         
         let preferedPeriod = DTTimePeriod(startDate: preferedStartTime!, endDate: preferedStartTime?.dateByAddTimeSize(averageDuration!))
         
@@ -144,11 +144,11 @@ class Solver: NSObject {
         printDebug("\n\n--------------------------------------------------")
         printDebug("----- Node: \(node.title)")
         printDebug("--------------------------------------------------")
+        printDebug("Window of Interest: \(windowOfInterest.log())")
         printDebug("Prefered Period: \(preferedPeriod.log())")
         printDebug("Start Window: \(averageStartWindow?.log())")
         printDebug("Avoid periods: \(avoidPeriods.debugDescription)")
 
-        
         if freePeriods.periods() == nil {
             printDebug("Failed: There are no Free Periods")
             return (false, nil)

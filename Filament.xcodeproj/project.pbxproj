@@ -75,6 +75,8 @@
 		47B696451BE5645400260C2A /* FilamentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B696441BE5645400260C2A /* FilamentsTableViewController.swift */; };
 		47B696471BE564DC00260C2A /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B696461BE564DC00260C2A /* MainWindowController.swift */; };
 		47B6964B1BE5BC0B00260C2A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47B6964A1BE5BC0B00260C2A /* Main.storyboard */; };
+		47B881F01CA37FB700B33BF6 /* GreaterThanLessThanPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47737EF51CA2A2DC0072322D /* GreaterThanLessThanPresenter.swift */; };
+		47B881F11CA37FDC00B33BF6 /* GreaterThanLessThanRuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47737EF81CA2A51D0072322D /* GreaterThanLessThanRuleViewController.swift */; };
 		47CD21BD1BDF373A00AF25BE /* Sequence+EventLogicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CD21BC1BDF373A00AF25BE /* Sequence+EventLogicTests.swift */; };
 		47CD21BF1BDF797B00AF25BE /* GeneralExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CD21BE1BDF797B00AF25BE /* GeneralExtensions.swift */; };
 		47CD21C21BDF7B0400AF25BE /* Sequence+NodeLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CD21C01BDF7A2600AF25BE /* Sequence+NodeLogic.swift */; };
@@ -1266,6 +1268,7 @@
 				83CE4A171CA2192F005691FD /* SequenceState.swift in Sources */,
 				47CD21BD1BDF373A00AF25BE /* Sequence+EventLogicTests.swift in Sources */,
 				83CE4A101CA21780005691FD /* Context.swift in Sources */,
+				47B881F01CA37FB700B33BF6 /* GreaterThanLessThanPresenter.swift in Sources */,
 				83FE26051BCB8FC200AC20B5 /* SolverTests.swift in Sources */,
 				83CE4A161CA2192D005691FD /* SequencePresenter.swift in Sources */,
 				473574691B9A687400493CA0 /* FilamentKitTests.swift in Sources */,
@@ -1279,6 +1282,7 @@
 				83CE4A091CA21768005691FD /* TransitionDurationBasedOnTravelTime.swift in Sources */,
 				83CE4A121CA2184D005691FD /* AppConfiguration.swift in Sources */,
 				4724651E1BBFE647004DE4DE /* CalendarManager.swift in Sources */,
+				47B881F11CA37FDC00B33BF6 /* GreaterThanLessThanRuleViewController.swift in Sources */,
 				472465191BBFD0DA004DE4DE /* DateToolsExtensionsTests.swift in Sources */,
 				4724651D1BBFE623004DE4DE /* Node.swift in Sources */,
 				83CE4A1F1CA2194A005691FD /* EventDurationWithMinimumDurationRulePresenter.swift in Sources */,

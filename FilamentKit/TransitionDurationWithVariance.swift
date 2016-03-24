@@ -32,17 +32,13 @@ import DateTools
     // Rule output
     
      override var eventStartTimeWindow: DTTimePeriod? { get {
+        
         if  inputDate != nil {
-            
             let startWindow = DTTimePeriod(startDate: eventPreferedStartDate!.dateBySubtractingTimeSize(variance), endDate: eventPreferedStartDate!.dateByAddTimeSize(variance))
-            
-            // print(eventPreferedStartDate?.formattedDateWithStyle(.LongStyle))
-            //print("EventStartWindow: \(startWindow)")
             
             return startWindow
             
         } else { return nil }
-        
         }
     }
     
