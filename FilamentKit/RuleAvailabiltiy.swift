@@ -42,7 +42,7 @@ extension RuleAvailabiltiy {
         
         var presenters = [RulePresenter]()
         for rule in self.rules {
-            presenters.append(RulePresenter.rulePresenterForRule(rule))
+            presenters.append(RulePresenter.makeRulePresenter(rule))
         }
         return presenters
     }

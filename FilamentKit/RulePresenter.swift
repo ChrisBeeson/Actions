@@ -75,7 +75,7 @@ public class RulePresenter : NSObject {
     
     //MARK: Factory class
     
-    class func rulePresenterForRule(rule: Rule) -> RulePresenter {
+    class func makeRulePresenter(rule: Rule) -> RulePresenter {
         
         switch rule.className {
             
@@ -93,6 +93,9 @@ public class RulePresenter : NSObject {
             
         case "FilamentKit.GreaterThanLessThanRule":
             return GreaterThanLessThanRulePresenter(rule: rule)
+            
+        case "FilamentKit.NextUnitRule":
+            return NextUnitRulePresenter(rule: rule)
             
         default:
             return RulePresenter(rule: rule)

@@ -13,6 +13,8 @@ import EventKit
 
 extension Sequence {
     
+    //TODO: updateEvents(startingNode:Node)
+    
     func UpdateEvents() -> (success:Bool, firstFailedNode:Node?) {
         
         guard var time = date else { return (false,nil) }

@@ -99,7 +99,7 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
        
         //TODO: Select between preferred Edges..
         
-        popover.showRelativeToRect(addRuleButton.frame, ofView: rulesTitleStackView, preferredEdge:.MinX )
+        popover.showRelativeToRect(addRuleButton.frame, ofView: rulesTitleStackView, preferredEdge:.MaxX )
         // popover.showRelativeToRect(ruleCollectionView.bounds, ofView: ruleStackView, preferredEdge:.MaxY )
     }
     
