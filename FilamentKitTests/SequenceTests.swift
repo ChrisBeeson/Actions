@@ -118,7 +118,6 @@ class SequenceTests: XCTestCase {
         
         XCTAssertNotNil(unarchivedSequence)
         
-        
         if unarchivedSequence  != nil {
             XCTAssertEqual(sequence, unarchivedSequence)
         }

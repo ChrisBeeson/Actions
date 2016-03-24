@@ -56,7 +56,7 @@ public class Rule: NSObject, RuleType {
         ruleClasses.append(WorkingWeekRule())
         ruleClasses.append(TransitionDurationBasedOnTravelTime())
         ruleClasses.append(EventFixedStartAndEndDate())
-        ruleClasses.append(GreaterThanLessThan())
+        ruleClasses.append(GreaterThanLessThanRule())
         ruleClasses.append(NextUnitRule())
         ruleClasses.append(WaitForUserRule())
         ruleClasses.append(EventAlarmRule())

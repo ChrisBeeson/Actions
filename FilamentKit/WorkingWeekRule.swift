@@ -41,7 +41,11 @@ class WorkingWeekRule: Rule, NSCoding {
             if interestPeriod == nil { return nil }
             
             var numberOfDays = interestPeriod?.EndDate.daysLaterThan(interestPeriod?.StartDate)
-            if numberOfDays == 0 { numberOfDays =  1 }
+            // numberOfDays = interestPeriod?.StartDate.daysFrom(interestPeriod?.EndDate)
+              numberOfDays! += 1
+            
+            print("Working Week Interest Period: \(interestPeriod!.log())")
+            print("Number of Days: \(numberOfDays)")
             
             var periods = [DTTimePeriod]()
             
@@ -51,10 +55,10 @@ class WorkingWeekRule: Rule, NSCoding {
                 if enabledDays[dayNumber] == true {
                     
                     if workingDayEnabled == true {
-                        
                         // go from midnight to the working day start Time
                         let midnight = NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: NSDate(string: "00:00", formatString: "HH:mm"))
                         let startDate = NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: workingDayStartTime)
+                        //  startDate = startDate.dateBySubtractingMinutes(1)
                         let midnightToStart = DTTimePeriod(startDate: midnight, endDate: startDate)
                         periods.append(midnightToStart)
                         
@@ -68,20 +72,18 @@ class WorkingWeekRule: Rule, NSCoding {
                     if lunchBreakEnabled == true {
                         let lunchStart =  NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: lunchBreakStartTime)
                         let lunchEnd =  NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: lunchBreakEndTime)
+                        // lunchEnd = lunchEnd.dateBySubtractingMinutes(1)
                         let lunch =  DTTimePeriod(startDate: lunchStart, endDate: lunchEnd)
                         periods.append(lunch)
                     }
                 }
             }
-            
             return periods
         }
-        
         set {
             self.avoidPeriods = newValue   // For testing only
         }
     }
-    
     
     // MARK: NSCoding
     
@@ -114,6 +116,4 @@ class WorkingWeekRule: Rule, NSCoding {
         aCoder.encodeObject(lunchBreakEnabled, forKey:"lunchBreakEnabled")
         aCoder.encodeObject(enabledDays, forKey:"enabledDays")
     }
-    
-    
 }

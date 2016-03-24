@@ -1,10 +1,6 @@
 Feature List
 
 Transition Rule: Time to travel from one address to another. + traffic  = So if you're house hunting and need to get to various houses you can estimate when you'll get there...'
-
-
-Rule:  Warn if calendar Event changes more than X
-
 Todo list / time management on steriods
 
 Fuse
@@ -13,8 +9,13 @@ Fuse
 Todo
 -------
 
-Make a smaller Rule Collection View Item for Sequences
-Changing any rules, reprocesses all events - avoid calanders
+startTimeWindow debug
+backtime from enddate
+self update & purchase for non app store version.
+
+
+Make a smaller Rule Collection View Item for Sequences x
+Changing any rules, reprocesses all events - avoid calanders x
 Date not being saved x
 Import / Export
 Document dirtying x
@@ -33,11 +34,13 @@ Recreate calendar Events if they have been deleted.
 
 Later Versions
 -----------------
+Muliple sequences to one start / end time
 Calendar events become a rule
 Rules can also be notifications
 Rules is not the right name any more.
-
 right click a node and set a new start time for it.
+Rule:  Warn if calendar Event changes more than X
+
 
 
 

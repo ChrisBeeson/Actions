@@ -28,4 +28,5 @@ class func combineDateWithTime(date: NSDate, time: NSDate) -> NSDate {
     return calendar.dateFromComponents(components)!
 }
 
+
 }

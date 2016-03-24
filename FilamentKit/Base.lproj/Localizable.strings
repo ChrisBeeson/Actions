@@ -39,7 +39,7 @@
 "RULE_NAME_WORK_HOURS" = "Work Hours";
 "RULE_NAME_TRAVEL_DUR" = "Travel Duration";
 "RULE_NAME_FIXED" = "Fixed";
-"RULE_NAME_GREATER_LESS" = "Greater|Less";
+"RULE_NAME_GREATER_LESS" = "Greater | Less";
 "RULE_NAME_NEXT" = "Next...";
 "RULE_NAME_WAIT" = "Wait For User";
 "RULE_NAME_ALARM" = "Alarm";

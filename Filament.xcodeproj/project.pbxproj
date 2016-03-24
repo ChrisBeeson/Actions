@@ -12,7 +12,7 @@
 		471279B91C8061A20090426C /* EventDurationWithMinimumDurationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 471279B81C8061A20090426C /* EventDurationWithMinimumDurationViewController.xib */; };
 		471279BB1C8298C80090426C /* TransitionDurationBasedOnTravelTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471279BA1C8298C80090426C /* TransitionDurationBasedOnTravelTime.swift */; };
 		471279BD1C8298FA0090426C /* EventFixedStartAndEndDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471279BC1C8298FA0090426C /* EventFixedStartAndEndDate.swift */; };
-		471279C31C82CA730090426C /* GreaterThanLessThan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471279C21C82CA730090426C /* GreaterThanLessThan.swift */; };
+		471279C31C82CA730090426C /* GreaterThanLessThanRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471279C21C82CA730090426C /* GreaterThanLessThanRule.swift */; };
 		471279C51C82CA9D0090426C /* NextUnitRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471279C41C82CA9D0090426C /* NextUnitRule.swift */; };
 		471420D61BA3CB2A00EDF32D /* Pods_Filament.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 471420D51BA3CB2A00EDF32D /* Pods_Filament.framework */; };
 		4720B5001C6E7EF200229734 /* NodePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4720B4FF1C6E7EF200229734 /* NodePresenter.swift */; };
@@ -53,6 +53,9 @@
 		475927B11C6C725700D24DE9 /* Dwifft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475927B01C6C725700D24DE9 /* Dwifft.swift */; };
 		476C8D3C1C9AB8E40068E44F /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476C8D3B1C9AB8E40068E44F /* InfoViewController.swift */; };
 		477212061BED699500D5E988 /* FilamentDocumentsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477212051BED699500D5E988 /* FilamentDocumentsManager.swift */; };
+		47737EF61CA2A2DC0072322D /* GreaterThanLessThanPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47737EF51CA2A2DC0072322D /* GreaterThanLessThanPresenter.swift */; };
+		47737EF91CA2A51D0072322D /* GreaterThanLessThanRuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47737EF81CA2A51D0072322D /* GreaterThanLessThanRuleViewController.swift */; };
+		47737EFB1CA2A7020072322D /* GreaterThanLessThanRuleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47737EFA1CA2A7020072322D /* GreaterThanLessThanRuleViewController.xib */; };
 		477626951C53839B00C35599 /* FilamentKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 477626931C53823B00C35599 /* FilamentKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4778C0A81C656B2500F5A259 /* DateNodeCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4778C0A71C656B2500F5A259 /* DateNodeCollectionViewItem.swift */; };
 		4778C0AA1C657D8F00F5A259 /* NodeCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4778C0A91C657D8F00F5A259 /* NodeCollectionViewItem.swift */; };
@@ -72,6 +75,8 @@
 		47B696451BE5645400260C2A /* FilamentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B696441BE5645400260C2A /* FilamentsTableViewController.swift */; };
 		47B696471BE564DC00260C2A /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B696461BE564DC00260C2A /* MainWindowController.swift */; };
 		47B6964B1BE5BC0B00260C2A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47B6964A1BE5BC0B00260C2A /* Main.storyboard */; };
+		47B881F01CA37FB700B33BF6 /* GreaterThanLessThanPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47737EF51CA2A2DC0072322D /* GreaterThanLessThanPresenter.swift */; };
+		47B881F11CA37FDC00B33BF6 /* GreaterThanLessThanRuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47737EF81CA2A51D0072322D /* GreaterThanLessThanRuleViewController.swift */; };
 		47CD21BD1BDF373A00AF25BE /* Sequence+EventLogicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CD21BC1BDF373A00AF25BE /* Sequence+EventLogicTests.swift */; };
 		47CD21BF1BDF797B00AF25BE /* GeneralExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CD21BE1BDF797B00AF25BE /* GeneralExtensions.swift */; };
 		47CD21C21BDF7B0400AF25BE /* Sequence+NodeLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CD21C01BDF7A2600AF25BE /* Sequence+NodeLogic.swift */; };
@@ -120,7 +125,7 @@
 		83CE4A081CA21765005691FD /* WorkingWeekRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4753D3AE1BE378720071DB59 /* WorkingWeekRule.swift */; };
 		83CE4A091CA21768005691FD /* TransitionDurationBasedOnTravelTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471279BA1C8298C80090426C /* TransitionDurationBasedOnTravelTime.swift */; };
 		83CE4A0A1CA2176B005691FD /* EventFixedStartAndEndDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471279BC1C8298FA0090426C /* EventFixedStartAndEndDate.swift */; };
-		83CE4A0B1CA2176F005691FD /* GreaterThanLessThan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471279C21C82CA730090426C /* GreaterThanLessThan.swift */; };
+		83CE4A0B1CA2176F005691FD /* GreaterThanLessThanRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471279C21C82CA730090426C /* GreaterThanLessThanRule.swift */; };
 		83CE4A0C1CA21772005691FD /* NextUnitRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471279C41C82CA9D0090426C /* NextUnitRule.swift */; };
 		83CE4A0D1CA21774005691FD /* WaitForUserRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833366C71C838F5E001FE4CD /* WaitForUserRule.swift */; };
 		83CE4A0E1CA21778005691FD /* EventAlarmRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833366C91C838F99001FE4CD /* EventAlarmRule.swift */; };
@@ -213,7 +218,7 @@
 		471279B81C8061A20090426C /* EventDurationWithMinimumDurationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDurationWithMinimumDurationViewController.xib; sourceTree = "<group>"; };
 		471279BA1C8298C80090426C /* TransitionDurationBasedOnTravelTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionDurationBasedOnTravelTime.swift; sourceTree = "<group>"; };
 		471279BC1C8298FA0090426C /* EventFixedStartAndEndDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventFixedStartAndEndDate.swift; sourceTree = "<group>"; };
-		471279C21C82CA730090426C /* GreaterThanLessThan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GreaterThanLessThan.swift; sourceTree = "<group>"; };
+		471279C21C82CA730090426C /* GreaterThanLessThanRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GreaterThanLessThanRule.swift; sourceTree = "<group>"; };
 		471279C41C82CA9D0090426C /* NextUnitRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextUnitRule.swift; sourceTree = "<group>"; };
 		471420D51BA3CB2A00EDF32D /* Pods_Filament.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Filament.framework; path = Pods/../build/Release/Pods_Filament.framework; sourceTree = "<group>"; };
 		4720B4FF1C6E7EF200229734 /* NodePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodePresenter.swift; sourceTree = "<group>"; };
@@ -249,6 +254,9 @@
 		476C8D3B1C9AB8E40068E44F /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		477212051BED699500D5E988 /* FilamentDocumentsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilamentDocumentsManager.swift; sourceTree = "<group>"; };
 		477212071BED9DCB00D5E988 /* Filament.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Filament.entitlements; path = Filament/Filament.entitlements; sourceTree = "<group>"; };
+		47737EF51CA2A2DC0072322D /* GreaterThanLessThanPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GreaterThanLessThanPresenter.swift; sourceTree = "<group>"; };
+		47737EF81CA2A51D0072322D /* GreaterThanLessThanRuleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GreaterThanLessThanRuleViewController.swift; sourceTree = "<group>"; };
+		47737EFA1CA2A7020072322D /* GreaterThanLessThanRuleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GreaterThanLessThanRuleViewController.xib; sourceTree = "<group>"; };
 		4773D5451C95547000758B5A /* Sequence+PasteBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sequence+PasteBoard.swift"; sourceTree = "<group>"; };
 		477626931C53823B00C35599 /* FilamentKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilamentKit.h; sourceTree = "<group>"; };
 		4778C0A71C656B2500F5A259 /* DateNodeCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateNodeCollectionViewItem.swift; sourceTree = "<group>"; };
@@ -482,6 +490,7 @@
 			children = (
 				473853B11C7A590A000AB1E2 /* RuleViewController.swift */,
 				834C6CD31C89330600266709 /* EmptyRuleViewController.xib */,
+				47737EF71CA2A4910072322D /* GreaterThanLessThan */,
 				47ED14281C9D5261002F4B4E /* WorkingWeek */,
 				47967FF51C8ABBA400358199 /* AvoidCalendars */,
 				47967FF31C8AA71C00358199 /* DurationWithMinDuration */,
@@ -500,6 +509,7 @@
 				473D9F591C7AF53800E81D39 /* EventDurationWithMinimumDurationRulePresenter.swift */,
 				47967FFA1C8ABC4F00358199 /* AvoidCalendarEventsPresenter.swift */,
 				47ED142D1C9D534B002F4B4E /* WorkingWeekRulePresenter.swift */,
+				47737EF51CA2A2DC0072322D /* GreaterThanLessThanPresenter.swift */,
 			);
 			name = "Rule Presenters";
 			sourceTree = "<group>";
@@ -568,6 +578,15 @@
 				836896351C80801900F3F547 /* AvailableRulesViewController.xib */,
 			);
 			name = AvailableRules;
+			sourceTree = "<group>";
+		};
+		47737EF71CA2A4910072322D /* GreaterThanLessThan */ = {
+			isa = PBXGroup;
+			children = (
+				47737EF81CA2A51D0072322D /* GreaterThanLessThanRuleViewController.swift */,
+				47737EFA1CA2A7020072322D /* GreaterThanLessThanRuleViewController.xib */,
+			);
+			name = GreaterThanLessThan;
 			sourceTree = "<group>";
 		};
 		4778C0AB1C657F6500F5A259 /* SequenceCollectionView */ = {
@@ -725,7 +744,7 @@
 				4753D3AE1BE378720071DB59 /* WorkingWeekRule.swift */,
 				471279BA1C8298C80090426C /* TransitionDurationBasedOnTravelTime.swift */,
 				471279BC1C8298FA0090426C /* EventFixedStartAndEndDate.swift */,
-				471279C21C82CA730090426C /* GreaterThanLessThan.swift */,
+				471279C21C82CA730090426C /* GreaterThanLessThanRule.swift */,
 				471279C41C82CA9D0090426C /* NextUnitRule.swift */,
 				833366C71C838F5E001FE4CD /* WaitForUserRule.swift */,
 				833366C91C838F99001FE4CD /* EventAlarmRule.swift */,
@@ -1023,6 +1042,7 @@
 				833AE3301C67F85B002F35C1 /* ActionNodeCollectionViewItem.xib in Resources */,
 				83CE363C1C84E53F00D3A556 /* RuleCollectionItem.xib in Resources */,
 				833AE32E1C67E463002F35C1 /* DateNodeCollectionViewItem.xib in Resources */,
+				47737EFB1CA2A7020072322D /* GreaterThanLessThanRuleViewController.xib in Resources */,
 				836896361C80801900F3F547 /* AvailableRulesViewController.xib in Resources */,
 				47967FF91C8ABBED00358199 /* AvoidCalendarEventsViewController.xib in Resources */,
 				835289D21C840D8F001CD0DE /* Localizable.strings in Resources */,
@@ -1165,9 +1185,11 @@
 				473574751B9A689B00493CA0 /* Node.swift in Sources */,
 				8329DE9B1C63DF10001B3A2F /* SequenceCollectionView.swift in Sources */,
 				47967FFB1C8ABC4F00358199 /* AvoidCalendarEventsPresenter.swift in Sources */,
+				47737EF61CA2A2DC0072322D /* GreaterThanLessThanPresenter.swift in Sources */,
 				83C73E0E1BE31C4F0045973C /* AppConfiguration.swift in Sources */,
-				471279C31C82CA730090426C /* GreaterThanLessThan.swift in Sources */,
+				471279C31C82CA730090426C /* GreaterThanLessThanRule.swift in Sources */,
 				475927B11C6C725700D24DE9 /* Dwifft.swift in Sources */,
+				47737EF91CA2A51D0072322D /* GreaterThanLessThanRuleViewController.swift in Sources */,
 				471279B71C80615C0090426C /* EventDurationWithMinimumDurationViewController.swift in Sources */,
 				473853B51C7A596E000AB1E2 /* RulePresenter.swift in Sources */,
 				471279BB1C8298C80090426C /* TransitionDurationBasedOnTravelTime.swift in Sources */,
@@ -1246,10 +1268,11 @@
 				83CE4A171CA2192F005691FD /* SequenceState.swift in Sources */,
 				47CD21BD1BDF373A00AF25BE /* Sequence+EventLogicTests.swift in Sources */,
 				83CE4A101CA21780005691FD /* Context.swift in Sources */,
+				47B881F01CA37FB700B33BF6 /* GreaterThanLessThanPresenter.swift in Sources */,
 				83FE26051BCB8FC200AC20B5 /* SolverTests.swift in Sources */,
 				83CE4A161CA2192D005691FD /* SequencePresenter.swift in Sources */,
 				473574691B9A687400493CA0 /* FilamentKitTests.swift in Sources */,
-				83CE4A0B1CA2176F005691FD /* GreaterThanLessThan.swift in Sources */,
+				83CE4A0B1CA2176F005691FD /* GreaterThanLessThanRule.swift in Sources */,
 				83CE4A1D1CA21942005691FD /* RulePresenterDelegate.swift in Sources */,
 				83CE4A1B1CA2193B005691FD /* NodePresenterDelegate.swift in Sources */,
 				83CE4A221CA2198C005691FD /* RuleViewController.swift in Sources */,
@@ -1259,6 +1282,7 @@
 				83CE4A091CA21768005691FD /* TransitionDurationBasedOnTravelTime.swift in Sources */,
 				83CE4A121CA2184D005691FD /* AppConfiguration.swift in Sources */,
 				4724651E1BBFE647004DE4DE /* CalendarManager.swift in Sources */,
+				47B881F11CA37FDC00B33BF6 /* GreaterThanLessThanRuleViewController.swift in Sources */,
 				472465191BBFD0DA004DE4DE /* DateToolsExtensionsTests.swift in Sources */,
 				4724651D1BBFE623004DE4DE /* Node.swift in Sources */,
 				83CE4A1F1CA2194A005691FD /* EventDurationWithMinimumDurationRulePresenter.swift in Sources */,
