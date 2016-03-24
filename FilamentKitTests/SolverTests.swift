@@ -130,26 +130,9 @@ class SolverTests: XCTestCase {
         XCTAssert(output.solved == true)
         XCTAssert(output.period!.StartDate!.isEqualToDate(NSDate(string: "2015-01-02 09:00", formatString: "YYYY-MM-DD HH:mm")))
     }
-    
-    
-    /*
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    */
-
 }
 
-
-
 public class DummyAvoids: Rule {
-
-    // public override var avoidPeriods: [DTTimePeriod]?
-    
     public override var inputDate: NSDate? {get { return NSDate.distantPast() } set {  }}
-    
 }
 
