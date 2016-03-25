@@ -9,10 +9,114 @@
 import Foundation
 import Async
 
-@objc public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSource, NSCollectionViewDelegate, SequencePresenterDelegate {
-    
-    enum ItemType: Int { case DateNode, ActionNode, TransitionNode, NewNode }
+public enum SequenceCollectionViewLayoutState {
+    case StartDateWithAddButton
+    case StartDateWithoutAddButton
+    case EndDateWithAddButton
+    case EndDateWithoutAddButton
+}
 
+public enum SequenceCollectionViewItemType {
+    case Date
+    case ActionNode
+    case TransitionNode
+    case AddButton
+    case Void
+}
+
+ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSource, NSCollectionViewDelegate, SequencePresenterDelegate {
+    
+    
+    
+    func indexOfItemType(itemType: SequenceCollectionViewItemType) -> [NSIndexPath] {
+        guard presenter != nil else { fatalError() }
+        guard presenter!.nodes != nil else { fatalError() }
+        
+        switch itemType {
+            
+        case .ActionNode:
+            var paths = [NSIndexPath]()
+            for (index, node) in presenter!.nodes!.enumerate() {
+                if node.type == .Action {
+                    paths.append(NSIndexPath(index: index+1))
+                }
+            }
+            return paths
+            
+        case .TransitionNode:
+            var paths = [NSIndexPath]()
+            for (index, node) in presenter!.nodes!.enumerate() {
+                if node.type == .Transition {
+                    paths.append(NSIndexPath(index: index+1))
+                }
+            }
+            return paths
+            
+        case .Date:
+            switch currentLayoutState {
+            case .StartDateWithAddButton, .StartDateWithoutAddButton:
+                return [NSIndexPath(index: 0)]
+
+            case .EndDateWithAddButton:
+                return [NSIndexPath(index: presenter!.nodes!.count+2)]
+            case .EndDateWithoutAddButton:
+                return [NSIndexPath(index: presenter!.nodes!.count+1)]
+            }
+            
+        case .AddButton:
+             switch currentLayoutState {
+             case .StartDateWithAddButton: return [NSIndexPath(index: presenter!.nodes!.count+2)]
+             case .StartDateWithoutAddButton: return [NSIndexPath(index: -1)]
+             case .EndDateWithAddButton: return [NSIndexPath(index: 0)]
+             case .EndDateWithoutAddButton: return [NSIndexPath(index: -1)]
+            }
+        }
+    }
+    
+    
+    func itemTypeAtIndex(index:NSIndexPath) -> SequenceCollectionViewItemType {
+        
+        switch index.item {
+        case 0:
+            switch currentLayoutState {
+            case .StartDateWithAddButton: return .Date
+            case .StartDateWithoutAddButton: return .Date
+            case .EndDateWithAddButton: return .AddButton
+            case .EndDateWithoutAddButton: return .ActionNode
+            }
+    
+        case presenter!.nodes!.count+2:
+        switch currentLayoutState {
+        case .StartDateWithAddButton: return .AddButton
+        case .StartDateWithoutAddButton: return .Void
+        case .EndDateWithAddButton: return .Date
+        case .EndDateWithoutAddButton: return .Void
+        }
+            
+        //TODO: Tests - esp for this one...
+        case presenter!.nodes!.count+1:
+            switch currentLayoutState {
+            case .StartDateWithAddButton: return .ActionNode
+            case .StartDateWithoutAddButton: return .ActionNode
+            case .EndDateWithAddButton: return .ActionNode
+            case .EndDateWithoutAddButton: return .TransitionNode
+            }
+    
+        case let x where x > 0 && x < presenter!.nodes!.count+1:
+        break
+            
+        }
+        
+    }
+    
+    func itemForIndex(index: NSIndexPath) {
+        
+    }
+    
+    
+    
+    public var currentLayoutState = SequenceCollectionViewLayoutState.StartDateWithAddButton
+    
     public weak var presenter : SequencePresenter? {
         didSet {
             presenter?.addDelegate(self)
@@ -254,8 +358,22 @@ import Async
         }
     }
     
+    //MARK: Drag Drop
+    
+    
+    
     public func collectionView(collectionView: NSCollectionView, canDragItemsAtIndexPaths indexPaths: Set<NSIndexPath>, withEvent event: NSEvent) -> Bool {
         
+        // We can drag anything but the addButton
+        /*
+        switch presenter!.currentState {
+        case .Completed:
+            return presenter!.nodes!.count + 1
+        default:
+            return presenter!.nodes!.count + 2
+        }
+        
+        */
         return true
     }
     
