@@ -17,16 +17,16 @@ public class AvoidCalendarEventsPresenter : RulePresenter {
     }
     
     public func setCalendarAvoidState(calendar:Calendar, avoid:Bool) {
-        
         if let index = (rule as! AvoidCalendarEventsRule).calendars.indexOf(calendar) where index != -1 {
             let cal = (rule as! AvoidCalendarEventsRule).calendars[index]
             cal.avoid = avoid
+             sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+        } else {
+            print("index of the calendar was -1")
         }
-        sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
     }
     
     public override func detailViewController() -> RuleViewController {
-        
         if ruleViewController == nil {
             let bundle = NSBundle(identifier:"com.andris.FilamentKit")
             ruleViewController = AvoidCalendarEventsViewController(nibName:"AvoidCalendarEventsViewController", bundle:bundle)!

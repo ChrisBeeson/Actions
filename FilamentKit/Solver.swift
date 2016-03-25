@@ -36,7 +36,7 @@ class Solver: NSObject {
     
     class func calculateEventPeriod(inputDate: NSDate, node: Node, rules:[Rule]) -> SolvedPeriod {
         
-        func printDebug(string: String) { if true == true { print(string) } }
+        func printDebug(string: String) { if true == false { print(string) } }
         
         /*
             This solving class works only on action Nodes.  But it need the transition based rules added to it.
@@ -184,7 +184,7 @@ class Solver: NSObject {
             if averageStartWindow!.relationToPeriod(free) == DTTimePeriodRelation.After ||
                 averageStartWindow!.relationToPeriod(free) == DTTimePeriodRelation.Before ||
             averageStartWindow!.relationToPeriod(free) == DTTimePeriodRelation.None {
-                print("StartWindow is not in the Free period, so skipping")
+                 printDebug("StartWindow is not in the Free period, so skipping")
                 continue
             }
             

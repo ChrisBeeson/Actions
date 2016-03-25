@@ -17,20 +17,23 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     var delegates = [SequencePresenterDelegate]()
     var nodePresenters = [NodePresenter]()
     private var _sequence: Sequence?
+    private var _shouldBeDeleted = false
 
-    
     override init() {
         super.init()
         NSNotificationCenter.defaultCenter().addObserverForName("UpdateAllSequences", object: nil, queue: nil) { (notification) -> Void in
             if self.representingDocument != nil {
+                if self._shouldBeDeleted == false {
                 self.updateState(true)
+                } else {
+                    print("Trying to update a sequence that should be DELETED!!")
+                }
             }
         }
     }
     
     deinit {
         print("SequencePresenter deinit")
-        
     }
     
     public var title: String {
@@ -81,7 +84,6 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     
     // MARK: Methods
     
-
     func setSequence(sequence: Sequence) {
         guard sequence != self._sequence else { return }
         self._sequence = sequence
@@ -149,11 +151,11 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     func deleteNodes(nodes: [Node]) {
         
         if nodes.isEmpty { return }
-        
         let oldNodes = _sequence!.nodeChain()
         
         for node in nodes {
             nodePresenters = nodePresenters.filter {$0.node != node}
+            nodePresenters.forEach{ $0.removeCalandarEvent(false) }
             _sequence!.removeActionNode(node)
         }
         
@@ -184,7 +186,6 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     }
     
     
-    
     func informDelegatesOfChangesToNodeChain(oldNodes:[Node]) {
         
         let diff = oldNodes.diff(_sequence!.nodeChain())
@@ -209,6 +210,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     }
     
     public func prepareForCompleteDeletion() {
+        self._shouldBeDeleted = true
         if currentState != .Completed {
             for presenter in nodePresenters {
                 presenter.removeCalandarEvent(false)
@@ -221,10 +223,8 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         representingDocument?.updateChangeCount(.ChangeDone)
     }
     
-    
     //MARK: Rules
-    
-    
+
     public func addRulePresenter(rule:RulePresenter, atIndex:Int) {
         
         guard atIndex > -1 && atIndex <= sequence.generalRules.count else { return }
@@ -242,7 +242,6 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         representingDocument?.updateChangeCount(.ChangeDone)
     }
    
-    
     //MARK: Pasteboard
     
     public func pasteboardItem() -> NSPasteboardItem {
@@ -258,9 +257,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         return item
     }
     
-    
-    
-//MARK: Delegate helpers
+    //MARK: Delegate helpers
     
     public func addDelegate(delegate:SequencePresenterDelegate) {
         if !delegates.contains({$0 === delegate}) {

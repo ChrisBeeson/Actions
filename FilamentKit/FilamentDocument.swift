@@ -14,7 +14,7 @@ public class FilamentDocument: NSDocument {
     
     var unarchivedSequence: Sequence?
     
-    weak private var _sequencePresenter: SequencePresenter?
+    var _sequencePresenter: SequencePresenter?
     
     public var sequencePresenter: SequencePresenter? {
         get {
@@ -26,13 +26,17 @@ public class FilamentDocument: NSDocument {
                     _sequencePresenter!.representingDocument = self
                 }
                 return _sequencePresenter
-            } else  {
-                fatalError("_sequencePresenter is NULL")
+            } else {
+                return nil
             }
+    }
+        set {
+            _sequencePresenter = newValue
         }
     }
     
     deinit {
+        print("Filament Document deinit")
         _sequencePresenter = nil
     }
     

@@ -74,7 +74,7 @@ public class RuleTokenField : NSTokenField, NodePresenterDelegate, NSTokenFieldD
         if let presenter = rulePresenters[rule] {
             return presenter.detailViewController()
         } else {
-            let presenter = RulePresenter.rulePresenterForRule(rule)
+            let presenter = RulePresenter.makeRulePresenter(rule)
             presenter.sequencePresenter = nodePresenter?.sequencePresenter
             rulePresenters[rule] = presenter
             return presenter.detailViewController()
@@ -125,7 +125,7 @@ public class RuleTokenField : NSTokenField, NodePresenterDelegate, NSTokenFieldD
                     
                 }
                 
-                let rulePresenter = RulePresenter.rulePresenterForRule(selectedObjects[0] as! Rule)
+                let rulePresenter = RulePresenter.makeRulePresenter(selectedObjects[0] as! Rule)
                 popover!.contentViewController = rulePresenter.detailViewController()
                 
                 

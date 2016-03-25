@@ -68,7 +68,7 @@ extension Sequence {
         
         let index = actionNodes.indexOf(node)
         precondition(index != nil, "Cannot remove Node because it doesn't exist in the sequence.")
-        
+    
         actionNodes.removeObject(node)
         
         // it was the only node

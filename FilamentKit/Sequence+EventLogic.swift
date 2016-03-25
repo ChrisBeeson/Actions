@@ -13,13 +13,17 @@ import EventKit
 
 extension Sequence {
     
+    //TODO: updateEvents(startingNode:Node)
+    
     func UpdateEvents() -> (success:Bool, firstFailedNode:Node?) {
+        
+        print("Updating Calendar Events")
         
         guard var time = date else { return (false,nil) }
         
         var solvedPeriodsToAvoid = [DTTimePeriod]()
         
-        for node in self.actionNodes {
+        for (index, node) in self.actionNodes.enumerate() {
             
             var solvedPeriod: SolvedPeriod?
             var rules = node.rules
@@ -51,19 +55,36 @@ extension Sequence {
             }
             
             // Remove any calendar events that are created by this sequence, so it doesn't avoid it's self.
+            // This is so past updates are ignored
             rules.forEach { if $0.isKindOfClass(AvoidCalendarEventsRule) == true {
                 ($0 as! AvoidCalendarEventsRule).ignoreCurrentEventsForSequence = self
                 //  ($0 as! AvoidCalendarEventsRule).ignoreCurrentEventForNode = node
                 }
             }
             
-            // add a rule that returns avoid periods of the periods that have been solved
+            // Add Avoid periods that have already been solved in this update
             let avoidSolvedPeriodsRule = Rule()
             avoidSolvedPeriodsRule.avoidPeriods = solvedPeriodsToAvoid
             rules.append(avoidSolvedPeriodsRule)
             
+            // Go through rules and add requirements
+            //TODO: check for requirements
+            if index > 0 {
+                if let event = self.actionNodes[index - 1].event {
+                     let period = event.timePeriod()
+                        rules.forEach{ $0.previousPeriod = period }
+                    node.rules.forEach{ $0.previousPeriod = period }
+                }
+            }
+            
+
             // Solve it!
             solvedPeriod = Solver.calculateEventPeriod(time, node: node, rules:rules)
+            
+            // run any post solver requirements
+            
+            
+            
             
             // we failed
             if solvedPeriod == nil || solvedPeriod!.solved == false {

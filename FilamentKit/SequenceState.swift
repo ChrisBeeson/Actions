@@ -26,7 +26,6 @@ public enum SequenceState : Int {
         if self == newState {
             print("Sequence: Self is equal to the new State  \(newState)")
         }
-        
         self = newState
         presenter.delegates.forEach{ $0.sequencePresenterDidChangeState(presenter, toState:newState)}
         presenter.nodePresenters.forEach{ $0.currentState.update($0) }
@@ -73,7 +72,6 @@ public enum SequenceState : Int {
         if presenter.date != nil { return toNewStartDate(presenter) }
         
         presenter.nodePresenters.forEach{ $0.currentState.toInactive($0) }
-        
         return changeToState(NoStartDateSet, presenter: presenter, options: nil)
     }
     
@@ -104,7 +102,6 @@ public enum SequenceState : Int {
         NSTimer.schedule(delay: secsToStart+0.1) { timer in
             presenter.updateState(true)
         }
-        
         return changeToState(.WaitingForStart, presenter: presenter, options: nil)
     }
     
@@ -133,7 +130,7 @@ public enum SequenceState : Int {
         
         //TODO: Maybe some kinda fancy tick Animation
         
-        delay(1.0, closure: {
+        delay(0.5, closure: {
             NSNotificationCenter.defaultCenter().postNotificationName("RefreshMainTableView", object: nil)
         })
         
@@ -152,6 +149,8 @@ public enum SequenceState : Int {
     func processCalanderEvents(presenter: SequencePresenter) -> SequenceState {
         
         guard presenter.date != nil else { return .NoStartDateSet }
+        
+        //TODO: Do not process completed Nodes
         
         let result = presenter.sequence.UpdateEvents()
         

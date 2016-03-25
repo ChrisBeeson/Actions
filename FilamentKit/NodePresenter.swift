@@ -84,8 +84,6 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
         }
     }
     
-    
-    
     var event: TimeEvent? {
         get {
             return node.event

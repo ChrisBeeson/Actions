@@ -55,7 +55,6 @@ public class GreaterThanLessThanRulePresenter : RulePresenter {
         }
     }
     
-
     public override func detailViewController() -> RuleViewController {
         
         if ruleViewController == nil {

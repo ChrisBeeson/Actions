@@ -9,10 +9,18 @@ Fuse
 Todo
 -------
 
-startTimeWindow debug
+Rules that clash - startTimeWindows do not overlap
+verbose on why things have failed.
+calendar events gutter
 backtime from enddate
-self update & purchase for non app store version.
+drop rules onto nodes
+reorganise nodes
+location
+location to location time rule
+Memo field resize
 
+self update & purchase for non app store version.
+Validate Rules & show clashes
 
 Make a smaller Rule Collection View Item for Sequences x
 Changing any rules, reprocesses all events - avoid calanders x

@@ -13,16 +13,21 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     @IBOutlet weak var titleTextField: NSTextField!
     @IBOutlet weak var nodeView: NodeView!
     
-    @IBOutlet weak var statusField: NSTextField?
+    @IBOutlet weak var statusField: NSTextField?             // Show a tick if completed
     @IBOutlet weak var statusFieldBackground: NSTextField?
     
+    var currentState = NodeState.Inactive
     
     var indexPath : NSIndexPath?
 
     var presenter: NodePresenter?  {
-        
         didSet {
-            presenter?.addDelegate(self)
+            if presenter != nil {
+                presenter!.addDelegate(self)
+                presenter!.updateNodeState()
+                updateView()
+                self.nodeView.updateViewToState(presenter!.currentState, shouldTransition:false)
+            }
         }
     }
     
@@ -41,20 +46,16 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     
     override func viewWillAppear() {
         super.viewWillAppear()
-        presenter!.updateNodeState()
-        updateView()
     }
     
     
     func updateView() {
         guard presenter != nil else { Swift.print("Presenter for Node Collection View is NULL"); return }
-        
         titleTextField.stringValue = presenter!.title
-        nodeView.currentState = presenter!.currentState
-  
         let hidden = presenter!.currentState == .Completed ? false : true
         statusField?.hidden = hidden
         statusFieldBackground?.hidden = hidden
+        nodeView.currentState = presenter!.currentState
     }
     
     
@@ -96,24 +97,28 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     //Mark: NodePresenter delegate calls
     
     func nodePresenterDidChangeState(presenter: NodePresenter, toState: NodeState, options:[String]? ) {
-    
-        updateView()
+        guard presenter == self.presenter! else { return }
         
+        Swift.print("nodePresenter:\(presenter.title)  DidChangeState:\(toState)")
+        
+        guard toState != currentState else { Swift.print("Already in that state");return }
+        updateView()
+        self.nodeView.updateViewToState(toState, shouldTransition:true)
+        currentState = toState
+        /*
         switch toState {
-            
         case .Ready :
-            
-            if let indexPath = indexPath {
-                
+            if let indexPath = self.indexPath {
                 delay(Double(indexPath.item) * 0.1) {
-                    self.nodeView.currentState = .Ready
+                    self.nodeView.updateViewToState(toState, shouldTransition:true)
                 }} else {
-                self.nodeView.currentState = .Ready
+                self.nodeView.updateViewToState(toState, shouldTransition:true)
             }
-            
         default:
-             self.nodeView.currentState = toState
+            self.nodeView.updateViewToState(toState, shouldTransition:true)
         }
+ */
+    
     }
     
     
@@ -130,7 +135,3 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
         return true
     }
 }
-
-
-
-

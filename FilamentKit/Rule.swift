@@ -3,7 +3,7 @@
 //  Filament
 //
 //  Created by Chris Beeson on 5/09/2015.
-//  Copyright (c) 2015 Andris Ltd. All rights reserved.
+//  Copyright (c) 2016 Andris Ltd. All rights reserved.
 //
 
 import Foundation
@@ -27,28 +27,36 @@ protocol RuleType {
     var eventDuration: TimeSize? {get}
     var eventMinDuration: TimeSize? {get}
     
+    // Interactions
     var avoidPeriods: [DTTimePeriod]? {get set}
+    var previousPeriod: DTTimePeriod? {get set}
+    
+    // Post Solver
+    var solvedPeriod: DTTimePeriod? {get set}
+    func postSolverCodeBlock()
 }
+
 
 public class Rule: NSObject, RuleType {
     
-     var name: String {get {return "Not set"} }
-     var Description: String {get {return "NOT SET"} }
-     var availableToNodeType: NodeType {get {return NodeType.Void} }
-     var conflictingRules: [Rule]? {get {return nil} }
-     var options: RoleOptions {get { return RoleOptions.None } }
-     var inputDate: NSDate?
-     var interestPeriod: DTTimePeriod?
-     var eventStartTimeWindow: DTTimePeriod? {get {return nil} }
-     var eventPreferedStartDate: NSDate? {get {return nil} }
-     var eventDuration: TimeSize? { get { return nil } }
-     var eventMinDuration: TimeSize? { get { return nil } }
-     var avoidPeriods: [DTTimePeriod]?
+    var name: String {get {return "Not set"} }
+    var Description: String {get {return "NOT SET"} }
+    var availableToNodeType: NodeType {get {return NodeType.Void} }
+    var conflictingRules: [Rule]? {get {return nil} }
+    var options: RoleOptions {get { return RoleOptions.None } }
+    var inputDate: NSDate?
+    var interestPeriod: DTTimePeriod?
+    var eventStartTimeWindow: DTTimePeriod? {get {return nil} }
+    var eventPreferedStartDate: NSDate? {get {return nil} }
+    var eventDuration: TimeSize? { get { return nil } }
+    var eventMinDuration: TimeSize? { get { return nil } }
+    var avoidPeriods: [DTTimePeriod]?
+    var previousPeriod: DTTimePeriod?
+    var solvedPeriod: DTTimePeriod?
+    public func postSolverCodeBlock() {}
     
     
-    
-    class func RuleClasses() -> [Rule] {
-        
+    class func RegisteredRuleClasses() -> [Rule] {
         var ruleClasses = [Rule]()
         ruleClasses.append(TransitionDurationWithVariance())
         ruleClasses.append(EventDurationWithMinimumDuration())
@@ -66,12 +74,14 @@ public class Rule: NSObject, RuleType {
 
 
 struct RoleOptions : OptionSetType {
-    
     let rawValue: Int
     init(rawValue:Int) { self.rawValue = rawValue }
-
+    
     static let None = RoleOptions(rawValue: 1)
     static let RequiresInterestWindow = RoleOptions(rawValue: 2)
+    static let RequiresPreviousPeriod = RoleOptions(rawValue: 4)
+    static let RequiresSolvedPeriod = RoleOptions(rawValue: 8)
+    static let HasPostSolverCodeBlock = RoleOptions(rawValue: 16)
 }
 
 
