@@ -24,8 +24,66 @@ public enum SequenceCollectionViewItemType {
     case Void
 }
 
- public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSource, NSCollectionViewDelegate, SequencePresenterDelegate {
+public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSource, NSCollectionViewDelegate, SequencePresenterDelegate {
     
+    public var currentLayoutState = SequenceCollectionViewLayoutState.StartDateWithAddButton
+    
+    public weak var presenter : SequencePresenter? {
+        didSet {
+            presenter?.addDelegate(self)
+        }
+    }
+    
+    func itemForIndexPath(path: NSIndexPath) -> NSCollectionViewItem {
+        switch itemTypeAtIndex(path) {
+        case .Date: return makeDateItem(path)
+        case .AddButton: return makeAddButton(path)
+        case .ActionNode,.TransitionNode: return makeMainTypeNode(path, type:itemTypeAtIndex(path))
+        case .Void: fatalError()
+        }
+    }
+    
+    
+    func makeDateItem(path: NSIndexPath) -> NSCollectionViewItem {
+        let item = makeItemWithIdentifier("DateNodeCollectionViewItem", forIndexPath: path) as! DateNodeCollectionViewItem
+        item.sequencePresenter = self.presenter!
+        presenter?.addDelegate(item)
+        item.updateView()
+        return item
+    }
+    
+    func makeAddButton(path: NSIndexPath) -> NSCollectionViewItem {
+        
+        let item = makeItemWithIdentifier("AddNewNodeCollectionViewItem", forIndexPath: path) as! AddNewNodeCollectionViewItem
+        item.sequencePresenter = presenter
+        return item
+    }
+    
+    func makeMainTypeNode(path: NSIndexPath, type:SequenceCollectionViewItemType ) -> NSCollectionViewItem {
+        
+        var item: NodeCollectionViewItem
+        
+        switch type {
+            
+        case .ActionNode:
+            item = makeItemWithIdentifier("ActionNodeCollectionViewItem", forIndexPath: path) as! NodeCollectionViewItem
+            
+        case .TransitionNode:
+            item = makeItemWithIdentifier("TransitionNodeCollectionViewItem", forIndexPath: path) as! NodeCollectionViewItem
+            
+        default: item = NodeCollectionViewItem()
+        }
+        
+        assert(presenter != nil)
+        let modifier = currentLayoutState == .EndDateWithoutAddButton ? 1 : 0
+        let node = presenter!.nodes![path.item + modifier]
+        
+        if item.presenter != presenter!.presenterForNode(node) {
+            item.presenter = presenter!.presenterForNode(node)
+        }
+        item.indexPath = path
+        return item
+    }
     
     
     func indexOfItemType(itemType: SequenceCollectionViewItemType) -> [NSIndexPath] {
@@ -53,23 +111,26 @@ public enum SequenceCollectionViewItemType {
             return paths
             
         case .Date:
-            switch currentLayoutState {
+            switch self.currentLayoutState {
             case .StartDateWithAddButton, .StartDateWithoutAddButton:
                 return [NSIndexPath(index: 0)]
-
+                
             case .EndDateWithAddButton:
                 return [NSIndexPath(index: presenter!.nodes!.count+2)]
+                
             case .EndDateWithoutAddButton:
                 return [NSIndexPath(index: presenter!.nodes!.count+1)]
             }
             
         case .AddButton:
-             switch currentLayoutState {
-             case .StartDateWithAddButton: return [NSIndexPath(index: presenter!.nodes!.count+2)]
-             case .StartDateWithoutAddButton: return [NSIndexPath(index: -1)]
-             case .EndDateWithAddButton: return [NSIndexPath(index: 0)]
-             case .EndDateWithoutAddButton: return [NSIndexPath(index: -1)]
+            switch currentLayoutState {
+            case .StartDateWithAddButton: return [NSIndexPath(index: presenter!.nodes!.count+2)]
+            case .StartDateWithoutAddButton: return [NSIndexPath(index: -1)]
+            case .EndDateWithAddButton: return [NSIndexPath(index: 0)]
+            case .EndDateWithoutAddButton: return [NSIndexPath(index: -1)]
             }
+            
+        default: return [NSIndexPath(index: -1)]
         }
     }
     
@@ -84,14 +145,14 @@ public enum SequenceCollectionViewItemType {
             case .EndDateWithAddButton: return .AddButton
             case .EndDateWithoutAddButton: return .ActionNode
             }
-    
+            
         case presenter!.nodes!.count+2:
-        switch currentLayoutState {
-        case .StartDateWithAddButton: return .AddButton
-        case .StartDateWithoutAddButton: return .Void
-        case .EndDateWithAddButton: return .Date
-        case .EndDateWithoutAddButton: return .Void
-        }
+            switch currentLayoutState {
+            case .StartDateWithAddButton: return .AddButton
+            case .StartDateWithoutAddButton: return .Void
+            case .EndDateWithAddButton: return .Date
+            case .EndDateWithoutAddButton: return .Void
+            }
             
         //TODO: Tests - esp for this one...
         case presenter!.nodes!.count+1:
@@ -101,27 +162,21 @@ public enum SequenceCollectionViewItemType {
             case .EndDateWithAddButton: return .ActionNode
             case .EndDateWithoutAddButton: return .TransitionNode
             }
-    
-        case let x where x > 0 && x < presenter!.nodes!.count+1:
-        break
             
+        case let x where x > 0 && x < presenter!.nodes!.count+1:
+            let modifier = currentLayoutState != .EndDateWithoutAddButton ? 1 : 0
+            let node = presenter!.nodes![index.item + modifier]
+            if node.type == .Action { return .ActionNode } else { return .TransitionNode }
+            
+        default: Swift.print("Got to default")
         }
-        
-    }
-    
-    func itemForIndex(index: NSIndexPath) {
-        
+        return .Void
     }
     
     
     
-    public var currentLayoutState = SequenceCollectionViewLayoutState.StartDateWithAddButton
     
-    public weak var presenter : SequencePresenter? {
-        didSet {
-            presenter?.addDelegate(self)
-        }
-    }
+    
     
     // MARK: Life Cycle
     
@@ -157,7 +212,7 @@ public enum SequenceCollectionViewItemType {
         self.registerNib(addNib, forItemWithIdentifier: "AddNewNodeCollectionViewItem")
     }
     
-
+    
     deinit {
         presenter?.removeDelegate(self)
         presenter = nil
@@ -168,7 +223,7 @@ public enum SequenceCollectionViewItemType {
     
     
     public func collectionView(collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
-    
+        
         switch presenter!.currentState {
             
         case .Completed:
@@ -181,79 +236,42 @@ public enum SequenceCollectionViewItemType {
     
     public func collectionView(collectionView: NSCollectionView, itemForRepresentedObjectAtIndexPath indexPath: NSIndexPath) -> NSCollectionViewItem {
         
-        let nodes = presenter!.nodes!
-        
-        if indexPath.item == 0 {
-            let item = makeItemWithIdentifier("DateNodeCollectionViewItem", forIndexPath: indexPath) as! DateNodeCollectionViewItem
-            item.sequencePresenter = self.presenter!
-            presenter?.addDelegate(item)
-            item.updateView()
-            return item
-            
-        } else if indexPath.item < nodes.count+1 {
-            
-            let node = nodes[indexPath.item-1]
-            var item: NodeCollectionViewItem
-            
-            switch node.type {
-                
-            case NodeType.Action:
-                 item = makeItemWithIdentifier("ActionNodeCollectionViewItem", forIndexPath: indexPath) as! NodeCollectionViewItem
-                
-            case NodeType.Transition:
-                 item = makeItemWithIdentifier("TransitionNodeCollectionViewItem", forIndexPath: indexPath) as! NodeCollectionViewItem
-                
-            default:
-                fatalError("Invaild Node Type for CollectionView")
-            }
-            
-            assert(presenter != nil)
-            if item.presenter != presenter!.presenterForNode(node) {
-                item.presenter = presenter!.presenterForNode(node)
-            }
-            item.indexPath = indexPath
-            return item
-      
-        } else {
-            
-            let item = makeItemWithIdentifier("AddNewNodeCollectionViewItem", forIndexPath: indexPath) as! AddNewNodeCollectionViewItem
-            item.sequencePresenter = presenter
-            return item
-        }
+        return itemForIndexPath(indexPath)
     }
+    
     
     public func collectionView(collectionView: NSCollectionView, didEndDisplayingItem item: NSCollectionViewItem, forRepresentedObjectAtIndexPath indexPath: NSIndexPath) {
         /*
-        if item.isKindOfClass(NodeCollectionViewItem) {
-            (item as! NodeCollectionViewItem).presenter = nil
-        }
- */
+         if item.isKindOfClass(NodeCollectionViewItem) {
+         (item as! NodeCollectionViewItem).presenter = nil
+         }
+         */
     }
     
- 
     
     
-    //MARK: Sequence Delegate Protocol 
+    
+    //MARK: Sequence Delegate Protocol
     
     
     public func sequencePresenterDidUpdateChainContents(insertedNodes:Set<NSIndexPath>, deletedNodes:Set<NSIndexPath>) {
         
         // Async.main { [unowned self] in
-            
+        
         self.performBatchUpdates({ () -> Void in
             
             if insertedNodes.count > 0 {
                 self.insertItemsAtIndexPaths(insertedNodes)
                 // animate to that new item
                 Async.main(after: 0.1) {
-                self.scrollToItemsAtIndexPaths(insertedNodes, scrollPosition: .CenteredHorizontally)
+                    self.scrollToItemsAtIndexPaths(insertedNodes, scrollPosition: .CenteredHorizontally)
                 }
             }
             
             if deletedNodes.count > 0 {
                 self.animator().deleteItemsAtIndexPaths(deletedNodes)
             }
-            }) { (completed) -> Void in
+        }) { (completed) -> Void in
         }
         self.reloadData()
     }
@@ -263,38 +281,38 @@ public enum SequenceCollectionViewItemType {
     
     
     //MARK: Events
-
+    
     public func copy(event: NSEvent) {
         Swift.print("seq collection copy")
     }
     
     
-     public func delete(theEvent: NSEvent) {
-    
+    public func delete(theEvent: NSEvent) {
+        
         var nodesToDelete = [Node]()
         
         for indexPath in self.selectionIndexPaths {
             
             if let object = self.itemAtIndexPath(indexPath) {
-            
-            if object.isKindOfClass(NodeCollectionViewItem) {
-                let item = object as! NodeCollectionViewItem
-                if item.presenter!.type == .Action {
-                nodesToDelete.append(item.presenter!.node)
+                
+                if object.isKindOfClass(NodeCollectionViewItem) {
+                    let item = object as! NodeCollectionViewItem
+                    if item.presenter!.type == .Action {
+                        nodesToDelete.append(item.presenter!.node)
+                    }
                 }
-            }
             }
         }
         presenter?.deleteNodes(nodesToDelete)
     }
-
+    
     override public func keyDown(theEvent: NSEvent) {
         
         if theEvent.keyCode == 51 || theEvent.keyCode == 117  {
             delete(theEvent)
         }
     }
-
+    
     
     //MARK: Collection View Delegate
     
@@ -311,7 +329,7 @@ public enum SequenceCollectionViewItemType {
             let node = nodes[indexPath.item-1]
             
             switch node.type {
-            
+                
             case [.Action]:
                 
                 if let item = collectionView.itemAtIndex(indexPath.item) {
@@ -366,14 +384,14 @@ public enum SequenceCollectionViewItemType {
         
         // We can drag anything but the addButton
         /*
-        switch presenter!.currentState {
-        case .Completed:
-            return presenter!.nodes!.count + 1
-        default:
-            return presenter!.nodes!.count + 2
-        }
-        
-        */
+         switch presenter!.currentState {
+         case .Completed:
+         return presenter!.nodes!.count + 1
+         default:
+         return presenter!.nodes!.count + 2
+         }
+         
+         */
         return true
     }
     
@@ -389,7 +407,7 @@ public enum SequenceCollectionViewItemType {
     }
     
     public func collectionView(collectionView: NSCollectionView, shouldSelectItemsAtIndexPaths indexPaths: Set<NSIndexPath>) -> Set<NSIndexPath> {
-       return indexPaths
+        return indexPaths
     }
     
     public func collectionView(collectionView: NSCollectionView, shouldDeselectItemsAtIndexPaths indexPaths: Set<NSIndexPath>) -> Set<NSIndexPath> {
@@ -403,7 +421,7 @@ public enum SequenceCollectionViewItemType {
         
     }
     
-
+    
     public func collectionView(collectionView: NSCollectionView, didDeselectItemsAtIndexPaths indexPaths: Set<NSIndexPath>) {
         self.window?.makeFirstResponder(self.superview?.superview?.superview?.superview?.superview?.superview)
     }
@@ -414,7 +432,7 @@ public enum SequenceCollectionViewItemType {
         
     }
     
-   
+    
     //MARK: First Responder Events
     
     override public var acceptsFirstResponder: Bool { return true }
