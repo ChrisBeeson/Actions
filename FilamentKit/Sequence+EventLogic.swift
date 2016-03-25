@@ -17,6 +17,8 @@ extension Sequence {
     
     func UpdateEvents() -> (success:Bool, firstFailedNode:Node?) {
         
+        print("Updating Calendar Events")
+        
         guard var time = date else { return (false,nil) }
         
         var solvedPeriodsToAvoid = [DTTimePeriod]()

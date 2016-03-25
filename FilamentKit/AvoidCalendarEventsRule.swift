@@ -26,23 +26,20 @@ class AvoidCalendarEventsRule: Rule, NSCoding {
     
     override init() {
         super.init()
-        
         populateCalendars()
     }
     
     
     override var avoidPeriods: [DTTimePeriod]? {
-        
         get {
             if interestPeriod == nil { return nil }
             
-            let activeCalendars = calendars.filter({ $0.avoid == true })
-            guard let events = CalendarManager.sharedInstance.events(interestPeriod!, calendars:activeCalendars) else {
-                return nil
-            }
+            // 1. Get active calendars
+            let activeCalendars = calendars.filter { $0.avoid == true }
+            // activeCalendars.forEach{ print("Using Calendar:\($0.name)  \($0.avoid)") }
+            guard let events = CalendarManager.sharedInstance.events(interestPeriod!, calendars:activeCalendars) else { return nil }
             
             // 2. Turn each event into a time period.
-            
             var periods = [DTTimePeriod]()
             for event in events {
                 let period = DTTimePeriod(startDate: event.startDate, endDate: event.endDate)
@@ -50,7 +47,6 @@ class AvoidCalendarEventsRule: Rule, NSCoding {
             }
             
             // 3. remove any periods we should ignore (ie. events from the sequence we are solving)
-            
             if let ignore = ignorePeriods() {
                 for period in periods {
                     for ignore in ignore {
@@ -70,8 +66,6 @@ class AvoidCalendarEventsRule: Rule, NSCoding {
     
     
     func ignorePeriods() -> [DTTimePeriod]? {
-        // get timePeriods of any events in this sequence
-      
         var periods = [DTTimePeriod]()
         
         if ignoreCurrentEventForNode != nil {
@@ -82,29 +76,26 @@ class AvoidCalendarEventsRule: Rule, NSCoding {
         }
         
         if ignoreCurrentEventsForSequence != nil {
-        for node in ignoreCurrentEventsForSequence!.nodeChain() {
-            if let event = node.event {
-                let period = DTTimePeriod(startDate: event.startDate, endDate: event.endDate)
-                periods.append(period)
+            for node in ignoreCurrentEventsForSequence!.nodeChain() {
+                if let event = node.event {
+                    let period = DTTimePeriod(startDate: event.startDate, endDate: event.endDate)
+                    periods.append(period)
+                }
             }
-        }
         }
         return periods
     }
     
     
-     func populateCalendars() {
-        
+    func populateCalendars() {
         // Calendars stored in Rule
         var currentCalendars = self.calendars
         
         // Get all system calendars
         let systemCalendars = CalendarManager.sharedInstance.systemCalendarsAsCalendars()
-        
         let diff = currentCalendars.diff(systemCalendars)
         
         if diff.results.count > 0 {
-            
             let inserts = diff.insertions.map{ $0.value }
             inserts.filter({$0.name!.lowercaseString.containsString("birthday") == true}).forEach {$0.avoid = false }
             inserts.filter({$0.name!.lowercaseString.containsString("holidays") == true}).forEach {$0.avoid = false }
@@ -113,8 +104,7 @@ class AvoidCalendarEventsRule: Rule, NSCoding {
             let deletions = diff.deletions.map{ $0.value }
             currentCalendars.removeObjects(deletions)
         }
-        
-       self.calendars = currentCalendars
+        self.calendars = currentCalendars
     }
     
     // MARK: NSCoding

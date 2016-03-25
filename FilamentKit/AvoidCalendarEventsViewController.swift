@@ -21,16 +21,12 @@ class AvoidCalendarEventsViewController : RuleViewController , RulePresenterDele
         super.viewDidLoad()
         
         if CalendarManager.sharedInstance.authorized == true {
-            
             calendars = (rulePresenter as! AvoidCalendarEventsPresenter).calendars
-            
             for cal in calendars {
                 let view = stackViewForCalendar(cal)
                 vertStackView.addArrangedSubview(view)
             }
-            
         } else {
-
             let textBox = NSTextField()
             textBox.bordered = false
             textBox.backgroundColor = NSColor.clearColor()
@@ -43,11 +39,6 @@ class AvoidCalendarEventsViewController : RuleViewController , RulePresenterDele
     }
     
     
-    override func viewWillLayout() {
-        super.viewWillLayout()
-    }
-    
-    
     override func viewWillDisappear() {
         if CalendarManager.sharedInstance.authorized == true {
             
@@ -57,16 +48,13 @@ class AvoidCalendarEventsViewController : RuleViewController , RulePresenterDele
                 let state = (cal.1.state == NSOnState) ? true : false
                 presenter.setCalendarAvoidState(cal.0, avoid:state)
             }
-            
             if saveToContext == true { AppConfiguration.sharedConfiguration.saveContext() }
         }
-        
         super.viewWillDisappear()
     }
     
     
     func stackViewForCalendar(calendar:Calendar) -> NSView {
-        
         let checkbox = NSButton()
         checkbox.setButtonType(.SwitchButton)
         checkbox.title = ""
@@ -98,7 +86,6 @@ class AvoidCalendarEventsViewController : RuleViewController , RulePresenterDele
         stackView.addArrangedSubview(checkbox)
         stackView.addArrangedSubview(textBox)
         stackView.spacing = 2.0
-        
         return stackView
     }
 }

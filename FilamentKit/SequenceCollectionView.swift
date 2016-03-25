@@ -80,7 +80,6 @@ import Async
         let nodes = presenter!.nodes!
         
         if indexPath.item == 0 {
-            
             let item = makeItemWithIdentifier("DateNodeCollectionViewItem", forIndexPath: indexPath) as! DateNodeCollectionViewItem
             item.sequencePresenter = self.presenter!
             presenter?.addDelegate(item)
@@ -104,8 +103,10 @@ import Async
                 fatalError("Invaild Node Type for CollectionView")
             }
             
-            item.presenter = presenter!.presenterForNode(node)
-            item.updateView()
+            assert(presenter != nil)
+            if item.presenter != presenter!.presenterForNode(node) {
+                item.presenter = presenter!.presenterForNode(node)
+            }
             item.indexPath = indexPath
             return item
       
@@ -116,6 +117,16 @@ import Async
             return item
         }
     }
+    
+    public func collectionView(collectionView: NSCollectionView, didEndDisplayingItem item: NSCollectionViewItem, forRepresentedObjectAtIndexPath indexPath: NSIndexPath) {
+        /*
+        if item.isKindOfClass(NodeCollectionViewItem) {
+            (item as! NodeCollectionViewItem).presenter = nil
+        }
+ */
+    }
+    
+ 
     
     
     //MARK: Sequence Delegate Protocol 
@@ -214,7 +225,7 @@ import Async
                 } else {
                     let string:NSString = node.title as NSString
                     let size: CGSize = string.sizeWithAttributes([NSFontAttributeName: NSFont.systemFontOfSize(9, weight:NSFontWeightRegular) ])
-                    return NSSize(width: size.width + 40, height: 25)
+                    return NSSize(width: size.width + 40, height: 24)
                 }
                 
             default:
@@ -238,7 +249,8 @@ import Async
     public func collectionView(collectionView: NSCollectionView, willDisplayItem item: NSCollectionViewItem, forRepresentedObjectAtIndexPath indexPath: NSIndexPath) {
         
         if item.isKindOfClass(NodeCollectionViewItem) == true {
-            (item as! NodeCollectionViewItem).updateView()
+            // (item as! NodeCollectionViewItem).updateView()
+            (item as! NodeCollectionViewItem).indexPath = indexPath
         }
     }
     
@@ -285,10 +297,6 @@ import Async
     }
     
    
-    public func collectionView(collectionView: NSCollectionView, didEndDisplayingItem item: NSCollectionViewItem, forRepresentedObjectAtIndexPath indexPath: NSIndexPath) {
-        
-    }
-    
     //MARK: First Responder Events
     
     override public var acceptsFirstResponder: Bool { return true }

@@ -23,7 +23,6 @@ public class FilamentDocumentsManager : DirectoryMonitorDelegate {
     private let fileManager = NSFileManager.defaultManager()
     
     init() {
-        
          print("Directory: \(AppConfiguration.sharedConfiguration.storageDirectory())")
         documents = FilamentDocumentsManager.documentsForURLs(FilamentDocumentsManager.documentDirectoryList())
        
@@ -150,6 +149,7 @@ public extension FilamentDocumentsManager {
     public func permanentlyDeleteDocument(document: FilamentDocument) {
         document.sequencePresenter?.prepareForCompleteDeletion()
         document.updateChangeCount(.ChangeCleared)
+        document.sequencePresenter = nil
         
         let url = document.storageURL()
         let fileManager = NSFileManager.defaultManager()
@@ -182,13 +182,13 @@ public extension FilamentDocumentsManager {
             
         returnDocuments = documents.filter{ $0.sequencePresenter?.currentState == SequenceState.Paused }
             
-        let running = documents.filter{ $0.sequencePresenter?.currentState == SequenceState.Running }.sort({ $0.sequencePresenter!.completionDate!.compare($1.sequencePresenter!.completionDate!) == .OrderedAscending })
+        let running = documents.filter{ $0.sequencePresenter?.currentState == SequenceState.Running }.sort({ $0.sequencePresenter!.completionDate?.compare($1.sequencePresenter!.completionDate!) == .OrderedAscending })
         returnDocuments.appendContentsOf(running)
         
-        let errors = documents.filter{ $0.sequencePresenter?.currentState == SequenceState.HasFailedNode }.sort({ $0.sequencePresenter!.date!.compare($1.sequencePresenter!.date!) == .OrderedAscending })
+        let errors = documents.filter{ $0.sequencePresenter?.currentState == SequenceState.HasFailedNode }.sort({ $0.sequencePresenter!.date?.compare($1.sequencePresenter!.date!) == .OrderedAscending })
         returnDocuments.appendContentsOf(errors)
         
-        let waitingForStart = documents.filter{ $0.sequencePresenter?.currentState == SequenceState.WaitingForStart }.sort({ $0.sequencePresenter!.date!.compare($1.sequencePresenter!.date!) == .OrderedAscending })
+        let waitingForStart = documents.filter{ $0.sequencePresenter?.currentState == SequenceState.WaitingForStart }.sort({ $0.sequencePresenter!.date?.compare($1.sequencePresenter!.date!) == .OrderedAscending })
         returnDocuments.appendContentsOf(waitingForStart)
             
         let NoStartDate = documents.filter{ $0.sequencePresenter?.currentState == SequenceState.NoStartDateSet }.sort({ $0.fileModificationDate!.compare($1.fileModificationDate!) == .OrderedAscending })

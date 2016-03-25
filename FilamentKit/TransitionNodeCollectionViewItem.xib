@@ -8,9 +8,8 @@
         <customObject id="-2" userLabel="File's Owner" customClass="TransitionNodeCollectionViewItem" customModule="FilamentKit" customModuleProvider="target"/>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView id="c22-O7-iKe">
+        <customView translatesAutoresizingMaskIntoConstraints="NO" id="c22-O7-iKe">
             <rect key="frame" x="0.0" y="0.0" width="61" height="25"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="qmM-hs-Nu1" customClass="TransitionNodeView" customModule="FilamentKit" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="61" height="25"/>
@@ -28,7 +27,6 @@
                         </textField>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="25" id="1Ms-CU-D1B"/>
                         <constraint firstItem="qcN-3c-VGX" firstAttribute="top" secondItem="qmM-hs-Nu1" secondAttribute="top" id="1Sc-1S-4fg"/>
                         <constraint firstItem="qcN-3c-VGX" firstAttribute="centerX" secondItem="qmM-hs-Nu1" secondAttribute="centerX" id="K4z-o9-d2E"/>
                     </constraints>

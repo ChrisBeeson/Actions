@@ -14,6 +14,7 @@ enum NodeColour: Int { case VeryLightGrey, LightGrey, Green, Red, Blue}
 class NodeView: NSView {
     
     var pathLayer : CAShapeLayer
+    private var _currentState = NodeState.Inactive
     
     required init?(coder: NSCoder) {
         
@@ -32,11 +33,11 @@ class NodeView: NSView {
         self.layer?.masksToBounds = false
     }
     
-    
     override func layout() {
         super.layout()
         
         pathLayer.path = calculatePath()
+        //  updateViewToState(_currentState, shouldTransition:false)
     }
     
     override var wantsDefaultClipping: Bool { return false }
@@ -63,77 +64,108 @@ class NodeView: NSView {
         }
     }
     
-    var currentState:NodeState = .Inactive {
-        willSet {
-            if newValue == currentState { return }
-            performAnimationsForNewState(newValue)
+    var currentState: NodeState {
+        get {
+            return _currentState
         }
-        didSet {
-            self.needsLayout = true
+        set {
+            _currentState = newValue
+            // self.needsDisplay = true
         }
     }
+    
     
     func calculatePath() -> CGPath {
         fatalError("calculatePath MUST be overriden")
     }
     
     
-    func performAnimationsForNewState(newState:NodeState) {
+    func updateViewToState(state:NodeState, shouldTransition:Bool) {
         
-        if newState != NodeState.Running && self.pathLayer.animationKeys()?.contains("RunningFill") == true  {
-            self.pathLayer.removeAllAnimations()
+        if state != NodeState.Running && self.pathLayer.animationKeys()?.contains("RunningFill") == true  {
+            Swift.print("Clearing Running Animation")
+            self.pathLayer.removeAnimationForKey("RunningFill")
+            self.pathLayer.removeAnimationForKey("RunningStroke")
         }
         
-        switch newState {
+        switch state {
             
         case .Inactive:
+            CATransaction.begin()
+            CATransaction.setDisableActions(!shouldTransition)
             self.pathLayer.strokeColor = drawingContextColour(.LightGrey).stroke
             self.pathLayer.fillColor = drawingContextColour(.LightGrey).fill
+            CATransaction.commit()
             
         case .Ready:
             CATransaction.begin()
             CATransaction.setDisableActions(true)
-            self.pathLayer.strokeColor = drawingContextColour(.Green).stroke
-            self.pathLayer.fillColor = drawingContextColour(.Green).fill
-            CATransaction.commit()
-            
-            CATransaction.begin()
-            CATransaction.setAnimationDuration(1.0)
             self.pathLayer.strokeColor = drawingContextColour(.LightGrey).stroke
             self.pathLayer.fillColor = drawingContextColour(.LightGrey).fill
             CATransaction.commit()
             
+            // if shouldTransition == true {
+                    let anim = CABasicAnimation(keyPath: "fillColor")
+                    anim.fromValue = drawingContextColour(.Green).fill
+                    anim.toValue = drawingContextColour(.LightGrey).fill
+                    
+                    let anim2 = CABasicAnimation(keyPath: "strokeColor")
+                    anim2.fromValue = drawingContextColour(.Green).stroke
+                    anim2.toValue = drawingContextColour(.LightGrey).stroke
+                    
+                    let group = CAAnimationGroup()
+                    group.animations = [anim,anim2]
+                    group.duration = 1.0
+                    group.repeatCount = 0
+                    group.autoreverses = false
+                    group.removedOnCompletion = true
+                    self.pathLayer.addAnimation(group, forKey: "ReadyAnimation")
+            // } else {
+            //    Swift.print("false")
+            // }
+        
         case .Running:
             let anim = CABasicAnimation(keyPath: "fillColor")
-            anim.toValue = drawingContextColour(.Green).fill
-            anim.fromValue = drawingContextColour(.LightGrey).fill
+            anim.fromValue = drawingContextColour(.Green).fill
+            anim.toValue = drawingContextColour(.LightGrey).fill
             anim.repeatCount = Float.infinity
             anim.duration = 0.5
             anim.autoreverses = true
             self.pathLayer.addAnimation(anim, forKey: "RunningFill")
             
             let animStroke = CABasicAnimation(keyPath: "strokeColor")
-            animStroke.toValue = drawingContextColour(.Green).stroke
-            animStroke.fromValue = drawingContextColour(.LightGrey).stroke
+            animStroke.fromValue = drawingContextColour(.Green).stroke
+            animStroke.toValue = drawingContextColour(.LightGrey).stroke
             animStroke.repeatCount = Float.infinity
             animStroke.duration = 0.5
             animStroke.autoreverses = true
             self.pathLayer.addAnimation(animStroke, forKey: "RunningStroke")
             
         case .WaitingForUserInput:
+            CATransaction.begin()
+            CATransaction.setDisableActions(!shouldTransition)
             pathLayer.strokeColor = drawingContextColour(.Blue).stroke
             pathLayer.fillColor = drawingContextColour(.Blue).fill
+            CATransaction.commit()
             
         case .Error:
+            CATransaction.begin()
+            CATransaction.setDisableActions(!shouldTransition)
             pathLayer.strokeColor = drawingContextColour(.Red).stroke
             pathLayer.fillColor = drawingContextColour(.Red).fill
+            CATransaction.commit()
             
         case .Completed:
+            CATransaction.begin()
+            CATransaction.setDisableActions(!shouldTransition)
             self.pathLayer.strokeColor = drawingContextColour(.LightGrey).stroke
             self.pathLayer.fillColor = drawingContextColour(.LightGrey).fill
+            CATransaction.commit()
             
         case .Void: fatalError("Trying to add animation when stateNode = .Void")
         }
+        
+        currentState = state
     }
     
     

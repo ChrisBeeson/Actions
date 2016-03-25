@@ -78,7 +78,7 @@
                                 </popUpButton>
                                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BpE-dJ-8o3">
                                     <rect key="frame" x="137" y="3" width="85" height="19"/>
-                                    <popUpButtonCell key="cell" type="roundTextured" title="Night-time" bezelStyle="texturedRounded" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="fjw-Kn-grB" id="Xc1-F5-Ok7">
+                                    <popUpButtonCell key="cell" type="roundTextured" title="Night-time" bezelStyle="texturedRounded" alignment="center" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="fjw-Kn-grB" id="Xc1-F5-Ok7">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="smallSystem"/>
                                         <menu key="menu" id="MtT-0X-8zZ">
@@ -86,9 +86,9 @@
                                                 <menuItem title="Morning" id="3me-34-Noa"/>
                                                 <menuItem title="Afternoon" id="SRk-VL-UiZ" userLabel="Years"/>
                                                 <menuItem title="Evening" id="w5d-7z-IhY" userLabel="Years"/>
-                                                <menuItem title="Night-time" state="on" id="fjw-Kn-grB" userLabel="Years"/>
+                                                <menuItem title="Night-time" id="fjw-Kn-grB" userLabel="Years"/>
                                                 <menuItem title="Anytime" id="h5s-2P-hVJ"/>
-                                                <menuItem title="Same Time" state="on" id="iuU-Rq-JpM"/>
+                                                <menuItem title="Same Time" id="iuU-Rq-JpM"/>
                                                 <menuItem title="+/- 2 Hours" id="QdP-vz-VCa"/>
                                             </items>
                                         </menu>
