@@ -26,6 +26,7 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     public var allowDeletions = false
     public var ruleCollectionViewDelegate : RuleCollectionViewDelegate?
     public var doubleClickDisplaysItemsDetailView = true
+    private var dragDropInPlaceView:NSView?
     
     // MARK: Life Cycle
     
@@ -132,17 +133,24 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
         return rulePresenters?[indexPath.item].draggingItem()
     }
     
-    /*
-    
-    public func collectionView(collectionView: NSCollectionView, draggingImageForItemsAtIndexPaths indexPaths: Set<NSIndexPath>, withEvent event: NSEvent, offset dragImageOffset: NSPointPointer) -> NSImage {
-    let item = self.itemAtIndex(indexPaths[0].item)
-    
-    let dataOfView = view.dataWithPDFInsideRect(view.bounds)
-    let imageOfView = NSImage(data: dataOfView)
+    public func collectionView(collectionView: NSCollectionView, draggingSession session: NSDraggingSession, willBeginAtPoint screenPoint: NSPoint, forItemsAtIndexPaths indexPaths: Set<NSIndexPath>) {
+        
+        // This is such a hacky solution!! (But it works!)
+        
+        let item = makeItemWithIdentifier("RuleCollectionItem", forIndexPath: indexPaths.first!) as! RuleCollectionItem
+        item.rulePresenter = rulePresenters![indexPaths.first!.item]
+        
+        dragDropInPlaceView = item.view
+        dragDropInPlaceView!.frame = self.frameForItemAtIndex(indexPaths.first!.item)
+        self.addSubview(dragDropInPlaceView!)
     }
-    */
     
-    // drop
+    public func collectionView(collectionView: NSCollectionView, draggingSession session: NSDraggingSession, endedAtPoint screenPoint: NSPoint, dragOperation operation: NSDragOperation) {
+        
+        if dragDropInPlaceView != nil {
+            dragDropInPlaceView?.removeFromSuperview()
+        }
+    }
     
     
     public func collectionView(collectionView: NSCollectionView, validateDrop draggingInfo: NSDraggingInfo, proposedIndexPath proposedDropIndexPath: AutoreleasingUnsafeMutablePointer<NSIndexPath?>, dropOperation proposedDropOperation: UnsafeMutablePointer<NSCollectionViewDropOperation>) -> NSDragOperation {

@@ -34,8 +34,6 @@ public class RuleCollectionItem : NSCollectionViewItem {
     
     override public func viewWillLayout() {
         super.viewWillLayout()
-        
-       
     }
     
     override public func viewWillAppear() {

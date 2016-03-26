@@ -175,6 +175,15 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
         sequencePresenter = nil
     }
     
+    //MARK: Pasteboard
+    
+    func draggingItem() -> NSPasteboardItem {
+        let data = NSKeyedArchiver.archivedDataWithRootObject(self.node)
+        let item = NSPasteboardItem()
+        item.setData(data, forType: AppConfiguration.UTI.node)
+        return item
+    }
+    
     
     // MARK: Delegate management
     

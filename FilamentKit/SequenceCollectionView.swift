@@ -35,6 +35,8 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
         }
     }
     
+    private var dragDropInPlaceView:NSView?
+    
     // MARK: Life Cycle
     
     public required init(coder aDecoder: NSCoder)  {
@@ -50,6 +52,7 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
     func commonInit() {
         self.dataSource = self
         self.delegate = self
+        self.allowsMultipleSelection = false
         //self.collectionViewLayout = LeftAlignedCollectionViewFlowLayout()
         //self.wantsLayer = true
         
@@ -64,6 +67,8 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
         
         let addNib = NSNib(nibNamed: "AddNewNodeCollectionViewItem", bundle: NSBundle(identifier:"com.andris.FilamentKit"))
         self.registerNib(addNib, forItemWithIdentifier: "AddNewNodeCollectionViewItem")
+        
+        self.registerForDraggedTypes([AppConfiguration.UTI.dateNode, AppConfiguration.UTI.node, AppConfiguration.UTI.rule])
     }
     
     deinit {
@@ -71,45 +76,13 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
         presenter = nil
     }
     
-    
-    //MARK: CollectionView Datasource
-    
-    public func collectionView(collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch presenter!.currentState {
-        case .Completed:
-            return presenter!.nodes!.count + 1
-        default:
-            return presenter!.nodes!.count + 2
-        }
-    }
-    
-    
-    public func collectionView(collectionView: NSCollectionView, itemForRepresentedObjectAtIndexPath indexPath: NSIndexPath) -> NSCollectionViewItem {
-        
-        return itemForIndexPath(indexPath)
-    }
-    
-    public func collectionView(collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> NSSize {
-        
-        return sizeForIndexPath(indexPath)
-    }
-    
-    
-    public func collectionView(collectionView: NSCollectionView, didEndDisplayingItem item: NSCollectionViewItem, forRepresentedObjectAtIndexPath indexPath: NSIndexPath) {
-        /*
-         if item.isKindOfClass(NodeCollectionViewItem) {
-         (item as! NodeCollectionViewItem).presenter = nil
-         }
-         */
-    }
-    
+
     
     //MARK: Sequence Delegate Protocol
     
     public func sequencePresenterDidUpdateChainContents(insertedNodes:Set<NSIndexPath>, deletedNodes:Set<NSIndexPath>) {
         
         self.performBatchUpdates({ () -> Void in
-            
             if insertedNodes.count > 0 {
                 self.insertItemsAtIndexPaths(insertedNodes)
                 // animate to that new item
@@ -137,7 +110,6 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
         Swift.print("seq collection copy")
     }
     
-    
     public func delete(theEvent: NSEvent) {
         var nodesToDelete = [Node]()
         for indexPath in self.selectionIndexPaths {
@@ -157,6 +129,37 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
         if theEvent.keyCode == 51 || theEvent.keyCode == 117  {
             delete(theEvent)
         }
+    }
+    
+    
+    //MARK: CollectionView Datasource
+    
+    public func collectionView(collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
+        switch presenter!.currentState {
+        case .Completed:
+            return presenter!.nodes!.count + 1
+        default:
+            return presenter!.nodes!.count + 2
+        }
+    }
+    
+    public func collectionView(collectionView: NSCollectionView, itemForRepresentedObjectAtIndexPath indexPath: NSIndexPath) -> NSCollectionViewItem {
+        
+        return itemForIndexPath(indexPath)
+    }
+    
+    public func collectionView(collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> NSSize {
+        
+        return sizeForIndexPath(indexPath)
+    }
+    
+    
+    public func collectionView(collectionView: NSCollectionView, didEndDisplayingItem item: NSCollectionViewItem, forRepresentedObjectAtIndexPath indexPath: NSIndexPath) {
+        /*
+         if item.isKindOfClass(NodeCollectionViewItem) {
+         (item as! NodeCollectionViewItem).presenter = nil
+         }
+         */
     }
     
     
@@ -180,21 +183,117 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
     //MARK: Drag Drop
     
     public func collectionView(collectionView: NSCollectionView, canDragItemsAtIndexPaths indexPaths: Set<NSIndexPath>, withEvent event: NSEvent) -> Bool {
+        if indexPaths.count == 0 { return false }
         
-        // We can drag anything but the addButton
-        /*
-         switch presenter!.currentState {
-         case .Completed:
-         return presenter!.nodes!.count + 1
-         default:
-         return presenter!.nodes!.count + 2
-         }
-         
-         */
+        // We can drag anything but completed items, transitions or the addButton
+        if itemTypeAtIndex(indexPaths.first!) == .AddButton { return false }
+        if itemTypeAtIndex(indexPaths.first!) == .Date { return true }
+        let item = itemForIndexPath(indexPaths.first!)
+        if item.isKindOfClass(NodeCollectionViewItem) {
+            if let presenter = (item as! NodeCollectionViewItem).presenter {
+                if presenter.type == .Transition { return false }
+                if presenter.currentState == .Running { return false }
+                if presenter.currentState == .Completed { return false }
+            }
+        }
         return true
     }
     
+    public func collectionView(collectionView: NSCollectionView, pasteboardWriterForItemAtIndexPath indexPath: NSIndexPath) -> NSPasteboardWriting? {
+        
+        let item = itemForIndexPath(indexPath)
+        if item.isKindOfClass(DateNodeCollectionViewItem) { return (item as! DateNodeCollectionViewItem).draggingItem() }
+        if item.isKindOfClass(NodeCollectionViewItem) { return (item as! NodeCollectionViewItem).draggingItem() }
+        Swift.print("Returning Nil")
+        return nil
+    }
     
+    public func collectionView(collectionView: NSCollectionView,  draggingImageForItemsAtIndexPaths indexPaths: Set<NSIndexPath>, withEvent event: NSEvent, offset dragImageOffset: NSPointPointer) -> NSImage {
+        //   self.itemTypeAtIndex(indexPaths.first)
+        
+        let item = itemForIndexPath(indexPaths.first!)
+        item.view.lockFocus()
+        let bitmap = NSBitmapImageRep(focusedViewRect: item.view.bounds)
+        item.view.unlockFocus()
+        let image = NSImage(size: item.view.bounds.size)
+        image.addRepresentation(bitmap!)
+        return image
+    }
+    
+    
+    public func collectionView(collectionView: NSCollectionView, draggingSession session: NSDraggingSession, willBeginAtPoint screenPoint: NSPoint, forItemsAtIndexPaths indexPaths: Set<NSIndexPath>) {
+        
+       // This is such a hacky solution!! (But it works!)
+        let item = itemForIndexPath(indexPaths.first!)
+        item.selected = false
+        dragDropInPlaceView = item.view
+        dragDropInPlaceView!.frame = self.frameForItemAtIndex(indexPaths.first!.item)
+        self.addSubview(dragDropInPlaceView!)
+        
+        /*
+         Other ways tired
+        item.view.lockFocus()
+        let bitmap = NSBitmapImageRep(focusedViewRect: item.view.bounds)
+        item.view.unlockFocus()
+        let image = NSImage(size: item.view.bounds.size)
+        image.addRepresentation(bitmap!)
+*/
+        
+        // let image = self.draggingImageForItemsAtIndexPaths(indexPaths, withEvent:NSEvent() , offset: NSPointPointer())
+        // let imageView = NSImageView(frame: self.frameForItemAtIndex(indexPaths.first!.item))
+        //imageView.image = image
+    }
+    
+    public func collectionView(collectionView: NSCollectionView, draggingSession session: NSDraggingSession, endedAtPoint screenPoint: NSPoint, dragOperation operation: NSDragOperation) {
+        
+        if dragDropInPlaceView != nil {
+            dragDropInPlaceView?.removeFromSuperview()
+        }
+    }
+    
+    
+    public func collectionView(collectionView: NSCollectionView, validateDrop draggingInfo: NSDraggingInfo, proposedIndexPath proposedDropIndexPath: AutoreleasingUnsafeMutablePointer<NSIndexPath?>, dropOperation proposedDropOperation: UnsafeMutablePointer<NSCollectionViewDropOperation>) -> NSDragOperation {
+        /*
+        if (*proposedDropOperation == NSCollectionViewDropOn)
+        *proposedDropOperation =  NSCollectionViewDropBefore;
+        */
+         return NSDragOperation.Copy
+        
+        /*
+        
+        if allowDrops == false { return NSDragOperation.None }
+        if draggingInfo.draggingSource()! === self { return NSDragOperation.None }
+        
+        if let presenter = rulePresenterFromDraggingItem(draggingInfo) {
+            
+            if presenter.availableToNodeType.contains(self.allowDropsFromType) {
+                
+                for rule in self.rulePresenters! {
+                    if rule.name == presenter.name { return NSDragOperation.None }
+                }
+                return NSDragOperation.Copy
+            }
+        }
+        return NSDragOperation.None
+ */
+    }
+    
+    public func collectionView(collectionView: NSCollectionView, acceptDrop draggingInfo: NSDraggingInfo, indexPath: NSIndexPath, dropOperation: NSCollectionViewDropOperation) -> Bool {
+        
+        
+        Swift.print("Accepted Drop: \(indexPath)")
+        
+        return true
+        /*
+        if let presenter = rulePresenterFromDraggingItem(draggingInfo) {
+            self.ruleCollectionViewDelegate?.didAcceptDrop(self, droppedRulePresenter: presenter, atIndex:indexPath.item)
+            return true
+        }
+        return false
+ */
+    }
+    
+
     /////////////
     
     public func collectionView(collectionView: NSCollectionView, shouldChangeItemsAtIndexPaths indexPaths: Set<NSIndexPath>, toHighlightState highlightState: NSCollectionViewItemHighlightState) -> Set<NSIndexPath> {
@@ -212,7 +311,6 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
     }
     
     public func collectionView(collectionView: NSCollectionView, didSelectItemsAtIndexPaths indexPaths: Set<NSIndexPath>) {
-        
         self.window?.makeFirstResponder(self)
     }
     
@@ -257,7 +355,7 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
     }
     
     func itemForIndexPath(path: NSIndexPath) -> NSCollectionViewItem {
-        Swift.print("Index Path: \(path.item)  item:\(itemTypeAtIndex(path))")
+        //  Swift.print("Index Path: \(path.item)  item:\(itemTypeAtIndex(path))")
         
         switch itemTypeAtIndex(path) {
         case .Date: return makeDateItem(path)

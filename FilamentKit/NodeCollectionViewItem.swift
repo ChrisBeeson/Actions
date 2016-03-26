@@ -122,6 +122,14 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     }
     
     
+    //MARK: Pasteboard
+    
+    func draggingItem() -> NSPasteboardItem {
+        return presenter!.draggingItem()
+    }
+    
+    
+    
     func nodePresenterDidChangeTitle(presenter: NodePresenter) {
         
         self.collectionView.reloadData()

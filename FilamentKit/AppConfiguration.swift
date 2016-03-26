@@ -287,6 +287,7 @@ public class AppConfiguration: NSObject {
         
         public static let rule = "com.andris.filament.pasteboard.rule"
         public static let node = "com.andris.filament.pasteboard.node"
+        public static let dateNode = "com.andris.filament.pasteboard.dateNode"
         public static let sequence = "com.andris.filament.pasteboard.sequence"
     }
     
