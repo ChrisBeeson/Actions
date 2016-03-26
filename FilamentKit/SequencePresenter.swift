@@ -71,6 +71,10 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         return _sequence!.date
     }
     
+    public var dateIsStartDate: Bool {
+        return _sequence!.startsAtDate
+    }
+    
     public var completionDate : NSDate? {
         
         if nodes == nil { return nil}
