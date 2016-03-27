@@ -136,7 +136,6 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     public func collectionView(collectionView: NSCollectionView, draggingSession session: NSDraggingSession, willBeginAtPoint screenPoint: NSPoint, forItemsAtIndexPaths indexPaths: Set<NSIndexPath>) {
         
         // This is such a hacky solution!! (But it works!)
-        
         let item = makeItemWithIdentifier("RuleCollectionItem", forIndexPath: indexPaths.first!) as! RuleCollectionItem
         item.rulePresenter = rulePresenters![indexPaths.first!.item]
         

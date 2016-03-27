@@ -8,15 +8,11 @@
 
 import Foundation
 
-
-// This is for classes that use rules, and want to know what rules are available to them
-
 public protocol RuleAvailabiltiy {
     
     var rules:[Rule] { get }
     var type:NodeType { get }
 }
-
 
 extension RuleAvailabiltiy {
     
@@ -33,7 +29,6 @@ extension RuleAvailabiltiy {
         }
         
         allRules = allRules.filter{ $0.availableToNodeType.contains(self.type) }
-        
         return allRules.map{ RulePresenter(rule: $0) }
     }
     
@@ -46,7 +41,6 @@ extension RuleAvailabiltiy {
         }
         return presenters
     }
-    
 }
 
 

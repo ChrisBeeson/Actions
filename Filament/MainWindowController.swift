@@ -16,13 +16,11 @@ class MainWindowController: NSWindowController {
         addObserver(self, forKeyPath: "self.window.firstResponder", options: [.Initial, .Old, .New], context: nil)
     }
     
-    
     override func  windowDidLoad() {
         super.windowDidLoad()
          self.window!.titleVisibility = NSWindowTitleVisibility.Hidden
         
         NSNotificationCenter.defaultCenter().addObserverForName("DisplayCannotAccessCalendarAlert", object: nil, queue: nil) { (notification) -> Void in
-            
             let alert = NSAlert()
             alert.informativeText = "MAINWINDOW_CALENDAR_UNAUTHORIZED_BODY".localized
             alert.messageText = "MAINWINDOW_CALENDAR_UNAUTHORIZED_TITLE".localized

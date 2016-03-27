@@ -3,8 +3,7 @@
 //  Filament
 //
 //  Created by Chris Beeson on 25/09/2015.
-//  Copyright © 2015 Andris Ltd. All rights reserved.
-//
+//  Copyright © 2016 Andris Ltd. All rights reserved.
 
 import Foundation
 import DateTools
@@ -64,7 +63,6 @@ class AvoidCalendarEventsRule: Rule, NSCoding {
         }
     }
     
-    
     func ignorePeriods() -> [DTTimePeriod]? {
         var periods = [DTTimePeriod]()
         
@@ -108,7 +106,6 @@ class AvoidCalendarEventsRule: Rule, NSCoding {
     }
     
     // MARK: NSCoding
-    
     required init?(coder aDecoder: NSCoder) {
         calendars = aDecoder.decodeObjectForKey("calendars") as! Array
         super.init()

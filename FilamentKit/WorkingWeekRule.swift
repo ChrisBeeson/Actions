@@ -3,7 +3,7 @@
 //  Filament
 //
 //  Created by Chris Beeson on 30/10/2015.
-//  Copyright © 2015 Andris Ltd. All rights reserved.
+//  Copyright © 2016 Andris Ltd. All rights reserved.
 //
 
 import Foundation
@@ -13,15 +13,13 @@ import DateTools
 
 class WorkingWeekRule: Rule, NSCoding {
     
-    // This rule sits the duration of an event.
+    // This rule sets the duration of an event.
     // It allows the event to be shortened to a minimum duration if required.
     
     override var name: String { return "RULE_NAME_WORK_HOURS".localized }
     override var availableToNodeType:NodeType { return [.Generic] }
     override var conflictingRules: [Rule]? { return nil }
     override var options: RoleOptions { get { return RoleOptions.RequiresInterestWindow } }
-    
-    //defaults
     
     var workingDayStartTime =  NSDate(string: "09:00", formatString: "HH:mm")
     var workingDayEndTime = NSDate(string: "17:30", formatString: "HH:mm")
@@ -31,7 +29,6 @@ class WorkingWeekRule: Rule, NSCoding {
     var lunchBreakEnabled = true
     var enabledDays = [2:true, 3:true, 4:true, 5:true, 6:true, 7:false, 1:false]  // Sunday = 1
     
-    
     override init() {
         super.init()
     }
@@ -39,18 +36,11 @@ class WorkingWeekRule: Rule, NSCoding {
     override var avoidPeriods: [DTTimePeriod]? {
         get {
             if interestPeriod == nil { return nil }
-            
             var numberOfDays = interestPeriod?.EndDate.daysLaterThan(interestPeriod?.StartDate)
-            // numberOfDays = interestPeriod?.StartDate.daysFrom(interestPeriod?.EndDate)
-              numberOfDays! += 1
-            
-            print("Working Week Interest Period: \(interestPeriod!.log())")
-            print("Number of Days: \(numberOfDays)")
-            
+            numberOfDays! += 1
             var periods = [DTTimePeriod]()
             
             for day in 0...numberOfDays! {
-                
                 let dayNumber = interestPeriod!.StartDate.dateByAddingDays(day).weekday()
                 if enabledDays[dayNumber] == true {
                     
@@ -86,7 +76,6 @@ class WorkingWeekRule: Rule, NSCoding {
     }
     
     // MARK: NSCoding
-    
     private struct SerializationKeys {
         static let workingDayStartTime = "workingDayStartTime"
         static let workingDayEndTime = "workingDayEndTime"

@@ -36,6 +36,7 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
     }
     
     private var dragDropInPlaceView:NSView?
+    var currentlyDraggingIndexPath: NSIndexPath?
     
     // MARK: Life Cycle
     
@@ -53,7 +54,7 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
         self.dataSource = self
         self.delegate = self
         self.allowsMultipleSelection = false
-        //self.collectionViewLayout = LeftAlignedCollectionViewFlowLayout()
+        //self.collectionViewLayout = LeftAlignedSequenceFlowLayout()
         //self.wantsLayer = true
         
         let nib = NSNib(nibNamed: "DateNodeCollectionViewItem", bundle: NSBundle(identifier:"com.andris.FilamentKit"))
@@ -76,27 +77,37 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
         presenter = nil
     }
     
-
+    
     
     //MARK: Sequence Delegate Protocol
     
     public func sequencePresenterDidUpdateChainContents(insertedNodes:Set<NSIndexPath>, deletedNodes:Set<NSIndexPath>) {
         
-        self.performBatchUpdates({ () -> Void in
-            if insertedNodes.count > 0 {
-                self.insertItemsAtIndexPaths(insertedNodes)
-                // animate to that new item
-                Async.main(after: 0.1) {
-                    self.scrollToItemsAtIndexPaths(insertedNodes, scrollPosition: .CenteredHorizontally)
-                }
-            }
+        if insertedNodes.count > 0 {
+            self.animator().insertItemsAtIndexPaths(dynamicIndexForNodeIndex(insertedNodes))
             
-            if deletedNodes.count > 0 {
-                self.animator().deleteItemsAtIndexPaths(deletedNodes)
+            Async.main(after: 0.1) {
+            self.animator().scrollToItemsAtIndexPaths(self.dynamicIndexForNodeIndex(insertedNodes), scrollPosition: .CenteredHorizontally)
             }
-        }) { (completed) -> Void in
         }
-        self.reloadData()
+        
+        if deletedNodes.count > 0 {
+            // Do we need to delete the transition view to the right?
+            // We do unless the next index is the addButton.. ie it's the action on the end
+        
+            /*
+             Cant get the animation to work correctly
+             
+            let type =  itemTypeAtIndex(NSIndexPath(forItem: deletedNodes.first!.item + 1, inSection: 0 ))
+            var nodesToDelete = deletedNodes
+            if type == SequenceCollectionViewItemType.TransitionNode {
+                nodesToDelete.insert(NSIndexPath(forItem: deletedNodes.first!.item + 1, inSection: 0))
+                Swift.print("Added Transition Node")
+            }
+            */
+            //  self.deleteItemsAtIndexPaths(dynamicIndexForNodeIndex(deletedNodes)
+            self.reloadData()
+        }
     }
     
     public func sequencePresenterDidChangeState(sequencePresenter: SequencePresenter, toState:SequenceState){
@@ -145,10 +156,14 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
     
     public func collectionView(collectionView: NSCollectionView, itemForRepresentedObjectAtIndexPath indexPath: NSIndexPath) -> NSCollectionViewItem {
         
-        return itemForIndexPath(indexPath)
+        return itemForIndexPath(indexPath)!
     }
     
     public func collectionView(collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> NSSize {
+        
+        if currentlyDraggingIndexPath != nil && indexPath == currentlyDraggingIndexPath {
+            return NSSize(width: 0.0, height: 25.0)
+        }
         
         return sizeForIndexPath(indexPath)
     }
@@ -187,13 +202,14 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
         
         // We can drag anything but completed items, transitions or the addButton
         if itemTypeAtIndex(indexPaths.first!) == .AddButton { return false }
-        if itemTypeAtIndex(indexPaths.first!) == .Date { return true }
-        let item = itemForIndexPath(indexPaths.first!)
-        if item.isKindOfClass(NodeCollectionViewItem) {
-            if let presenter = (item as! NodeCollectionViewItem).presenter {
-                if presenter.type == .Transition { return false }
-                if presenter.currentState == .Running { return false }
-                if presenter.currentState == .Completed { return false }
+        if itemTypeAtIndex(indexPaths.first!) == .Date { return false }
+        if let item = itemForIndexPath(indexPaths.first!) {
+            if item.isKindOfClass(NodeCollectionViewItem) {
+                if let presenter = (item as! NodeCollectionViewItem).presenter {
+                    if presenter.type == .Transition { return false }
+                    if presenter.currentState == .Running { return false }
+                    if presenter.currentState == .Completed { return false }
+                }
             }
         }
         return true
@@ -201,100 +217,128 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
     
     public func collectionView(collectionView: NSCollectionView, pasteboardWriterForItemAtIndexPath indexPath: NSIndexPath) -> NSPasteboardWriting? {
         
-        let item = itemForIndexPath(indexPath)
-        if item.isKindOfClass(DateNodeCollectionViewItem) { return (item as! DateNodeCollectionViewItem).draggingItem() }
-        if item.isKindOfClass(NodeCollectionViewItem) { return (item as! NodeCollectionViewItem).draggingItem() }
+        if  let item = itemForIndexPath(indexPath) {
+            if item.isKindOfClass(DateNodeCollectionViewItem) { return (item as! DateNodeCollectionViewItem).draggingItem() }
+            if item.isKindOfClass(NodeCollectionViewItem) { return (item as! NodeCollectionViewItem).draggingItem() }
+        }
         Swift.print("Returning Nil")
         return nil
     }
     
-    public func collectionView(collectionView: NSCollectionView,  draggingImageForItemsAtIndexPaths indexPaths: Set<NSIndexPath>, withEvent event: NSEvent, offset dragImageOffset: NSPointPointer) -> NSImage {
-        //   self.itemTypeAtIndex(indexPaths.first)
-        
-        let item = itemForIndexPath(indexPaths.first!)
-        item.view.lockFocus()
-        let bitmap = NSBitmapImageRep(focusedViewRect: item.view.bounds)
-        item.view.unlockFocus()
-        let image = NSImage(size: item.view.bounds.size)
-        image.addRepresentation(bitmap!)
-        return image
-    }
-    
-    
     public func collectionView(collectionView: NSCollectionView, draggingSession session: NSDraggingSession, willBeginAtPoint screenPoint: NSPoint, forItemsAtIndexPaths indexPaths: Set<NSIndexPath>) {
         
-       // This is such a hacky solution!! (But it works!)
-        let item = itemForIndexPath(indexPaths.first!)
-        item.selected = false
-        dragDropInPlaceView = item.view
-        dragDropInPlaceView!.frame = self.frameForItemAtIndex(indexPaths.first!.item)
-        self.addSubview(dragDropInPlaceView!)
+        // currentlyDraggingIndexPath = indexPaths.first
+        //self.animator().reloadItemsAtIndexPaths(indexPaths)
         
-        /*
-         Other ways tired
-        item.view.lockFocus()
-        let bitmap = NSBitmapImageRep(focusedViewRect: item.view.bounds)
-        item.view.unlockFocus()
-        let image = NSImage(size: item.view.bounds.size)
-        image.addRepresentation(bitmap!)
-*/
+        // This is such a hacky solution!! (But it works!)
+        // I wanted to keep the original source view where it is, and the draggingView is an addition.
         
-        // let image = self.draggingImageForItemsAtIndexPaths(indexPaths, withEvent:NSEvent() , offset: NSPointPointer())
-        // let imageView = NSImageView(frame: self.frameForItemAtIndex(indexPaths.first!.item))
-        //imageView.image = image
+         if let item = itemForIndexPath(indexPaths.first!) {
+         item.selected = false
+         dragDropInPlaceView = item.view
+         dragDropInPlaceView!.frame = self.frameForItemAtIndex(indexPaths.first!.item)
+         self.addSubview(dragDropInPlaceView!)
+         }
+        
     }
     
     public func collectionView(collectionView: NSCollectionView, draggingSession session: NSDraggingSession, endedAtPoint screenPoint: NSPoint, dragOperation operation: NSDragOperation) {
         
-        if dragDropInPlaceView != nil {
-            dragDropInPlaceView?.removeFromSuperview()
-        }
+        // currentlyDraggingIndexPath = nil
+        
+         dragDropInPlaceView?.removeFromSuperview()
+         dragDropInPlaceView = nil
+        
     }
     
     
     public func collectionView(collectionView: NSCollectionView, validateDrop draggingInfo: NSDraggingInfo, proposedIndexPath proposedDropIndexPath: AutoreleasingUnsafeMutablePointer<NSIndexPath?>, dropOperation proposedDropOperation: UnsafeMutablePointer<NSCollectionViewDropOperation>) -> NSDragOperation {
-        /*
-        if (*proposedDropOperation == NSCollectionViewDropOn)
-        *proposedDropOperation =  NSCollectionViewDropBefore;
-        */
-         return NSDragOperation.Copy
         
-        /*
+        var type:String?
         
-        if allowDrops == false { return NSDragOperation.None }
-        if draggingInfo.draggingSource()! === self { return NSDragOperation.None }
-        
-        if let presenter = rulePresenterFromDraggingItem(draggingInfo) {
-            
-            if presenter.availableToNodeType.contains(self.allowDropsFromType) {
-                
-                for rule in self.rulePresenters! {
-                    if rule.name == presenter.name { return NSDragOperation.None }
-                }
-                return NSDragOperation.Copy
+        // Painfully extract what we are validating
+        draggingInfo.enumerateDraggingItemsWithOptions([], forView: self, classes: [NSPasteboardItem.self], searchOptions: [NSPasteboardURLReadingFileURLsOnlyKey: false]) {draggingItem, idx, stop in
+            let types = (draggingItem.item as! NSPasteboardItem).types
+            if types.count > 0 {
+                type = types[0]
             }
         }
-        return NSDragOperation.None
- */
+        guard type != nil else { return .None }
+        
+        switch type! {
+            
+        case AppConfiguration.UTI.rule:
+            if proposedDropOperation.memory == .Before { return .None }
+            let type =  itemTypeAtIndex(proposedDropIndexPath.memory!)
+            if type == .Date  { return .None }
+            if type == .AddButton { return .None }
+            let item = (itemForIndexPath(proposedDropIndexPath.memory!) as! NodeCollectionViewItem)
+            if item.currentState == .Running { return .None }
+            if item.currentState == .Completed { return .None }
+            //TODO: Valid Rule is aval for Type and that it doesn't already have it - I think we'll need to ask the presenter.
+            //return item.presenter.acceptRuleDrop()
+            
+            return .Copy
+            
+        case AppConfiguration.UTI.dateNode:
+            if collectionView != self {
+                // it's from another collection view
+                // so either they can drop it on the location of our date, or on the addbutton basically
+                if proposedDropOperation.memory == .Before { return .None }
+                if indexOfItemType(.Date) == proposedDropIndexPath.memory! { return .Copy }
+                // if indexOfItemType(.AddButton) == proposedDropIndexPath.memory! { return .Copy }
+            } else {
+                //  if proposedDropOperation.memory == .On { return .None }
+                if indexOfItemType(.AddButton) == proposedDropIndexPath.memory! { return .Copy }
+            }
+            
+        case AppConfiguration.UTI.node:
+/*
+             There are only two drag options for a node drop.
+             
+             1. It can be dropped into another sequence.
+                It is just inserted on to the end.
+             2. If it is hovering over a transition, which it is not related to, then the transition will open to it's size.  and it's source will disappear.
+*/
+            
+            
+            if proposedDropOperation.memory == .Before { return .None }
+            let type =  itemTypeAtIndex(proposedDropIndexPath.memory!)
+            if type == .Date  { return .None }
+            if type == .AddButton { return .None }
+            if let item = (itemForIndexPath(proposedDropIndexPath.memory!) as? NodeCollectionViewItem) {
+                if item.currentState == .Running { return .None }
+                if item.currentState == .Completed { return .None }
+                return .Copy
+            }
+            
+        default: break
+        }
+        return .None
     }
     
+    
     public func collectionView(collectionView: NSCollectionView, acceptDrop draggingInfo: NSDraggingInfo, indexPath: NSIndexPath, dropOperation: NSCollectionViewDropOperation) -> Bool {
+        var type:String?
         
-        
+        draggingInfo.enumerateDraggingItemsWithOptions([], forView: self, classes: [NSPasteboardItem.self], searchOptions: [NSPasteboardURLReadingFileURLsOnlyKey: false]) {draggingItem, idx, stop in
+            let types = (draggingItem.item as! NSPasteboardItem).types
+            if types.count > 0 {
+                type = types[0]
+            }
+        }
+    
         Swift.print("Accepted Drop: \(indexPath)")
         
         return true
         /*
-        if let presenter = rulePresenterFromDraggingItem(draggingInfo) {
-            self.ruleCollectionViewDelegate?.didAcceptDrop(self, droppedRulePresenter: presenter, atIndex:indexPath.item)
-            return true
-        }
-        return false
- */
+         if let presenter = rulePresenterFromDraggingItem(draggingInfo) {
+         self.ruleCollectionViewDelegate?.didAcceptDrop(self, droppedRulePresenter: presenter, atIndex:indexPath.item)
+         return true
+         }
+         return false
+         */
     }
-    
-
-    /////////////
     
     public func collectionView(collectionView: NSCollectionView, shouldChangeItemsAtIndexPaths indexPaths: Set<NSIndexPath>, toHighlightState highlightState: NSCollectionViewItemHighlightState) -> Set<NSIndexPath> {
         return indexPaths
@@ -330,11 +374,9 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
     //MARK: First Responder Events
     
     override public var acceptsFirstResponder: Bool { return true }
-    
     override public func becomeFirstResponder() -> Bool {
-        
-        NSNotificationCenter.defaultCenter().postNotificationName("FilamentTableViewSelectCellForView", object: self.superview)
-        
+
+    NSNotificationCenter.defaultCenter().postNotificationName("FilamentTableViewSelectCellForView", object: self.superview)
         if self.selectionIndexes.count == 0 {
             self.window?.makeFirstResponder(self.superview?.superview?.superview?.superview?.superview?.superview)
         }
@@ -354,14 +396,33 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
         }
     }
     
-    func itemForIndexPath(path: NSIndexPath) -> NSCollectionViewItem {
+    func dynamicIndexForNodeIndex(indexPaths:Set<NSIndexPath>) ->  Set<NSIndexPath>{
+        var set = Set<NSIndexPath>(minimumCapacity: indexPaths.count)
+        let modifier = currentLayoutState == .EndDateWithoutAddButton ? 0 : 1
+        for path in indexPaths {
+            set.insert(NSIndexPath(forItem: path.item + modifier, inSection: 0))
+        }
+        return set
+    }
+    
+    func nodeIndexForDynamicIndex(indexPaths:Set<NSIndexPath>) -> Set<NSIndexPath> {
+        var set = Set<NSIndexPath>(minimumCapacity: indexPaths.count)
+        let modifier = currentLayoutState == .EndDateWithoutAddButton ? 0 : 1
+        for path in indexPaths {
+            set.insert(NSIndexPath(forItem: path.item - modifier, inSection: 0))
+        }
+        return set
+    }
+    
+    
+    func itemForIndexPath(path: NSIndexPath) -> NSCollectionViewItem? {
         //  Swift.print("Index Path: \(path.item)  item:\(itemTypeAtIndex(path))")
         
         switch itemTypeAtIndex(path) {
         case .Date: return makeDateItem(path)
         case .AddButton: return makeAddButton(path)
         case .ActionNode,.TransitionNode: return makeMainTypeNode(path, type:itemTypeAtIndex(path))
-        case .Void: fatalError()
+        case .Void: return nil
         }
     }
     
@@ -513,7 +574,7 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
                 if node.type == .Action { return .ActionNode } else { return .TransitionNode }
             } else { return .Void }
             
-        default: Swift.print("Got to default")
+        default: Swift.print("Got to default - Index: \(index.item)")
         }
         return .Void
     }

@@ -33,7 +33,7 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     override public func mouseDown(theEvent: NSEvent) {
         super.mouseDown(theEvent)
         
-        if theEvent.clickCount < 2 { return }
+        //  if theEvent.clickCount < 2 { return }
         if displayedPopover != nil { return }
         
         let popover = NSPopover()
