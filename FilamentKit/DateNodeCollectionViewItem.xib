@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
@@ -11,6 +11,7 @@
         <collectionViewItem id="9IM-3f-SrT" customClass="DateNodeCollectionViewItem" customModule="FilamentKit" customModuleProvider="target">
             <connections>
                 <outlet property="circleView" destination="lxw-2o-cB3" id="VyK-gu-9rn"/>
+                <outlet property="clear" destination="6SA-wc-MGB" id="UGN-xz-2Cb"/>
                 <outlet property="day" destination="3NW-1H-wgc" id="ic8-MU-Die"/>
                 <outlet property="dayString" destination="c4T-eg-6ow" id="Hf4-bb-6s1"/>
                 <outlet property="month" destination="hSr-NU-lXM" id="ehQ-4t-HxW"/>
@@ -109,7 +110,41 @@
                 <constraint firstItem="lxw-2o-cB3" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="ojS-IV-eql"/>
                 <constraint firstAttribute="bottom" secondItem="93f-2C-0vr" secondAttribute="bottom" id="zHZ-1o-iYD"/>
             </constraints>
+            <connections>
+                <outlet property="menu" destination="4kg-43-But" id="9qj-Gi-rUZ"/>
+            </connections>
             <point key="canvasLocation" x="-114" y="-13.5"/>
         </customView>
+        <menu id="4kg-43-But">
+            <items>
+                <menuItem title="Clear Date" id="6SA-wc-MGB">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="clear:" target="-1" id="PsW-Mt-r1T"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="XqY-8E-dEE"/>
+                <menuItem title="Copy" id="OBa-WR-65a">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="copy:" target="-1" id="utb-OP-kwN"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Paste" id="2xP-gF-43F">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="paste:" target="-1" id="Wbw-wN-hp7"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="c3b-jd-2rP"/>
+                <menuItem title="Make End Date" id="E8s-t5-bQy">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="makeEndDate:" target="9IM-3f-SrT" id="4Gy-Y8-PUn"/>
+                    </connections>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="179.5" y="-18.5"/>
+        </menu>
     </objects>
 </document>

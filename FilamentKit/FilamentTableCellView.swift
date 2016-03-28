@@ -86,7 +86,7 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
     func updateCellView() {
         guard presenter != nil else { fatalError() }
         
-        presenter!.updateState(true)
+        presenter!.updateState(false)
         titleTextField.stringValue = presenter!.title
         self.sequenceCollectionView.toolTip = String(presenter!.currentState)
         sequenceCollectionView.reloadData()

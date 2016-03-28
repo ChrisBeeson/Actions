@@ -108,6 +108,7 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         cellView.presenter = filteredDocuments[row].sequencePresenter
         cellView.presenter?.addDelegate(cellView)
         cellView.presenter?.undoManager = self.undoManager
+        cellView.presenter?.updateState(true)
         cellView.updateCellView()
         return cellView
     }

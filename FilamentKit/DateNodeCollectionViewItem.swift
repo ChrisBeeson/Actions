@@ -84,6 +84,32 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     public func sequencePresenterDidChangeState(sequencePresenter: SequencePresenter, toState:SequenceState) {
     }
     
+    
+    //MARK: Menu
+    
+    public func clear(event: NSEvent) {
+        self.sequencePresenter!.setDate(nil, isStartDate:true)
+    }
+
+    public func copy(event: NSEvent) {
+        let pasteboard = NSPasteboard.generalPasteboard()
+        pasteboard.clearContents()
+        pasteboard.writeObjects([pasteboardItem()])
+    }
+    
+    
+    public func paste(event: NSEvent) {
+        let pasteboard = NSPasteboard.generalPasteboard()
+        if let data = pasteboard.dataForType(AppConfiguration.UTI.dateNode) {
+            pasteData(data)
+        }
+    }
+    
+    @IBAction func makeEndDate(sender: AnyObject) {
+        //TODO: MakeEndDate
+    }
+
+
     //MARK: Pasteboard
     
     func pasteboardItem() -> NSPasteboardItem {
@@ -96,6 +122,17 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
         let item = NSPasteboardItem()
         item.setData(data, forType: AppConfiguration.UTI.dateNode)
         return item
+    }
+    
+    func pasteData(data:NSData) {
+        let dict = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! Dictionary <String, AnyObject>
+        let date = (dict["date"] as! NSDate)
+        if date.isEqualToDate(NSDate.distantPast()) == true {
+            self.sequencePresenter!.setDate(nil, isStartDate:(dict["isStartDate"] as! Bool))
+        } else {
+            self.sequencePresenter!.setDate((dict["date"] as! NSDate), isStartDate:(dict["isStartDate"] as! Bool))
+        }
+        updateView()
     }
     
     
@@ -117,12 +154,12 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     }
     
     func acceptDrop(collectionView: NSCollectionView, item: NSPasteboardItem, dropOperation: NSCollectionViewDropOperation) -> Bool {
-        let data = item.dataForType(AppConfiguration.UTI.dateNode)
-        if data == nil { return false }
-        let dict = NSKeyedUnarchiver.unarchiveObjectWithData(data!) as! Dictionary <String, AnyObject>
-        self.sequencePresenter!.setDate((dict["date"] as! NSDate), isStartDate:(dict["isStartDate"] as! Bool))
-        updateView()
+        if let data = item.dataForType(AppConfiguration.UTI.dateNode) {
+         pasteData(data)
         return true
+        } else {
+            return false
+        }
     }
     
     //MARK Popover delegate
