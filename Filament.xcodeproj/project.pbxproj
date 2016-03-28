@@ -605,6 +605,14 @@
 			name = AvailableRules;
 			sourceTree = "<group>";
 		};
+		476D20021CA91FF000320431 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				476D20001CA7C5C500320431 /* DragDropCopyPasteItem.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		47737EF71CA2A4910072322D /* GreaterThanLessThan */ = {
 			isa = PBXGroup;
 			children = (
@@ -619,7 +627,6 @@
 			children = (
 				8329DE9A1C63DF10001B3A2F /* SequenceCollectionView.swift */,
 				476D1FFE1CA7C3AC00320431 /* SwiftCollectionView+DynamicDataSource.swift */,
-				476D20001CA7C5C500320431 /* DragDropCopyPasteItem.swift */,
 				476D1FFC1CA74A6300320431 /* LeftAlignedSequenceFlowLayout.swift */,
 				837C29451C7193E7006C8B02 /* CollectionViewItems */,
 				4778C0AC1C657F7B00F5A259 /* NodeViews */,
@@ -668,6 +675,7 @@
 		479CD2841C1B8AA300C8D1D6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				476D20021CA91FF000320431 /* Protocols */,
 				4778C0AB1C657F6500F5A259 /* SequenceCollectionView */,
 				83CE36361C84E33900D3A556 /* RuleCollectionView */,
 				47DF1C451C6879D700482390 /* Detail ViewControllers */,

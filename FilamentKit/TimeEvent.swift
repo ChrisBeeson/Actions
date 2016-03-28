@@ -32,7 +32,7 @@ class TimeEvent : NSObject, NSCoding, NSCopying {
         }
     }
     
-
+    
     
     func timePeriod() -> DTTimePeriod {
         return DTTimePeriod(startDate: startDate, endDate: endDate)
@@ -43,16 +43,15 @@ class TimeEvent : NSObject, NSCoding, NSCopying {
         endDate = NSDate.distantFuture()
         super.init()
     }
-
+    
     
     init(period:DTTimePeriod, owner:Node) {
-        
         self.startDate = period.StartDate
         self.endDate = period.EndDate
         self.owner = owner
-       
+        
         super.init()
-         if owner.type == .Action { publish = true}
+        if owner.type == .Action { publish = true}
         
         synchronizeCalendarEvent()
     }
@@ -68,25 +67,24 @@ class TimeEvent : NSObject, NSCoding, NSCopying {
             return
         }
         
-        // Async.utility { [unowned self] in
-        
-        let store = CalendarManager.sharedInstance.store
-        let items = store.calendarItemsWithExternalIdentifier(self.calendarEventId)
-        if items.count > 0 {
-            self.calendarEvent = items[0] as? EKEvent
+        Async.userInitiated() {
+            let store = CalendarManager.sharedInstance.store
+            let items = store.calendarItemsWithExternalIdentifier(self.calendarEventId)
+            if items.count > 0 {
+                self.calendarEvent = items[0] as? EKEvent
+            }
+            
+            if self.calendarEvent == nil {
+                self.createCalendarEvent()
+            } else {
+                self.updateSystemCalendarData()
+            }
         }
-        
-        if self.calendarEvent == nil {
-            self.createCalendarEvent()
-        } else {
-            updateSystemCalendarData()
-        }
-        // }
     }
     
     
     private func createCalendarEvent() {
-         guard CalendarManager.sharedInstance.authorized == true else { return }
+        guard CalendarManager.sharedInstance.authorized == true else { return }
         
         // first lets make sure that an event with same dates and title doesn't already Exist.
         
@@ -126,7 +124,7 @@ class TimeEvent : NSObject, NSCoding, NSCopying {
         }
         
         if dirty == true {
-                self.saveCalendarEvent()
+            self.saveCalendarEvent()
         }
         processing = false
     }
@@ -188,7 +186,7 @@ class TimeEvent : NSObject, NSCoding, NSCopying {
     // MARK: NSCopying
     
     func copyWithZone(zone: NSZone) -> AnyObject  {
-
+        
         let clone = TimeEvent()
         clone.startDate = self.startDate.copy() as! NSDate
         clone.endDate = self.endDate.copy() as! NSDate

@@ -145,7 +145,7 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate, Drag
         
         switch item.types[0] {
         case AppConfiguration.UTI.rule:
-            let rule =  RulePresenter(draggingItem:item)
+            let rule =  RulePresenter(pasteboardItem:item)
             return presenter?.wouldAcceptRulePresenter(rule, allowDuplicates:true) == true ? .Copy : .None
         default:
             return .None
@@ -156,7 +156,7 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate, Drag
     
     switch item.types[0] {
     case AppConfiguration.UTI.rule:
-        let rule =  RulePresenter(draggingItem:item)
+        let rule =  RulePresenter(pasteboardItem:item)
         presenter?.insertRulePresenter(rule, atIndex: -1)
         return true
         

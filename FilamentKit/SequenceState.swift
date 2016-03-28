@@ -43,8 +43,8 @@ public enum SequenceState : Int {
         }
         
         if processEvents == true {
-            let calcState = processCalanderEvents(presenter)
-            toState(calcState, presenter: presenter)
+                let calcState = self.processCalanderEvents(presenter)
+                self.toState(calcState, presenter: presenter)
         } else {
             toState(currentState, presenter: presenter)
         }

@@ -8,13 +8,15 @@
 
 import Foundation
 
-public class RuleCollectionItem : NSCollectionViewItem {
+public class RuleCollectionItem : NSCollectionViewItem, DragDropCopyPasteItem {
     
     @IBOutlet weak var rulePillView: RulePillView!
     @IBOutlet weak var label: NSTextField!
     
     var doubleClickDisplaysDetailView = true
     var rulePresenter: RulePresenter?
+    
+    // TODO: Add PopoverCurrentlyDisplayed
     
     var currentState: RuleState {
         if rulePresenter == nil { return .Inactive }
@@ -44,7 +46,6 @@ public class RuleCollectionItem : NSCollectionViewItem {
     
     
     func updateView() {
-
         if rulePresenter != nil { label.stringValue = rulePresenter!.name as String }
         
         switch currentState {
@@ -85,4 +86,30 @@ public class RuleCollectionItem : NSCollectionViewItem {
         popover.contentViewController = detailView
         popover.showRelativeToRect(self.view.frame, ofView: self.view.superview!, preferredEdge:.MaxY )
     }
+    
+    
+    // Copy & Paste
+    
+    func pasteboardItem() -> NSPasteboardItem {
+        return rulePresenter!.pasteboardItem()
+    }
+    
+    // Drag & Drop
+    
+    func isDraggable() -> Bool {
+        return true
+    }
+    
+    func draggingItem() -> NSPasteboardWriting? {
+        return pasteboardItem()
+    }
+    
+    func validateDrop(item: NSPasteboardItem, proposedDropOperation: UnsafeMutablePointer<NSCollectionViewDropOperation>) -> NSDragOperation {
+        return .None
+    }
+    
+    func acceptDrop(collectionView: NSCollectionView, item: NSPasteboardItem, dropOperation: NSCollectionViewDropOperation) -> Bool {
+        return true
+    }
+    
 }
