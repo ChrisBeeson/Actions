@@ -16,7 +16,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     weak public var representingDocument: FilamentDocument?
     var delegates = [SequencePresenterDelegate]()
     var nodePresenters = [NodePresenter]()
-    private var _sequence: Sequence?
+    private weak var _sequence: Sequence?
     private var _shouldBeDeleted = false
 
     override init() {

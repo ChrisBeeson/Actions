@@ -9,7 +9,7 @@
 import Foundation
 import DateTools
 
-public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegate, SequencePresenterDelegate, DateTimePickerViewDelegate {
+public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegate, SequencePresenterDelegate, DateTimePickerViewDelegate, SequenceCollectionViewDropDestination {
     
     @IBOutlet weak var month: NSTextField!
     @IBOutlet weak var day: NSTextField!
@@ -92,11 +92,31 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
         if sequencePresenter!.date != nil { date = sequencePresenter!.date! } else {
             date = NSDate.distantPast()
         }
-        let data = NSKeyedArchiver.archivedDataWithRootObject(date)
+        let dictionary = ["date":date, "isStartDate":sequencePresenter!.dateIsStartDate]
+        let data = NSKeyedArchiver.archivedDataWithRootObject(dictionary)
         let item = NSPasteboardItem()
         item.setData(data, forType: AppConfiguration.UTI.dateNode)
         return item
     }
+    
+    
+    //MARK: Drag & Drop
+    
+    func validateDrop(item: NSPasteboardItem, proposedDropOperation: UnsafeMutablePointer<NSCollectionViewDropOperation>) -> NSDragOperation {
+        
+        if proposedDropOperation.memory == .Before { return .None }
+        return .Link
+    }
+    
+    func acceptDrop(collectionView: NSCollectionView, acceptDrop item: NSPasteboardItem, indexPath: NSIndexPath, dropOperation: NSCollectionViewDropOperation) -> Bool {
+        let data = item.dataForType(AppConfiguration.UTI.dateNode)
+        if data == nil { return false }
+        let dict = NSKeyedUnarchiver.unarchiveObjectWithData(data!) as! Dictionary <String, AnyObject>
+        self.sequencePresenter!.setDate((dict["date"] as! NSDate), isStartDate:(dict["isStartDate"] as! Bool))
+        updateView()
+        return true
+    }
+    
     
     public func popoverDidClose(notification: NSNotification) {
         displayedPopover = nil

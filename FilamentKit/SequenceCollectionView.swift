@@ -98,10 +98,8 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
         if deletedNodes.count > 0 {
             // Do we need to delete the transition view to the right?
             // We do unless the next index is the addButton.. ie it's the action on the end
-        
+            //TODO: Animate Delete Node
             /*
-             Cant get the animation to work correctly
-             
             let type =  itemTypeAtIndex(NSIndexPath(forItem: deletedNodes.first!.item + 1, inSection: 0 ))
             var nodesToDelete = deletedNodes
             if type == SequenceCollectionViewItemType.TransitionNode {
@@ -258,18 +256,14 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
     
     public func collectionView(collectionView: NSCollectionView, validateDrop draggingInfo: NSDraggingInfo, proposedIndexPath proposedDropIndexPath: AutoreleasingUnsafeMutablePointer<NSIndexPath?>, dropOperation proposedDropOperation: UnsafeMutablePointer<NSCollectionViewDropOperation>) -> NSDragOperation {
         
-        var type:String?
+        guard draggingInfo.draggingPasteboard().pasteboardItems != nil && draggingInfo.draggingPasteboard().pasteboardItems!.count == 1 else { Swift.print("pasteboardItems are nil or more than 1") ; return .None }
+        let type = draggingInfo.draggingPasteboard().pasteboardItems![0].types[0]
         
-        // Painfully extract what we are validating
-        draggingInfo.enumerateDraggingItemsWithOptions([], forView: self, classes: [NSPasteboardItem.self], searchOptions: [NSPasteboardURLReadingFileURLsOnlyKey: false]) {draggingItem, idx, stop in
-            let types = (draggingItem.item as! NSPasteboardItem).types
-            if types.count > 0 {
-                type = types[0]
-            }
-        }
-        guard type != nil else { return .None }
-        
-        switch type! {
+        let proposedDestinationItem = itemForIndexPath(proposedDropIndexPath.memory!)
+        let result = (proposedDestinationItem as! SequenceCollectionViewDropDestination).validateDrop(draggingInfo.draggingPasteboard().pasteboardItems![0], proposedDropOperation:proposedDropOperation)
+        if result == .None { return .None }
+    
+        switch type {
             
         case AppConfiguration.UTI.rule:
             if proposedDropOperation.memory == .Before { return .None }

@@ -57,15 +57,12 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     }
     
     
-    
-    
     func setTableViewFilter(filter: DocumentFilterType) {
         if self.filter != filter {
             self.filter = filter
             updateTableViewContent(false)
         }
     }
-    
     
     func updateTableViewContent(animated:Bool) {
         
@@ -91,12 +88,10 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
             let insertionIndexPaths = NSMutableIndexSet()
             diff.insertions.forEach { insertionIndexPaths.addIndex($0.idx) }
             
-            dispatch_async(dispatch_get_main_queue(), {
-                self.tableView?.beginUpdates()
-                self.tableView?.removeRowsAtIndexes(deletionIndexPaths, withAnimation: NSTableViewAnimationOptions.EffectFade)
-                self.tableView?.insertRowsAtIndexes(insertionIndexPaths, withAnimation: NSTableViewAnimationOptions.SlideLeft)
-                self.tableView?.endUpdates()
-            })
+            self.tableView?.beginUpdates()
+            self.tableView?.removeRowsAtIndexes(deletionIndexPaths, withAnimation: NSTableViewAnimationOptions.EffectFade)
+            self.tableView?.insertRowsAtIndexes(insertionIndexPaths, withAnimation: NSTableViewAnimationOptions.SlideLeft)
+            self.tableView?.endUpdates()
         }
     }
     
@@ -126,22 +121,19 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         }
     }
     
-    
     // MARK: Filaments Manager Delegate
     
     public func filamentsDocumentsManagerDidUpdateContents(inserted inserted:[FilamentDocument], removed:[FilamentDocument]) {
-        
-        allDocuments.removeObjects(removed)
-        allDocuments.appendContentsOf(inserted)
-        updateTableViewContent(true)
+        Async.main {
+            self.allDocuments.removeObjects(removed)
+            self.allDocuments.appendContentsOf(inserted)
+            self.updateTableViewContent(true)
+        }
     }
-    
-    
     
     // MARK: First Responder Events
     
     public func delete(theEvent: NSEvent) {
-        
         if self.tableView.selectedRowIndexes.count == 0 { return }
         
         let alert = NSAlert()
@@ -152,7 +144,6 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         alert.addButtonWithTitle("TABLEVIEW_DELETE_SEQ_CANCEL".localized)
         
         switch (alert.runModal()) {
-            
         case NSAlertFirstButtonReturn:   // Delete
             if let cellView = tableView.viewAtColumn(0, row: tableView.selectedRow, makeIfNecessary: false) as? FilamentTableCellView {
                 Async.userInitiated {
@@ -165,10 +156,10 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     }
     
     /*
-    override public func keyDown(theEvent: NSEvent) {
-    Swift.print(theEvent)
-    }
-    */
+     override public func keyDown(theEvent: NSEvent) {
+     Swift.print(theEvent)
+     }
+     */
     
     public func newDocument(event: NSEvent) {
         FilamentDocument.newSequenceDocument("NEW_DOCUMENT_DEFAULT_TITLE".localized)
@@ -212,7 +203,6 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     
     public override func mouseDown(theEvent: NSEvent) {
         super.mouseDown(theEvent)
-        
         // deselect if click wasn't on a row
         let point = tableView.convertPoint(theEvent.locationInWindow, fromView: nil)
         let row = tableView.rowAtPoint(point)
@@ -255,7 +245,6 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     //MARK: Generic Rules Collection View
     
     @IBAction func addGenericRuleButtonPressed(sender: AnyObject) {
-        
         if displayedPopover != nil {return }
         
         let popover = NSPopover()
@@ -271,13 +260,11 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         availableGenericRulesViewController!.displayRulesForNodeType = [.Generic]
         availableGenericRulesViewController!.collectionViewDelegate = self
         popover.contentViewController = availableGenericRulesViewController
-        
         popover.showRelativeToRect(addGenericRuleButton.frame, ofView:self.view.superview!, preferredEdge:.MaxY )
     }
     
     
     func refreshGenericRulesCollectionView() {
-        
         let context = AppConfiguration.sharedConfiguration.contextPresenter()
         genericRulesCollectionView.rulePresenters = context.currentRulePresenters()
         genericRulesCollectionView.reloadData()

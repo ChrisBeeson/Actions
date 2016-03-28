@@ -25,11 +25,11 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
     
     @IBOutlet weak var statusTextField: NSTextField!
     @IBOutlet weak var rulesStackView: NSStackView!
+    
     private var availableGeneralRulesViewController : AvailableRulesViewController?
     private var displayedPopover: NSPopover?
     
     public weak var presenter: SequencePresenter? {
-        
         set {
             presenter?.removeDelegate(self)
             sequenceCollectionView.presenter = newValue
@@ -64,14 +64,12 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
     // MARK: Methods
     
     required public init?(coder: NSCoder) {
-        
         selected = false
         super.init(coder: coder)
     }
     
     override public func viewWillDraw() {
         super.viewWillDraw()
-        
         generalRulesCollectionView.collectionViewLayout = RightAlignedCollectionViewFlowLayout()
         generalRulesCollectionView.ruleCollectionViewDelegate = self
         generalRulesCollectionView.allowDrops = true
@@ -111,7 +109,6 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
     
     
     @IBAction func titleTextFieldDidChange(sender: NSTextField) {
-        
         presenter!.renameTitle(sender.stringValue)
     }
 
@@ -210,7 +207,6 @@ public class FilamentTableCellView: NSTableCellView, SequencePresenterDelegate, 
         displayedPopover?.close()
     }
     
-
     
     //MARK: NSPopover Delegate
     

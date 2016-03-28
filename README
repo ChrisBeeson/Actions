@@ -9,12 +9,14 @@ Fuse
 Todo
 -------
 
+reorganise nodes
+backtime from enddate
+drop rules onto nodes
+
 Rules that clash - startTimeWindows do not overlap
 verbose on why things have failed.
 calendar events UI
-backtime from enddate
-drop rules onto nodes
-reorganise nodes
+
 Timeline position bar
 Wait for user Notifications
 caledar alarm

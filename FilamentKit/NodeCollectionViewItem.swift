@@ -8,7 +8,7 @@
 
 import Foundation
 
-class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
+class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate, SequenceCollectionViewDropDestination, NSPopoverDelegate {
     
     @IBOutlet weak var titleTextField: NSTextField!
     @IBOutlet weak var nodeView: NodeView!
@@ -17,6 +17,8 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     @IBOutlet weak var statusFieldBackground: NSTextField?
     
     var currentState = NodeState.Inactive
+    
+    var displayedPopover: NSPopover?
     
     var indexPath : NSIndexPath?
 
@@ -61,26 +63,24 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     
     override func mouseDown(theEvent: NSEvent) {
         super.mouseDown(theEvent)
-        
-        if theEvent.clickCount < 2 {return }
+        if theEvent.clickCount < 2 { return }
+        if displayedPopover != nil { return }
         
         let popover = NSPopover()
         popover.animates = true
         popover.behavior = .Semitransient
         popover.appearance = NSAppearance(named: NSAppearanceNameAqua)
+        popover.delegate = self
         
         let detailViewController = NodeDetailViewController(nibName:"NodeDetailViewController", bundle:NSBundle(identifier:"com.andris.FilamentKit"))
         detailViewController!.nodePresenter = presenter!
         presenter!.addDelegate(detailViewController!)
-        
         popover.contentViewController = detailViewController
-        
-        // Popover position & show
+        displayedPopover = popover
         
         var frame = self.view.frame
         
         switch presenter!.type {
-            
         case [.Action]:
             frame.size = NSSize(width: frame.size.width-10.0, height: frame.size.height)
             popover.showRelativeToRect(frame, ofView: self.view.superview!, preferredEdge:.MaxX)
@@ -129,11 +129,34 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     }
     
     
+    //MARK: Drag & Drop
+    
+    func validateDrop(item: NSPasteboardItem, proposedDropOperation: UnsafeMutablePointer<NSCollectionViewDropOperation>) -> NSDragOperation {
+        
+        switch item.types[0] {
+        case AppConfiguration.UTI.rule:
+            let rulePresenter =  RulePresenter(draggingItem:item)
+            if presenter!.availableRulePresenters().contains(rulePresenter) == true {
+                return .Copy
+            }
+        default:
+            return .None
+        }
+        
+        return .None
+    }
+    
+    func acceptDrop(collectionView: NSCollectionView, acceptDrop item: NSPasteboardItem, indexPath: NSIndexPath, dropOperation: NSCollectionViewDropOperation) -> Bool {
+        return false
+    }
+    
+    
     
     func nodePresenterDidChangeTitle(presenter: NodePresenter) {
         
-        self.collectionView.reloadData()
-        //  self.collectionView.reloadItemsAtIndexPaths(Set(arrayLiteral: self.indexPath!))
+        //  self.collectionView.reloadData()
+        displayedPopover?.close()
+        self.collectionView.animator().reloadItemsAtIndexPaths(Set(arrayLiteral: self.indexPath!))
     }
     
     
@@ -141,5 +164,9 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate {
     
     override func becomeFirstResponder() -> Bool {
         return true
+    }
+    
+    func popoverDidClose(notification: NSNotification) {
+        displayedPopover = nil
     }
 }

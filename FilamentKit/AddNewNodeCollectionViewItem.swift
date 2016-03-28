@@ -8,31 +8,23 @@
 
 import Foundation
 
-public class AddNewNodeCollectionViewItem : NSCollectionViewItem {
+public class AddNewNodeCollectionViewItem : NSCollectionViewItem, SequenceCollectionViewDropDestination {
     
     @IBOutlet weak var plusButton: NSButton!
     
     weak var sequencePresenter : SequencePresenter?
     
     override public func viewDidLoad() {
-        
         let tracking = NSTrackingArea(rect: self.view.frame, options: [.MouseEnteredAndExited,.ActiveInActiveApp] , owner: self, userInfo: nil)
         self.view.addTrackingArea(tracking)
          plusButton.alphaValue = 0.0
     }
     
-    
-    
-    
     @IBAction func plusButtonPressed(sender: AnyObject) {
-        
         sequencePresenter?.insertActionNode(nil, index: nil)
     }
     
-
-    
      override public func mouseEntered(theEvent: NSEvent) {
-
         NSAnimationContext.beginGrouping()
         NSAnimationContext.currentContext().duration  = 0.5
         plusButton.animator().alphaValue = 1.0
@@ -40,12 +32,20 @@ public class AddNewNodeCollectionViewItem : NSCollectionViewItem {
     }
     
     override public func mouseExited(theEvent: NSEvent) {
-        
         NSAnimationContext.beginGrouping()
         NSAnimationContext.currentContext().duration  = 0.5
         plusButton.animator().alphaValue = 0.0
         NSAnimationContext.endGrouping()
     }
     
+    //MARK: Drag & Drop
+    
+    func validateDrop(item: NSPasteboardItem, proposedDropOperation: UnsafeMutablePointer<NSCollectionViewDropOperation>) -> NSDragOperation {
+        return .None
+    }
+    
+    func acceptDrop(collectionView: NSCollectionView, acceptDrop item: NSPasteboardItem, indexPath: NSIndexPath, dropOperation: NSCollectionViewDropOperation) -> Bool {
+        return false
+    }
 }
 

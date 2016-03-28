@@ -55,7 +55,6 @@ public class FilamentDocument: NSDocument {
     
     
     override public func defaultDraftName() -> String {
-        
         return AppConfiguration.defaultFilamentDraftName
     }
     
@@ -154,5 +153,4 @@ public class FilamentDocument: NSDocument {
             NSLocalizedFailureReasonErrorKey: NSLocalizedString("No presenter was available for the document", comment: "Archive failure reason")
             ])
     }
-    
 }

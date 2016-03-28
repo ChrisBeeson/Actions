@@ -7,12 +7,12 @@
 //
 
 import Foundation
+import Async
 
 public protocol FilamentDocumentsManagerDelegate : class  {
     
     func filamentsDocumentsManagerDidUpdateContents(inserted inserted:[FilamentDocument], removed:[FilamentDocument])
 }
-
 
 public class FilamentDocumentsManager : DirectoryMonitorDelegate {
     
@@ -42,14 +42,11 @@ public class FilamentDocumentsManager : DirectoryMonitorDelegate {
         }
     }
     
-
     // MARK: DirectoryMonitorDelegate
     
     public func directoryMonitorDidObserveChange(directoryMonitor: DirectoryMonitor) {
-        
         processChangeToLocalDocumentsDirectory()
     }
-    
     
     /** Ensures that documents[] == localDirectory **/
     
@@ -59,13 +56,11 @@ public class FilamentDocumentsManager : DirectoryMonitorDelegate {
             let oldURLS = self.documents.map ( {$0.fileURL! })
             
             // inserted Urls
-            
             let insertedURLs = newURLs.filter { !oldURLS.contains($0) }
             let insertedDocs = FilamentDocumentsManager.documentsForURLs(insertedURLs)
             self.documents.appendContentsOf(insertedDocs)
             
             // removed Urls
-    
             let removedURLs = oldURLS.filter { !newURLs.contains($0) }
             
             var removedDocs = [FilamentDocument]()
@@ -78,7 +73,9 @@ public class FilamentDocumentsManager : DirectoryMonitorDelegate {
             }
             
             self.documents.removeObjects(removedDocs)
+         Async.main {
             self.delegate?.filamentsDocumentsManagerDidUpdateContents(inserted:insertedDocs, removed:removedDocs)
+        }
     }
     
     public func deleteDocumentForPresenter(presenter:SequencePresenter) {
@@ -91,9 +88,7 @@ public class FilamentDocumentsManager : DirectoryMonitorDelegate {
     }
 }
 
-
-// MARK: Export 
-
+// MARK: Export
 
 /*
 
@@ -109,7 +104,6 @@ NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableDa
 
 */
 
-
 // MARK: Filesystem Helpers
 
 public extension FilamentDocumentsManager {
@@ -118,7 +112,6 @@ public extension FilamentDocumentsManager {
         
         let fileManager = NSFileManager.defaultManager()
         let storageDir = AppConfiguration.sharedConfiguration.storageDirectory()
-        
         do {
             return try fileManager.contentsOfDirectoryAtURL(storageDir, includingPropertiesForKeys: nil, options:NSDirectoryEnumerationOptions.SkipsHiddenFiles)
         }
@@ -147,6 +140,7 @@ public extension FilamentDocumentsManager {
     }
     
     public func permanentlyDeleteDocument(document: FilamentDocument) {
+        
         document.sequencePresenter?.prepareForCompleteDeletion()
         document.updateChangeCount(.ChangeCleared)
         document.sequencePresenter = nil
@@ -193,7 +187,6 @@ public extension FilamentDocumentsManager {
             
         let NoStartDate = documents.filter{ $0.sequencePresenter?.currentState == SequenceState.NoStartDateSet }.sort({ $0.fileModificationDate!.compare($1.fileModificationDate!) == .OrderedAscending })
             returnDocuments.appendContentsOf(NoStartDate)
-
 
         case .Completed:
             returnDocuments = documents.filter{ $0.sequencePresenter?.currentState == SequenceState.Completed }

@@ -74,13 +74,10 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
     }
 
     @IBAction func titleTextFieldDidFinishEditing(sender: AnyObject) {
-        
-        //       nodePresenter!.title = titleTextField.stringValue
     }
     
     
     @IBAction func addRuleButtonPressed(sender: AnyObject) {
-        
         if displayedPopover != nil { return }
         
         let popover = NSPopover()
@@ -96,20 +93,15 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
         availableRulesViewController!.collectionViewDelegate = self
         availableRulesViewController!.displayRulesForNodeType = nodePresenter!.type
         popover.contentViewController = availableRulesViewController
-       
-        //TODO: Select between preferred Edges..
-        
         popover.showRelativeToRect(addRuleButton.frame, ofView: rulesTitleStackView, preferredEdge:.MaxX )
-        // popover.showRelativeToRect(ruleCollectionView.bounds, ofView: ruleStackView, preferredEdge:.MaxY )
     }
     
     
     func reloadRulesCollectionView() {
-        
         ruleCollectionView.rulePresenters = nodePresenter!.currentRulePresenters()
         ruleCollectionView.reloadData()
         availableRulesViewController?.reloadCollectionView()
-        // addNodeButton.hidden = nodePresenter!.availableRules().count > 0 ? false : true
+        //addNodeButton.hidden = nodePresenter!.availableRules().count > 0 ? false : true
     }
     
     
@@ -141,8 +133,6 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
         reloadRulesCollectionView()
     }
     
-    // MARK: Popover delegate
-    
     //MARK: NSPopover Delegate
     
     public func popoverWillShow(notification: NSNotification) {
@@ -152,5 +142,4 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
     public func popoverDidClose(notification: NSNotification) {
         displayedPopover = nil
     }
-    
 }
