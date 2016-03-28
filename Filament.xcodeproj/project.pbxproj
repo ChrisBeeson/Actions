@@ -675,10 +675,10 @@
 		479CD2841C1B8AA300C8D1D6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				476D20021CA91FF000320431 /* Protocols */,
 				4778C0AB1C657F6500F5A259 /* SequenceCollectionView */,
 				83CE36361C84E33900D3A556 /* RuleCollectionView */,
 				47DF1C451C6879D700482390 /* Detail ViewControllers */,
+				476D20021CA91FF000320431 /* Protocols */,
 			);
 			name = UI;
 			sourceTree = "<group>";
