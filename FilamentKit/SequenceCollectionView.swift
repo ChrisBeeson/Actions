@@ -172,11 +172,6 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
     
     
     public func collectionView(collectionView: NSCollectionView, didEndDisplayingItem item: NSCollectionViewItem, forRepresentedObjectAtIndexPath indexPath: NSIndexPath) {
-        /*
-         if item.isKindOfClass(NodeCollectionViewItem) {
-         (item as! NodeCollectionViewItem).presenter = nil
-         }
-         */
     }
     
     
@@ -192,39 +187,22 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
     
     public func collectionView(collectionView: NSCollectionView, willDisplayItem item: NSCollectionViewItem, forRepresentedObjectAtIndexPath indexPath: NSIndexPath) {
         if item.isKindOfClass(NodeCollectionViewItem) == true {
-            // (item as! NodeCollectionViewItem).updateView()
             (item as! NodeCollectionViewItem).indexPath = indexPath
         }
     }
     
+    
     //MARK: Drag Drop
     
     public func collectionView(collectionView: NSCollectionView, canDragItemsAtIndexPaths indexPaths: Set<NSIndexPath>, withEvent event: NSEvent) -> Bool {
-        if indexPaths.count == 0 { return false }
         
-        // We can drag anything but completed items, transitions or the addButton
-        if itemTypeAtIndex(indexPaths.first!) == .AddButton { return false }
-        if itemTypeAtIndex(indexPaths.first!) == .Date { return false }
-        if let item = itemForIndexPath(indexPaths.first!) {
-            if item.isKindOfClass(NodeCollectionViewItem) {
-                if let presenter = (item as! NodeCollectionViewItem).presenter {
-                    if presenter.type == .Transition { return false }
-                    if presenter.currentState == .Running { return false }
-                    if presenter.currentState == .Completed { return false }
-                }
-            }
-        }
-        return true
+        if indexPaths.count == 0 { return false }
+        return (itemForIndexPath(indexPaths.first!) as! DragDropCopyPasteItem).isDraggable()
     }
     
     public func collectionView(collectionView: NSCollectionView, pasteboardWriterForItemAtIndexPath indexPath: NSIndexPath) -> NSPasteboardWriting? {
         
-        if  let item = itemForIndexPath(indexPath) {
-            if item.isKindOfClass(DateNodeCollectionViewItem) { return (item as! DateNodeCollectionViewItem).draggingItem() }
-            if item.isKindOfClass(NodeCollectionViewItem) { return (item as! NodeCollectionViewItem).draggingItem() }
-        }
-        Swift.print("Returning Nil")
-        return nil
+        return (itemForIndexPath(indexPath) as! DragDropCopyPasteItem).draggingItem()
     }
     
     public func collectionView(collectionView: NSCollectionView, draggingSession session: NSDraggingSession, willBeginAtPoint screenPoint: NSPoint, forItemsAtIndexPaths indexPaths: Set<NSIndexPath>) {
@@ -241,7 +219,6 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
          dragDropInPlaceView!.frame = self.frameForItemAtIndex(indexPaths.first!.item)
          self.addSubview(dragDropInPlaceView!)
          }
-        
     }
     
     public func collectionView(collectionView: NSCollectionView, draggingSession session: NSDraggingSession, endedAtPoint screenPoint: NSPoint, dragOperation operation: NSDragOperation) {
@@ -257,12 +234,18 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
     public func collectionView(collectionView: NSCollectionView, validateDrop draggingInfo: NSDraggingInfo, proposedIndexPath proposedDropIndexPath: AutoreleasingUnsafeMutablePointer<NSIndexPath?>, dropOperation proposedDropOperation: UnsafeMutablePointer<NSCollectionViewDropOperation>) -> NSDragOperation {
         
         guard draggingInfo.draggingPasteboard().pasteboardItems != nil && draggingInfo.draggingPasteboard().pasteboardItems!.count == 1 else { Swift.print("pasteboardItems are nil or more than 1") ; return .None }
-        let type = draggingInfo.draggingPasteboard().pasteboardItems![0].types[0]
         
-        let proposedDestinationItem = itemForIndexPath(proposedDropIndexPath.memory!)
-        let result = (proposedDestinationItem as! SequenceCollectionViewDropDestination).validateDrop(draggingInfo.draggingPasteboard().pasteboardItems![0], proposedDropOperation:proposedDropOperation)
-        if result == .None { return .None }
-    
+        if proposedDropIndexPath.memory == nil { return .None }
+        if let proposedDestinationItem = (itemForIndexPath(proposedDropIndexPath.memory!) as? DragDropCopyPasteItem) {
+        
+        let result = proposedDestinationItem.validateDrop(draggingInfo.draggingPasteboard().pasteboardItems![0], proposedDropOperation:proposedDropOperation)
+        
+        return result
+        }
+        
+        //let type = draggingInfo.draggingPasteboard().pasteboardItems![0].types[0]
+        //  if result == .None { return .None }
+    /*
         switch type {
             
         case AppConfiguration.UTI.rule:
@@ -313,10 +296,18 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
         default: break
         }
         return .None
+ */
+        return .None
     }
     
     
     public func collectionView(collectionView: NSCollectionView, acceptDrop draggingInfo: NSDraggingInfo, indexPath: NSIndexPath, dropOperation: NSCollectionViewDropOperation) -> Bool {
+        
+        let item = (itemForIndexPath(indexPath) as! DragDropCopyPasteItem)
+        let result = item.acceptDrop(collectionView, item: draggingInfo.draggingPasteboard().pasteboardItems![0], dropOperation:dropOperation)
+        return result
+        
+        /*
         var type:String?
         
         draggingInfo.enumerateDraggingItemsWithOptions([], forView: self, classes: [NSPasteboardItem.self], searchOptions: [NSPasteboardURLReadingFileURLsOnlyKey: false]) {draggingItem, idx, stop in
@@ -329,6 +320,8 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
         Swift.print("Accepted Drop: \(indexPath)")
         
         return true
+ 
+ */
         /*
          if let presenter = rulePresenterFromDraggingItem(draggingInfo) {
          self.ruleCollectionViewDelegate?.didAcceptDrop(self, droppedRulePresenter: presenter, atIndex:indexPath.item)

@@ -177,7 +177,7 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     
     //MARK: Pasteboard
     
-    func draggingItem() -> NSPasteboardItem {
+    func pasteboardItem() -> NSPasteboardItem {
         let data = NSKeyedArchiver.archivedDataWithRootObject(self.node)
         let item = NSPasteboardItem()
         item.setData(data, forType: AppConfiguration.UTI.node)

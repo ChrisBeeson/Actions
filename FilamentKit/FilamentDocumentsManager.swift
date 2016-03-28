@@ -150,6 +150,7 @@ public extension FilamentDocumentsManager {
         
         do {
             try fileManager.removeItemAtURL(url)
+            document.unarchivedSequence = nil
         } catch {
             print(error)
         }

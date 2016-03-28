@@ -56,7 +56,7 @@
 		476C8D3C1C9AB8E40068E44F /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476C8D3B1C9AB8E40068E44F /* InfoViewController.swift */; };
 		476D1FFD1CA74A6300320431 /* LeftAlignedSequenceFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476D1FFC1CA74A6300320431 /* LeftAlignedSequenceFlowLayout.swift */; };
 		476D1FFF1CA7C3AC00320431 /* SwiftCollectionView+DynamicDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476D1FFE1CA7C3AC00320431 /* SwiftCollectionView+DynamicDataSource.swift */; };
-		476D20011CA7C5C500320431 /* SequenceCollectionViewDropDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476D20001CA7C5C500320431 /* SequenceCollectionViewDropDestination.swift */; };
+		476D20011CA7C5C500320431 /* DragDropCopyPasteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476D20001CA7C5C500320431 /* DragDropCopyPasteItem.swift */; };
 		477212061BED699500D5E988 /* FilamentDocumentsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477212051BED699500D5E988 /* FilamentDocumentsManager.swift */; };
 		47737EF61CA2A2DC0072322D /* GreaterThanLessThanPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47737EF51CA2A2DC0072322D /* GreaterThanLessThanPresenter.swift */; };
 		47737EF91CA2A51D0072322D /* GreaterThanLessThanRuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47737EF81CA2A51D0072322D /* GreaterThanLessThanRuleViewController.swift */; };
@@ -262,7 +262,7 @@
 		476C8D3B1C9AB8E40068E44F /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		476D1FFC1CA74A6300320431 /* LeftAlignedSequenceFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftAlignedSequenceFlowLayout.swift; sourceTree = "<group>"; };
 		476D1FFE1CA7C3AC00320431 /* SwiftCollectionView+DynamicDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftCollectionView+DynamicDataSource.swift"; sourceTree = "<group>"; };
-		476D20001CA7C5C500320431 /* SequenceCollectionViewDropDestination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceCollectionViewDropDestination.swift; sourceTree = "<group>"; };
+		476D20001CA7C5C500320431 /* DragDropCopyPasteItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragDropCopyPasteItem.swift; sourceTree = "<group>"; };
 		477212051BED699500D5E988 /* FilamentDocumentsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilamentDocumentsManager.swift; sourceTree = "<group>"; };
 		477212071BED9DCB00D5E988 /* Filament.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Filament.entitlements; path = Filament/Filament.entitlements; sourceTree = "<group>"; };
 		47737EF51CA2A2DC0072322D /* GreaterThanLessThanPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GreaterThanLessThanPresenter.swift; sourceTree = "<group>"; };
@@ -619,7 +619,7 @@
 			children = (
 				8329DE9A1C63DF10001B3A2F /* SequenceCollectionView.swift */,
 				476D1FFE1CA7C3AC00320431 /* SwiftCollectionView+DynamicDataSource.swift */,
-				476D20001CA7C5C500320431 /* SequenceCollectionViewDropDestination.swift */,
+				476D20001CA7C5C500320431 /* DragDropCopyPasteItem.swift */,
 				476D1FFC1CA74A6300320431 /* LeftAlignedSequenceFlowLayout.swift */,
 				837C29451C7193E7006C8B02 /* CollectionViewItems */,
 				4778C0AC1C657F7B00F5A259 /* NodeViews */,
@@ -1261,7 +1261,7 @@
 				835740B21C77AD0700CFBB1B /* TimeEvent.swift in Sources */,
 				4720B50E1C71C32100229734 /* EmptyNodeView.swift in Sources */,
 				836896341C807FEF00F3F547 /* AvailableRulesViewController.swift in Sources */,
-				476D20011CA7C5C500320431 /* SequenceCollectionViewDropDestination.swift in Sources */,
+				476D20011CA7C5C500320431 /* DragDropCopyPasteItem.swift in Sources */,
 				4744FBF01CA3D12B00C06123 /* NextUnitRulePresenter.swift in Sources */,
 				473574841B9A91A200493CA0 /* ListPresenterAlgorithms.swift in Sources */,
 				47ED142E1C9D534B002F4B4E /* WorkingWeekRulePresenter.swift in Sources */,

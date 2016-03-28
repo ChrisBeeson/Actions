@@ -9,7 +9,7 @@
 import Foundation
 import DateTools
 
-public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegate, SequencePresenterDelegate, DateTimePickerViewDelegate, SequenceCollectionViewDropDestination {
+public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegate, SequencePresenterDelegate, DateTimePickerViewDelegate, DragDropCopyPasteItem {
     
     @IBOutlet weak var month: NSTextField!
     @IBOutlet weak var day: NSTextField!
@@ -86,8 +86,7 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     
     //MARK: Pasteboard
     
-    func draggingItem() -> NSPasteboardItem {
-        
+    func pasteboardItem() -> NSPasteboardItem {
         let date:NSDate
         if sequencePresenter!.date != nil { date = sequencePresenter!.date! } else {
             date = NSDate.distantPast()
@@ -102,13 +101,22 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     
     //MARK: Drag & Drop
     
-    func validateDrop(item: NSPasteboardItem, proposedDropOperation: UnsafeMutablePointer<NSCollectionViewDropOperation>) -> NSDragOperation {
-        
-        if proposedDropOperation.memory == .Before { return .None }
-        return .Link
+    func isDraggable() -> Bool {
+        return true
     }
     
-    func acceptDrop(collectionView: NSCollectionView, acceptDrop item: NSPasteboardItem, indexPath: NSIndexPath, dropOperation: NSCollectionViewDropOperation) -> Bool {
+     func draggingItem() -> NSPasteboardWriting? {
+      return pasteboardItem()
+    }
+    
+    
+    func validateDrop(item: NSPasteboardItem, proposedDropOperation: UnsafeMutablePointer<NSCollectionViewDropOperation>) -> NSDragOperation {
+        //  if proposedDropOperation.memory == .Before { return .None }
+        if item.types[0] == AppConfiguration.UTI.dateNode { return .Copy }
+        return .None
+    }
+    
+    func acceptDrop(collectionView: NSCollectionView, item: NSPasteboardItem, dropOperation: NSCollectionViewDropOperation) -> Bool {
         let data = item.dataForType(AppConfiguration.UTI.dateNode)
         if data == nil { return false }
         let dict = NSKeyedUnarchiver.unarchiveObjectWithData(data!) as! Dictionary <String, AnyObject>
@@ -117,6 +125,7 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
         return true
     }
     
+    //MARK Popover delegate
     
     public func popoverDidClose(notification: NSNotification) {
         displayedPopover = nil

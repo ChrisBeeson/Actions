@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class AddNewNodeCollectionViewItem : NSCollectionViewItem, SequenceCollectionViewDropDestination {
+public class AddNewNodeCollectionViewItem : NSCollectionViewItem, DragDropCopyPasteItem {
     
     @IBOutlet weak var plusButton: NSButton!
     
@@ -38,13 +38,27 @@ public class AddNewNodeCollectionViewItem : NSCollectionViewItem, SequenceCollec
         NSAnimationContext.endGrouping()
     }
     
+    
+    
     //MARK: Drag & Drop
+    
+    func pasteboardItem() -> NSPasteboardItem {
+        fatalError("You cannot copy the add button")
+    }
+    
+    func isDraggable() -> Bool {
+     return false
+    }
+    
+    func draggingItem() -> NSPasteboardWriting? {
+        return nil
+    }
     
     func validateDrop(item: NSPasteboardItem, proposedDropOperation: UnsafeMutablePointer<NSCollectionViewDropOperation>) -> NSDragOperation {
         return .None
     }
     
-    func acceptDrop(collectionView: NSCollectionView, acceptDrop item: NSPasteboardItem, indexPath: NSIndexPath, dropOperation: NSCollectionViewDropOperation) -> Bool {
+    func acceptDrop(collectionView: NSCollectionView, item: NSPasteboardItem, dropOperation: NSCollectionViewDropOperation) -> Bool {
         return false
     }
 }

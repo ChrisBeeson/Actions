@@ -1,5 +1,5 @@
 //
-//  SequenceCollectionViewDropDestination.swift
+//  DragDropCopyPasteItem.swift
 //  Filament
 //
 //  Created by Chris Beeson on 27/03/2016.
@@ -8,13 +8,24 @@
 
 import Foundation
 
-protocol SequenceCollectionViewDropDestination {
+protocol DragDropCopyPasteItem {
+    
+    // Copy & Paste
+    
+    func pasteboardItem() -> NSPasteboardItem
+    
+    // Drag & Drop
+    
+    func isDraggable() -> Bool
+    
+    func draggingItem() -> NSPasteboardWriting?
     
     func validateDrop(item: NSPasteboardItem, proposedDropOperation: UnsafeMutablePointer<NSCollectionViewDropOperation>) -> NSDragOperation
-    func acceptDrop(collectionView: NSCollectionView, acceptDrop item: NSPasteboardItem, indexPath: NSIndexPath, dropOperation: NSCollectionViewDropOperation) -> Bool
+    
+    func acceptDrop(collectionView: NSCollectionView, item: NSPasteboardItem, dropOperation: NSCollectionViewDropOperation) -> Bool
 }
 
-extension SequenceCollectionViewDropDestination {
+extension DragDropCopyPasteItem {
     
     /*
     func dragType(draggingInfo:NSDraggingInfo) -> String {

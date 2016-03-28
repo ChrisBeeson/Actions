@@ -8,7 +8,7 @@
 
 import Foundation
 
-class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate, SequenceCollectionViewDropDestination, NSPopoverDelegate {
+class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate, DragDropCopyPasteItem, NSPopoverDelegate {
     
     @IBOutlet weak var titleTextField: NSTextField!
     @IBOutlet weak var nodeView: NodeView!
@@ -17,11 +17,9 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate, Sequ
     @IBOutlet weak var statusFieldBackground: NSTextField?
     
     var currentState = NodeState.Inactive
-    
     var displayedPopover: NSPopover?
-    
     var indexPath : NSIndexPath?
-
+    
     var presenter: NodePresenter?  {
         didSet {
             if presenter != nil {
@@ -33,13 +31,11 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate, Sequ
         }
     }
     
-    
     override var selected: Bool {
         didSet {
             nodeView.selected = self.selected
         }
     }
-    
     
     override func viewWillLayout() {
         super.viewWillLayout()
@@ -99,13 +95,12 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate, Sequ
     func nodePresenterDidChangeState(presenter: NodePresenter, toState: NodeState, options:[String]? ) {
         guard presenter == self.presenter! else { return }
         
-        Swift.print("nodePresenter:\(presenter.title)  DidChangeState:\(toState)")
-        
+        //Swift.print("nodePresenter:\(presenter.title)  DidChangeState:\(toState)")
         guard toState != currentState else { Swift.print("Already in that state");return }
         updateView()
         self.nodeView.updateViewToState(toState, shouldTransition:true)
         currentState = toState
-        /*
+        /*   Animation
         switch toState {
         case .Ready :
             if let indexPath = self.indexPath {
@@ -117,54 +112,65 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate, Sequ
         default:
             self.nodeView.updateViewToState(toState, shouldTransition:true)
         }
- */
-    
+         */
     }
-    
-    
-    //MARK: Pasteboard
-    
-    func draggingItem() -> NSPasteboardItem {
-        return presenter!.draggingItem()
-    }
-    
-    
-    //MARK: Drag & Drop
-    
-    func validateDrop(item: NSPasteboardItem, proposedDropOperation: UnsafeMutablePointer<NSCollectionViewDropOperation>) -> NSDragOperation {
-        
-        switch item.types[0] {
-        case AppConfiguration.UTI.rule:
-            let rulePresenter =  RulePresenter(draggingItem:item)
-            if presenter!.availableRulePresenters().contains(rulePresenter) == true {
-                return .Copy
-            }
-        default:
-            return .None
-        }
-        
-        return .None
-    }
-    
-    func acceptDrop(collectionView: NSCollectionView, acceptDrop item: NSPasteboardItem, indexPath: NSIndexPath, dropOperation: NSCollectionViewDropOperation) -> Bool {
-        return false
-    }
-    
-    
-    
+
     func nodePresenterDidChangeTitle(presenter: NodePresenter) {
-        
-        //  self.collectionView.reloadData()
         displayedPopover?.close()
         self.collectionView.animator().reloadItemsAtIndexPaths(Set(arrayLiteral: self.indexPath!))
     }
     
     
-    override var acceptsFirstResponder: Bool { return true }
+    //MARK: Pasteboard
     
+     func pasteboardItem() -> NSPasteboardItem {
+        return presenter!.pasteboardItem()
+    }
+    
+    
+    //MARK: Drag & Drop
+    
+    func isDraggable() -> Bool {
+        if presenter!.type == .Transition { return false }
+        if presenter!.currentState == .Running { return false }
+        if presenter!.currentState == .Completed { return false }
+        return true
+    }
+    
+    func draggingItem() -> NSPasteboardWriting? {
+        return pasteboardItem()
+    }
+    
+    func validateDrop(item: NSPasteboardItem, proposedDropOperation: UnsafeMutablePointer<NSCollectionViewDropOperation>) -> NSDragOperation {
+        
+        switch item.types[0] {
+        case AppConfiguration.UTI.rule:
+            
+              return .Copy
+              
+              /*
+            let rulePresenter =  RulePresenter(draggingItem:item)
+            if presenter!.availableRulePresenters().contains(rulePresenter) == true {
+                return .Copy
+            } */
+        default:
+            return .None
+        }
+    }
+    
+   func acceptDrop(collectionView: NSCollectionView, item: NSPasteboardItem, dropOperation: NSCollectionViewDropOperation) -> Bool {
+        return false
+    }
+    
+    
+    //MARK: First Responder
+    
+    override var acceptsFirstResponder: Bool { return true }
     override func becomeFirstResponder() -> Bool {
         return true
     }
+    
+    //
     
     func popoverDidClose(notification: NSNotification) {
         displayedPopover = nil
