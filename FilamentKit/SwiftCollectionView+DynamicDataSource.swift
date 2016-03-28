@@ -10,8 +10,6 @@ import Foundation
 
 extension SequenceCollectionView {
     
-    //MARK: Dynamic DataSource
-    
     func calculateLayoutState() {
         guard presenter != nil else { return }
         

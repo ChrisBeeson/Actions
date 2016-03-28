@@ -13,7 +13,7 @@ import DateTools
 
 
 public class NodePresenter : NSObject, RuleAvailabiltiy {
-   
+    
     var undoManager: NSUndoManager?
     weak var sequencePresenter: SequencePresenter?
     var delegates = [NodePresenterDelegate]()
@@ -60,7 +60,6 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
         }
     }
     
-    
     var notes: String {
         get {
             // if node.notes.isEmpty { return nil }
@@ -102,7 +101,6 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     
     var humanReadableEventString : String {
         get {
-            
             switch self.type {
             case NodeType.Action:
                 if self.event == nil {
@@ -120,10 +118,10 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
             }
         }
     }
+
     
     //MARK: Methods
-    
-    
+
     func renameTitle(title:String) {
         node.title = title
         sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
@@ -132,7 +130,6 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     }
     
     func updateNodeState() {
-        
         currentState.update(self)
     }
     
@@ -146,14 +143,31 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     //MARK: Rules
     
     func insertRulePresenter(rulePresenter:RulePresenter, atIndex:Int) {
+        // -1 means if it's new, put it at the end of the list, if it's not new, overwrite the current... (or update it at least)
         
-        node.rules.insert(rulePresenter.rule, atIndex: atIndex)
+        if atIndex != -1 {
+            node.rules.insert(rulePresenter.rule, atIndex: atIndex)
+        } else {
+            // first do we already have this rule?
+            if wouldAcceptRulePresenter(rulePresenter, allowDuplicates: false) == true {
+                // this is a new rule
+                node.rules.append(rulePresenter.rule)
+            } else {
+                // replace rule of the same class with this one
+                for rule in node.rules {
+                    if rule.className == rulePresenter.rule.className {
+                        node.rules.removeObject(rule)
+                        node.rules.append(rulePresenter.rule)
+                        break
+                    }
+                }
+            }
+        }
         sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
         delegates.forEach { $0.nodePresenterDidChangeRules(self) }
     }
     
     func insertRules(rules:[Rule]) {
-        
         node.rules.appendContentsOf(rules)
         sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
         delegates.forEach { $0.nodePresenterDidChangeRules(self) }
@@ -161,7 +175,6 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     
     
     func deleteRulePresenter(deletedRulePresenter: RulePresenter) {
-        
         node.rules.removeObject(deletedRulePresenter.rule)
         sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
         delegates.forEach { $0.nodePresenterDidChangeRules(self) }
@@ -184,11 +197,9 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
         return item
     }
     
-    
     // MARK: Delegate management
     
     func addDelegate(delegate:NodePresenterDelegate) {
-        
         if !delegates.contains({$0 === delegate}) {
             delegates.append(delegate)
         }

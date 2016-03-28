@@ -145,21 +145,24 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate, Drag
         
         switch item.types[0] {
         case AppConfiguration.UTI.rule:
-            
-              return .Copy
-              
-              /*
-            let rulePresenter =  RulePresenter(draggingItem:item)
-            if presenter!.availableRulePresenters().contains(rulePresenter) == true {
-                return .Copy
-            } */
+            let rule =  RulePresenter(draggingItem:item)
+            return presenter?.wouldAcceptRulePresenter(rule, allowDuplicates:true) == true ? .Copy : .None
         default:
             return .None
         }
     }
     
    func acceptDrop(collectionView: NSCollectionView, item: NSPasteboardItem, dropOperation: NSCollectionViewDropOperation) -> Bool {
+    
+    switch item.types[0] {
+    case AppConfiguration.UTI.rule:
+        let rule =  RulePresenter(draggingItem:item)
+        presenter?.insertRulePresenter(rule, atIndex: -1)
+        return true
+        
+    default:
         return false
+    }
     }
     
     
@@ -170,7 +173,7 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate, Drag
         return true
     }
     
-    //
+    //MARK: Popover Delegate
     
     func popoverDidClose(notification: NSNotification) {
         displayedPopover = nil
