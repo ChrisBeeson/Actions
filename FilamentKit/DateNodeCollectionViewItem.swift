@@ -51,6 +51,14 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     }
     
     public func updateView() {
+        
+        let item = self.view.menu?.itemAtIndex(5)
+        if sequencePresenter!.dateIsStartDate == true {
+            item!.title = "SEQ_DATE_MENU_SET_DATE_STARTTIME".localized
+        } else {
+             item!.title = "SEQ_DATE_MENU_SET_DATE_ENDTIME".localized
+        }
+        
         self.view.alphaValue = self.sequencePresenter?.currentState == .Completed ? 0.5 : 1.0
         startDateNilView.hidden = true
         startDateNotNilView.hidden = true
@@ -107,7 +115,7 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     //MARK: Menu
     
     public func clear(event: NSEvent) {
-        self.sequencePresenter!.setDate(nil, isStartDate:true)
+        self.sequencePresenter!.setDate(nil, isStartDate:self.sequencePresenter!.dateIsStartDate)
     }
     
     public func copy(event: NSEvent) {
@@ -125,7 +133,7 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     
     @IBAction func makeEndDate(sender: AnyObject) {
         displayedPopover = nil
-        self.sequencePresenter?.setDate(sequencePresenter!.date!, isStartDate: !sequencePresenter!.dateIsStartDate)
+        self.sequencePresenter?.setDate(sequencePresenter!.date, isStartDate: !sequencePresenter!.dateIsStartDate)
     }
     
     public override func validateMenuItem(menuItem: NSMenuItem) -> Bool {

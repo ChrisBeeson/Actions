@@ -49,3 +49,8 @@
 // NODES
 
 "NODE_EVENT_STRING_NO_EVENT" = "No Calendar Event";
+
+
+    // SEQ COLLECTION VIEW
+"SEQ_DATE_MENU_SET_DATE_STARTTIME" = "Set As End Time";
+"SEQ_DATE_MENU_SET_DATE_ENDTIME" = "Set As Start Time";
