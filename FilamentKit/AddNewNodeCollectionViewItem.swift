@@ -38,8 +38,6 @@ public class AddNewNodeCollectionViewItem : NSCollectionViewItem, DragDropCopyPa
         NSAnimationContext.endGrouping()
     }
     
-    
-    
     //MARK: Drag & Drop
     
     func pasteboardItem() -> NSPasteboardItem {

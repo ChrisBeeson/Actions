@@ -39,7 +39,7 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate, Drag
     
     override func viewWillLayout() {
         super.viewWillLayout()
-    
+        
     }
     
     override func viewWillAppear() {
@@ -101,20 +101,20 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate, Drag
         self.nodeView.updateViewToState(toState, shouldTransition:true)
         currentState = toState
         /*   Animation
-        switch toState {
-        case .Ready :
-            if let indexPath = self.indexPath {
-                delay(Double(indexPath.item) * 0.1) {
-                    self.nodeView.updateViewToState(toState, shouldTransition:true)
-                }} else {
-                self.nodeView.updateViewToState(toState, shouldTransition:true)
-            }
-        default:
-            self.nodeView.updateViewToState(toState, shouldTransition:true)
-        }
+         switch toState {
+         case .Ready :
+         if let indexPath = self.indexPath {
+         delay(Double(indexPath.item) * 0.1) {
+         self.nodeView.updateViewToState(toState, shouldTransition:true)
+         }} else {
+         self.nodeView.updateViewToState(toState, shouldTransition:true)
+         }
+         default:
+         self.nodeView.updateViewToState(toState, shouldTransition:true)
+         }
          */
     }
-
+    
     func nodePresenterDidChangeTitle(presenter: NodePresenter) {
         displayedPopover?.close()
         self.collectionView.animator().reloadItemsAtIndexPaths(Set(arrayLiteral: self.indexPath!))
@@ -123,7 +123,7 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate, Drag
     
     //MARK: Pasteboard
     
-     func pasteboardItem() -> NSPasteboardItem {
+    func pasteboardItem() -> NSPasteboardItem {
         return presenter!.pasteboardItem()
     }
     
@@ -152,17 +152,17 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate, Drag
         }
     }
     
-   func acceptDrop(collectionView: NSCollectionView, item: NSPasteboardItem, dropOperation: NSCollectionViewDropOperation) -> Bool {
-    
-    switch item.types[0] {
-    case AppConfiguration.UTI.rule:
-        let rule =  RulePresenter(pasteboardItem:item)
-        presenter?.insertRulePresenter(rule, atIndex: -1)
-        return true
+    func acceptDrop(collectionView: NSCollectionView, item: NSPasteboardItem, dropOperation: NSCollectionViewDropOperation) -> Bool {
         
-    default:
-        return false
-    }
+        switch item.types[0] {
+        case AppConfiguration.UTI.rule:
+            let rule =  RulePresenter(pasteboardItem:item)
+            presenter?.insertRulePresenter(rule, atIndex: -1)
+            return true
+            
+        default:
+            return false
+        }
     }
     
     

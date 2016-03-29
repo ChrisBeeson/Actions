@@ -35,9 +35,7 @@ class NodeView: NSView {
     
     override func layout() {
         super.layout()
-        
         pathLayer.path = calculatePath()
-        //  updateViewToState(_currentState, shouldTransition:false)
     }
     
     override var wantsDefaultClipping: Bool { return false }
@@ -70,26 +68,20 @@ class NodeView: NSView {
         }
         set {
             _currentState = newValue
-            // self.needsDisplay = true
         }
     }
-    
     
     func calculatePath() -> CGPath {
         fatalError("calculatePath MUST be overriden")
     }
     
-    
     func updateViewToState(state:NodeState, shouldTransition:Bool) {
-        
         if state != NodeState.Running && self.pathLayer.animationKeys()?.contains("RunningFill") == true  {
-            Swift.print("Clearing Running Animation")
             self.pathLayer.removeAnimationForKey("RunningFill")
             self.pathLayer.removeAnimationForKey("RunningStroke")
         }
         
         switch state {
-            
         case .Inactive:
             CATransaction.begin()
             CATransaction.setDisableActions(!shouldTransition)
@@ -164,10 +156,8 @@ class NodeView: NSView {
             
         case .Void: fatalError("Trying to add animation when stateNode = .Void")
         }
-        
         currentState = state
     }
-    
     
     func colourForState(state:NodeState) -> NodeColour {
         

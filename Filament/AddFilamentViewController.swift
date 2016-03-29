@@ -18,7 +18,6 @@ class AddFilamentViewController: NSViewController {
         if !cleansedString.isEmpty {
             FilamentDocument.newSequenceDocument(cleansedString)
         }
-        
         presentingViewController?.dismissViewController(self)
     }
 }

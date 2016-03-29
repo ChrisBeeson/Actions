@@ -43,7 +43,6 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         }
     }
     
-    
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
@@ -214,11 +213,9 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     
     
     //MARK: Menu
-    
     public override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
         
         switch menuItem.action {
-            
         case #selector(FilamentsTableViewController.newDocument(_:)):
             return true
             
@@ -276,27 +273,23 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     //MARK: RuleCollectionView Delegates
     
     public func didAcceptDrop(collectionView: RuleCollectionView, droppedRulePresenter: RulePresenter, atIndex: Int) {
-        
         AppConfiguration.sharedConfiguration.contextPresenter().addRulePresenter(droppedRulePresenter, atIndex: atIndex)
         refreshGenericRulesCollectionView()
         NSNotificationCenter.defaultCenter().postNotificationName("UpdateAllSequences", object: nil)
     }
     
     public func didDeleteRulePresenter(collectionView: RuleCollectionView, deletedRulePresenter: RulePresenter) {
-        
         AppConfiguration.sharedConfiguration.contextPresenter().removeRulePresenter(deletedRulePresenter)
         refreshGenericRulesCollectionView()
         NSNotificationCenter.defaultCenter().postNotificationName("UpdateAllSequences", object: nil)
     }
     
     public func didDoubleClick(collectionView: RuleCollectionView, selectedRulePresenter: RulePresenter) {
-        
         let context = AppConfiguration.sharedConfiguration.contextPresenter()
         context.addRulePresenter(selectedRulePresenter, atIndex: context.currentRulePresenters().count)
         displayedPopover?.close()
         refreshGenericRulesCollectionView()
     }
-    
     
     //MARK: NSPopover Delegate
     
