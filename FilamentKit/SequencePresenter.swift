@@ -110,6 +110,8 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         
         if date != nil && _sequence!.date != nil && date!.isEqualToDate(_sequence!.date!) && isStartDate == _sequence?.startsAtDate { return }
         
+        let isStartDateToggled = isStartDate == _sequence?.startsAtDate ? false : true
+        
         self.undoManager?.prepareWithInvocationTarget(self).setDate(self.date, isStartDate: true)
         let undoActionName = NSLocalizedString("Change Date", comment: "")
         self.undoManager?.setActionName(undoActionName)
@@ -119,6 +121,9 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         representingDocument?.updateChangeCount(.ChangeDone)
         
         currentState.toNewStartDate(self)
+        if isStartDateToggled ==  true {
+             delegates.forEach{ $0.sequencePresenterDidRefreshCompleteLayout(self) }
+        }
     }
     
 

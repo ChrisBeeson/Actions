@@ -51,10 +51,10 @@ public enum SequenceState : Int {
     }
     
     
-    mutating func toState(State: SequenceState, presenter: SequencePresenter) -> SequenceState {
-        if State == self { return self }
+    mutating func toState(state: SequenceState, presenter: SequencePresenter) -> SequenceState {
+        //if state == self { return self }
         
-        switch State {
+        switch state {
         case NoStartDateSet : return toNoStartDateSet(presenter)
         case NewStartDate : return toNewStartDate(presenter)
         case WaitingForStart : return toWaitingForStart(presenter, ignoreHasFailedNodes: false)

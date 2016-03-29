@@ -64,7 +64,7 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
         case (false, true): startDateNilView.animator().hidden = false
         case (true, true): startDateNotNilView.animator().hidden = false
         case (false, false): endDateNilView.animator().hidden = false
-        case (true, false): endDateNilView.animator().hidden = false
+        case (true, false): endDateNotNilView.animator().hidden = false
         }
     }
     
@@ -96,7 +96,7 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     
     public func dateTimePickerDidChangeDate(date:NSDate?) {
         self.sequencePresenter!.setDate(date, isStartDate:true)
-        updateView()
+        //  updateView()
     }
     
     public func sequencePresenterDidChangeState(sequencePresenter: SequencePresenter, toState:SequenceState) {
@@ -116,7 +116,6 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
         pasteboard.writeObjects([pasteboardItem()])
     }
     
-    
     public func paste(event: NSEvent) {
         let pasteboard = NSPasteboard.generalPasteboard()
         if let data = pasteboard.dataForType(AppConfiguration.UTI.dateNode) {
@@ -125,7 +124,8 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     }
     
     @IBAction func makeEndDate(sender: AnyObject) {
-        //TODO: MakeEndDate
+        displayedPopover = nil
+        self.sequencePresenter?.setDate(sequencePresenter!.date!, isStartDate: !sequencePresenter!.dateIsStartDate)
     }
     
     public override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
