@@ -11,7 +11,6 @@
         <collectionViewItem id="9IM-3f-SrT" customClass="DateNodeCollectionViewItem" customModule="FilamentKit" customModuleProvider="target">
             <connections>
                 <outlet property="circleView" destination="lxw-2o-cB3" id="VyK-gu-9rn"/>
-                <outlet property="clear" destination="6SA-wc-MGB" id="UGN-xz-2Cb"/>
                 <outlet property="day" destination="3NW-1H-wgc" id="ic8-MU-Die"/>
                 <outlet property="dayString" destination="c4T-eg-6ow" id="Hf4-bb-6s1"/>
                 <outlet property="month" destination="hSr-NU-lXM" id="ehQ-4t-HxW"/>

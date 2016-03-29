@@ -84,7 +84,7 @@ public class FilamentDocumentsManager : DirectoryMonitorDelegate {
     }
     
     func documentForSequence(sequence: Sequence) -> FilamentDocument {
-        return documents.filter{$0.unarchivedSequence! == sequence}.first!
+        return documents.filter{$0.unarchivedSequence == sequence}.first!
     }
 }
 
@@ -150,7 +150,7 @@ public extension FilamentDocumentsManager {
         
         do {
             try fileManager.removeItemAtURL(url)
-            document.unarchivedSequence = nil
+            // document.unarchivedSequence = nil
         } catch {
             print(error)
         }
