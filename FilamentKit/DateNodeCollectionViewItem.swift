@@ -11,15 +11,14 @@ import DateTools
 
 public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegate, SequencePresenterDelegate, DateTimePickerViewDelegate, DragDropCopyPasteItem {
     
-    @IBOutlet weak var month: NSTextField!
-    @IBOutlet weak var day: NSTextField!
-    @IBOutlet weak var dayString: NSTextField!
-    @IBOutlet weak var time: NSTextField!
-    @IBOutlet weak var circleView: EmptyNodeView!
-    @IBOutlet weak var transitionView: TransitionNodeView!
+    @IBOutlet weak var startDateNilView: NSView!
+    @IBOutlet weak var startDateNotNilView: NSView!
+    @IBOutlet weak var endDateNilView: NSView!
+    @IBOutlet weak var endDateNotNilView: NSView!
     
     weak var sequencePresenter: SequencePresenter?
     var displayedPopover: NSPopover?
+    var dateFormatter = NSDateFormatter()
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -27,13 +26,12 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     
     override public func viewWillAppear() {
         super.viewWillAppear()
-        
+         updateView()
     }
     
     override public func mouseDown(theEvent: NSEvent) {
         super.mouseDown(theEvent)
         
-        //  if theEvent.clickCount < 2 { return }
         if displayedPopover != nil { return }
         
         let popover = NSPopover()
@@ -48,30 +46,50 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
         if sequencePresenter!.date != nil {
             dateTimePickerViewController!.date = sequencePresenter!.date!
         }
-        popover.showRelativeToRect(self.dayString!.frame, ofView: self.view, preferredEdge:.MinX )
+        popover.showRelativeToRect(self.view.frame, ofView: self.view, preferredEdge:.MinX )
         displayedPopover = popover
     }
     
     public func updateView() {
         self.view.alphaValue = self.sequencePresenter?.currentState == .Completed ? 0.5 : 1.0
+        startDateNilView.hidden = true
+        startDateNotNilView.hidden = true
+        endDateNilView.hidden = true
+        endDateNotNilView.hidden = true
         
-        let hidden = (sequencePresenter!.date == nil) ? true : false
-        month.hidden = hidden
-        day.hidden = hidden
-        dayString.hidden = hidden
-        time.hidden = hidden
-        transitionView.hidden = !hidden
-        circleView.hidden = !hidden
+        let hasDate = (sequencePresenter!.date == nil) ? false : true
+        let isStartDate = sequencePresenter!.dateIsStartDate
         
-        let date = (sequencePresenter!.date != nil) ? sequencePresenter!.date! : NSDate()
-        let dateFormatter = NSDateFormatter()
+        switch (hasDate, isStartDate) {
+        case (false, true): startDateNilView.animator().hidden = false
+        case (true, true): startDateNotNilView.animator().hidden = false
+        case (false, false): endDateNilView.animator().hidden = false
+        case (true, false): endDateNilView.animator().hidden = false
+        }
+    }
+    
+    public var sequenceDate: NSDate {
+        if sequencePresenter == nil { return NSDate() }
+        return (sequencePresenter!.date != nil) ? sequencePresenter!.date! : NSDate()
+    }
+    
+    public var monthString: String {
         dateFormatter.dateFormat = "MMM"
-        month.stringValue = dateFormatter.stringFromDate(date).capitalizedString
+        return dateFormatter.stringFromDate(sequenceDate).capitalizedString
+    }
+    
+    public var dayString: String {
         dateFormatter.dateFormat = "EEE"
-        dayString.stringValue = dateFormatter.stringFromDate(date).capitalizedString
-        day.stringValue = String(date.day())
+        return dateFormatter.stringFromDate(sequenceDate).capitalizedString
+    }
+    
+    public var day: String {
+        return String(sequenceDate.day())
+    }
+    
+    public var time: String {
         dateFormatter.dateFormat = "HH:mm"
-        time.objectValue = dateFormatter.stringFromDate(date)
+        return dateFormatter.stringFromDate(sequenceDate)
     }
     
     // MARK: DateTimePicker delegate
@@ -82,6 +100,7 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     }
     
     public func sequencePresenterDidChangeState(sequencePresenter: SequencePresenter, toState:SequenceState) {
+         updateView()
     }
     
     
@@ -90,7 +109,7 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     public func clear(event: NSEvent) {
         self.sequencePresenter!.setDate(nil, isStartDate:true)
     }
-
+    
     public func copy(event: NSEvent) {
         let pasteboard = NSPasteboard.generalPasteboard()
         pasteboard.clearContents()
@@ -108,8 +127,14 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     @IBAction func makeEndDate(sender: AnyObject) {
         //TODO: MakeEndDate
     }
-
-
+    
+    public override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
+        if self.sequencePresenter?.currentState == SequenceState.NoStartDateSet { return true }
+        if self.sequencePresenter?.currentState == SequenceState.WaitingForStart { return true }
+        return false
+    }
+    
+    
     //MARK: Pasteboard
     
     func pasteboardItem() -> NSPasteboardItem {
@@ -142,10 +167,9 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
         return true
     }
     
-     func draggingItem() -> NSPasteboardWriting? {
-      return pasteboardItem()
+    func draggingItem() -> NSPasteboardWriting? {
+        return pasteboardItem()
     }
-    
     
     func validateDrop(item: NSPasteboardItem, proposedDropOperation: UnsafeMutablePointer<NSCollectionViewDropOperation>) -> NSDragOperation {
         //  if proposedDropOperation.memory == .Before { return .None }
@@ -155,8 +179,8 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     
     func acceptDrop(collectionView: NSCollectionView, item: NSPasteboardItem, dropOperation: NSCollectionViewDropOperation) -> Bool {
         if let data = item.dataForType(AppConfiguration.UTI.dateNode) {
-         pasteData(data)
-        return true
+            pasteData(data)
+            return true
         } else {
             return false
         }

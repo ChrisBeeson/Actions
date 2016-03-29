@@ -56,7 +56,7 @@ extension SequenceCollectionView {
         let nodeIndex = path.item - modifier
         
         switch itemTypeAtIndex(path) {
-        case .Date: return NSSize(width: 60,height: 35)
+        case .Date: return NSSize(width: 45,height: 35)
         case .AddButton: return NSSize(width: 30,height: 25)
         case .ActionNode:
             if nodeIndex >= presenter!.nodes!.count {
@@ -80,7 +80,6 @@ extension SequenceCollectionView {
         case .Void: fatalError()
         }
     }
-    
     
     func makeDateItem(path: NSIndexPath) -> NSCollectionViewItem {
         let item = makeItemWithIdentifier("DateNodeCollectionViewItem", forIndexPath: path) as! DateNodeCollectionViewItem
