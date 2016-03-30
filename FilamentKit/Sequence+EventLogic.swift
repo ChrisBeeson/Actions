@@ -82,8 +82,7 @@ extension Sequence {
             solvedPeriod = Solver.calculateEventPeriod(time, node: node, rules:rules)
             
             // run any post solver requirements
-            
-            
+        
             
             
             // we failed
