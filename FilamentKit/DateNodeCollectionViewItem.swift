@@ -51,6 +51,8 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     }
     
     public func updateView() {
+        print("updating View")
+        displayedPopover = nil
         
         let item = self.view.menu?.itemAtIndex(5)
         if sequencePresenter!.dateIsStartDate == true {
@@ -74,11 +76,15 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
         case (false, false): endDateNilView.animator().hidden = false
         case (true, false): endDateNotNilView.animator().hidden = false
         }
+        self.view.subviews.forEach{ $0.needsLayout = true }
     }
     
     public var sequenceDate: NSDate {
+        var returnDate: NSDate
         if sequencePresenter == nil { return NSDate() }
-        return (sequencePresenter!.date != nil) ? sequencePresenter!.date! : NSDate()
+        returnDate = (sequencePresenter!.date != nil) ? sequencePresenter!.date! : NSDate()
+        print("sequenceDate is \(returnDate)")
+        return returnDate
     }
     
     public var monthString: String {
@@ -109,6 +115,11 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     
     public func sequencePresenterDidChangeState(sequencePresenter: SequencePresenter, toState:SequenceState) {
          updateView()
+    }
+    
+    public func sequencePresenterUpdatedDate(sequencePresenter: SequencePresenter) {
+        displayedPopover?.performClose(self)
+        updateView()
     }
     
     
@@ -172,6 +183,7 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     //MARK: Drag & Drop
     
     func isDraggable() -> Bool {
+        if sequencePresenter!.date == nil { return false }
         return true
     }
     
