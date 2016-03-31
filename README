@@ -11,7 +11,7 @@ Todo
 
 reorganise nodes
 backtime from enddate
-drop rules onto nodes
+drop rules onto nodes x
 
 Rules that clash - startTimeWindows do not overlap
 verbose on why things have failed.

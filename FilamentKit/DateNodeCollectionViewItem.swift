@@ -16,6 +16,11 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     @IBOutlet weak var endDateNilView: NSView!
     @IBOutlet weak var endDateNotNilView: NSView!
     
+    public var monthString = ""
+    public var dayString = ""
+    public var day = ""
+    public var time = ""
+    
     weak var sequencePresenter: SequencePresenter?
     var displayedPopover: NSPopover?
     var dateFormatter = NSDateFormatter()
@@ -51,6 +56,8 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     }
     
     public func updateView() {
+        print("updating View")
+        displayedPopover = nil
         
         let item = self.view.menu?.itemAtIndex(5)
         if sequencePresenter!.dateIsStartDate == true {
@@ -69,35 +76,39 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
         let isStartDate = sequencePresenter!.dateIsStartDate
         
         switch (hasDate, isStartDate) {
-        case (false, true): startDateNilView.animator().hidden = false
+        case (false, true): startDateNilView.animator().hidden = false ; return
         case (true, true): startDateNotNilView.animator().hidden = false
-        case (false, false): endDateNilView.animator().hidden = false
+        case (false, false): endDateNilView.animator().hidden = false ; return
         case (true, false): endDateNotNilView.animator().hidden = false
         }
+        
+        // Updating labels - This is a mess.
+        // Day String
+        dateFormatter.dateFormat = "EEE"
+        let dayString = dateFormatter.stringFromDate(sequenceDate).uppercaseString
+        (self.view.viewWithTag(100) as! NSTextField).stringValue = dayString
+        (self.view.viewWithTag(200) as! NSTextField).stringValue = dayString
+        // Time
+        dateFormatter.dateFormat = "HH:mm"
+        time = dateFormatter.stringFromDate(sequenceDate)
+        (self.view.viewWithTag(101) as! NSTextField).stringValue = time
+        (self.view.viewWithTag(201) as! NSTextField).stringValue = time
+        // Day
+        let day = String(sequenceDate.day())
+        (self.view.viewWithTag(102) as! NSTextField).stringValue = day
+        (self.view.viewWithTag(202) as! NSTextField).stringValue = day
+        // Month String
+        dateFormatter.dateFormat = "MMM"
+        let monthString = dateFormatter.stringFromDate(sequenceDate).uppercaseString
+        (self.view.viewWithTag(103) as! NSTextField).stringValue = monthString
+        (self.view.viewWithTag(203) as! NSTextField).stringValue = monthString
     }
     
     public var sequenceDate: NSDate {
+        var returnDate: NSDate
         if sequencePresenter == nil { return NSDate() }
-        return (sequencePresenter!.date != nil) ? sequencePresenter!.date! : NSDate()
-    }
-    
-    public var monthString: String {
-        dateFormatter.dateFormat = "MMM"
-        return dateFormatter.stringFromDate(sequenceDate).capitalizedString
-    }
-    
-    public var dayString: String {
-        dateFormatter.dateFormat = "EEE"
-        return dateFormatter.stringFromDate(sequenceDate).capitalizedString
-    }
-    
-    public var day: String {
-        return String(sequenceDate.day())
-    }
-    
-    public var time: String {
-        dateFormatter.dateFormat = "HH:mm"
-        return dateFormatter.stringFromDate(sequenceDate)
+        returnDate = (sequencePresenter!.date != nil) ? sequencePresenter!.date! : NSDate()
+        return returnDate
     }
     
     // MARK: DateTimePicker delegate
@@ -109,6 +120,11 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     
     public func sequencePresenterDidChangeState(sequencePresenter: SequencePresenter, toState:SequenceState) {
          updateView()
+    }
+    
+    public func sequencePresenterUpdatedDate(sequencePresenter: SequencePresenter) {
+        displayedPopover?.performClose(self)
+        updateView()
     }
     
     
@@ -172,6 +188,7 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     //MARK: Drag & Drop
     
     func isDraggable() -> Bool {
+        if sequencePresenter!.date == nil { return false }
         return true
     }
     
