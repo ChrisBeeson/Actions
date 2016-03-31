@@ -15,10 +15,14 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     public var undoManager: NSUndoManager?
     weak public var representingDocument: FilamentDocument?
     var delegates = [SequencePresenterDelegate]()
-    var nodePresenters = [NodePresenter]()
+    private var _nodePresenters = [NodePresenter]()
     private weak var _sequence: Sequence?
     private var _shouldBeDeleted = false
-
+    
+    var nodePresenters : [NodePresenter] {
+        return _sequence!.nodeChain().map { nodePresenter($0) }
+    }
+    
     override init() {
         super.init()
         NSNotificationCenter.defaultCenter().addObserverForName("UpdateAllSequences", object: nil, queue: nil) { (notification) -> Void in
@@ -55,7 +59,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         return _sequence!.nodeChain()
     }
     
-    /// RuleAvailablity
+    /// Rule Availablity
     
     public var type: NodeType { get { return [.Generic] } }
     
@@ -76,7 +80,6 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     }
     
     public var completionDate : NSDate? {
-        
         if nodes == nil { return nil}
         if nodes!.count == 0 { return nodes![nodes!.count].event?.endDate }
         if let event = nodes![nodes!.count-1].event {
@@ -97,7 +100,6 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     
     
     public func renameTitle(newTitle:String) {
-        
         undoManager?.prepareWithInvocationTarget(self).renameTitle(title)
         let undoActionName = NSLocalizedString("Rename", comment: "")
         undoManager?.setActionName(undoActionName)
@@ -107,7 +109,6 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     }
     
     public func setDate(date:NSDate?, isStartDate:Bool) {
-        
         if date != nil && _sequence!.date != nil && date!.isEqualToDate(_sequence!.date!) && isStartDate == _sequence?.startsAtDate { return }
         
         let isStartDateToggled = isStartDate == _sequence?.startsAtDate ? false : true
@@ -126,14 +127,11 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         }
     }
     
-
-    /*
-        If node and Int is nil then insertNode will create a new untitled node, and place it at the end of the list.
-    */
     
     func insertActionNode(node: Node?, index: Int?) {
-        
         delegates.forEach { $0.sequencePresenterWillChangeNodeLayout(self) }
+        
+        //If node and Int is nil then insertNode will create a new untitled node, and place it at the end of the list.
         
         var nodeToinsert: Node
         
@@ -158,13 +156,12 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     
     
     func deleteNodes(nodes: [Node]) {
-        
         if nodes.isEmpty { return }
         let oldNodes = _sequence!.nodeChain()
         
         for node in nodes {
-            nodePresenters = nodePresenters.filter {$0.node != node}
-            nodePresenters.forEach{ $0.removeCalandarEvent(false) }
+            _nodePresenters = _nodePresenters.filter {$0.node != node}
+            _nodePresenters.forEach{ $0.removeCalandarEvent(false) }
             _sequence!.removeActionNode(node)
         }
         
@@ -182,25 +179,21 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     
     // MARK: Presenter
 
-    func presenterForNode(node:Node) -> NodePresenter {
-        
-        let presenter = nodePresenters.filter {$0.node === node}
+    func nodePresenter(node:Node) -> NodePresenter {
+        let presenter = _nodePresenters.filter {$0.node === node}
         if presenter.count == 1 { return presenter[0] }
         
         let newPresenter = NodePresenter(node: node)
         newPresenter.undoManager = representingDocument?.undoManager
         newPresenter.sequencePresenter = self
-        nodePresenters.append(newPresenter)
+        _nodePresenters.append(newPresenter)
         return newPresenter
     }
     
     
     func informDelegatesOfChangesToNodeChain(oldNodes:[Node]) {
-        
         let diff = oldNodes.diff(_sequence!.nodeChain())
-        
         if (diff.results.count > 0) {
-            
             let insertedNodes = Set(diff.insertions.map { NSIndexPath (forItem: $0.idx , inSection: 0)})
             let deletedNodes = Set(diff.deletions.map {NSIndexPath (forItem: $0.idx , inSection: 0)})
             
@@ -221,13 +214,13 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     public func prepareForCompleteDeletion() {
         self._shouldBeDeleted = true
         if currentState != .Completed {
-            for presenter in nodePresenters {
+            for presenter in _nodePresenters {
                 presenter.removeCalandarEvent(false)
             }
         }
         delegates.removeAll()
-        nodePresenters.forEach{ $0.prepareForDeletion() }
-        nodePresenters.removeAll()
+        _nodePresenters.forEach{ $0.prepareForDeletion() }
+        _nodePresenters.removeAll()
         NSNotificationCenter.defaultCenter().removeObserver(self)
         representingDocument?.updateChangeCount(.ChangeDone)
     }
@@ -235,7 +228,6 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     //MARK: Rules
 
     public func addRulePresenter(rule:RulePresenter, atIndex:Int) {
-        
         guard atIndex > -1 && atIndex <= sequence.generalRules.count else { return }
         sequence.generalRules.insert(rule.rule, atIndex: atIndex)
         delegates.forEach{ $0.sequencePresenterDidChangeGeneralRules(self) }
@@ -244,7 +236,6 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     }
     
     public func removeRulePresenter(rule:RulePresenter) {
-        
         sequence.generalRules.removeObject(rule.rule)
         delegates.forEach{ $0.sequencePresenterDidChangeGeneralRules(self) }
         updateState(true)
@@ -254,7 +245,6 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     //MARK: Pasteboard
     
     public func pasteboardItem() -> NSPasteboardItem {
-        
         let seqCopy = self.representingDocument!.base!.copy() as! BaseDocument
         seqCopy.sequences[0].date = nil
         seqCopy.sequences[0].startsAtDate = true

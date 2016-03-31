@@ -154,6 +154,7 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     public override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
         if self.sequencePresenter?.currentState == SequenceState.NoStartDateSet { return true }
         if self.sequencePresenter?.currentState == SequenceState.WaitingForStart { return true }
+        if self.sequencePresenter?.currentState == SequenceState.Running { return true }
         return false
     }
     

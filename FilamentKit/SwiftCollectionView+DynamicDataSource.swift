@@ -109,8 +109,8 @@ extension SequenceCollectionView {
             
         default: item = NodeCollectionViewItem()
         }
-        if item.presenter != presenter!.presenterForNode(node) {
-            item.presenter = presenter!.presenterForNode(node)
+        if item.presenter != presenter!.nodePresenter(node) {
+            item.presenter = presenter!.nodePresenter(node)
         }
         item.indexPath = path
         return item

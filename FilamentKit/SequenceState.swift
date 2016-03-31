@@ -171,7 +171,7 @@ public enum SequenceState : Int {
         
         if let index = presenter.nodes?.indexOf(result.firstFailedNode!) {
             for (idx, node) in presenter.nodes!.enumerate() {
-                let presenter = presenter.presenterForNode(node)
+                let presenter = presenter.nodePresenter(node)
                 if idx < index {
                     let calcNodeState = presenter.currentState.calculateNodeState(presenter, ignoreError: true)
                     presenter.currentState.toState(calcNodeState, presenter: presenter, ignoreError: true)
