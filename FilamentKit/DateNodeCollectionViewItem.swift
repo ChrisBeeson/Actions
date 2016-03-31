@@ -56,7 +56,6 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     }
     
     public func updateView() {
-        print("updating View")
         displayedPopover = nil
         
         let item = self.view.menu?.itemAtIndex(5)
@@ -123,8 +122,8 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     }
     
     public func sequencePresenterUpdatedDate(sequencePresenter: SequencePresenter) {
-        displayedPopover?.performClose(self)
         updateView()
+        displayedPopover?.performClose(self)
     }
     
     

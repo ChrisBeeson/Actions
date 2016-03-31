@@ -96,7 +96,7 @@ class NodeView: NSView {
             self.pathLayer.fillColor = drawingContextColour(.LightGrey).fill
             CATransaction.commit()
             
-            // if shouldTransition == true {
+             if shouldTransition == true {
                     let anim = CABasicAnimation(keyPath: "fillColor")
                     anim.fromValue = drawingContextColour(.Green).fill
                     anim.toValue = drawingContextColour(.LightGrey).fill
@@ -112,7 +112,8 @@ class NodeView: NSView {
                     group.autoreverses = false
                     group.removedOnCompletion = true
                     self.pathLayer.addAnimation(group, forKey: "ReadyAnimation")
-            // } else {
+            }
+            //else {
             //    Swift.print("false")
             // }
         

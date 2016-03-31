@@ -255,14 +255,14 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     
     public func pasteboardItem() -> NSPasteboardItem {
         
-        let seqCopy = self.sequence.copy() as! Sequence
-        seqCopy.date = nil
-        seqCopy.startsAtDate = true
-        seqCopy.nodeChain().forEach { $0.event = nil ; $0.isCompleted = false }
+        let seqCopy = self.representingDocument!.base!.copy() as! BaseDocument
+        seqCopy.sequences[0].date = nil
+        seqCopy.sequences[0].startsAtDate = true
+        seqCopy.sequences[0].nodeChain().forEach { $0.event = nil ; $0.isCompleted = false }
         
         let data = NSKeyedArchiver.archivedDataWithRootObject(seqCopy)
         let item = NSPasteboardItem()
-        item.setData(data, forType: AppConfiguration.UTI.sequence)
+        item.setData(data, forType: AppConfiguration.UTI.base)
         return item
     }
     
