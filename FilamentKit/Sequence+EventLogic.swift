@@ -67,6 +67,9 @@ extension Sequence {
             avoidSolvedPeriodsRule.avoidPeriods = solvedPeriodsToAvoid
             rules.append(avoidSolvedPeriodsRule)
             
+            
+            // Pre-Solver
+            
             // Go through rules and add requirements
             //TODO: check for requirements
             if index > 0 {
@@ -79,13 +82,14 @@ extension Sequence {
             
 
             // Solve it!
-            solvedPeriod = Solver.calculateEventPeriod(time, node: node, rules:rules)
+            solvedPeriod = Solver.calculateEventPeriod(time, direction:self.timeDirection, node: node, rules:rules)
             
-            // run any post solver requirements
+            // Post-Solver 
+            
         
+            // Result processing
             
-            
-            // we failed
+            // Failed
             if solvedPeriod == nil || solvedPeriod!.solved == false {
                 processEventsForTransitionPeriods()
                 return (false, node)

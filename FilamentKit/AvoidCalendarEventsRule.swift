@@ -46,6 +46,7 @@ class AvoidCalendarEventsRule: Rule, NSCoding {
             }
             
             // 3. remove any periods we should ignore (ie. events from the sequence we are solving)
+            //TODO: Check are we repeating in the solver?
             if let ignore = ignorePeriods() {
                 for period in periods {
                     for ignore in ignore {

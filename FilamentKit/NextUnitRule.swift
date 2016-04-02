@@ -28,6 +28,8 @@ enum NextUnitType: Int {
 
 class NextUnitRule : Rule {
     
+    //TODO: MAKE AVAL TO BACKWARDS
+    
     override var name: String { return "RULE_NAME_NEXT".localized }
     override var availableToNodeType: NodeType { return [.Transition] }
     override var options: RoleOptions { return [.RequiresPreviousPeriod] }

@@ -12,7 +12,7 @@ extension Sequence {
     
     enum NodePostion: Int { case StartingAction, Transition, Action, EndingAction,None }
     
-     func nodeChain() -> [Node] {
+    func nodeChain() -> [Node] {
         
         var nodesToReturn = [Node]()
         
@@ -28,7 +28,7 @@ extension Sequence {
     }
     
     
-     func validSequence() -> Bool {
+    func validSequence() -> Bool {
         
         //    Action -> Transition -> Action -> Transition -> Action
         //    Transitions can only sit inbetween Action nodes
@@ -51,7 +51,7 @@ extension Sequence {
         return true
     }
     
-     func insertActionNode(node: Node, index:Int? = nil) {
+    func insertActionNode(node: Node, index:Int? = nil) {
         precondition(node.type == .Action, "Trying to insert node into sequence that is not of type .Action")
         
         let indexToInsertNode = index ?? self.actionNodes.count
@@ -67,11 +67,11 @@ extension Sequence {
         if indexToInsertNode < actionNodes.count-1 { addTransistionNodeToActionNodes(node, right:actionNodes[indexToInsertNode+1]) }
     }
     
-     func removeActionNode(node:Node) {
+    func removeActionNode(node:Node) {
         
         let index = actionNodes.indexOf(node)
         precondition(index != nil, "Cannot remove Node because it doesn't exist in the sequence.")
-    
+        
         actionNodes.removeObject(node)
         
         // it was the only node
@@ -100,7 +100,7 @@ extension Sequence {
     }
     
     
-     func logchain() {
+    func logchain() {
         
         for node in nodeChain() { print (String(node.type) + ": " + node.title) }
         validSequence() ? NSLog("Sequence is Valid") : NSLog("Sequence is NOT Valid")
@@ -139,19 +139,30 @@ extension Sequence {
         transitionNodes.append(transitionNode)
     }
     
-
-     func position(node: Node) -> NodePostion {
-        if let index = actionNodes.indexOf(node) {
+    
+    func position(node: Node) -> NodePostion {
+        let index = actionNodes.indexOf(node)
+        guard index != nil else { return .None}
+        
         var result: NodePostion
-        switch Int(index) {
-        case 0: result = .StartingAction
-        case let x where x == actionNodes.count-1: result = .EndingAction
-        case let x where x.isEven(): result = .Action
-        default: result = .Action // .Transaction
+        
+        switch self.timeDirection {
+        case .Forward:
+            switch Int(index!) {
+            case 0: result = .StartingAction
+            case let x where x == actionNodes.count-1: result = .EndingAction
+            case let x where x.isEven(): result = .Action
+            default: result = .Action // .Transaction
+            }
+            
+        case .Backward:
+            switch Int(index!) {
+            case 0: result = .EndingAction
+            case let x where x == actionNodes.count-1: result = .StartingAction
+            case let x where x.isEven(): result = .Action
+            default: result = .Action // .Transaction
+            }
         }
         return result
-        } else {
-            return .None
-        }
     }
 }

@@ -56,10 +56,10 @@
             <rect key="frame" x="0.0" y="0.0" width="48" height="35"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <customView ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bXq-5E-LnI">
-                    <rect key="frame" x="0.0" y="0.0" width="48" height="35"/>
+                <customView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bXq-5E-LnI">
+                    <rect key="frame" x="0.0" y="0.0" width="38" height="35"/>
                     <subviews>
-                        <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" verticalClippingResistancePriority="250" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cva-Qp-I3S">
+                        <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" verticalClippingResistancePriority="250" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cva-Qp-I3S">
                             <rect key="frame" x="5" y="0.0" width="33" height="35"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="101" translatesAutoresizingMaskIntoConstraints="NO" id="TuC-OW-BdS">
@@ -109,17 +109,17 @@
                         <outlet property="menu" destination="4kg-43-But" id="Gq6-gl-7rD"/>
                     </connections>
                 </customView>
-                <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c22-O7-iKe">
-                    <rect key="frame" x="0.0" y="-2" width="48" height="37"/>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="c22-O7-iKe">
+                    <rect key="frame" x="0.0" y="0.0" width="48" height="35"/>
                     <subviews>
-                        <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Hp-Nn-vAM" customClass="TransitionNodeView" customModule="FilamentKit" customModuleProvider="target">
-                            <rect key="frame" x="23" y="0.0" width="25" height="37"/>
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="2Hp-Nn-vAM" customClass="TransitionNodeView" customModule="FilamentKit" customModuleProvider="target">
+                            <rect key="frame" x="23" y="0.0" width="25" height="35"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="25" id="aLa-5r-VbP"/>
                             </constraints>
                         </customView>
-                        <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lxw-2o-cB3" customClass="EmptyNodeView" customModule="FilamentKit" customModuleProvider="target">
-                            <rect key="frame" x="17" y="11" width="15" height="15"/>
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="lxw-2o-cB3" customClass="EmptyNodeView" customModule="FilamentKit" customModuleProvider="target">
+                            <rect key="frame" x="17" y="10" width="15" height="15"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="15" id="Sq8-zz-c8f"/>
                                 <constraint firstAttribute="height" constant="15" id="gXL-vn-c97"/>
@@ -137,17 +137,17 @@
                         <outlet property="menu" destination="4kg-43-But" id="9qj-Gi-rUZ"/>
                     </connections>
                 </customView>
-                <customView hidden="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aMz-lY-6YU">
-                    <rect key="frame" x="0.0" y="-2" width="48" height="37"/>
+                <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aMz-lY-6YU">
+                    <rect key="frame" x="0.0" y="0.0" width="48" height="35"/>
                     <subviews>
-                        <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FR2-fD-eqk" customClass="TransitionNodeView" customModule="FilamentKit" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="25" height="37"/>
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="FR2-fD-eqk" customClass="TransitionNodeView" customModule="FilamentKit" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="25" height="35"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="25" id="ylh-7J-5BC"/>
                             </constraints>
                         </customView>
-                        <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xWU-07-pRG" customClass="EmptyNodeView" customModule="FilamentKit" customModuleProvider="target">
-                            <rect key="frame" x="17" y="11" width="15" height="15"/>
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="xWU-07-pRG" customClass="EmptyNodeView" customModule="FilamentKit" customModuleProvider="target">
+                            <rect key="frame" x="17" y="10" width="15" height="15"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="15" id="Q92-Ca-yJ9"/>
                                 <constraint firstAttribute="height" constant="15" id="gyr-jv-lga"/>

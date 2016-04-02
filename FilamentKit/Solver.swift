@@ -34,7 +34,7 @@ typealias SolvedPeriod = (solved: Bool, period:DTTimePeriod?)
 
 class Solver: NSObject {
     
-    class func calculateEventPeriod(inputDate: NSDate, node: Node, rules:[Rule]) -> SolvedPeriod {
+    class func calculateEventPeriod(inputDate: NSDate, direction:TimeDirection, node: Node, rules:[Rule]) -> SolvedPeriod {
         
         func printDebug(string: String) { if true == false { print(string) } }
         
