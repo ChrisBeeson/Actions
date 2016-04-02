@@ -66,8 +66,8 @@ func replaceAnyEqualUnchangedNewNodesWithPreviousUnchangedNodes(inout replaceabl
 }
 
 /**
-    Returns the type of `NodesBatchChangeKind` based on the different types of changes. The parameters for
-    this function should be based on the result of the functions above. If there were no changes whatsoever,
+    Returns the type of `NodesBatchChangeKind` Containerd on the different types of changes. The parameters for
+    this function should be Containerd on the result of the functions above. If there were no changes whatsoever,
     `nil` is returned.
 */
 func nodesBatchChangeKindForChanges(removedNodes removedNodes: [Node], insertedNodes: [Node], toggledNodes: [Node], nodesWithUpdatedText: [Node]) -> NodesBatchChangeKind? {

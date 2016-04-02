@@ -10,7 +10,6 @@ import AppKit
 public protocol SequencePresenterDelegate : class {
 
     func sequencePresenterDidRefreshCompleteLayout(sequencePresenter: SequencePresenter)
-    func sequencePresenterWillChangeNodeLayout(sequencePresenter: SequencePresenter)
     func sequencePresenterDidUpdateChainContents(insertedNodes:Set<NSIndexPath>, deletedNodes:Set<NSIndexPath>)
     func sequencePresenterUpdatedDate(sequencePresenter: SequencePresenter)
     func sequencePresenterDidChangeState(sequencePresenter: SequencePresenter, toState:SequenceState)
@@ -24,7 +23,6 @@ public protocol SequencePresenterDelegate : class {
 extension  SequencePresenterDelegate {
     
     public func sequencePresenterDidRefreshCompleteLayout(sequencePresenter: SequencePresenter) {}
-    public func sequencePresenterWillChangeNodeLayout(sequencePresenter: SequencePresenter) {}
     public func sequencePresenterDidUpdateChainContents(insertedNodes:Set<NSIndexPath>, deletedNodes:Set<NSIndexPath>) {}
     public func sequencePresenterUpdatedDate(sequencePresenter: SequencePresenter) {}
     //  public func sequencePresenterDidChangeState(sequencePresenter: SequencePresenter, toState:SequenceState) {

@@ -31,7 +31,7 @@ extension NSTimer {
      - Parameters:
      - repeatInterval: The interval (in seconds) between each execution of
      `handler`. Note that individual calls may be delayed; subsequent calls
-     to `handler` will be based on the time the timer was created.
+     to `handler` will be Containerd on the time the timer was created.
      - handler: A closure to execute at each `repeatInterval`.
      
      - Returns: The newly-created `NSTimer` instance.

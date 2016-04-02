@@ -98,7 +98,7 @@
 		47ED142E1C9D534B002F4B4E /* WorkingWeekRulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ED142D1C9D534B002F4B4E /* WorkingWeekRulePresenter.swift */; };
 		47F2FBC41BA8CFEE0041B291 /* Solver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F2FBC31BA8CFEE0041B291 /* Solver.swift */; };
 		47F5E82B1BF495D8004C0D16 /* AddFilamentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F5E82A1BF495D8004C0D16 /* AddFilamentViewController.swift */; };
-		8303DD971CA9DDCF003D3190 /* BaseDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8303DD961CA9DDCF003D3190 /* BaseDocument.swift */; };
+		8303DD971CA9DDCF003D3190 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8303DD961CA9DDCF003D3190 /* Container.swift */; };
 		83260A341C856C6700F74DBD /* RulePillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83260A331C856C6700F74DBD /* RulePillView.swift */; };
 		8329DE9B1C63DF10001B3A2F /* SequenceCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8329DE9A1C63DF10001B3A2F /* SequenceCollectionView.swift */; };
 		832BA20A1C740686004331A7 /* NodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832BA2091C740686004331A7 /* NodeView.swift */; };
@@ -302,7 +302,7 @@
 		47ED142D1C9D534B002F4B4E /* WorkingWeekRulePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkingWeekRulePresenter.swift; sourceTree = "<group>"; };
 		47F2FBC31BA8CFEE0041B291 /* Solver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Solver.swift; sourceTree = "<group>"; };
 		47F5E82A1BF495D8004C0D16 /* AddFilamentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFilamentViewController.swift; sourceTree = "<group>"; };
-		8303DD961CA9DDCF003D3190 /* BaseDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDocument.swift; sourceTree = "<group>"; };
+		8303DD961CA9DDCF003D3190 /* Container.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Container.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		83260A331C856C6700F74DBD /* RulePillView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulePillView.swift; sourceTree = "<group>"; };
 		8329DE9A1C63DF10001B3A2F /* SequenceCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceCollectionView.swift; sourceTree = "<group>"; };
 		832BA2091C740686004331A7 /* NodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeView.swift; sourceTree = "<group>"; };
@@ -323,13 +323,13 @@
 		8359A7721C7CF2F400ED87D9 /* DurationWithVarianceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationWithVarianceViewController.swift; sourceTree = "<group>"; };
 		836896331C807FEF00F3F547 /* AvailableRulesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableRulesViewController.swift; sourceTree = "<group>"; };
 		836896351C80801900F3F547 /* AvailableRulesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AvailableRulesViewController.xib; sourceTree = "<group>"; };
-		83861F2A1BEEA25F00A44122 /* FilamentDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilamentDocument.swift; sourceTree = "<group>"; };
+		83861F2A1BEEA25F00A44122 /* FilamentDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FilamentDocument.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		83AD7EBB1C7BA4E60097BD61 /* RuleTokenField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleTokenField.swift; sourceTree = "<group>"; };
 		83AF6D731C878A3600D48129 /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		83B5005F1C981FE800B0F5AA /* NodeState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeState.swift; sourceTree = "<group>"; };
 		83B74FAC1C7FDC0F005E5E22 /* DurationWithVarianceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DurationWithVarianceViewController.xib; sourceTree = "<group>"; };
 		83B9DF5A1C9922AA008E3F26 /* SequenceState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceState.swift; sourceTree = "<group>"; };
-		83C73E0B1BE31BF20045973C /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		83C73E0B1BE31BF20045973C /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppConfiguration.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		83CE36371C84E35100D3A556 /* RuleCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleCollectionView.swift; sourceTree = "<group>"; };
 		83CE36391C84E4AA00D3A556 /* RuleCollectionItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleCollectionItem.swift; sourceTree = "<group>"; };
 		83CE363B1C84E53F00D3A556 /* RuleCollectionItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RuleCollectionItem.xib; sourceTree = "<group>"; };
@@ -467,7 +467,7 @@
 		4735747A1B9A692F00493CA0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				8303DD961CA9DDCF003D3190 /* BaseDocument.swift */,
+				8303DD961CA9DDCF003D3190 /* Container.swift */,
 				473574761B9A68AC00493CA0 /* Sequence.swift */,
 				47CD21C01BDF7A2600AF25BE /* Sequence+NodeLogic.swift */,
 				47CD21C51BDF807900AF25BE /* Sequence+EventLogic.swift */,
@@ -1268,7 +1268,7 @@
 				473853B21C7A590A000AB1E2 /* RuleViewController.swift in Sources */,
 				473574771B9A68AC00493CA0 /* Sequence.swift in Sources */,
 				473853B71C7A5A43000AB1E2 /* RulePresenterDelegate.swift in Sources */,
-				8303DD971CA9DDCF003D3190 /* BaseDocument.swift in Sources */,
+				8303DD971CA9DDCF003D3190 /* Container.swift in Sources */,
 				83B500601C981FE800B0F5AA /* NodeState.swift in Sources */,
 				835740B21C77AD0700CFBB1B /* TimeEvent.swift in Sources */,
 				4720B50E1C71C32100229734 /* EmptyNodeView.swift in Sources */,

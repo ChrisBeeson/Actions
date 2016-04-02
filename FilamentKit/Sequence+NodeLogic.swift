@@ -18,9 +18,12 @@ extension Sequence {
         
         for node in actionNodes {
             nodesToReturn.append(node)
-            if node.rightTransitionNode != nil { nodesToReturn.append(node.rightTransitionNode!) }
+            if node.rightTransitionNode != nil {
+                nodesToReturn.append(node.rightTransitionNode!)
+            } else {
+                assert (self.position(node) == NodePostion.EndingAction, "Node does not a right transition")
+            }
         }
-
         return nodesToReturn
     }
     
@@ -114,7 +117,6 @@ extension Sequence {
         }
         
         for index in 0  ..< actionNodes.count-1  {
-            
             if actionNodes[index].rightTransitionNode === nil {
                 addTransistionNodeToActionNodes(actionNodes[index], right:actionNodes[index+1])
             }
@@ -132,32 +134,23 @@ extension Sequence {
         
         let name = ""
         let transitionNode = Node(text: name, type: [.Transition], rules: nil)
-        
         left.rightTransitionNode = transitionNode
         right.leftTransitionNode = transitionNode
-        
         transitionNodes.append(transitionNode)
     }
     
 
-     func postion(node: Node) -> NodePostion {
-        
+     func position(node: Node) -> NodePostion {
         if let index = actionNodes.indexOf(node) {
-        
         var result: NodePostion
-        
         switch Int(index) {
-            
         case 0: result = .StartingAction
         case let x where x == actionNodes.count-1: result = .EndingAction
         case let x where x.isEven(): result = .Action
         default: result = .Action // .Transaction
         }
-        
         return result
-            
         } else {
-            
             return .None
         }
     }

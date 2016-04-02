@@ -19,6 +19,7 @@ protocol RuleType {
     
     // Inputs
     var inputDate: NSDate? {get set}
+    var timeDirection:TimeDirection { get set }
     var interestPeriod: DTTimePeriod? {get set}
     
     // Outputs
@@ -45,6 +46,7 @@ public class Rule: NSObject, RuleType {
     var conflictingRules: [Rule]? {get {return nil} }
     var options: RoleOptions {get { return RoleOptions.None } }
     var inputDate: NSDate?
+    var timeDirection:TimeDirection { get { return TimeDirection.Forward } set {}}
     var interestPeriod: DTTimePeriod?
     var eventStartTimeWindow: DTTimePeriod? {get {return nil} }
     var eventPreferedStartDate: NSDate? {get {return nil} }

@@ -289,7 +289,7 @@ public class AppConfiguration: NSObject {
         public static let node = "com.andris.filament.pasteboard.node"
         public static let dateNode = "com.andris.filament.pasteboard.dateNode"
         public static let sequence = "com.andris.filament.pasteboard.sequence"
-        public static let base = "com.andris.filament.pasteboard.baseDocument"
+        public static let container = "com.andris.filament.pasteboard.container"
     }
     
     // Beta Helpers 

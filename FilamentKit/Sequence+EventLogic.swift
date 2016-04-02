@@ -35,8 +35,8 @@ extension Sequence {
             let genericRules = AppConfiguration.sharedConfiguration.contextPresenter().rules.filter { !self.generalRules.contains($0) }
             rules.appendContentsOf(genericRules)
             
-            // Add rules unique to the postion of the node
-            switch postion(node) {
+            // Add rules unique to the position of the node
+            switch position(node) {
                 
             case .StartingAction:
                 

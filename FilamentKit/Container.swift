@@ -8,7 +8,7 @@
 
 import Foundation
 
-class BaseDocument: NSObject, NSCopying, NSCoding {
+class Container: NSObject, NSCopying, NSCoding {
     
     // This is in preparation for V2 where we can group muliple sequences.
     
@@ -19,7 +19,7 @@ class BaseDocument: NSObject, NSCopying, NSCoding {
     // ---------------------------------
     var title: String = ""
     var date: NSDate?
-    var startsAtDate = true
+    var timeDirection = TimeDirection.Forward
     var generalRules = [Rule]()
     var uuid = NSUUID()
     // ---------------------------------
@@ -41,7 +41,7 @@ class BaseDocument: NSObject, NSCopying, NSCoding {
         static let version = "version"
         static let title = "title"
         static let date = "date"
-        static let startsAtDate = "startsAtDate"
+        static let timeDirection = "timeDirection"
         static let uuid = "uuid"
         static let generalRules = "generalRules"
         static let sequences = "sequences"
@@ -51,7 +51,7 @@ class BaseDocument: NSObject, NSCopying, NSCoding {
         version = aDecoder.decodeObjectForKey(SerializationKeys.version) as! String
         title = aDecoder.decodeObjectForKey(SerializationKeys.title) as! String
         date = aDecoder.decodeObjectForKey(SerializationKeys.date) as? NSDate
-        startsAtDate = aDecoder.decodeObjectForKey(SerializationKeys.startsAtDate) as! Bool
+        timeDirection = TimeDirection(rawValue: aDecoder.decodeIntegerForKey(SerializationKeys.timeDirection))!
         uuid = aDecoder.decodeObjectForKey(SerializationKeys.uuid) as! NSUUID
         generalRules = aDecoder.decodeObjectForKey(SerializationKeys.generalRules) as! [Rule]
         sequences = aDecoder.decodeObjectForKey(SerializationKeys.sequences) as! [Sequence]
@@ -61,7 +61,7 @@ class BaseDocument: NSObject, NSCopying, NSCoding {
         aCoder.encodeObject(version, forKey: SerializationKeys.version)
         aCoder.encodeObject(title, forKey: SerializationKeys.title)
         aCoder.encodeObject(date, forKey: SerializationKeys.date)
-        aCoder.encodeObject(startsAtDate, forKey: SerializationKeys.startsAtDate)
+         aCoder.encodeInteger(timeDirection.rawValue, forKey: SerializationKeys.timeDirection)
         aCoder.encodeObject(uuid, forKey: SerializationKeys.uuid)
         aCoder.encodeObject(generalRules, forKey: SerializationKeys.generalRules)
         aCoder.encodeObject(sequences, forKey: SerializationKeys.sequences)
@@ -70,10 +70,10 @@ class BaseDocument: NSObject, NSCopying, NSCoding {
     
     // MARK: NSCopying
     func copyWithZone(zone: NSZone) -> AnyObject  {
-        let clone = BaseDocument()
+        let clone = Container()
         clone.title = title.copy() as! String
         clone.date = date
-        clone.startsAtDate = startsAtDate
+        clone.timeDirection = timeDirection
         clone.generalRules =  NSArray(array:generalRules, copyItems: true) as! [Rule]
         clone.sequences =  NSArray(array:sequences, copyItems: true) as! [Sequence]
         return clone
@@ -93,8 +93,8 @@ class BaseDocument: NSObject, NSCopying, NSCoding {
     
     // MARK: Equality
     override  func isEqual(object: AnyObject?) -> Bool {
-        if let base = object as? BaseDocument {
-            if uuid == base.uuid  {
+        if let Container = object as? Container {
+            if uuid == Container.uuid  {
                 return true
             }
             return false

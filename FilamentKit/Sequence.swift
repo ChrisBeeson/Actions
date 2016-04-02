@@ -8,27 +8,30 @@
 
 import Foundation
 
- class Sequence: NSObject, NSCopying, NSCoding {
+@objc
+public enum TimeDirection: Int {
+    case Forward
+    case Backward
+}
+
+class Sequence: NSObject, NSCopying, NSCoding {
     
     var title: String = ""
     var actionNodes = [Node]()
     var transitionNodes = [Node]()
     var date: NSDate?
-    var startsAtDate = true    // false means the sequence is back timed to end at the date
+    var timeDirection = TimeDirection.Forward
     var generalRules = [Rule]()
     var uuid = NSUUID()
 
     // MARK: Initializers
-    
     override init () {
         super.init()
     }
     
      init(name:String, actionNodes:[Node]? = []) {
-        
         self.title = name
         super.init()
-        
         if let nodes = actionNodes {
             self.actionNodes = nodes.map { $0.copy() as! Node}
             forceCreateTransistionNodesForActionNodes()
@@ -36,13 +39,12 @@ import Foundation
     }
     
     // MARK: NSCoding
-    
     private struct SerializationKeys {
         static let title = "title"
         static let actionNodes = "actionNodes"
         static let transitionNodes = "transitionNodes"
         static let date = "date"
-        static let startsAtDate = "startsAtDate"
+        static let timeDirection = "timeDirection"
         static let events = "events"
         static let uuid = "uuid"
         static let generalRules = "generalRules"
@@ -53,7 +55,7 @@ import Foundation
         actionNodes = aDecoder.decodeObjectForKey(SerializationKeys.actionNodes) as! [Node]
         transitionNodes = aDecoder.decodeObjectForKey(SerializationKeys.transitionNodes) as! [Node]
         date = aDecoder.decodeObjectForKey(SerializationKeys.date) as? NSDate
-        startsAtDate = aDecoder.decodeObjectForKey(SerializationKeys.startsAtDate) as! Bool
+        timeDirection = TimeDirection(rawValue: aDecoder.decodeIntegerForKey(SerializationKeys.timeDirection))!
         uuid = aDecoder.decodeObjectForKey(SerializationKeys.uuid) as! NSUUID
         generalRules = aDecoder.decodeObjectForKey(SerializationKeys.generalRules) as! [Rule]
     }
@@ -63,21 +65,19 @@ import Foundation
         aCoder.encodeObject(actionNodes, forKey: SerializationKeys.actionNodes)
         aCoder.encodeObject(transitionNodes, forKey: SerializationKeys.transitionNodes)
         aCoder.encodeObject(date, forKey: SerializationKeys.date)
-        aCoder.encodeObject(startsAtDate, forKey: SerializationKeys.startsAtDate)
+        aCoder.encodeInteger(timeDirection.rawValue, forKey: SerializationKeys.timeDirection)
         aCoder.encodeObject(uuid, forKey: SerializationKeys.uuid)
         aCoder.encodeObject(generalRules, forKey: SerializationKeys.generalRules)
     }
     
-    
     // MARK: NSCopying
-    
      func copyWithZone(zone: NSZone) -> AnyObject  {
         let clone = Sequence()
         clone.title = title.copy() as! String
         clone.actionNodes =  NSArray(array:actionNodes, copyItems: true) as! [Node]
         clone.transitionNodes = NSArray(array:transitionNodes, copyItems: true) as! [Node]
         clone.date = date
-        clone.startsAtDate = startsAtDate
+        clone.timeDirection = timeDirection
         clone.generalRules =  NSArray(array:generalRules, copyItems: true) as! [Rule]
         return clone
     }
@@ -89,15 +89,11 @@ import Foundation
     }
     
     // Description
-    
      override var description: String {
         return " \(title)"
     }
     
-    
-    
     // MARK: Equality
-    
     override  func isEqual(object: AnyObject?) -> Bool {
         if let sequence = object as? Sequence {
             if uuid == sequence.uuid  {

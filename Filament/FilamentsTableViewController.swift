@@ -187,7 +187,7 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     
     public func paste(event: NSEvent) {
         let pasteboard = NSPasteboard.generalPasteboard()
-        if let data = pasteboard.dataForType(AppConfiguration.UTI.base) {
+        if let data = pasteboard.dataForType(AppConfiguration.UTI.container) {
             FilamentDocument.newSequenceDocumentFromArchive(data)
         }
     }
@@ -224,7 +224,7 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
             
         case #selector(FilamentsTableViewController.paste(_:)):
             let pasteboard = NSPasteboard.generalPasteboard()
-            return pasteboard.canReadItemWithDataConformingToTypes([AppConfiguration.UTI.base])
+            return pasteboard.canReadItemWithDataConformingToTypes([AppConfiguration.UTI.container])
             
         case #selector(FilamentsTableViewController.copy(_:)),
              #selector(FilamentsTableViewController.cut(_:)),

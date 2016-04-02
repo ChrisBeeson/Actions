@@ -75,8 +75,8 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         return _sequence!.date
     }
     
-    public var dateIsStartDate: Bool {
-        return _sequence!.startsAtDate
+    public var timeDirection: TimeDirection {
+        return _sequence!.timeDirection
     }
     
     public var completionDate : NSDate? {
@@ -108,28 +108,27 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         representingDocument?.updateChangeCount(.ChangeDone)
     }
     
-    public func setDate(date:NSDate?, isStartDate:Bool) {
-        if date != nil && _sequence!.date != nil && date!.isEqualToDate(_sequence!.date!) && isStartDate == _sequence?.startsAtDate { return }
-        
-        let isStartDateToggled = isStartDate == _sequence?.startsAtDate ? false : true
-        
-        self.undoManager?.prepareWithInvocationTarget(self).setDate(self.date, isStartDate: true)
+    
+    @objc
+    public func setDate(date:NSDate?, direction:TimeDirection) {
+        if date != nil && _sequence!.date != nil && date!.isEqualToDate(_sequence!.date!) && direction == _sequence?.timeDirection { return }
+
+        self.undoManager?.prepareWithInvocationTarget(self).setDate(self.date, direction: self.timeDirection)
         let undoActionName = NSLocalizedString("Change Date", comment: "")
         self.undoManager?.setActionName(undoActionName)
         
+        let timeDirectionToggled = direction == _sequence?.timeDirection ? false : true
         self._sequence!.date = date
-        self._sequence!.startsAtDate = isStartDate
+        self._sequence!.timeDirection = direction
         representingDocument?.updateChangeCount(.ChangeDone)
         
         currentState.toNewStartDate(self)
-        if isStartDateToggled ==  true {
+        if timeDirectionToggled ==  true {
              delegates.forEach{ $0.sequencePresenterDidRefreshCompleteLayout(self) }
         }
     }
-    
-    
+     
     func insertActionNode(node: Node?, index: Int?) {
-        delegates.forEach { $0.sequencePresenterWillChangeNodeLayout(self) }
         
         //If node and Int is nil then insertNode will create a new untitled node, and place it at the end of the list.
         
@@ -245,14 +244,14 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     //MARK: Pasteboard
     
     public func pasteboardItem() -> NSPasteboardItem {
-        let seqCopy = self.representingDocument!.base!.copy() as! BaseDocument
+        let seqCopy = self.representingDocument!.container!.copy() as! Container
         seqCopy.sequences[0].date = nil
-        seqCopy.sequences[0].startsAtDate = true
+        seqCopy.sequences[0].timeDirection = .Forward
         seqCopy.sequences[0].nodeChain().forEach { $0.event = nil ; $0.isCompleted = false }
         
         let data = NSKeyedArchiver.archivedDataWithRootObject(seqCopy)
         let item = NSPasteboardItem()
-        item.setData(data, forType: AppConfiguration.UTI.base)
+        item.setData(data, forType: AppConfiguration.UTI.container)
         return item
     }
     

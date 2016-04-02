@@ -138,7 +138,6 @@ public enum SequenceState : Int {
     }
     
     
-    
     mutating func toHasFailedNode(presenter: SequencePresenter) -> SequenceState {
         guard self != .HasFailedNode else { return self }
         

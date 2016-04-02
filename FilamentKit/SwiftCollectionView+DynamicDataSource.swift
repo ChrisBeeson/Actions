@@ -13,10 +13,10 @@ extension SequenceCollectionView {
     func calculateLayoutState() {
         guard presenter != nil else { return }
         
-        switch (presenter!.dateIsStartDate) {
-        case true:
+        switch (presenter!.timeDirection) {
+        case .Forward:
             if presenter!.currentState == .Completed { currentLayoutState = .StartDateWithoutAddButton } else {currentLayoutState = .StartDateWithAddButton }
-        case false:
+        case .Backward:
             if presenter!.currentState == .Completed { currentLayoutState = .EndDateWithoutAddButton } else {currentLayoutState = .EndDateWithAddButton }
         }
     }

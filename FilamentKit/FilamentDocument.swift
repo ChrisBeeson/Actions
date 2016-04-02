@@ -14,16 +14,16 @@ public class FilamentDocument: NSDocument {
     
     var unarchivedSequence: Sequence {
         // print("calling unarchivedSequence")
-        return base!.sequences[0]
+        return container!.sequences[0]
     }
-    var base : BaseDocument?
+    var container : Container?
     var _sequencePresenter: SequencePresenter?
     
     public var sequencePresenter: SequencePresenter? {
         get {
             if _sequencePresenter == nil {
                 _sequencePresenter = SequencePresenter()
-                _sequencePresenter!.setSequence(base!.sequences[0])
+                _sequencePresenter!.setSequence(container!.sequences[0])
                 _sequencePresenter!.undoManager = self.undoManager
                 _sequencePresenter!.representingDocument = self
                 return _sequencePresenter
@@ -61,7 +61,7 @@ public class FilamentDocument: NSDocument {
     
     public func storageURL() -> NSURL {
         let storageDir = AppConfiguration.sharedConfiguration.storageDirectory
-        let url = storageDir().URLByAppendingPathComponent(base!.filename)
+        let url = storageDir().URLByAppendingPathComponent(container!.filename)
         return url
     }
     
@@ -72,8 +72,8 @@ public class FilamentDocument: NSDocument {
         let sequence = Sequence(name: title, actionNodes: actionNodes)
         sequence.title = !title.isEmpty ? title : "NEW_DOCUMENT_DEFAULT_TITLE".localized
         
-        let base = BaseDocument(name:"", sequences:[sequence])
-        newDoc.base = base
+        let container = Container(name:"", sequences:[sequence])
+        newDoc.container = container
         //newDoc.unarchivedSequence = sequence
         saveNewDocument(newDoc)
         return newDoc
@@ -82,11 +82,9 @@ public class FilamentDocument: NSDocument {
     
     public class func newSequenceDocumentFromArchive(data: NSData) -> FilamentDocument {
         
-        let base = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! BaseDocument
-        
         let newDoc = FilamentDocument()
-        newDoc.base = base
-        base.uuid =  NSUUID()
+        newDoc.container = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? Container
+        newDoc.container!.uuid =  NSUUID()
         saveNewDocument(newDoc)
         return newDoc
     }
@@ -94,7 +92,7 @@ public class FilamentDocument: NSDocument {
     
     public class func saveNewDocument(document: FilamentDocument) {
         let storageDir = AppConfiguration.sharedConfiguration.storageDirectory
-        let url = storageDir().URLByAppendingPathComponent(document.base!.filename)
+        let url = storageDir().URLByAppendingPathComponent(document.container!.filename)
         
         document.saveToURL(url, ofType: AppConfiguration.filamentFileExtension , forSaveOperation:.SaveOperation, completionHandler: { (Err: NSError?) -> Void in
             if Err != nil {
@@ -108,7 +106,7 @@ public class FilamentDocument: NSDocument {
         if self.hasUnautosavedChanges == false { return }
         
         let storageDir = AppConfiguration.sharedConfiguration.storageDirectory
-        let url = storageDir().URLByAppendingPathComponent(base!.filename)
+        let url = storageDir().URLByAppendingPathComponent(container!.filename)
         do {
             try self.writeSafelyToURL(url, ofType: AppConfiguration.filamentFileExtension, forSaveOperation: .SaveOperation)
         } catch {
@@ -122,9 +120,9 @@ public class FilamentDocument: NSDocument {
     
     override public func readFromData(data: NSData, ofType typeName: String) throws {
         
-        self.base = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? BaseDocument
-        if base != nil {
-            sequencePresenter?.setSequence(base!.sequences[0])
+        container = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? Container
+        if container != nil {
+            sequencePresenter?.setSequence(container!.sequences[0])
         } else {
             throw NSError(domain: NSCocoaErrorDomain, code: NSFileReadCorruptFileError, userInfo: [
                 NSLocalizedDescriptionKey: NSLocalizedString("Could not read file.", comment: "Read error description"),
@@ -135,8 +133,8 @@ public class FilamentDocument: NSDocument {
     
     
     override public func dataOfType(typeName: String) throws -> NSData {
-        if base != nil {
-            return NSKeyedArchiver.archivedDataWithRootObject(base!)
+        if container != nil {
+            return NSKeyedArchiver.archivedDataWithRootObject(container!)
         }
         
         throw NSError(domain: "ListDocumentDomain", code: -1, userInfo: [

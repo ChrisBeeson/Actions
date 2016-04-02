@@ -59,7 +59,7 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
         displayedPopover = nil
         
         let item = self.view.menu?.itemAtIndex(5)
-        if sequencePresenter!.dateIsStartDate == true {
+        if sequencePresenter!.timeDirection == .Forward {
             item!.title = "SEQ_DATE_MENU_SET_DATE_STARTTIME".localized
         } else {
              item!.title = "SEQ_DATE_MENU_SET_DATE_ENDTIME".localized
@@ -72,13 +72,13 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
         endDateNotNilView.hidden = true
         
         let hasDate = (sequencePresenter!.date == nil) ? false : true
-        let isStartDate = sequencePresenter!.dateIsStartDate
+        let direction = sequencePresenter!.timeDirection
         
-        switch (hasDate, isStartDate) {
-        case (false, true): startDateNilView.animator().hidden = false ; return
-        case (true, true): startDateNotNilView.animator().hidden = false
-        case (false, false): endDateNilView.animator().hidden = false ; return
-        case (true, false): endDateNotNilView.animator().hidden = false
+        switch (hasDate, direction) {
+        case (false, .Forward): startDateNilView.animator().hidden = false ; return
+        case (true, .Forward): startDateNotNilView.animator().hidden = false
+        case (false, .Backward): endDateNilView.animator().hidden = false ; return
+        case (true, .Backward): endDateNotNilView.animator().hidden = false
         }
         
         // Updating labels - This is a mess.
@@ -113,7 +113,8 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     // MARK: DateTimePicker delegate
     
     public func dateTimePickerDidChangeDate(date:NSDate?) {
-        self.sequencePresenter!.setDate(date, isStartDate:true)
+        self.sequencePresenter!.setDate(date, direction:self.sequencePresenter!.timeDirection)
+        displayedPopover?.performClose(self)
         //  updateView()
     }
     
@@ -123,14 +124,14 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     
     public func sequencePresenterUpdatedDate(sequencePresenter: SequencePresenter) {
         updateView()
-        displayedPopover?.performClose(self)
+        
     }
     
     
     //MARK: Menu
     
     public func clear(event: NSEvent) {
-        self.sequencePresenter!.setDate(nil, isStartDate:self.sequencePresenter!.dateIsStartDate)
+        self.sequencePresenter!.setDate(nil, direction:self.sequencePresenter!.timeDirection)
     }
     
     public func copy(event: NSEvent) {
@@ -148,7 +149,12 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     
     @IBAction func makeEndDate(sender: AnyObject) {
         displayedPopover = nil
-        self.sequencePresenter?.setDate(sequencePresenter!.date, isStartDate: !sequencePresenter!.dateIsStartDate)
+        
+        if sequencePresenter!.timeDirection == .Forward {
+            self.sequencePresenter?.setDate(sequencePresenter!.date, direction:.Backward)
+        } else {
+            self.sequencePresenter?.setDate(sequencePresenter!.date, direction:.Forward)
+        }
     }
     
     public override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
@@ -166,7 +172,7 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
         if sequencePresenter!.date != nil { date = sequencePresenter!.date! } else {
             date = NSDate.distantPast()
         }
-        let dictionary = ["date":date, "isStartDate":sequencePresenter!.dateIsStartDate]
+        let dictionary = ["date":date, "timeDirection" : sequencePresenter!.timeDirection.rawValue]
         let data = NSKeyedArchiver.archivedDataWithRootObject(dictionary)
         let item = NSPasteboardItem()
         item.setData(data, forType: AppConfiguration.UTI.dateNode)
@@ -177,9 +183,9 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
         let dict = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! Dictionary <String, AnyObject>
         let date = (dict["date"] as! NSDate)
         if date.isEqualToDate(NSDate.distantPast()) == true {
-            self.sequencePresenter!.setDate(nil, isStartDate:(dict["isStartDate"] as! Bool))
+            self.sequencePresenter!.setDate(nil, direction:(TimeDirection(rawValue: (dict["timeDirection"] as! Int)))!)
         } else {
-            self.sequencePresenter!.setDate((dict["date"] as! NSDate), isStartDate:(dict["isStartDate"] as! Bool))
+            self.sequencePresenter!.setDate((dict["date"] as! NSDate), direction:(TimeDirection(rawValue: (dict["timeDirection"] as! Int)))!)
         }
         updateView()
     }
