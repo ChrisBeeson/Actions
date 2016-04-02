@@ -31,17 +31,19 @@ class TransitionDurationWithVariance: Rule, NSCoding {
     // Rule output
     
     override var eventStartTimeWindow: DTTimePeriod? { get {
+        guard inputDate != nil else { return nil }
         
-        if  inputDate != nil {
-            let startWindow = DTTimePeriod(startDate: eventPreferedStartDate!.dateBySubtractingTimeSize(variance), endDate: eventPreferedStartDate!.dateByAddTimeSize(variance))
-            return startWindow
-            
-        } else { return nil }
-        }
+        let startWindow = DTTimePeriod(startDate: eventPreferedStartDate!.dateBySubtractingTimeSize(variance),
+                                       endDate: eventPreferedStartDate!.dateByAddTimeSize(variance))
+        return startWindow
+    }
     }
     
     override var eventPreferedStartDate: NSDate? { get {
-        return inputDate?.dateByAddTimeSize(eventStartsInDuration)
+        switch timeDirection {
+        case .Forward: return inputDate?.dateByAddTimeSize(eventStartsInDuration)
+        case .Backward: return inputDate?.dateBySubtractingTimeSize(eventStartsInDuration)
+        }
         }
     }
     
