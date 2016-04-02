@@ -14,7 +14,7 @@ class GreaterThanLessThanRule : Rule {
     override var name: String { return "RULE_NAME_GREATER_LESS".localized }
     override var availableToNodeType: NodeType { return [.Transition] }
     
-    //defaults
+    // Defaults
     var greaterThan = TimeSize(unit: .Hour, amount: 1)
     var lessThan = TimeSize(unit: .Hour, amount: 2)
     
@@ -25,14 +25,22 @@ class GreaterThanLessThanRule : Rule {
     // Rule output
     
     override var eventStartTimeWindow: DTTimePeriod? { get {
-        if  inputDate != nil {
+        guard inputDate != nil else { return nil }
+        
+        switch timeDirection {
+        case .Forward:
             let startTime = inputDate!.dateByAddTimeSize(greaterThan)
             let endTime = inputDate!.dateByAddTimeSize(lessThan)
             let window = DTTimePeriod(startDate: startTime, endDate: endTime)
-            print("GreaterThanLessThan createdThisStartWindow : \(window.log())")
+            //print("GreaterThanLessThan createdThisStartWindow : \(window.log())")
             return window
-        } else {
-            return nil
+            
+        case .Backward:
+            let startTime = inputDate!.dateBySubtractingTimeSize(greaterThan)
+            let endTime = inputDate!.dateBySubtractingTimeSize(lessThan)
+            let window = DTTimePeriod(startDate: startTime, endDate: endTime)
+            //print("GreaterThanLessThan createdThisStartWindow : \(window.log())")
+            return window
         }
         }
     }
@@ -40,13 +48,23 @@ class GreaterThanLessThanRule : Rule {
     override var eventPreferedStartDate: NSDate? { get {
         guard inputDate != nil else { return nil }
         
-        let startTime = inputDate!.dateByAddTimeSize(greaterThan)
-        let endTime = inputDate!.dateByAddTimeSize(lessThan)
-        
-        var seconds = startTime.secondsEarlierThan(endTime)
-        seconds = seconds / 2
-        return startTime.dateByAddingSeconds(Int(seconds))
-        
+        switch timeDirection {
+        case .Forward:
+            let startTime = inputDate!.dateByAddTimeSize(greaterThan)
+            let endTime = inputDate!.dateByAddTimeSize(lessThan)
+            
+            var seconds = startTime.secondsEarlierThan(endTime)
+            seconds = seconds / 2
+            return startTime.dateByAddingSeconds(Int(seconds))
+            
+        case .Backward:
+            let startTime = inputDate!.dateBySubtractingTimeSize(greaterThan)
+            let endTime = inputDate!.dateBySubtractingTimeSize(lessThan)
+            
+            var seconds = startTime.secondsEarlierThan(endTime)
+            seconds = seconds / 2
+            return startTime.dateByAddingSeconds(Int(seconds))
+        }
         }
     }
     
