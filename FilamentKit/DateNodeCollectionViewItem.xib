@@ -11,10 +11,13 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <collectionViewItem id="9IM-3f-SrT" customClass="DateNodeCollectionViewItem" customModule="FilamentKit" customModuleProvider="target">
             <connections>
+                <outlet property="dateNotNilView" destination="bXq-5E-LnI" id="qwz-jC-d7V"/>
+                <outlet property="dateStackView" destination="cva-Qp-I3S" id="xGe-f4-z8u"/>
+                <outlet property="dateStringLabel" destination="LiS-jE-RDo" id="g3F-Np-AOy"/>
+                <outlet property="dayStringLabel" destination="bRP-ZH-2Mw" id="4LO-eG-Gru"/>
                 <outlet property="endDateNilView" destination="aMz-lY-6YU" id="n1O-Se-O7W"/>
-                <outlet property="endDateNotNilView" destination="beL-Il-ZFc" id="0qe-ba-GzT"/>
                 <outlet property="startDateNilView" destination="c22-O7-iKe" id="A1Z-4L-SIV"/>
-                <outlet property="startDateNotNilView" destination="gzo-fq-cff" id="C5H-Uj-Iu0"/>
+                <outlet property="timeLabel" destination="TuC-OW-BdS" id="IzD-hT-Dxb"/>
                 <outlet property="view" destination="WbQ-zb-6WC" id="Hci-6u-a32"/>
             </connections>
         </collectionViewItem>
@@ -50,68 +53,40 @@
             <point key="canvasLocation" x="179.5" y="-18.5"/>
         </menu>
         <customView id="WbQ-zb-6WC">
-            <rect key="frame" x="0.0" y="0.0" width="48" height="37"/>
+            <rect key="frame" x="0.0" y="0.0" width="48" height="35"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <customView hidden="YES" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="beL-Il-ZFc">
-                    <rect key="frame" x="3" y="0.0" width="42" height="37"/>
+                <customView ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bXq-5E-LnI">
+                    <rect key="frame" x="0.0" y="0.0" width="48" height="35"/>
                     <subviews>
-                        <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SLY-3o-X0d">
-                            <rect key="frame" x="1" y="-2" width="44" height="39"/>
+                        <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" verticalClippingResistancePriority="250" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cva-Qp-I3S">
+                            <rect key="frame" x="5" y="0.0" width="33" height="35"/>
                             <subviews>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="101" translatesAutoresizingMaskIntoConstraints="NO" id="M57-KM-rhR">
-                                    <rect key="frame" x="-2" y="29" width="27" height="11"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="11" id="3jl-Ea-qRj"/>
-                                    </constraints>
-                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" alignment="right" title="8.30" id="7Rg-1F-t1Z">
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="101" translatesAutoresizingMaskIntoConstraints="NO" id="TuC-OW-BdS">
+                                    <rect key="frame" x="-2" y="22" width="27" height="13"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" alignment="right" title="8.30" id="QDR-HZ-9AL">
                                         <font key="font" metaFont="systemSemibold" size="10"/>
                                         <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yQA-8P-czK">
-                                    <rect key="frame" x="0.0" y="12" width="44" height="17"/>
-                                    <subviews>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="102" translatesAutoresizingMaskIntoConstraints="NO" id="Vt0-Cv-FAj">
-                                            <rect key="frame" x="-2" y="0.0" width="22" height="17"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" alignment="right" title="28" id="tU0-jU-gF4">
-                                                <font key="font" metaFont="systemBold"/>
-                                                <color key="textColor" white="0.47380430959999997" alpha="1" colorSpace="calibratedWhite"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" tag="100" translatesAutoresizingMaskIntoConstraints="NO" id="Iyx-PS-ySG">
-                                            <rect key="frame" x="24" y="3" width="22" height="11"/>
-                                            <textFieldCell key="cell" refusesFirstResponder="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="SAT" id="Lrl-wU-shQ">
-                                                <font key="font" metaFont="miniSystem"/>
-                                                <color key="textColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                    </subviews>
-                                    <visibilityPriorities>
-                                        <integer value="1000"/>
-                                        <integer value="1000"/>
-                                    </visibilityPriorities>
-                                    <customSpacing>
-                                        <real value="3.4028234663852886e+38"/>
-                                        <real value="3.4028234663852886e+38"/>
-                                    </customSpacing>
-                                </stackView>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="103" translatesAutoresizingMaskIntoConstraints="NO" id="SME-AQ-amo">
-                                    <rect key="frame" x="-2" y="0.0" width="23" height="12"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="12" id="aA4-6F-vXW"/>
-                                    </constraints>
-                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" alignment="right" title="JUN" id="MGo-Ab-bVR">
-                                        <font key="font" metaFont="miniSystem"/>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="100" translatesAutoresizingMaskIntoConstraints="NO" id="bRP-ZH-2Mw">
+                                    <rect key="frame" x="-2" y="11" width="22" height="11"/>
+                                    <textFieldCell key="cell" refusesFirstResponder="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="SAT" id="FJC-wJ-2Tq">
+                                        <font key="font" metaFont="system" size="9"/>
+                                        <color key="textColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="102" translatesAutoresizingMaskIntoConstraints="NO" id="LiS-jE-RDo">
+                                    <rect key="frame" x="-2" y="0.0" width="37" height="11"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" alignment="right" title="20 JUN" id="Qcd-9c-wxV">
+                                        <font key="font" metaFont="system" size="9"/>
                                         <color key="textColor" white="0.62214589409999999" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
                             </subviews>
-                            <edgeInsets key="edgeInsets" left="0.0" right="0.0" top="-1" bottom="0.0"/>
                             <visibilityPriorities>
                                 <integer value="1000"/>
                                 <integer value="1000"/>
@@ -125,106 +100,25 @@
                         </stackView>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="SLY-3o-X0d" secondAttribute="trailing" id="0ZC-Pa-ITO"/>
-                        <constraint firstAttribute="bottom" secondItem="SLY-3o-X0d" secondAttribute="bottom" id="AsX-fp-bPB"/>
-                        <constraint firstItem="SLY-3o-X0d" firstAttribute="top" secondItem="beL-Il-ZFc" secondAttribute="top" id="BxA-Ps-Ydq"/>
-                        <constraint firstItem="SLY-3o-X0d" firstAttribute="leading" secondItem="beL-Il-ZFc" secondAttribute="leading" id="TC6-aN-ld8"/>
+                        <constraint firstItem="cva-Qp-I3S" firstAttribute="top" secondItem="bXq-5E-LnI" secondAttribute="top" id="5py-fO-NHh"/>
+                        <constraint firstAttribute="bottom" secondItem="cva-Qp-I3S" secondAttribute="bottom" id="dUz-r5-YqU"/>
+                        <constraint firstAttribute="trailing" secondItem="cva-Qp-I3S" secondAttribute="trailing" id="ln5-1A-f33"/>
+                        <constraint firstItem="cva-Qp-I3S" firstAttribute="leading" secondItem="bXq-5E-LnI" secondAttribute="leading" constant="5" id="yfS-tM-ptT"/>
                     </constraints>
                     <connections>
-                        <outlet property="menu" destination="4kg-43-But" id="ums-Xf-zc3"/>
+                        <outlet property="menu" destination="4kg-43-But" id="Gq6-gl-7rD"/>
                     </connections>
                 </customView>
-                <customView hidden="YES" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gzo-fq-cff">
-                    <rect key="frame" x="3" y="0.0" width="42" height="37"/>
+                <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c22-O7-iKe">
+                    <rect key="frame" x="0.0" y="-2" width="48" height="37"/>
                     <subviews>
-                        <stackView distribution="fill" orientation="vertical" alignment="trailing" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6DR-IE-VrL">
-                            <rect key="frame" x="1" y="-2" width="44" height="39"/>
-                            <subviews>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="201" translatesAutoresizingMaskIntoConstraints="NO" id="Fgg-vS-hD8">
-                                    <rect key="frame" x="19" y="29" width="27" height="11"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="11" id="b4h-wE-GbX"/>
-                                    </constraints>
-                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" alignment="right" title="8.30" id="GUV-Ea-Ic5">
-                                        <font key="font" metaFont="systemSemibold" size="10"/>
-                                        <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
-                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                    </textFieldCell>
-                                </textField>
-                                <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x5S-qX-gNc">
-                                    <rect key="frame" x="0.0" y="12" width="44" height="17"/>
-                                    <subviews>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="200" translatesAutoresizingMaskIntoConstraints="NO" id="ANo-nN-E1l">
-                                            <rect key="frame" x="-2" y="3" width="22" height="11"/>
-                                            <textFieldCell key="cell" refusesFirstResponder="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="SAT" id="HH1-TF-fb8">
-                                                <font key="font" metaFont="miniSystem"/>
-                                                <color key="textColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="202" translatesAutoresizingMaskIntoConstraints="NO" id="IWT-Oz-dp8">
-                                            <rect key="frame" x="24" y="0.0" width="22" height="17"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" alignment="right" title="28" id="K7f-zX-gHu">
-                                                <font key="font" metaFont="systemBold"/>
-                                                <color key="textColor" white="0.4738043096330431" alpha="1" colorSpace="calibratedWhite"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                    </subviews>
-                                    <visibilityPriorities>
-                                        <integer value="1000"/>
-                                        <integer value="1000"/>
-                                    </visibilityPriorities>
-                                    <customSpacing>
-                                        <real value="3.4028234663852886e+38"/>
-                                        <real value="3.4028234663852886e+38"/>
-                                    </customSpacing>
-                                </stackView>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="203" translatesAutoresizingMaskIntoConstraints="NO" id="RhO-Cb-dNL">
-                                    <rect key="frame" x="23" y="0.0" width="23" height="12"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="12" id="do7-1e-9ir"/>
-                                    </constraints>
-                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" alignment="right" title="JUN" id="wXv-9K-49e">
-                                        <font key="font" metaFont="miniSystem"/>
-                                        <color key="textColor" white="0.62214589409999999" alpha="1" colorSpace="calibratedWhite"/>
-                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                    </textFieldCell>
-                                </textField>
-                            </subviews>
-                            <edgeInsets key="edgeInsets" left="0.0" right="0.0" top="-1" bottom="0.0"/>
-                            <visibilityPriorities>
-                                <integer value="1000"/>
-                                <integer value="1000"/>
-                                <integer value="1000"/>
-                            </visibilityPriorities>
-                            <customSpacing>
-                                <real value="3.4028234663852886e+38"/>
-                                <real value="3.4028234663852886e+38"/>
-                                <real value="3.4028234663852886e+38"/>
-                            </customSpacing>
-                        </stackView>
-                    </subviews>
-                    <constraints>
-                        <constraint firstAttribute="trailing" secondItem="6DR-IE-VrL" secondAttribute="trailing" id="DCV-94-t6E"/>
-                        <constraint firstAttribute="bottom" secondItem="6DR-IE-VrL" secondAttribute="bottom" id="IRZ-Xa-y8h"/>
-                        <constraint firstItem="6DR-IE-VrL" firstAttribute="leading" secondItem="gzo-fq-cff" secondAttribute="leading" id="hrZ-MF-2hK"/>
-                        <constraint firstItem="6DR-IE-VrL" firstAttribute="top" secondItem="gzo-fq-cff" secondAttribute="top" id="yKa-Gt-Nmd"/>
-                    </constraints>
-                    <connections>
-                        <outlet property="menu" destination="4kg-43-But" id="yuk-Th-Izo"/>
-                    </connections>
-                </customView>
-                <customView translatesAutoresizingMaskIntoConstraints="NO" id="c22-O7-iKe">
-                    <rect key="frame" x="0.0" y="0.0" width="48" height="37"/>
-                    <subviews>
-                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="2Hp-Nn-vAM" customClass="TransitionNodeView" customModule="FilamentKit" customModuleProvider="target">
+                        <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Hp-Nn-vAM" customClass="TransitionNodeView" customModule="FilamentKit" customModuleProvider="target">
                             <rect key="frame" x="23" y="0.0" width="25" height="37"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="25" id="aLa-5r-VbP"/>
                             </constraints>
                         </customView>
-                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="lxw-2o-cB3" customClass="EmptyNodeView" customModule="FilamentKit" customModuleProvider="target">
+                        <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lxw-2o-cB3" customClass="EmptyNodeView" customModule="FilamentKit" customModuleProvider="target">
                             <rect key="frame" x="17" y="11" width="15" height="15"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="15" id="Sq8-zz-c8f"/>
@@ -243,16 +137,16 @@
                         <outlet property="menu" destination="4kg-43-But" id="9qj-Gi-rUZ"/>
                     </connections>
                 </customView>
-                <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aMz-lY-6YU">
-                    <rect key="frame" x="0.0" y="0.0" width="48" height="37"/>
+                <customView hidden="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aMz-lY-6YU">
+                    <rect key="frame" x="0.0" y="-2" width="48" height="37"/>
                     <subviews>
-                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="FR2-fD-eqk" customClass="TransitionNodeView" customModule="FilamentKit" customModuleProvider="target">
+                        <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FR2-fD-eqk" customClass="TransitionNodeView" customModule="FilamentKit" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="25" height="37"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="25" id="ylh-7J-5BC"/>
                             </constraints>
                         </customView>
-                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="xWU-07-pRG" customClass="EmptyNodeView" customModule="FilamentKit" customModuleProvider="target">
+                        <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xWU-07-pRG" customClass="EmptyNodeView" customModule="FilamentKit" customModuleProvider="target">
                             <rect key="frame" x="17" y="11" width="15" height="15"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="15" id="Q92-Ca-yJ9"/>

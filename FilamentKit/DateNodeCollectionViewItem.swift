@@ -12,14 +12,13 @@ import DateTools
 public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegate, SequencePresenterDelegate, DateTimePickerViewDelegate, DragDropCopyPasteItem {
     
     @IBOutlet weak var startDateNilView: NSView!
-    @IBOutlet weak var startDateNotNilView: NSView!
+    @IBOutlet weak var dateNotNilView: NSView!
     @IBOutlet weak var endDateNilView: NSView!
-    @IBOutlet weak var endDateNotNilView: NSView!
+    @IBOutlet weak var dateStackView: NSStackView!
     
-    public var monthString = ""
-    public var dayString = ""
-    public var day = ""
-    public var time = ""
+    @IBOutlet weak var timeLabel: NSTextField!
+    @IBOutlet weak var dayStringLabel: NSTextField!
+    @IBOutlet weak var dateStringLabel: NSTextField!
     
     weak var sequencePresenter: SequencePresenter?
     var displayedPopover: NSPopover?
@@ -67,40 +66,40 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
         
         self.view.alphaValue = self.sequencePresenter?.currentState == .Completed ? 0.5 : 1.0
         startDateNilView.hidden = true
-        startDateNotNilView.hidden = true
+        dateNotNilView.hidden = true
         endDateNilView.hidden = true
-        endDateNotNilView.hidden = true
         
         let hasDate = (sequencePresenter!.date == nil) ? false : true
         let direction = sequencePresenter!.timeDirection
         
         switch (hasDate, direction) {
-        case (false, .Forward): startDateNilView.animator().hidden = false ; return
-        case (true, .Forward): startDateNotNilView.animator().hidden = false
-        case (false, .Backward): endDateNilView.animator().hidden = false ; return
-        case (true, .Backward): endDateNotNilView.animator().hidden = false
+        case (false, .Forward):
+            startDateNilView.animator().hidden = false ; return
+        case (false, .Backward):
+            endDateNilView.animator().hidden = false ; return
+        case (true, .Forward):
+            dateNotNilView.hidden = false
+            dateStackView.alignment = .Trailing
+        case (true, .Backward):
+            dateNotNilView.hidden = false
+            dateStackView.alignment = .Leading
         }
         
-        // Updating labels - This is a mess.
-        // Day String
-        dateFormatter.dateFormat = "EEE"
-        let dayString = dateFormatter.stringFromDate(sequenceDate).uppercaseString
-        (self.view.viewWithTag(100) as! NSTextField).stringValue = dayString
-        (self.view.viewWithTag(200) as! NSTextField).stringValue = dayString
+        // Update labels
+        
         // Time
         dateFormatter.dateFormat = "HH:mm"
-        time = dateFormatter.stringFromDate(sequenceDate)
-        (self.view.viewWithTag(101) as! NSTextField).stringValue = time
-        (self.view.viewWithTag(201) as! NSTextField).stringValue = time
-        // Day
-        let day = String(sequenceDate.day())
-        (self.view.viewWithTag(102) as! NSTextField).stringValue = day
-        (self.view.viewWithTag(202) as! NSTextField).stringValue = day
-        // Month String
+        timeLabel.stringValue = dateFormatter.stringFromDate(sequenceDate)
+        
+        // Day String
+        dateFormatter.dateFormat = "EEE"
+        dayStringLabel.stringValue = dateFormatter.stringFromDate(sequenceDate).uppercaseString
+
+        // Date String (eg 20 AUG)
         dateFormatter.dateFormat = "MMM"
         let monthString = dateFormatter.stringFromDate(sequenceDate).uppercaseString
-        (self.view.viewWithTag(103) as! NSTextField).stringValue = monthString
-        (self.view.viewWithTag(203) as! NSTextField).stringValue = monthString
+        let day = String(sequenceDate.day())
+        dateStringLabel.stringValue = "\(day) \(monthString)"
     }
     
     public var sequenceDate: NSDate {
