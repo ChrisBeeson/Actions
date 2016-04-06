@@ -3,7 +3,7 @@
 //  Filament
 //
 //  Created by Chris Beeson on 27/10/2015.
-//  Copyright © 2015 Andris Ltd. All rights reserved.
+//  Copyright © 2016 Andris Ltd. All rights reserved.
 //
 
 import Foundation

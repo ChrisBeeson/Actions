@@ -30,7 +30,7 @@ class SolverTests: XCTestCase {
         var rules:[Rule] = [EventDurationWithMinimumDuration(), TransitionDurationWithVariance()]
         let node = Node()
         
-        var output = Solver.calculateEventPeriod(NSDate.dateFromString("2015-1-1 10:00:00"),node:node, rules: rules)
+        var output = Solver.calculateEventPeriod(NSDate.dateFromString("2015-1-1 10:00:00"), direction: .Forward, node:node, rules: rules)
         XCTAssert(output.solved)
         XCTAssert(output.period!.StartDate!.isEqualToDate(NSDate.dateFromString("2015-1-1 11:00:00")))
         XCTAssert(output.period!.EndDate!.isEqualToDate(NSDate.dateFromString("2015-1-1 11:30:00")))
@@ -39,7 +39,7 @@ class SolverTests: XCTestCase {
         let avoid = DummyAvoids()
         avoid.avoidPeriods = [DTTimePeriod(startDate: NSDate.dateFromString("2015-1-1 11:00:00"), endDate: NSDate.dateFromString("2015-1-1 11:10:00"))]
         rules.append(avoid)
-        output = Solver.calculateEventPeriod(NSDate.dateFromString("2015-1-1 10:00:00"),node:node, rules: rules)
+        output = Solver.calculateEventPeriod(NSDate.dateFromString("2015-1-1 10:00:00"),direction: .Forward, node:node, rules: rules)
         XCTAssert(output.solved)
         XCTAssert(output.period!.StartDate!.isEqualToDate(NSDate.dateFromString("2015-1-1 11:10:00")))
         XCTAssert(output.period!.EndDate!.isEqualToDate(NSDate.dateFromString("2015-1-1 11:40:00")))
@@ -48,7 +48,7 @@ class SolverTests: XCTestCase {
         let avoid2 = DummyAvoids()
         avoid2.avoidPeriods = [DTTimePeriod(startDate: NSDate.dateFromString("2015-1-1 11:25:00"), endDate: NSDate.dateFromString("2015-1-1 11:30:00"))]
         rules.append(avoid2)
-        output = Solver.calculateEventPeriod(NSDate.dateFromString("2015-1-1 10:00:00"),node:node, rules: rules)
+        output = Solver.calculateEventPeriod(NSDate.dateFromString("2015-1-1 10:00:00"),direction: .Forward, node:node, rules: rules)
         XCTAssert(output.solved)
         XCTAssert(output.period!.StartDate!.isEqualToDate(NSDate.dateFromString("2015-1-1 11:10:00")))
         XCTAssert(output.period!.EndDate!.isEqualToDate(NSDate.dateFromString("2015-1-1 11:25:00")))
@@ -61,7 +61,7 @@ class SolverTests: XCTestCase {
         rules.append(avoid4)
         avoid5.avoidPeriods = [DTTimePeriod(startDate: NSDate.dateFromString("2015-1-1 11:15:00"), endDate: NSDate.dateFromString("2015-1-1 11:20:00"))]
         rules.append(avoid5)
-        output = Solver.calculateEventPeriod(NSDate.dateFromString("2015-1-1 10:00:00"),node:node, rules: rules)
+        output = Solver.calculateEventPeriod(NSDate.dateFromString("2015-1-1 10:00:00"),direction: .Forward, node:node, rules: rules)
         XCTAssert(output.solved == false)
     }
 
@@ -75,7 +75,7 @@ class SolverTests: XCTestCase {
         var rules:[Rule] = [EventDurationWithMinimumDuration(), durationWithNoVariance]
         let node = Node()
         
-        var output = Solver.calculateEventPeriod(NSDate.dateFromString("2015-1-1 10:00:00"),node:node, rules: rules)
+        var output = Solver.calculateEventPeriod(NSDate.dateFromString("2015-1-1 10:00:00"),direction: .Forward, node:node, rules: rules)
         XCTAssert(output.solved == true)
         XCTAssert(output.period!.StartDate!.isEqualToDate(NSDate.dateFromString("2015-1-1 11:00:00")))
         
@@ -85,7 +85,7 @@ class SolverTests: XCTestCase {
         avoid.avoidPeriods = [DTTimePeriod(startDate: NSDate.dateFromString("2015-1-1 10:59:00"), endDate: NSDate.dateFromString("2015-1-1 11:05:00"))]
         rules.append(avoid)
         
-         output = Solver.calculateEventPeriod(NSDate.dateFromString("2015-1-1 10:00:00"),node:node, rules: rules)
+         output = Solver.calculateEventPeriod(NSDate.dateFromString("2015-1-1 10:00:00"),direction: .Forward, node:node, rules: rules)
          XCTAssert(output.solved == false)
     }
     
@@ -109,13 +109,13 @@ class SolverTests: XCTestCase {
     
         // First, lets test the start time by trying to start an event before the work hours start time
         
-        var output = Solver.calculateEventPeriod(NSDate(string: "2015-01-01 07:50", formatString: "YYYY-MM-DD hh:mm"),node:node, rules: rules)
+        var output = Solver.calculateEventPeriod(NSDate(string: "2015-01-01 07:50", formatString: "YYYY-MM-DD hh:mm"),direction: .Forward,node:node, rules: rules)
         
         XCTAssert(output.solved == true)
         XCTAssert(output.period!.StartDate!.isEqualToDate(NSDate(string: "2015-01-01 09:00", formatString: "YYYY-MM-DD hh:mm")))
         
         // Next event clashes with lunch
-        output = Solver.calculateEventPeriod(NSDate(string: "2015-01-01 12:20", formatString: "YYYY-MM-DD HH:mm"),node:node, rules: rules)
+        output = Solver.calculateEventPeriod(NSDate(string: "2015-01-01 12:20", formatString: "YYYY-MM-DD HH:mm"),direction: .Forward,node:node, rules: rules)
         XCTAssert(output.solved == true)
         XCTAssert(output.period!.StartDate!.isEqualToDate(NSDate(string: "2015-01-01 13:30", formatString: "YYYY-MM-DD HH:mm")))
         
@@ -126,7 +126,7 @@ class SolverTests: XCTestCase {
         greaterThan.lessThan = TimeSize(unit: .Hour, amount: 16)
         
         let newRules = [EventDurationWithMinimumDuration(), greaterThan, workingWeek]
-        output = Solver.calculateEventPeriod(NSDate(string: "2015-01-01 17:25", formatString: "YYYY-MM-DD HH:mm"), node:node, rules: newRules)
+        output = Solver.calculateEventPeriod(NSDate(string: "2015-01-01 17:25", formatString: "YYYY-MM-DD HH:mm"), direction: .Forward, node:node, rules: newRules)
         XCTAssert(output.solved == true)
         XCTAssert(output.period!.StartDate!.isEqualToDate(NSDate(string: "2015-01-02 09:00", formatString: "YYYY-MM-DD HH:mm")))
     }

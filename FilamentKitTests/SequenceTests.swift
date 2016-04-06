@@ -31,14 +31,14 @@ class SequenceTests: XCTestCase {
     
     
     func testchain() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
         
-        sequence!.logchain()
-        
+        sequence!.printChain()
+        XCTAssert(sequence!.validSequence() == true)
+
+        sequence!.timeDirection = .Backward
+        sequence!.printChain()
         XCTAssert(sequence!.validSequence() == true)
     }
-    
     
     func testInsertNodes() {
         
@@ -51,7 +51,11 @@ class SequenceTests: XCTestCase {
         sequence!.insertActionNode(Node(text: "Middle", type: .Action, rules: nil),index: 2)
         XCTAssert(sequence!.validSequence() == true)
         
-        sequence!.logchain()
+        sequence!.printChain()
+        
+        sequence!.timeDirection = .Backward
+        XCTAssert(sequence!.validSequence() == true)
+        
     }
     
     func testValidSequence() {
@@ -67,6 +71,9 @@ class SequenceTests: XCTestCase {
         let nodes = sequence!.nodeChain()
         nodes[nodes.count-1].leftTransitionNode = nil
         XCTAssert(sequence!.validSequence() == false)
+        
+        sequence!.timeDirection = .Backward
+        XCTAssert(sequence!.validSequence() == false)
     }
     
     func testValidSequence3(){
@@ -76,12 +83,25 @@ class SequenceTests: XCTestCase {
         XCTAssert(sequence!.validSequence() == false)
     }
     
-    func testDelete () {
+    func testDeleteFirstNode() {
+        
+        let nodeToDelete = sequence!.nodeChain()[0]
+        sequence!.removeActionNode(nodeToDelete)
+        sequence!.printChain()
+        XCTAssert(sequence!.validSequence() == true)
+        
+        sequence!.timeDirection = .Backward
+        XCTAssert(sequence!.validSequence() == true)
+    }
+    
+    func testDeleteMiddleNode() {
         
         let nodeToDelete = sequence!.nodeChain()[2]
-        // let index = sequence!.nodeChain().indexOf(nodeToDelete)
         sequence!.removeActionNode(nodeToDelete)
-        sequence!.logchain()
+        sequence!.printChain()
+        XCTAssert(sequence!.validSequence() == true)
+        
+        sequence!.timeDirection = .Backward
         XCTAssert(sequence!.validSequence() == true)
     }
     
@@ -107,7 +127,6 @@ class SequenceTests: XCTestCase {
     func testEncodingSequence() {
         
         let archivedSequenceData = NSKeyedArchiver.archivedDataWithRootObject(sequence!)
-        
         XCTAssertTrue(archivedSequenceData.length > 0)
     }
     
@@ -121,7 +140,6 @@ class SequenceTests: XCTestCase {
         if unarchivedSequence  != nil {
             XCTAssertEqual(sequence, unarchivedSequence)
         }
-
     }
     
     
