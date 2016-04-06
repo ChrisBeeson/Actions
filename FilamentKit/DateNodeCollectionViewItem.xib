@@ -56,8 +56,8 @@
             <rect key="frame" x="0.0" y="0.0" width="48" height="35"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <customView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bXq-5E-LnI">
-                    <rect key="frame" x="0.0" y="0.0" width="38" height="35"/>
+                <customView ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bXq-5E-LnI">
+                    <rect key="frame" x="0.0" y="0.0" width="48" height="35"/>
                     <subviews>
                         <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" verticalClippingResistancePriority="250" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cva-Qp-I3S">
                             <rect key="frame" x="5" y="0.0" width="33" height="35"/>
@@ -102,7 +102,7 @@
                     <constraints>
                         <constraint firstItem="cva-Qp-I3S" firstAttribute="top" secondItem="bXq-5E-LnI" secondAttribute="top" id="5py-fO-NHh"/>
                         <constraint firstAttribute="bottom" secondItem="cva-Qp-I3S" secondAttribute="bottom" id="dUz-r5-YqU"/>
-                        <constraint firstAttribute="trailing" secondItem="cva-Qp-I3S" secondAttribute="trailing" id="ln5-1A-f33"/>
+                        <constraint firstAttribute="trailing" secondItem="cva-Qp-I3S" secondAttribute="trailing" constant="6" id="otY-YP-Evw"/>
                         <constraint firstItem="cva-Qp-I3S" firstAttribute="leading" secondItem="bXq-5E-LnI" secondAttribute="leading" constant="5" id="yfS-tM-ptT"/>
                     </constraints>
                     <connections>
@@ -167,6 +167,7 @@
                 </customView>
             </subviews>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="bXq-5E-LnI" secondAttribute="trailing" id="HLD-8u-gXr"/>
                 <constraint firstItem="aMz-lY-6YU" firstAttribute="top" secondItem="WbQ-zb-6WC" secondAttribute="top" id="OmQ-ag-fcd"/>
                 <constraint firstAttribute="bottom" secondItem="aMz-lY-6YU" secondAttribute="bottom" id="T6M-ER-yjw"/>
                 <constraint firstAttribute="trailing" secondItem="aMz-lY-6YU" secondAttribute="trailing" id="WE8-rK-oYF"/>
