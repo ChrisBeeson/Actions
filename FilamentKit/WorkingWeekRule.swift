@@ -9,8 +9,6 @@
 import Foundation
 import DateTools
 
-//TODO: Working Week
-
 class WorkingWeekRule: Rule, NSCoding, NSCopying {
     
     // This rule sets the duration of an event.
@@ -109,6 +107,9 @@ class WorkingWeekRule: Rule, NSCoding, NSCopying {
     // MARK: NSCopying
     
     func copyWithZone(zone: NSZone) -> AnyObject  {
+        
+        //TODO: Working Week Copy
+        
         /*
         let clone = Sequence()
         clone.title = title.copy() as! String

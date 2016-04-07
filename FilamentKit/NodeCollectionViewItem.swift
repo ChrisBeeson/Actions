@@ -145,7 +145,8 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate, Drag
         
         switch item.types[0] {
         case AppConfiguration.UTI.rule:
-            let rule =  RulePresenter(pasteboardItem:item)
+            let rule = RulePresenter(pasteboardItem:item)
+            // TODO: Don't allow identical rules to be droped on themselves.  Rules need isEqual using hash of vars.
             return presenter?.wouldAcceptRulePresenter(rule, allowDuplicates:true) == true ? .Copy : .None
         default:
             return .None
