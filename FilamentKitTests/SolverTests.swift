@@ -37,7 +37,7 @@ class SolverTests: XCTestCase {
         
         // Harder there is something right at our prefered period, but still will fit the average size
         let avoid = DummyAvoids()
-        avoid.avoidPeriods = [DTTimePeriod(startDate: NSDate.dateFromString("2015-1-1 11:00:00"), endDate: NSDate.dateFromString("2015-1-1 11:10:00"))]
+        avoid.avoidPeriods = [AvoidPeriod(period: DTTimePeriod(startDate: NSDate.dateFromString("2015-1-1 11:00:00"), endDate: NSDate.dateFromString("2015-1-1 11:10:00")))]
         rules.append(avoid)
         output = Solver.calculateEventPeriod(NSDate.dateFromString("2015-1-1 10:00:00"),direction: .Forward, node:node, rules: rules)
         XCTAssert(output.solved)
@@ -46,7 +46,7 @@ class SolverTests: XCTestCase {
         
         // even harder
         let avoid2 = DummyAvoids()
-        avoid2.avoidPeriods = [DTTimePeriod(startDate: NSDate.dateFromString("2015-1-1 11:25:00"), endDate: NSDate.dateFromString("2015-1-1 11:30:00"))]
+        avoid2.avoidPeriods = [AvoidPeriod(period: DTTimePeriod(startDate: NSDate.dateFromString("2015-1-1 11:25:00"), endDate: NSDate.dateFromString("2015-1-1 11:30:00")))]
         rules.append(avoid2)
         output = Solver.calculateEventPeriod(NSDate.dateFromString("2015-1-1 10:00:00"),direction: .Forward, node:node, rules: rules)
         XCTAssert(output.solved)
@@ -55,11 +55,11 @@ class SolverTests: XCTestCase {
         
         // impossible
         let avoid3 = DummyAvoids(), avoid4 = DummyAvoids(), avoid5 = DummyAvoids()
-        avoid3.avoidPeriods = [DTTimePeriod(startDate: NSDate.dateFromString("2015-1-1 11:35:00"), endDate: NSDate.dateFromString("2015-1-1 11:38:00"))]
+        avoid3.avoidPeriods = [AvoidPeriod(period: DTTimePeriod(startDate: NSDate.dateFromString("2015-1-1 11:35:00"), endDate: NSDate.dateFromString("2015-1-1 11:38:00")))]
         rules.append(avoid3)
-        avoid4.avoidPeriods = [DTTimePeriod(startDate: NSDate.dateFromString("2015-1-1 10:50:00"), endDate: NSDate.dateFromString("2015-1-1 10:52:00"))]
+        avoid4.avoidPeriods = [AvoidPeriod(period: DTTimePeriod(startDate: NSDate.dateFromString("2015-1-1 10:50:00"), endDate: NSDate.dateFromString("2015-1-1 10:52:00")))]
         rules.append(avoid4)
-        avoid5.avoidPeriods = [DTTimePeriod(startDate: NSDate.dateFromString("2015-1-1 11:15:00"), endDate: NSDate.dateFromString("2015-1-1 11:20:00"))]
+        avoid5.avoidPeriods = [AvoidPeriod(period: DTTimePeriod(startDate: NSDate.dateFromString("2015-1-1 11:15:00"), endDate: NSDate.dateFromString("2015-1-1 11:20:00")))]
         rules.append(avoid5)
         output = Solver.calculateEventPeriod(NSDate.dateFromString("2015-1-1 10:00:00"),direction: .Forward, node:node, rules: rules)
         XCTAssert(output.solved == false)
@@ -82,7 +82,7 @@ class SolverTests: XCTestCase {
         // put something right in the way, as variance is 0 it should just fail.
         
         let avoid = DummyAvoids()
-        avoid.avoidPeriods = [DTTimePeriod(startDate: NSDate.dateFromString("2015-1-1 10:59:00"), endDate: NSDate.dateFromString("2015-1-1 11:05:00"))]
+        avoid.avoidPeriods = [AvoidPeriod(period:DTTimePeriod(startDate: NSDate.dateFromString("2015-1-1 10:59:00"), endDate: NSDate.dateFromString("2015-1-1 11:05:00")))]
         rules.append(avoid)
         
          output = Solver.calculateEventPeriod(NSDate.dateFromString("2015-1-1 10:00:00"),direction: .Forward, node:node, rules: rules)

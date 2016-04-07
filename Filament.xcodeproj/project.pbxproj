@@ -171,6 +171,7 @@
 		83F6B97A1B995683002A5AAF /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 83F6B9791B995683002A5AAF /* Podfile */; };
 		83F7DE691C77D768008BEDCC /* GeneralExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CD21BE1BDF797B00AF25BE /* GeneralExtensions.swift */; };
 		83F9B3CC1CB66EA50054539A /* SolverError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F9B3CB1CB66EA50054539A /* SolverError.swift */; };
+		83F9B3CD1CB68A270054539A /* SolverError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F9B3CB1CB66EA50054539A /* SolverError.swift */; };
 		83F9E92B1BA18739006282B5 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 83F9E92A1BA18739006282B5 /* .gitignore */; };
 		83FB2BF91C8ECCC800AF291D /* RightAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB2BF81C8ECCC800AF291D /* RightAlignedCollectionViewFlowLayout.swift */; };
 		83FE26051BCB8FC200AC20B5 /* SolverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FE26031BCB8FB700AC20B5 /* SolverTests.swift */; };
@@ -1307,6 +1308,7 @@
 				83CE4A0E1CA21778005691FD /* EventAlarmRule.swift in Sources */,
 				83CE4A271CA21AA5005691FD /* EventDurationWithMinimumDurationViewController.swift in Sources */,
 				83CE4A0C1CA21772005691FD /* NextUnitRule.swift in Sources */,
+				83F9B3CD1CB68A270054539A /* SolverError.swift in Sources */,
 				83CE4A211CA21950005691FD /* WorkingWeekRulePresenter.swift in Sources */,
 				83CE4A0A1CA2176B005691FD /* EventFixedStartAndEndDate.swift in Sources */,
 				472465211BBFE656004DE4DE /* EventDurationWithMinimumDuration.swift in Sources */,

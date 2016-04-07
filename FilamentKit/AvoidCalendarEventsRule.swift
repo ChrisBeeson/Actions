@@ -13,6 +13,17 @@ struct AvoidPeriod {
     var period:DTTimePeriod
     var type:AvoidPeriodType
     var object:AnyObject?
+    
+    init (period:DTTimePeriod, type:AvoidPeriodType, object:AnyObject?) {
+        self.period = period
+        self.type = type
+        self.object = object
+    }
+    
+    init (period:DTTimePeriod) {
+        self.period = period
+        self.type = .None
+    }
 }
 
 enum AvoidPeriodType {
@@ -20,6 +31,8 @@ enum AvoidPeriodType {
     case WorkingWeekMorning
     case WorkingWeekEvening
     case WorkingWeekLunch
+    case Node
+    case None
 }
 
 class AvoidCalendarEventsRule: Rule, NSCoding {
@@ -41,8 +54,7 @@ class AvoidCalendarEventsRule: Rule, NSCoding {
         populateCalendars()
     }
     
-    
-    override var avoidPeriods: [DTTimePeriod]? {
+    override var avoidPeriods: [AvoidPeriod]? {
         get {
             if interestPeriod == nil { return nil }
             
@@ -52,21 +64,13 @@ class AvoidCalendarEventsRule: Rule, NSCoding {
             guard let events = CalendarManager.sharedInstance.events(interestPeriod!, calendars:activeCalendars) else { return nil }
             
             // 2. Turn each event into a time period.
-            var periods = [DTTimePeriod]()
+            var periods = [AvoidPeriod]()
             for event in events {
                 let period = DTTimePeriod(startDate: event.startDate, endDate: event.endDate)
-                periods.append(period)
-            }
-            
-            // 3. remove any periods we should ignore (ie. events from the sequence we are solving)
-            //TODO: Check are we repeating in the solver?
-            if let ignore = ignorePeriods() {
-                for period in periods {
-                    for ignore in ignore {
-                        if period.isEqualToPeriod(ignore) {
-                            periods.removeObject(period)
-                        }
-                    }
+                let ignore = ignorePeriods()?.filter{ $0.isEqualToPeriod(period) }
+                if ignore == nil || ignore!.count == 0 {
+                    let avoidPeriod = AvoidPeriod(period: period, type: .CalendarEvent, object: event)
+                    periods.append(avoidPeriod)
                 }
             }
             return periods

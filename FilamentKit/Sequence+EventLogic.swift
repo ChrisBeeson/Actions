@@ -19,7 +19,7 @@ extension Sequence {
         guard var time = date else { return (false,nil) }
         print("Updating Calendar Events")
         
-        var solvedPeriodsToAvoid = [DTTimePeriod]()
+        var solvedPeriodsToAvoid = [AvoidPeriod]()
         let orderedNodes:[Node] = self.timeDirection == .Forward ? self.actionNodes : self.actionNodes.reverse()
         
         for (index, node) in orderedNodes.enumerate() {
@@ -86,6 +86,9 @@ extension Sequence {
             
             // Post-Solver 
             
+            //TODO: Calendar events get updated here?
+            
+            
             // Result processing
             
             // Failed
@@ -96,7 +99,7 @@ extension Sequence {
             
             // We did it!
             node.setEventPeriod(solvedPeriod!.period!)
-            solvedPeriodsToAvoid.append(solvedPeriod!.period!)
+            solvedPeriodsToAvoid.append(AvoidPeriod(period:solvedPeriod!.period!, type:.Node, object:node))
             
             time = (timeDirection == .Forward) ? solvedPeriod!.period!.EndDate : solvedPeriod!.period!.StartDate
         }
@@ -112,7 +115,7 @@ extension Sequence {
         
         for node in transitionNodes {
             
-            // Bit of house keeping... really shouldn't go here.
+            // Bit of house keeping... This this really the best place for it?
             
             if  let index = allNodes.indexOf(node) where index != -1 {
                 node.leftTransitionNode = allNodes[index-1]

@@ -31,12 +31,12 @@ class WorkingWeekRule: Rule, NSCoding, NSCopying {
         super.init()
     }
     
-    override var avoidPeriods: [DTTimePeriod]? {
+    override var avoidPeriods: [AvoidPeriod]? {
         get {
             if interestPeriod == nil { return nil }
             var numberOfDays = interestPeriod?.EndDate.daysLaterThan(interestPeriod?.StartDate)
             numberOfDays! += 1
-            var periods = [DTTimePeriod]()
+            var periods = [AvoidPeriod]()
             
             for day in 0...numberOfDays! {
                 let dayNumber = interestPeriod!.StartDate.dateByAddingDays(day).weekday()
@@ -48,21 +48,24 @@ class WorkingWeekRule: Rule, NSCoding, NSCopying {
                         let startDate = NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: workingDayStartTime)
                         //  startDate = startDate.dateBySubtractingMinutes(1)
                         let midnightToStart = DTTimePeriod(startDate: midnight, endDate: startDate)
-                        periods.append(midnightToStart)
+                        let avoidPeriod1 = AvoidPeriod(period: midnightToStart, type: .WorkingWeekMorning, object: nil)
+                        periods.append(avoidPeriod1)
                         
                         // go from workday endtime to midnight
                         let workdayEnd = NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: workingDayEndTime)
                         let nearlyMidnight = NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: NSDate(string: "23:59", formatString: "HH:mm"))
                         let endToMidnight = DTTimePeriod(startDate: workdayEnd, endDate: nearlyMidnight)
-                        periods.append(endToMidnight)
+                        let avoidPeriod2 = AvoidPeriod(period: endToMidnight, type: .WorkingWeekEvening, object: nil)
+                        periods.append(avoidPeriod2)
                     }
                     
                     if lunchBreakEnabled == true {
-                        let lunchStart =  NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: lunchBreakStartTime)
-                        let lunchEnd =  NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: lunchBreakEndTime)
+                        let lunchStart = NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: lunchBreakStartTime)
+                        let lunchEnd = NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: lunchBreakEndTime)
                         // lunchEnd = lunchEnd.dateBySubtractingMinutes(1)
-                        let lunch =  DTTimePeriod(startDate: lunchStart, endDate: lunchEnd)
-                        periods.append(lunch)
+                        let lunch = DTTimePeriod(startDate: lunchStart, endDate: lunchEnd)
+                        let avoidPeriod1 = AvoidPeriod(period: lunch, type: .WorkingWeekLunch, object: nil)
+                        periods.append(avoidPeriod1)
                     }
                 }
             }

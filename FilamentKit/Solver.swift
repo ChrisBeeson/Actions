@@ -49,7 +49,7 @@ class Solver: NSObject {
         var preferedStartTime: NSDate?
         var averageDuration: Timesize?
         var averageMinDuration: Timesize?
-        let avoidPeriods = DTTimePeriodCollection()
+        var detailedAvoidPeriods = [AvoidPeriod]()
         var errors = [SolverError]()
 
         //////////////////////////////////////////////////////////////////////////
@@ -138,7 +138,7 @@ class Solver: NSObject {
             // Combine Avoid periods
             if rule.avoidPeriods != nil {
                 for avoidPeriod in rule.avoidPeriods! {
-                    avoidPeriods.addTimePeriod(avoidPeriod)
+                    detailedAvoidPeriods.append(avoidPeriod)
                 }
             }
         }
@@ -150,6 +150,8 @@ class Solver: NSObject {
         ///  (Create free periods from the gaps inbetween)
         //////////////////////////////////////////////////////////////////////////
         
+        let avoidPeriods = DTTimePeriodCollection()
+        detailedAvoidPeriods.forEach{ avoidPeriods.addTimePeriod($0.period) }
         avoidPeriods.flatten()
         let freePeriods = avoidPeriods.voidPeriods(windowOfInterest)
         

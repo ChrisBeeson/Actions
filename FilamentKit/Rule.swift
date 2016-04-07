@@ -10,7 +10,6 @@ import Foundation
 import DateTools
 
 protocol RuleType {
-    
     var name: String {get}
     var description: String {get}
     var availableToNodeType: NodeType {get}
@@ -29,7 +28,7 @@ protocol RuleType {
     var eventMinDuration: Timesize? {get}
     
     // Interactions
-    var avoidPeriods: [DTTimePeriod]? {get set}
+    var avoidPeriods: [AvoidPeriod]? {get set}
     var previousPeriod: DTTimePeriod? {get set}
     
     // Post Solver
@@ -39,7 +38,6 @@ protocol RuleType {
 
 
 public class Rule: NSObject, RuleType {
-    
     var name: String {get {return "Not set"} }
     var Description: String {get {return "NOT SET"} }
     var availableToNodeType: NodeType {get {return NodeType.Void} }
@@ -52,11 +50,10 @@ public class Rule: NSObject, RuleType {
     var eventPreferedStartDate: NSDate? {get {return nil} }
     var eventDuration: Timesize? { get { return nil } }
     var eventMinDuration: Timesize? { get { return nil } }
-    var avoidPeriods: [DTTimePeriod]?
+    var avoidPeriods: [AvoidPeriod]?
     var previousPeriod: DTTimePeriod?
     var solvedPeriod: DTTimePeriod?
     public func postSolverCodeBlock() {}
-    
     
     class func RegisteredRuleClasses() -> [Rule] {
         var ruleClasses = [Rule]()
@@ -74,7 +71,6 @@ public class Rule: NSObject, RuleType {
     }
 }
 
-
 struct RoleOptions : OptionSetType {
     let rawValue: Int
     init(rawValue:Int) { self.rawValue = rawValue }
@@ -85,6 +81,3 @@ struct RoleOptions : OptionSetType {
     static let RequiresSolvedPeriod = RoleOptions(rawValue: 8)
     static let HasPostSolverCodeBlock = RoleOptions(rawValue: 16)
 }
-
-
-
