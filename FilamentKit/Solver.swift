@@ -30,7 +30,7 @@ Start time of the solved period MUST fall within the averageStartWindow
 */
 
 
-typealias SolvedPeriod = (solved: Bool, period:DTTimePeriod?)
+typealias SolvedPeriod = (solved: Bool, period:DTTimePeriod?, errors:[SolverError])
 
 class Solver: NSObject {
     
@@ -50,6 +50,7 @@ class Solver: NSObject {
         var averageDuration: Timesize?
         var averageMinDuration: Timesize?
         let avoidPeriods = DTTimePeriodCollection()
+        var errors = [SolverError]()
 
         //////////////////////////////////////////////////////////////////////////
         ///  Phase 1: 
@@ -95,8 +96,7 @@ class Solver: NSObject {
         //////////////////////////////////////////////////////////////////////////
         
         if preferedStartTime == nil  || averageMinDuration == nil || averageStartWindow == nil || averageDuration == nil {
-            printDebug("! Solver failed to meet basic requirements")
-            return (false,nil)
+            fatalError("! Solver failed to meet basic requirements")
         }
         
         // if the averageStartWindow start and end dates are the same, offset the endDate by a second.
@@ -171,7 +171,8 @@ class Solver: NSObject {
 
         if freePeriods.periods() == nil {
             printDebug("Failed: There are no Free Periods")
-            return (false, nil)
+            errors.append(SolverError(errorLevel:.Failed, error:"NO_FREE_PERIODS", objects:nil))
+            return (false, nil, errors)
         }
         
         // Does the corrent node have an event, with a timePeriod that fits into a free Period?
@@ -212,7 +213,7 @@ class Solver: NSObject {
             if preferedPeriod.relationToPeriod(free) == DTTimePeriodRelation.Inside ||
                 preferedPeriod.relationToPeriod(free) == DTTimePeriodRelation.ExactMatch {
                 printDebug("SOLVED: PreferedPeriod fits")
-                return (true, preferedPeriod)
+                return (true, preferedPeriod, errors)
             }
             
             // Create a possible period
@@ -238,6 +239,7 @@ class Solver: NSObject {
                     let avgMinDur = averageMinDuration!.inSeconds()
                     if  possDur < avgMinDur {
                         printDebug("Poss period cancelled because Dur: \(possDur)  avgMinDur:\(avgMinDur)")
+                        errors.append(SolverError(errorLevel:.Info, error:"NEARLY_FITS_HERE", objects:[possiblePeriod!]))
                         possiblePeriod = nil
                     }
                 }
@@ -261,6 +263,7 @@ class Solver: NSObject {
                     let avgMinDur = averageMinDuration!.inSeconds()
                     if  posDur < avgMinDur {
                         printDebug("Poss period cancelled because Dur: \(posDur)  avgMinDur:\(avgMinDur)")
+                        errors.append(SolverError(errorLevel:.Info, error:"NEARLY_FITS_HERE", objects:[possiblePeriod!]))
                         possiblePeriod = nil
                     }
                 }
@@ -281,10 +284,10 @@ class Solver: NSObject {
     
         if bestPeriod != nil {
             printDebug("Found Best Period: \(bestPeriod?.log())")
-            return (true, bestPeriod) }
+            return (true, bestPeriod, errors) }
         else {
             printDebug("Failed to solve");
-            return (false,nil) }
+            return (false,nil, errors) }
     }
 }
 

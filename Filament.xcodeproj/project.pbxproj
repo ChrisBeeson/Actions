@@ -170,6 +170,7 @@
 		83F6B9701B994652002A5AAF /* FilamentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F6B96F1B994652002A5AAF /* FilamentTests.swift */; };
 		83F6B97A1B995683002A5AAF /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 83F6B9791B995683002A5AAF /* Podfile */; };
 		83F7DE691C77D768008BEDCC /* GeneralExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CD21BE1BDF797B00AF25BE /* GeneralExtensions.swift */; };
+		83F9B3CC1CB66EA50054539A /* SolverError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F9B3CB1CB66EA50054539A /* SolverError.swift */; };
 		83F9E92B1BA18739006282B5 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 83F9E92A1BA18739006282B5 /* .gitignore */; };
 		83FB2BF91C8ECCC800AF291D /* RightAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB2BF81C8ECCC800AF291D /* RightAlignedCollectionViewFlowLayout.swift */; };
 		83FE26051BCB8FC200AC20B5 /* SolverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FE26031BCB8FB700AC20B5 /* SolverTests.swift */; };
@@ -344,6 +345,7 @@
 		83F6B96E1B994652002A5AAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83F6B96F1B994652002A5AAF /* FilamentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilamentTests.swift; sourceTree = "<group>"; };
 		83F6B9791B995683002A5AAF /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		83F9B3CB1CB66EA50054539A /* SolverError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolverError.swift; sourceTree = "<group>"; };
 		83F9E92A1BA18739006282B5 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		83FB2BF81C8ECCC800AF291D /* RightAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		83FE26031BCB8FB700AC20B5 /* SolverTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolverTests.swift; sourceTree = "<group>"; };
@@ -539,6 +541,7 @@
 			children = (
 				47F2FBC31BA8CFEE0041B291 /* Solver.swift */,
 				47ACA9551BB54658000CAC61 /* Helpers */,
+				83F9B3CB1CB66EA50054539A /* SolverError.swift */,
 			);
 			name = Solver;
 			sourceTree = "<group>";
@@ -1225,6 +1228,7 @@
 				4753D3AF1BE378720071DB59 /* WorkingWeekRule.swift in Sources */,
 				83CE36381C84E35100D3A556 /* RuleCollectionView.swift in Sources */,
 				835619CA1C6D6AAA00488E99 /* NodeDetailViewController.swift in Sources */,
+				83F9B3CC1CB66EA50054539A /* SolverError.swift in Sources */,
 				473574851B9A91A200493CA0 /* SequencePresenterDelegate.swift in Sources */,
 				833366CA1C838F99001FE4CD /* EventAlarmRule.swift in Sources */,
 				47967FF21C895F5400358199 /* ContextPresenter.swift in Sources */,

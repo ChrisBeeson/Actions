@@ -9,6 +9,19 @@ import Foundation
 import DateTools
 import EventKit
 
+struct AvoidPeriod {
+    var period:DTTimePeriod
+    var type:AvoidPeriodType
+    var object:AnyObject?
+}
+
+enum AvoidPeriodType {
+    case CalendarEvent
+    case WorkingWeekMorning
+    case WorkingWeekEvening
+    case WorkingWeekLunch
+}
+
 class AvoidCalendarEventsRule: Rule, NSCoding {
     
     // This rule sits the duration of an event.
