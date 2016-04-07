@@ -69,8 +69,8 @@ class SolverTests: XCTestCase {
     func testCalculateEventPeriodWithTransitionDurationWithVariance () {
         
         let durationWithNoVariance = TransitionDurationWithVariance()
-        durationWithNoVariance.eventStartsInDuration = TimeSize(unit: .Hour, amount: 1)
-        durationWithNoVariance.variance = TimeSize(unit: .Second, amount: 0)
+        durationWithNoVariance.eventStartsInDuration = Timesize(unit: .Hour, amount: 1)
+        durationWithNoVariance.variance = Timesize(unit: .Second, amount: 0)
         
         var rules:[Rule] = [EventDurationWithMinimumDuration(), durationWithNoVariance]
         let node = Node()
@@ -97,7 +97,7 @@ class SolverTests: XCTestCase {
         let workingWeek = WorkingWeekRule()
         
         let eventDuration = EventDurationWithMinimumDuration()
-        eventDuration.minDuration = TimeSize(unit: .Minute, amount: 30)
+        eventDuration.minDuration = Timesize(unit: .Minute, amount: 30)
         
         let transitionDuration = TransitionDurationWithVariance()
         
@@ -122,13 +122,29 @@ class SolverTests: XCTestCase {
         // lets put an event at the end of the day.  Force it to start at 9am the next day...
         
         let greaterThan = GreaterThanLessThanRule()
-        greaterThan.greaterThan = TimeSize(unit: .Hour, amount: 2)
-        greaterThan.lessThan = TimeSize(unit: .Hour, amount: 16)
+        greaterThan.greaterThan = Timesize(unit: .Hour, amount: 2)
+        greaterThan.lessThan = Timesize(unit: .Hour, amount: 16)
         
         let newRules = [EventDurationWithMinimumDuration(), greaterThan, workingWeek]
         output = Solver.calculateEventPeriod(NSDate(string: "2015-01-01 17:25", formatString: "YYYY-MM-DD HH:mm"), direction: .Forward, node:node, rules: newRules)
         XCTAssert(output.solved == true)
         XCTAssert(output.period!.StartDate!.isEqualToDate(NSDate(string: "2015-01-02 09:00", formatString: "YYYY-MM-DD HH:mm")))
+    }
+    
+    
+    func testBackwards() {
+        
+        // event duration is 30 mins
+        // an hour before the input date
+        
+        let rules:[Rule] = [EventDurationWithMinimumDuration(), TransitionDurationWithVariance()]
+        let node = Node()
+        
+        let output = Solver.calculateEventPeriod(NSDate(string: "2015-01-01 10:00", formatString: "YYYY-MM-DD HH:mm"), direction: .Backward, node:node, rules: rules)
+        print(output.period?.log())
+        XCTAssert(output.solved)
+        XCTAssert(output.period!.StartDate!.isEqualToDate(NSDate(string: "2015-01-01 08:30", formatString: "YYYY-MM-DD HH:mm")))
+        XCTAssert(output.period!.EndDate!.isEqualToDate(NSDate(string: "2015-01-01 09:00", formatString: "YYYY-MM-DD HH:mm")))
     }
 }
 

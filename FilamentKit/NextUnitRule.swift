@@ -90,8 +90,8 @@ class NextUnitRule : Rule {
     func calcDate() -> NSDate {
         //FIXME: lots of fatalErrors() here
         guard let periodUnit = DTTimePeriodSize(rawValue:UInt(unit.rawValue+3)) else { fatalError() }
-        let timesize = TimeSize(unit: periodUnit, amount: amount)
-        guard let date = inputDate?.dateByAddTimeSize(timesize)  else { fatalError() }
+        let timesize = Timesize(unit: periodUnit, amount: amount)
+        guard let date = inputDate?.dateByAddingTimesize(timesize)  else { fatalError() }
         return date
     }
     

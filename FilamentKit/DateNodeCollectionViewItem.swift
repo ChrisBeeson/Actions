@@ -203,7 +203,10 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     
     func validateDrop(item: NSPasteboardItem, proposedDropOperation: UnsafeMutablePointer<NSCollectionViewDropOperation>) -> NSDragOperation {
         //  if proposedDropOperation.memory == .Before { return .None }
-        if item.types[0] == AppConfiguration.UTI.dateNode { return .Copy }
+        if item.types[0] == AppConfiguration.UTI.dateNode {
+            //TODO: Can't drop on it's self
+            return .Copy
+        }
         return .None
     }
     

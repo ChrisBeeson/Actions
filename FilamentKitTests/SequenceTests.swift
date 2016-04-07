@@ -119,7 +119,7 @@ class SequenceTests: XCTestCase {
         
         // here goes!
         
-        sequence!.UpdateEvents()
+        sequence!.SolveSequence()
         
     }
     */

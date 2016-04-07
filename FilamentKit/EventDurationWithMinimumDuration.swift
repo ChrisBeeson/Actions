@@ -24,14 +24,14 @@ import DateTools
     
     // Specific user controls
     
-     var duration = TimeSize(unit: .Minute, amount: 30)
-     var minDuration = TimeSize(unit: .Minute, amount: 15)
+     var duration = Timesize(unit: .Minute, amount: 30)
+     var minDuration = Timesize(unit: .Minute, amount: 15)
     
     
     // Rule out values
     
-     override var eventMinDuration: TimeSize? { get { return minDuration } }
-     override var eventDuration: TimeSize? { get { return duration } }
+     override var eventMinDuration: Timesize? { get { return minDuration } }
+     override var eventDuration: Timesize? { get { return duration } }
     
     
     // MARK: NSCoding
@@ -43,8 +43,8 @@ import DateTools
     
      required init?(coder aDecoder: NSCoder) {
         
-        duration = aDecoder.decodeObjectForKey(SerializationKeys.duration) as! TimeSize
-        minDuration = aDecoder.decodeObjectForKey(SerializationKeys.minDuration) as! TimeSize
+        duration = aDecoder.decodeObjectForKey(SerializationKeys.duration) as! Timesize
+        minDuration = aDecoder.decodeObjectForKey(SerializationKeys.minDuration) as! Timesize
     }
     
      func encodeWithCoder(aCoder: NSCoder) {

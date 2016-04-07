@@ -15,15 +15,14 @@ extension Sequence {
     
     //TODO: updateEvents(startingNode:Node)
     
-    func UpdateEvents() -> (success:Bool, firstFailedNode:Node?) {
-        
+    func SolveSequence() -> (success:Bool, firstFailedNode:Node?) {
+        guard var time = date else { return (false,nil) }
         print("Updating Calendar Events")
         
-        guard var time = date else { return (false,nil) }
-        
         var solvedPeriodsToAvoid = [DTTimePeriod]()
+        let orderedNodes:[Node] = self.timeDirection == .Forward ? self.actionNodes : self.actionNodes.reverse()
         
-        for (index, node) in self.actionNodes.enumerate() {
+        for (index, node) in orderedNodes.enumerate() {
             
             var solvedPeriod: SolvedPeriod?
             var rules = node.rules
@@ -39,15 +38,14 @@ extension Sequence {
             switch position(node) {
                 
             case .StartingAction:
-                
                 let startRule = TransitionDurationWithVariance()
-                startRule.eventStartsInDuration = TimeSize(unit: .Hour, amount: 0)     /// TODO: This can't be user modified
+                startRule.eventStartsInDuration = Timesize(unit: .Hour, amount: 0)     /// TODO: This can't be user modified
                 rules.append(startRule)
 
             case .Action, .EndingAction:   // add the left hand transistion rules to the rules.
-                
-                if let transistionRules = node.leftTransitionNode?.rules {
-                    for rule in transistionRules {
+                let transitionRules = (timeDirection == .Forward) ?  node.leftTransitionNode?.rules :  node.rightTransitionNode?.rules
+                if transitionRules != nil {
+                    for rule in transitionRules! {
                         rules.append(rule) }
                 }
         
@@ -56,6 +54,7 @@ extension Sequence {
             
             // Remove any calendar events that are created by this sequence, so it doesn't avoid it's self.
             // This is so past updates are ignored
+            
             rules.forEach { if $0.isKindOfClass(AvoidCalendarEventsRule) == true {
                 ($0 as! AvoidCalendarEventsRule).ignoreCurrentEventsForSequence = self
                 //  ($0 as! AvoidCalendarEventsRule).ignoreCurrentEventForNode = node
@@ -63,6 +62,7 @@ extension Sequence {
             }
             
             // Add Avoid periods that have already been solved in this update
+            
             let avoidSolvedPeriodsRule = Rule()
             avoidSolvedPeriodsRule.avoidPeriods = solvedPeriodsToAvoid
             rules.append(avoidSolvedPeriodsRule)
@@ -73,20 +73,19 @@ extension Sequence {
             // Go through rules and add requirements
             //TODO: check for requirements
             if index > 0 {
-                if let event = self.actionNodes[index - 1].event {
+                if let event = orderedNodes[index - 1].event {
                      let period = event.timePeriod()
                         rules.forEach{ $0.previousPeriod = period }
                     node.rules.forEach{ $0.previousPeriod = period }
                 }
             }
             
-
             // Solve it!
-            solvedPeriod = Solver.calculateEventPeriod(time, direction:self.timeDirection, node: node, rules:rules)
+            
+            solvedPeriod = Solver.calculateEventPeriod(time, direction:timeDirection, node: node, rules:rules)
             
             // Post-Solver 
             
-        
             // Result processing
             
             // Failed
@@ -96,9 +95,10 @@ extension Sequence {
             }
             
             // We did it!
-            time = solvedPeriod!.period!.EndDate
-            solvedPeriodsToAvoid.append(solvedPeriod!.period!)
             node.setEventPeriod(solvedPeriod!.period!)
+            solvedPeriodsToAvoid.append(solvedPeriod!.period!)
+            
+            time = (timeDirection == .Forward) ? solvedPeriod!.period!.EndDate : solvedPeriod!.period!.StartDate
         }
         
         processEventsForTransitionPeriods()

@@ -36,7 +36,7 @@ class Solver: NSObject {
     
     class func calculateEventPeriod(inputDate: NSDate, direction:TimeDirection, node: Node, rules:[Rule]) -> SolvedPeriod {
         
-        func printDebug(string: String) { if true == false { print(string) } }
+        func printDebug(string: String) { if true == true { print(string) } }
         
         /*
             This solving class works only on action Nodes.  But it need the transition based rules added to it.
@@ -47,8 +47,8 @@ class Solver: NSObject {
         
         var averageStartWindow: DTTimePeriod?
         var preferedStartTime: NSDate?
-        var averageDuration: TimeSize?
-        var averageMinDuration: TimeSize?
+        var averageDuration: Timesize?
+        var averageMinDuration: Timesize?
         let avoidPeriods = DTTimePeriodCollection()
 
         //////////////////////////////////////////////////////////////////////////
@@ -59,6 +59,7 @@ class Solver: NSObject {
         for rule in rules {
             
             rule.inputDate = inputDate
+            rule.timeDirection = direction
             
             // Average event durations
             if let dur = rule.eventDuration {
@@ -102,14 +103,32 @@ class Solver: NSObject {
         if averageStartWindow!.StartDate.isEqualToDate(averageStartWindow!.EndDate) {
             averageStartWindow!.EndDate = averageStartWindow!.StartDate.dateByAddingSeconds(1)
         }
+    
         
-
+        //////////////////////////////////////////////////////////////////////////
+        ///  Phase 3:
+        ///  If we're running backwards then we need to subtract the ideal duration from everything
+        //////////////////////////////////////////////////////////////////////////
+        
+        if direction == .Backward {
+            preferedStartTime = preferedStartTime?.dateBySubtractingTimesize(averageDuration!)
+            averageStartWindow?.StartDate = averageStartWindow?.StartDate.dateBySubtractingTimesize(averageDuration!)
+            averageStartWindow?.EndDate = averageStartWindow?.EndDate.dateBySubtractingTimesize(averageDuration!)
+        }
+        
+        
         //////////////////////////////////////////////////////////////////////////
         ///  Phase 4: 
         ///  Create window of interest and update any rules that need it
         //////////////////////////////////////////////////////////////////////////
         
-        let windowOfInterest = DTTimePeriod(startDate: averageStartWindow!.StartDate!, endDate: averageStartWindow!.EndDate!.dateByAddTimeSize(averageDuration!))
+        let windowOfInterest = DTTimePeriod(startDate: averageStartWindow!.StartDate!, endDate: averageStartWindow!.EndDate!.dateByAddingTimesize(averageDuration!))
+        
+        // If backwards, don't let the endDate of the window of interest be greater than the input date & warn if it is.
+        if direction == .Backward && windowOfInterest.EndDate!.isLaterThan(inputDate) {
+            printDebug("! Solver Window of Interest end date was later than the input date.  Not possible when solving backwards")
+            windowOfInterest.EndDate = inputDate
+        }
 
         for rule in rules {
             if rule.options.contains(RoleOptions.RequiresInterestWindow) {
@@ -134,7 +153,8 @@ class Solver: NSObject {
         avoidPeriods.flatten()
         let freePeriods = avoidPeriods.voidPeriods(windowOfInterest)
         
-        let preferedPeriod = DTTimePeriod(startDate: preferedStartTime!, endDate: preferedStartTime?.dateByAddTimeSize(averageDuration!))
+        let preferedPeriod = DTTimePeriod(startDate: preferedStartTime!, endDate: preferedStartTime?.dateByAddingTimesize(averageDuration!))
+        
         
         //////////////////////////////////////////////////////////////////////////
         ///  Phase 6: 

@@ -25,8 +25,8 @@ protocol RuleType {
     // Outputs
     var eventStartTimeWindow: DTTimePeriod? {get}
     var eventPreferedStartDate: NSDate? {get}
-    var eventDuration: TimeSize? {get}
-    var eventMinDuration: TimeSize? {get}
+    var eventDuration: Timesize? {get}
+    var eventMinDuration: Timesize? {get}
     
     // Interactions
     var avoidPeriods: [DTTimePeriod]? {get set}
@@ -46,12 +46,12 @@ public class Rule: NSObject, RuleType {
     var conflictingRules: [Rule]? {get {return nil} }
     var options: RoleOptions {get { return RoleOptions.None } }
     var inputDate: NSDate?
-    var timeDirection:TimeDirection { get { return TimeDirection.Forward } set {}}
+    var timeDirection = TimeDirection.Forward
     var interestPeriod: DTTimePeriod?
     var eventStartTimeWindow: DTTimePeriod? {get {return nil} }
     var eventPreferedStartDate: NSDate? {get {return nil} }
-    var eventDuration: TimeSize? { get { return nil } }
-    var eventMinDuration: TimeSize? { get { return nil } }
+    var eventDuration: Timesize? { get { return nil } }
+    var eventMinDuration: Timesize? { get { return nil } }
     var avoidPeriods: [DTTimePeriod]?
     var previousPeriod: DTTimePeriod?
     var solvedPeriod: DTTimePeriod?

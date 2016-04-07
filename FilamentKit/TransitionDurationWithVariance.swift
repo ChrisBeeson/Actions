@@ -21,8 +21,8 @@ class TransitionDurationWithVariance: Rule, NSCoding {
     
     // Rule user input
     
-    var eventStartsInDuration = TimeSize(unit: .Hour, amount: 1)
-    var variance = TimeSize(unit: .Minute, amount: 15)
+    var eventStartsInDuration = Timesize(unit: .Hour, amount: 1)
+    var variance = Timesize(unit: .Minute, amount: 15)
     
     override init() {
         super.init()
@@ -33,16 +33,16 @@ class TransitionDurationWithVariance: Rule, NSCoding {
     override var eventStartTimeWindow: DTTimePeriod? { get {
         guard inputDate != nil else { return nil }
         
-        let startWindow = DTTimePeriod(startDate: eventPreferedStartDate!.dateBySubtractingTimeSize(variance),
-                                       endDate: eventPreferedStartDate!.dateByAddTimeSize(variance))
+        let startWindow = DTTimePeriod(startDate: eventPreferedStartDate!.dateBySubtractingTimesize(variance),
+                                       endDate: eventPreferedStartDate!.dateByAddingTimesize(variance))
         return startWindow
-    }
+        }
     }
     
     override var eventPreferedStartDate: NSDate? { get {
         switch timeDirection {
-        case .Forward: return inputDate?.dateByAddTimeSize(eventStartsInDuration)
-        case .Backward: return inputDate?.dateBySubtractingTimeSize(eventStartsInDuration)
+        case .Forward: return inputDate?.dateByAddingTimesize(eventStartsInDuration)
+        case .Backward: return inputDate?.dateBySubtractingTimesize(eventStartsInDuration)
         }
         }
     }
@@ -56,8 +56,8 @@ class TransitionDurationWithVariance: Rule, NSCoding {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        eventStartsInDuration = aDecoder.decodeObjectForKey(SerializationKeys.eventStartsInDuration) as! TimeSize
-        variance = aDecoder.decodeObjectForKey(SerializationKeys.variance) as! TimeSize
+        eventStartsInDuration = aDecoder.decodeObjectForKey(SerializationKeys.eventStartsInDuration) as! Timesize
+        variance = aDecoder.decodeObjectForKey(SerializationKeys.variance) as! Timesize
     }
     
     func encodeWithCoder(aCoder: NSCoder) {

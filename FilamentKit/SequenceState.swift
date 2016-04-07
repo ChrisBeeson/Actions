@@ -151,7 +151,7 @@ public enum SequenceState : Int {
         
         //TODO: Do not process completed Nodes
         
-        let result = presenter.sequence.UpdateEvents()
+        let result = presenter.sequence.SolveSequence()
         
         if result.success == true {
             presenter.nodePresenters.forEach{ $0.currentState.toReady($0, ignoreErrors:true) }

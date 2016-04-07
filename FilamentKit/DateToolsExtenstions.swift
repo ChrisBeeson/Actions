@@ -11,7 +11,7 @@ import DateTools
 
 extension NSDate {
     
-    func dateByAddTimeSize(size: TimeSize) -> NSDate {
+    func dateByAddingTimesize(size: Timesize) -> NSDate {
         
         switch size.unit {
         case .Second: return self.dateByAddingSeconds(size.amount)
@@ -24,7 +24,7 @@ extension NSDate {
         }
     }
     
-    func dateBySubtractingTimeSize(size: TimeSize) -> NSDate {
+    func dateBySubtractingTimesize(size: Timesize) -> NSDate {
         
         switch size.unit {
         case .Second: return self.dateBySubtractingSeconds(size.amount)
@@ -193,7 +193,7 @@ extension DTTimePeriodCollection {
 // TIMESIZE
 
 
-class TimeSize: NSObject, NSCoding  {
+class Timesize: NSObject, NSCoding  {
     
     var unit: DTTimePeriodSize
     var amount: Int

@@ -11,7 +11,7 @@ import DateTools
 
 //TODO: Working Week
 
-class WorkingWeekRule: Rule, NSCoding {
+class WorkingWeekRule: Rule, NSCoding, NSCopying {
     
     // This rule sets the duration of an event.
     // It allows the event to be shortened to a minimum duration if required.
@@ -105,4 +105,21 @@ class WorkingWeekRule: Rule, NSCoding {
         aCoder.encodeObject(lunchBreakEnabled, forKey:"lunchBreakEnabled")
         aCoder.encodeObject(enabledDays, forKey:"enabledDays")
     }
+    
+    // MARK: NSCopying
+    
+    func copyWithZone(zone: NSZone) -> AnyObject  {
+        /*
+        let clone = Sequence()
+        clone.title = title.copy() as! String
+        clone.actionNodes =  NSArray(array:actionNodes, copyItems: true) as! [Node]
+        clone.transitionNodes = NSArray(array:transitionNodes, copyItems: true) as! [Node]
+        clone.date = date
+        clone.timeDirection = timeDirection
+        clone.generalRules =  NSArray(array:generalRules, copyItems: true) as! [Rule]
+        return clone
+ */
+        return self
+    }
+    
 }
