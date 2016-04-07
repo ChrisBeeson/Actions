@@ -157,10 +157,22 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     }
     
     public override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
-        if self.sequencePresenter?.currentState == SequenceState.NoStartDateSet { return true }
-        if self.sequencePresenter?.currentState == SequenceState.WaitingForStart { return true }
-        if self.sequencePresenter?.currentState == SequenceState.Running { return true }
-        return false
+        
+        switch menuItem.action {
+        case #selector(DateNodeCollectionViewItem.clear(_:)),
+             #selector(DateNodeCollectionViewItem.copy(_:)):
+            return sequencePresenter!.date == nil ? false : true
+            
+        case #selector(DateNodeCollectionViewItem.paste(_:)):
+            let pasteboard = NSPasteboard.generalPasteboard()
+            return pasteboard.canReadItemWithDataConformingToTypes([AppConfiguration.UTI.dateNode])
+            
+        default:
+            if self.sequencePresenter?.currentState == SequenceState.NoStartDateSet { return true }
+            if self.sequencePresenter?.currentState == SequenceState.WaitingForStart { return true }
+            if self.sequencePresenter?.currentState == SequenceState.Running { return true }
+            return false
+        }
     }
     
     
