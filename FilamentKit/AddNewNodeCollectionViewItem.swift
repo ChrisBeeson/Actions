@@ -17,7 +17,7 @@ public class AddNewNodeCollectionViewItem : NSCollectionViewItem, DragDropCopyPa
     override public func viewDidLoad() {
         let tracking = NSTrackingArea(rect: self.view.frame, options: [.MouseEnteredAndExited,.ActiveInActiveApp] , owner: self, userInfo: nil)
         self.view.addTrackingArea(tracking)
-         plusButton.alphaValue = 0.0
+         plusButton.alphaValue = 0.2
     }
     
     @IBAction func plusButtonPressed(sender: AnyObject) {
@@ -34,7 +34,7 @@ public class AddNewNodeCollectionViewItem : NSCollectionViewItem, DragDropCopyPa
     override public func mouseExited(theEvent: NSEvent) {
         NSAnimationContext.beginGrouping()
         NSAnimationContext.currentContext().duration  = 0.5
-        plusButton.animator().alphaValue = 0.0
+        plusButton.animator().alphaValue = 0.2
         NSAnimationContext.endGrouping()
     }
     

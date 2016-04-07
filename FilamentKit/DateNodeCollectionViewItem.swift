@@ -40,7 +40,7 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
         
         let popover = NSPopover()
         popover.animates = true
-        popover.behavior = .Transient
+        popover.behavior = .Semitransient
         popover.appearance = NSAppearance(named: NSAppearanceNameAqua)
         popover.delegate = self
         
@@ -50,7 +50,7 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
         if sequencePresenter!.date != nil {
             dateTimePickerViewController!.date = sequencePresenter!.date!
         }
-        popover.showRelativeToRect(self.view.frame, ofView: self.view, preferredEdge:.MinX )
+        popover.showRelativeToRect(self.view.frame, ofView:self.view, preferredEdge:.MinX )
         displayedPopover = popover
     }
     

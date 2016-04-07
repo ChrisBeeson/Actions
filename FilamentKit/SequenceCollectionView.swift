@@ -107,8 +107,8 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
              Swift.print("Added Transition Node")
              }
              */
-            //  self.deleteItemsAtIndexPaths(dynamicIndexForNodeIndex(deletedNodes)
-            self.reloadData()
+            // self.deleteItemsAtIndexPaths(dynamicIndexForNodeIndex(deletedNodes))
+            self.animator().reloadData()
         }
     }
     

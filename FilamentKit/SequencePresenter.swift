@@ -136,6 +136,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         //If node and Int is nil then insertNode will create a new untitled node, and place it at the end of the list.
         
         var nodeToinsert: Node
+        var indx = index
         
         if node == nil {
             nodeToinsert = Node(text: AppConfiguration.defaultActionNodeName, type: .Action, rules: nil)
@@ -143,8 +144,13 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
             nodeToinsert = node!
         }
         
+        // If running backwards insert at index 0
+        if indx == nil && timeDirection == .Backward {
+            indx = 0
+        }
+        
         let oldNodes = _sequence!.nodeChain()
-        _sequence!.insertActionNode(nodeToinsert, index: index)
+        _sequence!.insertActionNode(nodeToinsert, index:indx)
          representingDocument?.updateChangeCount(.ChangeDone)
         
         informDelegatesOfChangesToNodeChain(oldNodes)

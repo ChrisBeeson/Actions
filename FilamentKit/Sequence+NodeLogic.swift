@@ -140,8 +140,8 @@ extension Sequence {
 		
 		if left.rightTransitionNode != nil { transitionNodes.removeObject(left.rightTransitionNode!) }
 		if right.leftTransitionNode != nil { transitionNodes.removeObject(right.leftTransitionNode!) }
-		
-		let name = left.title + " -> " + right.title
+		let name = ""
+		//	let name = left.title + " -> " + right.title
 		let transitionNode = Node(text: name, type: [.Transition], rules: nil)
 		left.rightTransitionNode = transitionNode
 		right.leftTransitionNode = transitionNode

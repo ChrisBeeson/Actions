@@ -36,7 +36,7 @@ class Solver: NSObject {
     
     class func calculateEventPeriod(inputDate: NSDate, direction:TimeDirection, node: Node, rules:[Rule]) -> SolvedPeriod {
         
-        func printDebug(string: String) { if true == true { print(string) } }
+        func printDebug(string: String) { if true == false { print(string) } }
         
         /*
             This solving class works only on action Nodes.  But it need the transition based rules added to it.
