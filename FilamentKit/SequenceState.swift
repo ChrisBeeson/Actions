@@ -28,7 +28,7 @@ public enum SequenceState : Int {
         }
         self = newState
         presenter.delegates.forEach{ $0.sequencePresenterDidChangeState(presenter, toState:newState)}
-        presenter.nodePresenters.forEach{ $0.currentState.update($0) }
+        // presenter.nodePresenters.forEach{ $0.currentState.update($0) }
         return newState
     }
     
@@ -146,38 +146,14 @@ public enum SequenceState : Int {
     
     
     func processCalanderEvents(presenter: SequencePresenter) -> SequenceState {
-        
         guard presenter.date != nil else { return .NoStartDateSet }
         
-        let result = presenter.sequence.SolveSequence()
-        
-        if result.success == true {
-            presenter.nodePresenters.forEach{ $0.currentState.toReady($0, ignoreErrors:true) }
-            return calculateSequenceState(presenter, ignoreHasFailedNode: true)
+        let result = presenter.sequence.SolveSequence { (node, state, errors) in
+            let nodePresenter = presenter.nodePresenter(node)
+            nodePresenter.errors = errors
+            nodePresenter.currentState.toState(state, presenter:nodePresenter, ignoreError: true)
         }
-        
-        // Failed...
-        
-        guard result.firstFailedNode != nil else {
-            Swift.print("Was expecting the failed Node, but got nothing")
-            return .Void
-        }
-        
-        // Update nodes: those not failed refresh(clearing Error), the others flag as Error
-        // This is the only place Errors can be removed.
-        
-        if let index = presenter.nodes?.indexOf(result.firstFailedNode!) {
-            for (idx, node) in presenter.nodes!.enumerate() {
-                let presenter = presenter.nodePresenter(node)
-                if idx < index {
-                    let calcNodeState = presenter.currentState.calculateNodeState(presenter, ignoreError: true)
-                    presenter.currentState.toState(calcNodeState, presenter: presenter, ignoreError: true)
-                } else {
-                    presenter.currentState.toError(presenter)
-                }
-            }
-        }
-        return .HasFailedNode
+        return calculateSequenceState(presenter, ignoreHasFailedNode: !result)
     }
     
     

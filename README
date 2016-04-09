@@ -23,7 +23,7 @@ Later Versions
 -----------------
 Validate Rules & show clashes - Rules that clash = startTimeWindows do not overlap
 calendar events UI
-Timeline position bar
+Timeline calculateActionNodePosition bar
 Wait for user Notifications
 Muliple sequences to one start / end time
 Calendar events become a rule

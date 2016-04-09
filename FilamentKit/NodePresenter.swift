@@ -19,7 +19,7 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     var delegates = [NodePresenterDelegate]()
     var currentState = NodeState.Inactive
     private var rulePresenters = [RulePresenter]()
-    var errors = [SolverError]()
+    var errors: [SolverError]?
     
     //MARK: Properties
     
@@ -120,8 +120,9 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
             }
             
         case .Error:
+            guard errors != nil else { return nil }
             var output=""
-            for error in errors {
+            for error in errors! {
                 if let string = error.humanReadableString {
                 output.appendContentsOf(string + ". ")
                 }

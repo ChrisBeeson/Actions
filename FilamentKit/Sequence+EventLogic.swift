@@ -13,29 +13,54 @@ import EventKit
 
 extension Sequence {
     
-    func SolveSequence(solvedNode:(node:Node, success:Bool, errors:[SolverError]) -> Void) -> Bool {
-        
-        guard var time = date else { print("Solver Sequence - no start date set"); return (false, nil, [SolverError]()) }
+    func SolveSequence(solvedNode:(node:Node, state:NodeState , errors:[SolverError]?) -> Void) -> Bool {
+        guard var time = date else { print("Solver Sequence - no start date set"); return false }
         
         print("Updating Calendar Events")
         
+        /// Internal Functions
+        
+        func SolvedActionNode(node:Node, state:NodeState , errors:[SolverError]?) {
+            switch calculateActionNodePosition(node) {
+            case .StartingAction, .EndingAction:
+                solvedNode(node: node, state:state, errors: errors)
+            case .Action:
+                if timeDirection == .Forward {
+                    if let transitionNode = node.rightTransitionNode {
+                        solvedNode(node: transitionNode, state:state, errors: nil)
+                    } else { print("transition Node was Nil") }
+                    solvedNode(node: node, state:state, errors: errors)
+                    
+                } else if timeDirection == .Backward {
+                    solvedNode(node: node, state:state, errors: errors)
+                    
+                    if let transitionNode = node.leftTransitionNode {
+                        solvedNode(node: transitionNode, state:state, errors: nil)
+                    } else { print("transition Node was Nil") }
+                }
+            default: print("Found an invaild node")
+            }
+        }
+
         var solvedPeriodsToAvoid = [AvoidPeriod]()
         let orderedNodes:[Node] = self.timeDirection == .Forward ? self.actionNodes : self.actionNodes.reverse()
         var failedNode:Node?
-        var errors = [SolverError]()
         
         for (index, node) in orderedNodes.enumerate() {
             
-            // Skip if node is completed
+            var errors = [SolverError]()
             
+            // Skip if node is completed
             if node.isCompleted == true {
                 time = (timeDirection == .Forward) ? node.event!.period!.EndDate : node.event!.period!.StartDate
+                SolvedActionNode(node, state:.Completed, errors: nil)
                 continue
             }
             
             // If we have a failed Node - then lets fail all others
             if failedNode != nil {
                 errors.append(SolverError(errorLevel: .Failed, error: .FollowsFailedNode, object: failedNode, node: node))
+                SolvedActionNode(node, state:.Error, errors: errors)
                 continue
             }
             
@@ -52,8 +77,8 @@ extension Sequence {
             let genericRules = AppConfiguration.sharedConfiguration.contextPresenter().rules.filter { !self.generalRules.contains($0) }
             rules.appendContentsOf(genericRules)
             
-            // Add rules unique to the position of the node
-            switch position(node) {
+            // Add rules unique to the calculateActionNodePosition of the node
+            switch calculateActionNodePosition(node) {
                 
             case .StartingAction:
                 let startRule = TransitionDurationWithVariance()
@@ -72,7 +97,6 @@ extension Sequence {
             
             // Remove any calendar events that are created by this sequence, so it doesn't avoid it's self.
             // This is so past updates are ignored
-            
             rules.forEach { if $0.isKindOfClass(AvoidCalendarEventsRule) == true {
                 ($0 as! AvoidCalendarEventsRule).ignoreCurrentEventsForSequence = self
                 //  ($0 as! AvoidCalendarEventsRule).ignoreCurrentEventForNode = node
@@ -80,14 +104,13 @@ extension Sequence {
             }
             
             // Add Avoid periods that have already been solved in this update
-            
             let avoidSolvedPeriodsRule = Rule()
             avoidSolvedPeriodsRule.avoidPeriods = solvedPeriodsToAvoid
             rules.append(avoidSolvedPeriodsRule)
             
     
             // Pre-Solver
-            
+            //------------------------
             // Go through rules and add requirements
             //TODO: check for requirements
             if index > 0 {
@@ -98,38 +121,44 @@ extension Sequence {
                 }
             }
             
-            // Solve it!
+            // Solver
+            //------------------------
             
             solvedPeriod = Solver.calculateEventPeriod(time, direction:timeDirection, node: node, rules:rules)
-            errors.appendContentsOf(solvedPeriod!.errors)
+           
             
             // Post-Solver
+            //-----------------------
+            
+             errors.appendContentsOf(solvedPeriod!.errors)
+            
             //TODO: Calendar events get updated here?
             
+            
             // Result processing
+            //--------------------------
             
             // Failed
-            if solvedPeriod == nil || solvedPeriod!.solved == false {
+            if solvedPeriod!.solved == false {
                 if failedNode == nil {
                     failedNode = node
+                     SolvedActionNode(node, state:.Error, errors: errors)
                     continue
                 }
             }
             
-            // We did it!
+            // Success
             node.setEventPeriod(solvedPeriod!.period!)
+            SolvedActionNode(node, state:.Ready, errors: errors)
+            
             solvedPeriodsToAvoid.append(AvoidPeriod(period:solvedPeriod!.period!, type:.Node, object:node))
             
             time = (timeDirection == .Forward) ? solvedPeriod!.period!.EndDate : solvedPeriod!.period!.StartDate
         }
         
         processEventsForTransitionPeriods()
-        
-        if failedNode == nil {
-            return (true, nil, errors)
-        } else {
-            return (false, failedNode ,errors)
-        }
+    
+        return failedNode == nil ? true : false
     }
     
     
