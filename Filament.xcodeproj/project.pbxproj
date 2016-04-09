@@ -45,6 +45,7 @@
 		473853B21C7A590A000AB1E2 /* RuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473853B11C7A590A000AB1E2 /* RuleViewController.swift */; };
 		473853B51C7A596E000AB1E2 /* RulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473853B41C7A596E000AB1E2 /* RulePresenter.swift */; };
 		473853B71C7A5A43000AB1E2 /* RulePresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473853B61C7A5A43000AB1E2 /* RulePresenterDelegate.swift */; };
+		473D4AC71CB891BE00AB8560 /* AvoidPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473D4AC61CB891BE00AB8560 /* AvoidPeriod.swift */; };
 		473D9F581C7AEF7500E81D39 /* TransitionDurationWithVarianceRulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473D9F571C7AEF7500E81D39 /* TransitionDurationWithVarianceRulePresenter.swift */; };
 		473D9F5A1C7AF53800E81D39 /* EventDurationWithMinimumDurationRulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473D9F591C7AF53800E81D39 /* EventDurationWithMinimumDurationRulePresenter.swift */; };
 		473EAEE11BA3A7D200AFEA2A /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473EAEE01BA3A7D200AFEA2A /* CalendarManager.swift */; };
@@ -255,6 +256,7 @@
 		473853B11C7A590A000AB1E2 /* RuleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleViewController.swift; sourceTree = "<group>"; };
 		473853B41C7A596E000AB1E2 /* RulePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulePresenter.swift; sourceTree = "<group>"; };
 		473853B61C7A5A43000AB1E2 /* RulePresenterDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulePresenterDelegate.swift; sourceTree = "<group>"; };
+		473D4AC61CB891BE00AB8560 /* AvoidPeriod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvoidPeriod.swift; sourceTree = "<group>"; };
 		473D9F571C7AEF7500E81D39 /* TransitionDurationWithVarianceRulePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionDurationWithVarianceRulePresenter.swift; sourceTree = "<group>"; };
 		473D9F591C7AF53800E81D39 /* EventDurationWithMinimumDurationRulePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDurationWithMinimumDurationRulePresenter.swift; sourceTree = "<group>"; };
 		473EAEE01BA3A7D200AFEA2A /* CalendarManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
@@ -543,6 +545,7 @@
 				47F2FBC31BA8CFEE0041B291 /* Solver.swift */,
 				47ACA9551BB54658000CAC61 /* Helpers */,
 				83F9B3CB1CB66EA50054539A /* SolverError.swift */,
+				473D4AC61CB891BE00AB8560 /* AvoidPeriod.swift */,
 			);
 			name = Solver;
 			sourceTree = "<group>";
@@ -1277,6 +1280,7 @@
 				8303DD971CA9DDCF003D3190 /* Container.swift in Sources */,
 				83B500601C981FE800B0F5AA /* NodeState.swift in Sources */,
 				835740B21C77AD0700CFBB1B /* TimeEvent.swift in Sources */,
+				473D4AC71CB891BE00AB8560 /* AvoidPeriod.swift in Sources */,
 				4720B50E1C71C32100229734 /* EmptyNodeView.swift in Sources */,
 				836896341C807FEF00F3F547 /* AvailableRulesViewController.swift in Sources */,
 				476D20011CA7C5C500320431 /* DragDropCopyPasteItem.swift in Sources */,

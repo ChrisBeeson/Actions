@@ -45,6 +45,10 @@
 "RULE_NAME_ALARM" = "Alarm";
 "RULE_NAME_CALENDAR_EVENT" = "Calendar Event";
 
+"RUlE_WORKING_WEEK_MORNING" = "time outside of work hours";
+"RUlE_WORKING_WEEK_LUNCH" = "lunch";
+"RUlE_WORKING_WEEK_EVENING" = "time outside of work hours";
+
 
 // NODES
 
@@ -54,3 +58,12 @@
     // SEQ COLLECTION VIEW
 "SEQ_DATE_MENU_SET_DATE_STARTTIME" = "Set As End Time";
 "SEQ_DATE_MENU_SET_DATE_ENDTIME" = "Set As Start Time";
+
+
+    // SOLVER
+"SOLVER_ERROR_COULD_FIND_NO_FREE_PERIODS" = "Will not fit";
+"SOLVER_ERROR_FOLLOWS_FAILED_NODE" = "Following an event that won't fit";
+"SOLVER_ERROR_CLASHES_WITH" = "Clashes with ";
+
+
+

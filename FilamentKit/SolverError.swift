@@ -10,14 +10,31 @@ import Foundation
 
 struct SolverError {
     var level:SolverErrorLevel = .Warning
-    var error:String = "NO_KEY_SET"
+    var error:SolverErrorType = .Void
     var additionalMessage:String?
-    var objects:[AnyObject]?
+    var object:Any?
+    var node:Node?
     
-    init(errorLevel:SolverErrorLevel, error:String, objects:[AnyObject]?) {
+    init(errorLevel:SolverErrorLevel, error:SolverErrorType, object:Any?, node:Node?) {
         level = errorLevel
         self.error = error
-        self.objects = objects
+        self.object = object
+    }
+    
+    var humanReadableString:String? {
+        switch self.error {
+        case .NoFreePeriods: return "SOLVER_ERROR_COULD_FIND_NO_FREE_PERIODS".localized
+        case .NearlyFits: return nil
+        case .Clash:
+            if object != nil {
+                if let string = (object as! AvoidPeriod).humanReadableString {
+                    return "SOLVER_ERROR_CLASHES_WITH".localized + string
+                }
+            }
+            return nil
+        case .FollowsFailedNode: return "SOLVER_ERROR_FOLLOWS_FAILED_NODE".localized
+        default: return nil
+        }
     }
 }
 
@@ -26,4 +43,12 @@ enum SolverErrorLevel {
     case Warning
     case Failed
     case Fatal
+}
+
+enum SolverErrorType {
+    case Void
+    case NoFreePeriods
+    case NearlyFits
+    case Clash
+    case FollowsFailedNode
 }

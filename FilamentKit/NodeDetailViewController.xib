@@ -98,7 +98,7 @@
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                     <connections>
-                                        <binding destination="-2" name="value" keyPath="self.nodePresenter.humanReadableEventString" id="XvA-BZ-Fmm"/>
+                                        <binding destination="-2" name="value" keyPath="self.nodePresenter.humanReadableString" id="Oe5-nT-mrx"/>
                                     </connections>
                                 </textField>
                                 <box verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="F17-XD-WdX">
@@ -166,7 +166,7 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <collectionView ambiguous="YES" selectable="YES" id="Vh4-gK-Teh" customClass="RuleCollectionView" customModule="FilamentKit">
-                                                            <rect key="frame" x="0.0" y="0.0" width="235" height="82"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="235" height="29"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" scrollDirection="horizontal" id="o8Y-fR-MuF">
                                                                 <size key="itemSize" width="50" height="50"/>
@@ -181,8 +181,8 @@
                                                     <rect key="frame" x="1" y="144" width="233" height="15"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </scroller>
-                                                <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="qp7-dY-PNL">
-                                                    <rect key="frame" x="226" y="0.0" width="16" height="53"/>
+                                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="qp7-dY-PNL">
+                                                    <rect key="frame" x="226" y="0.0" width="16" height="0.0"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </scroller>
                                             </scrollView>

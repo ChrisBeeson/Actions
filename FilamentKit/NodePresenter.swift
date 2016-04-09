@@ -19,6 +19,7 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     var delegates = [NodePresenterDelegate]()
     var currentState = NodeState.Inactive
     private var rulePresenters = [RulePresenter]()
+    var errors = [SolverError]()
     
     //MARK: Properties
     
@@ -99,8 +100,10 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
         }
     }
     
-    var humanReadableEventString : String {
-        get {
+    
+    var humanReadableString : String? {
+        switch currentState {
+        case .Ready, .Running, .Completed:
             switch self.type {
             case NodeType.Action:
                 if self.event == nil {
@@ -114,9 +117,19 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
                 
             case NodeType.Transition: return "Transition"
             default: return "Invaid Type"
-                
             }
+            
+        case .Error:
+            var output=""
+            for error in errors {
+                if let string = error.humanReadableString {
+                output.appendContentsOf(string + ". ")
+                }
+            }
+        default:
+            return nil
         }
+        return nil
     }
 
     

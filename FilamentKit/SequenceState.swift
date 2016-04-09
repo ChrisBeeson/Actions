@@ -149,8 +149,6 @@ public enum SequenceState : Int {
         
         guard presenter.date != nil else { return .NoStartDateSet }
         
-        //TODO: Do not process completed Nodes
-        
         let result = presenter.sequence.SolveSequence()
         
         if result.success == true {

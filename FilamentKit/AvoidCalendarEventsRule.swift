@@ -9,32 +9,6 @@ import Foundation
 import DateTools
 import EventKit
 
-struct AvoidPeriod {
-    var period:DTTimePeriod
-    var type:AvoidPeriodType
-    var object:AnyObject?
-    
-    init (period:DTTimePeriod, type:AvoidPeriodType, object:AnyObject?) {
-        self.period = period
-        self.type = type
-        self.object = object
-    }
-    
-    init (period:DTTimePeriod) {
-        self.period = period
-        self.type = .None
-    }
-}
-
-enum AvoidPeriodType {
-    case CalendarEvent
-    case WorkingWeekMorning
-    case WorkingWeekEvening
-    case WorkingWeekLunch
-    case Node
-    case None
-}
-
 class AvoidCalendarEventsRule: Rule, NSCoding {
     
     // This rule sits the duration of an event.
@@ -113,6 +87,7 @@ class AvoidCalendarEventsRule: Rule, NSCoding {
         
         if diff.results.count > 0 {
             let inserts = diff.insertions.map{ $0.value }
+            //TODO: Localize this
             inserts.filter({$0.name!.lowercaseString.containsString("birthday") == true}).forEach {$0.avoid = false }
             inserts.filter({$0.name!.lowercaseString.containsString("holidays") == true}).forEach {$0.avoid = false }
             currentCalendars.appendContentsOf(inserts)

@@ -34,7 +34,7 @@ typealias SolvedPeriod = (solved: Bool, period:DTTimePeriod?, errors:[SolverErro
 
 class Solver: NSObject {
     
-    class func calculateEventPeriod(inputDate: NSDate, direction:TimeDirection, node: Node, rules:[Rule]) -> SolvedPeriod {
+    class func calculateEventPeriod(inputDate: NSDate, direction:TimeDirection, node: Node, rules:[Rule]) -> SolvedPeriod! {
         
         func printDebug(string: String) { if true == false { print(string) } }
         
@@ -143,7 +143,6 @@ class Solver: NSObject {
             }
         }
         
-        
         //////////////////////////////////////////////////////////////////////////
         ///  Phase 5: 
         ///  Flatten & Invert the avoid periods. 
@@ -173,7 +172,8 @@ class Solver: NSObject {
 
         if freePeriods.periods() == nil {
             printDebug("Failed: There are no Free Periods")
-            errors.append(SolverError(errorLevel:.Failed, error:"NO_FREE_PERIODS", objects:nil))
+            errors.append(SolverError(errorLevel:.Failed, error:.NoFreePeriods, object:nil, node:node))
+            errors.appendContentsOf(clashingPeriods(preferedPeriod, avoidPeriods:detailedAvoidPeriods, node:node))
             return (false, nil, errors)
         }
         
@@ -218,7 +218,9 @@ class Solver: NSObject {
                 return (true, preferedPeriod, errors)
             }
             
-            // Create a possible period
+            /// Create a possible period
+            ///-----------------------------------------
+            
             var possiblePeriod: DTTimePeriod?
             
             // The free period is wider than the min spec.
@@ -241,7 +243,7 @@ class Solver: NSObject {
                     let avgMinDur = averageMinDuration!.inSeconds()
                     if  possDur < avgMinDur {
                         printDebug("Poss period cancelled because Dur: \(possDur)  avgMinDur:\(avgMinDur)")
-                        errors.append(SolverError(errorLevel:.Info, error:"NEARLY_FITS_HERE", objects:[possiblePeriod!]))
+                        errors.append(SolverError(errorLevel:.Info, error:.NearlyFits, object:[possiblePeriod!], node:node))
                         possiblePeriod = nil
                     }
                 }
@@ -265,7 +267,7 @@ class Solver: NSObject {
                     let avgMinDur = averageMinDuration!.inSeconds()
                     if  posDur < avgMinDur {
                         printDebug("Poss period cancelled because Dur: \(posDur)  avgMinDur:\(avgMinDur)")
-                        errors.append(SolverError(errorLevel:.Info, error:"NEARLY_FITS_HERE", objects:[possiblePeriod!]))
+                        errors.append(SolverError(errorLevel:.Info, error:.NearlyFits, object:possiblePeriod!, node:node))
                         possiblePeriod = nil
                     }
                 }
@@ -289,7 +291,21 @@ class Solver: NSObject {
             return (true, bestPeriod, errors) }
         else {
             printDebug("Failed to solve");
+            
+            // work out whats clashing with it
+            errors.appendContentsOf(clashingPeriods(preferedPeriod, avoidPeriods:detailedAvoidPeriods, node:node))
             return (false,nil, errors) }
+    }
+    
+    class func clashingPeriods(preferedPeriod:DTTimePeriod, avoidPeriods:[AvoidPeriod], node:Node?) -> [SolverError] {
+        var errors = [SolverError]()
+        
+        for period in avoidPeriods {
+            if preferedPeriod.relationToPeriod(period.period) != .None {
+                errors.append(SolverError(errorLevel: .Warning, error:.Clash, object:period, node:node))
+            }
+        }
+        return errors
     }
 }
 

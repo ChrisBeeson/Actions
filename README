@@ -1,59 +1,35 @@
-Feature List
-
-Transition Rule: Time to travel from one address to another. + traffic  = So if you're house hunting and need to get to various houses you can estimate when you'll get there...'
-Todo list / time management on steriods
-
-Fuse
-
 
 Todo
 -------
 
-reorganise nodes
-backtime from enddate
-drop rules onto nodes x
-
-Rules that clash - startTimeWindows do not overlap
-verbose on why things have failed.
-calendar events UI
-
-Timeline position bar
-Wait for user Notifications
+Reorganise/drag/drop nodes
+More verbose on why things have failed with tool tips and test in detail view
 caledar alarm
-location
-location to location time rule
 Memo field resize
+Current rule polishing and input validation
+Undo, copy, paste, import, export, drag, drop check for total coverage
+
+--> BETA RELEASE
 
 self update & purchase for non app store version.
-Validate Rules & show clashes
+location
+location to location time rule
+*iOS Versions*
 
-Make a smaller Rule Collection View Item for Sequences x
-Changing any rules, reprocesses all events - avoid calanders x
-Date not being saved x
-Import / Export
-Document dirtying x
-Undo
-Current rule polishing and input validation
-New rules
-
-When Rule collection view loses focus it should deselect all cells  x
-RuleCollectionView accectDrops from only filtered Rules x
-Sort by current time, desc  x
-changing start time can only be done before start of 1st node
- - changing start ignores calendar event of that seq
-Changing rules, updates nodes only right of that node
-Recreate calendar Events if they have been deleted.
+-----> RELEASE
 
 
 Later Versions
 -----------------
+Validate Rules & show clashes - Rules that clash = startTimeWindows do not overlap
+calendar events UI
+Timeline position bar
+Wait for user Notifications
 Muliple sequences to one start / end time
 Calendar events become a rule
 Rules can also be notifications
-Rules is not the right name any more.
 right click a node and set a new start time for it.
 Rule:  Warn if calendar Event changes more than X
-
 
 
 
@@ -63,3 +39,19 @@ Known Issues
 If the calendar on the users computer has a full resync then the identifiers of calendars and Events will be regenerated and will not be recognised.  (the clunky solution is to store the name, time, and color of events and cals and then refind it)
 
 
+History
+--------------------------
+backtime from enddate x
+drop rules onto nodes x
+Make a smaller Rule Collection View Item for Sequences x
+Changing any rules, reprocesses all events - avoid calanders x
+Date not being saved x
+Import / Export
+Document dirtying x
+When Rule collection view loses focus it should deselect all cells  x
+RuleCollectionView accectDrops from only filtered Rules x
+Sort by current time, desc  x
+changing start time can only be done before start of 1st node
+- changing start ignores calendar event of that seq
+Changing rules, updates nodes only right of that node
+Recreate calendar Events if they have been deleted.

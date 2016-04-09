@@ -13,16 +13,34 @@ import EventKit
 
 extension Sequence {
     
-    //TODO: updateEvents(startingNode:Node)
-    
-    func SolveSequence() -> (success:Bool, firstFailedNode:Node?) {
-        guard var time = date else { return (false,nil) }
+    func SolveSequence(solvedNode:(node:Node, success:Bool, errors:[SolverError]) -> Void) -> Bool {
+        
+        guard var time = date else { print("Solver Sequence - no start date set"); return (false, nil, [SolverError]()) }
+        
         print("Updating Calendar Events")
         
         var solvedPeriodsToAvoid = [AvoidPeriod]()
         let orderedNodes:[Node] = self.timeDirection == .Forward ? self.actionNodes : self.actionNodes.reverse()
+        var failedNode:Node?
+        var errors = [SolverError]()
         
         for (index, node) in orderedNodes.enumerate() {
+            
+            // Skip if node is completed
+            
+            if node.isCompleted == true {
+                time = (timeDirection == .Forward) ? node.event!.period!.EndDate : node.event!.period!.StartDate
+                continue
+            }
+            
+            // If we have a failed Node - then lets fail all others
+            if failedNode != nil {
+                errors.append(SolverError(errorLevel: .Failed, error: .FollowsFailedNode, object: failedNode, node: node))
+                continue
+            }
+            
+            /// Start main processing
+            ///------------------------------
             
             var solvedPeriod: SolvedPeriod?
             var rules = node.rules
@@ -67,7 +85,7 @@ extension Sequence {
             avoidSolvedPeriodsRule.avoidPeriods = solvedPeriodsToAvoid
             rules.append(avoidSolvedPeriodsRule)
             
-            
+    
             // Pre-Solver
             
             // Go through rules and add requirements
@@ -83,18 +101,19 @@ extension Sequence {
             // Solve it!
             
             solvedPeriod = Solver.calculateEventPeriod(time, direction:timeDirection, node: node, rules:rules)
+            errors.appendContentsOf(solvedPeriod!.errors)
             
-            // Post-Solver 
-            
+            // Post-Solver
             //TODO: Calendar events get updated here?
-            
             
             // Result processing
             
             // Failed
             if solvedPeriod == nil || solvedPeriod!.solved == false {
-                processEventsForTransitionPeriods()
-                return (false, node)
+                if failedNode == nil {
+                    failedNode = node
+                    continue
+                }
             }
             
             // We did it!
@@ -105,7 +124,12 @@ extension Sequence {
         }
         
         processEventsForTransitionPeriods()
-        return (true,nil)
+        
+        if failedNode == nil {
+            return (true, nil, errors)
+        } else {
+            return (false, failedNode ,errors)
+        }
     }
     
     
