@@ -5,25 +5,7 @@ PODS:
     - Fabric (~> 1.6.3)
   - DateTools (1.7.0)
   - Fabric (1.6.7)
-  - FormatterKit (1.8.0):
-    - FormatterKit/AddressFormatter (= 1.8.0)
-    - FormatterKit/ArrayFormatter (= 1.8.0)
-    - FormatterKit/ColorFormatter (= 1.8.0)
-    - FormatterKit/LocationFormatter (= 1.8.0)
-    - FormatterKit/NameFormatter (= 1.8.0)
-    - FormatterKit/OrdinalNumberFormatter (= 1.8.0)
-    - FormatterKit/TimeIntervalFormatter (= 1.8.0)
-    - FormatterKit/UnitOfInformationFormatter (= 1.8.0)
-    - FormatterKit/URLRequestFormatter (= 1.8.0)
-  - FormatterKit/AddressFormatter (1.8.0)
-  - FormatterKit/ArrayFormatter (1.8.0)
-  - FormatterKit/ColorFormatter (1.8.0)
-  - FormatterKit/LocationFormatter (1.8.0)
-  - FormatterKit/NameFormatter (1.8.0)
-  - FormatterKit/OrdinalNumberFormatter (1.8.0)
-  - FormatterKit/TimeIntervalFormatter (1.8.0)
-  - FormatterKit/UnitOfInformationFormatter (1.8.0)
-  - FormatterKit/URLRequestFormatter (1.8.0)
+  - ObjectMapper (1.2.0)
 
 DEPENDENCIES:
   - AsyncSwift
@@ -31,7 +13,7 @@ DEPENDENCIES:
   - Crashlytics
   - DateTools (~> 1.7)
   - Fabric
-  - FormatterKit
+  - ObjectMapper (~> 1.2)
 
 SPEC CHECKSUMS:
   AsyncSwift: 46a78bceb11f0e5bb52747f740d9692ec78d2d7c
@@ -39,6 +21,6 @@ SPEC CHECKSUMS:
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
-  FormatterKit: bddde83e054edf9d9ee14f9de3b3a5103db256f4
+  ObjectMapper: b1e9c7c8a9f6400b72690c80072c131504caa66f
 
 COCOAPODS: 0.39.0
