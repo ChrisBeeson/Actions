@@ -10,7 +10,6 @@ import Foundation
 import DateTools
 import EventKit
 
-
 extension Sequence {
     
     func SolveSequence(solvedNode:(node:Node, state:NodeState , errors:[SolverError]?) -> Void) -> Bool {
@@ -22,31 +21,29 @@ extension Sequence {
         
         func SolvedActionNode(node:Node, state:NodeState , errors:[SolverError]?) {
             switch calculateActionNodePosition(node) {
-            case .StartingAction, .EndingAction:
-                solvedNode(node: node, state:state, errors: errors)
-            case .Action:
+                
+            case .Action, .StartingAction, .EndingAction:
                 if timeDirection == .Forward {
                     if let transitionNode = node.rightTransitionNode {
                         if state == .Error { solvedNode(node: transitionNode, state:.InheritedError, errors: nil) } else {
                             solvedNode(node: transitionNode, state:state, errors: nil)
                         }
-                    } else { print("transition Node was Nil") }
+                    }
                     solvedNode(node: node, state:state, errors: errors)
                     
                 } else if timeDirection == .Backward {
-                     solvedNode(node: node, state:state, errors: errors)
                     
                     if let transitionNode = node.leftTransitionNode {
                         if state == .Error { solvedNode(node: transitionNode, state:.InheritedError, errors: nil) } else {
                             solvedNode(node: transitionNode, state:state, errors: nil)
                         }
-                    } else { print("transition Node was Nil") }
-                   
+                    }
+                    solvedNode(node: node, state:state, errors: errors)
                 }
             default: print("Found an invaild node")
             }
         }
-
+        
         var solvedPeriodsToAvoid = [AvoidPeriod]()
         let orderedNodes:[Node] = self.timeDirection == .Forward ? self.actionNodes : self.actionNodes.reverse()
         var failedNode:Node?
@@ -89,14 +86,14 @@ extension Sequence {
                 let startRule = TransitionDurationWithVariance()
                 startRule.eventStartsInDuration = Timesize(unit: .Hour, amount: 0)     /// TODO: This can't be user modified
                 rules.append(startRule)
-
+                
             case .Action, .EndingAction:   // add the left hand transistion rules to the rules.
                 let transitionRules = (timeDirection == .Forward) ?  node.leftTransitionNode?.rules :  node.rightTransitionNode?.rules
                 if transitionRules != nil {
                     for rule in transitionRules! {
                         rules.append(rule) }
                 }
-        
+                
             default: break
             }
             
@@ -113,15 +110,15 @@ extension Sequence {
             avoidSolvedPeriodsRule.avoidPeriods = solvedPeriodsToAvoid
             rules.append(avoidSolvedPeriodsRule)
             
-    
+            
             // Pre-Solver
             //------------------------
             // Go through rules and add requirements
             //TODO: check for requirements
             if index > 0 {
                 if let event = orderedNodes[index - 1].event {
-                     let period = event.timePeriod()
-                        rules.forEach{ $0.previousPeriod = period }
+                    let period = event.timePeriod()
+                    rules.forEach{ $0.previousPeriod = period }
                     node.rules.forEach{ $0.previousPeriod = period }
                 }
             }
@@ -130,12 +127,12 @@ extension Sequence {
             //------------------------
             
             solvedPeriod = Solver.calculateEventPeriod(time, direction:timeDirection, node: node, rules:rules)
-           
+            
             
             // Post-Solver
             //-----------------------
             
-             errors.appendContentsOf(solvedPeriod!.errors)
+            errors.appendContentsOf(solvedPeriod!.errors)
             
             //TODO: Calendar events get updated here?
             
@@ -147,7 +144,7 @@ extension Sequence {
             if solvedPeriod!.solved == false {
                 if failedNode == nil {
                     failedNode = node
-                     SolvedActionNode(node, state:.Error, errors: errors)
+                    SolvedActionNode(node, state:.Error, errors: errors)
                     continue
                 }
             }
@@ -162,7 +159,7 @@ extension Sequence {
         }
         
         processEventsForTransitionPeriods()
-    
+        
         return failedNode == nil ? true : false
     }
     

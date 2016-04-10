@@ -50,7 +50,7 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
         if sequencePresenter!.date != nil {
             dateTimePickerViewController!.date = sequencePresenter!.date!
         }
-        popover.showRelativeToRect(self.view.frame, ofView:self.view, preferredEdge:.MinX )
+        popover.showRelativeToRect(self.view.frame, ofView:self.view.superview!, preferredEdge:.MaxX )
         displayedPopover = popover
     }
     
@@ -131,6 +131,7 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
     
     public func clear(event: NSEvent) {
         self.sequencePresenter!.setDate(nil, direction:self.sequencePresenter!.timeDirection)
+        displayedPopover = nil
     }
     
     public func copy(event: NSEvent) {

@@ -163,7 +163,7 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
     
     public func collectionView(collectionView: NSCollectionView, itemForRepresentedObjectAtIndexPath indexPath: NSIndexPath) -> NSCollectionViewItem {
         
-        return itemForIndexPath(indexPath)!
+        return itemForIndexPath(indexPath)
     }
     
     public func collectionView(collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> NSSize {
@@ -216,12 +216,11 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
         // This is such a hacky solution!! (But it works!)
         // I wanted to keep the original source view where it is, and the draggingView is an addition.
         
-        if let item = itemForIndexPath(indexPaths.first!) {
+        let item = itemForIndexPath(indexPaths.first!)
             item.selected = false
             dragDropInPlaceView = item.view
             dragDropInPlaceView!.frame = self.frameForItemAtIndex(indexPaths.first!.item)
             self.addSubview(dragDropInPlaceView!)
-        }
     }
     
     public func collectionView(collectionView: NSCollectionView, draggingSession session: NSDraggingSession, endedAtPoint screenPoint: NSPoint, dragOperation operation: NSDragOperation) {

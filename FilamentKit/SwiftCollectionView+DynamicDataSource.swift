@@ -40,14 +40,14 @@ extension SequenceCollectionView {
     }
     
     
-    func itemForIndexPath(path: NSIndexPath) -> NSCollectionViewItem? {
+    func itemForIndexPath(path: NSIndexPath) -> NSCollectionViewItem {
         //  Swift.print("Index Path: \(path.item)  item:\(itemTypeAtIndex(path))")
         
         switch itemTypeAtIndex(path) {
         case .Date: return makeDateItem(path)
         case .AddButton: return makeAddButton(path)
         case .ActionNode,.TransitionNode: return makeMainTypeNode(path, type:itemTypeAtIndex(path))
-        case .Void: return nil
+        case .Void: return NSCollectionViewItem()
         }
     }
     
@@ -77,7 +77,8 @@ extension SequenceCollectionView {
             let string:NSString = node.title as NSString
             let textSize: CGSize = string.sizeWithAttributes([NSFontAttributeName: NSFont.systemFontOfSize(9, weight:NSFontWeightRegular) ])
             return NSSize(width:textSize.width + 40, height: 24)
-        case .Void: fatalError()
+            
+        case .Void:  return NSSize(width:1, height: 24)
         }
     }
     
@@ -189,7 +190,7 @@ extension SequenceCollectionView {
             case .StartDateWithAddButton: return .ActionNode
             case .StartDateWithoutAddButton: return .ActionNode
             case .EndDateWithAddButton: return .ActionNode
-            case .EndDateWithoutAddButton: return .TransitionNode
+            case .EndDateWithoutAddButton: return .Void
             }
             
         case let x where x > 0 && x < presenter!.nodes!.count:
