@@ -270,6 +270,8 @@ public class AppConfiguration: NSObject {
         
         public static let redFill =  NSColor(calibratedRed: 1.0, green: 0.9, blue: 0.9, alpha: 1.0)
         public static let redStroke = NSColor(calibratedRed: 1.0, green: 0.1, blue: 0.1, alpha: 1.0)
+        public static let lightRedFill =  NSColor(calibratedRed: 1.0, green: 0.96, blue: 0.96, alpha: 1.0)
+        public static let lightRedStroke = NSColor(calibratedRed: 1.0, green: 0.6, blue: 0.6, alpha: 1.0)
         
         public static let blueFill = NSColor(calibratedRed: 0.9, green: 0.9, blue: 1.0, alpha: 1.0)
         public static let blueStroke = NSColor(calibratedRed: 0.1, green: 0.1, blue: 0.8, alpha: 1.0)

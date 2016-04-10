@@ -9,7 +9,14 @@
 import Foundation
 import Async
 
-enum NodeColour: Int { case VeryLightGrey, LightGrey, Green, Red, Blue}
+enum NodeColour: Int {
+    case VeryLightGrey
+    case LightGrey
+    case Green
+    case Red
+    case LightRed
+    case Blue
+}
 
 class NodeView: NSView {
     
@@ -55,7 +62,7 @@ class NodeView: NSView {
                 }
                 
             } else {
-                pathLayer.lineWidth = 0.8
+                pathLayer.lineWidth = 0.5
                 pathLayer.strokeColor = drawingContextColour(colourForState(currentState)).stroke
             }
             CATransaction.commit()
@@ -148,6 +155,13 @@ class NodeView: NSView {
             pathLayer.fillColor = drawingContextColour(.Red).fill
             CATransaction.commit()
             
+        case .InheritedError:
+            CATransaction.begin()
+            CATransaction.setDisableActions(!shouldTransition)
+            pathLayer.strokeColor = drawingContextColour(.LightRed).stroke
+            pathLayer.fillColor = drawingContextColour(.LightRed).fill
+            CATransaction.commit()
+            
         case .Completed:
             CATransaction.begin()
             CATransaction.setDisableActions(!shouldTransition)
@@ -169,6 +183,7 @@ class NodeView: NSView {
         case .Completed: return .LightGrey
         case .WaitingForUserInput: return .Blue
         case .Error: return .Red
+        case .InheritedError: return .LightRed
         case .Void: fatalError("Trying to find colour for a Void State")
         }
     }
@@ -185,6 +200,8 @@ func drawingContextColour(colour:NodeColour) -> (fill:CGColor, stroke:CGColor) {
         return (AppConfiguration.Palette.greenFill.CGColor, AppConfiguration.Palette.greenStroke.CGColor)
     case .Red:
         return (AppConfiguration.Palette.redFill.CGColor, AppConfiguration.Palette.redStroke.CGColor)
+    case .LightRed:
+        return (AppConfiguration.Palette.lightRedFill.CGColor, AppConfiguration.Palette.lightRedStroke.CGColor)
     case .Blue:
         return (AppConfiguration.Palette.blueFill.CGColor, AppConfiguration.Palette.blueStroke.CGColor)
     }

@@ -27,15 +27,15 @@ extension Sequence {
 			}
 			
 			if transitionNode != nil { nodesToReturn.append(transitionNode!) }
+			/*
 			else {
-		
-				if actionNodes.count > 1 {
-					let action = timeDirection == .Forward ? NodePostion.EndingAction : NodePostion.StartingAction
-					
-					print ( "Not an Ending Action Node does not have a transition Node")
-					//assert (self.calculateActionNodePosition(node) == action, "Not an Ending Action Node does not have a transition Node")
-				}
+			if actionNodes.count > 1 {
+			let action = timeDirection == .Forward ? NodePostion.EndingAction : NodePostion.StartingAction
+			//print ( "Not an Ending Action Node does not have a transition Node")
+			//assert (self.calculateActionNodePosition(node) == action, "Not an Ending Action Node does not have a transition Node")
 			}
+			}
+			*/
 		}
 		return nodesToReturn
 	}
@@ -114,8 +114,6 @@ extension Sequence {
 	}
 	
 	
-	
-	
 	func forceCreateTransistionNodesForActionNodes() {
 		
 		if actionNodes.count == 0 {return}
@@ -152,7 +150,6 @@ extension Sequence {
 	}
 	
 	
-	
 	func printChain() {
 		for node in nodeChain() { print (String(node.type) + ": " + node.title) }
 		validSequence() ? print("Sequence is Valid") : print("Sequence is NOT Valid")
@@ -172,7 +169,7 @@ extension Sequence {
 	func calculateActionNodePosition(node: Node) -> NodePostion {
 		let index = actionNodes.indexOf(node)
 		guard index != nil else { return .None}
-		guard node.type != .Action else { return .Transition }
+		guard node.type == .Action else { return .Transition }
 		
 		var result: NodePostion
 		

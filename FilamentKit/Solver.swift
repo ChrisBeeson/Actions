@@ -302,7 +302,9 @@ class Solver: NSObject {
         
         for period in avoidPeriods {
             if preferedPeriod.relationToPeriod(period.period) != .None {
+                if period.type != .Node {
                 errors.append(SolverError(errorLevel: .Warning, error:.Clash, object:period, node:node))
+                }
             }
         }
         return errors

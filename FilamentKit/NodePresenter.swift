@@ -127,10 +127,13 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
                 output.appendContentsOf(string + ". ")
                 }
             }
+            return output
+            
+        case .InheritedError: return "SOLVER_ERROR_FOLLOWS_FAILED_NODE".localized
+            
         default:
             return nil
         }
-        return nil
     }
 
     

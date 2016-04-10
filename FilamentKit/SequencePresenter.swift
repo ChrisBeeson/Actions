@@ -189,7 +189,9 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
 
     func nodePresenter(node:Node) -> NodePresenter {
         let presenter = _nodePresenters.filter {$0.node === node}
-        if presenter.count == 1 { return presenter[0] }
+        if presenter.count == 1 {
+            return presenter[0]
+        }
         
         let newPresenter = NodePresenter(node: node)
         newPresenter.undoManager = representingDocument?.undoManager

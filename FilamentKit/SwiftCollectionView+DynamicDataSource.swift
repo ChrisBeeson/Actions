@@ -112,6 +112,7 @@ extension SequenceCollectionView {
         if item.presenter != presenter!.nodePresenter(node) {
             item.presenter = presenter!.nodePresenter(node)
         }
+        item.presenter?.addDelegate(item)
         item.indexPath = path
         return item
     }

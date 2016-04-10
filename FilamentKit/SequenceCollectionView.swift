@@ -245,61 +245,7 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
             
             return result
         }
-        
-        //let type = draggingInfo.draggingPasteboard().pasteboardItems![0].types[0]
-        //  if result == .None { return .None }
-        /*
-         switch type {
-         
-         case AppConfiguration.UTI.rule:
-         if proposedDropOperation.memory == .Before { return .None }
-         let type =  itemTypeAtIndex(proposedDropIndexPath.memory!)
-         if type == .Date  { return .None }
-         if type == .AddButton { return .None }
-         let item = (itemForIndexPath(proposedDropIndexPath.memory!) as! NodeCollectionViewItem)
-         if item.currentState == .Running { return .None }
-         if item.currentState == .Completed { return .None }
-         //TODO: Valid Rule is aval for Type and that it doesn't already have it - I think we'll need to ask the presenter.
-         //return item.presenter.acceptRuleDrop()
-         
-         return .Copy
-         
-         case AppConfiguration.UTI.dateNode:
-         if collectionView != self {
-         // it's from another collection view
-         // so either they can drop it on the location of our date, or on the addbutton basically
-         if proposedDropOperation.memory == .Before { return .None }
-         if indexOfItemType(.Date) == proposedDropIndexPath.memory! { return .Copy }
-         // if indexOfItemType(.AddButton) == proposedDropIndexPath.memory! { return .Copy }
-         } else {
-         //  if proposedDropOperation.memory == .On { return .None }
-         if indexOfItemType(.AddButton) == proposedDropIndexPath.memory! { return .Copy }
-         }
-         
-         case AppConfiguration.UTI.node:
-         /*
-         There are only two drag options for a node drop.
-         
-         1. It can be dropped into another sequence.
-         It is just inserted on to the end.
-         2. If it is hovering over a transition, which it is not related to, then the transition will open to it's size.  and it's source will disappear.
-         */
-         
-         
-         if proposedDropOperation.memory == .Before { return .None }
-         let type =  itemTypeAtIndex(proposedDropIndexPath.memory!)
-         if type == .Date  { return .None }
-         if type == .AddButton { return .None }
-         if let item = (itemForIndexPath(proposedDropIndexPath.memory!) as? NodeCollectionViewItem) {
-         if item.currentState == .Running { return .None }
-         if item.currentState == .Completed { return .None }
-         return .Copy
-         }
-         
-         default: break
-         }
-         return .None
-         */
+
         return .None
     }
     
@@ -309,29 +255,6 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
         let item = (itemForIndexPath(indexPath) as! DragDropCopyPasteItem)
         let result = item.acceptDrop(collectionView, item: draggingInfo.draggingPasteboard().pasteboardItems![0], dropOperation:dropOperation)
         return result
-        
-        /*
-         var type:String?
-         
-         draggingInfo.enumerateDraggingItemsWithOptions([], forView: self, classes: [NSPasteboardItem.self], searchOptions: [NSPasteboardURLReadingFileURLsOnlyKey: false]) {draggingItem, idx, stop in
-         let types = (draggingItem.item as! NSPasteboardItem).types
-         if types.count > 0 {
-         type = types[0]
-         }
-         }
-         
-         Swift.print("Accepted Drop: \(indexPath)")
-         
-         return true
-         
-         */
-        /*
-         if let presenter = rulePresenterFromDraggingItem(draggingInfo) {
-         self.ruleCollectionViewDelegate?.didAcceptDrop(self, droppedRulePresenter: presenter, atIndex:indexPath.item)
-         return true
-         }
-         return false
-         */
     }
     
     public func collectionView(collectionView: NSCollectionView, shouldChangeItemsAtIndexPaths indexPaths: Set<NSIndexPath>, toHighlightState highlightState: NSCollectionViewItemHighlightState) -> Set<NSIndexPath> {

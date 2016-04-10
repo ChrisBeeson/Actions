@@ -97,7 +97,7 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate, Drag
         guard presenter == self.presenter! else { return }
         
         //Swift.print("nodePresenter:\(presenter.title)  DidChangeState:\(toState)")
-        guard toState != currentState else { Swift.print("Already in that state");return }
+        // guard toState != currentState else { Swift.print("Already in that state");return }
         updateView()
         self.nodeView.updateViewToState(toState, shouldTransition:true)
         currentState = toState

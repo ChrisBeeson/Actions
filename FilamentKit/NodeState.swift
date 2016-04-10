@@ -16,6 +16,7 @@ enum NodeState: Int {
     case WaitingForUserInput
     case Completed               // has past an event
     case Error
+    case InheritedError
     case Void                    // illegal state that we should never be in apart from init
     
     
@@ -44,6 +45,7 @@ enum NodeState: Int {
         case WaitingForUserInput : return toWaitingForUserInput(presenter)
         case Completed : return toCompleted(presenter)
         case Error : return toError(presenter)
+        case InheritedError : return toInheritedError(presenter)
         case Void : fatalError("Void Node State")
         }
     }
@@ -114,6 +116,14 @@ enum NodeState: Int {
     }
     
     
+    mutating func toInheritedError(presenter: NodePresenter) -> NodeState {
+        guard self != .Error else { return self }
+        guard self != .Completed else { return self }
+        presenter.removeCalandarEvent(false)
+        return changeToState(.InheritedError, presenter:presenter, options: nil)
+    }
+    
+    
     mutating func toWaitingForUserInput(presenter: NodePresenter) -> NodeState {
         guard self != .WaitingForUserInput else { return self }
         switch self {
@@ -132,6 +142,7 @@ enum NodeState: Int {
         
         if presenter.isCompleted == true { return .Completed }
         if ignoreError == false && self == .Error { return .Error }
+        if ignoreError == false && self == .InheritedError { return .InheritedError }
         guard presenter.event != nil else { return .Inactive }
         
         var newState = NodeState.Void

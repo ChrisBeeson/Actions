@@ -123,7 +123,6 @@
 		836896341C807FEF00F3F547 /* AvailableRulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836896331C807FEF00F3F547 /* AvailableRulesViewController.swift */; };
 		836896361C80801900F3F547 /* AvailableRulesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 836896351C80801900F3F547 /* AvailableRulesViewController.xib */; };
 		83861F2B1BEEA25F00A44122 /* FilamentDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83861F2A1BEEA25F00A44122 /* FilamentDocument.swift */; };
-		83AD7EBC1C7BA4E60097BD61 /* RuleTokenField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AD7EBB1C7BA4E60097BD61 /* RuleTokenField.swift */; };
 		83AF6D741C878A3600D48129 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AF6D731C878A3600D48129 /* LeftAlignedCollectionViewFlowLayout.swift */; };
 		83B500601C981FE800B0F5AA /* NodeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B5005F1C981FE800B0F5AA /* NodeState.swift */; };
 		83B74FAD1C7FDC0F005E5E22 /* DurationWithVarianceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83B74FAC1C7FDC0F005E5E22 /* DurationWithVarianceViewController.xib */; };
@@ -329,7 +328,6 @@
 		836896331C807FEF00F3F547 /* AvailableRulesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableRulesViewController.swift; sourceTree = "<group>"; };
 		836896351C80801900F3F547 /* AvailableRulesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AvailableRulesViewController.xib; sourceTree = "<group>"; };
 		83861F2A1BEEA25F00A44122 /* FilamentDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FilamentDocument.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		83AD7EBB1C7BA4E60097BD61 /* RuleTokenField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleTokenField.swift; sourceTree = "<group>"; };
 		83AF6D731C878A3600D48129 /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		83B5005F1C981FE800B0F5AA /* NodeState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeState.swift; sourceTree = "<group>"; };
 		83B74FAC1C7FDC0F005E5E22 /* DurationWithVarianceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DurationWithVarianceViewController.xib; sourceTree = "<group>"; };
@@ -756,7 +754,6 @@
 				476C8D391C9A9ED00068E44F /* Date Time Picker */,
 				476C8D3A1C9A9EE00068E44F /* AvailableRules */,
 				473853B01C7A5892000AB1E2 /* RuleViewControllers */,
-				83AD7EBB1C7BA4E60097BD61 /* RuleTokenField.swift */,
 			);
 			name = "Detail ViewControllers";
 			sourceTree = "<group>";
@@ -1294,7 +1291,6 @@
 				47D56FA11C8AC9E80025D156 /* Calendar.swift in Sources */,
 				476D1FFF1CA7C3AC00320431 /* SwiftCollectionView+DynamicDataSource.swift in Sources */,
 				477C2CB31C409C660071467C /* ActionNodeView.swift in Sources */,
-				83AD7EBC1C7BA4E60097BD61 /* RuleTokenField.swift in Sources */,
 				83861F2B1BEEA25F00A44122 /* FilamentDocument.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

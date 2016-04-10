@@ -27,16 +27,21 @@ extension Sequence {
             case .Action:
                 if timeDirection == .Forward {
                     if let transitionNode = node.rightTransitionNode {
-                        solvedNode(node: transitionNode, state:state, errors: nil)
+                        if state == .Error { solvedNode(node: transitionNode, state:.InheritedError, errors: nil) } else {
+                            solvedNode(node: transitionNode, state:state, errors: nil)
+                        }
                     } else { print("transition Node was Nil") }
                     solvedNode(node: node, state:state, errors: errors)
                     
                 } else if timeDirection == .Backward {
-                    solvedNode(node: node, state:state, errors: errors)
+                     solvedNode(node: node, state:state, errors: errors)
                     
                     if let transitionNode = node.leftTransitionNode {
-                        solvedNode(node: transitionNode, state:state, errors: nil)
+                        if state == .Error { solvedNode(node: transitionNode, state:.InheritedError, errors: nil) } else {
+                            solvedNode(node: transitionNode, state:state, errors: nil)
+                        }
                     } else { print("transition Node was Nil") }
+                   
                 }
             default: print("Found an invaild node")
             }
@@ -60,7 +65,7 @@ extension Sequence {
             // If we have a failed Node - then lets fail all others
             if failedNode != nil {
                 errors.append(SolverError(errorLevel: .Failed, error: .FollowsFailedNode, object: failedNode, node: node))
-                SolvedActionNode(node, state:.Error, errors: errors)
+                SolvedActionNode(node, state:.InheritedError, errors: errors)
                 continue
             }
             

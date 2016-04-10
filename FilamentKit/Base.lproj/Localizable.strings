@@ -62,7 +62,7 @@
 
     // SOLVER
 "SOLVER_ERROR_COULD_FIND_NO_FREE_PERIODS" = "Will not fit";
-"SOLVER_ERROR_FOLLOWS_FAILED_NODE" = "Following an event that won't fit";
+"SOLVER_ERROR_FOLLOWS_FAILED_NODE" = "Following a failed event";
 "SOLVER_ERROR_CLASHES_WITH" = "Clashes with ";
 
 
