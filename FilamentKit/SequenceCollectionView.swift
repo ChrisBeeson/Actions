@@ -126,7 +126,33 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
     
     public func copy(event: NSEvent) {
         Swift.print("seq collection copy")
+        var items = [NSPasteboardWriting]()
+        for indexPath in self.selectionIndexPaths {
+            if let object = self.itemAtIndexPath(indexPath) {
+                if object.isKindOfClass(NodeCollectionViewItem) {
+                    items.append((object as! NodeCollectionViewItem).pasteboardItem())
+                    Swift.print("Copied!")
+                }
+            }
+        }
+        
     }
+    
+    public func paste(event: NSEvent) {
+           Swift.print("paste")
+        
+        // So whats on the pasteboard!
+        
+        if NSPasteboard.generalPasteboard().canReadItemWithDataConformingToTypes([AppConfiguration.UTI.node]) == true {
+            Swift.print("paste NODE!")
+        }
+        
+        if NSPasteboard.generalPasteboard().canReadItemWithDataConformingToTypes([AppConfiguration.UTI.rule]) == true {
+              Swift.print("paste RULE!")
+        }
+        
+    }
+    
     
     public func delete(theEvent: NSEvent) {
         var nodesToDelete = [Node]()

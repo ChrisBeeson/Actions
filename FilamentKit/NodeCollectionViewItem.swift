@@ -129,6 +129,8 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate, Drag
     }
     
     
+
+    
     //MARK: Drag & Drop
     
     func isDraggable() -> Bool {
@@ -143,7 +145,6 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate, Drag
     }
     
     func validateDrop(item: NSPasteboardItem, proposedDropOperation: UnsafeMutablePointer<NSCollectionViewDropOperation>) -> NSDragOperation {
-        
         switch item.types[0] {
         case AppConfiguration.UTI.rule:
             let rule = RulePresenter(pasteboardItem:item)
@@ -155,7 +156,6 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate, Drag
     }
     
     func acceptDrop(collectionView: NSCollectionView, item: NSPasteboardItem, dropOperation: NSCollectionViewDropOperation) -> Bool {
-        
         switch item.types[0] {
         case AppConfiguration.UTI.rule:
             let rule =  RulePresenter(pasteboardItem:item)

@@ -39,7 +39,6 @@ extension NSDate {
     }
     
     class func dateFromString(string: String) -> NSDate {
-        
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         dateFormatter.timeZone = NSTimeZone(name: "UTC")
@@ -56,18 +55,6 @@ extension DTTimePeriod {
         let endTime = self.EndDate.formattedDateWithFormat("DD:MM:YY HH:mm")
         return("\(startTime) -> \(endTime)")
     }
-    
-    //MARK: Mapping
-   /*
-    required public init?(_ map: Map) {
-        
-    }
-    
-    public func mapping(map: Map) {
-        unit                <- map["timeSizeUnit"]
-        amount              <- map["timeSizeAmount"]
-    }
- */
 }
 
 extension DTTimePeriodGroup {
@@ -81,10 +68,6 @@ extension DTTimePeriodGroup {
         return periods
     }
 }
-
-
-
-
 
 
 extension DTTimePeriodCollection {
@@ -135,7 +118,6 @@ extension DTTimePeriodCollection {
     func voidPeriods(inPeriod: DTTimePeriod) -> DTTimePeriodCollection {
         
         if self.periods() == nil || self.periods()!.count == 0 {
-            
             let samePeriod = DTTimePeriodCollection()
             samePeriod.addTimePeriod(inPeriod.copy())
             return samePeriod
@@ -147,7 +129,6 @@ extension DTTimePeriodCollection {
         // First gaps between the edges of the window of interest.
         
         if inPeriod.StartDate.isEarlierThan(periods[0].StartDate) {
-            
             let newVoidPeriod = DTTimePeriod()
             newVoidPeriod.StartDate = inPeriod.StartDate
             newVoidPeriod.EndDate = periods[0].StartDate
@@ -155,7 +136,6 @@ extension DTTimePeriodCollection {
         }
         
         if periods[periods.count-1].EndDate.isEarlierThan(inPeriod.EndDate) {
-            
             let newVoidPeriod = DTTimePeriod()
             newVoidPeriod.StartDate = periods[periods.count-1].EndDate
             newVoidPeriod.EndDate = inPeriod.EndDate
@@ -165,11 +145,8 @@ extension DTTimePeriodCollection {
         // void periods in between the periods
         
         for i in 0  ..< periods.count  {
-            
             if i < (periods.count - 1) {
-                
                 if periods[i].EndDate!.isEarlierThan(periods[i+1].StartDate!) {
-                    
                     let voidPeriod = DTTimePeriod()
                     //  voidPeriod.StartDate = periods[i].EndDate!.dateByAddingSeconds(1)
                     //  voidPeriod.EndDate = periods[i+1].StartDate!.dateBySubtractingSeconds(1)
@@ -179,78 +156,17 @@ extension DTTimePeriodCollection {
                 }
             }
         }
-        
         voidPeriods.sortByStartAscending()
-        
         return voidPeriods
     }
     
      override public var description: String {
-        
-        var string = String()
-        
         guard let periods = self.periods() else { return "No Periods" }
         
+        var string = String()
         for period in periods {
-            
             string.appendContentsOf(period.description + "\n")
         }
-        
         return string
-    }
-}
-
-
-
-
-// TIMESIZE
-
-class Timesize: NSObject, NSCoding, Mappable  {
-    
-    var unit: DTTimePeriodSize
-    var amount: Int
-    
-    init (unit:DTTimePeriodSize, amount:Int) {
-        
-        self.unit = unit
-        self.amount = amount
-        super.init()
-    }
-    
-    func inSeconds() -> Int {
-        
-        switch unit {
-        case .Second: return self.amount
-        case .Minute: return self.amount*60
-        case .Hour: return  self.amount*60*60
-        case .Day: return self.amount*60*60*24
-        case .Week: return self.amount*60*60*24*7
-        case .Month: return self.amount*60*60*24*7*(365/12)
-        case .Year:return self.amount*60*60*24*7*52
-        }
-    }
-    
-    required  init?(coder aDecoder: NSCoder) {
-        
-        unit = DTTimePeriodSize(rawValue: UInt(aDecoder.decodeIntegerForKey("unit")))!
-        amount = aDecoder.decodeIntegerForKey("amount")
-    }
-    
-    func encodeWithCoder(aCoder: NSCoder) {
-        
-        aCoder.encodeInteger(Int(unit.rawValue), forKey: "unit")
-        aCoder.encodeInteger(amount, forKey: "amount")
-    }
-    
-    //MARK: Mapping
-    
-    required init?(_ map: Map) {
-        self.unit = map["timeSizeUnit"].value()!
-        self.amount = map["timeSizeAmount"].value()!
-    }
-    
-    func mapping(map: Map) {
-        unit                <- (map["timeSizeUnit"], EnumTransform())
-        amount              <- map["timeSizeAmount"]
     }
 }

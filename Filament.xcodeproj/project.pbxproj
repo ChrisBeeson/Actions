@@ -51,6 +51,8 @@
 		473EAEE11BA3A7D200AFEA2A /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473EAEE01BA3A7D200AFEA2A /* CalendarManager.swift */; };
 		473EAEE31BA3A91400AFEA2A /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 473EAEE21BA3A91400AFEA2A /* EventKit.framework */; };
 		473EAEE61BA3AD0300AFEA2A /* RuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473EAEE41BA3AD0300AFEA2A /* RuleTests.swift */; };
+		4743D1081CBB09C500574163 /* Timesize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4743D1071CBB09C500574163 /* Timesize.swift */; };
+		4743D1091CBB09C500574163 /* Timesize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4743D1071CBB09C500574163 /* Timesize.swift */; };
 		4744FBF01CA3D12B00C06123 /* NextUnitRulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4744FBEF1CA3D12B00C06123 /* NextUnitRulePresenter.swift */; };
 		4744FBF11CA3D12B00C06123 /* NextUnitRulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4744FBEF1CA3D12B00C06123 /* NextUnitRulePresenter.swift */; };
 		4753D3AF1BE378720071DB59 /* WorkingWeekRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4753D3AE1BE378720071DB59 /* WorkingWeekRule.swift */; };
@@ -262,6 +264,7 @@
 		473EAEE01BA3A7D200AFEA2A /* CalendarManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
 		473EAEE21BA3A91400AFEA2A /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		473EAEE41BA3AD0300AFEA2A /* RuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleTests.swift; sourceTree = "<group>"; };
+		4743D1071CBB09C500574163 /* Timesize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timesize.swift; sourceTree = "<group>"; };
 		4744FBEF1CA3D12B00C06123 /* NextUnitRulePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextUnitRulePresenter.swift; sourceTree = "<group>"; };
 		4753D3AE1BE378720071DB59 /* WorkingWeekRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkingWeekRule.swift; sourceTree = "<group>"; };
 		475927B01C6C725700D24DE9 /* Dwifft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dwifft.swift; sourceTree = "<group>"; };
@@ -705,6 +708,7 @@
 			isa = PBXGroup;
 			children = (
 				47ACA9531BB5464C000CAC61 /* DateToolsExtenstions.swift */,
+				4743D1071CBB09C500574163 /* Timesize.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -1281,6 +1285,7 @@
 				473D4AC71CB891BE00AB8560 /* AvoidPeriod.swift in Sources */,
 				4720B50E1C71C32100229734 /* EmptyNodeView.swift in Sources */,
 				836896341C807FEF00F3F547 /* AvailableRulesViewController.swift in Sources */,
+				4743D1081CBB09C500574163 /* Timesize.swift in Sources */,
 				476D20011CA7C5C500320431 /* DragDropCopyPasteItem.swift in Sources */,
 				4744FBF01CA3D12B00C06123 /* NextUnitRulePresenter.swift in Sources */,
 				473574841B9A91A200493CA0 /* ListPresenterAlgorithms.swift in Sources */,
@@ -1303,6 +1308,7 @@
 				47CD21C71BDF807900AF25BE /* Sequence+EventLogic.swift in Sources */,
 				473EAEE61BA3AD0300AFEA2A /* RuleTests.swift in Sources */,
 				83CE4A231CA21A4E005691FD /* FilamentDocument.swift in Sources */,
+				4743D1091CBB09C500574163 /* Timesize.swift in Sources */,
 				83CE4A251CA21A92005691FD /* AvoidCalendarEventsViewController.swift in Sources */,
 				4724651C1BBFE610004DE4DE /* Rule.swift in Sources */,
 				4724651F1BBFE64B004DE4DE /* Solver.swift in Sources */,

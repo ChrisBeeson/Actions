@@ -123,6 +123,7 @@ class AvoidCalendarEventsRule : Rule {
     
     
     //MARK: Mapping
+    
     required init?(_ map: Map) {
         super.init(map)
     }
