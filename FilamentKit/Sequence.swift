@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ObjectMapper
 
 @objc
 public enum TimeDirection: Int {
@@ -14,7 +15,7 @@ public enum TimeDirection: Int {
     case Backward
 }
 
-class Sequence: NSObject, NSCopying, NSCoding {
+class Sequence: NSObject, NSCopying, NSCoding, Mappable {
     
     var title: String = ""
     var actionNodes = [Node]()
@@ -22,7 +23,7 @@ class Sequence: NSObject, NSCopying, NSCoding {
     var date: NSDate?
     var timeDirection = TimeDirection.Forward
     var generalRules = [Rule]()
-    var uuid = NSUUID()
+    var uuid:String = NSUUID().UUIDString
 
     // MARK: Initializers
     override init () {
@@ -56,7 +57,7 @@ class Sequence: NSObject, NSCopying, NSCoding {
         transitionNodes = aDecoder.decodeObjectForKey(SerializationKeys.transitionNodes) as! [Node]
         date = aDecoder.decodeObjectForKey(SerializationKeys.date) as? NSDate
         timeDirection = TimeDirection(rawValue: aDecoder.decodeIntegerForKey(SerializationKeys.timeDirection))!
-        uuid = aDecoder.decodeObjectForKey(SerializationKeys.uuid) as! NSUUID
+        uuid = aDecoder.decodeObjectForKey(SerializationKeys.uuid) as! String
         generalRules = aDecoder.decodeObjectForKey(SerializationKeys.generalRules) as! [Rule]
     }
     
@@ -69,6 +70,23 @@ class Sequence: NSObject, NSCopying, NSCoding {
         aCoder.encodeObject(uuid, forKey: SerializationKeys.uuid)
         aCoder.encodeObject(generalRules, forKey: SerializationKeys.generalRules)
     }
+    
+    //MARK: Mapping
+    
+    required init?(_ map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        title           <- map[SerializationKeys.title]
+        actionNodes      <- map[SerializationKeys.actionNodes]
+        transitionNodes <-  map[SerializationKeys.transitionNodes]
+        date            <- (map[SerializationKeys.date], DateTransform())
+        timeDirection   <- (map[SerializationKeys.timeDirection], EnumTransform())
+        uuid            <- map[SerializationKeys.uuid]
+        generalRules    <- map[SerializationKeys.generalRules]
+    }
+    
     
     // MARK: NSCopying
      func copyWithZone(zone: NSZone) -> AnyObject  {
@@ -83,7 +101,7 @@ class Sequence: NSObject, NSCopying, NSCoding {
     }
     
      var filename: String {
-        var filename = uuid.UUIDString
+        var filename = uuid
         filename.appendContentsOf("."+AppConfiguration.applicationFileExtension)
         return filename
     }

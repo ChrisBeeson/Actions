@@ -10,8 +10,9 @@ import Foundation
 import EventKit
 import Async
 import DateTools
+import ObjectMapper
 
-class TimeEvent : NSObject, NSCoding, NSCopying {
+class TimeEvent : NSObject, NSCoding, NSCopying, Mappable {
     
     var startDate: NSDate
     var endDate: NSDate
@@ -182,6 +183,22 @@ class TimeEvent : NSObject, NSCoding, NSCopying {
         encoder.encodeObject(calendarEventId, forKey: SerializationKeys.calendarEventId)
         encoder.encodeObject(publish, forKey: SerializationKeys.publish)
     }
+    
+    //MARK: Mapping
+    
+    required init?(_ map: Map) {
+        self.startDate = map[SerializationKeys.startDate].value()!
+        self.endDate = map[SerializationKeys.endDate].value()!
+        
+    }
+    
+    func mapping(map: Map) {
+        startDate           <- (map[SerializationKeys.startDate], DateTransform())
+        endDate             <- (map[SerializationKeys.endDate], DateTransform())
+        calendarEventId     <- map[SerializationKeys.calendarEventId]
+        publish             <- map[SerializationKeys.publish]
+    }
+    
     
     // MARK: NSCopying
     

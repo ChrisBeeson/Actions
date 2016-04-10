@@ -48,6 +48,7 @@
 "RUlE_WORKING_WEEK_MORNING" = "time outside of work hours";
 "RUlE_WORKING_WEEK_LUNCH" = "lunch";
 "RUlE_WORKING_WEEK_EVENING" = "time outside of work hours";
+"RUlE_WORKING_WEEK_DAY_OFF" = "day off";
 
 
 // NODES

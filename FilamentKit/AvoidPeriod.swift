@@ -35,6 +35,7 @@ struct AvoidPeriod {
         case .WorkingWeekMorning: return "RUlE_WORKING_WEEK_MORNING".localized
         case .WorkingWeekEvening: return "RUlE_WORKING_WEEK_EVENING".localized
         case .WorkingWeekLunch: return "RUlE_WORKING_WEEK_LUNCH".localized
+        case .WorkingWeekDayOff: return "RUlE_WORKING_WEEK_DAY_OFF".localized
         case .Node:
             return object != nil ? (object as! Node).title : nil
         default: return nil
@@ -47,6 +48,7 @@ enum AvoidPeriodType {
     case WorkingWeekMorning
     case WorkingWeekEvening
     case WorkingWeekLunch
+    case WorkingWeekDayOff
     case Node
     case None
 }

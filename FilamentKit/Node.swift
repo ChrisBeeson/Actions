@@ -8,6 +8,7 @@
 
 import Foundation
 import DateTools
+import ObjectMapper
 
 public struct NodeType : OptionSetType {
     
@@ -21,7 +22,7 @@ public struct NodeType : OptionSetType {
 }
 
 
-class Node: NSObject, NSCoding {
+class Node: NSObject, NSCoding, Mappable {
     
     var title = ""
     var notes = ""
@@ -30,7 +31,7 @@ class Node: NSObject, NSCoding {
     var type:NodeType = [.Action]
     var leftTransitionNode: Node?
     var rightTransitionNode: Node?
-    var UUID = NSUUID()
+    var UUID:String = NSUUID().UUIDString
     var event: TimeEvent?
     var isCompleted = false
     
@@ -94,7 +95,7 @@ class Node: NSObject, NSCoding {
         location = aDecoder.decodeObjectForKey(SerializationKeys.location) as! String
         rules = aDecoder.decodeObjectForKey(SerializationKeys.rules) as! [Rule]
         type = NodeType(rawValue: aDecoder.decodeIntegerForKey(SerializationKeys.type))
-        UUID = aDecoder.decodeObjectForKey(SerializationKeys.uuid) as! NSUUID
+        UUID = aDecoder.decodeObjectForKey(SerializationKeys.uuid) as! String
         leftTransitionNode = aDecoder.decodeObjectForKey(SerializationKeys.leftTransitionNode) as? Node
         rightTransitionNode = aDecoder.decodeObjectForKey(SerializationKeys.rightTransitionNode) as? Node
         event = aDecoder.decodeObjectForKey(SerializationKeys.event) as? TimeEvent
@@ -118,6 +119,26 @@ class Node: NSObject, NSCoding {
     }
     
     
+    //MARK: Mapping
+    
+    required init?(_ map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        title                   <- map[SerializationKeys.title]
+        notes                   <- map[SerializationKeys.notes]
+        location                <- map[SerializationKeys.location]
+        rules                   <- map[SerializationKeys.rules]
+        type                    <- (map[SerializationKeys.type], EnumTransform())
+        UUID                    <- map[SerializationKeys.uuid]
+        leftTransitionNode      <- map[SerializationKeys.leftTransitionNode]
+        rightTransitionNode     <- map[SerializationKeys.rightTransitionNode]
+        event                   <- map[SerializationKeys.event]
+        isCompleted             <- map[SerializationKeys.isCompleted]
+    }
+    
+    
     // MARK: NSCopying
     
     func copyWithZone(zone: NSZone) -> AnyObject  {
@@ -127,7 +148,6 @@ class Node: NSObject, NSCoding {
         let clone = Node(text: title, type: type, rules: rules)
         clone.notes = notes.copy() as! String
         clone.location = location.copy() as! String
-        clone.UUID = UUID.copy() as! NSUUID
         clone.event  = event?.copy() as? TimeEvent
         //     for rule in rules { clone.rules.append(rule) }
         clone.leftTransitionNode = leftTransitionNode

@@ -8,8 +8,9 @@
 
 import Foundation
 import DateTools
+import ObjectMapper
 
-class WorkingWeekRule: Rule, NSCoding, NSCopying {
+class WorkingWeekRule: Rule {
     
     // This rule sets the duration of an event.
     // It allows the event to be shortened to a minimum duration if required.
@@ -27,9 +28,7 @@ class WorkingWeekRule: Rule, NSCoding, NSCopying {
     var lunchBreakEnabled = true
     var enabledDays = [2:true, 3:true, 4:true, 5:true, 6:true, 7:false, 1:false]  // Sunday = 1
     
-    override init() {
-        super.init()
-    }
+    override init() { super.init() }
     
     override var avoidPeriods: [AvoidPeriod]? {
         get {
@@ -67,6 +66,14 @@ class WorkingWeekRule: Rule, NSCoding, NSCopying {
                         let avoidPeriod1 = AvoidPeriod(period: lunch, type: .WorkingWeekLunch, object: nil)
                         periods.append(avoidPeriod1)
                     }
+                } else {
+                    
+                    // the day isn't enabled - there for we must have the day off - and so we avoid it all
+                    let midnight = NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: NSDate(string: "00:00", formatString: "HH:mm"))
+                    let nearlyMidnight = NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: NSDate(string: "23:59", formatString: "HH:mm"))
+                    let dayOff = DTTimePeriod(startDate: midnight, endDate: nearlyMidnight)
+                    let avoidPeriod = AvoidPeriod(period: dayOff, type: .WorkingWeekDayOff, object: nil)
+                    periods.append(avoidPeriod)
                 }
             }
             return periods
@@ -77,6 +84,7 @@ class WorkingWeekRule: Rule, NSCoding, NSCopying {
     }
     
     // MARK: NSCoding
+    
     private struct SerializationKeys {
         static let workingDayStartTime = "workingDayStartTime"
         static let workingDayEndTime = "workingDayEndTime"
@@ -88,6 +96,7 @@ class WorkingWeekRule: Rule, NSCoding, NSCopying {
     }
     
     required init?(coder aDecoder: NSCoder) {
+        super.init(coder:aDecoder)
         workingDayStartTime = aDecoder.decodeObjectForKey("workingDayStartTime") as! NSDate
         workingDayEndTime = aDecoder.decodeObjectForKey("workingDayEndTime") as! NSDate
         workingDayEnabled = aDecoder.decodeObjectForKey("workingDayEnabled") as! Bool
@@ -97,7 +106,7 @@ class WorkingWeekRule: Rule, NSCoding, NSCopying {
         enabledDays = aDecoder.decodeObjectForKey("enabledDays") as! Dictionary
     }
     
-    func encodeWithCoder(aCoder: NSCoder) {
+    override func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(workingDayStartTime, forKey:"workingDayStartTime")
         aCoder.encodeObject(workingDayEndTime, forKey:"workingDayEndTime")
         aCoder.encodeObject(workingDayEnabled, forKey:"workingDayEnabled")
@@ -109,21 +118,32 @@ class WorkingWeekRule: Rule, NSCoding, NSCopying {
     
     // MARK: NSCopying
     
-    func copyWithZone(zone: NSZone) -> AnyObject  {
-        
-        //TODO: Working Week Copy
-        
-        /*
-        let clone = Sequence()
-        clone.title = title.copy() as! String
-        clone.actionNodes =  NSArray(array:actionNodes, copyItems: true) as! [Node]
-        clone.transitionNodes = NSArray(array:transitionNodes, copyItems: true) as! [Node]
-        clone.date = date
-        clone.timeDirection = timeDirection
-        clone.generalRules =  NSArray(array:generalRules, copyItems: true) as! [Rule]
+    override func copyWithZone(zone: NSZone) -> AnyObject  {
+        let clone = WorkingWeekRule()
+        clone.workingDayStartTime = self.workingDayStartTime
+        clone.workingDayEndTime = self.workingDayEndTime
+        clone.workingDayEnabled = self.workingDayEnabled
+        clone.lunchBreakStartTime =  self.lunchBreakStartTime
+        clone.lunchBreakEndTime = self.lunchBreakEndTime
+        clone.lunchBreakEnabled = self.lunchBreakEnabled
+        clone.enabledDays = self.enabledDays
         return clone
- */
-        return self
     }
     
+    //MARK: Mapping
+    
+    required init?(_ map: Map) {
+        super.init(map)
+    }
+    
+    override func mapping(map: Map) {
+        super.mapping(map)
+        workingDayStartTime      <- (map[SerializationKeys.workingDayStartTime],DateTransform())
+        workingDayEndTime        <- (map[SerializationKeys.workingDayEndTime],DateTransform())
+        workingDayEnabled        <- map[SerializationKeys.workingDayEnabled]
+        lunchBreakStartTime      <- (map[SerializationKeys.lunchBreakStartTime],DateTransform())
+        lunchBreakEndTime        <- (map[SerializationKeys.lunchBreakEndTime],DateTransform())
+        lunchBreakEnabled        <- map[SerializationKeys.lunchBreakEnabled]
+        enabledDays              <- map[SerializationKeys.enabledDays]
+    }
 }

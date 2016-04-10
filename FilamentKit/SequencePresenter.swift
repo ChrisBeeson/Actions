@@ -111,15 +111,14 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         representingDocument?.updateChangeCount(.ChangeDone)
     }
     
-    
-    @objc
+   @objc
     public func setDate(date:NSDate?, direction:TimeDirection) {
         if date != nil && _sequence!.date != nil && date!.isEqualToDate(_sequence!.date!) && direction == _sequence?.timeDirection { return }
 
         self.undoManager?.prepareWithInvocationTarget(self).setDate(self.date, direction: self.timeDirection)
         let undoActionName = NSLocalizedString("Change Date", comment: "")
         self.undoManager?.setActionName(undoActionName)
-        
+
         let timeDirectionToggled = direction == _sequence?.timeDirection ? false : true
         self._sequence!.date = date
         self._sequence!.timeDirection = direction

@@ -8,6 +8,7 @@
 
 import Foundation
 import DateTools
+import ObjectMapper
 
 enum NextPreferedTimeType: Int {
     case Morning = 0
@@ -34,13 +35,14 @@ class NextUnitRule : Rule {
     override var availableToNodeType: NodeType { return [.Transition] }
     override var options: RoleOptions { return [.RequiresPreviousPeriod] }
     
+    override init() {
+        super.init()
+    }
+    
     var unit = NextUnitType.Day
     var amount = 1
     var preferedTime = NextPreferedTimeType.Anytime
     
-    override init() {
-        super.init()
-    }
     
     // Rule output
     
@@ -57,7 +59,6 @@ class NextUnitRule : Rule {
         }
     }
     
-
     override var eventPreferedStartDate: NSDate? { get {
         guard inputDate != nil else { return nil }
         let date = calcDate()
@@ -66,34 +67,8 @@ class NextUnitRule : Rule {
         }
     }
     
-    private struct SerializationKeys {
-        static let unit = "unit"
-        static let amount = "amount"
-        static let preferedTime = "preferedTime"
-    }
     
-    required init?(coder aDecoder: NSCoder) {
-        unit = NextUnitType(rawValue: aDecoder.decodeIntegerForKey(SerializationKeys.unit))!
-        amount = aDecoder.decodeIntegerForKey(SerializationKeys.amount)
-        preferedTime = NextPreferedTimeType(rawValue: aDecoder.decodeIntegerForKey(SerializationKeys.preferedTime))!
-    }
-    
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeInteger(unit.rawValue, forKey:SerializationKeys.unit)
-        aCoder.encodeInteger(amount, forKey:SerializationKeys.amount)
-        aCoder.encodeInteger(preferedTime.rawValue, forKey:SerializationKeys.preferedTime)
-    }
-    
-    
-    //MARK: Internal processing
-    
-    func calcDate() -> NSDate {
-        //FIXME: lots of fatalErrors() here
-        guard let periodUnit = DTTimePeriodSize(rawValue:UInt(unit.rawValue+3)) else { fatalError() }
-        let timesize = Timesize(unit: periodUnit, amount: amount)
-        guard let date = inputDate?.dateByAddingTimesize(timesize)  else { fatalError() }
-        return date
-    }
+    //MARK: Internal Processing
     
     func timePeriod(timeType:NextPreferedTimeType) -> (period:DTTimePeriod, preferedStartDate:NSDate) {
         guard previousPeriod != nil else { fatalError() }
@@ -101,22 +76,22 @@ class NextUnitRule : Rule {
         switch preferedTime {
         case .Morning:
             let period = DTTimePeriod(startDate: NSDate(string: "06:00", formatString:"hh:mm"),
-                                        endDate: NSDate(string: "12:00", formatString:"hh:mm"))
+                                      endDate: NSDate(string: "12:00", formatString:"hh:mm"))
             return (period, NSDate(string: "09:00", formatString: "hh:mm"))
             
         case .Afternoon:
             let period = DTTimePeriod(startDate: NSDate(string: "12:00", formatString:"hh:mm"),
-                                        endDate: NSDate(string: "18:00", formatString:"HH:mm"))
+                                      endDate: NSDate(string: "18:00", formatString:"HH:mm"))
             return (period, NSDate(string: "13:00", formatString: "HH:mm"))
             
         case .Evening:
             let period = DTTimePeriod(startDate: NSDate(string: "18:00", formatString:"HH:mm"),
-                                        endDate: NSDate(string: "23:59", formatString:"HH:mm"))
+                                      endDate: NSDate(string: "23:59", formatString:"HH:mm"))
             return (period, NSDate(string: "18:00", formatString: "HH:mm"))
             
         case .Night:
             let period = DTTimePeriod(startDate: NSDate(string: "00:00", formatString:"hh:mm"),
-                                        endDate: NSDate(string: "06:00", formatString:"hh:mm"))
+                                      endDate: NSDate(string: "06:00", formatString:"hh:mm"))
             return (period ,NSDate(string: "01:00", formatString: "hh:mm"))
             
         case .Sametime:
@@ -136,5 +111,59 @@ class NextUnitRule : Rule {
             let period = DTTimePeriod(startDate: startTime!.dateBySubtractingHours(2), endDate: startTime!.dateByAddingHours(2))
             return (period, startTime!)
         }
+    }
+    
+    func calcDate() -> NSDate {
+        //FIXME: lots of fatalErrors() here
+        guard let periodUnit = DTTimePeriodSize(rawValue:UInt(unit.rawValue+3)) else { fatalError() }
+        let timesize = Timesize(unit: periodUnit, amount: amount)
+        guard let date = inputDate?.dateByAddingTimesize(timesize)  else { fatalError() }
+        return date
+    }
+    
+    
+    // MARK: NSCoding
+    
+    private struct SerializationKeys {
+        static let unit = "unit"
+        static let amount = "amount"
+        static let preferedTime = "preferedTime"
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder:aDecoder)
+        unit = NextUnitType(rawValue: aDecoder.decodeIntegerForKey(SerializationKeys.unit))!
+        amount = aDecoder.decodeIntegerForKey(SerializationKeys.amount)
+        preferedTime = NextPreferedTimeType(rawValue: aDecoder.decodeIntegerForKey(SerializationKeys.preferedTime))!
+    }
+    
+    override func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeInteger(unit.rawValue, forKey:SerializationKeys.unit)
+        aCoder.encodeInteger(amount, forKey:SerializationKeys.amount)
+        aCoder.encodeInteger(preferedTime.rawValue, forKey:SerializationKeys.preferedTime)
+    }
+    
+    // MARK: NSCopying
+    
+    override func copyWithZone(zone: NSZone) -> AnyObject  {
+        let clone = NextUnitRule()
+        clone.unit = self.unit
+        clone.amount = self.amount
+        clone.preferedTime = self.preferedTime
+        return clone
+    }
+    
+    
+    //MARK: Mapping
+    
+    required init?(_ map: Map) {
+        super.init(map)
+    }
+    
+    override func mapping(map: Map) {
+        super.mapping(map)
+        unit             <- (map[SerializationKeys.unit], EnumTransform())
+        amount           <- map[SerializationKeys.amount]
+        preferedTime     <- (map[SerializationKeys.preferedTime], EnumTransform())
     }
 }

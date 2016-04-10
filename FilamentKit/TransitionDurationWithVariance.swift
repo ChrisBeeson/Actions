@@ -8,8 +8,9 @@
 
 import Foundation
 import DateTools
+import ObjectMapper
 
-class TransitionDurationWithVariance: Rule, NSCoding {
+class TransitionDurationWithVariance: Rule {
     
     // This rule creates a window of available time for the event to sit in.
     // User specifies a time period, and can pick a variance size.
@@ -19,14 +20,12 @@ class TransitionDurationWithVariance: Rule, NSCoding {
     override var availableToNodeType: NodeType { return [.Transition] }
     override var conflictingRules: [Rule]? { return nil }
     
+    override init() { super.init() }
+    
     // Rule user input
     
     var eventStartsInDuration = Timesize(unit: .Hour, amount: 1)
     var variance = Timesize(unit: .Minute, amount: 15)
-    
-    override init() {
-        super.init()
-    }
     
     // Rule output
     
@@ -56,12 +55,35 @@ class TransitionDurationWithVariance: Rule, NSCoding {
     }
     
     required init?(coder aDecoder: NSCoder) {
+        super.init()
         eventStartsInDuration = aDecoder.decodeObjectForKey(SerializationKeys.eventStartsInDuration) as! Timesize
         variance = aDecoder.decodeObjectForKey(SerializationKeys.variance) as! Timesize
     }
     
-    func encodeWithCoder(aCoder: NSCoder) {
+    override func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(eventStartsInDuration, forKey:SerializationKeys.eventStartsInDuration)
         aCoder.encodeObject(variance, forKey:SerializationKeys.variance)
+    }
+    
+    // MARK: NSCopying
+    
+    override func copyWithZone(zone: NSZone) -> AnyObject  {
+        let clone = TransitionDurationWithVariance()
+        clone.eventStartsInDuration = self.eventStartsInDuration
+        clone.variance = self.variance
+        return clone
+    }
+    
+    
+    //MARK: Mapping
+    
+    required init?(_ map: Map) {
+        super.init(map)
+    }
+    
+    override func mapping(map: Map) {
+        super.mapping(map)
+        eventStartsInDuration        <- map[SerializationKeys.eventStartsInDuration]
+        variance                     <- map[SerializationKeys.variance]
     }
 }

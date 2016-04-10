@@ -8,8 +8,9 @@
 
 import Foundation
 import EventKit
+import ObjectMapper
 
-public class Calendar : NSObject, NSCoding {
+public class Calendar : NSObject, NSCoding, Mappable {
     
     var identifier : String?
     var name : String?
@@ -17,7 +18,6 @@ public class Calendar : NSObject, NSCoding {
     var avoid = true
     
     public convenience init(systemCalendar:EKCalendar) {
-        
         self.init()
         self.identifier = systemCalendar.calendarIdentifier
         self.name = systemCalendar.title
@@ -51,6 +51,21 @@ public class Calendar : NSObject, NSCoding {
         encoder.encodeObject(name, forKey: SerializationKeys.name)
         encoder.encodeObject(colour, forKey: SerializationKeys.colour)
         encoder.encodeObject(avoid, forKey: SerializationKeys.avoid)
+    }
+    
+    //MARK: Mapping
+    
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        identifier              <- map[SerializationKeys.identifier]
+        name                    <- map[SerializationKeys.name]
+        // colour                  <- map[SerializationKeys.colour]
+        //TODO: Transform Colour
+        avoid                   <- map[SerializationKeys.avoid]
+
     }
     
     // MARK: Equality

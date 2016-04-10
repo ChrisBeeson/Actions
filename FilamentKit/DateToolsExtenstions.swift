@@ -8,6 +8,7 @@
 
 import Foundation
 import DateTools
+import ObjectMapper
 
 extension NSDate {
     
@@ -55,6 +56,18 @@ extension DTTimePeriod {
         let endTime = self.EndDate.formattedDateWithFormat("DD:MM:YY HH:mm")
         return("\(startTime) -> \(endTime)")
     }
+    
+    //MARK: Mapping
+   /*
+    required public init?(_ map: Map) {
+        
+    }
+    
+    public func mapping(map: Map) {
+        unit                <- map["timeSizeUnit"]
+        amount              <- map["timeSizeAmount"]
+    }
+ */
 }
 
 extension DTTimePeriodGroup {
@@ -192,8 +205,7 @@ extension DTTimePeriodCollection {
 
 // TIMESIZE
 
-
-class Timesize: NSObject, NSCoding  {
+class Timesize: NSObject, NSCoding, Mappable  {
     
     var unit: DTTimePeriodSize
     var amount: Int
@@ -228,5 +240,17 @@ class Timesize: NSObject, NSCoding  {
         
         aCoder.encodeInteger(Int(unit.rawValue), forKey: "unit")
         aCoder.encodeInteger(amount, forKey: "amount")
+    }
+    
+    //MARK: Mapping
+    
+    required init?(_ map: Map) {
+        self.unit = map["timeSizeUnit"].value()!
+        self.amount = map["timeSizeAmount"].value()!
+    }
+    
+    func mapping(map: Map) {
+        unit                <- (map["timeSizeUnit"], EnumTransform())
+        amount              <- map["timeSizeAmount"]
     }
 }

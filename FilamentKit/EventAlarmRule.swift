@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import ObjectMapper
+
 
 class EventAlarmRule : Rule {
     
@@ -17,16 +19,41 @@ class EventAlarmRule : Rule {
         super.init()
     }
     
+    // MARK: NSCoding
+    
     private struct SerializationKeys {
         // static let duration = "duration"
-        //   static let minDuration = "minDuration"
     }
     
     required init?(coder aDecoder: NSCoder) {
+         super.init(coder:aDecoder)
         //   calendars = aDecoder.decodeObjectForKey("calendars") as! [EKCalendar]
     }
     
-    func encodeWithCoder(aCoder: NSCoder) {
+    override func encodeWithCoder(aCoder: NSCoder) {
         //aCoder.encodeObject(calendars, forKey:"calendars")
+    }
+    
+    
+    // MARK: NSCopying
+    
+    override func copyWithZone(zone: NSZone) -> AnyObject  {  //TODO: NSCopy
+        /*
+         let clone = Sequence()
+         clone.title = title.copy() as! String
+         return clone
+         */
+        return self
+    }
+    
+    
+    //MARK: Mapping
+    
+    required init?(_ map: Map) {
+        super.init(map)
+    }
+    
+    override func mapping(map: Map) {
+        super.mapping(map)
     }
 }

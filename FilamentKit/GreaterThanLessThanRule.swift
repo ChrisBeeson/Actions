@@ -8,6 +8,7 @@
 
 import Foundation
 import DateTools
+import ObjectMapper
 
 class GreaterThanLessThanRule : Rule {
     
@@ -68,18 +69,46 @@ class GreaterThanLessThanRule : Rule {
         }
     }
     
+    // MARK: NSCoding
+    
     private struct SerializationKeys {
         static let greaterThan = "greaterThan"
         static let lessThan = "lessThan"
     }
     
     required init?(coder aDecoder: NSCoder) {
+        super.init(coder:aDecoder)
         greaterThan = aDecoder.decodeObjectForKey(SerializationKeys.greaterThan) as! Timesize
         lessThan = aDecoder.decodeObjectForKey(SerializationKeys.lessThan) as! Timesize
     }
     
-    func encodeWithCoder(aCoder: NSCoder) {
+    override func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(greaterThan, forKey:SerializationKeys.greaterThan)
         aCoder.encodeObject(lessThan, forKey:SerializationKeys.lessThan)
     }
+    
+    
+    // MARK: NSCopying
+    
+    override func copyWithZone(zone: NSZone) -> AnyObject  {  //TODO: NSCopy
+        let clone = GreaterThanLessThanRule()
+        clone.greaterThan = self.greaterThan
+        clone.lessThan = self.lessThan
+        return clone
+        
+    }
+    
+    //MARK: Mapping
+    
+    required init?(_ map: Map) {
+        super.init(map)
+    }
+    
+    override func mapping(map: Map) {
+        super.mapping(map)
+        greaterThan             <- map[SerializationKeys.greaterThan]
+        lessThan                <- map[SerializationKeys.lessThan]
+    }
+    
+    //TODO: NSCopy
 }

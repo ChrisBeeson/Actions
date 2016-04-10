@@ -26,8 +26,11 @@ class EventLogicTests: XCTestCase {
         let sequence = Sequence(name: "Sequence Test", actionNodes: actionNodes)
         sequence.date =  NSDate.dateFromString("2015-1-1 10:00:00")
         
-        let result = sequence.SolveSequence()
-        XCTAssert(result.success == true)
+        let result = sequence.SolveSequence { (node, state, errors) in
+            
+        }
+        
+        XCTAssert(result == true)
         
         for node in sequence.actionNodes {
             print("\(node.title) \(node.event?.startDate) \(node.event?.endDate)")
@@ -48,8 +51,10 @@ class EventLogicTests: XCTestCase {
         sequence.date =  NSDate.dateFromString("2015-1-1 10:00:00")
         sequence.timeDirection = .Backward
         
-        let result = sequence.SolveSequence()
-        XCTAssert(result.success == true)
+        let result = sequence.SolveSequence{ (node, state, errors) in
+        }
+
+        XCTAssert(result == true)
         
         for node in sequence.actionNodes {
             print("\(node.title) \(node.event?.startDate) \(node.event?.endDate)")

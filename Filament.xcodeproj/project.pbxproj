@@ -79,6 +79,7 @@
 		47ACA9541BB5464C000CAC61 /* DateToolsExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9531BB5464C000CAC61 /* DateToolsExtenstions.swift */; };
 		47ACA9571BB54B82000CAC61 /* EventDurationWithMinimumDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9561BB54B82000CAC61 /* EventDurationWithMinimumDuration.swift */; };
 		47ACA9591BB54EEA000CAC61 /* AvoidCalendarEventsRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ACA9581BB54EEA000CAC61 /* AvoidCalendarEventsRule.swift */; };
+		47AE38901CBA20AA0018F161 /* AvoidPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473D4AC61CB891BE00AB8560 /* AvoidPeriod.swift */; };
 		47B696451BE5645400260C2A /* FilamentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B696441BE5645400260C2A /* FilamentsTableViewController.swift */; };
 		47B696471BE564DC00260C2A /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B696461BE564DC00260C2A /* MainWindowController.swift */; };
 		47B6964B1BE5BC0B00260C2A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47B6964A1BE5BC0B00260C2A /* Main.storyboard */; };
@@ -1316,6 +1317,7 @@
 				83CE4A1E1CA21947005691FD /* TransitionDurationWithVarianceRulePresenter.swift in Sources */,
 				4724651B1BBFE595004DE4DE /* DateToolsExtenstions.swift in Sources */,
 				47CD21C21BDF7B0400AF25BE /* Sequence+NodeLogic.swift in Sources */,
+				47AE38901CBA20AA0018F161 /* AvoidPeriod.swift in Sources */,
 				47D6165B1B9C1FAA00F72155 /* SequenceTests.swift in Sources */,
 				83CE4A191CA21935005691FD /* NodePresenter.swift in Sources */,
 				472465231BBFE665004DE4DE /* Sequence.swift in Sources */,

@@ -8,6 +8,7 @@
 
 import Cocoa
 import XCTest
+import ObjectMapper
 
 class FilamentKitTests: XCTestCase {
     
@@ -21,16 +22,57 @@ class FilamentKitTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
-        }
+    func testJSONMappingNode() {
+     
+        let node = Node()
+        var results = Mapper().toJSONString(node, prettyPrint: false)
+        print(results)
+        XCTAssert(results?.isEmpty == false, "Pass")
+        
+        let transDuration = TransitionDurationWithVariance()
+        results = Mapper().toJSONString(transDuration, prettyPrint: false)
+        print(results)
+        XCTAssert(results?.isEmpty == false, "Pass")
+        
+        let eventDuration = EventDurationWithMinimumDuration()
+        results = Mapper().toJSONString(eventDuration, prettyPrint: false)
+        print(results)
+        XCTAssert(results?.isEmpty == false, "Pass")
+        
+        let avoidCal = AvoidCalendarEventsRule()
+        results = Mapper().toJSONString(avoidCal, prettyPrint: false)
+        print(results)
+        XCTAssert(results?.isEmpty == false, "Pass")
+        
+        let workingWeek = WorkingWeekRule()
+        results = Mapper().toJSONString(workingWeek, prettyPrint: false)
+        print(results)
+        XCTAssert(results?.isEmpty == false, "Pass")
+        
+        node.rules = [transDuration,eventDuration]
+        results = Mapper().toJSONString(node, prettyPrint: false)
+        print(results)
+        XCTAssert(results?.isEmpty == false, "Pass")
+        
+        
+        
+        /*
+        let actionNodes = [Node(text: "Action 1", type: .Action, rules: nil)]
+        let sequence = Sequence(name: "Sequence Test", actionNodes: actionNodes)
+        
+        results = Mapper().toJSONString(sequence, prettyPrint: false)
+        print(results)
+        XCTAssert(results?.isEmpty == false, "Pass")
+        */
+        
+        /*
+        let actionNodes = [Node(text: "Action 1", type: .Action, rules: nil), Node(text: "Action 2", type: .Action, rules: nil), Node(text: "Action 3", type: .Action, rules: nil)]
+        let sequence = Sequence(name: "Sequence Test", actionNodes: actionNodes)
+        results = Mapper().toJSONString(sequence, prettyPrint: false)
+        print(results)
+        XCTAssert(results?.isEmpty == false, "Pass")
+ */
+        
     }
     
 }

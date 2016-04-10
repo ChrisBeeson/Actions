@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import ObjectMapper
 
 public class FilamentDocument: NSDocument {
     
@@ -84,7 +85,7 @@ public class FilamentDocument: NSDocument {
         
         let newDoc = FilamentDocument()
         newDoc.container = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? Container
-        newDoc.container!.uuid =  NSUUID()
+        newDoc.container!.uuid =  NSUUID().UUIDString
         saveNewDocument(newDoc)
         return newDoc
     }
@@ -124,15 +125,12 @@ public class FilamentDocument: NSDocument {
     
     public func exportWithFilename(filename:NSURL) {
         
-        let data = NSMutableData()
-        let archiver = NSKeyedArchiver(forWritingWithMutableData: data)
-        archiver.outputFormat = NSPropertyListFormat.XMLFormat_v1_0
-        archiver.encodeObject(container!, forKey: "root")
-        archiver.finishEncoding()
-        do {
-            try data.writeToURL(filename, options: NSDataWritingOptions.DataWritingAtomic)
-        } catch {
-            print(error)
+        if let JSON = Mapper().toJSONString(container!, prettyPrint: true) {
+            do {
+                try JSON.writeToURL(filename, atomically: true, encoding: NSUTF8StringEncoding )
+            } catch {
+                 print(error)
+            }
         }
     }
     

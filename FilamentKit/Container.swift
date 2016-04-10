@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import ObjectMapper
 
-class Container: NSObject, NSCopying, NSCoding {
+class Container: NSObject, NSCopying, NSCoding, Mappable {
     
     // This is in preparation for V2 where we can group muliple sequences.
     
@@ -21,7 +22,7 @@ class Container: NSObject, NSCopying, NSCoding {
     var date: NSDate?
     var timeDirection = TimeDirection.Forward
     var generalRules = [Rule]()
-    var uuid = NSUUID()
+    var uuid:String = NSUUID().UUIDString
     // ---------------------------------
     
     // MARK: Initializers
@@ -52,7 +53,7 @@ class Container: NSObject, NSCopying, NSCoding {
         title = aDecoder.decodeObjectForKey(SerializationKeys.title) as! String
         date = aDecoder.decodeObjectForKey(SerializationKeys.date) as? NSDate
         timeDirection = TimeDirection(rawValue: aDecoder.decodeIntegerForKey(SerializationKeys.timeDirection))!
-        uuid = aDecoder.decodeObjectForKey(SerializationKeys.uuid) as! NSUUID
+        uuid = aDecoder.decodeObjectForKey(SerializationKeys.uuid) as! String
         generalRules = aDecoder.decodeObjectForKey(SerializationKeys.generalRules) as! [Rule]
         sequences = aDecoder.decodeObjectForKey(SerializationKeys.sequences) as! [Sequence]
     }
@@ -61,10 +62,26 @@ class Container: NSObject, NSCopying, NSCoding {
         aCoder.encodeObject(version, forKey: SerializationKeys.version)
         aCoder.encodeObject(title, forKey: SerializationKeys.title)
         aCoder.encodeObject(date, forKey: SerializationKeys.date)
-         aCoder.encodeInteger(timeDirection.rawValue, forKey: SerializationKeys.timeDirection)
+        aCoder.encodeInteger(timeDirection.rawValue, forKey: SerializationKeys.timeDirection)
         aCoder.encodeObject(uuid, forKey: SerializationKeys.uuid)
         aCoder.encodeObject(generalRules, forKey: SerializationKeys.generalRules)
         aCoder.encodeObject(sequences, forKey: SerializationKeys.sequences)
+    }
+    
+    //MARK: Mapping
+    
+    required init?(_ map: Map) {
+        
+    }
+    
+     func mapping(map: Map) {
+        version         <- map[SerializationKeys.version]
+        title           <- map[SerializationKeys.title]
+        date            <- (map[SerializationKeys.date], DateTransform())
+        timeDirection   <- (map[SerializationKeys.timeDirection], EnumTransform())
+        uuid            <- map[SerializationKeys.uuid]
+        generalRules    <- map[SerializationKeys.generalRules]
+        sequences       <- map[SerializationKeys.sequences]
     }
     
     
@@ -80,7 +97,7 @@ class Container: NSObject, NSCopying, NSCoding {
     }
     
     var filename: String {
-        var filename = uuid.UUIDString
+        var filename = uuid
         filename.appendContentsOf("."+AppConfiguration.applicationFileExtension)
         return filename
     }

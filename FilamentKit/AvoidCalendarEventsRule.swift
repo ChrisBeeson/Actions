@@ -8,8 +8,9 @@
 import Foundation
 import DateTools
 import EventKit
+import ObjectMapper
 
-class AvoidCalendarEventsRule: Rule, NSCoding {
+class AvoidCalendarEventsRule : Rule {
     
     // This rule sits the duration of an event.
     // It allows the event to be shortened to a minimum duration if required.
@@ -98,14 +99,36 @@ class AvoidCalendarEventsRule: Rule, NSCoding {
         self.calendars = currentCalendars
     }
     
+    
     // MARK: NSCoding
+    
     required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
         calendars = aDecoder.decodeObjectForKey("calendars") as! Array
-        super.init()
         self.populateCalendars()
     }
     
-    func encodeWithCoder(aCoder: NSCoder) {
+    override func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(calendars, forKey:"calendars")
+    }
+    
+    
+    // MARK: NSCopying
+    
+    override func copyWithZone(zone: NSZone) -> AnyObject {
+         let clone = AvoidCalendarEventsRule()
+         clone.calendars = self.calendars
+         return clone
+    }
+    
+    
+    //MARK: Mapping
+    required init?(_ map: Map) {
+        super.init(map)
+    }
+    
+    override func mapping(map: Map) {
+        super.mapping(map)
+        calendars        <- map["calendars"]
     }
 }

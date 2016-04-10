@@ -8,8 +8,10 @@
 
 import Foundation
 import DateTools
+import ObjectMapper
 
 protocol RuleType {
+    
     var name: String {get}
     var description: String {get}
     var availableToNodeType: NodeType {get}
@@ -37,7 +39,8 @@ protocol RuleType {
 }
 
 
-public class Rule: NSObject, RuleType {
+ public class Rule: NSObject, RuleType, NSCoding, NSCopying, Mappable {
+    
     var name: String {get {return "Not set"} }
     var Description: String {get {return "NOT SET"} }
     var availableToNodeType: NodeType {get {return NodeType.Void} }
@@ -53,8 +56,10 @@ public class Rule: NSObject, RuleType {
     var avoidPeriods: [AvoidPeriod]?
     var previousPeriod: DTTimePeriod?
     var solvedPeriod: DTTimePeriod?
-    public func postSolverCodeBlock() {}
+    func postSolverCodeBlock() {}
     
+    override init() { super.init() }
+
     class func RegisteredRuleClasses() -> [Rule] {
         var ruleClasses = [Rule]()
         ruleClasses.append(TransitionDurationWithVariance())
@@ -69,9 +74,21 @@ public class Rule: NSObject, RuleType {
         ruleClasses.append(EventAlarmRule())
         return ruleClasses
     }
+    
+    //MARK: NSCoding
+    required public init?(coder aDecoder: NSCoder) { super.init()}
+    public func encodeWithCoder(aCoder: NSCoder) {}
+
+    // MARK: NSCopying
+    public func copyWithZone(zone: NSZone) -> AnyObject  { fatalError() }
+    
+    //MARK: JSON Mapping
+    required public init?(_ map: Map) {}
+    public func mapping(map: Map) {}
 }
 
 struct RoleOptions : OptionSetType {
+    
     let rawValue: Int
     init(rawValue:Int) { self.rawValue = rawValue }
     
