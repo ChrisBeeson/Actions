@@ -81,7 +81,7 @@ class Container: NSObject, NSCopying, NSCoding {
     
     var filename: String {
         var filename = uuid.UUIDString
-        filename.appendContentsOf("."+AppConfiguration.filamentFileExtension)
+        filename.appendContentsOf("."+AppConfiguration.applicationFileExtension)
         return filename
     }
     

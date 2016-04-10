@@ -43,7 +43,7 @@ public class AppConfiguration: NSObject {
     }
     
     
-    public class var filamentFileExtension: String {
+    public class var applicationFileExtension: String {
         return "fil"
     }
     

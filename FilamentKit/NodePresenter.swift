@@ -115,7 +115,20 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
                 string.appendContentsOf(self.event!.endDate.formattedDateWithFormat("HH:mm"))
                 return string
                 
-            case NodeType.Transition: return "Transition"
+            case NodeType.Transition:
+                
+                // Retun the duration, if the events either side are not null
+                
+                if self.event != nil {
+                    let form = NSDateComponentsFormatter()
+                    form.maximumUnitCount = 2
+                    form.unitsStyle = .Full
+                    form.allowedUnits = [.Year, .Month, .Day, .Hour, .Minute]
+                    return form.stringFromDate(self.event!.startDate, toDate: self.event!.endDate)
+                } else {
+                    return "Not sure"
+                }
+
             default: return "Invaid Type"
             }
             

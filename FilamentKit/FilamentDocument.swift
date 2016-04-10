@@ -94,7 +94,7 @@ public class FilamentDocument: NSDocument {
         let storageDir = AppConfiguration.sharedConfiguration.storageDirectory
         let url = storageDir().URLByAppendingPathComponent(document.container!.filename)
         
-        document.saveToURL(url, ofType: AppConfiguration.filamentFileExtension , forSaveOperation:.SaveOperation, completionHandler: { (Err: NSError?) -> Void in
+        document.saveToURL(url, ofType: AppConfiguration.applicationFileExtension , forSaveOperation:.SaveOperation, completionHandler: { (Err: NSError?) -> Void in
             if Err != nil {
                 print(Err!.localizedDescription)
             }
@@ -108,13 +108,34 @@ public class FilamentDocument: NSDocument {
         let storageDir = AppConfiguration.sharedConfiguration.storageDirectory
         let url = storageDir().URLByAppendingPathComponent(container!.filename)
         do {
-            try self.writeSafelyToURL(url, ofType: AppConfiguration.filamentFileExtension, forSaveOperation: .SaveOperation)
+            try self.writeSafelyToURL(url, ofType: AppConfiguration.applicationFileExtension, forSaveOperation: .SaveOperation)
         } catch {
             do {
                 print(error)
             }
         }
     }
+    
+    public var suggestedExportFilename : String {
+        var filename = sequencePresenter!.title.stringByReplacingOccurrencesOfString(" ", withString: "_", options:NSStringCompareOptions.CaseInsensitiveSearch , range: nil)
+        filename.appendContentsOf("."+AppConfiguration.applicationFileExtension)
+        return filename
+    }
+    
+    public func exportWithFilename(filename:NSURL) {
+        
+        let data = NSMutableData()
+        let archiver = NSKeyedArchiver(forWritingWithMutableData: data)
+        archiver.outputFormat = NSPropertyListFormat.XMLFormat_v1_0
+        archiver.encodeObject(container!, forKey: "root")
+        archiver.finishEncoding()
+        do {
+            try data.writeToURL(filename, options: NSDataWritingOptions.DataWritingAtomic)
+        } catch {
+            print(error)
+        }
+    }
+    
     
     // MARK: Serialization / Deserialization
     

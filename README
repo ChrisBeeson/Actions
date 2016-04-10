@@ -2,10 +2,12 @@
 Todo
 -------
 
+import/ export
+working hours - weekends
 Reorganise/drag/drop nodes
-More verbose on why things have failed with tool tips and test in detail view
 caledar alarm
 Memo field resize
+transtion Node - duration, hide location
 Current rule polishing and input validation
 Undo, copy, paste, import, export, drag, drop check for total coverage
 
@@ -41,6 +43,7 @@ If the calendar on the users computer has a full resync then the identifiers of 
 
 History
 --------------------------
+More verbose on why things have failed with tool tips and test in detail view x
 backtime from enddate x
 drop rules onto nodes x
 Make a smaller Rule Collection View Item for Sequences x

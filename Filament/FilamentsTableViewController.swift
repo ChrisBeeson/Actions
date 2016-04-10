@@ -170,7 +170,19 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     }
     
     public func saveDocumentAs(event: NSEvent) {
-        FilamentDocument.newSequenceDocument("EXPORT NOT YET IMPLIMENTED".localized) //TODO:EXPORT
+        
+        guard let sequence = filteredDocuments[self.tableView.selectedRow].sequencePresenter else { return }
+        
+        let panel = NSSavePanel()
+        panel.nameFieldStringValue = sequence.representingDocument!.suggestedExportFilename
+        
+        self.tableView.window!
+        
+        panel.beginSheetModalForWindow(self.tableView.window!, completionHandler:{ (result) in
+            if result == NSFileHandlingPanelOKButton && panel.URL != nil {
+                sequence.representingDocument!.exportWithFilename(panel.URL!)
+            }
+        })
     }
     
     public func copy(event: NSEvent) {
