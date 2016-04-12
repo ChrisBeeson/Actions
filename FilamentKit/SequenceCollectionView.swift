@@ -28,7 +28,6 @@ public enum SequenceCollectionViewDraggingState {
     case IsDraggingNode
 }
 
-
 public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSource, NSCollectionViewDelegate, SequencePresenterDelegate {
     
     public var currentLayoutState = SequenceCollectionViewLayoutState.StartDateWithAddButton
@@ -59,6 +58,9 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
         self.dataSource = self
         self.delegate = self
         self.allowsMultipleSelection = false
+        dragDropInPlaceView?.removeFromSuperview()
+        dragDropInPlaceView = nil
+        
         //self.collectionViewLayout = LeftAlignedSequenceFlowLayout()
         //self.wantsLayer = true
         
@@ -118,7 +120,6 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
     }
     
     public func sequencePresenterDidChangeState(sequencePresenter: SequencePresenter, toState:SequenceState){
-        
     }
     
     
@@ -140,7 +141,6 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
         Swift.print("paste")
         
         // So whats on the pasteboard!
-        
         if NSPasteboard.generalPasteboard().canReadItemWithDataConformingToTypes([AppConfiguration.UTI.node]) == true {
             Swift.print("paste NODE!")
         }
@@ -148,7 +148,6 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
         if NSPasteboard.generalPasteboard().canReadItemWithDataConformingToTypes([AppConfiguration.UTI.rule]) == true {
             Swift.print("paste RULE!")
         }
-        
     }
     
     
@@ -164,8 +163,9 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
                 }
             }
         }
-        presenter?.deleteNodes(nodesToDelete, informDelegates: false)
+        presenter?.deleteNodes(nodesToDelete, informDelegates: true)
     }
+    
     
     override public func keyDown(theEvent: NSEvent) {
         if theEvent.keyCode == 51 || theEvent.keyCode == 117  {
@@ -192,7 +192,9 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
     public func collectionView(collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> NSSize {
         
         if currentlyDraggingIndexPath != nil && indexPath == currentlyDraggingIndexPath {
+            Swift.print("Dragging Path Size")
             return NSSize(width: 0.0, height: 25.0)
+            
         }
         return sizeForIndexPath(indexPath)
     }
@@ -252,7 +254,6 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
         
         dragDropInPlaceView?.removeFromSuperview()
         dragDropInPlaceView = nil
-        
     }
     
     
@@ -273,33 +274,48 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
     
     public func collectionView(collectionView: NSCollectionView, acceptDrop draggingInfo: NSDraggingInfo, indexPath: NSIndexPath, dropOperation: NSCollectionViewDropOperation) -> Bool {
         
-        let item = itemForIndexPath(indexPath)
-        var result = false
+        let destItem = itemForIndexPath(indexPath)
+        guard let pasteBoardItems = draggingInfo.draggingPasteboard().pasteboardItems else { Swift.print ("Nil Pasteboard items") ; return false }
         
-        switch item {
-        case is NodeCollectionViewItem:
-            if draggingInfo.draggingPasteboard().pasteboardItems![0].types[0] == AppConfiguration.UTI.node {
-                let nodeItem = NodePresenter(pasteboardItem:(draggingInfo.draggingPasteboard().pasteboardItems![0])) //Item being dragged - the from - and must be an ActionNode
-                let fromIndex = self.presenter!.sequence.actionNodes.indexOf(nodeItem.node)
-                let toIndex = actionNodeIndexForPath(indexPath)!
-                presenter?.moveNode(fromIndex!, toActionNodesIndex: toIndex)
-                
-                if var fromFullIndex = self.presenter!.sequence.nodeChain().indexOf(nodeItem.node) {
-                     fromFullIndex += 2
-                    let ip = NSIndexPath(forItem: fromFullIndex, inSection: 0)
-                    //  Swift.print("from:\(ip) to:\(indexPath)")
-                    self.moveItemAtIndexPath(ip, toIndexPath: indexPath)
-                    self.reloadData()
-                    //self.moveItemAtIndexPath(NSIndexPath(index:fromFullIndex), toIndexPath: indexPath)
-                    return true
-                }
-            }
-            
-        default:
-            result = (item as! DragDropCopyPasteItem).acceptDrop(collectionView, item: draggingInfo.draggingPasteboard().pasteboardItems![0], dropOperation:dropOperation)
+        // something other than a node is being dropped
+        if pasteBoardItems[0].types[0] != AppConfiguration.UTI.node {
+            return (destItem as! DragDropCopyPasteItem).acceptDrop(collectionView, item:pasteBoardItems[0], dropOperation:dropOperation)
         }
         
-        return result
+        // A node is being dropped onto a node
+        let sourceNodeItem = NodePresenter(pasteboardItem:pasteBoardItems[0]) //Item being dragged - the from - and must be an ActionNode
+        guard let sourceModelIndex = self.presenter!.sequence.actionNodes.indexOf(sourceNodeItem.node) else { Swift.print ("Failed") ; return false }
+        
+        switch destItem {
+        case is NodeCollectionViewItem:
+            
+            let toIndex = actionNodeIndexForPath(indexPath)!
+            presenter?.moveNode(sourceModelIndex, toActionNodesIndex: toIndex)
+            //self.reloadData()
+            //self.needsLayout = true
+            return true
+            
+            // guard var sourceCollectionViewIndex = self.presenter!.sequence.nodeChain().indexOf(sourceNodeItem.node) else { Swift.print ("Failed") ; return false }
+            //sourceCollectionViewIndex += 1
+            //let sourceCollectionViewIndexPath = NSIndexPath(forItem: sourceCollectionViewIndex, inSection: 0)
+            //  Swift.print("from:\(ip) to:\(indexPath)")
+            // self.moveItemAtIndexPath(sourceCollectionViewIndexPath, toIndexPath: indexPath)
+            
+        case is AddNewNodeCollectionViewItem:
+            let toIndex = presenter?.timeDirection == .Forward ? presenter!.nodes!.count - 1 : 0
+            presenter?.moveNode(sourceModelIndex, toActionNodesIndex:toIndex)
+            //self.reloadData()
+            //self.needsLayout = true
+            return true
+            
+        case is DateNodeCollectionViewItem:
+            let toIndex = presenter?.timeDirection == .Forward ?  0 : presenter!.nodes!.count - 1
+            presenter?.moveNode(sourceModelIndex, toActionNodesIndex:toIndex)
+            //self.reloadData()
+            //self.needsLayout = true
+            return true
+        default: return false
+        }
     }
     
     

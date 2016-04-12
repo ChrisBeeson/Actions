@@ -224,7 +224,10 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
         if item.types[0] == AppConfiguration.UTI.dateNode {
             //TODO: Can't drop on it's self
             return .Copy
+        } else if item.types[0] == AppConfiguration.UTI.node {
+            return .Copy
         }
+        
         return .None
     }
     

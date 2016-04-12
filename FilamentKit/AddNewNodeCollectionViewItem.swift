@@ -53,7 +53,12 @@ public class AddNewNodeCollectionViewItem : NSCollectionViewItem, DragDropCopyPa
     }
     
     func validateDrop(item: NSPasteboardItem, proposedDropOperation: UnsafeMutablePointer<NSCollectionViewDropOperation>) -> NSDragOperation {
-        return .None
+        
+        if item.types[0] == AppConfiguration.UTI.node {
+            return .Copy
+        } else  {
+           return .None
+        }
     }
     
     func acceptDrop(collectionView: NSCollectionView, item: NSPasteboardItem, dropOperation: NSCollectionViewDropOperation) -> Bool {

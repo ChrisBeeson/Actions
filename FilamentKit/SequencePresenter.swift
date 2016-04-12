@@ -163,6 +163,14 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         let oldNodes = _sequence!.nodeChain()
         
         for node in nodes {
+            _nodePresenters = _nodePresenters.filter {$0.node != node}
+            _nodePresenters.forEach{ $0.removeCalandarEvent(updateState: false) }
+            _sequence!.removeActionNode(node)
+        }
+        
+        
+        /*
+        for node in nodes {
             let indx = sequence.actionNodes.indexOf(node)
             
             undoManager?.registerUndoWithTarget(self, handler: { [oldNode = node, oldIndx = indx] (self) -> () in
@@ -173,18 +181,23 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
             let presentersToDelete = _nodePresenters.filter {$0.node == node}
             presentersToDelete.forEach{ $0.prepareForDeletion() }
             _nodePresenters.removeObjects(presentersToDelete)
-            _sequence!.removeActionNode(node)
+             _sequence!.removeActionNode(node)
+       
         }
+        */
         representingDocument?.updateChangeCount(.ChangeDone)
         if informDelegates == true { informDelegatesOfChangesToNodeChain(oldNodes) }
     }
     
     func moveNode(fromActionNodesIndex:Int, toActionNodesIndex:Int) {
         assert(fromActionNodesIndex < sequence.actionNodes.count)
+        //  let oldNodes = _sequence!.nodeChain()
         let node = sequence.actionNodes[fromActionNodesIndex]
         deleteNodes([node], informDelegates: false)
         let insertIdx = toActionNodesIndex <= fromActionNodesIndex ? toActionNodesIndex : (toActionNodesIndex - 1)
         insertActionNode(node, actionNodesIndex:insertIdx, informDelegates: false)
+         delegates.forEach{ $0.sequencePresenterDidRefreshCompleteLayout(self) }
+        //   informDelegatesOfChangesToNodeChain(oldNodes)
     }
     
     
