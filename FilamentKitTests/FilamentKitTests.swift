@@ -26,53 +26,50 @@ class FilamentKitTests: XCTestCase {
      
         let node = Node()
         var results = Mapper().toJSONString(node, prettyPrint: false)
-        print(results)
+        //print(results)
         XCTAssert(results?.isEmpty == false, "Pass")
         
         let transDuration = TransitionDurationWithVariance()
         results = Mapper().toJSONString(transDuration, prettyPrint: false)
-        print(results)
+        //print(results)
         XCTAssert(results?.isEmpty == false, "Pass")
         
         let eventDuration = EventDurationWithMinimumDuration()
         results = Mapper().toJSONString(eventDuration, prettyPrint: false)
-        print(results)
+        //print(results)
         XCTAssert(results?.isEmpty == false, "Pass")
         
         let avoidCal = AvoidCalendarEventsRule()
         results = Mapper().toJSONString(avoidCal, prettyPrint: false)
-        print(results)
+        //print(results)
         XCTAssert(results?.isEmpty == false, "Pass")
         
         let workingWeek = WorkingWeekRule()
         results = Mapper().toJSONString(workingWeek, prettyPrint: false)
-        print(results)
+        // print(results)
         XCTAssert(results?.isEmpty == false, "Pass")
         
-        node.rules = [transDuration,eventDuration]
+        node.rules = [transDuration,eventDuration, avoidCal, workingWeek]
         results = Mapper().toJSONString(node, prettyPrint: false)
-        print(results)
+        //print(results)
         XCTAssert(results?.isEmpty == false, "Pass")
         
-        
-        
-        /*
         let actionNodes = [Node(text: "Action 1", type: .Action, rules: nil)]
         let sequence = Sequence(name: "Sequence Test", actionNodes: actionNodes)
         
         results = Mapper().toJSONString(sequence, prettyPrint: false)
+        //print(results)
+        XCTAssert(results?.isEmpty == false, "Pass")
+        
+        let actionNodes1 = [Node(text: "Action 1", type: .Action, rules: nil), Node(text: "Action 2", type: .Action, rules: nil), Node(text: "Action 3", type: .Action, rules: nil)]
+        let sequence1 = Sequence(name: "Sequence Test", actionNodes: actionNodes1)
+        results = Mapper().toJSONString(sequence1, prettyPrint: false)
+        //print(results)
+        XCTAssert(results?.isEmpty == false, "Pass")
+        
+        let container = Container(name: "Test Container", sequences:[sequence1])
+        results = Mapper().toJSONString(container, prettyPrint: false)
         print(results)
         XCTAssert(results?.isEmpty == false, "Pass")
-        */
-        
-        /*
-        let actionNodes = [Node(text: "Action 1", type: .Action, rules: nil), Node(text: "Action 2", type: .Action, rules: nil), Node(text: "Action 3", type: .Action, rules: nil)]
-        let sequence = Sequence(name: "Sequence Test", actionNodes: actionNodes)
-        results = Mapper().toJSONString(sequence, prettyPrint: false)
-        print(results)
-        XCTAssert(results?.isEmpty == false, "Pass")
- */
-        
     }
-    
 }

@@ -37,6 +37,7 @@ public class FilamentDocument: NSDocument {
         }
     }
     
+    
     deinit {
         print("Filament Document deinit")
         _sequencePresenter = nil
@@ -67,7 +68,7 @@ public class FilamentDocument: NSDocument {
     }
     
     
-    public class func newSequenceDocument(title: String) -> FilamentDocument {
+    public class func newDocument(title: String) -> FilamentDocument {
         let newDoc = FilamentDocument()
         let actionNodes = [Node(text: "NEW_DOCUMENT_1ST_ACTION".localized, type: .Action, rules: nil), Node(text:  "NEW_DOCUMENT_2ND_ACTION".localized, type: .Action, rules: nil)]
         let sequence = Sequence(name: title, actionNodes: actionNodes)
@@ -80,8 +81,9 @@ public class FilamentDocument: NSDocument {
         return newDoc
     }
     
+    //MARK: Load
     
-    public class func newSequenceDocumentFromArchive(data: NSData) -> FilamentDocument {
+    public class func newDocumentFromArchive(data: NSData) -> FilamentDocument {
         
         let newDoc = FilamentDocument()
         newDoc.container = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? Container
@@ -102,6 +104,31 @@ public class FilamentDocument: NSDocument {
         })
     }
     
+    class public func newDocumentFromJSON(path:NSURL) -> Bool {
+        let container:Container?
+        
+        do {
+            let json = try String(contentsOfURL: path, encoding: NSUTF8StringEncoding)
+            container = Mapper<Container>().map(json)
+        } catch {
+            print(error)
+            return false
+        }
+        
+        if container != nil {
+            container?.uuid = NSUUID().UUIDString
+            let newDocument = FilamentDocument()
+            newDocument.container = container
+            saveNewDocument(newDocument)
+            return true
+            
+        } else {
+            print("Container is NULL")
+            return false
+        }
+    }
+    
+    //MARK: Save
     
     public func save() {
         if self.hasUnautosavedChanges == false { return }
@@ -133,6 +160,8 @@ public class FilamentDocument: NSDocument {
             }
         }
     }
+    
+
     
     
     // MARK: Serialization / Deserialization

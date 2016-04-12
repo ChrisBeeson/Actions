@@ -1,9 +1,7 @@
 
 Todo
 -------
-
 import/ export
-Reorganise/drag/drop nodes
 caledar alarm
 Memo field resize
 transtion Node - duration, hide location
@@ -32,16 +30,14 @@ Rules can also be notifications
 right click a node and set a new start time for it.
 Rule:  Warn if calendar Event changes more than X
 
-
-
 Known Issues
 ----------------
-
 If the calendar on the users computer has a full resync then the identifiers of calendars and Events will be regenerated and will not be recognised.  (the clunky solution is to store the name, time, and color of events and cals and then refind it)
 
 
 History
 --------------------------
+Reorganise/drag/drop nodes x
 working hours - weekends x
 More verbose on why things have failed with tool tips and test in detail view x
 backtime from enddate x

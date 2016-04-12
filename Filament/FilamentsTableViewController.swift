@@ -162,11 +162,20 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
      */
     
     public func newDocument(event: NSEvent) {
-        FilamentDocument.newSequenceDocument("NEW_DOCUMENT_DEFAULT_TITLE".localized)
+        FilamentDocument.newDocument("NEW_DOCUMENT_DEFAULT_TITLE".localized)
     }
     
     public func openDocument(event: NSEvent) {
-        FilamentDocument.newSequenceDocument("IMPORT NOT YET IMPLIMENTED".localized) //TODO:IMPORT
+        
+        let panel = NSOpenPanel()
+        panel.allowsMultipleSelection = false
+        //    panel.allowedFileTypes = [".fil"]
+        panel.beginWithCompletionHandler { (result) in
+            
+            if result == NSFileHandlingPanelOKButton && panel.URL != nil {
+                FilamentDocument.newDocumentFromJSON(panel.URL!)
+            }
+        }
     }
     
     public func saveDocumentAs(event: NSEvent) {
@@ -200,7 +209,7 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     public func paste(event: NSEvent) {
         let pasteboard = NSPasteboard.generalPasteboard()
         if let data = pasteboard.dataForType(AppConfiguration.UTI.container) {
-            FilamentDocument.newSequenceDocumentFromArchive(data)
+            FilamentDocument.newDocumentFromArchive(data)
         }
     }
     
