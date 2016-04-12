@@ -74,8 +74,6 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     
     public func paste(event: NSEvent) {
         if NSPasteboard.generalPasteboard().canReadItemWithDataConformingToTypes([AppConfiguration.UTI.rule]) != true { return }
-        
-        
     }
     
     override public func mouseDown(theEvent: NSEvent) {

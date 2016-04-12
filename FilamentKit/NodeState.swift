@@ -53,7 +53,7 @@ enum NodeState: Int {
     mutating func toInactive(presenter: NodePresenter) -> NodeState {
         guard self != .Inactive else { return self }
         
-        presenter.removeCalandarEvent(false)
+        presenter.removeCalandarEvent(updateState: false)
         return changeToState(Inactive, presenter: presenter, options: nil)
     }
     
@@ -111,7 +111,7 @@ enum NodeState: Int {
     mutating func toError(presenter: NodePresenter) -> NodeState {
         guard self != .Error else { return self }
         guard self != .Completed else { return self }
-        presenter.removeCalandarEvent(false)
+        presenter.removeCalandarEvent(updateState: false)
         return changeToState(.Error, presenter:presenter, options: nil)
     }
     
@@ -119,7 +119,7 @@ enum NodeState: Int {
     mutating func toInheritedError(presenter: NodePresenter) -> NodeState {
         guard self != .Error else { return self }
         guard self != .Completed else { return self }
-        presenter.removeCalandarEvent(false)
+        presenter.removeCalandarEvent(updateState: false)
         return changeToState(.InheritedError, presenter:presenter, options: nil)
     }
     

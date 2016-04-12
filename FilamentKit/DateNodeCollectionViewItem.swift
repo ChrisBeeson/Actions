@@ -50,7 +50,12 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
         if sequencePresenter!.date != nil {
             dateTimePickerViewController!.date = sequencePresenter!.date!
         }
-        popover.showRelativeToRect(self.view.frame, ofView:self.view.superview!, preferredEdge:.MaxX )
+        
+        if sequencePresenter!.timeDirection == TimeDirection.Forward {
+           popover.showRelativeToRect(self.view.frame, ofView:self.view.superview!, preferredEdge:.MinX)
+        } else {
+            popover.showRelativeToRect(self.view.frame, ofView:self.view.superview!, preferredEdge:.MaxX)
+        }
         displayedPopover = popover
     }
     

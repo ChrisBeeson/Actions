@@ -129,8 +129,6 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate, Drag
     }
     
     
-
-    
     //MARK: Drag & Drop
     
     func isDraggable() -> Bool {
@@ -150,9 +148,16 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate, Drag
             let rule = RulePresenter(pasteboardItem:item)
             // TODO: Don't allow identical rules to be droped on themselves.  Rules need isEqual using hash of vars.
             return presenter?.wouldAcceptRulePresenter(rule, allowDuplicates:true) == true ? .Copy : .None
+        case AppConfiguration.UTI.node:
+            let nodeItem = NodePresenter(pasteboardItem: item)
+            if nodeItem.node == self.presenter!.node { return .None }
+            if nodeItem.node == self.presenter!.node.leftTransitionNode { return .None }
+            if nodeItem.node == self.presenter!.node.rightTransitionNode { return .None }
+            if presenter!.type == .Transition { return .Copy }
         default:
             return .None
         }
+        return .None
     }
     
     func acceptDrop(collectionView: NSCollectionView, item: NSPasteboardItem, dropOperation: NSCollectionViewDropOperation) -> Bool {
@@ -160,6 +165,10 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate, Drag
         case AppConfiguration.UTI.rule:
             let rule =  RulePresenter(pasteboardItem:item)
             presenter?.insertRulePresenter(rule, atIndex: -1)
+            return true
+            
+        case AppConfiguration.UTI.node:
+            // This is handled in Sequence Collection view
             return true
             
         default:

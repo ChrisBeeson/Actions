@@ -10,8 +10,6 @@ import Foundation
 import EventKit
 import DateTools
 
-
-
 public class NodePresenter : NSObject, RuleAvailabiltiy {
     
     var undoManager: NSUndoManager?
@@ -21,12 +19,7 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     private var rulePresenters = [RulePresenter]()
     var errors: [SolverError]?
     
-    //MARK: Properties
-    
-    var node: Node {
-        didSet {
-        }
-    }
+    //MARK: Init
     
     override init() {
         self.node = Node()
@@ -38,7 +31,20 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
         super.init()
     }
     
-    var title: String {
+    public init(pasteboardItem: NSPasteboardItem) {
+        if let data = pasteboardItem.dataForType(AppConfiguration.UTI.node) {
+            self.node = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! Node
+        } else {
+            fatalError("PasteboardItem didn't contain Node")
+        }
+        super.init()
+    }
+    
+    //MARK: Properties
+    
+    var node: Node
+    
+    public var title: String {
         get {
             return node.title
         }
@@ -51,7 +57,7 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
         }
     }
     
-    var location: String {
+    public var location: String {
         get {
             return node.location
         }
@@ -61,7 +67,7 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
         }
     }
     
-    var notes: String {
+    public var notes: String {
         get {
             // if node.notes.isEmpty { return nil }
             return node.notes
@@ -84,13 +90,13 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
         }
     }
     
-    var event: TimeEvent? {
+     var event: TimeEvent? {
         get {
             return node.event
         }
     }
     
-    var isCompleted: Bool {
+    public var isCompleted: Bool {
         get {
             return node.isCompleted
         }
@@ -100,8 +106,7 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
         }
     }
     
-    
-    var humanReadableString : String? {
+    public var humanReadableString : String? {
         switch currentState {
         case .Ready, .Running, .Completed:
             switch self.type {
@@ -116,7 +121,6 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
                 return string
                 
             case NodeType.Transition:
-                
                 // Retun the duration, if the events either side are not null
                 
                 if self.event != nil {
@@ -163,7 +167,7 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
         currentState.update(self)
     }
     
-    func removeCalandarEvent(updateState:Bool) {
+    func removeCalandarEvent(updateState updateState:Bool) {
         node.deleteEvent()
         sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
         if updateState == true { updateNodeState() }

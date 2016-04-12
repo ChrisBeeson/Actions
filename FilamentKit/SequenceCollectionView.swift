@@ -118,28 +118,26 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
     }
     
     public func sequencePresenterDidChangeState(sequencePresenter: SequencePresenter, toState:SequenceState){
-       
+        
     }
     
     
     //MARK: Events
     
     public func copy(event: NSEvent) {
-        Swift.print("seq collection copy")
         var items = [NSPasteboardWriting]()
         for indexPath in self.selectionIndexPaths {
             if let object = self.itemAtIndexPath(indexPath) {
                 if object.isKindOfClass(NodeCollectionViewItem) {
                     items.append((object as! NodeCollectionViewItem).pasteboardItem())
-                    Swift.print("Copied!")
+                    Swift.print("Copied Node")
                 }
             }
         }
-        
     }
     
     public func paste(event: NSEvent) {
-           Swift.print("paste")
+        Swift.print("paste")
         
         // So whats on the pasteboard!
         
@@ -148,7 +146,7 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
         }
         
         if NSPasteboard.generalPasteboard().canReadItemWithDataConformingToTypes([AppConfiguration.UTI.rule]) == true {
-              Swift.print("paste RULE!")
+            Swift.print("paste RULE!")
         }
         
     }
@@ -166,7 +164,7 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
                 }
             }
         }
-        presenter?.deleteNodes(nodesToDelete)
+        presenter?.deleteNodes(nodesToDelete, informDelegates: false)
     }
     
     override public func keyDown(theEvent: NSEvent) {
@@ -188,7 +186,6 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
     }
     
     public func collectionView(collectionView: NSCollectionView, itemForRepresentedObjectAtIndexPath indexPath: NSIndexPath) -> NSCollectionViewItem {
-        
         return itemForIndexPath(indexPath)
     }
     
@@ -243,10 +240,10 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
         // I wanted to keep the original source view where it is, and the draggingView is an addition.
         
         let item = itemForIndexPath(indexPaths.first!)
-            item.selected = false
-            dragDropInPlaceView = item.view
-            dragDropInPlaceView!.frame = self.frameForItemAtIndex(indexPaths.first!.item)
-            self.addSubview(dragDropInPlaceView!)
+        item.selected = false
+        dragDropInPlaceView = item.view
+        dragDropInPlaceView!.frame = self.frameForItemAtIndex(indexPaths.first!.item)
+        self.addSubview(dragDropInPlaceView!)
     }
     
     public func collectionView(collectionView: NSCollectionView, draggingSession session: NSDraggingSession, endedAtPoint screenPoint: NSPoint, dragOperation operation: NSDragOperation) {
@@ -270,17 +267,41 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
             
             return result
         }
-
         return .None
     }
     
     
     public func collectionView(collectionView: NSCollectionView, acceptDrop draggingInfo: NSDraggingInfo, indexPath: NSIndexPath, dropOperation: NSCollectionViewDropOperation) -> Bool {
         
-        let item = (itemForIndexPath(indexPath) as! DragDropCopyPasteItem)
-        let result = item.acceptDrop(collectionView, item: draggingInfo.draggingPasteboard().pasteboardItems![0], dropOperation:dropOperation)
+        let item = itemForIndexPath(indexPath)
+        var result = false
+        
+        switch item {
+        case is NodeCollectionViewItem:
+            if draggingInfo.draggingPasteboard().pasteboardItems![0].types[0] == AppConfiguration.UTI.node {
+                let nodeItem = NodePresenter(pasteboardItem:(draggingInfo.draggingPasteboard().pasteboardItems![0])) //Item being dragged - the from - and must be an ActionNode
+                let fromIndex = self.presenter!.sequence.actionNodes.indexOf(nodeItem.node)
+                let toIndex = actionNodeIndexForPath(indexPath)!
+                presenter?.moveNode(fromIndex!, toActionNodesIndex: toIndex)
+                
+                if var fromFullIndex = self.presenter!.sequence.nodeChain().indexOf(nodeItem.node) {
+                     fromFullIndex += 2
+                    let ip = NSIndexPath(forItem: fromFullIndex, inSection: 0)
+                    //  Swift.print("from:\(ip) to:\(indexPath)")
+                    self.moveItemAtIndexPath(ip, toIndexPath: indexPath)
+                    self.reloadData()
+                    //self.moveItemAtIndexPath(NSIndexPath(index:fromFullIndex), toIndexPath: indexPath)
+                    return true
+                }
+            }
+            
+        default:
+            result = (item as! DragDropCopyPasteItem).acceptDrop(collectionView, item: draggingInfo.draggingPasteboard().pasteboardItems![0], dropOperation:dropOperation)
+        }
+        
         return result
     }
+    
     
     public func collectionView(collectionView: NSCollectionView, shouldChangeItemsAtIndexPaths indexPaths: Set<NSIndexPath>, toHighlightState highlightState: NSCollectionViewItemHighlightState) -> Set<NSIndexPath> {
         return indexPaths
@@ -317,7 +338,6 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
     
     override public var acceptsFirstResponder: Bool { return true }
     override public func becomeFirstResponder() -> Bool {
-        
         NSNotificationCenter.defaultCenter().postNotificationName("FilamentTableViewSelectCellForView", object: self.superview)
         if self.selectionIndexes.count == 0 {
             self.window?.makeFirstResponder(self.superview?.superview?.superview?.superview?.superview?.superview)

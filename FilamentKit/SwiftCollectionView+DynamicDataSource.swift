@@ -40,6 +40,28 @@ extension SequenceCollectionView {
     }
     
     
+    func actionNodeIndexForPath(indexPath:NSIndexPath) -> Int? {
+        
+        let nodeItem = (itemForIndexPath(indexPath) as! NodeCollectionViewItem)
+        
+        switch itemTypeAtIndex(indexPath) {
+            
+        case .ActionNode:
+            return self.presenter!.sequence.actionNodes.indexOf(nodeItem.presenter!.node)
+            
+        case .TransitionNode:
+            let indexInChain = self.presenter!.sequence.nodeChain().indexOf(nodeItem.presenter!.node)
+            if indexInChain != nil {
+                let node = self.presenter!.sequence.nodeChain()[indexInChain!+1]
+                return self.presenter!.sequence.actionNodes.indexOf(node)
+            }
+            
+        default:return nil
+        }
+        return nil
+    }
+    
+    
     func itemForIndexPath(path: NSIndexPath) -> NSCollectionViewItem {
         //  Swift.print("Index Path: \(path.item)  item:\(itemTypeAtIndex(path))")
         
@@ -119,50 +141,41 @@ extension SequenceCollectionView {
     }
     
     
-    func indexOfItemType(itemType: SequenceCollectionViewItemType) -> [NSIndexPath] {
+    func indexOfItem(item: NSCollectionViewItem) -> NSIndexPath {
         guard presenter != nil else { fatalError() }
         guard presenter!.nodes != nil else { fatalError() }
         
-        switch itemType {
-        case .ActionNode:
-            var paths = [NSIndexPath]()
-            for (index, node) in presenter!.nodes!.enumerate() {
-                if node.type == .Action {
-                    paths.append(NSIndexPath(index: index+1))
-                }
+        switch item {
+        case let nodeItem as NodeCollectionViewItem:
+            let chain = self.presenter!.sequence.nodeChain()
+            let node = nodeItem.presenter!.node
+            if let indx =  chain.indexOf(node) {
+                return NSIndexPath(index: indx+1)
+            } else {
+                return NSIndexPath(index: -1)
             }
-            return paths
             
-        case .TransitionNode:
-            var paths = [NSIndexPath]()
-            for (index, node) in presenter!.nodes!.enumerate() {
-                if node.type == .Transition {
-                    paths.append(NSIndexPath(index: index+1))
-                }
-            }
-            return paths
-            
-        case .Date:
+        case is DateNodeCollectionViewItem:
             switch self.currentLayoutState {
             case .StartDateWithAddButton, .StartDateWithoutAddButton:
-                return [NSIndexPath(index: 0)]
+                return NSIndexPath(index: 0)
                 
             case .EndDateWithAddButton:
-                return [NSIndexPath(index: presenter!.nodes!.count+2)]
+                return NSIndexPath(index: presenter!.nodes!.count+2)
                 
             case .EndDateWithoutAddButton:
-                return [NSIndexPath(index: presenter!.nodes!.count+1)]
+                return NSIndexPath(index: presenter!.nodes!.count+1)
             }
             
-        case .AddButton:
+        case is AddNewNodeCollectionViewItem:
             switch currentLayoutState {
-            case .StartDateWithAddButton: return [NSIndexPath(index: presenter!.nodes!.count+2)]
-            case .StartDateWithoutAddButton: return [NSIndexPath(index: -1)]
-            case .EndDateWithAddButton: return [NSIndexPath(index: 0)]
-            case .EndDateWithoutAddButton: return [NSIndexPath(index: -1)]
+            case .StartDateWithAddButton: return NSIndexPath(index: presenter!.nodes!.count+2)
+            case .StartDateWithoutAddButton: return NSIndexPath(index: -1)
+            case .EndDateWithAddButton: return NSIndexPath(index: 0)
+            case .EndDateWithoutAddButton: return NSIndexPath(index: -1)
             }
             
-        default: return [NSIndexPath(index: -1)]
+        default: return NSIndexPath(index: -1)
         }
     }
     
@@ -200,7 +213,7 @@ extension SequenceCollectionView {
                 if node.type == .Action { return .ActionNode } else { return .TransitionNode }
             } else { return .Void }
             
-        default: Swift.print("Got to default - Index: \(index.item)")
+        default: break
         }
         return .Void
     }

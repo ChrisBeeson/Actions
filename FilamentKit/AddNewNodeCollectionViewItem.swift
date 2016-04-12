@@ -21,7 +21,7 @@ public class AddNewNodeCollectionViewItem : NSCollectionViewItem, DragDropCopyPa
     }
     
     @IBAction func plusButtonPressed(sender: AnyObject) {
-        sequencePresenter?.insertActionNode(nil, index: nil)
+        sequencePresenter?.insertActionNode(nil, actionNodesIndex: nil, informDelegates:true)
     }
     
      override public func mouseEntered(theEvent: NSEvent) {

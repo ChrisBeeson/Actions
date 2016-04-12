@@ -149,7 +149,8 @@ class Node: NSObject, NSCoding, Mappable {
         clone.notes = notes.copy() as! String
         clone.location = location.copy() as! String
         clone.event  = event?.copy() as? TimeEvent
-        //     for rule in rules { clone.rules.append(rule) }
+        clone.UUID = UUID.copy() as! String
+        clone.rules = rules
         clone.leftTransitionNode = leftTransitionNode
         clone.rightTransitionNode = rightTransitionNode
         return clone
@@ -158,8 +159,7 @@ class Node: NSObject, NSCoding, Mappable {
     
     // MARK: Equality
     
-    override  func isEqual(object: AnyObject?) -> Bool {
-        
+    override func isEqual(object: AnyObject?) -> Bool {
         if let node = object as? Node {
             if UUID == node.UUID  {
                 return true
@@ -173,7 +173,6 @@ class Node: NSObject, NSCoding, Mappable {
     //MARK: TimeEvent Creation and Maintance
     
     func setEventPeriod(period: DTTimePeriod) {
-        
         if event == nil {
             self.event = TimeEvent(period:period, owner: self)
         } else {
@@ -188,7 +187,6 @@ class Node: NSObject, NSCoding, Mappable {
         self.event!.deleteCalenderEvent()
         self.event = nil
     }
-    
     
     
     // Description

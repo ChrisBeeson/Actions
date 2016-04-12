@@ -28,7 +28,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         NSNotificationCenter.defaultCenter().addObserverForName("UpdateAllSequences", object: nil, queue: nil) { (notification) -> Void in
             if self.representingDocument != nil {
                 if self._shouldBeDeleted == false {
-                self.updateState(true)
+                    self.updateState(true)
                 } else {
                     print("Trying to update a sequence that should be DELETED!!")
                 }
@@ -104,21 +104,21 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     
     public func renameTitle(newTitle:String) {
         undoManager?.prepareWithInvocationTarget(self).renameTitle(title)
-        let undoActionName = NSLocalizedString("Rename", comment: "")
+        let undoActionName = "UNDO_RENAME_ACTION".localized
         undoManager?.setActionName(undoActionName)
         
         title = newTitle
         representingDocument?.updateChangeCount(.ChangeDone)
     }
     
-   @objc
+
     public func setDate(date:NSDate?, direction:TimeDirection) {
         if date != nil && _sequence!.date != nil && date!.isEqualToDate(_sequence!.date!) && direction == _sequence?.timeDirection { return }
-
+        
         self.undoManager?.prepareWithInvocationTarget(self).setDate(self.date, direction: self.timeDirection)
-        let undoActionName = NSLocalizedString("Change Date", comment: "")
+        let undoActionName = "UNDO_CHANGE_DATE".localized
         self.undoManager?.setActionName(undoActionName)
-
+        
         let timeDirectionToggled = direction == _sequence?.timeDirection ? false : true
         self._sequence!.date = date
         self._sequence!.timeDirection = direction
@@ -126,16 +126,15 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         
         currentState.toNewStartDate(self)
         if timeDirectionToggled ==  true {
-             delegates.forEach{ $0.sequencePresenterDidRefreshCompleteLayout(self) }
+            delegates.forEach{ $0.sequencePresenterDidRefreshCompleteLayout(self) }
         }
     }
-     
-    func insertActionNode(node: Node?, index: Int?) {
-        
+    
+    
+    func insertActionNode(node: Node?, actionNodesIndex: Int?, informDelegates:Bool) {
         //If node and Int is nil then insertNode will create a new untitled node, and place it at the end of the list.
-        
         var nodeToinsert: Node
-        var indx = index
+        var indx = actionNodesIndex
         
         if node == nil {
             nodeToinsert = Node(text: AppConfiguration.defaultActionNodeName, type: .Action, rules: nil)
@@ -144,48 +143,53 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         }
         
         // If running backwards insert at index 0
-        if indx == nil && timeDirection == .Backward {
-            indx = 0
-        }
+        if indx == nil && timeDirection == .Backward { indx = 0 }
         
         let oldNodes = _sequence!.nodeChain()
         _sequence!.insertActionNode(nodeToinsert, index:indx)
-         representingDocument?.updateChangeCount(.ChangeDone)
+        representingDocument?.updateChangeCount(.ChangeDone)
         
-        informDelegatesOfChangesToNodeChain(oldNodes)
+        if informDelegates == true { informDelegatesOfChangesToNodeChain(oldNodes) }
         
-        undoManager?.prepareWithInvocationTarget(self).deleteNodes([nodeToinsert])
-        let undoActionName = NSLocalizedString("Insert Node", comment: "")
-        undoManager?.setActionName(undoActionName)
-        
-        delegates.forEach { $0.sequencePresenterDidFinishChangingNodeLayout(self) }
+        undoManager?.registerUndoWithTarget(self, handler: { (self) -> () in
+            self.deleteNodes([nodeToinsert], informDelegates: informDelegates)
+            })
+        undoManager?.setActionName("UNDO_INSERT_ACTION".localized)
     }
     
     
-    func deleteNodes(nodes: [Node]) {
+    func deleteNodes(nodes: [Node], informDelegates:Bool) {
         if nodes.isEmpty { return }
         let oldNodes = _sequence!.nodeChain()
         
         for node in nodes {
-            _nodePresenters = _nodePresenters.filter {$0.node != node}
-            _nodePresenters.forEach{ $0.removeCalandarEvent(false) }
+            let indx = sequence.actionNodes.indexOf(node)
+            
+            undoManager?.registerUndoWithTarget(self, handler: { [oldNode = node, oldIndx = indx] (self) -> () in
+                self.insertActionNode(oldNode, actionNodesIndex: oldIndx, informDelegates:informDelegates)
+            })
+            undoManager?.setActionName("UNDO_DELETE_ACTION".localized)
+            
+            let presentersToDelete = _nodePresenters.filter {$0.node == node}
+            presentersToDelete.forEach{ $0.prepareForDeletion() }
+            _nodePresenters.removeObjects(presentersToDelete)
             _sequence!.removeActionNode(node)
         }
-        
         representingDocument?.updateChangeCount(.ChangeDone)
-        
-        informDelegatesOfChangesToNodeChain(oldNodes)
-        /*
-        for node in nodes.reverse() {
-        undoManager?.prepareWithInvocationTarget(self).insertActionNode(node, index: nil)
-        let undoActionName = NSLocalizedString("Delete Node", comment: "")
-        undoManager?.setActionName(undoActionName)
-        }
-        */
+        if informDelegates == true { informDelegatesOfChangesToNodeChain(oldNodes) }
     }
     
-    // MARK: Presenter
-
+    func moveNode(fromActionNodesIndex:Int, toActionNodesIndex:Int) {
+        assert(fromActionNodesIndex < sequence.actionNodes.count)
+        let node = sequence.actionNodes[fromActionNodesIndex]
+        deleteNodes([node], informDelegates: false)
+        let insertIdx = toActionNodesIndex <= fromActionNodesIndex ? toActionNodesIndex : (toActionNodesIndex - 1)
+        insertActionNode(node, actionNodesIndex:insertIdx, informDelegates: false)
+    }
+    
+    
+    // MARK: Node Presenter
+    
     func nodePresenter(node:Node) -> NodePresenter {
         let presenter = _nodePresenters.filter {$0.node === node}
         if presenter.count == 1 {
@@ -205,7 +209,6 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         if (diff.results.count > 0) {
             let insertedNodes = Set(diff.insertions.map { NSIndexPath (forItem: $0.idx , inSection: 0)})
             let deletedNodes = Set(diff.deletions.map {NSIndexPath (forItem: $0.idx , inSection: 0)})
-            
             delegates.forEach { $0.sequencePresenterDidUpdateChainContents(insertedNodes, deletedNodes:deletedNodes) }
         }
         updateState(true)
@@ -224,7 +227,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         self._shouldBeDeleted = true
         if currentState != .Completed {
             for presenter in _nodePresenters {
-                presenter.removeCalandarEvent(false)
+                presenter.removeCalandarEvent(updateState: false)
             }
         }
         delegates.removeAll()
@@ -234,8 +237,8 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         representingDocument?.updateChangeCount(.ChangeDone)
     }
     
-    //MARK: Rules
-
+    //MARK: Rule Presenters
+    
     public func addRulePresenter(rule:RulePresenter, atIndex:Int) {
         guard atIndex > -1 && atIndex <= sequence.generalRules.count else { return }
         sequence.generalRules.insert(rule.rule, atIndex: atIndex)
@@ -250,7 +253,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         updateState(true)
         representingDocument?.updateChangeCount(.ChangeDone)
     }
-   
+    
     //MARK: Pasteboard
     
     public func pasteboardItem() -> NSPasteboardItem {
