@@ -13,7 +13,6 @@ import ObjectMapper
 protocol RuleType {
     
     var name: String {get}
-    var description: String {get}
     var availableToNodeType: NodeType {get}
     var conflictingRules: [Rule]? {get}
     var options: RoleOptions { get }
@@ -39,10 +38,10 @@ protocol RuleType {
 }
 
 
- public class Rule: NSObject, RuleType, NSCoding, NSCopying, Mappable {
+ public class Rule: NSObject, RuleType, NSCoding, NSCopying, MappableCluster {
     
     var name: String {get {return "Not set"} }
-    var Description: String {get {return "NOT SET"} }
+    var ruleType: String?
     var availableToNodeType: NodeType {get {return NodeType.Void} }
     var conflictingRules: [Rule]? {get {return nil} }
     var options: RoleOptions {get { return RoleOptions.None } }
@@ -84,7 +83,42 @@ protocol RuleType {
     
     //MARK: JSON Mapping
     required public init?(_ map: Map) {}
-    public func mapping(map: Map) {}
+    
+    public func mapping(map: Map) {
+        //  self.name <- map["ruleName"]
+        ruleType <- map["ruleType"]
+    }
+    
+    public static func objectForMapping(map: Map) -> Mappable? {
+        
+        if let type: String = map["ruleType"].value() {
+            switch type {
+            case "transitionDurationWithVariance":
+                return TransitionDurationWithVariance(map)
+            case "eventDurationWithMinimumDuration":
+               return EventDurationWithMinimumDuration(map)
+            case "avoidCalendarEventsRule":
+                return AvoidCalendarEventsRule(map)
+            case "workingWeekRule":
+                return WorkingWeekRule(map)
+            case "transitionDurationBasedOnTravelTime":
+                return TransitionDurationBasedOnTravelTime(map)
+            case "eventFixedStartAndEndDate":
+                return EventFixedStartAndEndDate(map)
+            case "greaterThanLessThanRule":
+                return GreaterThanLessThanRule(map)
+            case "nextUnitRule":
+                return NextUnitRule(map)
+            case "waitForUserRule":
+                return WaitForUserRule(map)
+            case "eventAlarmRule":
+                return EventAlarmRule(map)
+            default:
+                return nil
+            }
+        }
+        return nil
+    }
 }
 
 struct RoleOptions : OptionSetType {
