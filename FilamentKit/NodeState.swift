@@ -52,7 +52,6 @@ enum NodeState: Int {
     
     mutating func toInactive(presenter: NodePresenter) -> NodeState {
         guard self != .Inactive else { return self }
-        
         presenter.removeCalandarEvent(updateState: false)
         return changeToState(Inactive, presenter: presenter, options: nil)
     }
@@ -92,9 +91,7 @@ enum NodeState: Int {
     
     mutating func toRunning(presenter: NodePresenter) -> NodeState {
         guard self != .Running else { return self }
-        
         // presenter.event!.synchronizeCalendarEvent()
-        
         return changeToState(.Running, presenter:presenter, options: nil)
     }
     
@@ -105,8 +102,6 @@ enum NodeState: Int {
         presenter.isCompleted = true
         return changeToState(.Completed, presenter:presenter, options: nil)
     }
-    
-    
     
     mutating func toError(presenter: NodePresenter) -> NodeState {
         guard self != .Error else { return self }
@@ -126,20 +121,16 @@ enum NodeState: Int {
     
     mutating func toWaitingForUserInput(presenter: NodePresenter) -> NodeState {
         guard self != .WaitingForUserInput else { return self }
-        switch self {
-            
-        case .Inactive: break
-            
-        default:
-            break
-        }
         
+        switch self {
+        case .Inactive: break
+        default:break
+        }
         return changeToState(.WaitingForUserInput, presenter:presenter, options: nil)
     }
     
         
     func calculateNodeState(presenter: NodePresenter, ignoreError:Bool) -> NodeState {
-        
         if presenter.isCompleted == true { return .Completed }
         if ignoreError == false && self == .Error { return .Error }
         if ignoreError == false && self == .InheritedError { return .InheritedError }

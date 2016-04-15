@@ -93,9 +93,9 @@ protocol RuleType {
         
         if let type: String = map["ruleType"].value() {
             switch type {
-            case "transitionDurationWithVariance":
+            case "TransitionDurationWithVariance":
                 return TransitionDurationWithVariance(map)
-            case "eventDurationWithMinimumDuration":
+            case "EventDurationWithMinimumDuration":
                return EventDurationWithMinimumDuration(map)
             case "avoidCalendarEventsRule":
                 return AvoidCalendarEventsRule(map)

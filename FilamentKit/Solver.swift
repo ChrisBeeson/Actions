@@ -11,24 +11,18 @@ import EventKit
 import DateTools
 
 /*
-
-Window 1                       |-----------------|     <- Event can be only within this period
-prefered start time                    ^
-Action Dur Max                         |--------------|
-Action Dur Min                         |--|
-AvoidPeriods          |------------|         |---|   |----|
-
-                                       |----|
-
-Timeslot found                         ^^^^^^
-
-------------------------------------------------------------------------------------------------
--- Rules
-------------------------------------------------------------------------------------------------
-
-Start time of the solved period MUST fall within the averageStartWindow
-*/
-
+ 
+ Window 1                       |-----------------|     <- Event can be only within this period
+ prefered start time                    ^
+ Action Dur Max                         |--------------|
+ Action Dur Min                         |--|
+ AvoidPeriods          |------------|         |---|   |----|
+ 
+ |----|
+ 
+ Timeslot found                         ^^^^^^
+ 
+ */
 
 typealias SolvedPeriod = (solved: Bool, period:DTTimePeriod?, errors:[SolverError])
 
@@ -39,11 +33,11 @@ class Solver: NSObject {
         func printDebug(string: String) { if true == false { print(string) } }
         
         /*
-            This solving class works only on action Nodes.  But it need the transition based rules added to it.
-            Whether this a massive architecture flaw I'm not sure.
-            Transition rules generate a startWindow based on the inputdate.
-            The action node supplies rules to create it's duration.
-        */
+         This solving class works only on action Nodes.  But it need the transition based rules added to it.
+         Whether this a massive architecture flaw I'm not sure.
+         Transition rules generate a startWindow based on the inputdate.
+         The action node supplies rules to create it's duration.
+         */
         
         var averageStartWindow: DTTimePeriod?
         var preferedStartTime: NSDate?
@@ -51,9 +45,9 @@ class Solver: NSObject {
         var averageMinDuration: Timesize?
         var detailedAvoidPeriods = [AvoidPeriod]()
         var errors = [SolverError]()
-
+        
         //////////////////////////////////////////////////////////////////////////
-        ///  Phase 1: 
+        ///  Phase 1:
         ///  Average out and/or combine all the rules
         //////////////////////////////////////////////////////////////////////////
         
@@ -91,19 +85,25 @@ class Solver: NSObject {
         
         
         //////////////////////////////////////////////////////////////////////////
-        ///  Phase 2: 
+        ///  Phase 2:
         ///  Make sure we meet the Basic Requirements
         //////////////////////////////////////////////////////////////////////////
         
-        if preferedStartTime == nil  || averageMinDuration == nil || averageStartWindow == nil || averageDuration == nil {
-            fatalError("! Solver failed to meet basic requirements")
+        
+        
+        if averageMinDuration == nil || averageDuration == nil || preferedStartTime == nil || averageStartWindow == nil {
+            errors.append(SolverError(errorLevel:.Failed, error:.NoFreePeriods, object:nil, node:node))
+            return (false, nil, errors)
         }
+        
+        // if preferedStartTime == nil { preferedStartTime = inputDate }
+        //if averageStartWindow == nil { averageStartWindow = DTTimePeriod(size: .Second, amount:1, startingAt: inputDate)}
         
         // if the averageStartWindow start and end dates are the same, offset the endDate by a second.
         if averageStartWindow!.StartDate.isEqualToDate(averageStartWindow!.EndDate) {
             averageStartWindow!.EndDate = averageStartWindow!.StartDate.dateByAddingSeconds(1)
         }
-    
+        
         
         //////////////////////////////////////////////////////////////////////////
         ///  Phase 3:
@@ -118,7 +118,7 @@ class Solver: NSObject {
         
         
         //////////////////////////////////////////////////////////////////////////
-        ///  Phase 4: 
+        ///  Phase 4:
         ///  Create window of interest and update any rules that need it
         //////////////////////////////////////////////////////////////////////////
         
@@ -129,7 +129,7 @@ class Solver: NSObject {
             printDebug("! Solver Window of Interest end date was later than the input date.  Not possible when solving backwards")
             windowOfInterest.EndDate = inputDate
         }
-
+        
         for rule in rules {
             if rule.options.contains(RoleOptions.RequiresInterestWindow) {
                 rule.interestPeriod = windowOfInterest
@@ -144,8 +144,8 @@ class Solver: NSObject {
         }
         
         //////////////////////////////////////////////////////////////////////////
-        ///  Phase 5: 
-        ///  Flatten & Invert the avoid periods. 
+        ///  Phase 5:
+        ///  Flatten & Invert the avoid periods.
         ///  (Create free periods from the gaps inbetween)
         //////////////////////////////////////////////////////////////////////////
         
@@ -158,7 +158,7 @@ class Solver: NSObject {
         
         
         //////////////////////////////////////////////////////////////////////////
-        ///  Phase 6: 
+        ///  Phase 6:
         ///  The Main Algorithm
         //////////////////////////////////////////////////////////////////////////
         
@@ -169,7 +169,7 @@ class Solver: NSObject {
         printDebug("Prefered Period: \(preferedPeriod.log())")
         printDebug("Start Window: \(averageStartWindow?.log())")
         printDebug("Avoid periods: \(avoidPeriods.debugDescription)")
-
+        
         if freePeriods.periods() == nil {
             printDebug("Failed: There are no Free Periods")
             errors.append(SolverError(errorLevel:.Failed, error:.NoFreePeriods, object:nil, node:node))
@@ -180,17 +180,17 @@ class Solver: NSObject {
         // Does the corrent node have an event, with a timePeriod that fits into a free Period?
         // Implementing this means events are in their prefered period. But are still valid. Perhaps a setting?
         /*
-        if node.event != nil {
-            for free in freePeriods.periods()! {
-                let relation = node.event!.timePeriod().relationToPeriod(free) as DTTimePeriodRelation
-                switch relation {
-                case .ExactMatch, .Inside:
-                    return (true, node.event!.timePeriod())
-                default:break
-                }
-            }
-        }
-        */
+         if node.event != nil {
+         for free in freePeriods.periods()! {
+         let relation = node.event!.timePeriod().relationToPeriod(free) as DTTimePeriodRelation
+         switch relation {
+         case .ExactMatch, .Inside:
+         return (true, node.event!.timePeriod())
+         default:break
+         }
+         }
+         }
+         */
         
         // No? lets find the best period
         
@@ -206,8 +206,8 @@ class Solver: NSObject {
             // The free period must contain the startTimeWindow
             if averageStartWindow!.relationToPeriod(free) == DTTimePeriodRelation.After ||
                 averageStartWindow!.relationToPeriod(free) == DTTimePeriodRelation.Before ||
-            averageStartWindow!.relationToPeriod(free) == DTTimePeriodRelation.None {
-                 printDebug("StartWindow is not in the Free period, so skipping")
+                averageStartWindow!.relationToPeriod(free) == DTTimePeriodRelation.None {
+                printDebug("StartWindow is not in the Free period, so skipping")
                 continue
             }
             
@@ -285,7 +285,7 @@ class Solver: NSObject {
             let bestDistToStart = abs(bestPeriod!.StartDate.secondsFrom(preferedPeriod.StartDate))
             if possDistToStart < bestDistToStart { bestPeriod = possiblePeriod }
         }
-    
+        
         if bestPeriod != nil {
             printDebug("Found Best Period: \(bestPeriod?.log())")
             return (true, bestPeriod, errors) }
@@ -297,17 +297,60 @@ class Solver: NSObject {
             return (false,nil, errors) }
     }
     
+    
     class func clashingPeriods(preferedPeriod:DTTimePeriod, avoidPeriods:[AvoidPeriod], node:Node?) -> [SolverError] {
         var errors = [SolverError]()
         
         for period in avoidPeriods {
             if preferedPeriod.relationToPeriod(period.period) != .None {
                 if period.type != .Node {
-                errors.append(SolverError(errorLevel: .Warning, error:.Clash, object:period, node:node))
+                    errors.append(SolverError(errorLevel: .Warning, error:.Clash, object:period, node:node))
                 }
             }
         }
         return errors
+    }
+    
+    class func InferredPeriodForNode(node:Node, inputDate:NSDate) -> DTTimePeriod? {
+        
+        switch node.type {
+            
+        case NodeType.Action:
+            var averageDuration: Timesize?
+            for rule in node.rules {
+                if let dur = rule.eventDuration {
+                    if averageDuration != nil {
+                        if dur.inSeconds() < averageDuration!.inSeconds() {averageDuration = dur }
+                    } else { averageDuration = dur }
+                }
+            }
+            if averageDuration != nil {
+                return DTTimePeriod(size: .Second, amount: averageDuration!.inSeconds(), startingAt: inputDate)
+            } else {
+                print("Cannot Calculate Duration")
+                return nil
+            }
+            
+            
+        case NodeType.Transition:
+            var period:DTTimePeriod?
+            for rule in node.rules {
+                rule.inputDate = inputDate
+                if let preferedDate = rule.eventPreferedStartDate {
+                    let newPeriod = DTTimePeriod(startDate: inputDate, endDate: preferedDate)
+                    if period  == nil { period = newPeriod ; break }
+                    if period?.durationInSeconds() > newPeriod.durationInSeconds() {period = newPeriod}
+                }
+            }
+            if period != nil {
+                return period
+            } else {
+                print("Cannot Calculate Duration")
+                return nil
+            }
+        default: return nil
+        }
+        
     }
 }
 

@@ -54,7 +54,7 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate, Drag
         statusField?.hidden = hidden
         statusFieldBackground?.hidden = hidden
         nodeView.currentState = presenter!.currentState
-        self.view.toolTip = presenter!.humanReadableString
+        self.view.toolTip = presenter!.statusDescription
     }
     
     

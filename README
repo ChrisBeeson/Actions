@@ -1,19 +1,23 @@
 
 Todo
 -------
-import/ export
+
 caledar alarm
 Memo field resize
 transtion Node - duration, hide location
-Current rule polishing and input validation
 Undo, copy, paste, import, export, drag, drop check for total coverage
 
---> BETA RELEASE
+--> BETA RELEASE 1
 
-self update & purchase for non app store version.
+*iOS Versions*
+import/ export
 location
 location to location time rule
-*iOS Versions*
+
+
+--> BETA RELEASE 2
+
+self update & purchase for non app store version.
 
 -----> RELEASE
 
@@ -29,6 +33,7 @@ Calendar events become a rule
 Rules can also be notifications
 right click a node and set a new start time for it.
 Rule:  Warn if calendar Event changes more than X
+
 
 Known Issues
 ----------------

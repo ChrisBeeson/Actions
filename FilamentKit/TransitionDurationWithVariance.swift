@@ -20,7 +20,11 @@ class TransitionDurationWithVariance: Rule {
     override var availableToNodeType: NodeType { return [.Transition] }
     override var conflictingRules: [Rule]? { return nil }
     
-    override init() { super.init() }
+    override init() {
+        super.init()
+    ruleType = "TransitionDurationWithVariance"
+    
+    }
     
     // Rule user input
     
@@ -50,7 +54,7 @@ class TransitionDurationWithVariance: Rule {
     // MARK: NSCoding
     
     private struct SerializationKeys {
-        static let eventStartsInDuration = "transitionDurationWithVariance"
+        static let eventStartsInDuration = "eventStartsInDuration"
         static let variance = "variance"
     }
     
@@ -74,7 +78,6 @@ class TransitionDurationWithVariance: Rule {
         return clone
     }
     
-    
     //MARK: Mapping
     
     required init?(_ map: Map) {
@@ -83,6 +86,7 @@ class TransitionDurationWithVariance: Rule {
     
     override func mapping(map: Map) {
         super.mapping(map)
+        ruleType                     <- map["ruleType"]
         eventStartsInDuration        <- map[SerializationKeys.eventStartsInDuration]
         variance                     <- map[SerializationKeys.variance]
     }

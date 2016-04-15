@@ -6,7 +6,6 @@
   Copyright © 2016 Andris Ltd. All rights reserved.
 */
 
-
 // DOCUMENT CREATION
 "NEW_DOCUMENT_DEFAULT_TITLE" = "Untitled";
 "NEW_DOCUMENT_1ST_ACTION" = "Action 1";
@@ -20,7 +19,6 @@
 "MAINWINDOW_CALENDAR_UNAUTHORIZED_TITLE" = "Access to your Calendar is Unauthorized";
 "MAINWINDOW_CALENDAR_UNAUTHORIZED_BODY" = "Go to System Preferences -> Security & Privacy and give calendar access to 'Actions' to use the full features of this application.";
 "MAINWINDOW_CALENDAR_UNAUTHORIZED_OK" = "Ok";
-
 
 // RULES
 "RULE_NAME_DURATION_WITH_VARIANCE" = "Duration +/-";
@@ -47,22 +45,20 @@
 "RUlE_WORKING_WEEK_EVENING" = "time outside of work hours";
 "RUlE_WORKING_WEEK_DAY_OFF" = "day off";
 
-
 // NODES
 "NODE_EVENT_STRING_NO_EVENT" = "No Calendar Event";
 
-
-    // SEQ COLLECTION VIEW
+// SEQ COLLECTION VIEW
 "SEQ_DATE_MENU_SET_DATE_STARTTIME" = "Set As End Time";
 "SEQ_DATE_MENU_SET_DATE_ENDTIME" = "Set As Start Time";
 
-
-    // SOLVER
+// SOLVER
 "SOLVER_ERROR_COULD_FIND_NO_FREE_PERIODS" = "Will not fit";
 "SOLVER_ERROR_FOLLOWS_FAILED_NODE" = "Following a failed event";
 "SOLVER_ERROR_CLASHES_WITH" = "Clashes with ";
+"SOLVER_ERROR_UNKNOWN" = "Unknown Error";
 
-    // UNDO
+// UNDO
 "UNDO_INSERT_ACTION" = "Insert";
 "UNDO_DELETE_ACTION" = "Delete";
 "UNDO_CHANGE_DATE" = "Change Date";

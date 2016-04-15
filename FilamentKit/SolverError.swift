@@ -21,18 +21,19 @@ struct SolverError {
         self.object = object
     }
     
-    var humanReadableString:String? {
+    var errorDescription:String? {
         switch self.error {
         case .NoFreePeriods: return "SOLVER_ERROR_COULD_FIND_NO_FREE_PERIODS".localized
         case .NearlyFits: return nil
         case .Clash:
             if object != nil {
-                if let string = (object as! AvoidPeriod).humanReadableString {
+                if let string = (object as! AvoidPeriod).errorDescription {
                     return "SOLVER_ERROR_CLASHES_WITH".localized + string
                 }
             }
             return nil
         case .FollowsFailedNode: return "SOLVER_ERROR_FOLLOWS_FAILED_NODE".localized
+        case .MinRequirementsNotMet: return "Internal Error: Solver Min Requirements Not Met"
         default: return nil
         }
     }
@@ -51,4 +52,5 @@ enum SolverErrorType {
     case NearlyFits
     case Clash
     case FollowsFailedNode
+    case MinRequirementsNotMet
 }

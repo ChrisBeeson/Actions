@@ -26,7 +26,7 @@ struct AvoidPeriod {
         self.type = .None
     }
     
-    var humanReadableString:String? {
+    var errorDescription: String? {
         switch self.type {
         case .CalendarEvent:
             if let event = (object as? EKEvent) {

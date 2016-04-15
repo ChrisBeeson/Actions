@@ -19,7 +19,10 @@ class EventDurationWithMinimumDuration : Rule  {
     override var availableToNodeType: NodeType { return [.Action] }
     override var conflictingRules: [Rule]? { return nil }
     
-    override init() { super.init() }
+    override init() {
+        super.init()
+    ruleType = "eventDurationWithMinimumDuration"
+    }
     
     // Specific user controls
     
@@ -70,6 +73,7 @@ class EventDurationWithMinimumDuration : Rule  {
     
     override func mapping(map: Map) {
         super.mapping(map)
+        ruleType                     <- map["ruleType"]
         duration        <- map[SerializationKeys.duration]
         minDuration     <- map[SerializationKeys.minDuration]
     }

@@ -120,7 +120,7 @@
 		835619CA1C6D6AAA00488E99 /* NodeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835619C91C6D6AAA00488E99 /* NodeDetailViewController.swift */; };
 		835619CC1C6D6AD100488E99 /* NodeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */; };
 		835619CD1C6D6E4B00488E99 /* NodeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */; };
-		835740B21C77AD0700CFBB1B /* TimeEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835740B11C77AD0700CFBB1B /* TimeEvent.swift */; };
+		835740B21C77AD0700CFBB1B /* CalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835740B11C77AD0700CFBB1B /* CalendarEvent.swift */; };
 		835878BC1C8FEAB000F2CCFB /* RuleAvailabiltiy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835878BB1C8FEAB000F2CCFB /* RuleAvailabiltiy.swift */; };
 		8359A7731C7CF2F400ED87D9 /* DurationWithVarianceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8359A7721C7CF2F400ED87D9 /* DurationWithVarianceViewController.swift */; };
 		836896341C807FEF00F3F547 /* AvailableRulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836896331C807FEF00F3F547 /* AvailableRulesViewController.swift */; };
@@ -141,7 +141,7 @@
 		83CE4A0C1CA21772005691FD /* NextUnitRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471279C41C82CA9D0090426C /* NextUnitRule.swift */; };
 		83CE4A0D1CA21774005691FD /* WaitForUserRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833366C71C838F5E001FE4CD /* WaitForUserRule.swift */; };
 		83CE4A0E1CA21778005691FD /* EventAlarmRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833366C91C838F99001FE4CD /* EventAlarmRule.swift */; };
-		83CE4A0F1CA2177D005691FD /* TimeEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835740B11C77AD0700CFBB1B /* TimeEvent.swift */; };
+		83CE4A0F1CA2177D005691FD /* CalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835740B11C77AD0700CFBB1B /* CalendarEvent.swift */; };
 		83CE4A101CA21780005691FD /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47967FEF1C895C7200358199 /* Context.swift */; };
 		83CE4A111CA21786005691FD /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D56FA01C8AC9E80025D156 /* Calendar.swift */; };
 		83CE4A121CA2184D005691FD /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C73E0B1BE31BF20045973C /* AppConfiguration.swift */; };
@@ -235,7 +235,7 @@
 		471279C21C82CA730090426C /* GreaterThanLessThanRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GreaterThanLessThanRule.swift; sourceTree = "<group>"; };
 		471279C41C82CA9D0090426C /* NextUnitRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextUnitRule.swift; sourceTree = "<group>"; };
 		471420D51BA3CB2A00EDF32D /* Pods_Filament.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Filament.framework; path = Pods/../build/Release/Pods_Filament.framework; sourceTree = "<group>"; };
-		4720B4FF1C6E7EF200229734 /* NodePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodePresenter.swift; sourceTree = "<group>"; };
+		4720B4FF1C6E7EF200229734 /* NodePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NodePresenter.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		4720B5011C6E7F0400229734 /* NodePresenterDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodePresenterDelegate.swift; sourceTree = "<group>"; };
 		4720B5071C6F00B300229734 /* DateTimePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTimePickerViewController.swift; sourceTree = "<group>"; };
 		4720B5091C6F00E500229734 /* DateTimePickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateTimePickerViewController.xib; sourceTree = "<group>"; };
@@ -258,7 +258,7 @@
 		473853B11C7A590A000AB1E2 /* RuleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleViewController.swift; sourceTree = "<group>"; };
 		473853B41C7A596E000AB1E2 /* RulePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulePresenter.swift; sourceTree = "<group>"; };
 		473853B61C7A5A43000AB1E2 /* RulePresenterDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulePresenterDelegate.swift; sourceTree = "<group>"; };
-		473D4AC61CB891BE00AB8560 /* AvoidPeriod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvoidPeriod.swift; sourceTree = "<group>"; };
+		473D4AC61CB891BE00AB8560 /* AvoidPeriod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AvoidPeriod.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		473D9F571C7AEF7500E81D39 /* TransitionDurationWithVarianceRulePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionDurationWithVarianceRulePresenter.swift; sourceTree = "<group>"; };
 		473D9F591C7AF53800E81D39 /* EventDurationWithMinimumDurationRulePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDurationWithMinimumDurationRulePresenter.swift; sourceTree = "<group>"; };
 		473EAEE01BA3A7D200AFEA2A /* CalendarManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
@@ -280,7 +280,7 @@
 		4773D5451C95547000758B5A /* Sequence+PasteBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sequence+PasteBoard.swift"; sourceTree = "<group>"; };
 		477626931C53823B00C35599 /* FilamentKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilamentKit.h; sourceTree = "<group>"; };
 		4778C0A71C656B2500F5A259 /* DateNodeCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateNodeCollectionViewItem.swift; sourceTree = "<group>"; };
-		4778C0A91C657D8F00F5A259 /* NodeCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeCollectionViewItem.swift; sourceTree = "<group>"; };
+		4778C0A91C657D8F00F5A259 /* NodeCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NodeCollectionViewItem.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		477C2CB21C409C660071467C /* ActionNodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionNodeView.swift; sourceTree = "<group>"; };
 		477C2CB41C40B3AD0071467C /* TransitionNodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionNodeView.swift; sourceTree = "<group>"; };
 		4794B99D1C78522B009CE617 /* NSTimer+Closure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTimer+Closure.swift"; sourceTree = "<group>"; };
@@ -326,7 +326,7 @@
 		835289D31C840D8F001CD0DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		835619C91C6D6AAA00488E99 /* NodeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDetailViewController.swift; sourceTree = "<group>"; };
 		835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NodeDetailViewController.xib; sourceTree = "<group>"; };
-		835740B11C77AD0700CFBB1B /* TimeEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeEvent.swift; sourceTree = "<group>"; };
+		835740B11C77AD0700CFBB1B /* CalendarEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEvent.swift; sourceTree = "<group>"; };
 		835878BB1C8FEAB000F2CCFB /* RuleAvailabiltiy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleAvailabiltiy.swift; sourceTree = "<group>"; };
 		8359A7721C7CF2F400ED87D9 /* DurationWithVarianceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationWithVarianceViewController.swift; sourceTree = "<group>"; };
 		836896331C807FEF00F3F547 /* AvailableRulesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableRulesViewController.swift; sourceTree = "<group>"; };
@@ -350,7 +350,7 @@
 		83F6B96E1B994652002A5AAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83F6B96F1B994652002A5AAF /* FilamentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilamentTests.swift; sourceTree = "<group>"; };
 		83F6B9791B995683002A5AAF /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		83F9B3CB1CB66EA50054539A /* SolverError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolverError.swift; sourceTree = "<group>"; };
+		83F9B3CB1CB66EA50054539A /* SolverError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SolverError.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		83F9E92A1BA18739006282B5 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		83FB2BF81C8ECCC800AF291D /* RightAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		83FE26031BCB8FB700AC20B5 /* SolverTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolverTests.swift; sourceTree = "<group>"; };
@@ -480,7 +480,7 @@
 				47CD21C01BDF7A2600AF25BE /* Sequence+NodeLogic.swift */,
 				47CD21C51BDF807900AF25BE /* Sequence+EventLogic.swift */,
 				473574741B9A689B00493CA0 /* Node.swift */,
-				835740B11C77AD0700CFBB1B /* TimeEvent.swift */,
+				835740B11C77AD0700CFBB1B /* CalendarEvent.swift */,
 				47967FEF1C895C7200358199 /* Context.swift */,
 				47D56FA01C8AC9E80025D156 /* Calendar.swift */,
 				4744FBF21CA3E0FD00C06123 /* Solver */,
@@ -1281,7 +1281,7 @@
 				473853B71C7A5A43000AB1E2 /* RulePresenterDelegate.swift in Sources */,
 				8303DD971CA9DDCF003D3190 /* Container.swift in Sources */,
 				83B500601C981FE800B0F5AA /* NodeState.swift in Sources */,
-				835740B21C77AD0700CFBB1B /* TimeEvent.swift in Sources */,
+				835740B21C77AD0700CFBB1B /* CalendarEvent.swift in Sources */,
 				473D4AC71CB891BE00AB8560 /* AvoidPeriod.swift in Sources */,
 				4720B50E1C71C32100229734 /* EmptyNodeView.swift in Sources */,
 				836896341C807FEF00F3F547 /* AvailableRulesViewController.swift in Sources */,
@@ -1344,7 +1344,7 @@
 				83CE4A1D1CA21942005691FD /* RulePresenterDelegate.swift in Sources */,
 				83CE4A1B1CA2193B005691FD /* NodePresenterDelegate.swift in Sources */,
 				83CE4A221CA2198C005691FD /* RuleViewController.swift in Sources */,
-				83CE4A0F1CA2177D005691FD /* TimeEvent.swift in Sources */,
+				83CE4A0F1CA2177D005691FD /* CalendarEvent.swift in Sources */,
 				83CE4A291CA21AAE005691FD /* NSTimer+Closure.swift in Sources */,
 				83CE4A201CA2194C005691FD /* AvoidCalendarEventsPresenter.swift in Sources */,
 				83CE4A091CA21768005691FD /* TransitionDurationBasedOnTravelTime.swift in Sources */,

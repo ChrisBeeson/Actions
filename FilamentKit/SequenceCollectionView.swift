@@ -24,6 +24,7 @@ public enum SequenceCollectionViewItemType {
     case Void
 }
 
+//TODO:Better animation when dragging action nodes over sequence - resize transitions to fit node.
 public enum SequenceCollectionViewDraggingState {
     case IsDraggingNode
 }
@@ -288,11 +289,8 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
         
         switch destItem {
         case is NodeCollectionViewItem:
-            
             let toIndex = actionNodeIndexForPath(indexPath)!
             presenter?.moveNode(sourceModelIndex, toActionNodesIndex: toIndex)
-            //self.reloadData()
-            //self.needsLayout = true
             return true
             
             // guard var sourceCollectionViewIndex = self.presenter!.sequence.nodeChain().indexOf(sourceNodeItem.node) else { Swift.print ("Failed") ; return false }
@@ -304,15 +302,11 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
         case is AddNewNodeCollectionViewItem:
             let toIndex = presenter?.timeDirection == .Forward ? presenter!.nodes!.count - 1 : 0
             presenter?.moveNode(sourceModelIndex, toActionNodesIndex:toIndex)
-            //self.reloadData()
-            //self.needsLayout = true
             return true
             
         case is DateNodeCollectionViewItem:
             let toIndex = presenter?.timeDirection == .Forward ?  0 : presenter!.nodes!.count - 1
             presenter?.moveNode(sourceModelIndex, toActionNodesIndex:toIndex)
-            //self.reloadData()
-            //self.needsLayout = true
             return true
         default: return false
         }

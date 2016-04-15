@@ -32,7 +32,7 @@ class Node: NSObject, NSCoding, Mappable {
     var leftTransitionNode: Node?
     var rightTransitionNode: Node?
     var UUID:String = NSUUID().UUIDString
-    var event: TimeEvent?
+    var event: CalendarEvent?
     var isCompleted = false
     
     // MARK: Initializers
@@ -98,7 +98,7 @@ class Node: NSObject, NSCoding, Mappable {
         UUID = aDecoder.decodeObjectForKey(SerializationKeys.uuid) as! String
         leftTransitionNode = aDecoder.decodeObjectForKey(SerializationKeys.leftTransitionNode) as? Node
         rightTransitionNode = aDecoder.decodeObjectForKey(SerializationKeys.rightTransitionNode) as? Node
-        event = aDecoder.decodeObjectForKey(SerializationKeys.event) as? TimeEvent
+        event = aDecoder.decodeObjectForKey(SerializationKeys.event) as? CalendarEvent
         isCompleted = aDecoder.decodeObjectForKey(SerializationKeys.isCompleted) as! Bool
         
         if event != nil { event!.owner = self }
@@ -148,7 +148,7 @@ class Node: NSObject, NSCoding, Mappable {
         let clone = Node(text: title, type: type, rules: rules)
         clone.notes = notes.copy() as! String
         clone.location = location.copy() as! String
-        clone.event  = event?.copy() as? TimeEvent
+        clone.event  = event?.copy() as? CalendarEvent
         clone.UUID = UUID.copy() as! String
         clone.rules = rules
         clone.leftTransitionNode = leftTransitionNode
@@ -170,11 +170,11 @@ class Node: NSObject, NSCoding, Mappable {
     }
     
     
-    //MARK: TimeEvent Creation and Maintance
+    //MARK: CalendarEvent Creation and Maintance
     
     func setEventPeriod(period: DTTimePeriod) {
         if event == nil {
-            self.event = TimeEvent(period:period, owner: self)
+            self.event = CalendarEvent(period:period, owner: self)
         } else {
             if period.isEqualToPeriod(event!.period) == false {
             event!.period = period

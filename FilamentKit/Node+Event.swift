@@ -1,5 +1,5 @@
 //
-//  Node+TimeEvent.swift
+//  Node+CalendarEvent.swift
 //  Filament
 //
 //  Created by Chris Beeson on 15/02/2016.
@@ -31,7 +31,7 @@ extension Node {
         
         let store = CalendarManager.sharedInstance.store
         
-        // Node has an TimeEvent, but it's wrong so lets delete it.
+        // Node has an CalendarEvent, but it's wrong so lets delete it.
         // TODO: rather than delete out of Date events, move them.
         
         if self.event != nil {
@@ -39,13 +39,13 @@ extension Node {
                 try store.removeEvent(self.event!, span: .ThisEvent, commit: true)
                 
             } catch let error as NSError {
-                print("Unresolved error deleting TimeEvent \(error), \(error.userInfo)")
+                print("Unresolved error deleting CalendarEvent \(error), \(error.userInfo)")
             }
             //   self.event = nil
             self.eventID = ""
         }
         
-        // Create TimeEvent
+        // Create CalendarEvent
         
         let event = EKEvent(eventStore: store)
         event.title = self.title

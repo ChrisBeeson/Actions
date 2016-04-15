@@ -27,7 +27,7 @@ class RuleTests: XCTestCase {
     /*
     func testTransitionDurationWithVariance() {
         
-        // TimeEvent starts in 1 hour, give or take 15 min
+        // CalendarEvent starts in 1 hour, give or take 15 min
         
         let rule = TransitionDurationWithVariance()
         rule.inputDate = NSDate.dateFromString("2015-1-1 10:00:00")
@@ -37,28 +37,28 @@ class RuleTests: XCTestCase {
         XCTAssert(window.StartDate.isEqualToDate(NSDate.dateFromString("2015-1-1 10:45:00")))
         XCTAssert(window.EndDate.isEqualToDate(NSDate.dateFromString("2015-1-1 11:15:00")))
         
-        //  TimeEvent starts in 30 mins, give or take 5 min
+        //  CalendarEvent starts in 30 mins, give or take 5 min
         rule.eventStartsInDuration = Timesize(unit: .Minute, amount: 30)
         rule.variance = Timesize(unit: .Minute, amount: 5)
         window = rule.eventStartTimeWindow!
         XCTAssert(window.StartDate.isEqualToDate(NSDate.dateFromString("2015-1-1 10:25:00")))
         XCTAssert(window.EndDate.isEqualToDate(NSDate.dateFromString("2015-1-1 10:35:00")))
         
-        //  TimeEvent starts in 1 day, give or take 1 hour
+        //  CalendarEvent starts in 1 day, give or take 1 hour
         rule.eventStartsInDuration = Timesize(unit: .Day, amount: 1)
         rule.variance = Timesize(unit: .Hour, amount: 1)
         window = rule.eventStartTimeWindow!
         XCTAssert(window.StartDate.isEqualToDate(NSDate.dateFromString("2015-1-2 09:00:00")))
         XCTAssert(window.EndDate.isEqualToDate(NSDate.dateFromString("2015-1-2 11:00:00")))
         
-        //  TimeEvent starts in 1 week, give or take 1 day
+        //  CalendarEvent starts in 1 week, give or take 1 day
         rule.eventStartsInDuration = Timesize(unit: .Week, amount: 1)
         rule.variance = Timesize(unit: .Day, amount: 1)
         window = rule.eventStartTimeWindow!
         XCTAssert(window.StartDate.isEqualToDate(NSDate.dateFromString("2015-1-7 10:00:00")))
         XCTAssert(window.EndDate.isEqualToDate(NSDate.dateFromString("2015-1-9 10:00:00")))
         
-        //  TimeEvent starts in 1 month, give or take 3 days
+        //  CalendarEvent starts in 1 month, give or take 3 days
         rule.eventStartsInDuration = Timesize(unit: .Month, amount: 1)
         rule.variance = Timesize(unit: .Day, amount: 3)
         window = rule.eventStartTimeWindow!
@@ -68,7 +68,7 @@ class RuleTests: XCTestCase {
     
     func testTransitionDurationWithVarianceBackwards() {
         
-        // TimeEvent starts in 1 hour, give or take 15 min
+        // CalendarEvent starts in 1 hour, give or take 15 min
         
         let rule = TransitionDurationWithVariance()
         rule.inputDate = NSDate.dateFromString("2015-1-1 10:00:00")

@@ -98,7 +98,7 @@
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                     <connections>
-                                        <binding destination="-2" name="value" keyPath="self.nodePresenter.humanReadableString" id="Oe5-nT-mrx"/>
+                                        <binding destination="-2" name="value" keyPath="self.nodePresenter.statusDescription" id="9fz-7H-08X"/>
                                     </connections>
                                 </textField>
                                 <box verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="F17-XD-WdX">
@@ -120,10 +120,10 @@
                             </customSpacing>
                         </stackView>
                         <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="3" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6EG-as-AJv">
-                            <rect key="frame" x="0.0" y="21" width="250" height="71"/>
+                            <rect key="frame" x="0.0" y="13" width="250" height="79"/>
                             <subviews>
                                 <stackView distribution="fill" orientation="horizontal" alignment="baseline" spacing="210" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fgA-j6-eLf">
-                                    <rect key="frame" x="0.0" y="53" width="250" height="18"/>
+                                    <rect key="frame" x="0.0" y="63" width="250" height="16"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="706-Bj-ymx">
                                             <rect key="frame" x="-2" y="0.0" width="33" height="14"/>
@@ -154,19 +154,19 @@
                                     </customSpacing>
                                 </stackView>
                                 <box ambiguous="YES" misplaced="YES" title="Box" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="jYC-LU-8Wf">
-                                    <rect key="frame" x="-3" y="-4" width="256" height="56"/>
+                                    <rect key="frame" x="-3" y="-4" width="256" height="66"/>
                                     <view key="contentView" focusRingType="none" ambiguous="YES" id="dvN-xw-Gnb">
-                                        <rect key="frame" x="1" y="1" width="254" height="54"/>
+                                        <rect key="frame" x="1" y="1" width="254" height="64"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <scrollView ambiguous="YES" misplaced="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="0R7-Oc-1ih">
-                                                <rect key="frame" x="5" y="49" width="242" height="53"/>
+                                                <rect key="frame" x="5" y="59" width="242" height="53"/>
                                                 <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="Eha-Pe-gdp">
                                                     <rect key="frame" x="0.0" y="0.0" width="242" height="53"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <collectionView ambiguous="YES" selectable="YES" id="Vh4-gK-Teh" customClass="RuleCollectionView" customModule="FilamentKit">
-                                                            <rect key="frame" x="0.0" y="0.0" width="235" height="29"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="235" height="0.0"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" scrollDirection="horizontal" id="o8Y-fR-MuF">
                                                                 <size key="itemSize" width="50" height="50"/>
@@ -207,8 +207,8 @@
                                 <real value="3.4028234663852886e+38"/>
                             </customSpacing>
                         </stackView>
-                        <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GRN-nw-n6Q">
-                            <rect key="frame" x="-2" y="0.0" width="258" height="14"/>
+                        <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" misplaced="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GRN-nw-n6Q">
+                            <rect key="frame" x="-2" y="0.0" width="258" height="6"/>
                             <textFieldCell key="cell" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" placeholderString="Notes" id="XC6-4J-Vzk">
                                 <font key="font" metaFont="smallSystem"/>
                                 <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
