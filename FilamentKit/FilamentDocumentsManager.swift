@@ -148,6 +148,8 @@ public extension FilamentDocumentsManager {
     
     public class func filterDocumentsForFilterType(documents:[FilamentDocument], filterType:DocumentFilterType) -> [FilamentDocument] {
         
+        print("Filtering Documents")
+        
         var returnDocuments = [FilamentDocument]()
         
         switch filterType {

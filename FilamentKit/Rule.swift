@@ -55,7 +55,9 @@ protocol RuleType {
     var avoidPeriods: [AvoidPeriod]?
     var previousPeriod: DTTimePeriod?
     var solvedPeriod: DTTimePeriod?
+    
     func postSolverCodeBlock() {}
+    func preDeletionCodeBlock() {}
     
     override init() { super.init() }
 

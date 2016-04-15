@@ -166,7 +166,6 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     }
     
     public func openDocument(event: NSEvent) {
-        
         let panel = NSOpenPanel()
         panel.allowsMultipleSelection = false
         //    panel.allowedFileTypes = [".fil"]
@@ -179,7 +178,6 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     }
     
     public func saveDocumentAs(event: NSEvent) {
-        
         guard let sequence = filteredDocuments[self.tableView.selectedRow].sequencePresenter else { return }
         
         let panel = NSSavePanel()
@@ -221,7 +219,6 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         self.undoManager?.undo()
     }
     
-    
     public override func mouseDown(theEvent: NSEvent) {
         super.mouseDown(theEvent)
         // deselect if click wasn't on a row
@@ -259,7 +256,6 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         default: return false
         }
     }
-    
     
     //MARK: Generic Rules Collection View
     
