@@ -21,7 +21,7 @@ class EventDurationWithMinimumDuration : Rule  {
     
     override init() {
         super.init()
-    ruleType = "eventDurationWithMinimumDuration"
+        ruleType = "eventDurationWithMinimumDuration"
     }
     
     // Specific user controls
