@@ -129,6 +129,8 @@ public extension FilamentDocumentsManager {
         document.sequencePresenter?.prepareForCompleteDeletion()
         document.updateChangeCount(.ChangeCleared)
         document.sequencePresenter = nil
+        print(NSDocumentController.sharedDocumentController().documents)
+        NSDocumentController.sharedDocumentController().removeDocument(document)
         
         let url = document.storageURL()
         let fileManager = NSFileManager.defaultManager()

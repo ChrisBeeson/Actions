@@ -64,7 +64,6 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     }
     
     func updateTableViewContent(animated:Bool) {
-        
         let newFilteredDocuments = FilamentDocumentsManager.filterDocumentsForFilterType(allDocuments, filterType: self.filter)
         
         if animated == false {
@@ -102,7 +101,6 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     }
     
     public func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        
         let cellView = tableView.makeViewWithIdentifier("FilamentCellView", owner: self) as! FilamentTableCellView
         cellView.presenter = filteredDocuments[row].sequencePresenter
         cellView.presenter?.addDelegate(cellView)
@@ -124,11 +122,9 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     // MARK: Filaments Manager Delegate
     
     public func filamentsDocumentsManagerDidUpdateContents(inserted inserted:[FilamentDocument], removed:[FilamentDocument]) {
-        Async.main {
             self.allDocuments.removeObjects(removed)
             self.allDocuments.appendContentsOf(inserted)
             self.updateTableViewContent(true)
-        }
     }
     
     // MARK: First Responder Events

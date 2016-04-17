@@ -41,7 +41,7 @@ protocol RuleType {
  public class Rule: NSObject, RuleType, NSCoding, NSCopying, MappableCluster {
     
     var name: String {get {return "Not set"} }
-    var ruleType: String?
+    var ruleClass: String { get { return self.className } set {}}
     var availableToNodeType: NodeType {get {return NodeType.Void} }
     var conflictingRules: [Rule]? {get {return nil} }
     var options: RoleOptions {get { return RoleOptions.None } }
@@ -87,33 +87,32 @@ protocol RuleType {
     required public init?(_ map: Map) {}
     
     public func mapping(map: Map) {
-        //  self.name <- map["ruleName"]
-        ruleType <- map["ruleType"]
+        ruleClass <- map["ruleClass"]
     }
     
     public static func objectForMapping(map: Map) -> Mappable? {
         
-        if let type: String = map["ruleType"].value() {
+        if let type: String = map["ruleClass"].value() {
             switch type {
-            case "TransitionDurationWithVariance":
+            case TransitionDurationWithVariance.className():
                 return TransitionDurationWithVariance(map)
-            case "EventDurationWithMinimumDuration":
+            case EventDurationWithMinimumDuration.className():
                return EventDurationWithMinimumDuration(map)
-            case "avoidCalendarEventsRule":
+            case AvoidCalendarEventsRule.className():
                 return AvoidCalendarEventsRule(map)
-            case "workingWeekRule":
+            case WorkingWeekRule.className():
                 return WorkingWeekRule(map)
-            case "transitionDurationBasedOnTravelTime":
+            case TransitionDurationBasedOnTravelTime.className():
                 return TransitionDurationBasedOnTravelTime(map)
-            case "eventFixedStartAndEndDate":
+            case EventFixedStartAndEndDate.className():
                 return EventFixedStartAndEndDate(map)
-            case "greaterThanLessThanRule":
+            case GreaterThanLessThanRule.className():
                 return GreaterThanLessThanRule(map)
-            case "nextUnitRule":
+            case NextUnitRule.className():
                 return NextUnitRule(map)
-            case "waitForUserRule":
+            case WaitForUserRule.className():
                 return WaitForUserRule(map)
-            case "eventAlarmRule":
+            case EventAlarmRule.className():
                 return EventAlarmRule(map)
             default:
                 return nil

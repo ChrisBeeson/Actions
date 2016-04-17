@@ -73,7 +73,8 @@ public class Calendar : NSObject, NSCoding, Mappable {
     override  public func isEqual(object: AnyObject?) -> Bool {
         
         if let cal = object as? Calendar {
-            if self.name == cal.name && self.colour!.isEqual(cal.colour) {
+            //   if self.name == cal.name && self.colour!.isEqual(cal.colour) {
+            if self.name == cal.name {
                 return true
             }
             return false

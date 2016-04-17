@@ -98,6 +98,12 @@ class NodeView: NSView {
             
         case .Ready:
             CATransaction.begin()
+            CATransaction.setDisableActions(!shouldTransition)
+            self.pathLayer.strokeColor = drawingContextColour(.Green).stroke
+            self.pathLayer.fillColor = drawingContextColour(.Green).fill
+            CATransaction.commit()
+            /*
+            CATransaction.begin()
             CATransaction.setDisableActions(true)
             self.pathLayer.strokeColor = drawingContextColour(.LightGrey).stroke
             self.pathLayer.fillColor = drawingContextColour(.LightGrey).fill
@@ -123,6 +129,7 @@ class NodeView: NSView {
             //else {
             //    Swift.print("false")
             // }
+ */
         
         case .Running:
             let anim = CABasicAnimation(keyPath: "fillColor")
@@ -158,8 +165,8 @@ class NodeView: NSView {
         case .InheritedError:
             CATransaction.begin()
             CATransaction.setDisableActions(!shouldTransition)
-            pathLayer.strokeColor = drawingContextColour(.LightRed).stroke
-            pathLayer.fillColor = drawingContextColour(.LightRed).fill
+            pathLayer.strokeColor = drawingContextColour(.Red).stroke
+            pathLayer.fillColor = drawingContextColour(.Red).fill
             CATransaction.commit()
             
         case .Completed:
@@ -178,7 +185,7 @@ class NodeView: NSView {
         
         switch state {
         case .Inactive: return .LightGrey
-        case .Ready: return .LightGrey
+        case .Ready: return .Green
         case .Running: return .Green
         case .Completed: return .LightGrey
         case .WaitingForUserInput: return .Blue

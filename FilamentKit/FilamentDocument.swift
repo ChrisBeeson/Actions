@@ -144,6 +144,10 @@ public class FilamentDocument: NSDocument {
         }
     }
     
+    
+    public override func makeWindowControllers() {
+    }
+    
     public var suggestedExportFilename : String {
         var filename = sequencePresenter!.title.stringByReplacingOccurrencesOfString(" ", withString: "_", options:NSStringCompareOptions.CaseInsensitiveSearch , range: nil)
         filename.appendContentsOf("."+AppConfiguration.applicationFileExtension)

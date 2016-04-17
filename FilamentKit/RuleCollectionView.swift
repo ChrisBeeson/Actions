@@ -68,12 +68,14 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
                 let item = (self.itemAtIndexPath(index) as! DragDropCopyPasteItem)
                 items.append(item.pasteboardItem())
             }
+            NSPasteboard.generalPasteboard().clearContents()
             NSPasteboard.generalPasteboard().writeObjects(items)
         }
     }
     
     public func paste(event: NSEvent) {
         if NSPasteboard.generalPasteboard().canReadItemWithDataConformingToTypes([AppConfiguration.UTI.rule]) != true { return }
+        Swift.print("Paste Rule")
     }
     
     override public func mouseDown(theEvent: NSEvent) {

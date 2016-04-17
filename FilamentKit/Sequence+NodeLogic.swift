@@ -67,7 +67,8 @@ extension Sequence {
 	func insertActionNode(node: Node, index:Int? = nil) {
 		precondition(node.type == .Action, "Trying to insert node into sequence that is not of type .Action")
 		
-		let indexToInsertNode = index ?? self.actionNodes.count
+		var indexToInsertNode = index ?? self.actionNodes.count
+		if indexToInsertNode > self.actionNodes.count { indexToInsertNode = self.actionNodes.count  }
 		
 		actionNodes.insert(node, atIndex:indexToInsertNode)
 		

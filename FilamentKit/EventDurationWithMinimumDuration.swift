@@ -21,7 +21,7 @@ class EventDurationWithMinimumDuration : Rule  {
     
     override init() {
         super.init()
-        ruleType = "eventDurationWithMinimumDuration"
+        ruleClass = "eventDurationWithMinimumDuration"
     }
     
     // Specific user controls
@@ -73,7 +73,7 @@ class EventDurationWithMinimumDuration : Rule  {
     
     override func mapping(map: Map) {
         super.mapping(map)
-        ruleType                     <- map["ruleType"]
+        ruleClass                     <- map["ruleClass"]
         duration        <- map[SerializationKeys.duration]
         minDuration     <- map[SerializationKeys.minDuration]
     }

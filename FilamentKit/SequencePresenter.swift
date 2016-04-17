@@ -36,9 +36,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         }
     }
     
-    deinit {
-        print("SequencePresenter deinit")
-    }
+    deinit { print("SequencePresenter deinit") }
     
     public var title: String {
         get {
@@ -168,7 +166,6 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
             _sequence!.removeActionNode(node)
         }
         
-        
         /*
         for node in nodes {
             let indx = sequence.actionNodes.indexOf(node)
@@ -182,9 +179,9 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
             presentersToDelete.forEach{ $0.prepareForDeletion() }
             _nodePresenters.removeObjects(presentersToDelete)
              _sequence!.removeActionNode(node)
-       
         }
         */
+        
         representingDocument?.updateChangeCount(.ChangeDone)
         if informDelegates == true { informDelegatesOfChangesToNodeChain(oldNodes) }
     }
@@ -199,7 +196,6 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
          delegates.forEach{ $0.sequencePresenterDidRefreshCompleteLayout(self) }
         //   informDelegatesOfChangesToNodeChain(oldNodes)
     }
-    
     
     // MARK: Node Presenter
     
@@ -227,7 +223,6 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         updateState(true)
     }
     
-    
     // MARK: State
     
     public func updateState(processEvents: Bool) {
@@ -248,12 +243,14 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         _nodePresenters.removeAll()
         NSNotificationCenter.defaultCenter().removeObserver(self)
         representingDocument?.updateChangeCount(.ChangeDone)
+        representingDocument = nil
     }
     
     //MARK: Rule Presenters
     
     public func addRulePresenter(rule:RulePresenter, atIndex:Int) {
         guard atIndex > -1 && atIndex <= sequence.generalRules.count else { return }
+        // guard rule.rule.type.contains[""] else { return }
         sequence.generalRules.insert(rule.rule, atIndex: atIndex)
         delegates.forEach{ $0.sequencePresenterDidChangeGeneralRules(self) }
         updateState(true)

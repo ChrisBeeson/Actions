@@ -22,8 +22,6 @@ class TransitionDurationWithVariance: Rule {
     
     override init() {
         super.init()
-    ruleType = "TransitionDurationWithVariance"
-    
     }
     
     // Rule user input
@@ -86,7 +84,6 @@ class TransitionDurationWithVariance: Rule {
     
     override func mapping(map: Map) {
         super.mapping(map)
-        ruleType                     <- map["ruleType"]
         eventStartsInDuration        <- map[SerializationKeys.eventStartsInDuration]
         variance                     <- map[SerializationKeys.variance]
     }

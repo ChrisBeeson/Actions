@@ -1,6 +1,5 @@
 PODS:
   - AsyncSwift (1.7.2)
-  - CCNStatusItem (0.6.0)
   - Crashlytics (3.7.0):
     - Fabric (~> 1.6.3)
   - DateTools (1.7.0)
@@ -9,7 +8,6 @@ PODS:
 
 DEPENDENCIES:
   - AsyncSwift
-  - CCNStatusItem (~> 0.5)
   - Crashlytics
   - DateTools (~> 1.7)
   - Fabric
@@ -17,7 +15,6 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AsyncSwift: 46a78bceb11f0e5bb52747f740d9692ec78d2d7c
-  CCNStatusItem: 5b0e49dcfc21f65b530985ec838c737b1d2195ca
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7

@@ -136,18 +136,39 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
                 }
             }
         }
+        NSPasteboard.generalPasteboard().clearContents()
+        NSPasteboard.generalPasteboard().writeObjects(items)
     }
     
     public func paste(event: NSEvent) {
-        Swift.print("paste")
+        //  Swift.print("paste")
         
         // So whats on the pasteboard!
         if NSPasteboard.generalPasteboard().canReadItemWithDataConformingToTypes([AppConfiguration.UTI.node]) == true {
-            Swift.print("paste NODE!")
+            
+            let node = NodePresenter(pasteboardItem: NSPasteboard.generalPasteboard().pasteboardItems![0]).node
+            
+            if self.selectionIndexPaths.count>0 {
+                 let actionIndex = actionNodeIndexForPath(selectionIndexPaths.first!)
+                //TODO: Create Node Init for pasteboardData
+                presenter?.insertActionNode(node, actionNodesIndex: actionIndex, informDelegates: true)
+            } else {
+                 presenter?.insertActionNode(node, actionNodesIndex: nil, informDelegates: true)
+            }
         }
         
         if NSPasteboard.generalPasteboard().canReadItemWithDataConformingToTypes([AppConfiguration.UTI.rule]) == true {
-            Swift.print("paste RULE!")
+            
+            let rulePresenter = RulePresenter(pasteboardItem: NSPasteboard.generalPasteboard().pasteboardItems![0])
+            
+            if self.selectionIndexPaths.count > 0 {
+                // let actionIndex = actionNodeIndexForPath(selectionIndexPaths.first!)
+                let item = itemAtIndexPath(selectionIndexPaths.first!) as! NodeCollectionViewItem
+                item.presenter?.insertRulePresenter(rulePresenter, atIndex: 0)
+                
+            } else {
+                
+            }
         }
     }
     
