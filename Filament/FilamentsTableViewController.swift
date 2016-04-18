@@ -64,6 +64,7 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     }
     
     func updateTableViewContent(animated:Bool) {
+        
         let newFilteredDocuments = FilamentDocumentsManager.filterDocumentsForFilterType(allDocuments, filterType: self.filter)
         
         if animated == false {
@@ -75,6 +76,8 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
             return
         }
         
+        CATransaction.setDisableActions(false)
+        
         let oldRows = filteredDocuments
         let newRows = newFilteredDocuments
         let diff = oldRows.diff(newRows)
@@ -85,7 +88,7 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
             diff.deletions.forEach { deletionIndexPaths.addIndex($0.idx) }
             let insertionIndexPaths = NSMutableIndexSet()
             diff.insertions.forEach { insertionIndexPaths.addIndex($0.idx) }
-            
+
             self.tableView?.beginUpdates()
             self.tableView?.removeRowsAtIndexes(deletionIndexPaths, withAnimation: NSTableViewAnimationOptions.EffectFade)
             self.tableView?.insertRowsAtIndexes(insertionIndexPaths, withAnimation: NSTableViewAnimationOptions.SlideLeft)
@@ -111,7 +114,6 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     }
     
     public func tableViewSelectionDidChange(notification: NSNotification) {
-        
         for row in 0 ..< tableView.numberOfRows {
             if let cellView = tableView.viewAtColumn(0, row: row, makeIfNecessary: false) as? FilamentTableCellView {
                 cellView.selected = tableView.isRowSelected(row)
@@ -127,35 +129,35 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
             self.updateTableViewContent(true)
     }
     
-    // MARK: First Responder Events
     
-    public func delete(theEvent: NSEvent) {
-        if self.tableView.selectedRowIndexes.count == 0 { return }
+    //MARK: Menu
+    
+    public override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
         
-        let alert = NSAlert()
-        alert.informativeText = "TABLEVIEW_DELETE_SEQ_TITLE".localized
-        alert.messageText = "TABLEVIEW_DELETE_SEQ_DELETE".localized
-        alert.showsHelp = false
-        alert.addButtonWithTitle("TABLEVIEW_DELETE_SEQ_DELETE".localized)
-        alert.addButtonWithTitle("TABLEVIEW_DELETE_SEQ_CANCEL".localized)
-        
-        switch (alert.runModal()) {
-        case NSAlertFirstButtonReturn:   // Delete
-            if let cellView = tableView.viewAtColumn(0, row: tableView.selectedRow, makeIfNecessary: false) as? FilamentTableCellView {
-                Async.userInitiated {
-                    FilamentDocumentsManager.sharedManager.deleteDocumentForPresenter(cellView.presenter!)
-                    cellView.presenter = nil
-                }
-            }
-        default: break
+        switch menuItem.action {
+        case #selector(FilamentsTableViewController.newDocument(_:)):
+            return true
+            
+        case #selector(FilamentsTableViewController.openDocument(_:)):
+            return true
+            
+        case #selector(FilamentsTableViewController.paste(_:)):
+            let pasteboard = NSPasteboard.generalPasteboard()
+            return pasteboard.canReadItemWithDataConformingToTypes([AppConfiguration.UTI.container])
+            
+        case #selector(FilamentsTableViewController.copy(_:)),
+             #selector(FilamentsTableViewController.cut(_:)),
+             #selector(FilamentsTableViewController.delete(_:)),
+             #selector(FilamentsTableViewController.saveDocumentAs(_:)):
+            return self.tableView.selectedRowIndexes.count > 0 ? true : false
+            
+        case #selector(FilamentsTableViewController.undo(_:)):
+            return self.undoManager!.canUndo
+            
+        default: return false
         }
     }
     
-    /*
-     override public func keyDown(theEvent: NSEvent) {
-     Swift.print(theEvent)
-     }
-     */
     
     public func newDocument(event: NSEvent) {
         FilamentDocument.newDocument("NEW_DOCUMENT_DEFAULT_TITLE".localized)
@@ -179,14 +181,41 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         let panel = NSSavePanel()
         panel.nameFieldStringValue = sequence.representingDocument!.suggestedExportFilename
         
-        self.tableView.window!
-        
         panel.beginSheetModalForWindow(self.tableView.window!, completionHandler:{ (result) in
             if result == NSFileHandlingPanelOKButton && panel.URL != nil {
                 sequence.representingDocument!.exportWithFilename(panel.URL!)
             }
         })
     }
+    
+    public func delete(theEvent: NSEvent) {
+        if self.tableView.selectedRowIndexes.count == 0 { return }
+        
+        let alert = NSAlert()
+        alert.informativeText = "TABLEVIEW_DELETE_SEQ_TITLE".localized
+        alert.messageText = "TABLEVIEW_DELETE_SEQ_DELETE".localized
+        alert.showsHelp = false
+        alert.addButtonWithTitle("TABLEVIEW_DELETE_SEQ_DELETE".localized)
+        alert.addButtonWithTitle("TABLEVIEW_DELETE_SEQ_CANCEL".localized)
+        
+        switch (alert.runModal()) {
+        case NSAlertFirstButtonReturn:   // Delete
+            if let cellView = tableView.viewAtColumn(0, row: tableView.selectedRow, makeIfNecessary: false) as? FilamentTableCellView {
+
+                FilamentDocumentsManager.sharedManager.deleteDocumentForPresenter(cellView.presenter!)
+                // cellView.presenter = nil
+
+            }
+        default: break
+        }
+    }
+    
+    /*
+     override public func keyDown(theEvent: NSEvent) {
+     Swift.print(theEvent)
+     }
+     */
+
     
     public func copy(event: NSEvent) {
         guard self.tableView.selectedRow != -1 else { return }
@@ -226,32 +255,7 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     }
     
     
-    //MARK: Menu
-    public override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
-        
-        switch menuItem.action {
-        case #selector(FilamentsTableViewController.newDocument(_:)):
-            return true
-            
-        case #selector(FilamentsTableViewController.openDocument(_:)):
-            return true
-            
-        case #selector(FilamentsTableViewController.paste(_:)):
-            let pasteboard = NSPasteboard.generalPasteboard()
-            return pasteboard.canReadItemWithDataConformingToTypes([AppConfiguration.UTI.container])
-            
-        case #selector(FilamentsTableViewController.copy(_:)),
-             #selector(FilamentsTableViewController.cut(_:)),
-             #selector(FilamentsTableViewController.delete(_:)),
-             #selector(FilamentsTableViewController.saveDocumentAs(_:)):
-            return self.tableView.selectedRowIndexes.count > 0 ? true : false
-            
-        case #selector(FilamentsTableViewController.undo(_:)):
-            return self.undoManager!.canUndo
-            
-        default: return false
-        }
-    }
+
     
     //MARK: Generic Rules Collection View
     

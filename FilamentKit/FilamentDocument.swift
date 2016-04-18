@@ -18,14 +18,13 @@ public class FilamentDocument: NSDocument {
         return container!.sequences[0]
     }
     var container : Container?
-    var _sequencePresenter: SequencePresenter?
+    weak var _sequencePresenter: SequencePresenter?
     
     public var sequencePresenter: SequencePresenter? {
         get {
             if _sequencePresenter == nil {
                 _sequencePresenter = SequencePresenter()
                 _sequencePresenter!.setSequence(container!.sequences[0])
-                _sequencePresenter!.undoManager = self.undoManager
                 _sequencePresenter!.representingDocument = self
                 return _sequencePresenter
             } else {
@@ -84,7 +83,6 @@ public class FilamentDocument: NSDocument {
     //MARK: Load
     
     public class func newDocumentFromArchive(data: NSData) -> FilamentDocument {
-        
         let newDoc = FilamentDocument()
         newDoc.container = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? Container
         newDoc.container!.uuid =  NSUUID().UUIDString
@@ -164,8 +162,6 @@ public class FilamentDocument: NSDocument {
             }
         }
     }
-    
-
     
     
     // MARK: Serialization / Deserialization

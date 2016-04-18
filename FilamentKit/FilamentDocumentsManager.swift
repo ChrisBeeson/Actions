@@ -73,9 +73,11 @@ public class FilamentDocumentsManager : DirectoryMonitorDelegate {
             }
             
             self.documents.removeObjects(removedDocs)
-         Async.main {
+        
+        Async.main {
             self.delegate?.filamentsDocumentsManagerDidUpdateContents(inserted:insertedDocs, removed:removedDocs)
         }
+       
     }
     
     public func deleteDocumentForPresenter(presenter:SequencePresenter) {
@@ -125,13 +127,13 @@ public extension FilamentDocumentsManager {
     }
     
     public func permanentlyDeleteDocument(document: FilamentDocument) {
-        
+        /*
         document.sequencePresenter?.prepareForCompleteDeletion()
         document.updateChangeCount(.ChangeCleared)
         document.sequencePresenter = nil
         print(NSDocumentController.sharedDocumentController().documents)
         NSDocumentController.sharedDocumentController().removeDocument(document)
-        
+        */
         let url = document.storageURL()
         let fileManager = NSFileManager.defaultManager()
         
@@ -149,8 +151,6 @@ public enum DocumentFilterType: Int { case Active = 0, Completed = 1 }
 public extension FilamentDocumentsManager {
     
     public class func filterDocumentsForFilterType(documents:[FilamentDocument], filterType:DocumentFilterType) -> [FilamentDocument] {
-        
-        print("Filtering Documents")
         
         var returnDocuments = [FilamentDocument]()
         

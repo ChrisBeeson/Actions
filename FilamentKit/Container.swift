@@ -33,9 +33,14 @@ class Container: NSObject, NSCopying, NSCoding, Mappable {
     init(name:String, sequences:[Sequence]) {
         
         self.title = name
-        self.sequences = sequences.map { $0.copy() as! Sequence}
+        self.sequences = sequences
         super.init()
     }
+    
+    deinit {
+        print("Container deinit")
+    }
+    
     
     // MARK: NSCoding
     private struct SerializationKeys {
