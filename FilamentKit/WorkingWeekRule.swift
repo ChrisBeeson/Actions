@@ -17,7 +17,6 @@ class WorkingWeekRule: Rule {
     
     override var name: String { return "RULE_NAME_WORK_HOURS".localized }
     override var availableToNodeType:NodeType { return [.Generic] }
-    override var conflictingRules: [Rule]? { return nil }
     override var options: RoleOptions { get { return RoleOptions.RequiresInterestWindow } }
     
     var workingDayStartTime =  NSDate(string: "09:00", formatString: "HH:mm")

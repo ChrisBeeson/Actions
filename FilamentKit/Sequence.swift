@@ -39,10 +39,6 @@ class Sequence: NSObject, NSCopying, NSCoding, Mappable {
         }
     }
     
-    deinit {
-        print("Sequence deinit")
-    }
-    
     // MARK: NSCoding
     private struct SerializationKeys {
         static let title = "title"

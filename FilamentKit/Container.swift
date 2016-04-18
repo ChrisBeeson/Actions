@@ -37,10 +37,6 @@ class Container: NSObject, NSCopying, NSCoding, Mappable {
         super.init()
     }
     
-    deinit {
-        print("Container deinit")
-    }
-    
     
     // MARK: NSCoding
     private struct SerializationKeys {

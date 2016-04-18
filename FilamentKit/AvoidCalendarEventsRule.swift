@@ -17,7 +17,6 @@ class AvoidCalendarEventsRule : Rule {
     
     override var name: String { return "RULE_NAME_AVOID_CALS".localized }
     override var availableToNodeType: NodeType { return [.Generic] }
-    override var conflictingRules: [Rule]? { return nil }
     override var options: RoleOptions { get { return RoleOptions.RequiresInterestWindow } }
     
     var calendars = [Calendar]()

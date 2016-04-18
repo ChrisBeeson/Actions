@@ -22,8 +22,11 @@ public class RulePresenter : NSObject {
     var ruleViewController : RuleViewController?
     var rule : Rule
     
+    var useDetailName = true
+    
     var name : NSString {
-        return rule.name
+        if useDetailName == true {return rule.detailName }
+        else {return rule.name }
     }
     
     var availableToNodeType : NodeType {

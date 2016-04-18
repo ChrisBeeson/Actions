@@ -33,6 +33,23 @@ class Timesize: NSObject, NSCoding, Mappable  {
         }
     }
     
+    var unitString: String {
+        switch unit {
+        case .Second: return "RULE_UNIT_SEC".localized
+        case .Minute: return "RULE_UNIT_MIN".localized
+        case .Hour: return  "RULE_UNIT_HOUR".localized
+        case .Day: return "RULE_UNIT_DAY".localized
+        case .Week: return "RULE_UNIT_WEEK".localized
+        case .Month: return "RULE_UNIT_MONTH".localized
+        case .Year:return "RULE_UNIT_YEAR".localized
+        }
+    }
+    
+    var detailString:String {
+        return String("\(amount)\(unitString)")
+    }
+    
+    
     //MARK:NSCoding
     
     required  init?(coder aDecoder: NSCoder) {

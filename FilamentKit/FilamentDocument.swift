@@ -38,7 +38,6 @@ public class FilamentDocument: NSDocument {
     
     
     deinit {
-        print("Filament Document deinit")
         _sequencePresenter = nil
     }
     

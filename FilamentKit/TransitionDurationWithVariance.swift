@@ -18,7 +18,6 @@ class TransitionDurationWithVariance: Rule {
     
     override var name: String { return "RULE_NAME_DURATION_WITH_VARIANCE".localized }
     override var availableToNodeType: NodeType { return [.Transition] }
-    override var conflictingRules: [Rule]? { return nil }
     
     override init() {
         super.init()
@@ -46,6 +45,10 @@ class TransitionDurationWithVariance: Rule {
         case .Backward: return inputDate?.dateBySubtractingTimesize(eventStartsInDuration)
         }
         }
+    }
+    
+    override var detailName: String {
+        return "\(eventStartsInDuration.detailString) ~\(variance.detailString)"
     }
     
     

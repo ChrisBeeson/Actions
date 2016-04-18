@@ -45,6 +45,15 @@
 "RUlE_WORKING_WEEK_EVENING" = "time outside of work hours";
 "RUlE_WORKING_WEEK_DAY_OFF" = "day off";
 
+    //UNITS
+"RULE_UNIT_SEC" = "sec";
+"RULE_UNIT_MIN" = "min";
+"RULE_UNIT_HOUR" = "hr";
+"RULE_UNIT_DAY" = "day";
+"RULE_UNIT_WEEK" = "wk";
+"RULE_UNIT_MONTH" = "mth";
+"RULE_UNIT_YEAR" = "yr";
+
 // NODES
 "NODE_EVENT_STRING_NO_EVENT" = "No Calendar Event";
 

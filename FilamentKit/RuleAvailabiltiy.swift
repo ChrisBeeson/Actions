@@ -26,7 +26,10 @@ extension RuleAvailabiltiy {
             }
         }
         allRules = allRules.filter{ $0.availableToNodeType.contains(self.type) }
-        return allRules.map{ RulePresenter(rule: $0) }
+        
+        let rulesToReturn = allRules.map{ RulePresenter(rule: $0) }
+        rulesToReturn.forEach{$0.useDetailName = false}
+        return rulesToReturn
     }
     
     
@@ -35,6 +38,7 @@ extension RuleAvailabiltiy {
         for rule in self.rules {
             presenters.append(RulePresenter.makeRulePresenter(rule))
         }
+        presenters.forEach{$0.useDetailName = true}
         return presenters
     }
     

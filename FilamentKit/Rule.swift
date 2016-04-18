@@ -10,12 +10,23 @@ import Foundation
 import DateTools
 import ObjectMapper
 
+struct RoleOptions : OptionSetType {
+    let rawValue: Int
+    init(rawValue:Int) { self.rawValue = rawValue }
+    
+    static let None = RoleOptions(rawValue: 1)
+    static let RequiresInterestWindow = RoleOptions(rawValue: 2)
+    static let RequiresPreviousPeriod = RoleOptions(rawValue: 4)
+    static let RequiresSolvedPeriod = RoleOptions(rawValue: 8)
+    static let HasPostSolverCodeBlock = RoleOptions(rawValue: 16)
+}
+
 protocol RuleType {
     
     var name: String {get}
     var availableToNodeType: NodeType {get}
-    var conflictingRules: [Rule]? {get}
     var options: RoleOptions { get }
+    var detailName: String {get}
     
     // Inputs
     var inputDate: NSDate? {get set}
@@ -31,6 +42,7 @@ protocol RuleType {
     // Interactions
     var avoidPeriods: [AvoidPeriod]? {get set}
     var previousPeriod: DTTimePeriod? {get set}
+    func conflictsWithRule(rule:Rule) -> Bool
     
     // Post Solver
     var solvedPeriod: DTTimePeriod? {get set}
@@ -43,8 +55,9 @@ protocol RuleType {
     var name: String {get {return "Not set"} }
     var ruleClass: String { get { return self.className } set {}}
     var availableToNodeType: NodeType {get {return NodeType.Void} }
-    var conflictingRules: [Rule]? {get {return nil} }
     var options: RoleOptions {get { return RoleOptions.None } }
+    var detailName: String { return name}
+    
     var inputDate: NSDate?
     var timeDirection = TimeDirection.Forward
     var interestPeriod: DTTimePeriod?
@@ -58,6 +71,9 @@ protocol RuleType {
     
     func postSolverCodeBlock() {}
     func preDeletionCodeBlock() {}
+    func conflictsWithRule(rule:Rule) -> Bool { return false }
+    
+    
     
     override init() { super.init() }
 
@@ -77,13 +93,16 @@ protocol RuleType {
     }
     
     //MARK: NSCoding
-    required public init?(coder aDecoder: NSCoder) { super.init()}
-    public func encodeWithCoder(aCoder: NSCoder) {}
+    
+    required public init?(coder aDecoder: NSCoder) { super.init() }
+    public func encodeWithCoder(aCoder: NSCoder) { fatalError() }
 
     // MARK: NSCopying
+    
     public func copyWithZone(zone: NSZone) -> AnyObject  { fatalError() }
     
     //MARK: JSON Mapping
+    
     required public init?(_ map: Map) {}
     
     public func mapping(map: Map) {
@@ -91,7 +110,6 @@ protocol RuleType {
     }
     
     public static func objectForMapping(map: Map) -> Mappable? {
-        
         if let type: String = map["ruleClass"].value() {
             switch type {
             case TransitionDurationWithVariance.className():
@@ -120,16 +138,4 @@ protocol RuleType {
         }
         return nil
     }
-}
-
-struct RoleOptions : OptionSetType {
-    
-    let rawValue: Int
-    init(rawValue:Int) { self.rawValue = rawValue }
-    
-    static let None = RoleOptions(rawValue: 1)
-    static let RequiresInterestWindow = RoleOptions(rawValue: 2)
-    static let RequiresPreviousPeriod = RoleOptions(rawValue: 4)
-    static let RequiresSolvedPeriod = RoleOptions(rawValue: 8)
-    static let HasPostSolverCodeBlock = RoleOptions(rawValue: 16)
 }

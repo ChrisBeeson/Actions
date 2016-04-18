@@ -25,6 +25,15 @@ enum NextUnitType: Int {
     case Week
     case Month
     case Year
+    
+    var unitString: String {
+        switch self {
+        case .Day: return "RULE_UNIT_DAY".localized
+        case .Week: return "RULE_UNIT_WEEK".localized
+        case .Month: return "RULE_UNIT_MONTH".localized
+        case .Year:return "RULE_UNIT_YEAR".localized
+        }
+    }
 }
 
 class NextUnitRule : Rule {
@@ -119,6 +128,14 @@ class NextUnitRule : Rule {
         let timesize = Timesize(unit: periodUnit, amount: amount)
         guard let date = inputDate?.dateByAddingTimesize(timesize)  else { fatalError() }
         return date
+    }
+    
+    override var detailName: String {
+        if amount > 1 {
+            return "Next \(amount) \(self.unit.unitString)s"
+        } else {
+            return "Next \(unit.unitString)"
+        }
     }
     
     

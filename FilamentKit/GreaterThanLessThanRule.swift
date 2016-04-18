@@ -69,6 +69,10 @@ class GreaterThanLessThanRule : Rule {
         }
     }
     
+    override var detailName: String {
+        return ">\(greaterThan.detailString) <\(lessThan.detailString)"
+    }
+    
     // MARK: NSCoding
     
     private struct SerializationKeys {

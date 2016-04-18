@@ -17,7 +17,6 @@ class EventDurationWithMinimumDuration : Rule  {
     
     override var name: String { return "RULE_NAME_DURATION_WITH_MIN".localized  }
     override var availableToNodeType: NodeType { return [.Action] }
-    override var conflictingRules: [Rule]? { return nil }
     
     override init() {
         super.init()
@@ -34,6 +33,10 @@ class EventDurationWithMinimumDuration : Rule  {
     
     override var eventMinDuration: Timesize? { get { return minDuration } }
     override var eventDuration: Timesize? { get { return duration } }
+    
+    override var detailName: String {
+        return "\(duration.detailString)  (-\(minDuration.detailString))"
+    }
     
     
     // MARK: NSCoding
