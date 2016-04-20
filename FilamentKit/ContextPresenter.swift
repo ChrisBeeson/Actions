@@ -40,7 +40,7 @@ public class ContextPresenter : NodePresenter {
         }
     }
     
-    override public var type: NodeType { get { return [.Generic] } }
+    override public var type: NodeType { get { return [.Generic] }  set {}}
     
 
     public func save() {

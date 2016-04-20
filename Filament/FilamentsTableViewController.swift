@@ -50,9 +50,18 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
     
     override public func viewWillAppear() {
         super.viewWillAppear()
-        
         updateTableViewContent(false)
         refreshGenericRulesCollectionView()
+    }
+    
+    override public func viewDidAppear() {
+        super.viewDidAppear()
+        
+       /*
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewControllerWithIdentifier("viewController")
+        self.navigationController!.pushViewController(vc, animated: true)
+ */
     }
     
     
@@ -254,9 +263,7 @@ public class FilamentsTableViewController:  NSViewController, NSTableViewDataSou
         }
     }
     
-    
 
-    
     //MARK: Generic Rules Collection View
     
     @IBAction func addGenericRuleButtonPressed(sender: AnyObject) {

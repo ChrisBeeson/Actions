@@ -36,7 +36,6 @@ class MainWindowController: NSWindowController {
     
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String: AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        
         self.window!.title = "Filament - " + window!.firstResponder.className
     }
     

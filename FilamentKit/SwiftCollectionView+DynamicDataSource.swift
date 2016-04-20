@@ -80,7 +80,7 @@ extension SequenceCollectionView {
         switch itemTypeAtIndex(path) {
         case .Date: return NSSize(width: 50,height: 37)
         case .AddButton: return NSSize(width: 30,height: 25)
-        case .ActionNode:
+        case .ActionNode:          //TODO: NodeCollectionViewItem.calculatedSize()
             if nodeIndex >= presenter!.nodes!.count {
                 Swift.print("Index out of bounds \(nodeIndex) count:\(presenter!.nodes!.count)")
                 return NSSize.zero

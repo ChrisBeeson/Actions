@@ -58,6 +58,23 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate, Drag
     }
     
     
+    func calculatedSize() -> NSSize {
+        switch presenter!.type {
+        case NodeType.Action:
+            let string:NSString = presenter!.title as NSString
+            let textSize: CGSize = string.sizeWithAttributes([NSFontAttributeName: NSFont.systemFontOfSize(14.0, weight:NSFontWeightThin) ])
+            return NSSize(width: textSize.width + 30.4, height: 35)
+            
+        case  NodeType.Transition:
+            let string:NSString = presenter!.title as NSString
+            let textSize: CGSize = string.sizeWithAttributes([NSFontAttributeName: NSFont.systemFontOfSize(9, weight:NSFontWeightRegular) ])
+            return NSSize(width:textSize.width + 40, height: 24)
+            
+        default: return NSSize(width: 1, height: 35)
+        }
+    }
+    
+    
     override func mouseDown(theEvent: NSEvent) {
         super.mouseDown(theEvent)
         if theEvent.clickCount < 2 { return }

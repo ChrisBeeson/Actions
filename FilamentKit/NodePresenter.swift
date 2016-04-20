@@ -82,6 +82,9 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
         get {
             return node.type
         }
+        set {
+            node.type = type
+        }
     }
     
     public var rules:[Rule] {

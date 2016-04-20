@@ -8,6 +8,8 @@
 
 import Foundation
 
+
+
 public class RuleCollectionItem : NSCollectionViewItem, DragDropCopyPasteItem {
     
     @IBOutlet weak var rulePillView: RulePillView!
