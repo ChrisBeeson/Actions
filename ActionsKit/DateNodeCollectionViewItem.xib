@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
+        <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="NSObject" customModule="FilamentKit"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <collectionViewItem id="9IM-3f-SrT" customClass="DateNodeCollectionViewItem" customModule="FilamentKit" customModuleProvider="target">
+            <connections>
+                <outlet property="dateNotNilView" destination="bXq-5E-LnI" id="qwz-jC-d7V"/>
+                <outlet property="dateStackView" destination="cva-Qp-I3S" id="xGe-f4-z8u"/>
+                <outlet property="dateStringLabel" destination="LiS-jE-RDo" id="g3F-Np-AOy"/>
+                <outlet property="dayStringLabel" destination="bRP-ZH-2Mw" id="4LO-eG-Gru"/>
+                <outlet property="endDateNilView" destination="aMz-lY-6YU" id="n1O-Se-O7W"/>
+                <outlet property="startDateNilView" destination="c22-O7-iKe" id="A1Z-4L-SIV"/>
+                <outlet property="timeLabel" destination="TuC-OW-BdS" id="IzD-hT-Dxb"/>
+                <outlet property="view" destination="WbQ-zb-6WC" id="Hci-6u-a32"/>
+            </connections>
+        </collectionViewItem>
+        <menu id="4kg-43-But">
+            <items>
+                <menuItem title="Clear Date" id="6SA-wc-MGB">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="clear:" target="-1" id="PsW-Mt-r1T"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="XqY-8E-dEE"/>
+                <menuItem title="Copy" id="OBa-WR-65a">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="copy:" target="-1" id="utb-OP-kwN"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Paste" id="2xP-gF-43F">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="paste:" target="-1" id="Wbw-wN-hp7"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="c3b-jd-2rP"/>
+                <menuItem title="Make End Date" id="E8s-t5-bQy">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="makeEndDate:" target="9IM-3f-SrT" id="4Gy-Y8-PUn"/>
+                    </connections>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="179.5" y="-18.5"/>
+        </menu>
+        <customView id="WbQ-zb-6WC">
+            <rect key="frame" x="0.0" y="0.0" width="48" height="35"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <customView ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bXq-5E-LnI">
+                    <rect key="frame" x="0.0" y="0.0" width="48" height="35"/>
+                    <subviews>
+                        <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" verticalClippingResistancePriority="250" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cva-Qp-I3S">
+                            <rect key="frame" x="5" y="0.0" width="33" height="35"/>
+                            <subviews>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="101" translatesAutoresizingMaskIntoConstraints="NO" id="TuC-OW-BdS">
+                                    <rect key="frame" x="-2" y="22" width="27" height="13"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" alignment="right" title="8.30" id="QDR-HZ-9AL">
+                                        <font key="font" metaFont="systemSemibold" size="10"/>
+                                        <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="100" translatesAutoresizingMaskIntoConstraints="NO" id="bRP-ZH-2Mw">
+                                    <rect key="frame" x="-2" y="11" width="22" height="11"/>
+                                    <textFieldCell key="cell" refusesFirstResponder="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="SAT" id="FJC-wJ-2Tq">
+                                        <font key="font" metaFont="miniSystem"/>
+                                        <color key="textColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="102" translatesAutoresizingMaskIntoConstraints="NO" id="LiS-jE-RDo">
+                                    <rect key="frame" x="-2" y="0.0" width="37" height="11"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" alignment="right" title="20 JUN" id="Qcd-9c-wxV">
+                                        <font key="font" metaFont="miniSystem"/>
+                                        <color key="textColor" white="0.62214589409999999" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                            </subviews>
+                            <visibilityPriorities>
+                                <integer value="1000"/>
+                                <integer value="1000"/>
+                                <integer value="1000"/>
+                            </visibilityPriorities>
+                            <customSpacing>
+                                <real value="3.4028234663852886e+38"/>
+                                <real value="3.4028234663852886e+38"/>
+                                <real value="3.4028234663852886e+38"/>
+                            </customSpacing>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="cva-Qp-I3S" firstAttribute="top" secondItem="bXq-5E-LnI" secondAttribute="top" id="5py-fO-NHh"/>
+                        <constraint firstAttribute="bottom" secondItem="cva-Qp-I3S" secondAttribute="bottom" id="dUz-r5-YqU"/>
+                        <constraint firstAttribute="trailing" secondItem="cva-Qp-I3S" secondAttribute="trailing" constant="6" id="otY-YP-Evw"/>
+                        <constraint firstItem="cva-Qp-I3S" firstAttribute="leading" secondItem="bXq-5E-LnI" secondAttribute="leading" constant="5" id="yfS-tM-ptT"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="menu" destination="4kg-43-But" id="Gq6-gl-7rD"/>
+                    </connections>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="c22-O7-iKe">
+                    <rect key="frame" x="0.0" y="0.0" width="48" height="35"/>
+                    <subviews>
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="2Hp-Nn-vAM" customClass="TransitionNodeView" customModule="FilamentKit" customModuleProvider="target">
+                            <rect key="frame" x="23" y="0.0" width="25" height="35"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="25" id="aLa-5r-VbP"/>
+                            </constraints>
+                        </customView>
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="lxw-2o-cB3" customClass="EmptyNodeView" customModule="FilamentKit" customModuleProvider="target">
+                            <rect key="frame" x="17" y="10" width="15" height="15"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="15" id="Sq8-zz-c8f"/>
+                                <constraint firstAttribute="height" constant="15" id="gXL-vn-c97"/>
+                            </constraints>
+                        </customView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="2Hp-Nn-vAM" secondAttribute="trailing" id="Xdr-gT-cKp"/>
+                        <constraint firstAttribute="bottom" secondItem="2Hp-Nn-vAM" secondAttribute="bottom" id="hbi-mK-sRW"/>
+                        <constraint firstItem="lxw-2o-cB3" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="p5b-hl-UQ8"/>
+                        <constraint firstItem="2Hp-Nn-vAM" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="qM6-3B-t1q"/>
+                        <constraint firstItem="lxw-2o-cB3" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="xde-fZ-kc7"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="menu" destination="4kg-43-But" id="9qj-Gi-rUZ"/>
+                    </connections>
+                </customView>
+                <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aMz-lY-6YU">
+                    <rect key="frame" x="0.0" y="0.0" width="48" height="35"/>
+                    <subviews>
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="FR2-fD-eqk" customClass="TransitionNodeView" customModule="FilamentKit" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="25" height="35"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="25" id="ylh-7J-5BC"/>
+                            </constraints>
+                        </customView>
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="xWU-07-pRG" customClass="EmptyNodeView" customModule="FilamentKit" customModuleProvider="target">
+                            <rect key="frame" x="17" y="10" width="15" height="15"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="15" id="Q92-Ca-yJ9"/>
+                                <constraint firstAttribute="height" constant="15" id="gyr-jv-lga"/>
+                            </constraints>
+                        </customView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="xWU-07-pRG" firstAttribute="centerY" secondItem="aMz-lY-6YU" secondAttribute="centerY" id="1iK-su-46l"/>
+                        <constraint firstItem="FR2-fD-eqk" firstAttribute="leading" secondItem="aMz-lY-6YU" secondAttribute="leading" id="I8U-vt-zLI"/>
+                        <constraint firstItem="FR2-fD-eqk" firstAttribute="top" secondItem="aMz-lY-6YU" secondAttribute="top" id="LLg-nu-NNm"/>
+                        <constraint firstAttribute="bottom" secondItem="FR2-fD-eqk" secondAttribute="bottom" id="POT-iy-HHA"/>
+                        <constraint firstItem="xWU-07-pRG" firstAttribute="centerX" secondItem="aMz-lY-6YU" secondAttribute="centerX" id="h8b-B5-Vtb"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="menu" destination="4kg-43-But" id="8ya-Rx-bpr"/>
+                    </connections>
+                </customView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="bXq-5E-LnI" secondAttribute="trailing" id="HLD-8u-gXr"/>
+                <constraint firstItem="aMz-lY-6YU" firstAttribute="top" secondItem="WbQ-zb-6WC" secondAttribute="top" id="OmQ-ag-fcd"/>
+                <constraint firstAttribute="bottom" secondItem="aMz-lY-6YU" secondAttribute="bottom" id="T6M-ER-yjw"/>
+                <constraint firstAttribute="trailing" secondItem="aMz-lY-6YU" secondAttribute="trailing" id="WE8-rK-oYF"/>
+                <constraint firstAttribute="trailing" secondItem="c22-O7-iKe" secondAttribute="trailing" id="WI3-mp-lJb"/>
+                <constraint firstAttribute="bottom" secondItem="c22-O7-iKe" secondAttribute="bottom" id="g4d-YD-Icm"/>
+                <constraint firstItem="c22-O7-iKe" firstAttribute="leading" secondItem="WbQ-zb-6WC" secondAttribute="leading" id="i3J-wj-H0Q"/>
+                <constraint firstItem="aMz-lY-6YU" firstAttribute="leading" secondItem="WbQ-zb-6WC" secondAttribute="leading" id="m9d-KI-0v1"/>
+                <constraint firstItem="c22-O7-iKe" firstAttribute="top" secondItem="WbQ-zb-6WC" secondAttribute="top" id="sC1-ZP-k24"/>
+            </constraints>
+            <connections>
+                <outlet property="menu" destination="4kg-43-But" id="7jc-QF-dEo"/>
+            </connections>
+            <point key="canvasLocation" x="-135" y="-52.5"/>
+        </customView>
+        <userDefaultsController representsSharedInstance="YES" id="TSc-FO-eW4"/>
+    </objects>
+</document>

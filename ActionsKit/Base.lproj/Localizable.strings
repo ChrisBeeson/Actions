@@ -1,0 +1,75 @@
+/* 
+  Localizable.strings
+  Actions
+
+  Created by Chris Beeson on 28/02/2016.
+  Copyright © 2016 Andris Ltd. All rights reserved.
+*/
+
+// DOCUMENT CREATION
+"NEW_DOCUMENT_DEFAULT_TITLE" = "Untitled";
+"NEW_DOCUMENT_1ST_ACTION" = "Action 1";
+"NEW_DOCUMENT_2ND_ACTION" = "Action 2";
+
+// ALERTS
+"TABLEVIEW_DELETE_SEQ_TITLE" = "Are you sure you want to delete this sequence?";
+"TABLEVIEW_DELETE_SEQ_DELETE" = "Delete";
+"TABLEVIEW_DELETE_SEQ_CANCEL" = "Cancel";
+
+"MAINWINDOW_CALENDAR_UNAUTHORIZED_TITLE" = "Access to your Calendar is Unauthorized";
+"MAINWINDOW_CALENDAR_UNAUTHORIZED_BODY" = "Go to System Preferences -> Security & Privacy and give calendar access to 'Actions' to use the full features of this application.";
+"MAINWINDOW_CALENDAR_UNAUTHORIZED_OK" = "Ok";
+
+// RULES
+"RULE_NAME_DURATION_WITH_VARIANCE" = "Duration +/-";
+"RULE_DESC_DURATION_WITH_VARIANCE" = "Set the duration and allow for a custom variance to aviod other events.";
+
+"RULE_NAME_DURATION_WITH_MIN" = "Event Duration";
+"RULE_DESC_DURATION_WITH_MIN" = "Set the duration with an optional minimum duration";
+
+"RULE_NAME_AVOID_CALS" = "Avoid Calendars";
+"RULE_DESC_AVOID_CALS" = "Select calendars you wish to avoid conflicting with";
+"RULE_AVOID_CALS_UNAUTHORIZED" = "Access to your Calendars is Unauthorised";
+
+"RULE_NAME_WORK_HOURS" = "Work Hours";
+"RULE_NAME_TRAVEL_DUR" = "Travel Duration";
+"RULE_NAME_FIXED" = "Fixed";
+"RULE_NAME_GREATER_LESS" = "Greater | Less";
+"RULE_NAME_NEXT" = "Next...";
+"RULE_NAME_WAIT" = "Wait For User";
+"RULE_NAME_ALARM" = "Alarm";
+"RULE_NAME_CALENDAR_EVENT" = "Calendar Event";
+
+"RUlE_WORKING_WEEK_MORNING" = "time outside of work hours";
+"RUlE_WORKING_WEEK_LUNCH" = "lunch";
+"RUlE_WORKING_WEEK_EVENING" = "time outside of work hours";
+"RUlE_WORKING_WEEK_DAY_OFF" = "day off";
+
+    //UNITS
+"RULE_UNIT_SEC" = "sec";
+"RULE_UNIT_MIN" = "min";
+"RULE_UNIT_HOUR" = "hr";
+"RULE_UNIT_DAY" = "day";
+"RULE_UNIT_WEEK" = "wk";
+"RULE_UNIT_MONTH" = "mth";
+"RULE_UNIT_YEAR" = "yr";
+
+// NODES
+"NODE_EVENT_STRING_NO_EVENT" = "No Calendar Event";
+
+// SEQ COLLECTION VIEW
+"SEQ_DATE_MENU_SET_DATE_STARTTIME" = "Set As End Time";
+"SEQ_DATE_MENU_SET_DATE_ENDTIME" = "Set As Start Time";
+
+// SOLVER
+"SOLVER_ERROR_COULD_FIND_NO_FREE_PERIODS" = "Will not fit";
+"SOLVER_ERROR_FOLLOWS_FAILED_NODE" = "Following a failed event";
+"SOLVER_ERROR_CLASHES_WITH" = "Clashes with ";
+"SOLVER_ERROR_UNKNOWN" = "Unknown Error";
+
+// UNDO
+"UNDO_INSERT_ACTION" = "Insert";
+"UNDO_DELETE_ACTION" = "Delete";
+"UNDO_CHANGE_DATE" = "Change Date";
+"UNDO_RENAME_ACTION" = "Rename";
+
