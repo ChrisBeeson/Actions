@@ -19,7 +19,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-Filament.xcscheme</key>
+		<key>Pods-Actions.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -32,17 +32,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>A9A2521A05DDE838274E214864BC2EB2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>AFEDA8059B169E4068B6DCC4D2F0B0E9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>C8F54543305BD95F34FAB796C9CAAFCA</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>EEAD9C1E6B7EAC6633260FD42FC96EBC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
