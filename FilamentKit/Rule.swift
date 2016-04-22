@@ -47,6 +47,8 @@ protocol RuleType {
     // Post Solver
     var solvedPeriod: DTTimePeriod? {get set}
     func postSolverCodeBlock()
+    
+    func preDeletionCodeBlock()
 }
 
 
@@ -72,7 +74,6 @@ protocol RuleType {
     func postSolverCodeBlock() {}
     func preDeletionCodeBlock() {}
     func conflictsWithRule(rule:Rule) -> Bool { return false }
-    
     
     
     override init() { super.init() }
@@ -112,28 +113,17 @@ protocol RuleType {
     public static func objectForMapping(map: Map) -> Mappable? {
         if let type: String = map["ruleClass"].value() {
             switch type {
-            case TransitionDurationWithVariance.className():
-                return TransitionDurationWithVariance(map)
-            case EventDurationWithMinimumDuration.className():
-               return EventDurationWithMinimumDuration(map)
-            case AvoidCalendarEventsRule.className():
-                return AvoidCalendarEventsRule(map)
-            case WorkingWeekRule.className():
-                return WorkingWeekRule(map)
-            case TransitionDurationBasedOnTravelTime.className():
-                return TransitionDurationBasedOnTravelTime(map)
-            case EventFixedStartAndEndDate.className():
-                return EventFixedStartAndEndDate(map)
-            case GreaterThanLessThanRule.className():
-                return GreaterThanLessThanRule(map)
-            case NextUnitRule.className():
-                return NextUnitRule(map)
-            case WaitForUserRule.className():
-                return WaitForUserRule(map)
-            case EventAlarmRule.className():
-                return EventAlarmRule(map)
-            default:
-                return nil
+            case TransitionDurationWithVariance.className():        return TransitionDurationWithVariance(map)
+            case EventDurationWithMinimumDuration.className():      return EventDurationWithMinimumDuration(map)
+            case AvoidCalendarEventsRule.className():               return AvoidCalendarEventsRule(map)
+            case WorkingWeekRule.className():                       return WorkingWeekRule(map)
+            case TransitionDurationBasedOnTravelTime.className():   return TransitionDurationBasedOnTravelTime(map)
+            case EventFixedStartAndEndDate.className():             return EventFixedStartAndEndDate(map)
+            case GreaterThanLessThanRule.className():               return GreaterThanLessThanRule(map)
+            case NextUnitRule.className():                          return NextUnitRule(map)
+            case WaitForUserRule.className():                       return WaitForUserRule(map)
+            case EventAlarmRule.className():                        return EventAlarmRule(map)
+            default:                                                return nil
             }
         }
         return nil

@@ -104,6 +104,9 @@
 		47F2FBC41BA8CFEE0041B291 /* Solver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F2FBC31BA8CFEE0041B291 /* Solver.swift */; };
 		47F5E82B1BF495D8004C0D16 /* AddFilamentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F5E82A1BF495D8004C0D16 /* AddFilamentViewController.swift */; };
 		8303DD971CA9DDCF003D3190 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8303DD961CA9DDCF003D3190 /* Container.swift */; };
+		830B29F81CC735200029E712 /* EventAlarmRuleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 830B29F71CC735200029E712 /* EventAlarmRuleViewController.xib */; };
+		830B29FA1CC739DC0029E712 /* EventAlarmRuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830B29F91CC739DC0029E712 /* EventAlarmRuleViewController.swift */; };
+		830B29FC1CC782530029E712 /* EventAlarmRulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830B29FB1CC782530029E712 /* EventAlarmRulePresenter.swift */; };
 		83260A341C856C6700F74DBD /* RulePillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83260A331C856C6700F74DBD /* RulePillView.swift */; };
 		8329DE9B1C63DF10001B3A2F /* SequenceCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8329DE9A1C63DF10001B3A2F /* SequenceCollectionView.swift */; };
 		832BA20A1C740686004331A7 /* NodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832BA2091C740686004331A7 /* NodeView.swift */; };
@@ -318,6 +321,9 @@
 		47F2FBC31BA8CFEE0041B291 /* Solver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Solver.swift; sourceTree = "<group>"; };
 		47F5E82A1BF495D8004C0D16 /* AddFilamentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFilamentViewController.swift; sourceTree = "<group>"; };
 		8303DD961CA9DDCF003D3190 /* Container.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Container.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		830B29F71CC735200029E712 /* EventAlarmRuleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventAlarmRuleViewController.xib; sourceTree = "<group>"; };
+		830B29F91CC739DC0029E712 /* EventAlarmRuleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventAlarmRuleViewController.swift; sourceTree = "<group>"; };
+		830B29FB1CC782530029E712 /* EventAlarmRulePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventAlarmRulePresenter.swift; sourceTree = "<group>"; };
 		83260A331C856C6700F74DBD /* RulePillView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulePillView.swift; sourceTree = "<group>"; };
 		8329DE9A1C63DF10001B3A2F /* SequenceCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceCollectionView.swift; sourceTree = "<group>"; };
 		832BA2091C740686004331A7 /* NodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeView.swift; sourceTree = "<group>"; };
@@ -529,6 +535,7 @@
 			children = (
 				473853B11C7A590A000AB1E2 /* RuleViewController.swift */,
 				834C6CD31C89330600266709 /* EmptyRuleViewController.xib */,
+				830B29F61CC734E00029E712 /* EventAlarmRule */,
 				47B881F21CA3C7F200B33BF6 /* NextUnit */,
 				47737EF71CA2A4910072322D /* GreaterThanLessThan */,
 				47ED14281C9D5261002F4B4E /* WorkingWeek */,
@@ -551,6 +558,7 @@
 				47ED142D1C9D534B002F4B4E /* WorkingWeekRulePresenter.swift */,
 				47737EF51CA2A2DC0072322D /* GreaterThanLessThanPresenter.swift */,
 				4744FBEF1CA3D12B00C06123 /* NextUnitRulePresenter.swift */,
+				830B29FB1CC782530029E712 /* EventAlarmRulePresenter.swift */,
 			);
 			name = "Rule Presenters";
 			sourceTree = "<group>";
@@ -794,6 +802,15 @@
 				F197F4F4D9D4E30D0139E7DB /* Pods-Filament.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		830B29F61CC734E00029E712 /* EventAlarmRule */ = {
+			isa = PBXGroup;
+			children = (
+				830B29F71CC735200029E712 /* EventAlarmRuleViewController.xib */,
+				830B29F91CC739DC0029E712 /* EventAlarmRuleViewController.swift */,
+			);
+			name = EventAlarmRule;
 			sourceTree = "<group>";
 		};
 		831BF9E71C16B554007B4CD5 /* Old */ = {
@@ -1141,6 +1158,7 @@
 				47967FF91C8ABBED00358199 /* AvoidCalendarEventsViewController.xib in Resources */,
 				835289D21C840D8F001CD0DE /* Localizable.strings in Resources */,
 				83B74FAD1C7FDC0F005E5E22 /* DurationWithVarianceViewController.xib in Resources */,
+				830B29F81CC735200029E712 /* EventAlarmRuleViewController.xib in Resources */,
 				834F85D11C6ACFA2009CC72F /* AddNewNodeCollectionViewItem.xib in Resources */,
 				835619CC1C6D6AD100488E99 /* NodeDetailViewController.xib in Resources */,
 				833AE3321C67FB6D002F35C1 /* TransitionNodeCollectionViewItem.xib in Resources */,
@@ -1324,6 +1342,7 @@
 				473574771B9A68AC00493CA0 /* Sequence.swift in Sources */,
 				473853B71C7A5A43000AB1E2 /* RulePresenterDelegate.swift in Sources */,
 				8303DD971CA9DDCF003D3190 /* Container.swift in Sources */,
+				830B29FA1CC739DC0029E712 /* EventAlarmRuleViewController.swift in Sources */,
 				83B500601C981FE800B0F5AA /* NodeState.swift in Sources */,
 				835740B21C77AD0700CFBB1B /* CalendarEvent.swift in Sources */,
 				473D4AC71CB891BE00AB8560 /* AvoidPeriod.swift in Sources */,
@@ -1336,6 +1355,7 @@
 				47ED142E1C9D534B002F4B4E /* WorkingWeekRulePresenter.swift in Sources */,
 				83B9DF5B1C9922AA008E3F26 /* SequenceState.swift in Sources */,
 				47B881F41CA3C82500B33BF6 /* NextUnitRuleViewController.swift in Sources */,
+				830B29FC1CC782530029E712 /* EventAlarmRulePresenter.swift in Sources */,
 				47F2FBC41BA8CFEE0041B291 /* Solver.swift in Sources */,
 				8343519D1BA297650094428B /* TransitionDurationWithVariance.swift in Sources */,
 				47D56FA11C8AC9E80025D156 /* Calendar.swift in Sources */,

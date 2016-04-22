@@ -138,7 +138,6 @@ class NextUnitRule : Rule {
         }
     }
     
-    
     // MARK: NSCoding
     
     private struct SerializationKeys {

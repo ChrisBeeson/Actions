@@ -122,10 +122,27 @@ class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
             if event!.location != owner.location { event!.location = owner.location ; dirty = true }
         }
         
-        if dirty == true {
-            self.saveCalendarEvent()
-        }
+        // Alarms
+        dirty = synchronizeAlarms() == true ? true : dirty
+        
+        if dirty == true { self.saveCalendarEvent() }
         processing = false
+    }
+    
+    
+    func synchronizeAlarms() -> Bool {
+        guard let node = owner else { return false }
+        
+        var alarms = [EKAlarm]()
+        for rule in node.rules { if rule.className == EventAlarmRule.className() {
+            // alarms.append(rule.makeAlarm())
+            }
+        }
+        
+        if event?.alarms?.count == 0 && alarms.count == 0 { return false }
+        
+        event?.alarms? = alarms
+        return true
     }
     
     

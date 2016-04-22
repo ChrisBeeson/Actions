@@ -71,32 +71,19 @@ public class RulePresenter : NSObject {
     }
     
     
-    //MARK: Factory class
+    //MARK: Factory
     
     class func makeRulePresenter(rule: Rule) -> RulePresenter {
 
         switch rule.className {
-            
-        case "FilamentKit.EventDurationWithMinimumDuration":
-            return EventDurationWithMinimumDurationRulePresenter(rule: rule)
-            
-        case "FilamentKit.TransitionDurationWithVariance":
-            return TransitionDurationWithVarianceRulePresenter(rule: rule)
-            
-        case "FilamentKit.AvoidCalendarEventsRule":
-            return AvoidCalendarEventsPresenter(rule: rule)
-            
-        case "FilamentKit.WorkingWeekRule":
-            return WorkingWeekRulePresenter(rule: rule)
-            
-        case "FilamentKit.GreaterThanLessThanRule":
-            return GreaterThanLessThanRulePresenter(rule: rule)
-            
-        case "FilamentKit.NextUnitRule":
-            return NextUnitRulePresenter(rule: rule)
-            
-        default:
-            return RulePresenter(rule: rule)
+        case "FilamentKit.EventDurationWithMinimumDuration":    return EventDurationWithMinimumDurationRulePresenter(rule: rule)
+        case "FilamentKit.TransitionDurationWithVariance":      return TransitionDurationWithVarianceRulePresenter(rule: rule)
+        case "FilamentKit.AvoidCalendarEventsRule":             return AvoidCalendarEventsPresenter(rule: rule)
+        case "FilamentKit.WorkingWeekRule":                     return WorkingWeekRulePresenter(rule: rule)
+        case "FilamentKit.GreaterThanLessThanRule":             return GreaterThanLessThanRulePresenter(rule: rule)
+        case "FilamentKit.NextUnitRule":                        return NextUnitRulePresenter(rule: rule)
+        case "FilamentKit.EventAlarmRule":                      return EventAlarmRulePresenter(rule: rule)
+        default:                                                return RulePresenter(rule: rule)
         }
     }
     
