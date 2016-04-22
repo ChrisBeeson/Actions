@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="AvailableRulesViewController" customModule="FilamentKit" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="AvailableRulesViewController" customModule="ActionsKit" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="g5u-x9-ncy" id="9g3-53-gWW"/>
                 <outlet property="view" destination="c22-O7-iKe" id="Ae2-FV-lRM"/>
@@ -42,7 +42,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="295" height="35"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <collectionView selectable="YES" id="g5u-x9-ncy" customClass="RuleCollectionView" customModule="FilamentKit" customModuleProvider="target">
+                                                <collectionView selectable="YES" id="g5u-x9-ncy" customClass="RuleCollectionView" customModule="ActionsKit" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="289" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" id="Olq-W1-iTi">
@@ -94,6 +94,6 @@
             </constraints>
             <point key="canvasLocation" x="395" y="340"/>
         </customView>
-        <collectionViewItem id="WAu-PG-DQh" customClass="RuleCollectionItem" customModule="FilamentKit" customModuleProvider="target"/>
+        <collectionViewItem id="WAu-PG-DQh" customClass="RuleCollectionItem" customModule="ActionsKit" customModuleProvider="target"/>
     </objects>
 </document>

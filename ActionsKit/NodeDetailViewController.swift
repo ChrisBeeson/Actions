@@ -65,7 +65,6 @@ public class NodeDetailViewController : NSViewController, NodePresenterDelegate,
         
         if nodePresenter!.currentState == .Completed {
             titleTextField.editable = false
-            notesTextField.editable = false
             locationTextField.editable = false
             ruleCollectionView.allowDrops = false
             ruleCollectionView.allowDeletions = false

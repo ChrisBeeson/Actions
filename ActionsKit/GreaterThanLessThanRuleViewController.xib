@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
         <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="GreaterThanLessThanRuleViewController" customModule="FilamentKit" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="GreaterThanLessThanRuleViewController" customModule="ActionsKit" customModuleProvider="target">
             <connections>
                 <outlet property="view" destination="c22-O7-iKe" id="CEc-tz-3M1"/>
             </connections>
@@ -49,8 +49,8 @@
                                                 <binding destination="-2" name="value" keyPath="self.rulePresenter.greaterThan" id="pyS-vZ-vdS"/>
                                             </connections>
                                         </textField>
-                                        <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dlK-39-f77">
-                                            <rect key="frame" x="50" y="-1" width="15" height="22"/>
+                                        <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dlK-39-f77">
+                                            <rect key="frame" x="50" y="0.0" width="15" height="22"/>
                                             <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="99" id="86l-fS-gTs"/>
                                             <connections>
                                                 <binding destination="-2" name="value" keyPath="self.rulePresenter.greaterThan" id="fHA-Me-sPD"/>
@@ -128,8 +128,8 @@
                                                 <binding destination="-2" name="value" keyPath="self.rulePresenter.lessThan" id="6ii-md-9GZ"/>
                                             </connections>
                                         </textField>
-                                        <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aEl-cy-qcC">
-                                            <rect key="frame" x="50" y="-1" width="15" height="22"/>
+                                        <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aEl-cy-qcC">
+                                            <rect key="frame" x="50" y="0.0" width="15" height="22"/>
                                             <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="99" id="ynm-Ze-uRb"/>
                                             <connections>
                                                 <binding destination="-2" name="value" keyPath="self.rulePresenter.lessThan" id="1zQ-oS-LIy"/>
