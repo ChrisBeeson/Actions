@@ -67,8 +67,9 @@ public class MainTableCellView: NSTableCellView, SequencePresenterDelegate, Rule
         super.init(coder: coder)
     }
     
-    override public func viewWillDraw() {
-        super.viewWillDraw()
+    
+    override public func awakeFromNib() {
+        super.awakeFromNib()
         generalRulesCollectionView.collectionViewLayout = RightAlignedCollectionViewFlowLayout()
         generalRulesCollectionView.ruleCollectionViewDelegate = self
         generalRulesCollectionView.allowDrops = true
@@ -88,22 +89,17 @@ public class MainTableCellView: NSTableCellView, SequencePresenterDelegate, Rule
         presenter!.updateState(false)
         titleTextField.stringValue = presenter!.title
         self.sequenceCollectionView.toolTip = String(presenter!.currentState)
-        sequenceCollectionView.reloadData()
         
-        // Hide & disable things if we're .Completed
-        //  Swift.print("updating Cell view to state \(presenter!.currentState)")
         let isCompleted = presenter!.currentState == .Completed ? true : false
         titleTextField.enabled = !isCompleted
-        titleTextField.setNeedsDisplay()
         addGenericRuleButton.hidden = isCompleted
         generalRulesCollectionView.allowDrops = !isCompleted
         generalRulesCollectionView.allowDeletions = !isCompleted
+    
+        statusTextField.textColor = colourForCurrentState()
+        
+        sequenceCollectionView.reloadData()
         refreshGeneralRulesCollectionView()
-        statusTextField.animator().textColor = colourForCurrentState()
-        
-        self.sequenceCollectionView.toolTip = String(presenter!.currentState)
-        
-        self.needsDisplay = true
     }
     
     

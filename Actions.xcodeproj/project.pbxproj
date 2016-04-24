@@ -65,7 +65,7 @@
 		476D1FFD1CA74A6300320431 /* LeftAlignedSequenceFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476D1FFC1CA74A6300320431 /* LeftAlignedSequenceFlowLayout.swift */; };
 		476D1FFF1CA7C3AC00320431 /* SwiftCollectionView+DynamicDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476D1FFE1CA7C3AC00320431 /* SwiftCollectionView+DynamicDataSource.swift */; };
 		476D20011CA7C5C500320431 /* DragDropCopyPasteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476D20001CA7C5C500320431 /* DragDropCopyPasteItem.swift */; };
-		477212061BED699500D5E988 /* FilamentDocumentsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477212051BED699500D5E988 /* FilamentDocumentsManager.swift */; };
+		477212061BED699500D5E988 /* ActionsDocumentsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477212051BED699500D5E988 /* ActionsDocumentsManager.swift */; };
 		47737EF61CA2A2DC0072322D /* GreaterThanLessThanPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47737EF51CA2A2DC0072322D /* GreaterThanLessThanPresenter.swift */; };
 		47737EF91CA2A51D0072322D /* GreaterThanLessThanRuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47737EF81CA2A51D0072322D /* GreaterThanLessThanRuleViewController.swift */; };
 		47737EFB1CA2A7020072322D /* GreaterThanLessThanRuleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47737EFA1CA2A7020072322D /* GreaterThanLessThanRuleViewController.xib */; };
@@ -286,7 +286,7 @@
 		476D1FFC1CA74A6300320431 /* LeftAlignedSequenceFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftAlignedSequenceFlowLayout.swift; sourceTree = "<group>"; };
 		476D1FFE1CA7C3AC00320431 /* SwiftCollectionView+DynamicDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftCollectionView+DynamicDataSource.swift"; sourceTree = "<group>"; };
 		476D20001CA7C5C500320431 /* DragDropCopyPasteItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragDropCopyPasteItem.swift; sourceTree = "<group>"; };
-		477212051BED699500D5E988 /* FilamentDocumentsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilamentDocumentsManager.swift; sourceTree = "<group>"; };
+		477212051BED699500D5E988 /* ActionsDocumentsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionsDocumentsManager.swift; sourceTree = "<group>"; };
 		477212071BED9DCB00D5E988 /* Actions.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Actions.entitlements; sourceTree = "<group>"; };
 		47737EF51CA2A2DC0072322D /* GreaterThanLessThanPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GreaterThanLessThanPresenter.swift; sourceTree = "<group>"; };
 		47737EF81CA2A51D0072322D /* GreaterThanLessThanRuleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GreaterThanLessThanRuleViewController.swift; sourceTree = "<group>"; };
@@ -451,7 +451,7 @@
 		47181F2E1C0C3D90006FD38E /* Document Architecture */ = {
 			isa = PBXGroup;
 			children = (
-				477212051BED699500D5E988 /* FilamentDocumentsManager.swift */,
+				477212051BED699500D5E988 /* ActionsDocumentsManager.swift */,
 				83861F2A1BEEA25F00A44122 /* ActionsDocument.swift */,
 				47A14E821C21385700B45F86 /* Local Filesystem Monitoring */,
 			);
@@ -1341,7 +1341,7 @@
 				83F5B1DA1CC5C2B100B4721A /* WizardPageOneViewController.swift in Sources */,
 				473574871B9A91A200493CA0 /* ListPresenterUtilities.swift in Sources */,
 				47CD21BF1BDF797B00AF25BE /* GeneralExtensions.swift in Sources */,
-				477212061BED699500D5E988 /* FilamentDocumentsManager.swift in Sources */,
+				477212061BED699500D5E988 /* ActionsDocumentsManager.swift in Sources */,
 				47CD21C61BDF807900AF25BE /* Sequence+EventLogic.swift in Sources */,
 				47A14E811C21384F00B45F86 /* DirectoryMonitor.swift in Sources */,
 				471279BD1C8298FA0090426C /* EventFixedStartAndEndDate.swift in Sources */,

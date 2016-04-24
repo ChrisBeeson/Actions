@@ -226,7 +226,6 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     // MARK: State
     
     public func updateState(processEvents: Bool) {
-        
         guard _sequence != nil else { return }
         currentState.update(processEvents, presenter: self)
     }

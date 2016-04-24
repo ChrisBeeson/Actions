@@ -91,7 +91,6 @@ public class MainTableViewController:  NSViewController, NSTableViewDataSource, 
         }
         
         Async.main {
-
         let oldRows = self.filteredDocuments
         let newRows = newFilteredDocuments
         let diff = oldRows.diff(newRows)
@@ -110,6 +109,7 @@ public class MainTableViewController:  NSViewController, NSTableViewDataSource, 
         }
         }
     }
+    
     
     // MARK: TableView DataSource
     

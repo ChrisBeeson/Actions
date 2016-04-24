@@ -10,7 +10,7 @@ import Foundation
 import AppKit
 
 class InfoViewController : NSViewController {
-
+    
     var version: String {
         let dictionary = NSBundle.mainBundle().infoDictionary!
         let version = dictionary["CFBundleShortVersionString"] as! String

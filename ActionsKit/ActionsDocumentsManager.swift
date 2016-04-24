@@ -74,9 +74,9 @@ public class ActionsDocumentManager : DirectoryMonitorDelegate {
             
             self.documents.removeObjects(removedDocs)
         
-        Async.main {
+        // Async.main {
             self.delegate?.actionsDocumentsManagerDidUpdateContents(inserted:insertedDocs, removed:removedDocs)
-        }
+        //}
        
     }
     
