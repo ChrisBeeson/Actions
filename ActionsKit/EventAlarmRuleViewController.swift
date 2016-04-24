@@ -18,9 +18,20 @@ class EventAlarmRuleViewController : RuleViewController {
     @IBOutlet weak var emailAddressField: NSTextField!
     
     @IBAction func alarmTypePopUpChanged(sender: AnyObject) {
+    layoutStackViews()
     }
     
     @IBAction func alarmUnitPopUpDidChange(sender: AnyObject) {
+        layoutStackViews()
     }
     
+    func layoutStackViews() {
+        let presenter = self.rulePresenter as! EventAlarmRulePresenter
+        emailAddressField.hidden = AlarmType(rawValue: presenter.alarmType) == AlarmType.Email ? false : true
+        amountTextField.hidden = AlarmOffset(rawValue: presenter.alarmOffsetUnit) == AlarmOffset.OnDate ? true : false
+    }
+    
+    override func viewWillAppear() {
+        layoutStackViews()
+    }
 }
