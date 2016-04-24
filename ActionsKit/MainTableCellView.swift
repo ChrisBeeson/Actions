@@ -37,7 +37,6 @@ public class MainTableCellView: NSTableCellView, SequencePresenterDelegate, Rule
                 presenter!.addDelegate(self)
             }
         }
-        
         get {
             return sequenceCollectionView.presenter
         }
@@ -130,7 +129,6 @@ public class MainTableCellView: NSTableCellView, SequencePresenterDelegate, Rule
         availableGeneralRulesViewController!.collectionViewDelegate = self
         popover.contentViewController = availableGeneralRulesViewController
         popover.showRelativeToRect(addGenericRuleButton.frame, ofView:rulesStackView, preferredEdge:.MaxX )
-        
     }
     
     
@@ -155,12 +153,10 @@ public class MainTableCellView: NSTableCellView, SequencePresenterDelegate, Rule
         }
         }
         
-        // Async.main(after:0.05) {
         self.generalRulesCollectionView.rulePresenters = rulePresenters
         self.generalRulesCollectionView.reloadData()
         //  self.generalRulesCollectionView.needsDisplay = true
         self.availableGeneralRulesViewController?.reloadCollectionView()
-        // }
     }
     
     

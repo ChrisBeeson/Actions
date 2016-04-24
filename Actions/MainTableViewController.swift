@@ -33,6 +33,9 @@ public class MainTableViewController:  NSViewController, NSTableViewDataSource, 
         genericRulesCollectionView.allowDropsFromType = [.Generic]
         genericRulesCollectionView.allowDeletions = true
         
+        let nib =  NSNib(nibNamed: "MainTableViewCell", bundle: nil)
+        self.tableView.registerNib(nib, forIdentifier: "MainTableCellView")
+        
         NSNotificationCenter.defaultCenter().addObserverForName("FilamentTableViewSelectCellForView", object: nil, queue: nil) { (notification) -> Void in
             let row = self.tableView.rowForView(notification.object as! NSView)
             self.tableView.selectRowIndexes((NSIndexSet(index: row)), byExtendingSelection: false)
@@ -74,23 +77,25 @@ public class MainTableViewController:  NSViewController, NSTableViewDataSource, 
     
     func updateTableViewContent(animated:Bool) {
         
+        Swift.print("updateTableViewContent animated:\(animated)")
+        
         let newFilteredDocuments = ActionsDocumentManager.filterDocumentsForFilterType(allDocuments, filterType: self.filter)
         
         if animated == false {
             filteredDocuments = newFilteredDocuments
-            CATransaction.begin() ; CATransaction.setDisableActions(true)
+            // CATransaction.begin() ; CATransaction.setDisableActions(true)
             self.tableView!.reloadData()
             self.tableView.deselectAll(self)
-            CATransaction.commit()
+            //CATransaction.commit()
             return
         }
         
-        CATransaction.setDisableActions(false)
-        
-        let oldRows = filteredDocuments
+        Async.main {
+
+        let oldRows = self.filteredDocuments
         let newRows = newFilteredDocuments
         let diff = oldRows.diff(newRows)
-        filteredDocuments = newFilteredDocuments
+        self.filteredDocuments = newFilteredDocuments
         
         if (diff.results.count > 0) {
             let deletionIndexPaths = NSMutableIndexSet()
@@ -103,8 +108,8 @@ public class MainTableViewController:  NSViewController, NSTableViewDataSource, 
             self.tableView?.insertRowsAtIndexes(insertionIndexPaths, withAnimation: NSTableViewAnimationOptions.SlideLeft)
             self.tableView?.endUpdates()
         }
+        }
     }
-    
     
     // MARK: TableView DataSource
     
@@ -113,11 +118,9 @@ public class MainTableViewController:  NSViewController, NSTableViewDataSource, 
     }
     
     public func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        let cellView = tableView.makeViewWithIdentifier("FilamentCellView", owner: self) as! MainTableCellView
+        let cellView = tableView.makeViewWithIdentifier("MainTableCellView", owner: self) as! MainTableCellView
         cellView.presenter = filteredDocuments[row].sequencePresenter
-        cellView.presenter?.addDelegate(cellView)
         cellView.presenter?.undoManager = self.undoManager
-        cellView.presenter?.updateState(true)
         cellView.updateCellView()
         return cellView
     }
