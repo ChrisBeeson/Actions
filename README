@@ -1,14 +1,13 @@
 Todo
 -------
-Problem with NSTableView not refreshing properly - seems to get clogged...
+Alarm
 
 
 
 --> BETA RELEASE 1
 
-Work on UI - does it really need to look like a flow diagram?!
-
 *iOS Versions*
+Undo, copy, paste, import, export, drag, drop, undo check for total coverage
 location
 location to location time rule
 
@@ -20,9 +19,17 @@ self update & purchase for non app store version.
 -----> RELEASE
 
 
+Backend
+---------------
+new users are signed up to mailChimp.
+
+
+
+
 Later Versions
 -----------------
-Undo, copy, paste, import, export, drag, drop, undo check for total coverage
+Work on UI - does it really need to look like a flow diagram?!
+Problem with NSTableView not refreshing properly - Animations seem to get clogged... using reloadData() at the moment
 Wizard
 Combine event variance and min duration...
 Rules Clash

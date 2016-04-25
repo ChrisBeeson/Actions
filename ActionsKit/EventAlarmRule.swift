@@ -38,11 +38,23 @@ class EventAlarmRule : Rule {
         super.init()
     }
     
-    func makeAlarm() -> EKAlarm {
+    func makeAlarm() -> EKAlarm? {
+        
+        guard alarmType != .None else { return nil }
+        
+        
+        
+        /*
+        
+        
+        let alarm = alarmOffsetUnit == .OnDate ? EKAlarm(absoluteDate: <#T##NSDate#>) : EKAlarm(relativeOffset: <#T##NSTimeInterval#>)
         
         var alarm = EKAlarm()
+        */
         
-        return alarm
+        //  return alarm
+        
+        return EKAlarm()
     }
     
     // MARK: NSCoding

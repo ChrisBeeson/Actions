@@ -146,7 +146,7 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
                 calculatedEvent.endDate = output.EndDate
                 return generateDurationStringFromEvent(calculatedEvent)
             } else {
-                return "Cannot Calculate Duration"
+                return "NODE_EVENT_NO_RULES_TO_SET_DURATION".localized
             }
         }
         

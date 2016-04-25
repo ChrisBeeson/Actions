@@ -56,6 +56,7 @@
 
 // NODES
 "NODE_EVENT_STRING_NO_EVENT" = "No Calendar Event";
+"NODE_EVENT_NO_RULES_TO_SET_DURATION" = "No Rules Set Event Duration";
 
 // SEQ COLLECTION VIEW
 "SEQ_DATE_MENU_SET_DATE_STARTTIME" = "Set As End Time";
@@ -66,6 +67,7 @@
 "SOLVER_ERROR_FOLLOWS_FAILED_NODE" = "Following a failed event";
 "SOLVER_ERROR_CLASHES_WITH" = "Clashes with ";
 "SOLVER_ERROR_UNKNOWN" = "Unknown Error";
+
 
 // UNDO
 "UNDO_INSERT_ACTION" = "Insert";

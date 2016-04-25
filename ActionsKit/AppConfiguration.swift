@@ -44,7 +44,7 @@ public class AppConfiguration: NSObject {
     
     
     public class var applicationFileExtension: String {
-        return "fil"
+        return "act"
     }
     
     public class var defaultActionNodeName: String {
@@ -244,7 +244,7 @@ public class AppConfiguration: NSObject {
     
     #if os(OSX)
     public struct App {
-        public static let bundleIdentifier = "\(Bundle.prefix).FilamentOSX"
+        public static let bundleIdentifier = "\(Bundle.prefix).ActionsOSX"
     }
     #endif
     

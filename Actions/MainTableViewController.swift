@@ -77,8 +77,6 @@ public class MainTableViewController:  NSViewController, NSTableViewDataSource, 
     
     func updateTableViewContent(animated:Bool) {
         
-        Swift.print("updateTableViewContent animated:\(animated)")
-        
         let newFilteredDocuments = ActionsDocumentManager.filterDocumentsForFilterType(allDocuments, filterType: self.filter)
         
         if animated == false {
@@ -101,11 +99,15 @@ public class MainTableViewController:  NSViewController, NSTableViewDataSource, 
             diff.deletions.forEach { deletionIndexPaths.addIndex($0.idx) }
             let insertionIndexPaths = NSMutableIndexSet()
             diff.insertions.forEach { insertionIndexPaths.addIndex($0.idx) }
-
+/*
             self.tableView?.beginUpdates()
             self.tableView?.removeRowsAtIndexes(deletionIndexPaths, withAnimation: NSTableViewAnimationOptions.EffectFade)
             self.tableView?.insertRowsAtIndexes(insertionIndexPaths, withAnimation: NSTableViewAnimationOptions.SlideLeft)
             self.tableView?.endUpdates()
+ */
+            //FIXME: Why is animation intermittant?
+            
+            self.tableView!.reloadData()
         }
         }
     }

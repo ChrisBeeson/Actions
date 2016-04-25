@@ -350,7 +350,6 @@ class Solver: NSObject {
             }
         default: return nil
         }
-        
     }
 }
 
