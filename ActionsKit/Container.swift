@@ -37,7 +37,7 @@ class Container: NSObject, NSCopying, NSCoding, Mappable {
     }
     
     deinit {
-        print("Container deinit")
+        //  print("Container deinit")
     }
     
     

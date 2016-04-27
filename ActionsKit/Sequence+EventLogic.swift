@@ -15,8 +15,6 @@ extension Sequence {
     func SolveSequence(solvedNode:(node:Node, state:NodeState , errors:[SolverError]?) -> Void) -> Bool {
         guard var time = date else { print("Solver Sequence - no start date set"); return false }
         
-        print("Updating Calendar Events")
-        
         /// Internal Functions
         
         func SolvedActionNode(node:Node, state:NodeState , errors:[SolverError]?) {

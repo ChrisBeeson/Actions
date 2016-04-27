@@ -14,11 +14,9 @@ public class AppConfiguration: NSObject {
     private var _contextPresenter: ContextPresenter?
     
     public class var sharedConfiguration: AppConfiguration {
-        
         struct Singleton {
             static let sharedAppConfiguration = AppConfiguration()
         }
-        
         return Singleton.sharedAppConfiguration
     }
     
@@ -26,41 +24,21 @@ public class AppConfiguration: NSObject {
         super.init()
     }
     
-    
-    
-    
     // Names
     
     private struct Defaults {
-        static let firstLaunchKey = "FilamentConfiguration.Defaults.firstLaunchKey"
-        static let storageOptionKey = "FilamentConfiguration.Defaults.storageOptionKey"
-        static let storedUbiquityIdentityToken = "FilamentConfiguration.Defaults.storedUbiquityIdentityToken"
+        static let firstLaunchKey = "Configuration.Defaults.firstLaunchKey"
+        static let storageOptionKey = "Configuration.Defaults.storageOptionKey"
+        static let storedUbiquityIdentityToken = "Configuration.Defaults.storedUbiquityIdentityToken"
     }
     
     
-    public class var defaultFilamentCalendarName:NSString {
-        return NSLocalizedString("Actions", comment: "")
-    }
-    
-    
-    public class var applicationFileExtension: String {
-        return "acts"
-    }
-    
-    public class var defaultActionNodeName: String {
-        return "Untitled"
-    }
-    
-    
-    public class var localizedDocumentFolderName: String {
-        return NSLocalizedString("Actions", comment: "The name of the documents folder")
-    }
-    
-    
-    public class var defaultFilamentDraftName: String {
-        return NSLocalizedString("Untitled", comment: "")
-    }
-    
+    public class var defaultCalendarName : NSString { return "CALENDAR_NAME".localized }
+    public class var defaultCalendarColour : NSColor { return NSColor(calibratedRed: 0.2, green: 0.8, blue: 0.8, alpha: 1.00) }
+    public class var applicationFileExtension: String { return "APPLICATION_FILE_EXTENSION".localized }
+    public class var defaultActionNodeName: String { return "DEFAULT_NODE_NAME".localized }
+    public class var localizedDocumentFolderName: String { return "APPLICATION_FILE_FOLDER_NAME".localized }
+    public class var defaultDraftName: String { return "DEFAULT_DRAFT_NAME".localized }
     
     // User Defaults
     
@@ -97,13 +75,11 @@ public class AppConfiguration: NSObject {
         applicationUserDefaults.registerDefaults(defaultOptions)
     }
     
-    
-    
     // Storage
     
     public enum Storage: Int { case NotSet = 0, Local, Cloud }
+    
     public var storageOption: Storage {
-        
         get {
             return .Local
             //  let value = applicationUserDefaults.integerForKey(Defaults.storageOptionKey)
@@ -122,9 +98,7 @@ public class AppConfiguration: NSObject {
     
     
     public func storageDirectory() -> NSURL {
-        
         switch storageOption {
-            
         case .Local:
             var documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
             documentsPath.appendContentsOf("/"+AppConfiguration.localizedDocumentFolderName)
@@ -152,27 +126,19 @@ public class AppConfiguration: NSObject {
         return NSURL()
     }
 
-    
-    
     //MARK: Context File
     
     public func saveContext() {
-        
         self._contextPresenter?.save()
     }
     
     public func contextPresenter() -> ContextPresenter {
-        
         if self._contextPresenter == nil {
-            
             let filePath = storageDirectory().URLByAppendingPathComponent("System_Context.plist")
             self._contextPresenter =  ContextPresenter(filePath:filePath)
         }
-        
         return self._contextPresenter!
     }
-    
-    
     
     // MARK: Ubiquity Identity Token Handling (Account Change Info)
 
@@ -236,9 +202,7 @@ public class AppConfiguration: NSObject {
     // Bundle
     
     private struct Bundle {
-        
         // static var prefix = NSBundle.mainBundle().objectForInfoDictionaryKey("AAPLListerBundlePrefix") as! String
-        
         static var prefix = "com.andris"
     }
     
@@ -249,15 +213,11 @@ public class AppConfiguration: NSObject {
     #endif
     
     struct ApplicationGroups {
-        
         static let primary = "group.\(Bundle.prefix).Actions.Documents"
     }
     
-    
-    // Colours 
-    
+    // Colours
     public struct Palette {
-        
         public static let selectionBlue = NSColor(red: 0.6, green: 0.75, blue: 0.9, alpha: 1.0)
         public static let lightGreyStroke = NSColor(calibratedWhite:0.60, alpha:1.0)
         public static let lightGreyFill = NSColor(calibratedWhite:0.95, alpha:1.0)
@@ -284,9 +244,7 @@ public class AppConfiguration: NSObject {
         public static let buttonSelectionBlue = NSColor(calibratedRed: 0.075, green: 0.345, blue: 1.0, alpha: 1.00)
     }
     
-    
     public struct UTI {
-        
         public static let rule = "com.andris.actions.pasteboard.rule"
         public static let node = "com.andris.actions.pasteboard.node"
         public static let dateNode = "com.andris.actions.pasteboard.dateNode"

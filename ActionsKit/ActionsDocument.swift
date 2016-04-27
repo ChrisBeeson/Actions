@@ -39,7 +39,7 @@ public class ActionsDocument: NSDocument {
     
     deinit {
         _sequencePresenter = nil
-        print("Actions Document deinit")
+        // print("Actions Document deinit")
     }
     
     
@@ -57,7 +57,7 @@ public class ActionsDocument: NSDocument {
     // MARK: NSDocument Overrides
     
     override public func defaultDraftName() -> String {
-        return AppConfiguration.defaultFilamentDraftName
+        return AppConfiguration.defaultDraftName
     }
     
     public func storageURL() -> NSURL {

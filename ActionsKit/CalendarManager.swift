@@ -19,7 +19,6 @@ public class CalendarManager: NSObject {
     var changeCount = 0
     
     override init() {
-        
         super.init()
         verifyUserEventAuthorization()
         retrieveApplicationCalendar()
@@ -36,7 +35,6 @@ public class CalendarManager: NSObject {
     }
     
     func calendars() -> [EKCalendar] {
-        
         return store.calendarsForEntityType(.Event)
     }
     
@@ -64,9 +62,7 @@ public class CalendarManager: NSObject {
     
     
     func systemCalendarsForCalendars(calendars: [Calendar]) -> [EKCalendar] {
-    
         var systemCalendars = [EKCalendar]()
-        
         for cal in calendars {
             if let id = cal.identifier {
                 if let cal = store.calendarWithIdentifier(id) {
@@ -78,17 +74,15 @@ public class CalendarManager: NSObject {
     }
     
     func systemCalendarsAsCalendars() -> [Calendar] {
-
         return store.calendarsForEntityType(EKEntityType.Event).map{ Calendar(systemCalendar:$0) }
     }
     
 
     func retrieveApplicationCalendar() {
-        
         if applicationCalendar == nil {
             let calendars = store.calendarsForEntityType(EKEntityType.Event)
             for calendar in calendars {
-                if calendar.title ==  AppConfiguration.defaultFilamentCalendarName as String {
+                if calendar.title ==  AppConfiguration.defaultCalendarName as String {
                     applicationCalendar = calendar
                     break
                 }
@@ -96,7 +90,8 @@ public class CalendarManager: NSObject {
             
             if applicationCalendar == nil {
                 applicationCalendar = EKCalendar(forEntityType: EKEntityType.Event, eventStore:store)
-                applicationCalendar!.title = AppConfiguration.defaultFilamentCalendarName as String
+                applicationCalendar!.title = AppConfiguration.defaultCalendarName as String
+                applicationCalendar!.color = AppConfiguration.defaultCalendarColour as NSColor
                 applicationCalendar!.source = store.defaultCalendarForNewEvents.source
                 
                 do {

@@ -6,6 +6,13 @@
   Copyright © 2016 Andris Ltd. All rights reserved.
 */
 
+"CALENDAR_NAME" = "Actions";
+"APPLICATION_FILE_EXTENSION" = "acts";
+"DEFAULT_NODE_NAME" = "Untitled";
+"APPLICATION_FILE_FOLDER_NAME" = "Actions";
+"DEFAULT_DRAFT_NAME" = "Untitled";
+
+
 // DOCUMENT CREATION
 "NEW_DOCUMENT_DEFAULT_TITLE" = "Untitled";
 "NEW_DOCUMENT_1ST_ACTION" = "Action 1";

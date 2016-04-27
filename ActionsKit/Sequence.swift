@@ -40,7 +40,7 @@ class Sequence: NSObject, NSCopying, NSCoding, Mappable {
     }
     
     deinit {
-        print("Sequence deinit")
+        //  print("Sequence deinit")
     }
     
     // MARK: NSCoding

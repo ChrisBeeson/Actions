@@ -61,7 +61,6 @@ class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
         guard CalendarManager.sharedInstance.authorized == true else { return }
         
         if eventId.isEmpty == true {
-            print("Event ID is Empty so creating")
             self.createCalendarEvent()
             processing = false
             return
@@ -72,7 +71,6 @@ class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
         Async.userInitiated() {
             if self.event == nil {
                 self.createCalendarEvent()
-                 print("Event still null so creating")
             } else {
                 self.updateSystemCalendarData()
             }
@@ -144,10 +142,8 @@ class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
         event?.alarms?.removeAll()
         
         for rule in node.rules { if rule.className == EventAlarmRule.className() {
-            
             if let newAlarm = (rule as! EventAlarmRule).makeAlarm() {
                 event?.addAlarm(newAlarm)
-                Swift.print("Alarm added To event")
             }
             }
         }
@@ -175,7 +171,6 @@ class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
         
         if event == nil { findEvent() }
         guard event != nil else { return }
-        print("Deleting Event \(event?.title)")
         
         do {
             CalendarManager.sharedInstance.incrementChangeCount()
@@ -216,7 +211,6 @@ class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
     required init?(_ map: Map) {
         self.startDate = map[SerializationKeys.startDate].value()!
         self.endDate = map[SerializationKeys.endDate].value()!
-        
     }
     
     func mapping(map: Map) {
