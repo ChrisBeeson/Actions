@@ -440,7 +440,7 @@ CA
             <objects>
                 <customObject id="0b8-dX-KA2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <windowController showSeguePresentationStyle="single" id="Pec-jz-yQ8" customClass="MainWindowController" customModule="Actions" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Filament" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="y21-Oi-rl2">
+                    <window key="window" title="Actions" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="y21-Oi-rl2">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" texturedBackground="YES" unifiedTitleAndToolbar="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
                         <rect key="contentRect" x="475" y="275" width="550" height="250"/>
@@ -476,7 +476,7 @@ CA
                                     <segmentedControl key="view" verticalHuggingPriority="750" id="HyT-e8-Sfv">
                                         <rect key="frame" x="0.0" y="14" width="207" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="8Wq-ou-bCq">
+                                        <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="selectOne" id="8Wq-ou-bCq">
                                             <font key="font" metaFont="system"/>
                                             <segments>
                                                 <segment label="Active" width="100" selected="YES"/>

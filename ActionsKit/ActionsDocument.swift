@@ -151,12 +151,25 @@ public class ActionsDocument: NSDocument {
     }
     
     public func exportWithFilename(filename:NSURL) {
+        /*
+         if let JSON = Mapper().toJSONString(container!, prettyPrint: true) {
+         do {
+         try JSON.writeToURL(filename, atomically: true, encoding: NSUTF8StringEncoding )
+         } catch {
+         print(error)
+         }
+         }
+         */
         
-        if let JSON = Mapper().toJSONString(container!, prettyPrint: true) {
+        let export = container!.copy() as! Container
+        export.sequences[0].date = nil
+        export.sequences[0].nodeChain().forEach{$0.event = nil}
+        
+        if let JSON = Mapper().toJSONString(export, prettyPrint: true) {
             do {
                 try JSON.writeToURL(filename, atomically: true, encoding: NSUTF8StringEncoding )
             } catch {
-                 print(error)
+                print(error)
             }
         }
     }

@@ -18,7 +18,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     private var _nodePresenters = [NodePresenter]()
     private weak var _sequence: Sequence?
     private var _shouldBeDeleted = false
-    
+
     var nodePresenters : [NodePresenter] {
         return _sequence!.nodeChain().map { nodePresenter($0) }
     }
@@ -163,23 +163,13 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         for node in nodes {
             node.event?.deleteCalenderEvent()
             _sequence!.removeActionNode(node)
-        }
-        
-        /*
-        for node in nodes {
-            let indx = sequence.actionNodes.indexOf(node)
             
+            let indx = sequence.actionNodes.indexOf(node)
             undoManager?.registerUndoWithTarget(self, handler: { [oldNode = node, oldIndx = indx] (self) -> () in
                 self.insertActionNode(oldNode, actionNodesIndex: oldIndx, informDelegates:informDelegates)
-            })
+                })
             undoManager?.setActionName("UNDO_DELETE_ACTION".localized)
-            
-            let presentersToDelete = _nodePresenters.filter {$0.node == node}
-            presentersToDelete.forEach{ $0.prepareForDeletion() }
-            _nodePresenters.removeObjects(presentersToDelete)
-             _sequence!.removeActionNode(node)
         }
-        */
         
         representingDocument?.updateChangeCount(.ChangeDone)
         if informDelegates == true { informDelegatesOfChangesToNodeChain(oldNodes) }
@@ -236,14 +226,6 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
                 presenter.removeCalandarEvent(updateState: false)
             }
         }
-        /*
-        delegates.removeAll()
-        _nodePresenters.forEach{ $0.prepareForDeletion() }
-        _nodePresenters.removeAll()
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-        representingDocument?.updateChangeCount(.ChangeDone)
-        representingDocument = nil
- */
     }
     
     //MARK: Rule Presenters

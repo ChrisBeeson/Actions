@@ -37,6 +37,7 @@ public class DateNodeCollectionViewItem : NSCollectionViewItem, NSPopoverDelegat
         super.mouseDown(theEvent)
         
         if displayedPopover != nil { return }
+        guard sequencePresenter?.currentState != .Completed else {return}
         
         let popover = NSPopover()
         popover.animates = true

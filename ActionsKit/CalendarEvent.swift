@@ -209,8 +209,8 @@ class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
     //MARK: Mapping
     
     required init?(_ map: Map) {
-        self.startDate = map[SerializationKeys.startDate].value()!
-        self.endDate = map[SerializationKeys.endDate].value()!
+        self.startDate = map[SerializationKeys.startDate].valueOr(NSDate.distantPast())
+        self.endDate = map[SerializationKeys.endDate].valueOr(NSDate.distantFuture())
     }
     
     func mapping(map: Map) {
@@ -224,7 +224,6 @@ class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
     // MARK: NSCopying
     
     func copyWithZone(zone: NSZone) -> AnyObject  {
-        
         let clone = CalendarEvent()
         clone.startDate = self.startDate.copy() as! NSDate
         clone.endDate = self.endDate.copy() as! NSDate

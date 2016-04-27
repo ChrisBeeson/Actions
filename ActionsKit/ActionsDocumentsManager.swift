@@ -146,6 +146,8 @@ public extension ActionsDocumentManager {
     
     public class func filterDocumentsForFilterType(documents:[ActionsDocument], filterType:DocumentFilterType) -> [ActionsDocument] {
         
+        print("Filtering")
+        
         var returnDocuments = [ActionsDocument]()
         
         switch filterType {
@@ -153,6 +155,8 @@ public extension ActionsDocumentManager {
         case .Active:
             
             // Active sequence are sorted in this order
+            
+            // -1. Newly created, until dirtied
             // 0. Waiting for user
             // 1. Sequences with Errors
             // 2. Running sequence, soonest to end is first

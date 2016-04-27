@@ -347,7 +347,7 @@
 		835289D31C840D8F001CD0DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		835619C91C6D6AAA00488E99 /* NodeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDetailViewController.swift; sourceTree = "<group>"; };
 		835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NodeDetailViewController.xib; sourceTree = "<group>"; };
-		835718001CD0793F00F9159D /* icon_256x256@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_256x256@2x.png"; sourceTree = "<group>"; };
+		835718001CD0793F00F9159D /* icon_256x256@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_256x256@2x.png"; path = "../icon_256x256@2x.png"; sourceTree = "<group>"; };
 		835740B11C77AD0700CFBB1B /* CalendarEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEvent.swift; sourceTree = "<group>"; };
 		835878BB1C8FEAB000F2CCFB /* RuleAvailabiltiy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleAvailabiltiy.swift; sourceTree = "<group>"; };
 		8359A7721C7CF2F400ED87D9 /* DurationWithVarianceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationWithVarianceViewController.swift; sourceTree = "<group>"; };
@@ -437,6 +437,7 @@
 		471279BE1C82BAEA0090426C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				835718001CD0793F00F9159D /* icon_256x256@2x.png */,
 				471279C11C82BB650090426C /* en.lproj */,
 			);
 			name = Resources;
@@ -925,7 +926,6 @@
 		83F6B94E1B994652002A5AAF = {
 			isa = PBXGroup;
 			children = (
-				835718001CD0793F00F9159D /* icon_256x256@2x.png */,
 				4731AA461C466807001EB80A /* README */,
 				477212071BED9DCB00D5E988 /* Actions.entitlements */,
 				83F9E92A1BA18739006282B5 /* .gitignore */,

@@ -1,5 +1,7 @@
 Todo
 -------
+Adding new node when it has an error can sometimes cause a crash - (Model not updated?)
+
 
 
 --> BETA RELEASE 1

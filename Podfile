@@ -7,4 +7,5 @@ target 'Actions' do
     pod 'Crashlytics'
     pod 'AsyncSwift'
     pod 'ObjectMapper', '~> 1.2'
+    pod 'SwiftyStoreKit'
 end

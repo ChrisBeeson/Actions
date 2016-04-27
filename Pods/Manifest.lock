@@ -5,6 +5,7 @@ PODS:
   - DateTools (1.7.0)
   - Fabric (1.6.7)
   - ObjectMapper (1.2.0)
+  - SwiftyStoreKit (0.2.7)
 
 DEPENDENCIES:
   - AsyncSwift
@@ -12,6 +13,7 @@ DEPENDENCIES:
   - DateTools (~> 1.7)
   - Fabric
   - ObjectMapper (~> 1.2)
+  - SwiftyStoreKit
 
 SPEC CHECKSUMS:
   AsyncSwift: 46a78bceb11f0e5bb52747f740d9692ec78d2d7c
@@ -19,5 +21,6 @@ SPEC CHECKSUMS:
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   ObjectMapper: b1e9c7c8a9f6400b72690c80072c131504caa66f
+  SwiftyStoreKit: bafa1dc8d96e8875c109f2dd8ca519bafa66a284
 
 COCOAPODS: 0.39.0
