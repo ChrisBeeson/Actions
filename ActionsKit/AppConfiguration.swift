@@ -287,11 +287,11 @@ public class AppConfiguration: NSObject {
     
     public struct UTI {
         
-        public static let rule = "com.andris.filament.pasteboard.rule"
-        public static let node = "com.andris.filament.pasteboard.node"
-        public static let dateNode = "com.andris.filament.pasteboard.dateNode"
-        public static let sequence = "com.andris.filament.pasteboard.sequence"
-        public static let container = "com.andris.filament.pasteboard.container"
+        public static let rule = "com.andris.actions.pasteboard.rule"
+        public static let node = "com.andris.actions.pasteboard.node"
+        public static let dateNode = "com.andris.actions.pasteboard.dateNode"
+        public static let sequence = "com.andris.actions.pasteboard.sequence"
+        public static let container = "com.andris.actions.pasteboard.container"
     }
     
     // Beta Helpers 
