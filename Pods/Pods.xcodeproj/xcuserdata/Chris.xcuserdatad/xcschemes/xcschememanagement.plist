@@ -37,6 +37,11 @@
 			<key>orderHint</key>
 			<integer>7</integer>
 		</dict>
+		<key>Pods-Actions.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
 		<key>Pods-Filament.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -85,6 +90,11 @@
 			<true/>
 		</dict>
 		<key>73A4600794483FA0A926CFC8AAAD0A90</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A9A2521A05DDE838274E214864BC2EB2</key>
 		<dict>
 			<key>primary</key>
 			<true/>

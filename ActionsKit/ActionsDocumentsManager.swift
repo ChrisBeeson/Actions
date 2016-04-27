@@ -71,18 +71,19 @@ public class ActionsDocumentManager : DirectoryMonitorDelegate {
                     }
                 }
             }
-            
+        
             self.documents.removeObjects(removedDocs)
         
-        // Async.main {
+         Async.main {
             self.delegate?.actionsDocumentsManagerDidUpdateContents(inserted:insertedDocs, removed:removedDocs)
-        //}
+        }
        
     }
     
     public func deleteDocumentForPresenter(presenter:SequencePresenter) {
-        let docToDel = self.documentForSequence(presenter.sequence)
-        permanentlyDeleteDocument(docToDel)
+        let document = self.documentForSequence(presenter.sequence)
+        document.close()
+        permanentlyDeleteDocument(document)
     }
     
     func documentForSequence(sequence: Sequence) -> ActionsDocument {
@@ -127,19 +128,12 @@ public extension ActionsDocumentManager {
     }
     
     public func permanentlyDeleteDocument(document: ActionsDocument) {
-        /*
-        document.sequencePresenter?.prepareForCompleteDeletion()
-        document.updateChangeCount(.ChangeCleared)
-        document.sequencePresenter = nil
-        print(NSDocumentController.sharedDocumentController().documents)
-        NSDocumentController.sharedDocumentController().removeDocument(document)
-        */
+
         let url = document.storageURL()
         let fileManager = NSFileManager.defaultManager()
         
         do {
             try fileManager.removeItemAtURL(url)
-            // document.unarchivedSequence = nil
         } catch {
             print(error)
         }

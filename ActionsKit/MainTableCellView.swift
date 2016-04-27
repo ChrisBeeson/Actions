@@ -86,19 +86,18 @@ public class MainTableCellView: NSTableCellView, SequencePresenterDelegate, Rule
     func updateCellView() {
         guard presenter != nil else { fatalError() }
         
+        sequenceCollectionView.reloadData()
+        sequenceCollectionView.toolTip = String(presenter!.currentState)
+        
         presenter!.updateState(false)
         titleTextField.stringValue = presenter!.title
-        self.sequenceCollectionView.toolTip = String(presenter!.currentState)
+        statusTextField.textColor = colourForCurrentState()
         
         let isCompleted = presenter!.currentState == .Completed ? true : false
         titleTextField.enabled = !isCompleted
         addGenericRuleButton.hidden = isCompleted
         generalRulesCollectionView.allowDrops = !isCompleted
         generalRulesCollectionView.allowDeletions = !isCompleted
-    
-        statusTextField.textColor = colourForCurrentState()
-        
-        sequenceCollectionView.reloadData()
         refreshGeneralRulesCollectionView()
     }
     

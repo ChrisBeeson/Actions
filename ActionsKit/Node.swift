@@ -185,6 +185,7 @@ class Node: NSObject, NSCoding, Mappable {
     func deleteEvent() {
         if self.event == nil { return }
         self.event!.deleteCalenderEvent()
+        self.event?.owner = nil
         self.event = nil
     }
     

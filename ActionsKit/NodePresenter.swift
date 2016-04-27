@@ -18,6 +18,7 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     var currentState = NodeState.Inactive
     private var rulePresenters = [RulePresenter]()
     var errors: [SolverError]?
+    var node: Node
     
     //MARK: Init
     
@@ -40,10 +41,9 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
         super.init()
     }
     
+    
     //MARK: Properties
-    
-    var node: Node
-    
+
     public var title: String {
         get {
             return node.title
@@ -215,6 +215,7 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     }
     
     func removeCalandarEvent(updateState updateState:Bool) {
+        node.event?.owner = nil
         node.deleteEvent()
         sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
         if updateState == true { updateNodeState() }

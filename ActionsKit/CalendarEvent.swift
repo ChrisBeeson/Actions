@@ -133,15 +133,16 @@ class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
     func synchronizeAlarms() -> Bool {
         guard let node = owner else { return false }
         
-        var alarms = [EKAlarm]()
+        event?.alarms?.removeAll()
+        
         for rule in node.rules { if rule.className == EventAlarmRule.className() {
-            // alarms.append(rule.makeAlarm())
+            
+            if let newAlarm = (rule as! EventAlarmRule).makeAlarm() {
+                event?.addAlarm(newAlarm)
+                Swift.print("Alarm added To event")
+            }
             }
         }
-        
-        if event?.alarms?.count == 0 && alarms.count == 0 { return false }
-        
-        event?.alarms? = alarms
         return true
     }
     
@@ -149,6 +150,7 @@ class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
     private func saveCalendarEvent() {
         guard CalendarManager.sharedInstance.authorized == true else { return }
         guard event != nil else { return }
+        print("Saving Event \(event?.title)")
         
         do {
             CalendarManager.sharedInstance.incrementChangeCount()
@@ -164,6 +166,7 @@ class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
     func deleteCalenderEvent() {
         guard CalendarManager.sharedInstance.authorized == true else { return }
         guard event != nil else { return }
+        print("Deleting Event \(event?.title)")
         
         do {
             CalendarManager.sharedInstance.incrementChangeCount()

@@ -81,10 +81,8 @@ public class MainTableViewController:  NSViewController, NSTableViewDataSource, 
         
         if animated == false {
             filteredDocuments = newFilteredDocuments
-            // CATransaction.begin() ; CATransaction.setDisableActions(true)
             self.tableView!.reloadData()
             self.tableView.deselectAll(self)
-            //CATransaction.commit()
             return
         }
         
@@ -215,10 +213,8 @@ public class MainTableViewController:  NSViewController, NSTableViewDataSource, 
         switch (alert.runModal()) {
         case NSAlertFirstButtonReturn:   // Delete
             if let cellView = tableView.viewAtColumn(0, row: tableView.selectedRow, makeIfNecessary: false) as? MainTableCellView {
-
+                cellView.presenter?.prepareForCompleteDeletion()
                 ActionsDocumentManager.sharedManager.deleteDocumentForPresenter(cellView.presenter!)
-                // cellView.presenter = nil
-
             }
         default: break
         }

@@ -129,6 +129,7 @@
 		835619CA1C6D6AAA00488E99 /* NodeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835619C91C6D6AAA00488E99 /* NodeDetailViewController.swift */; };
 		835619CC1C6D6AD100488E99 /* NodeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */; };
 		835619CD1C6D6E4B00488E99 /* NodeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */; };
+		835718011CD0793F00F9159D /* icon_256x256@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 835718001CD0793F00F9159D /* icon_256x256@2x.png */; };
 		835740B21C77AD0700CFBB1B /* CalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835740B11C77AD0700CFBB1B /* CalendarEvent.swift */; };
 		835878BC1C8FEAB000F2CCFB /* RuleAvailabiltiy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835878BB1C8FEAB000F2CCFB /* RuleAvailabiltiy.swift */; };
 		8359A7731C7CF2F400ED87D9 /* DurationWithVarianceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8359A7721C7CF2F400ED87D9 /* DurationWithVarianceViewController.swift */; };
@@ -346,6 +347,7 @@
 		835289D31C840D8F001CD0DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		835619C91C6D6AAA00488E99 /* NodeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDetailViewController.swift; sourceTree = "<group>"; };
 		835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NodeDetailViewController.xib; sourceTree = "<group>"; };
+		835718001CD0793F00F9159D /* icon_256x256@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_256x256@2x.png"; sourceTree = "<group>"; };
 		835740B11C77AD0700CFBB1B /* CalendarEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEvent.swift; sourceTree = "<group>"; };
 		835878BB1C8FEAB000F2CCFB /* RuleAvailabiltiy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleAvailabiltiy.swift; sourceTree = "<group>"; };
 		8359A7721C7CF2F400ED87D9 /* DurationWithVarianceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationWithVarianceViewController.swift; sourceTree = "<group>"; };
@@ -923,6 +925,7 @@
 		83F6B94E1B994652002A5AAF = {
 			isa = PBXGroup;
 			children = (
+				835718001CD0793F00F9159D /* icon_256x256@2x.png */,
 				4731AA461C466807001EB80A /* README */,
 				477212071BED9DCB00D5E988 /* Actions.entitlements */,
 				83F9E92A1BA18739006282B5 /* .gitignore */,
@@ -1186,6 +1189,7 @@
 			files = (
 				83F9E92B1BA18739006282B5 /* .gitignore in Resources */,
 				835619CD1C6D6E4B00488E99 /* NodeDetailViewController.xib in Resources */,
+				835718011CD0793F00F9159D /* icon_256x256@2x.png in Resources */,
 				47B6964B1BE5BC0B00260C2A /* Main.storyboard in Resources */,
 				4731AA471C466807001EB80A /* README in Resources */,
 				477F4A9D1CCCB17E00022113 /* MainTableViewCell.xib in Resources */,
@@ -1697,7 +1701,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_EMPTY_BODY = NO;
 				CODE_SIGN_ENTITLEMENTS = Actions.entitlements;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -1727,7 +1731,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_EMPTY_BODY = NO;
 				CODE_SIGN_ENTITLEMENTS = Actions.entitlements;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;

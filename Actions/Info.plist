@@ -9,15 +9,17 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>fil</string>
+				<string>acts</string>
 			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>icon_256x256@2x</string>
 			<key>CFBundleTypeName</key>
 			<string>Actions Document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.andris.filament</string>
+				<string>com.andris.actions</string>
 			</array>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
@@ -42,7 +44,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>4720</string>
+	<string>4757</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>

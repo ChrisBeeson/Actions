@@ -9,6 +9,7 @@
 import Foundation
 import ObjectMapper
 import EventKit
+import DateTools
 
 enum AlarmType : Int {
     case None = 0
@@ -39,22 +40,23 @@ class EventAlarmRule : Rule {
     }
     
     func makeAlarm() -> EKAlarm? {
-        
         guard alarmType != .None else { return nil }
+        var offset: Double
+        switch alarmOffsetUnit {
+            case .OnDate: offset = 0
+            case .MinutesBefore: offset = Double(Timesize(unit: DTTimePeriodSize.Minute , amount: offsetAmount).inSeconds())
+            case .HoursBefore: offset = Double(Timesize(unit: DTTimePeriodSize.Minute , amount: offsetAmount).inSeconds())
+            case .DaysBefore: offset = Double(Timesize(unit: DTTimePeriodSize.Hour , amount: offsetAmount).inSeconds())
+        }
         
+        let alarm = EKAlarm(relativeOffset: (0 - offset))
         
-        
-        /*
-        
-        
-        let alarm = alarmOffsetUnit == .OnDate ? EKAlarm(absoluteDate: <#T##NSDate#>) : EKAlarm(relativeOffset: <#T##NSTimeInterval#>)
-        
-        var alarm = EKAlarm()
-        */
-        
-        //  return alarm
-        
-        return EKAlarm()
+        if emailAddress.isEmpty == false {
+            alarm.emailAddress = emailAddress
+        } else {
+            alarm.soundName = "Hero"
+        }
+        return alarm
     }
     
     // MARK: NSCoding

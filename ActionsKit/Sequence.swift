@@ -34,9 +34,13 @@ class Sequence: NSObject, NSCopying, NSCoding, Mappable {
         self.title = name
         super.init()
         if let nodes = actionNodes {
-            self.actionNodes = nodes.map { $0.copy() as! Node}
+            self.actionNodes = nodes
             forceCreateTransistionNodesForActionNodes()
         }
+    }
+    
+    deinit {
+        print("Sequence deinit")
     }
     
     // MARK: NSCoding

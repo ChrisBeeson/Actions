@@ -28,7 +28,7 @@ public enum SequenceState : Int {
         }
         self = newState
         presenter.delegates.forEach{ $0.sequencePresenterDidChangeState(presenter, toState:newState)}
-        // presenter.nodePresenters.forEach{ $0.currentState.update($0) }
+        presenter.nodePresenters.forEach{ $0.currentState.update($0) }
         return newState
     }
     

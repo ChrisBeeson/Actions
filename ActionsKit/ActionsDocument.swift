@@ -39,6 +39,7 @@ public class ActionsDocument: NSDocument {
     
     deinit {
         _sequencePresenter = nil
+        print("Actions Document deinit")
     }
     
     
@@ -128,8 +129,6 @@ public class ActionsDocument: NSDocument {
     //MARK: Save
     
     public func save() {
-        if self.hasUnautosavedChanges == false { return }
-        
         let storageDir = AppConfiguration.sharedConfiguration.storageDirectory
         let url = storageDir().URLByAppendingPathComponent(container!.filename)
         do {

@@ -44,7 +44,7 @@ public class AppConfiguration: NSObject {
     
     
     public class var applicationFileExtension: String {
-        return "act"
+        return "acts"
     }
     
     public class var defaultActionNodeName: String {

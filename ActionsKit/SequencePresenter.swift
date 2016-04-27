@@ -161,8 +161,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         let oldNodes = _sequence!.nodeChain()
         
         for node in nodes {
-            _nodePresenters = _nodePresenters.filter {$0.node != node}
-            _nodePresenters.forEach{ $0.removeCalandarEvent(updateState: false) }
+            node.event?.deleteCalenderEvent()
             _sequence!.removeActionNode(node)
         }
         
@@ -237,12 +236,14 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
                 presenter.removeCalandarEvent(updateState: false)
             }
         }
+        /*
         delegates.removeAll()
         _nodePresenters.forEach{ $0.prepareForDeletion() }
         _nodePresenters.removeAll()
         NSNotificationCenter.defaultCenter().removeObserver(self)
         representingDocument?.updateChangeCount(.ChangeDone)
         representingDocument = nil
+ */
     }
     
     //MARK: Rule Presenters

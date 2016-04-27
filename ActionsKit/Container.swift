@@ -31,10 +31,13 @@ class Container: NSObject, NSCopying, NSCoding, Mappable {
     }
     
     init(name:String, sequences:[Sequence]) {
-        
         self.title = name
         self.sequences = sequences
         super.init()
+    }
+    
+    deinit {
+        print("Container deinit")
     }
     
     
@@ -72,7 +75,6 @@ class Container: NSObject, NSCopying, NSCoding, Mappable {
     //MARK: Mapping
     
     required init?(_ map: Map) {
-        
     }
     
      func mapping(map: Map) {
