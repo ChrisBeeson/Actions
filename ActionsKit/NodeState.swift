@@ -22,7 +22,7 @@ enum NodeState: Int {
     
     internal mutating func changeToState(newState: NodeState, presenter:NodePresenter, options:[String]?) -> NodeState {
         
-        print("Node \(presenter.title):  From \(self)  to \(newState)")
+        //print("Node \(presenter.title):  From \(self)  to \(newState)")
         if self == newState { print("Self is equal to the new state") }
         self = newState
         presenter.delegates.forEach { $0.nodePresenterDidChangeState(presenter, toState:newState, options:nil) }

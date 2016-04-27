@@ -60,25 +60,33 @@ class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
         guard publish == true else { return }
         guard CalendarManager.sharedInstance.authorized == true else { return }
         
-        if eventId.isEmpty == true{
+        if eventId.isEmpty == true {
+            print("Event ID is Empty so creating")
             self.createCalendarEvent()
             processing = false
             return
         }
         
+        findEvent()
+        
         Async.userInitiated() {
-            let store = CalendarManager.sharedInstance.store
-            let items = store.calendarItemsWithExternalIdentifier(self.eventId)
-            if items.count > 0 {
-                self.event = items[0] as? EKEvent
-            }
-            
             if self.event == nil {
                 self.createCalendarEvent()
+                 print("Event still null so creating")
             } else {
                 self.updateSystemCalendarData()
             }
         }
+    }
+    
+    private func findEvent() {
+        let store = CalendarManager.sharedInstance.store
+        let items = store.calendarItemsWithExternalIdentifier(self.eventId)
+        if items.count > 0 {
+            self.event = items[0] as? EKEvent
+            return
+        }
+        // TODO: Look through events with predicate to match them with name and dates.
     }
     
     
@@ -150,7 +158,6 @@ class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
     private func saveCalendarEvent() {
         guard CalendarManager.sharedInstance.authorized == true else { return }
         guard event != nil else { return }
-        print("Saving Event \(event?.title)")
         
         do {
             CalendarManager.sharedInstance.incrementChangeCount()
@@ -165,6 +172,8 @@ class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
     
     func deleteCalenderEvent() {
         guard CalendarManager.sharedInstance.authorized == true else { return }
+        
+        if event == nil { findEvent() }
         guard event != nil else { return }
         print("Deleting Event \(event?.title)")
         
