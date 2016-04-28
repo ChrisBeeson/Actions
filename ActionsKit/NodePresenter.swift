@@ -104,8 +104,10 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
             return node.isCompleted
         }
         set {
-            node.isCompleted = isCompleted
-            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+            if node.isCompleted != isCompleted {
+                node.isCompleted = isCompleted
+                sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+            }
         }
     }
     

@@ -19,10 +19,9 @@ enum NodeState: Int {
     case InheritedError
     case Void                    // illegal state that we should never be in apart from init
     
-    
     internal mutating func changeToState(newState: NodeState, presenter:NodePresenter, options:[String]?) -> NodeState {
         
-        //print("Node \(presenter.title):  From \(self)  to \(newState)")
+        print("Node \(presenter.title):  From \(self)  to \(newState)")
         if self == newState { print("Self is equal to the new state") }
         self = newState
         presenter.delegates.forEach { $0.nodePresenterDidChangeState(presenter, toState:newState, options:nil) }
@@ -34,7 +33,7 @@ enum NodeState: Int {
         toState(calcState, presenter: presenter, ignoreError: false)
     }
 
-    
+
     mutating func toState(state: NodeState, presenter: NodePresenter, ignoreError:Bool) -> NodeState {
         if state == self { return self }
         
@@ -55,7 +54,6 @@ enum NodeState: Int {
         presenter.removeCalandarEvent(updateState: false)
         return changeToState(Inactive, presenter: presenter, options: nil)
     }
-    
     
     mutating func toReady(presenter: NodePresenter, ignoreErrors:Bool) -> NodeState {
         guard self != .Ready else { return self }
@@ -96,12 +94,12 @@ enum NodeState: Int {
     }
     
     
-    
     mutating func toCompleted(presenter: NodePresenter) -> NodeState {
         guard self != .Completed else { return self }
         presenter.isCompleted = true
         return changeToState(.Completed, presenter:presenter, options: nil)
     }
+    
     
     mutating func toError(presenter: NodePresenter) -> NodeState {
         guard self != .Error else { return self }
@@ -129,9 +127,10 @@ enum NodeState: Int {
         return changeToState(.WaitingForUserInput, presenter:presenter, options: nil)
     }
     
-        
+
     func calculateNodeState(presenter: NodePresenter, ignoreError:Bool) -> NodeState {
         if presenter.isCompleted == true { return .Completed }
+        if presenter.sequencePresenter?.currentState == .Completed { return .Completed }
         if ignoreError == false && self == .Error { return .Error }
         if ignoreError == false && self == .InheritedError { return .InheritedError }
         guard presenter.event != nil else { return .Inactive }

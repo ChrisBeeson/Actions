@@ -22,12 +22,10 @@ class NodeCollectionViewItem : NSCollectionViewItem, NodePresenterDelegate, Drag
     
     var presenter: NodePresenter?  {
         didSet {
-            if presenter != nil {
                 presenter!.addDelegate(self)
                 presenter!.updateNodeState()
                 updateView()
                 self.nodeView.updateViewToState(presenter!.currentState, shouldTransition:false)
-            }
         }
     }
     
