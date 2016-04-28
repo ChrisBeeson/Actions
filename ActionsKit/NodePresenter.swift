@@ -249,19 +249,16 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
         }
         sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
         delegates.forEach { $0.nodePresenterDidChangeRules(self) }
+        sequencePresenter?.currentState.update(true, presenter: sequencePresenter!) //FIXME: Shouldn't be doing this
     }
     
-    func insertRules(rules:[Rule]) {
-        node.rules.appendContentsOf(rules)
-        sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
-        delegates.forEach { $0.nodePresenterDidChangeRules(self) }
-    }
-    
+
     
     func deleteRulePresenter(deletedRulePresenter: RulePresenter) {
         node.rules.removeObject(deletedRulePresenter.rule)
         sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
         delegates.forEach { $0.nodePresenterDidChangeRules(self) }
+        sequencePresenter?.currentState.update(true, presenter: sequencePresenter!) //FIXME: Shouldn't be doing this
     }
     
     

@@ -34,6 +34,7 @@ struct SolverError {
             return nil
         case .FollowsFailedNode: return "SOLVER_ERROR_FOLLOWS_FAILED_NODE".localized
         case .MinRequirementsNotMet: return "Internal Error: Solver Min Requirements Not Met"
+        case .RequiresUserInput, .FollowsRequiresUserInput: return "SOLVER_WARN_WAITING_FOR_USER".localized
         default: return nil
         }
     }
@@ -52,5 +53,7 @@ enum SolverErrorType {
     case NearlyFits
     case Clash
     case FollowsFailedNode
+    case RequiresUserInput
+    case FollowsRequiresUserInput
     case MinRequirementsNotMet
 }

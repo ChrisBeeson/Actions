@@ -14,6 +14,7 @@ enum NodeState: Int {
     case Ready                   // has calendar Event
     case Running                 // is in the middle of an Event
     case WaitingForUserInput
+    case InheritedWait
     case Completed               // has past an event
     case Error
     case InheritedError
@@ -21,7 +22,7 @@ enum NodeState: Int {
     
     internal mutating func changeToState(newState: NodeState, presenter:NodePresenter, options:[String]?) -> NodeState {
         
-        print("Node \(presenter.title):  From \(self)  to \(newState)")
+        //print("Node \(presenter.title):  From \(self)  to \(newState)")
         if self == newState { print("Self is equal to the new state") }
         self = newState
         presenter.delegates.forEach { $0.nodePresenterDidChangeState(presenter, toState:newState, options:nil) }
@@ -42,6 +43,7 @@ enum NodeState: Int {
         case Ready : return toReady(presenter, ignoreErrors: ignoreError)
         case Running : return toRunning(presenter)
         case WaitingForUserInput : return toWaitingForUserInput(presenter)
+        case InheritedWait : return toInheritedWait(presenter)
         case Completed : return toCompleted(presenter)
         case Error : return toError(presenter)
         case InheritedError : return toInheritedError(presenter)
@@ -100,6 +102,17 @@ enum NodeState: Int {
         return changeToState(.Completed, presenter:presenter, options: nil)
     }
     
+    mutating func toWaitingForUserInput(presenter: NodePresenter) -> NodeState {
+        guard self != .WaitingForUserInput else { return self }
+         presenter.removeCalandarEvent(updateState: false)
+        return changeToState(.WaitingForUserInput, presenter:presenter, options: nil)
+    }
+    
+    mutating func toInheritedWait(presenter: NodePresenter) -> NodeState {
+        guard self != .InheritedWait else { return self }
+         presenter.removeCalandarEvent(updateState: false)
+        return changeToState(.InheritedWait, presenter:presenter, options: nil)
+    }
     
     mutating func toError(presenter: NodePresenter) -> NodeState {
         guard self != .Error else { return self }
@@ -115,24 +128,18 @@ enum NodeState: Int {
         presenter.removeCalandarEvent(updateState: false)
         return changeToState(.InheritedError, presenter:presenter, options: nil)
     }
-    
-    
-    mutating func toWaitingForUserInput(presenter: NodePresenter) -> NodeState {
-        guard self != .WaitingForUserInput else { return self }
-        
-        switch self {
-        case .Inactive: break
-        default:break
-        }
-        return changeToState(.WaitingForUserInput, presenter:presenter, options: nil)
-    }
-    
 
     func calculateNodeState(presenter: NodePresenter, ignoreError:Bool) -> NodeState {
         if presenter.isCompleted == true { return .Completed }
         if presenter.sequencePresenter?.currentState == .Completed { return .Completed }
-        if ignoreError == false && self == .Error { return .Error }
-        if ignoreError == false && self == .InheritedError { return .InheritedError }
+        
+        if ignoreError == false {
+         if self == .Error  ||
+            self == .InheritedError ||
+            self == .WaitingForUserInput ||
+            self == .InheritedWait { return self }
+        }
+
         guard presenter.event != nil else { return .Inactive }
         
         var newState = NodeState.Void

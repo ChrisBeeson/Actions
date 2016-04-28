@@ -28,7 +28,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         NSNotificationCenter.defaultCenter().addObserverForName("UpdateAllSequences", object: nil, queue: nil) { (notification) -> Void in
             if self.representingDocument != nil {
                 if self._shouldBeDeleted == false {
-                    self.updateState(true)
+                    self.updateState(processEvents:true)
                 } else {
                     print("Trying to update a sequence that should be DELETED!!")
                 }
@@ -85,7 +85,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     func setSequence(sequence: Sequence) {
         guard sequence != self._sequence else { return }
         self._sequence = sequence
-        updateState(false)
+        updateState(processEvents:false)
         delegates.forEach{ $0.sequencePresenterDidRefreshCompleteLayout(self) }
     }
     
@@ -199,12 +199,12 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
             let deletedNodes = Set(diff.deletions.map {NSIndexPath (forItem: $0.idx , inSection: 0)})
             delegates.forEach { $0.sequencePresenterDidUpdateChainContents(insertedNodes, deletedNodes:deletedNodes) }
         }
-        updateState(true)
+        updateState(processEvents:true)
     }
     
     // MARK: State
     
-    public func updateState(processEvents: Bool) {
+    public func updateState(processEvents processEvents: Bool) {
         guard _sequence != nil else { return }
         currentState.update(processEvents, presenter: self)
     }
@@ -225,14 +225,14 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         // guard rule.rule.type.contains[""] else { return }
         sequence.generalRules.insert(rule.rule, atIndex: atIndex)
         delegates.forEach{ $0.sequencePresenterDidChangeGeneralRules(self) }
-        updateState(true)
+        updateState(processEvents:true)
         representingDocument?.updateChangeCount(.ChangeDone)
     }
     
     public func removeRulePresenter(rule:RulePresenter) {
         sequence.generalRules.removeObject(rule.rule)
         delegates.forEach{ $0.sequencePresenterDidChangeGeneralRules(self) }
-        updateState(true)
+        updateState(processEvents:true)
         representingDocument?.updateChangeCount(.ChangeDone)
     }
     

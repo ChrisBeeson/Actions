@@ -105,7 +105,7 @@ public enum SequenceState : Int {
         // add timer to refresh on StartDate
         let secsToStart = presenter.date!.secondsLaterThan(NSDate())
         NSTimer.schedule(delay: secsToStart+0.1) { timer in
-            presenter.updateState(true)
+            presenter.updateState(processEvents: true)
         }
         return changeToState(.WaitingForStart, presenter: presenter, options: nil)
     }

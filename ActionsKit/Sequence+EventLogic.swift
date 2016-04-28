@@ -45,6 +45,7 @@ extension Sequence {
         var solvedPeriodsToAvoid = [AvoidPeriod]()
         let orderedNodes:[Node] = self.timeDirection == .Forward ? self.actionNodes : self.actionNodes.reverse()
         var failedNode:Node?
+        var waitingForUserNode:Node?
         
         for (index, node) in orderedNodes.enumerate() {
             
@@ -61,6 +62,25 @@ extension Sequence {
             if failedNode != nil {
                 errors.append(SolverError(errorLevel: .Failed, error: .FollowsFailedNode, object: failedNode, node: node))
                 SolvedActionNode(node, state:.InheritedError, errors: errors)
+                continue
+            }
+            
+            // Handle WaitForUser rule
+            if waitingForUserNode == nil {
+                for rule in node.rules {
+                    if rule is WaitForUserRule {
+                        if (rule as! WaitForUserRule).userContinued == false {
+                            errors.append(SolverError(errorLevel: .Warning, error: .RequiresUserInput, object: node, node: node))
+                            SolvedActionNode(node, state:.WaitingForUserInput, errors: errors)
+                            waitingForUserNode = node
+                            break
+                        }
+                    }
+                }
+                if waitingForUserNode != nil { continue }
+            }else {
+                errors.append(SolverError(errorLevel: .Warning, error: .FollowsRequiresUserInput, object: waitingForUserNode, node: node))
+                SolvedActionNode(node, state:.InheritedWait, errors: errors)
                 continue
             }
             

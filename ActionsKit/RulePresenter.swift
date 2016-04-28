@@ -82,6 +82,7 @@ public class RulePresenter : NSObject {
         case "ActionsKit.GreaterThanLessThanRule":             return GreaterThanLessThanRulePresenter(rule: rule)
         case "ActionsKit.NextUnitRule":                        return NextUnitRulePresenter(rule: rule)
         case "ActionsKit.EventAlarmRule":                      return EventAlarmRulePresenter(rule: rule)
+        case "ActionsKit.WaitForUserRule":                     return WaitForUserPresenter(rule: rule)
         default:                                               return RulePresenter(rule: rule)
         }
     }

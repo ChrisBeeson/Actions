@@ -121,6 +121,8 @@
 		833AE32E1C67E463002F35C1 /* DateNodeCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 833AE32D1C67E463002F35C1 /* DateNodeCollectionViewItem.xib */; };
 		833AE3301C67F85B002F35C1 /* ActionNodeCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 833AE32F1C67F85B002F35C1 /* ActionNodeCollectionViewItem.xib */; };
 		833AE3321C67FB6D002F35C1 /* TransitionNodeCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 833AE3311C67FB6D002F35C1 /* TransitionNodeCollectionViewItem.xib */; };
+		833BF9951CD1D8EE00AA1DDA /* WaitForUserRuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833BF9941CD1D8EE00AA1DDA /* WaitForUserRuleViewController.swift */; };
+		833BF9971CD1D90500AA1DDA /* WaitForUserRuleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 833BF9961CD1D90500AA1DDA /* WaitForUserRuleViewController.xib */; };
 		8343519D1BA297650094428B /* TransitionDurationWithVariance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8343519C1BA297650094428B /* TransitionDurationWithVariance.swift */; };
 		834C6CD41C89330600266709 /* EmptyRuleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 834C6CD31C89330600266709 /* EmptyRuleViewController.xib */; };
 		834F85CF1C6ACF5E009CC72F /* AddNewNodeCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834F85CE1C6ACF5E009CC72F /* AddNewNodeCollectionViewItem.swift */; };
@@ -340,6 +342,8 @@
 		833AE32D1C67E463002F35C1 /* DateNodeCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateNodeCollectionViewItem.xib; sourceTree = "<group>"; };
 		833AE32F1C67F85B002F35C1 /* ActionNodeCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionNodeCollectionViewItem.xib; sourceTree = "<group>"; };
 		833AE3311C67FB6D002F35C1 /* TransitionNodeCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransitionNodeCollectionViewItem.xib; sourceTree = "<group>"; };
+		833BF9941CD1D8EE00AA1DDA /* WaitForUserRuleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitForUserRuleViewController.swift; sourceTree = "<group>"; };
+		833BF9961CD1D90500AA1DDA /* WaitForUserRuleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WaitForUserRuleViewController.xib; sourceTree = "<group>"; };
 		8343519C1BA297650094428B /* TransitionDurationWithVariance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionDurationWithVariance.swift; sourceTree = "<group>"; };
 		834C6CD31C89330600266709 /* EmptyRuleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyRuleViewController.xib; sourceTree = "<group>"; };
 		834F85CE1C6ACF5E009CC72F /* AddNewNodeCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewNodeCollectionViewItem.swift; sourceTree = "<group>"; };
@@ -542,6 +546,7 @@
 		473853B01C7A5892000AB1E2 /* RuleViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				833BF9931CD1D8C600AA1DDA /* WaitForUser */,
 				473853B11C7A590A000AB1E2 /* RuleViewController.swift */,
 				834C6CD31C89330600266709 /* EmptyRuleViewController.xib */,
 				830B29F61CC734E00029E712 /* EventAlarmRule */,
@@ -822,6 +827,15 @@
 				4720B50B1C71193600229734 /* Node+Event.swift */,
 			);
 			name = Old;
+			sourceTree = "<group>";
+		};
+		833BF9931CD1D8C600AA1DDA /* WaitForUser */ = {
+			isa = PBXGroup;
+			children = (
+				833BF9941CD1D8EE00AA1DDA /* WaitForUserRuleViewController.swift */,
+				833BF9961CD1D90500AA1DDA /* WaitForUserRuleViewController.xib */,
+			);
+			name = WaitForUser;
 			sourceTree = "<group>";
 		};
 		8343519B1BA2973C0094428B /* Rules */ = {
@@ -1158,6 +1172,7 @@
 			files = (
 				471279B91C8061A20090426C /* EventDurationWithMinimumDurationViewController.xib in Resources */,
 				4720B50A1C6F00E500229734 /* DateTimePickerViewController.xib in Resources */,
+				833BF9971CD1D90500AA1DDA /* WaitForUserRuleViewController.xib in Resources */,
 				834C6CD41C89330600266709 /* EmptyRuleViewController.xib in Resources */,
 				47ED142A1C9D5281002F4B4E /* WorkingWeekViewController.xib in Resources */,
 				833AE3301C67F85B002F35C1 /* ActionNodeCollectionViewItem.xib in Resources */,
@@ -1311,6 +1326,7 @@
 				473574751B9A689B00493CA0 /* Node.swift in Sources */,
 				8329DE9B1C63DF10001B3A2F /* SequenceCollectionView.swift in Sources */,
 				476D1FFD1CA74A6300320431 /* LeftAlignedSequenceFlowLayout.swift in Sources */,
+				833BF9951CD1D8EE00AA1DDA /* WaitForUserRuleViewController.swift in Sources */,
 				47967FFB1C8ABC4F00358199 /* AvoidCalendarEventsPresenter.swift in Sources */,
 				47737EF61CA2A2DC0072322D /* GreaterThanLessThanPresenter.swift in Sources */,
 				83C73E0E1BE31C4F0045973C /* AppConfiguration.swift in Sources */,

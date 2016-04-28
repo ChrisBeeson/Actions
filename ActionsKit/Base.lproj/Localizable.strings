@@ -74,6 +74,7 @@
 "SOLVER_ERROR_FOLLOWS_FAILED_NODE" = "Following a failed event";
 "SOLVER_ERROR_CLASHES_WITH" = "Clashes with ";
 "SOLVER_ERROR_UNKNOWN" = "Unknown Error";
+"SOLVER_WARN_WAITING_FOR_USER" = "Waiting for User";
 
 
 // UNDO

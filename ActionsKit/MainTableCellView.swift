@@ -29,12 +29,12 @@ public class MainTableCellView: NSTableCellView, SequencePresenterDelegate, Rule
     private var availableGeneralRulesViewController : AvailableRulesViewController?
     private var displayedPopover: NSPopover?
     
-    public weak var presenter: SequencePresenter? {
+    public weak var sequencePresenter: SequencePresenter? {
         set {
-            presenter?.removeDelegate(self)
+            sequencePresenter?.removeDelegate(self)
             sequenceCollectionView.presenter = newValue
             if newValue != nil {
-                presenter!.addDelegate(self)
+                sequencePresenter!.addDelegate(self)
             }
         }
         get {
@@ -84,16 +84,16 @@ public class MainTableCellView: NSTableCellView, SequencePresenterDelegate, Rule
     
     
     func updateCellView() {
-        guard presenter != nil else { fatalError() }
+        guard sequencePresenter != nil else { fatalError() }
         
         sequenceCollectionView.reloadData()
-        sequenceCollectionView.toolTip = String(presenter!.currentState)
+        sequenceCollectionView.toolTip = String(sequencePresenter!.currentState)
         
-        presenter!.updateState(false)
-        titleTextField.stringValue = presenter!.title
+        sequencePresenter!.updateState(processEvents:true)
+        titleTextField.stringValue = sequencePresenter!.title
         statusTextField.textColor = colourForCurrentState()
         
-        let isCompleted = presenter!.currentState == .Completed ? true : false
+        let isCompleted = sequencePresenter!.currentState == .Completed ? true : false
         titleTextField.enabled = !isCompleted
         addGenericRuleButton.hidden = isCompleted
         generalRulesCollectionView.allowDrops = !isCompleted
@@ -103,7 +103,7 @@ public class MainTableCellView: NSTableCellView, SequencePresenterDelegate, Rule
     
     
     @IBAction func titleTextFieldDidChange(sender: NSTextField) {
-        presenter!.renameTitle(sender.stringValue)
+        sequencePresenter!.renameTitle(sender.stringValue)
     }
 
     
@@ -119,7 +119,7 @@ public class MainTableCellView: NSTableCellView, SequencePresenterDelegate, Rule
         if availableGeneralRulesViewController == nil {
             availableGeneralRulesViewController = AvailableRulesViewController(nibName:"AvailableRulesViewController", bundle:NSBundle(identifier:"com.andris.ActionsKit"))
         }
-        availableGeneralRulesViewController!.availableRules = presenter
+        availableGeneralRulesViewController!.availableRules = sequencePresenter
         availableGeneralRulesViewController!.displayRulesForNodeType = [.Generic]
         availableGeneralRulesViewController!.collectionViewDelegate = self
         popover.contentViewController = availableGeneralRulesViewController
@@ -129,15 +129,15 @@ public class MainTableCellView: NSTableCellView, SequencePresenterDelegate, Rule
     
     func refreshGeneralRulesCollectionView() {
         
-        let rulePresenters = presenter?.currentRulePresenters()
-        if presenter != nil {
-            rulePresenters?.forEach{ $0.sequencePresenter = presenter }
+        let rulePresenters = sequencePresenter?.currentRulePresenters()
+        if sequencePresenter != nil {
+            rulePresenters?.forEach{ $0.sequencePresenter = sequencePresenter }
         }
         
         // Hide Add General Rules button if there are no available rules
         
-        if self.presenter!.currentState != .Completed {
-        if self.presenter!.availableRulePresenters().count == 0 {
+        if self.sequencePresenter!.currentState != .Completed {
+        if self.sequencePresenter!.availableRulePresenters().count == 0 {
             if addGenericRuleButton.hidden == false {
                 addGenericRuleButton.animator().hidden = true
             }
@@ -183,18 +183,18 @@ public class MainTableCellView: NSTableCellView, SequencePresenterDelegate, Rule
     
     public func didAcceptDrop(collectionView: RuleCollectionView, droppedRulePresenter: RulePresenter, atIndex: Int) {
         
-        presenter?.addRulePresenter(droppedRulePresenter, atIndex: atIndex)
+        sequencePresenter?.addRulePresenter(droppedRulePresenter, atIndex: atIndex)
         // refreshGeneralRulesCollectionView()
     }
     
     public func didDeleteRulePresenter(collectionView: RuleCollectionView, deletedRulePresenter: RulePresenter) {
-        presenter?.removeRulePresenter(deletedRulePresenter)
+        sequencePresenter?.removeRulePresenter(deletedRulePresenter)
         //refreshGeneralRulesCollectionView()
     }
     
     public func didDoubleClick(collectionView: RuleCollectionView, selectedRulePresenter: RulePresenter) {
         
-        presenter?.addRulePresenter(selectedRulePresenter, atIndex: presenter!.currentRulePresenters().count)
+        sequencePresenter?.addRulePresenter(selectedRulePresenter, atIndex: sequencePresenter!.currentRulePresenters().count)
         displayedPopover?.close()
     }
     
@@ -212,9 +212,9 @@ public class MainTableCellView: NSTableCellView, SequencePresenterDelegate, Rule
     // Colour
     
     func colourForCurrentState() -> NSColor {
-        guard presenter != nil else { return NSColor.blackColor() }
+        guard sequencePresenter != nil else { return NSColor.blackColor() }
         
-        switch presenter!.currentState {
+        switch sequencePresenter!.currentState {
         case .NoStartDateSet: return AppConfiguration.Palette.verylightGreyStroke
         case .WaitingForStart: return AppConfiguration.Palette.greenStroke
         case .Running: return AppConfiguration.Palette.greenStroke

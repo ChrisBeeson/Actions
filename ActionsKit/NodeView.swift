@@ -148,7 +148,7 @@ class NodeView: NSView {
             animStroke.autoreverses = true
             self.pathLayer.addAnimation(animStroke, forKey: "RunningStroke")
             
-        case .WaitingForUserInput:
+        case .WaitingForUserInput, .InheritedWait:
             CATransaction.begin()
             CATransaction.setDisableActions(!shouldTransition)
             pathLayer.strokeColor = drawingContextColour(.Blue).stroke
@@ -189,6 +189,7 @@ class NodeView: NSView {
         case .Running: return .Green
         case .Completed: return .LightGrey
         case .WaitingForUserInput: return .Blue
+        case .InheritedWait: return .Blue
         case .Error: return .Red
         case .InheritedError: return .LightRed
         case .Void: fatalError("Trying to find colour for a Void State")

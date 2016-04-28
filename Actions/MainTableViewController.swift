@@ -119,8 +119,8 @@ public class MainTableViewController:  NSViewController, NSTableViewDataSource, 
     
     public func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let cellView = tableView.makeViewWithIdentifier("MainTableCellView", owner: self) as! MainTableCellView
-        cellView.presenter = filteredDocuments[row].sequencePresenter
-        cellView.presenter?.undoManager = self.undoManager
+        cellView.sequencePresenter = filteredDocuments[row].sequencePresenter
+        cellView.sequencePresenter?.undoManager = self.undoManager
         cellView.updateCellView()
         return cellView
     }
@@ -213,8 +213,8 @@ public class MainTableViewController:  NSViewController, NSTableViewDataSource, 
         switch (alert.runModal()) {
         case NSAlertFirstButtonReturn:   // Delete
             if let cellView = tableView.viewAtColumn(0, row: tableView.selectedRow, makeIfNecessary: false) as? MainTableCellView {
-                cellView.presenter?.prepareForCompleteDeletion()
-                ActionsDocumentManager.sharedManager.deleteDocumentForPresenter(cellView.presenter!)
+                cellView.sequencePresenter?.prepareForCompleteDeletion()
+                ActionsDocumentManager.sharedManager.deleteDocumentForPresenter(cellView.sequencePresenter!)
             }
         default: break
         }

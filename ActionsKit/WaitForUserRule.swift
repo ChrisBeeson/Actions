@@ -15,7 +15,7 @@ class WaitForUserRule : Rule {
     override var name: String { return "RULE_NAME_WAIT".localized }
     override var availableToNodeType: NodeType { return [.Action] }
     
-    var completed = false
+    var userContinued = false
     
     override init() {
         super.init()
@@ -29,11 +29,11 @@ class WaitForUserRule : Rule {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder:aDecoder)
-        completed = aDecoder.decodeBoolForKey(SerializationKeys.completed)
+        userContinued = aDecoder.decodeBoolForKey(SerializationKeys.completed)
     }
     
     override func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeBool(completed, forKey:SerializationKeys.completed)
+        aCoder.encodeBool(userContinued, forKey:SerializationKeys.completed)
     }
     
     
@@ -41,7 +41,7 @@ class WaitForUserRule : Rule {
     
     override func copyWithZone(zone: NSZone) -> AnyObject  {
         let clone = WaitForUserRule()
-        clone.completed = self.completed
+        clone.userContinued = self.userContinued
         return clone
     }
     
@@ -54,6 +54,6 @@ class WaitForUserRule : Rule {
     
     override func mapping(map: Map) {
         super.mapping(map)
-        completed <- map[SerializationKeys.completed]
+        userContinued <- map[SerializationKeys.completed]
     }
 }
