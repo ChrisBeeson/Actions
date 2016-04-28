@@ -146,8 +146,6 @@ public extension ActionsDocumentManager {
     
     public class func filterDocumentsForFilterType(documents:[ActionsDocument], filterType:DocumentFilterType) -> [ActionsDocument] {
         
-        print("Filtering")
-        
         var returnDocuments = [ActionsDocument]()
         
         switch filterType {

@@ -8,63 +8,31 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>1</integer>
-		</dict>
-		<key>CCNStatusItem.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
 		</dict>
 		<key>DateTools.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>3</integer>
-		</dict>
-		<key>FormatterKit.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-			<key>orderHint</key>
-			<integer>4</integer>
 		</dict>
 		<key>ObjectMapper.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>7</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-Actions.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>8</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
-		<key>Pods-Filament.xcscheme</key>
+		<key>SwiftyStoreKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>5</integer>
-		</dict>
-		<key>PopDatePicker.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-			<key>orderHint</key>
-			<integer>6</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2A89132C0E1171D2A8271D12F8C1BEEB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>34A4A85C2E4C3C2D61CFBCED1EF6F91E</key>
+		<key>381DFC83B6B45662DA40DE5B1C654A27</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -74,27 +42,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>52642D5C04272F7577EC127D84DC33BE</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6F1604923333431999E49C5253C996FE</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>70406912158F03DC9A514C9E981C289C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>73A4600794483FA0A926CFC8AAAD0A90</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A9A2521A05DDE838274E214864BC2EB2</key>
+		<key>90E208DB2A4685687F291544E8A11A0C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -105,11 +53,6 @@
 			<true/>
 		</dict>
 		<key>C8F54543305BD95F34FAB796C9CAAFCA</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>EEAD9C1E6B7EAC6633260FD42FC96EBC</key>
 		<dict>
 			<key>primary</key>
 			<true/>

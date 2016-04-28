@@ -1,1 +1,1 @@
-../../../../Fabric/OSX/Fabric.framework/Versions/A/Headers/Fabric.h
+../../../../Fabric/OSX/Fabric.framework/Headers/Fabric.h

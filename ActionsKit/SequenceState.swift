@@ -44,8 +44,8 @@ public enum SequenceState : Int {
         }
         
         if processEvents == true {
-                let calcState = self.processCalanderEvents(presenter)
-                self.toState(calcState, presenter: presenter)
+            let calcState = self.processCalanderEvents(presenter)
+            self.toState(calcState, presenter: presenter)
         } else {
             toState(currentState, presenter: presenter)
         }
@@ -159,21 +159,23 @@ public enum SequenceState : Int {
     
     
     func calculateSequenceState(presenter: SequencePresenter, ignoreHasFailedNode:Bool) -> SequenceState {
+        presenter.completionDate = nil
         guard presenter.date != nil else { return .NoStartDateSet }
         
-        for presenter in presenter.nodePresenters {
-            if presenter.currentState == .Error {
-                return .HasFailedNode
-            }
+        for nodePresenter in presenter.nodePresenters {
+            if nodePresenter.currentState == .Error { return .HasFailedNode }
+            if nodePresenter.currentState == .WaitingForUserInput { return .Paused }
         }
         
         var state = SequenceState.Void
-        if presenter.date!.isLaterThan(NSDate()) == true { state = .WaitingForStart }
-        if presenter.date!.isEarlierThan(NSDate()) == true { state = .Running }
         
-        if let completeDate = presenter.completionDate {
-            if completeDate.isEarlierThan(NSDate()) == true { state = .Completed }
-        }
+            if presenter.date!.isLaterThan(NSDate()) == true { state = .WaitingForStart }
+            if presenter.date!.isEarlierThan(NSDate()) == true { state = .Running }
+            if let finishDate = presenter.nodes!.last!.event?.endDate {
+                presenter.completionDate = finishDate
+                if finishDate.isEarlierThan(NSDate()) == true { state = .Completed }
+            }
+        
         return state
     }
 }

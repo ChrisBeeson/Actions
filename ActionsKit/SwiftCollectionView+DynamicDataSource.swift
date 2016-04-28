@@ -69,7 +69,7 @@ extension SequenceCollectionView {
         case .Date: return makeDateItem(path)
         case .AddButton: return makeAddButton(path)
         case .ActionNode,.TransitionNode: return makeMainTypeNode(path, type:itemTypeAtIndex(path))
-        case .Void: return NSCollectionViewItem()
+        case .Void: Swift.print("Void") ; return NSCollectionViewItem()
         }
     }
     
@@ -203,7 +203,7 @@ extension SequenceCollectionView {
             case .StartDateWithAddButton: return .ActionNode
             case .StartDateWithoutAddButton: return .ActionNode
             case .EndDateWithAddButton: return .ActionNode
-            case .EndDateWithoutAddButton: return .Void
+            case .EndDateWithoutAddButton: return .Date
             }
             
         case let x where x > 0 && x < presenter!.nodes!.count:

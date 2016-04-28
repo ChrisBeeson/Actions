@@ -106,7 +106,6 @@ public class CalendarManager: NSObject {
     
     
     public func verifyUserEventAuthorization() {
-        
         switch EKEventStore.authorizationStatusForEntityType(EKEntityType.Event) {
             
         case .NotDetermined:

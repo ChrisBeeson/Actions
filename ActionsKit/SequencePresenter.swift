@@ -77,18 +77,8 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
         return _sequence!.timeDirection
     }
     
-    public var completionDate : NSDate? {
-        
-        //TODO: CompleteionDate needs to handle backwards, and user input, and failed nodes.
-        if nodes == nil { return nil}
-        if nodes!.count == 0 { return nil }
-        //if nodes!.count == 0 { return nodes![nodes!.count].event?.endDate }
-        if let event = nodes![nodes!.count-1].event {
-            return event.endDate
-        } else {
-            return nil
-        }
-    }
+    // CompletionDate is set during sequence State update
+    public var completionDate : NSDate?
     
     // MARK: Methods
     

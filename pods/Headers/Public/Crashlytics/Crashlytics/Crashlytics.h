@@ -1,1 +1,1 @@
-../../../../Crashlytics/OSX/Crashlytics.framework/Versions/A/Headers/Crashlytics.h
+../../../../Crashlytics/OSX/Crashlytics.framework/Headers/Crashlytics.h

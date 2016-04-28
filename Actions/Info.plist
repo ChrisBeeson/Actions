@@ -11,8 +11,6 @@
 			<array>
 				<string>acts</string>
 			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>icon_256x256@2x</string>
 			<key>CFBundleTypeName</key>
 			<string>Actions Document</string>
 			<key>CFBundleTypeRole</key>
@@ -44,7 +42,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>4787</string>
+	<string>4796</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>

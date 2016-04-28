@@ -1,1 +1,1 @@
-../../../../Crashlytics/OSX/Crashlytics.framework/Versions/A/Headers/CLSReport.h
+../../../../Crashlytics/OSX/Crashlytics.framework/Headers/CLSReport.h

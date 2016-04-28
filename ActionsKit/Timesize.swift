@@ -71,8 +71,8 @@ class Timesize: NSObject, NSCoding, Mappable  {
     //MARK: Mapping
     
     required init?(_ map: Map) {
-        self.unit = map["timeSizeUnit"].valueOrFail()
-        self.amount = map["timeSizeAmount"].valueOrFail()
+        self.unit = map["timeSizeUnit"].valueOr(DTTimePeriodSize.Minute)
+        self.amount = map["timeSizeAmount"].valueOr(30)
     }
     
     func mapping(map: Map) {

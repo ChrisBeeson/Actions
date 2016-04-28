@@ -1,1 +1,1 @@
-../../../../Crashlytics/OSX/Crashlytics.framework/Versions/A/Headers/CLSStackFrame.h
+../../../../Crashlytics/OSX/Crashlytics.framework/Headers/CLSStackFrame.h

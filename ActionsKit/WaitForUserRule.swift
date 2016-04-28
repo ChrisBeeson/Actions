@@ -15,6 +15,8 @@ class WaitForUserRule : Rule {
     override var name: String { return "RULE_NAME_WAIT".localized }
     override var availableToNodeType: NodeType { return [.Action] }
     
+    var completed = false
+    
     override init() {
         super.init()
     }
@@ -22,31 +24,26 @@ class WaitForUserRule : Rule {
     // MARK: NSCoding
     
     private struct SerializationKeys {
-        // static let duration = "duration"
-        //   static let minDuration = "minDuration"
+         static let completed = "completed"
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder:aDecoder)
-        //   calendars = aDecoder.decodeObjectForKey("calendars") as! [EKCalendar]
+        completed = aDecoder.decodeBoolForKey(SerializationKeys.completed)
     }
     
     override func encodeWithCoder(aCoder: NSCoder) {
-        //aCoder.encodeObject(calendars, forKey:"calendars")
+        aCoder.encodeBool(completed, forKey:SerializationKeys.completed)
     }
     
     
     // MARK: NSCopying
     
-    override func copyWithZone(zone: NSZone) -> AnyObject  {  //TODO: NSCopy
-        /*
-         let clone = Sequence()
-         clone.title = title.copy() as! String
-         return clone
-         */
-        return self
+    override func copyWithZone(zone: NSZone) -> AnyObject  {
+        let clone = WaitForUserRule()
+        clone.completed = self.completed
+        return clone
     }
-    
     
     
     //MARK: Mapping
@@ -57,5 +54,6 @@ class WaitForUserRule : Rule {
     
     override func mapping(map: Map) {
         super.mapping(map)
+        completed <- map[SerializationKeys.completed]
     }
 }
