@@ -14,7 +14,6 @@ public class ActionsDocument: NSDocument {
     // MARK: Properties
     
     var unarchivedSequence: Sequence {
-        // print("calling unarchivedSequence")
         return container!.sequences[0]
     }
     var container : Container?

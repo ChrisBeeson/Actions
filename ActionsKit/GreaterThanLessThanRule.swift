@@ -33,14 +33,12 @@ class GreaterThanLessThanRule : Rule {
             let startTime = inputDate!.dateByAddingTimesize(greaterThan)
             let endTime = inputDate!.dateByAddingTimesize(lessThan)
             let window = DTTimePeriod(startDate: startTime, endDate: endTime)
-            //print("GreaterThanLessThan createdThisStartWindow : \(window.log())")
             return window
             
         case .Backward:
             let startTime = inputDate!.dateBySubtractingTimesize(greaterThan)
             let endTime = inputDate!.dateBySubtractingTimesize(lessThan)
             let window = DTTimePeriod(startDate: startTime, endDate: endTime)
-            //print("GreaterThanLessThan createdThisStartWindow : \(window.log())")
             return window
         }
         }

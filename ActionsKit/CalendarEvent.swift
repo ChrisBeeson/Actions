@@ -98,11 +98,8 @@ class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
         if events != nil && events!.count>0 {
             self.event = events![0]
         } else  {
-            // make a new Event
             CalendarManager.sharedInstance.incrementChangeCount()
             event = EKEvent(eventStore: CalendarManager.sharedInstance.store)
-            //print("Creating new event for owner \(owner)")
-            
             if let appCal = CalendarManager.sharedInstance.applicationCalendar {
                 event!.calendar = appCal
             } else {

@@ -21,8 +21,6 @@ extension Node {
     
      func updateCalendarEventWithTimePeriod(period:DTTimePeriod) {
         
-        print("hgfdjklhjkgfds")
-        
         // Already have a correct event?
         
         if self.event != nil && self.event!.startDate.isEqualToDate(period.StartDate) == true && self.event?.endDate.isEqualToDate(period.EndDate) == true {

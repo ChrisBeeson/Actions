@@ -59,11 +59,9 @@ class WaitForUserRule : Rule {
                 if rule.eventPreferedStartDate != nil { filteredRules.removeObject(rule) }
                 rule.inputDate = nil
             }
-            print("return \(filteredRules)")
              return filteredRules
 
         } else {
-            print("No actual start Date")
             return rules
         }
     }

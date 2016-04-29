@@ -50,7 +50,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     }
     
     func applicationDidUnhide(notification: NSNotification) {
-         print("Did unhide")
     }
     
     

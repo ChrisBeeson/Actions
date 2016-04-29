@@ -42,13 +42,13 @@ extension Sequence {
             }
         }
         
+        // Lets begin
+        
         var solvedPeriodsToAvoid = [AvoidPeriod]()
         let orderedNodes:[Node] = self.timeDirection == .Forward ? self.actionNodes : self.actionNodes.reverse()
         var failedNode:Node?
         var waitingForUserNode:Node?
-        
-        print(self.timeDirection)
-        
+
         for (index, node) in orderedNodes.enumerate() {
             
             var errors = [SolverError]()

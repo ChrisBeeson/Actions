@@ -107,10 +107,11 @@ class Solver: NSObject {
         }
         
         //Why??
+        /*
         if averageStartWindow?.EndDate.isEarlierThan(averageStartWindow?.StartDate) == true {
             averageStartWindow = DTTimePeriod(startDate: averageStartWindow!.EndDate, endDate: averageStartWindow!.StartDate)
         }
-        
+        */
         
         //////////////////////////////////////////////////////////////////////////
         ///  Phase 3:
