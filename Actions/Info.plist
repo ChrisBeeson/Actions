@@ -42,11 +42,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-<<<<<<< HEAD
-	<string>4866</string>
-=======
-	<string>4788</string>
->>>>>>> master
+	<string>4789</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
