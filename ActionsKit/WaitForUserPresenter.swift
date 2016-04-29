@@ -12,6 +12,7 @@ public class WaitForUserPresenter : RulePresenter {
     
     var completed : Bool  {
         get {
+            //TODO: Allow this to only be changed once it's later than it's scheduled time.
             return (rule as! WaitForUserRule).userContinued
         }
         set {

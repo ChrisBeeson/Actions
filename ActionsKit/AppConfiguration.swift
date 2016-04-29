@@ -24,6 +24,12 @@ public class AppConfiguration: NSObject {
         super.init()
     }
     
+    // State
+    
+    //public var state:ApplicationState
+    
+    
+    
     // Names
     
     private struct Defaults {

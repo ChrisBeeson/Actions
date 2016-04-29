@@ -55,8 +55,8 @@ class WaitForUserRule : Rule {
             for rule in filteredRules {
                 if rule is WaitForUserRule { continue }
                 rule.inputDate = NSDate()   // Pump it with a dummy date to catch it!
-                if rule.eventStartTimeWindow != nil { filteredRules.removeObject(rule) ; print("filtered Rule: \(rule.name)") }
-                if rule.eventPreferedStartDate != nil { filteredRules.removeObject(rule) ; print("filtered Rule: \(rule.name)") }
+                if rule.eventStartTimeWindow != nil { filteredRules.removeObject(rule) }
+                if rule.eventPreferedStartDate != nil { filteredRules.removeObject(rule) }
                 rule.inputDate = nil
             }
             print("return \(filteredRules)")

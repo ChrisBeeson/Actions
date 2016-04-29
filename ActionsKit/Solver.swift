@@ -32,7 +32,7 @@ class Solver: NSObject {
         
         //TODO: Use rules attached to the node, and then add rules: as additional rules
         
-        func printDebug(string: String) { if true == true { print(string) } }
+        func printDebug(string: String) { if true == false { print(string) } }
         
         /*
          This solving class works only on action Nodes.  But it need the transition based rules added to it.
