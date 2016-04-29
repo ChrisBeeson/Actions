@@ -511,13 +511,13 @@
 				8303DD961CA9DDCF003D3190 /* Container.swift */,
 				473574761B9A68AC00493CA0 /* Sequence.swift */,
 				47CD21C01BDF7A2600AF25BE /* Sequence+NodeLogic.swift */,
-				47CD21C51BDF807900AF25BE /* Sequence+EventLogic.swift */,
 				473574741B9A689B00493CA0 /* Node.swift */,
 				835740B11C77AD0700CFBB1B /* CalendarEvent.swift */,
 				47967FEF1C895C7200358199 /* Context.swift */,
 				47D56FA01C8AC9E80025D156 /* Calendar.swift */,
 				4744FBF21CA3E0FD00C06123 /* Solver */,
 				8343519B1BA2973C0094428B /* Rules */,
+				47ACA9551BB54658000CAC61 /* Helpers */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -581,8 +581,8 @@
 		4744FBF21CA3E0FD00C06123 /* Solver */ = {
 			isa = PBXGroup;
 			children = (
+				47CD21C51BDF807900AF25BE /* Sequence+EventLogic.swift */,
 				47F2FBC31BA8CFEE0041B291 /* Solver.swift */,
-				47ACA9551BB54658000CAC61 /* Helpers */,
 				83F9B3CB1CB66EA50054539A /* SolverError.swift */,
 				473D4AC61CB891BE00AB8560 /* AvoidPeriod.swift */,
 			);

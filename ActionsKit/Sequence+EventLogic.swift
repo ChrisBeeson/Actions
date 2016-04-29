@@ -47,6 +47,8 @@ extension Sequence {
         var failedNode:Node?
         var waitingForUserNode:Node?
         
+        print(self.timeDirection)
+        
         for (index, node) in orderedNodes.enumerate() {
             
             var errors = [SolverError]()
@@ -65,20 +67,9 @@ extension Sequence {
                 continue
             }
             
-            // Handle WaitForUser rule
-            if waitingForUserNode == nil {
-                for rule in node.rules {
-                    if rule is WaitForUserRule {
-                        if (rule as! WaitForUserRule).userContinued == false {
-                            errors.append(SolverError(errorLevel: .Warning, error: .RequiresUserInput, object: node, node: node))
-                            SolvedActionNode(node, state:.WaitingForUserInput, errors: errors)
-                            waitingForUserNode = node
-                            break
-                        }
-                    }
-                }
-                if waitingForUserNode != nil { continue }
-            }else {
+            // Handle WaitForUser - works in exactly the same way as failedNodes...
+
+            if waitingForUserNode != nil {
                 errors.append(SolverError(errorLevel: .Warning, error: .FollowsRequiresUserInput, object: waitingForUserNode, node: node))
                 SolvedActionNode(node, state:.InheritedWait, errors: errors)
                 continue
@@ -119,44 +110,71 @@ extension Sequence {
             // This is so past updates are ignored
             rules.forEach { if $0.isKindOfClass(AvoidCalendarEventsRule) == true {
                 ($0 as! AvoidCalendarEventsRule).ignoreCurrentEventsForSequence = self
-                //  ($0 as! AvoidCalendarEventsRule).ignoreCurrentEventForNode = node
+                //($0 as! AvoidCalendarEventsRule).ignoreCurrentEventForNode = node
                 }
             }
             
             // Add Avoid periods that have already been solved in this update
+            
             let avoidSolvedPeriodsRule = Rule()
             avoidSolvedPeriodsRule.avoidPeriods = solvedPeriodsToAvoid
             rules.append(avoidSolvedPeriodsRule)
-            
+        
             
             // Pre-Solver
             //------------------------
-            // Go through rules and add requirements
-            //TODO: check for requirements
+
             if index > 0 {
                 if let event = orderedNodes[index - 1].event {
                     let period = event.timePeriod()
                     rules.forEach{ $0.previousPeriod = period }
-                    node.rules.forEach{ $0.previousPeriod = period }
+                    node.rules.forEach{ $0.previousPeriod = period }  //FIXME: ???
                 }
             }
             
+            rules.forEach { rules = $0.preSolverCodeBlock(rules: rules) }
+            
+            // What if more that one rule whats to mod date?
+
             // Solver
-            //------------------------
+            //-------------------------------------------------------------------------------------------------------
             
             solvedPeriod = Solver.calculateEventPeriod(time, direction:timeDirection, node: node, rules:rules)
+            errors.appendContentsOf(solvedPeriod!.errors)
+            
+            //-------------------------------------------------------------------------------------------------------
             
             
             // Post-Solver
             //-----------------------
             
-            errors.appendContentsOf(solvedPeriod!.errors)
-            
+            if solvedPeriod?.period != nil { rules.forEach{$0.solvedPeriod = solvedPeriod?.period!} }
+            rules.forEach{ $0.postSolverCodeBlock() }
             //TODO: Calendar events get updated here?
             
             
             // Result processing
             //--------------------------
+            
+            // Waiting For User
+            
+            if solvedPeriod!.solved == true {
+                
+                for rule in node.rules {
+                    if rule is WaitForUserRule {
+                        if (rule as! WaitForUserRule).userContinued == false {
+                            errors.append(SolverError(errorLevel: .Warning, error: .RequiresUserInput, object: node, node: node))
+                            SolvedActionNode(node, state:.WaitingForUserInput, errors: errors)
+                            waitingForUserNode = node
+                            break
+                        } else {
+                            waitingForUserNode = nil
+                        }
+                    }
+                }
+                if waitingForUserNode != nil { continue }
+            }
+            
             
             // Failed
             if solvedPeriod!.solved == false {

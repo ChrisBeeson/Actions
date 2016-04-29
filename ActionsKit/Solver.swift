@@ -18,7 +18,7 @@ import DateTools
  Action Dur Min                         |--|
  AvoidPeriods          |------------|         |---|   |----|
  
- |----|
+                                        |----|
  
  Timeslot found                         ^^^^^^
  
@@ -30,7 +30,9 @@ class Solver: NSObject {
     
     class func calculateEventPeriod(inputDate: NSDate, direction:TimeDirection, node: Node, rules:[Rule]) -> SolvedPeriod! {
         
-        func printDebug(string: String) { if true == false { print(string) } }
+        //TODO: Use rules attached to the node, and then add rules: as additional rules
+        
+        func printDebug(string: String) { if true == true { print(string) } }
         
         /*
          This solving class works only on action Nodes.  But it need the transition based rules added to it.
@@ -55,6 +57,7 @@ class Solver: NSObject {
             
             rule.inputDate = inputDate
             rule.timeDirection = direction
+            rule.owner = node
             
             // Average event durations
             if let dur = rule.eventDuration {
@@ -89,8 +92,7 @@ class Solver: NSObject {
         ///  Make sure we meet the Basic Requirements
         //////////////////////////////////////////////////////////////////////////
         
-        
-        
+    
         if averageMinDuration == nil || averageDuration == nil || preferedStartTime == nil || averageStartWindow == nil {
             errors.append(SolverError(errorLevel:.Failed, error:.NoFreePeriods, object:nil, node:node))
             return (false, nil, errors)
@@ -102,6 +104,11 @@ class Solver: NSObject {
         // if the averageStartWindow start and end dates are the same, offset the endDate by a second.
         if averageStartWindow!.StartDate.isEqualToDate(averageStartWindow!.EndDate) {
             averageStartWindow!.EndDate = averageStartWindow!.StartDate.dateByAddingSeconds(1)
+        }
+        
+        //Why??
+        if averageStartWindow?.EndDate.isEarlierThan(averageStartWindow?.StartDate) == true {
+            averageStartWindow = DTTimePeriod(startDate: averageStartWindow!.EndDate, endDate: averageStartWindow!.StartDate)
         }
         
         
@@ -192,7 +199,7 @@ class Solver: NSObject {
          }
          */
         
-        // No? lets find the best period
+        // Lets find the best period
         
         var bestPeriod: DTTimePeriod?
         

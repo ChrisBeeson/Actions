@@ -74,16 +74,19 @@ public class RulePresenter : NSObject {
     //MARK: Factory
     
     class func makeRulePresenter(rule: Rule) -> RulePresenter {
+        
         switch rule.className {
-        case "ActionsKit.EventDurationWithMinimumDuration":    return EventDurationWithMinimumDurationRulePresenter(rule: rule)
-        case "ActionsKit.TransitionDurationWithVariance":      return TransitionDurationWithVarianceRulePresenter(rule: rule)
-        case "ActionsKit.AvoidCalendarEventsRule":             return AvoidCalendarEventsPresenter(rule: rule)
-        case "ActionsKit.WorkingWeekRule":                     return WorkingWeekRulePresenter(rule: rule)
-        case "ActionsKit.GreaterThanLessThanRule":             return GreaterThanLessThanRulePresenter(rule: rule)
-        case "ActionsKit.NextUnitRule":                        return NextUnitRulePresenter(rule: rule)
-        case "ActionsKit.EventAlarmRule":                      return EventAlarmRulePresenter(rule: rule)
-        case "ActionsKit.WaitForUserRule":                     return WaitForUserPresenter(rule: rule)
-        default:                                               return RulePresenter(rule: rule)
+        case TransitionDurationWithVariance.className():        return TransitionDurationWithVarianceRulePresenter(rule: rule)
+        case EventDurationWithMinimumDuration.className():      return EventDurationWithMinimumDurationRulePresenter(rule: rule)
+        case AvoidCalendarEventsRule.className():               return AvoidCalendarEventsPresenter(rule: rule)
+        case WorkingWeekRule.className():                       return WorkingWeekRulePresenter(rule: rule)
+        case GreaterThanLessThanRule.className():               return GreaterThanLessThanRulePresenter(rule: rule)
+        case NextUnitRule.className():                          return NextUnitRulePresenter(rule: rule)
+        case WaitForUserRule.className():                       return WaitForUserPresenter(rule: rule)
+        case EventAlarmRule.className():                        return EventAlarmRulePresenter(rule: rule)
+      //case TransitionDurationBasedOnTravelTime.className():   return TransitionDurationBasedOnTravelTime(map)
+     // case EventFixedStartAndEndDate.className():             return EventFixedStartAndEndDate(map)
+        default:                                                return RulePresenter(rule: rule)
         }
     }
     

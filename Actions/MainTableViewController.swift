@@ -97,6 +97,7 @@ public class MainTableViewController:  NSViewController, NSTableViewDataSource, 
             diff.deletions.forEach { deletionIndexPaths.addIndex($0.idx) }
             let insertionIndexPaths = NSMutableIndexSet()
             diff.insertions.forEach { insertionIndexPaths.addIndex($0.idx) }
+            
 /*
             self.tableView?.beginUpdates()
             self.tableView?.removeRowsAtIndexes(deletionIndexPaths, withAnimation: NSTableViewAnimationOptions.EffectFade)
@@ -105,7 +106,7 @@ public class MainTableViewController:  NSViewController, NSTableViewDataSource, 
  */
             //FIXME: Why is animation intermittant?
             
-            self.tableView!.reloadData()
+             self.tableView!.reloadData()
         }
         }
     }
@@ -121,6 +122,7 @@ public class MainTableViewController:  NSViewController, NSTableViewDataSource, 
         let cellView = tableView.makeViewWithIdentifier("MainTableCellView", owner: self) as! MainTableCellView
         cellView.sequencePresenter = filteredDocuments[row].sequencePresenter
         cellView.sequencePresenter?.undoManager = self.undoManager
+        cellView.sequencePresenter?.updateState(processEvents:true)
         cellView.updateCellView()
         return cellView
     }

@@ -173,9 +173,9 @@ public enum SequenceState : Int {
         
         var state = SequenceState.Void
         
-            if presenter.date!.isLaterThan(NSDate()) == true { state = .WaitingForStart }
-            if presenter.date!.isEarlierThan(NSDate()) == true { state = .Running }
-            if let finishDate = presenter.nodes!.last!.event?.endDate {
+            if presenter.date?.isLaterThan(NSDate()) == true { state = .WaitingForStart }
+            if presenter.date?.isEarlierThan(NSDate()) == true { state = .Running }
+            if let finishDate = presenter.nodes?.last?.event?.endDate {
                 presenter.completionDate = finishDate
                 if finishDate.isEarlierThan(NSDate()) == true { state = .Completed }
             }

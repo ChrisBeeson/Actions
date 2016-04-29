@@ -88,8 +88,7 @@ public class MainTableCellView: NSTableCellView, SequencePresenterDelegate, Rule
         
         sequenceCollectionView.reloadData()
         sequenceCollectionView.toolTip = String(sequencePresenter!.currentState)
-        
-        sequencePresenter!.updateState(processEvents:true)
+    
         titleTextField.stringValue = sequencePresenter!.title
         statusTextField.textColor = colourForCurrentState()
         
@@ -182,18 +181,14 @@ public class MainTableCellView: NSTableCellView, SequencePresenterDelegate, Rule
     //MARK: RuleCollectionView Delegates
     
     public func didAcceptDrop(collectionView: RuleCollectionView, droppedRulePresenter: RulePresenter, atIndex: Int) {
-        
         sequencePresenter?.addRulePresenter(droppedRulePresenter, atIndex: atIndex)
-        // refreshGeneralRulesCollectionView()
     }
     
     public func didDeleteRulePresenter(collectionView: RuleCollectionView, deletedRulePresenter: RulePresenter) {
         sequencePresenter?.removeRulePresenter(deletedRulePresenter)
-        //refreshGeneralRulesCollectionView()
     }
     
     public func didDoubleClick(collectionView: RuleCollectionView, selectedRulePresenter: RulePresenter) {
-        
         sequencePresenter?.addRulePresenter(selectedRulePresenter, atIndex: sequencePresenter!.currentRulePresenters().count)
         displayedPopover?.close()
     }

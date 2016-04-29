@@ -21,6 +21,7 @@ public class WaitForUserPresenter : RulePresenter {
         }
     }
     
+    
     public override func detailViewController() -> RuleViewController {
         if ruleViewController == nil {
             let bundle = NSBundle(identifier:"com.andris.ActionsKit")

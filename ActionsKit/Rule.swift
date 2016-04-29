@@ -18,7 +18,7 @@ struct RoleOptions : OptionSetType {
     static let RequiresInterestWindow = RoleOptions(rawValue: 2)
     static let RequiresPreviousPeriod = RoleOptions(rawValue: 4)
     static let RequiresSolvedPeriod = RoleOptions(rawValue: 8)
-    static let HasPostSolverCodeBlock = RoleOptions(rawValue: 16)
+    //  static let HasPostSolverCodeBlock = RoleOptions(rawValue: 16)
 }
 
 protocol RuleType {
@@ -32,6 +32,7 @@ protocol RuleType {
     var inputDate: NSDate? {get set}
     var timeDirection:TimeDirection { get set }
     var interestPeriod: DTTimePeriod? {get set}
+    weak var owner: Node? {get set}
     
     // Outputs
     var eventStartTimeWindow: DTTimePeriod? {get}
@@ -46,6 +47,8 @@ protocol RuleType {
     
     // Post Solver
     var solvedPeriod: DTTimePeriod? {get set}
+    
+    func preSolverCodeBlock(rules rules:[Rule]) -> [Rule]
     func postSolverCodeBlock()
     
     func preDeletionCodeBlock()
@@ -63,6 +66,7 @@ protocol RuleType {
     var inputDate: NSDate?
     var timeDirection = TimeDirection.Forward
     var interestPeriod: DTTimePeriod?
+    weak var owner: Node?
     var eventStartTimeWindow: DTTimePeriod? {get {return nil} }
     var eventPreferedStartDate: NSDate? {get {return nil} }
     var eventDuration: Timesize? { get { return nil } }
@@ -71,10 +75,11 @@ protocol RuleType {
     var previousPeriod: DTTimePeriod?
     var solvedPeriod: DTTimePeriod?
     
-    func postSolverCodeBlock() {}
-    func preDeletionCodeBlock() {}
-    func conflictsWithRule(rule:Rule) -> Bool { return false }
+    public func preSolverCodeBlock(rules rules:[Rule]) -> [Rule] { return rules }
+    public func postSolverCodeBlock() {}
+    public func preDeletionCodeBlock() {}
     
+    func conflictsWithRule(rule:Rule) -> Bool { return false }
     
     override init() { super.init() }
 

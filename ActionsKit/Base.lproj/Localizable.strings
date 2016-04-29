@@ -52,6 +52,9 @@
 "RUlE_WORKING_WEEK_EVENING" = "time outside of work hours";
 "RUlE_WORKING_WEEK_DAY_OFF" = "day off";
 
+"RULE_WAIT_FOR_USER_NOTIFICATION_PREFIX" = "";
+"RULE_WAIT_FOR_USER_NOTIFICATION_TEXT" = "Actions needs your attention to continue";
+
     //UNITS
 "RULE_UNIT_SEC" = "sec";
 "RULE_UNIT_MIN" = "min";
@@ -75,7 +78,6 @@
 "SOLVER_ERROR_CLASHES_WITH" = "Clashes with ";
 "SOLVER_ERROR_UNKNOWN" = "Unknown Error";
 "SOLVER_WARN_WAITING_FOR_USER" = "Waiting for User";
-
 
 // UNDO
 "UNDO_INSERT_ACTION" = "Insert";

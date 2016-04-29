@@ -15,7 +15,7 @@ import DateTools
 
 @NSApplicationMain
 
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         
@@ -28,6 +28,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         
         //   CCNStatusItem.sharedInstance().presentStatusItemWithImage(NSImage(named: "SystemTrayIcon"), contentViewController: nil)
+        
+        
+        NSUserNotificationCenter.defaultUserNotificationCenter().delegate = self
     }
     
     
@@ -48,6 +51,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidUnhide(notification: NSNotification) {
          print("Did unhide")
+    }
+    
+    
+    //MARK: NSUserNotificationCenterDelegate
+    
+    func userNotificationCenter(center: NSUserNotificationCenter, shouldPresentNotification notification: NSUserNotification) -> Bool {
+        return true
     }
     
 }

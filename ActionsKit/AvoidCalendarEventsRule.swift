@@ -12,6 +12,8 @@ import ObjectMapper
 
 class AvoidCalendarEventsRule : Rule {
     
+    //TODO: Add ignore all day events
+    
     // This rule sits the duration of an event.
     // It allows the event to be shortened to a minimum duration if required.
     
@@ -28,6 +30,7 @@ class AvoidCalendarEventsRule : Rule {
         populateCalendars()
     }
     
+    /*
     override var avoidPeriods: [AvoidPeriod]? {
         get {
             if interestPeriod == nil { return nil }
@@ -54,6 +57,46 @@ class AvoidCalendarEventsRule : Rule {
             self.avoidPeriods = newValue   // For testing only
         }
     }
+   */
+    
+
+    override var avoidPeriods: [AvoidPeriod]? {
+        get {
+            if interestPeriod == nil { return nil }
+            
+            // 1. Get active calendars
+            let activeCalendars = calendars.filter { $0.avoid == true }
+            // activeCalendars.forEach{ print("Using Calendar:\($0.name)  \($0.avoid)") }
+            guard let events = CalendarManager.sharedInstance.events(interestPeriod!, calendars:activeCalendars) else { return nil }
+            
+            // 2. Turn each event into a time period.
+            var periods = [AvoidPeriod]()
+            for event in events {
+                let period = DTTimePeriod(startDate: event.startDate, endDate: event.endDate)
+                var addPeriod = true
+                
+                if let ignores = ignorePeriods() {
+                    for ignore in ignores {
+                        if abs(period.StartDate.secondsFrom(ignore.StartDate!)) < 60 && abs(period.EndDate.secondsFrom(ignore.EndDate!)) < 60 {
+                            addPeriod = false
+                        }
+                    }
+                }
+                
+                if addPeriod == true {
+                    let avoidPeriod = AvoidPeriod(period: period, type: .CalendarEvent, object: event)
+                    periods.append(avoidPeriod)
+                }
+            }
+            return periods
+        }
+        
+        set {
+            self.avoidPeriods = newValue   // For testing only
+        }
+    }
+ 
+
     
     func ignorePeriods() -> [DTTimePeriod]? {
         var periods = [DTTimePeriod]()
@@ -69,6 +112,7 @@ class AvoidCalendarEventsRule : Rule {
             for node in ignoreCurrentEventsForSequence!.nodeChain() {
                 if let event = node.event {
                     let period = DTTimePeriod(startDate: event.startDate, endDate: event.endDate)
+                    print("Created Period to ignore \(period)")
                     periods.append(period)
                 }
             }
