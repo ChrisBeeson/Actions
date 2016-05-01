@@ -8,4 +8,6 @@ target 'Actions' do
     pod 'AsyncSwift'
     pod 'ObjectMapper', '~> 1.2'
     pod 'SwiftyStoreKit'
+    pod 'Parse'
+    pod 'Stripe'
 end

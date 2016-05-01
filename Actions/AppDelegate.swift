@@ -12,6 +12,7 @@ import ActionsKit
 import Fabric
 import Crashlytics
 import DateTools
+import Parse
 
 @NSApplicationMain
 
@@ -21,18 +22,37 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         
         NSUserDefaults.standardUserDefaults().registerDefaults(["NSApplicationCrashOnExceptions" : true])
         Fabric.with([Crashlytics.self])
+    
+        AppConfiguration.sharedConfiguration.applicationLaunched()
+        
+        
+        
+        // User Notifications
+        /*
+        let userNotificationTypes: NSUserNotificationType = [.Alert, .Badge, .Sound]
+        let settings = NSUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
+        application.registerUserNotificationSettings(settings)
+        application.registerForRemoteNotifications()
+        */
+                
+        //[PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+        //[[GAI sharedInstance] trackerWithTrackingId:@"UA-62707376-1"];
         
         CalendarManager.sharedInstance // TODO: Request 1st time validation at the right time & handle if user denys
         
-        NSDocumentController.sharedDocumentController().clearRecentDocuments(self)
-        
-        
-        //   CCNStatusItem.sharedInstance().presentStatusItemWithImage(NSImage(named: "SystemTrayIcon"), contentViewController: nil)
-        
+        //NSDocumentController.sharedDocumentController().clearRecentDocuments(self)
+        //CCNStatusItem.sharedInstance().presentStatusItemWithImage(NSImage(named: "SystemTrayIcon"), contentViewController: nil)
         
         NSUserNotificationCenter.defaultUserNotificationCenter().delegate = self
     }
     
+    /*
+    func application(application: NSApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        let installation = PFInstallation.currentInstallation()
+        installation.setDeviceTokenFromData(deviceToken)
+        installation.saveInBackground()
+    }
+ */
     
     func applicationWillTerminate(aNotification: NSNotification) {
       
