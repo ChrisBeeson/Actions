@@ -28,7 +28,7 @@ public protocol CommerceManagerDelegate {
 public struct CommerceManager {
     
     public var delegate : CommerceManagerDelegate?
-    public var currentLicenceState = ApplicationLicenceState.Dormant
+    public var currentLicenceState = ApplicationLicenceState.Expired
     var purchaseEngine = PurchaseEngine()
     
     mutating func update() {
@@ -45,7 +45,7 @@ public struct CommerceManager {
         case .Beta: return true
         case .Full: return true
         case .Trial: return true
-        case .Dormant: return false
+        case .Expired: return false
         }
     }
     

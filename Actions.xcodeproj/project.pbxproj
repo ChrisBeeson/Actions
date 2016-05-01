@@ -79,6 +79,7 @@
 		477C2CB31C409C660071467C /* ActionNodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477C2CB21C409C660071467C /* ActionNodeView.swift */; };
 		477C2CB51C40B3AD0071467C /* TransitionNodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477C2CB41C40B3AD0071467C /* TransitionNodeView.swift */; };
 		477F4A9D1CCCB17E00022113 /* MainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477F4A9C1CCCB17E00022113 /* MainTableViewCell.xib */; };
+		477FBDD61CD5CFE30043E52D /* PurchaseLicenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477FBDD51CD5CFE30043E52D /* PurchaseLicenceViewController.swift */; };
 		4794B99E1C78522B009CE617 /* NSTimer+Closure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4794B99D1C78522B009CE617 /* NSTimer+Closure.swift */; };
 		47967FF01C895C7200358199 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47967FEF1C895C7200358199 /* Context.swift */; };
 		47967FF21C895F5400358199 /* ContextPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47967FF11C895F5400358199 /* ContextPresenter.swift */; };
@@ -308,6 +309,7 @@
 		477C2CB21C409C660071467C /* ActionNodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionNodeView.swift; sourceTree = "<group>"; };
 		477C2CB41C40B3AD0071467C /* TransitionNodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionNodeView.swift; sourceTree = "<group>"; };
 		477F4A9C1CCCB17E00022113 /* MainTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainTableViewCell.xib; path = ActionsKit/MainTableViewCell.xib; sourceTree = SOURCE_ROOT; };
+		477FBDD51CD5CFE30043E52D /* PurchaseLicenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseLicenceViewController.swift; sourceTree = "<group>"; };
 		4794B99D1C78522B009CE617 /* NSTimer+Closure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTimer+Closure.swift"; sourceTree = "<group>"; };
 		47967FEF1C895C7200358199 /* Context.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		47967FF11C895F5400358199 /* ContextPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextPresenter.swift; sourceTree = "<group>"; };
@@ -784,6 +786,7 @@
 				47F5E82A1BF495D8004C0D16 /* AddCellViewController.swift */,
 				476C8D3B1C9AB8E40068E44F /* InfoViewController.swift */,
 				477F4A9C1CCCB17E00022113 /* MainTableViewCell.xib */,
+				477FBDD51CD5CFE30043E52D /* PurchaseLicenceViewController.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -1480,6 +1483,7 @@
 				47B696471BE564DC00260C2A /* MainWindowController.swift in Sources */,
 				83F7DE691C77D768008BEDCC /* GeneralExtensions.swift in Sources */,
 				47F5E82B1BF495D8004C0D16 /* AddCellViewController.swift in Sources */,
+				477FBDD61CD5CFE30043E52D /* PurchaseLicenceViewController.swift in Sources */,
 				476C8D3C1C9AB8E40068E44F /* InfoViewController.swift in Sources */,
 				479CD2861C1B8AE700C8D1D6 /* MainTableCellView.swift in Sources */,
 				83F6B95D1B994652002A5AAF /* AppDelegate.swift in Sources */,
@@ -1679,6 +1683,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-DNONAPPSTORE";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1716,6 +1721,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_SWIFT_FLAGS = "-DNONAPPSTORE";
 				SDKROOT = macosx;
 			};
 			name = Release;

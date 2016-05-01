@@ -9,6 +9,7 @@
 import Foundation
 import AppKit
 import Parse
+import Stripe
 
 public class AppConfiguration: NSObject {
     
@@ -31,6 +32,11 @@ public class AppConfiguration: NSObject {
     
     
     public func applicationLaunched() {
+        
+        #if NONAPPSTORE
+            Stripe.setDefaultPublishableKey("pk_test_CrzZEhVuOZXgWJIQyuGHi2qW")
+        #endif
+        
         
         // Parse setup
         

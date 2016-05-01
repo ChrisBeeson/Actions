@@ -18,7 +18,7 @@ public enum ApplicationLicenceState {
     case Expired
     
     init() {
-        self = .Dormant
+        self = .Expired
     }
     
     mutating func update(completionBlock:(newState:ApplicationLicenceState)->()) {
