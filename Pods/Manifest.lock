@@ -11,7 +11,7 @@ PODS:
   - Stripe (7.0.0):
     - Stripe/Core (= 7.0.0)
   - Stripe/Core (7.0.0)
-  - SwiftyStoreKit (0.2.7)
+  - SwiftyStoreKit (0.2.8)
 
 DEPENDENCIES:
   - AsyncSwift
@@ -32,6 +32,6 @@ SPEC CHECKSUMS:
   ObjectMapper: b1e9c7c8a9f6400b72690c80072c131504caa66f
   Parse: f51c24d2feb412e4b2d6cc73d37cb24e8d0089bc
   Stripe: 147bbff1ba7cf3422e4ed14f6e1fbbc72471ce6c
-  SwiftyStoreKit: bafa1dc8d96e8875c109f2dd8ca519bafa66a284
+  SwiftyStoreKit: 4210ae1ea8ef2743771c1d1ee3673345a8f27e90
 
 COCOAPODS: 0.39.0

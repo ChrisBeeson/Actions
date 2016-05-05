@@ -13,12 +13,6 @@ import Stripe
 
 public class AppConfiguration: NSObject {
     
-    private var _contextPresenter: ContextPresenter?
-    
-    public var commerceManager = CommerceManager()
-    
-    private var parseConfig:PFConfig?
-    
     public class var sharedConfiguration: AppConfiguration {
         struct Singleton {
             static let sharedAppConfiguration = AppConfiguration()
@@ -26,20 +20,22 @@ public class AppConfiguration: NSObject {
         return Singleton.sharedAppConfiguration
     }
     
+    private var _contextPresenter: ContextPresenter?
+    public var commerceManager: CommerceManager
+    private var parseConfig: PFConfig?
+    
     override init() {
-        super.init()
+        commerceManager = CommerceManager()
+          super.init()
     }
     
     
     public func applicationLaunched() {
-        
         #if NONAPPSTORE
             Stripe.setDefaultPublishableKey("pk_test_CrzZEhVuOZXgWJIQyuGHi2qW")
         #endif
         
-        
         // Parse setup
-        
         Parse.enableLocalDatastore()
         let configuration = ParseClientConfiguration {
             $0.applicationId = "actions-backend"

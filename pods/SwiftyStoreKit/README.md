@@ -85,6 +85,23 @@ func refreshReceipt() {
 }
 ```
 
+### Complete Transactions
+
+This can be used to finish any transactions that were pending in the payment queue after the app has been terminated. Should be called when the app starts.
+
+```swift
+SwiftyStoreKit.completeTransactions() { completedTransactions in
+    
+    for completedTransaction in completedTransactions {
+        
+        if completedTransaction.transactionState == .Purchased || completedTransaction.transactionState == .Restored {
+            
+            print("purchased: \(completedTransaction.productId)")
+        }
+    }
+}
+```
+
 
 **NOTE**:
 The framework provides a simple block based API with robust error handling on top of the existing StoreKit framework. It does **NOT** persist in app purchases data locally. It is up to clients to do this with a storage solution of choice (i.e. NSUserDefaults, CoreData, Keychain).
@@ -130,7 +147,33 @@ Note that the pre-registered in app purchases in the demo apps are for illustrat
 - Consumable in app purchases
 - Free subscriptions for Newsstand
 
+## Known issues
+
+#### Requests lifecycle
+
+While SwiftyStoreKit tries handle concurrent purchase or restore purchases requests, it is not guaranteed that this will always work flawlessly.
+This is in part because using a closure-based API does not map perfectly well with the lifecycle of payments in `SKPaymentQueue`.
+
+In real applications the following could happen:
+
+1. User starts a purchase
+2. User kills the app
+3. OS continues processing this, resulting in a failed or successful purchase
+4. App is restarted (payment queue is not updated yet)
+5. User starts another purchase (the old transaction may interfere with the new purchase)
+
+To prevent situations like this from happening, a `completeTransactions()` method has been added in version 0.2.8. This should be called when the app starts as it can take care of clearing the payment queue and notifying the app of the transactions that have finished.
+
+#### Multiple accounts
+
+The user can background the hosting application and change the Apple ID used with the App Store, then foreground the app. This has been observed to cause problems with SwiftyStoreKit - other IAP implementations may suffer from this as well.
+
+
 ## Changelog
+
+#### Version 0.2.8
+
+* Added `completeTransactions()` method to clear payment queue and return information about payments that have completed / failed.
 
 #### Version 0.2.7
 
@@ -197,6 +240,7 @@ Many thanks to [phimage](https://github.com/phimage) for adding OSX support and 
 
 It would be great to showcase apps using SwiftyStoreKit here. Pull requests welcome :)
 
+* [MDacne](https://itunes.apple.com/app/id1044050208) - Acne analysis and treatment
 * [Pixel Picker](https://itunes.apple.com/app/id930804327) - Image Color Picker
 * [KType](https://itunes.apple.com/app/id1037000234) - Space shooter game
 

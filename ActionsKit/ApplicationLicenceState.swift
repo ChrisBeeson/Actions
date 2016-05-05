@@ -12,14 +12,10 @@ import DateTools
 
 public enum ApplicationLicenceState {
     
-    case Full
+    case Full(expiryDate:NSDate)
     case Trial(daysRemaining:Int)
     case Beta
     case Expired
-    
-    init() {
-        self = .Expired
-    }
     
     mutating func update(completionBlock:(newState:ApplicationLicenceState)->()) {
         // self = .Beta ; return
@@ -40,7 +36,7 @@ public enum ApplicationLicenceState {
                     if let expiryDate = licence["expiryDate"] as? NSDate {
                         if  NSDate().isEarlierThanOrEqualTo(expiryDate) {
                             print("Found Valid Licence: \(licence)")
-                            self = .Full
+                            self = .Full(expiryDate: expiryDate)
                             completionBlock(newState: self)
                             return
                         }
@@ -63,6 +59,17 @@ public enum ApplicationLicenceState {
                 self = .Expired
                 completionBlock(newState: self)
             }
+        }
+    }
+    
+    public func humanReadableState() -> String {
+        switch self {
+        case Full(let expiryDate):
+            return "LICENCE_STATE_FULL".localized + expiryDate.formattedDateWithStyle(.ShortStyle)
+        case Trial(let daysRemaining):
+            return "LICENCE_STATE_TRIAL".localized + " (\(daysRemaining) " + "LICENCE_STATE_SUFFIX".localized + ")"
+        case Beta: return "LICENCE_STATE_BETA".localized
+        case Expired: return "LICENCE_STATE_EXPIRED".localized
         }
     }
 }

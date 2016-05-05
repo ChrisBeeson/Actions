@@ -28,7 +28,13 @@ class MainWindowController: NSWindowController {
             alert.addButtonWithTitle("MAINWINDOW_CALENDAR_UNAUTHORIZED_OK".localized)
             alert.runModal()
         }
+        
     }
+    
+
+    
+    
+    
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)

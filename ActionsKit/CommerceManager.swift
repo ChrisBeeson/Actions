@@ -16,8 +16,8 @@ public enum ApplicationFeatures {
 }
 
 public enum Product : String {
-    case OneYearSubscription           =  "com.andris.actions.oneYearSubscription"
-    case OneYearSubscriptionStudent    =  "com.andris.actions.oneYearSubscriptionStudent"
+    case OneYearSubscription           =  "com.andris.actions.one_year_subscription"
+    case OneYearSubscriptionStudent    =  "com.andris.actions.one_year_subscription_student"
 }
 
 
@@ -28,15 +28,20 @@ public protocol CommerceManagerDelegate {
 public struct CommerceManager {
     
     public var delegate : CommerceManagerDelegate?
-    public var currentLicenceState = ApplicationLicenceState.Expired
+    public var currentLicenceState:ApplicationLicenceState
     var purchaseEngine = PurchaseEngine()
     
-    mutating func update() {
+    public init () {
+        //TODO: Load from userdefaults while waiting for network.
+        currentLicenceState = .Expired
+    }
+    
+    public mutating func update() {
         currentLicenceState.update { newState in
-            self.currentLicenceState = newState
             
-            print("New licence State: \(self.currentLicenceState)")
-            self.delegate?.commerceManagerUpdatedState()
+            // This is all so weird.  What the hell am I doing!
+            AppConfiguration.sharedConfiguration.commerceManager.currentLicenceState = newState
+            NSNotificationCenter.defaultCenter().postNotificationName("LicenceStateDidChange", object: nil)
         }
     }
     
