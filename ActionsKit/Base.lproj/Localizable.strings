@@ -85,3 +85,15 @@
 "UNDO_CHANGE_DATE" = "Change Date";
 "UNDO_RENAME_ACTION" = "Rename";
 
+    //LICENCE
+"LICENCE_STATE_FULL" = "Active until: ";
+"LICENCE_STATE_TRIAL" = "Trial";
+"LICENCE_STATE_SUFFIX" = "days remaining";
+"LICENCE_STATE_BETA" = "Beta";
+"LICENCE_STATE_EXPIRED" = "Expired";
+
+    //IN APP PURCHASE
+
+"PURCHASE SUCCESSFULL" = "Thank you! Your purchase was successful.";
+"OK" = "Ok";
+

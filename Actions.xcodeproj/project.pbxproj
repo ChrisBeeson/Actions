@@ -45,6 +45,9 @@
 		473574841B9A91A200493CA0 /* ListPresenterAlgorithms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574801B9A91A200493CA0 /* ListPresenterAlgorithms.swift */; };
 		473574851B9A91A200493CA0 /* SequencePresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574811B9A91A200493CA0 /* SequencePresenterDelegate.swift */; };
 		473574871B9A91A200493CA0 /* ListPresenterUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574831B9A91A200493CA0 /* ListPresenterUtilities.swift */; };
+		47376A7C1CD3635300037160 /* ApplicationLicenceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47376A7B1CD3635300037160 /* ApplicationLicenceState.swift */; };
+		47376A7E1CD36CE700037160 /* CommerceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47376A7D1CD36CE700037160 /* CommerceManager.swift */; };
+		47376A801CD370AF00037160 /* PurchaseEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47376A7F1CD370AF00037160 /* PurchaseEngine.swift */; };
 		473853B21C7A590A000AB1E2 /* RuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473853B11C7A590A000AB1E2 /* RuleViewController.swift */; };
 		473853B51C7A596E000AB1E2 /* RulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473853B41C7A596E000AB1E2 /* RulePresenter.swift */; };
 		473853B71C7A5A43000AB1E2 /* RulePresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473853B61C7A5A43000AB1E2 /* RulePresenterDelegate.swift */; };
@@ -76,6 +79,7 @@
 		477C2CB31C409C660071467C /* ActionNodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477C2CB21C409C660071467C /* ActionNodeView.swift */; };
 		477C2CB51C40B3AD0071467C /* TransitionNodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477C2CB41C40B3AD0071467C /* TransitionNodeView.swift */; };
 		477F4A9D1CCCB17E00022113 /* MainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477F4A9C1CCCB17E00022113 /* MainTableViewCell.xib */; };
+		477FBDD61CD5CFE30043E52D /* PurchaseLicenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477FBDD51CD5CFE30043E52D /* PurchaseLicenceViewController.swift */; };
 		4794B99E1C78522B009CE617 /* NSTimer+Closure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4794B99D1C78522B009CE617 /* NSTimer+Closure.swift */; };
 		47967FF01C895C7200358199 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47967FEF1C895C7200358199 /* Context.swift */; };
 		47967FF21C895F5400358199 /* ContextPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47967FF11C895F5400358199 /* ContextPresenter.swift */; };
@@ -272,6 +276,9 @@
 		473574801B9A91A200493CA0 /* ListPresenterAlgorithms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListPresenterAlgorithms.swift; sourceTree = "<group>"; };
 		473574811B9A91A200493CA0 /* SequencePresenterDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencePresenterDelegate.swift; sourceTree = "<group>"; };
 		473574831B9A91A200493CA0 /* ListPresenterUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListPresenterUtilities.swift; sourceTree = "<group>"; };
+		47376A7B1CD3635300037160 /* ApplicationLicenceState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationLicenceState.swift; sourceTree = "<group>"; };
+		47376A7D1CD36CE700037160 /* CommerceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommerceManager.swift; sourceTree = "<group>"; };
+		47376A7F1CD370AF00037160 /* PurchaseEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseEngine.swift; sourceTree = "<group>"; };
 		473853B11C7A590A000AB1E2 /* RuleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleViewController.swift; sourceTree = "<group>"; };
 		473853B41C7A596E000AB1E2 /* RulePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulePresenter.swift; sourceTree = "<group>"; };
 		473853B61C7A5A43000AB1E2 /* RulePresenterDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulePresenterDelegate.swift; sourceTree = "<group>"; };
@@ -302,6 +309,7 @@
 		477C2CB21C409C660071467C /* ActionNodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionNodeView.swift; sourceTree = "<group>"; };
 		477C2CB41C40B3AD0071467C /* TransitionNodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionNodeView.swift; sourceTree = "<group>"; };
 		477F4A9C1CCCB17E00022113 /* MainTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainTableViewCell.xib; path = ActionsKit/MainTableViewCell.xib; sourceTree = SOURCE_ROOT; };
+		477FBDD51CD5CFE30043E52D /* PurchaseLicenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseLicenceViewController.swift; sourceTree = "<group>"; };
 		4794B99D1C78522B009CE617 /* NSTimer+Closure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTimer+Closure.swift"; sourceTree = "<group>"; };
 		47967FEF1C895C7200358199 /* Context.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		47967FF11C895F5400358199 /* ContextPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextPresenter.swift; sourceTree = "<group>"; };
@@ -759,7 +767,7 @@
 				4735747A1B9A692F00493CA0 /* Models */,
 				47181F2E1C0C3D90006FD38E /* Document Architecture */,
 				473EAEE01BA3A7D200AFEA2A /* CalendarManager.swift */,
-				83C73E081BE2E35A0045973C /* Configuration */,
+				83C73E081BE2E35A0045973C /* Application Configuration */,
 				475927AF1C6C723D00D24DE9 /* Helpers */,
 				473574651B9A687400493CA0 /* Tests */,
 				831BF9E71C16B554007B4CD5 /* Old */,
@@ -778,6 +786,7 @@
 				47F5E82A1BF495D8004C0D16 /* AddCellViewController.swift */,
 				476C8D3B1C9AB8E40068E44F /* InfoViewController.swift */,
 				477F4A9C1CCCB17E00022113 /* MainTableViewCell.xib */,
+				477FBDD51CD5CFE30043E52D /* PurchaseLicenceViewController.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -888,12 +897,15 @@
 			name = CollectionViewItems;
 			sourceTree = "<group>";
 		};
-		83C73E081BE2E35A0045973C /* Configuration */ = {
+		83C73E081BE2E35A0045973C /* Application Configuration */ = {
 			isa = PBXGroup;
 			children = (
 				83C73E0B1BE31BF20045973C /* AppConfiguration.swift */,
+				47376A7B1CD3635300037160 /* ApplicationLicenceState.swift */,
+				47376A7D1CD36CE700037160 /* CommerceManager.swift */,
+				47376A7F1CD370AF00037160 /* PurchaseEngine.swift */,
 			);
-			name = Configuration;
+			name = "Application Configuration";
 			sourceTree = "<group>";
 		};
 		83CE36361C84E33900D3A556 /* RuleCollectionView */ = {
@@ -1339,6 +1351,7 @@
 				47ED142C1C9D52A0002F4B4E /* WorkingWeekViewController.swift in Sources */,
 				477C2CB51C40B3AD0071467C /* TransitionNodeView.swift in Sources */,
 				473574791B9A68BE00493CA0 /* Rule.swift in Sources */,
+				47376A7C1CD3635300037160 /* ApplicationLicenceState.swift in Sources */,
 				83511E5C1CC4B9CB0070E5C0 /* NodeCollectionViewItemDesignable.swift in Sources */,
 				832BA20A1C740686004331A7 /* NodeView.swift in Sources */,
 				473D9F5A1C7AF53800E81D39 /* EventDurationWithMinimumDurationRulePresenter.swift in Sources */,
@@ -1349,10 +1362,12 @@
 				4720B5021C6E7F0400229734 /* NodePresenterDelegate.swift in Sources */,
 				4720B5081C6F00B300229734 /* DateTimePickerViewController.swift in Sources */,
 				4794B99E1C78522B009CE617 /* NSTimer+Closure.swift in Sources */,
+				47376A801CD370AF00037160 /* PurchaseEngine.swift in Sources */,
 				47967FF01C895C7200358199 /* Context.swift in Sources */,
 				8359A7731C7CF2F400ED87D9 /* DurationWithVarianceViewController.swift in Sources */,
 				47CD21C31BDF7B0900AF25BE /* Sequence+NodeLogic.swift in Sources */,
 				47ACA9541BB5464C000CAC61 /* DateToolsExtenstions.swift in Sources */,
+				47376A7E1CD36CE700037160 /* CommerceManager.swift in Sources */,
 				473D9F581C7AEF7500E81D39 /* TransitionDurationWithVarianceRulePresenter.swift in Sources */,
 				47ACA9591BB54EEA000CAC61 /* AvoidCalendarEventsRule.swift in Sources */,
 				473EAEE11BA3A7D200AFEA2A /* CalendarManager.swift in Sources */,
@@ -1468,6 +1483,7 @@
 				47B696471BE564DC00260C2A /* MainWindowController.swift in Sources */,
 				83F7DE691C77D768008BEDCC /* GeneralExtensions.swift in Sources */,
 				47F5E82B1BF495D8004C0D16 /* AddCellViewController.swift in Sources */,
+				477FBDD61CD5CFE30043E52D /* PurchaseLicenceViewController.swift in Sources */,
 				476C8D3C1C9AB8E40068E44F /* InfoViewController.swift in Sources */,
 				479CD2861C1B8AE700C8D1D6 /* MainTableCellView.swift in Sources */,
 				83F6B95D1B994652002A5AAF /* AppDelegate.swift in Sources */,
@@ -1667,6 +1683,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-DNONAPPSTORE";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1704,6 +1721,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_SWIFT_FLAGS = "-DNONAPPSTORE";
 				SDKROOT = macosx;
 			};
 			name = Release;

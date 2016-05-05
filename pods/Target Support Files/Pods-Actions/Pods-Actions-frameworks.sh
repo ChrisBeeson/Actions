@@ -85,13 +85,19 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Actions/Async.framework"
+  install_framework "Pods-Actions/Bolts.framework"
   install_framework "Pods-Actions/DateTools.framework"
   install_framework "Pods-Actions/ObjectMapper.framework"
+  install_framework "Pods-Actions/Parse.framework"
+  install_framework "Pods-Actions/Stripe.framework"
   install_framework "Pods-Actions/SwiftyStoreKit.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Actions/Async.framework"
+  install_framework "Pods-Actions/Bolts.framework"
   install_framework "Pods-Actions/DateTools.framework"
   install_framework "Pods-Actions/ObjectMapper.framework"
+  install_framework "Pods-Actions/Parse.framework"
+  install_framework "Pods-Actions/Stripe.framework"
   install_framework "Pods-Actions/SwiftyStoreKit.framework"
 fi

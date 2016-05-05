@@ -8,10 +8,10 @@
 
 import Foundation
 import AppKit
+import Parse
+import Stripe
 
 public class AppConfiguration: NSObject {
-    
-    private var _contextPresenter: ContextPresenter?
     
     public class var sharedConfiguration: AppConfiguration {
         struct Singleton {
@@ -20,16 +20,57 @@ public class AppConfiguration: NSObject {
         return Singleton.sharedAppConfiguration
     }
     
+    private var _contextPresenter: ContextPresenter?
+    public var commerceManager: CommerceManager
+    private var parseConfig: PFConfig?
+    
     override init() {
-        super.init()
+        commerceManager = CommerceManager()
+          super.init()
     }
+    
+    
+    public func applicationLaunched() {
+        #if NONAPPSTORE
+            Stripe.setDefaultPublishableKey("pk_test_CrzZEhVuOZXgWJIQyuGHi2qW")
+        #endif
+        
+        // Parse setup
+        Parse.enableLocalDatastore()
+        let configuration = ParseClientConfiguration {
+            $0.applicationId = "actions-backend"
+            $0.clientKey = "76GFDS34juaq43FKG443FDGfds3dvREWYsdfrePZS33"
+            $0.server = "https://actions-backend.herokuapp.com/parse"
+        }
+        Parse.initializeWithConfiguration(configuration)
+        PFUser.enableAutomaticUser()
+        PFUser.currentUser()?.saveInBackground()   // Force creation of user
+        //PFAnalytics.trackAppOpenedWithLaunchOptions(nil)
+        
+        PFConfig.getConfigInBackgroundWithBlock {
+            (config: PFConfig?, error: NSError?) -> Void in
+            if error == nil {
+                self.parseConfig = config
+            } else {
+                print("Failed to fetch. Using Cached Config.")
+                self.parseConfig = PFConfig.currentConfig()
+            }
+            self.commerceManager.update()
+        };
+    }
+    
+    var trialDuration:Int {
+        if parseConfig != nil && parseConfig!["TrialDuration"] != nil {
+            return parseConfig!["TrialDuration"]! as! Int
+        } else {
+            return 21
+        }
+    }
+    
     
     // State
     
-    //public var state:ApplicationState
-    
-    
-    
+
     // Names
     
     private struct Defaults {

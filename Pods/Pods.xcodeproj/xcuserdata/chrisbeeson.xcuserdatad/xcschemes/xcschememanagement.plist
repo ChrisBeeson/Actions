@@ -2,32 +2,17 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>SchemeUserState</key>
+	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>AsyncSwift.xcscheme</key>
+		<key>2403ADCDEE4DB4DEA4F4B966E827BE87</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>primary</key>
+			<true/>
 		</dict>
-		<key>DateTools.xcscheme</key>
+		<key>4E155FBB6070C868840C7A2BB6E75E85</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>ObjectMapper.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-Actions.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>SwiftyStoreKit.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -42,7 +27,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4E155FBB6070C868840C7A2BB6E75E85</key>
+		<key>AFEDA8059B169E4068B6DCC4D2F0B0E9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -57,12 +42,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A9A2521A05DDE838274E214864BC2EB2</key>
+		<key>C8F54543305BD95F34FAB796C9CAAFCA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AFEDA8059B169E4068B6DCC4D2F0B0E9</key>
+		<key>EF4AFD9CC994BCF33FF1B82585406C05</key>
 		<dict>
 			<key>primary</key>
 			<true/>

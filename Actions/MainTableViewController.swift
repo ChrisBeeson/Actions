@@ -44,6 +44,29 @@ public class MainTableViewController:  NSViewController, NSTableViewDataSource, 
         NSNotificationCenter.defaultCenter().addObserverForName("RefreshMainTableView", object: nil, queue: nil) { (notification) -> Void in
             self.updateTableViewContent(true)
         }
+        
+        NSNotificationCenter.defaultCenter().addObserverForName("LicenceStateDidChange", object: nil, queue: nil) { (notification) -> Void in
+            
+            func presentLicenceController() {
+                let storyboard = NSStoryboard(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateControllerWithIdentifier(
+                    "PurchaseLicence") as! NSViewController
+                self.presentViewControllerAsModalWindow(vc)
+            }
+            
+            switch(AppConfiguration.sharedConfiguration.commerceManager.currentLicenceState) {
+                
+            case .Trial(let daysRemaining):
+                if daysRemaining == 0 {
+                    presentLicenceController()
+                }
+                //else if daysRemaining < 7 {}
+                
+            case .Expired: presentLicenceController()
+                
+            default:break
+            }
+        }
     }
     
     deinit {
@@ -60,11 +83,11 @@ public class MainTableViewController:  NSViewController, NSTableViewDataSource, 
     override public func viewDidAppear() {
         super.viewDidAppear()
         
-       /*
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewControllerWithIdentifier("viewController")
-        self.navigationController!.pushViewController(vc, animated: true)
- */
+        /*
+         let storyboard = UIStoryboard(name: "Main", bundle: nil)
+         let vc = storyboard.instantiateViewControllerWithIdentifier("viewController")
+         self.navigationController!.pushViewController(vc, animated: true)
+         */
     }
     
     
@@ -87,27 +110,27 @@ public class MainTableViewController:  NSViewController, NSTableViewDataSource, 
         }
         
         Async.main {
-        let oldRows = self.filteredDocuments
-        let newRows = newFilteredDocuments
-        let diff = oldRows.diff(newRows)
-        self.filteredDocuments = newFilteredDocuments
-        
-        if (diff.results.count > 0) {
-            let deletionIndexPaths = NSMutableIndexSet()
-            diff.deletions.forEach { deletionIndexPaths.addIndex($0.idx) }
-            let insertionIndexPaths = NSMutableIndexSet()
-            diff.insertions.forEach { insertionIndexPaths.addIndex($0.idx) }
+            let oldRows = self.filteredDocuments
+            let newRows = newFilteredDocuments
+            let diff = oldRows.diff(newRows)
+            self.filteredDocuments = newFilteredDocuments
             
-/*
-            self.tableView?.beginUpdates()
-            self.tableView?.removeRowsAtIndexes(deletionIndexPaths, withAnimation: NSTableViewAnimationOptions.EffectFade)
-            self.tableView?.insertRowsAtIndexes(insertionIndexPaths, withAnimation: NSTableViewAnimationOptions.SlideLeft)
-            self.tableView?.endUpdates()
- */
-            //FIXME: Why is animation intermittant?
-            
-             self.tableView!.reloadData()
-        }
+            if (diff.results.count > 0) {
+                let deletionIndexPaths = NSMutableIndexSet()
+                diff.deletions.forEach { deletionIndexPaths.addIndex($0.idx) }
+                let insertionIndexPaths = NSMutableIndexSet()
+                diff.insertions.forEach { insertionIndexPaths.addIndex($0.idx) }
+                
+                /*
+                 self.tableView?.beginUpdates()
+                 self.tableView?.removeRowsAtIndexes(deletionIndexPaths, withAnimation: NSTableViewAnimationOptions.EffectFade)
+                 self.tableView?.insertRowsAtIndexes(insertionIndexPaths, withAnimation: NSTableViewAnimationOptions.SlideLeft)
+                 self.tableView?.endUpdates()
+                 */
+                //FIXME: Why is animation intermittant?
+                
+                self.tableView!.reloadData()
+            }
         }
     }
     
@@ -138,9 +161,9 @@ public class MainTableViewController:  NSViewController, NSTableViewDataSource, 
     // MARK: Filaments Manager Delegate
     
     public func actionsDocumentsManagerDidUpdateContents(inserted inserted:[ActionsDocument], removed:[ActionsDocument]) {
-            self.allDocuments.removeObjects(removed)
-            self.allDocuments.appendContentsOf(inserted)
-            self.updateTableViewContent(true)
+        self.allDocuments.removeObjects(removed)
+        self.allDocuments.appendContentsOf(inserted)
+        self.updateTableViewContent(true)
     }
     
     
@@ -227,7 +250,7 @@ public class MainTableViewController:  NSViewController, NSTableViewDataSource, 
      Swift.print(theEvent)
      }
      */
-
+    
     
     public func copy(event: NSEvent) {
         guard self.tableView.selectedRow != -1 else { return }
@@ -266,7 +289,7 @@ public class MainTableViewController:  NSViewController, NSTableViewDataSource, 
         }
     }
     
-
+    
     //MARK: Generic Rules Collection View
     
     @IBAction func addGenericRuleButtonPressed(sender: AnyObject) {
