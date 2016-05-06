@@ -255,7 +255,6 @@
 		471279BC1C8298FA0090426C /* EventFixedStartAndEndDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventFixedStartAndEndDate.swift; sourceTree = "<group>"; };
 		471279C21C82CA730090426C /* GreaterThanLessThanRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GreaterThanLessThanRule.swift; sourceTree = "<group>"; };
 		471279C41C82CA9D0090426C /* NextUnitRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextUnitRule.swift; sourceTree = "<group>"; };
-		471420D51BA3CB2A00EDF32D /* Pods_Filament.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Filament.framework; path = Pods/../build/Release/Pods_Filament.framework; sourceTree = "<group>"; };
 		4720B4FF1C6E7EF200229734 /* NodePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NodePresenter.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		4720B5011C6E7F0400229734 /* NodePresenterDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodePresenterDelegate.swift; sourceTree = "<group>"; };
 		4720B5071C6F00B300229734 /* DateTimePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTimePickerViewController.swift; sourceTree = "<group>"; };
@@ -394,7 +393,6 @@
 		83FE26031BCB8FB700AC20B5 /* SolverTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolverTests.swift; sourceTree = "<group>"; };
 		83FEEA381CC657630096FD7C /* WizardContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WizardContent.swift; sourceTree = "<group>"; };
 		8F868A36F46BE06F6BABB1A7 /* Pods-Actions.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Actions.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Actions/Pods-Actions.debug.xcconfig"; sourceTree = "<group>"; };
-		B87F8CB0AFDC603CD8046EEF /* Pods_Filament.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Filament.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7426AB04E861461C15F66BB /* Pods-Actions.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Actions.release.xcconfig"; path = "Pods/Target Support Files/Pods-Actions/Pods-Actions.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -438,9 +436,7 @@
 		2C67F5FA6327C1354E5ACE59 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				471420D51BA3CB2A00EDF32D /* Pods_Filament.framework */,
 				473EAEE21BA3A91400AFEA2A /* EventKit.framework */,
-				B87F8CB0AFDC603CD8046EEF /* Pods_Filament.framework */,
 				4E291E382CDFAE23C4B3B2A6 /* Pods_Actions.framework */,
 			);
 			name = Frameworks;
@@ -730,7 +726,7 @@
 			name = AvoidCalendars;
 			sourceTree = "<group>";
 		};
-		479CD2841C1B8AA300C8D1D6 /* UI */ = {
+		479CD2841C1B8AA300C8D1D6 /* OSX UI */ = {
 			isa = PBXGroup;
 			children = (
 				83511E5D1CC4B9D30070E5C0 /* Wizard */,
@@ -739,7 +735,7 @@
 				47DF1C451C6879D700482390 /* Detail ViewControllers */,
 				476D20021CA91FF000320431 /* Protocols */,
 			);
-			name = UI;
+			name = "OSX UI";
 			sourceTree = "<group>";
 		};
 		47A14E821C21385700B45F86 /* Local Filesystem Monitoring */ = {
@@ -762,7 +758,7 @@
 		47AFF8531BE497D700514857 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				479CD2841C1B8AA300C8D1D6 /* UI */,
+				479CD2841C1B8AA300C8D1D6 /* OSX UI */,
 				4735747D1B9A915800493CA0 /* Presenters */,
 				4735747A1B9A692F00493CA0 /* Models */,
 				47181F2E1C0C3D90006FD38E /* Document Architecture */,
@@ -1738,7 +1734,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1768,7 +1764,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

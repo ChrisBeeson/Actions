@@ -4,11 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>AsyncSwift.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Bolts.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,22 +42,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2403ADCDEE4DB4DEA4F4B966E827BE87</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>4E155FBB6070C868840C7A2BB6E75E85</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>54AEB8B6468437025B334ADE52E85BDB</key>
+		<key>9E96BCB5F5CB498A3843464A6EBA019B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>AFEDA8059B169E4068B6DCC4D2F0B0E9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B13B34F7F0007EEF2930CE729B86B389</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -77,7 +67,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EF4AFD9CC994BCF33FF1B82585406C05</key>
+		<key>D4694B94F28E4C8F3480742C73BE5013</key>
 		<dict>
 			<key>primary</key>
 			<true/>

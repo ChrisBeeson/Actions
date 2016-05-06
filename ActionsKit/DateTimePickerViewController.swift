@@ -68,7 +68,4 @@ public class DateTimePickerViewController : NSViewController {
         timePicker.dateValue = NSDate()
         timePicker.setNeedsDisplay()
     }
-    
-    
-
 }

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Async
 
 public enum SequenceState : Int {
     

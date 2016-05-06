@@ -43,6 +43,8 @@ Calendar events become a rule
 Rules can also be notifications
 right click a node and set a new start time for it.
 Rule:  Warn if calendar Event changes more than X
+JNWCollectionView for 10.9 support.
+
 
 
 Known Issues

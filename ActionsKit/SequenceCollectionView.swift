@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Async
 
 public enum SequenceCollectionViewLayoutState {
     case StartDateWithAddButton
@@ -89,13 +88,18 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
     //MARK: Sequence Delegate Protocol
     
     public func sequencePresenterDidUpdateChainContents(insertedNodes:Set<NSIndexPath>, deletedNodes:Set<NSIndexPath>) {
-        
+        dragDropInPlaceView?.removeFromSuperview() ; dragDropInPlaceView = nil
+
         if insertedNodes.count > 0 {
             self.animator().insertItemsAtIndexPaths(dynamicIndexForNodeIndex(insertedNodes))
             
-            Async.main(after: 0.1) {
-                self.animator().scrollToItemsAtIndexPaths(self.dynamicIndexForNodeIndex(insertedNodes), scrollPosition: .CenteredHorizontally)
-            }
+            let delay = 0.1
+            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC))) // Hate this syntax
+            dispatch_after(time, dispatch_get_main_queue(), { [weak self] in
+                if self != nil {
+                self!.animator().scrollToItemsAtIndexPaths(self!.dynamicIndexForNodeIndex(insertedNodes), scrollPosition: .CenteredHorizontally)
+                }
+            })
         }
         
         if deletedNodes.count > 0 {
@@ -111,7 +115,7 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
              }
              */
             // self.deleteItemsAtIndexPaths(dynamicIndexForNodeIndex(deletedNodes))
-            self.animator().reloadData()
+            self.reloadData()
         }
     }
     

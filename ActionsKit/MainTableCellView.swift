@@ -8,7 +8,6 @@
 
 import Cocoa
 import ActionsKit
-import Async
 
 public class MainTableCellView: NSTableCellView, SequencePresenterDelegate, RuleCollectionViewDelegate, NSPopoverDelegate {
     

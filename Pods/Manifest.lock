@@ -1,5 +1,4 @@
 PODS:
-  - AsyncSwift (1.7.2)
   - Bolts/Tasks (1.7.0)
   - Crashlytics (3.7.0):
     - Fabric (~> 1.6.3)
@@ -14,7 +13,6 @@ PODS:
   - SwiftyStoreKit (0.2.8)
 
 DEPENDENCIES:
-  - AsyncSwift
   - Crashlytics
   - DateTools (~> 1.7)
   - Fabric
@@ -24,7 +22,6 @@ DEPENDENCIES:
   - SwiftyStoreKit
 
 SPEC CHECKSUMS:
-  AsyncSwift: 46a78bceb11f0e5bb52747f740d9692ec78d2d7c
   Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60

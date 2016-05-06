@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Async
 
 enum NodeColour: Int {
     case VeryLightGrey

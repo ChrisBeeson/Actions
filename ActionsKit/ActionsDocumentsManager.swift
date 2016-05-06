@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Async
 
 public protocol ActionsDocumentManagerDelegate : class  {
     
@@ -74,11 +73,11 @@ public class ActionsDocumentManager : DirectoryMonitorDelegate {
         
             self.documents.removeObjects(removedDocs)
         
-         Async.main {
+         dispatch_async(dispatch_get_main_queue(), {
             self.delegate?.actionsDocumentsManagerDidUpdateContents(inserted:insertedDocs, removed:removedDocs)
-        }
-       
+        })
     }
+    
     
     public func deleteDocumentForPresenter(presenter:SequencePresenter) {
         let document = self.documentForSequence(presenter.sequence)

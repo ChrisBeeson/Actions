@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyStoreKit
 
 public enum ApplicationFeatures {
     case CreateNewSequence(currentAmountOfSequences:Int)
@@ -15,9 +16,15 @@ public enum ApplicationFeatures {
     case ShowMainTableViewCells
 }
 
-public enum Product : String {
-    case OneYearSubscription           =  "com.andris.actions.one_year_subscription"
-    case OneYearSubscriptionStudent    =  "com.andris.actions.one_year_subscription_student"
+public struct Product {
+    public static let oneYearSubscription           =  "com.andris.actions.one_year_subscription"
+    public static let oneYearSubscriptionStudent    =  "com.andris.actions.one_year_subscription_student"
+    
+    /*
+    var products:[Product] {
+        return [self.oneYearSubscription, self.oneYearSubscriptionStudent]
+    }
+ */
 }
 
 
@@ -34,6 +41,8 @@ public struct CommerceManager {
     public init () {
         //TODO: Load from userdefaults while waiting for network.
         currentLicenceState = .Expired
+        
+        // Load Store 
     }
     
     public mutating func update() {

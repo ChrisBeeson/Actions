@@ -8,7 +8,6 @@
 
 import Foundation
 import EventKit
-import Async
 import DateTools
 import ObjectMapper
 
@@ -68,13 +67,13 @@ class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
         
         findEvent()
         
-        Async.userInitiated() {
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), {
             if self.event == nil {
                 self.createCalendarEvent()
             } else {
                 self.updateSystemCalendarData()
             }
-        }
+        })
     }
     
     private func findEvent() {

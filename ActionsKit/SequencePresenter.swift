@@ -7,7 +7,6 @@
 
 import Foundation
 import DateTools
-import Async
 
 public class SequencePresenter : NSObject, RuleAvailabiltiy {
     

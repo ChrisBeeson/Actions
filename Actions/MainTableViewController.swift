@@ -109,7 +109,7 @@ public class MainTableViewController:  NSViewController, NSTableViewDataSource, 
             return
         }
         
-        Async.main {
+       dispatch_async(dispatch_get_main_queue(), {
             let oldRows = self.filteredDocuments
             let newRows = newFilteredDocuments
             let diff = oldRows.diff(newRows)
@@ -131,7 +131,7 @@ public class MainTableViewController:  NSViewController, NSTableViewDataSource, 
                 
                 self.tableView!.reloadData()
             }
-        }
+        })
     }
     
     
