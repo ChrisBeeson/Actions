@@ -117,7 +117,7 @@
 		830B29F81CC735200029E712 /* EventAlarmRuleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 830B29F71CC735200029E712 /* EventAlarmRuleViewController.xib */; };
 		830B29FA1CC739DC0029E712 /* EventAlarmRuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830B29F91CC739DC0029E712 /* EventAlarmRuleViewController.swift */; };
 		830B29FC1CC782530029E712 /* EventAlarmRulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830B29FB1CC782530029E712 /* EventAlarmRulePresenter.swift */; };
-		83260A341C856C6700F74DBD /* RulePillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83260A331C856C6700F74DBD /* RulePillView.swift */; };
+		83260A341C856C6700F74DBD /* RuleTokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83260A331C856C6700F74DBD /* RuleTokenView.swift */; };
 		8329DE9B1C63DF10001B3A2F /* SequenceCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8329DE9A1C63DF10001B3A2F /* SequenceCollectionView.swift */; };
 		832BA20A1C740686004331A7 /* NodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832BA2091C740686004331A7 /* NodeView.swift */; };
 		833366C81C838F5E001FE4CD /* WaitForUserRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833366C71C838F5E001FE4CD /* WaitForUserRule.swift */; };
@@ -146,6 +146,11 @@
 		83B500601C981FE800B0F5AA /* NodeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B5005F1C981FE800B0F5AA /* NodeState.swift */; };
 		83B74FAD1C7FDC0F005E5E22 /* DurationWithVarianceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83B74FAC1C7FDC0F005E5E22 /* DurationWithVarianceViewController.xib */; };
 		83B9DF5B1C9922AA008E3F26 /* SequenceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B9DF5A1C9922AA008E3F26 /* SequenceState.swift */; };
+		83C4898C1CE325CF0036C3DC /* CommerceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47376A7D1CD36CE700037160 /* CommerceManager.swift */; };
+		83C4898D1CE325D90036C3DC /* ApplicationLicenceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47376A7B1CD3635300037160 /* ApplicationLicenceState.swift */; };
+		83C4898E1CE325E30036C3DC /* PurchaseEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47376A7F1CD370AF00037160 /* PurchaseEngine.swift */; };
+		83C4898F1CE326C30036C3DC /* WaitForUserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4775D8901CD17D9E0073DF0D /* WaitForUserPresenter.swift */; };
+		83C489901CE326C90036C3DC /* WaitForUserRuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833BF9941CD1D8EE00AA1DDA /* WaitForUserRuleViewController.swift */; };
 		83C73E0E1BE31C4F0045973C /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C73E0B1BE31BF20045973C /* AppConfiguration.swift */; };
 		83CE36381C84E35100D3A556 /* RuleCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CE36371C84E35100D3A556 /* RuleCollectionView.swift */; };
 		83CE363A1C84E4AA00D3A556 /* RuleCollectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CE36391C84E4AA00D3A556 /* RuleCollectionItem.swift */; };
@@ -341,7 +346,7 @@
 		830B29F71CC735200029E712 /* EventAlarmRuleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventAlarmRuleViewController.xib; sourceTree = "<group>"; };
 		830B29F91CC739DC0029E712 /* EventAlarmRuleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventAlarmRuleViewController.swift; sourceTree = "<group>"; };
 		830B29FB1CC782530029E712 /* EventAlarmRulePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventAlarmRulePresenter.swift; sourceTree = "<group>"; };
-		83260A331C856C6700F74DBD /* RulePillView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulePillView.swift; sourceTree = "<group>"; };
+		83260A331C856C6700F74DBD /* RuleTokenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleTokenView.swift; sourceTree = "<group>"; };
 		8329DE9A1C63DF10001B3A2F /* SequenceCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceCollectionView.swift; sourceTree = "<group>"; };
 		832BA2091C740686004331A7 /* NodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeView.swift; sourceTree = "<group>"; };
 		833366C71C838F5E001FE4CD /* WaitForUserRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitForUserRule.swift; sourceTree = "<group>"; };
@@ -910,7 +915,7 @@
 				83CE36371C84E35100D3A556 /* RuleCollectionView.swift */,
 				83CE36391C84E4AA00D3A556 /* RuleCollectionItem.swift */,
 				83CE363B1C84E53F00D3A556 /* RuleCollectionItem.xib */,
-				83260A331C856C6700F74DBD /* RulePillView.swift */,
+				83260A331C856C6700F74DBD /* RuleTokenView.swift */,
 				83AF6D731C878A3600D48129 /* LeftAlignedCollectionViewFlowLayout.swift */,
 				83FB2BF81C8ECCC800AF291D /* RightAlignedCollectionViewFlowLayout.swift */,
 			);
@@ -1316,7 +1321,7 @@
 				83AF6D741C878A3600D48129 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
 				83FB2BF91C8ECCC800AF291D /* RightAlignedCollectionViewFlowLayout.swift in Sources */,
 				83F5B1DE1CC5C30B00B4721A /* WizardPageThreeViewController.swift in Sources */,
-				83260A341C856C6700F74DBD /* RulePillView.swift in Sources */,
+				83260A341C856C6700F74DBD /* RuleTokenView.swift in Sources */,
 				4735747F1B9A919500493CA0 /* SequencePresenter.swift in Sources */,
 				4778C0AA1C657D8F00F5A259 /* NodeCollectionViewItem.swift in Sources */,
 				4707377E1C9E0E31008E0FBC /* DateTimeHelpers.swift in Sources */,
@@ -1408,6 +1413,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83C4898E1CE325E30036C3DC /* PurchaseEngine.swift in Sources */,
 				47CD21C71BDF807900AF25BE /* Sequence+EventLogic.swift in Sources */,
 				473EAEE61BA3AD0300AFEA2A /* RuleTests.swift in Sources */,
 				83CE4A231CA21A4E005691FD /* ActionsDocument.swift in Sources */,
@@ -1431,6 +1437,7 @@
 				47CD21C21BDF7B0400AF25BE /* Sequence+NodeLogic.swift in Sources */,
 				47AE38901CBA20AA0018F161 /* AvoidPeriod.swift in Sources */,
 				47D6165B1B9C1FAA00F72155 /* SequenceTests.swift in Sources */,
+				83C489901CE326C90036C3DC /* WaitForUserRuleViewController.swift in Sources */,
 				83CE4A191CA21935005691FD /* NodePresenter.swift in Sources */,
 				472465231BBFE665004DE4DE /* Sequence.swift in Sources */,
 				83CE4A1A1CA21938005691FD /* NodeState.swift in Sources */,
@@ -1462,6 +1469,9 @@
 				4724651D1BBFE623004DE4DE /* Node.swift in Sources */,
 				83CE4A1F1CA2194A005691FD /* EventDurationWithMinimumDurationRulePresenter.swift in Sources */,
 				472465201BBFE652004DE4DE /* TransitionDurationWithVariance.swift in Sources */,
+				83C4898D1CE325D90036C3DC /* ApplicationLicenceState.swift in Sources */,
+				83C4898F1CE326C30036C3DC /* WaitForUserPresenter.swift in Sources */,
+				83C4898C1CE325CF0036C3DC /* CommerceManager.swift in Sources */,
 				4744FBF11CA3D12B00C06123 /* NextUnitRulePresenter.swift in Sources */,
 				47CD21C41BDF7B0C00AF25BE /* GeneralExtensions.swift in Sources */,
 				83CE4A131CA21856005691FD /* ContextPresenter.swift in Sources */,

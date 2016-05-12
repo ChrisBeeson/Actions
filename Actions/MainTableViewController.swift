@@ -8,7 +8,6 @@
 
 import Cocoa
 import ActionsKit
-import Async
 
 public class MainTableViewController:  NSViewController, NSTableViewDataSource, NSTableViewDelegate, ActionsDocumentManagerDelegate, RuleCollectionViewDelegate, NSPopoverDelegate {
     
@@ -36,7 +35,7 @@ public class MainTableViewController:  NSViewController, NSTableViewDataSource, 
         let nib =  NSNib(nibNamed: "MainTableViewCell", bundle: nil)
         self.tableView.registerNib(nib, forIdentifier: "MainTableCellView")
         
-        NSNotificationCenter.defaultCenter().addObserverForName("FilamentTableViewSelectCellForView", object: nil, queue: nil) { (notification) -> Void in
+        NSNotificationCenter.defaultCenter().addObserverForName("ActionsTableViewSelectCellForView", object: nil, queue: nil) { (notification) -> Void in
             let row = self.tableView.rowForView(notification.object as! NSView)
             self.tableView.selectRowIndexes((NSIndexSet(index: row)), byExtendingSelection: false)
         }

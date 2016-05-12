@@ -33,6 +33,13 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
                 }
             }
         }
+        
+        NSNotificationCenter.defaultCenter().addObserverForName("SystemCalendarDidChangeExternally", object: nil, queue: nil) { (notification) -> Void in
+            
+            self.nodePresenters.forEach { $0.updateForCalendarExternalChange() }
+        }
+        
+        
     }
     
     deinit { print("SequencePresenter deinit") }

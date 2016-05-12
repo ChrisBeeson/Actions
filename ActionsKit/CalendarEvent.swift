@@ -18,7 +18,7 @@ class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
     var publish = false
     weak var owner: Node?
     var eventId = ""
-    var event:EKEvent?
+    var systemEvent:EKEvent?
     private var processing = false
     
     var period:DTTimePeriod? {
@@ -55,20 +55,19 @@ class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
     }
     
     func synchronizeCalendarEvent() {
-        
         guard publish == true else { return }
         guard CalendarManager.sharedInstance.authorized == true else { return }
         
         if eventId.isEmpty == true {
-            self.createCalendarEvent()
+            createCalendarEvent()
             processing = false
             return
         }
         
-        findEvent()
+        self.systemEvent = findSystemEvent()
         
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), {
-            if self.event == nil {
+            if self.systemEvent == nil {
                 self.createCalendarEvent()
             } else {
                 self.updateSystemCalendarData()
@@ -76,13 +75,11 @@ class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
         })
     }
     
-    private func findEvent() {
+    private func findSystemEvent() -> EKEvent? {
         let store = CalendarManager.sharedInstance.store
-        let items = store.calendarItemsWithExternalIdentifier(self.eventId)
-        if items.count > 0 {
-            self.event = items[0] as? EKEvent
-            return
-        }
+        let items = store.calendarItemsWithExternalIdentifier(eventId)
+        if items.count > 0 { return items[0] as? EKEvent }
+        return nil
         // TODO: Look through events with predicate to match them with name and dates.
     }
     
@@ -95,12 +92,12 @@ class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
         let events = CalendarManager.sharedInstance.findEventsInApplicationCalendar(DTTimePeriod(startDate: self.startDate, endDate: self.endDate))
         
         if events != nil && events!.count>0 {
-            self.event = events![0]
+            self.systemEvent = events![0]
         } else  {
             CalendarManager.sharedInstance.incrementChangeCount()
-            event = EKEvent(eventStore: CalendarManager.sharedInstance.store)
+            systemEvent = EKEvent(eventStore: CalendarManager.sharedInstance.store)
             if let appCal = CalendarManager.sharedInstance.applicationCalendar {
-                event!.calendar = appCal
+                systemEvent!.calendar = appCal
             } else {
                 print("No Application Calendar")
             }
@@ -111,17 +108,17 @@ class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
     
     func updateSystemCalendarData() {
         guard CalendarManager.sharedInstance.authorized == true else { return }
-        guard event != nil else { return }
+        guard systemEvent != nil else { return }
         guard publish == true else { return }
         
         var dirty = false
-        if event!.startDate != startDate { event!.startDate = startDate ; dirty = true }
-        if event!.endDate != endDate { event!.endDate = endDate ; dirty = true }
+        if systemEvent!.startDate != startDate { systemEvent!.startDate = startDate ; dirty = true }
+        if systemEvent!.endDate != endDate { systemEvent!.endDate = endDate ; dirty = true }
         
         if let owner = self.owner {
-            if event!.title != owner.title { event!.title = owner.title ; dirty = true }
-            if event!.notes != owner.notes { event!.notes = owner.notes ; dirty = true }
-            if event!.location != owner.location { event!.location = owner.location ; dirty = true }
+            if systemEvent!.title != owner.title { systemEvent!.title = owner.title ; dirty = true }
+            if systemEvent!.notes != owner.notes { systemEvent!.notes = owner.notes ; dirty = true }
+            if systemEvent!.location != owner.location { systemEvent!.location = owner.location ; dirty = true }
         }
         
         // Alarms
@@ -135,11 +132,11 @@ class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
     func synchronizeAlarms() -> Bool {
         guard let node = owner else { return false }
         
-        event?.alarms?.removeAll()
+        systemEvent?.alarms?.removeAll()
         
         for rule in node.rules { if rule.className == EventAlarmRule.className() {
             if let newAlarm = (rule as! EventAlarmRule).makeAlarm() {
-                event?.addAlarm(newAlarm)
+                systemEvent?.addAlarm(newAlarm)
             }
             }
         }
@@ -149,12 +146,12 @@ class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
     
     private func saveCalendarEvent() {
         guard CalendarManager.sharedInstance.authorized == true else { return }
-        guard event != nil else { return }
+        guard systemEvent != nil else { return }
         
         do {
             CalendarManager.sharedInstance.incrementChangeCount()
-            try CalendarManager.sharedInstance.store.saveEvent(event!, span: .ThisEvent, commit: true)
-            self.eventId = event!.calendarItemExternalIdentifier
+            try CalendarManager.sharedInstance.store.saveEvent(systemEvent!, span: .ThisEvent, commit: true)
+            self.eventId = systemEvent!.calendarItemExternalIdentifier
             
         } catch let error as NSError {
             print("Unresolved error \(error), \(error.userInfo)")
@@ -164,20 +161,37 @@ class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
     
     func deleteCalenderEvent() {
         guard CalendarManager.sharedInstance.authorized == true else { return }
-        
-        if event == nil { findEvent() }
-        guard event != nil else { return }
+        if systemEvent == nil { systemEvent = findSystemEvent() }
+        guard systemEvent != nil else { return }
         
         do {
             CalendarManager.sharedInstance.incrementChangeCount()
-            try CalendarManager.sharedInstance.store.removeEvent(event!, span: .ThisEvent, commit: true)
+            try CalendarManager.sharedInstance.store.removeEvent(systemEvent!, span: .ThisEvent, commit: true)
             self.eventId = ""
-            self.event = nil
+            self.systemEvent = nil
             
         } catch let error as NSError {
             print("Unresolved error \(error), \(error.userInfo)")
         }
     }
+    
+    func forceNodeToMatchSystemCalendarEvent() {
+        
+        guard let newSystemEvent = findSystemEvent() else { return }
+        
+        
+        if startDate.isEqualToDate(newSystemEvent.startDate) == false || endDate.isEqualToDate(newSystemEvent.endDate) == false {
+            print("System Calendar has changed dates for Event")
+            
+        }
+        
+        // Find system calendar event
+        // Does it match the time we expect
+        // if not add a startTime rule.
+        
+    }
+    
+    
     
     // MARK: NSCoding
     

@@ -24,8 +24,11 @@ public class CalendarManager: NSObject {
         retrieveApplicationCalendar()
         
         NSNotificationCenter.defaultCenter().addObserverForName(EKEventStoreChangedNotification, object: nil, queue: nil) { (notification) -> Void in
-            if self.changeCount > 0 { self.changeCount -= 1 } else {
-                NSNotificationCenter.defaultCenter().postNotificationName("UpdateAllSequences", object: self)
+            if self.changeCount > 0 {
+                self.changeCount -= 1
+            } else {
+                 print("Calendar Changed Outside of Actions")
+                NSNotificationCenter.defaultCenter().postNotificationName("SystemCalendarDidChangeExternally", object: self)
             }
         }
     }

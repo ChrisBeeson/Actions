@@ -8,7 +8,6 @@
 import Foundation
 
 public protocol RuleCollectionViewDelegate {
-    // func shouldAcceptDrop(collectionView: RuleCollectionView, proposedRulePresenter: RulePresenter) -> Bool
     func didAcceptDrop(collectionView: RuleCollectionView, droppedRulePresenter: RulePresenter, atIndex: Int)
     func didDeleteRulePresenter(collectionView: RuleCollectionView, deletedRulePresenter: RulePresenter)
     func didDoubleClick(collectionView: RuleCollectionView, selectedRulePresenter: RulePresenter)
@@ -25,7 +24,8 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     public var doubleClickDisplaysItemsDetailView = true
     private var dragDropInPlaceView:NSView?
     
-    //MARK: Inits
+    
+    //MARK: Lifecycle -
     
     public required init(coder aDecoder: NSCoder)  {
         super.init(coder: aDecoder)!
@@ -42,56 +42,18 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
         self.delegate = self
         self.collectionViewLayout = LeftAlignedCollectionViewFlowLayout()
         self.backgroundColors = [NSColor.clearColor()]
-        
         self.registerForDraggedTypes([AppConfiguration.UTI.rule])
         
         let nib = NSNib(nibNamed: "RuleCollectionItem", bundle: NSBundle(identifier:"com.andris.ActionsKit"))
         self.registerNib(nib, forItemWithIdentifier: "RuleCollectionItem")
     }
     
-    //MARK: Events
-    
-    override public func keyDown(theEvent: NSEvent) {
-        guard allowDeletions == true else { return }
-        if theEvent.keyCode == 51 || theEvent.keyCode == 117  {
-            for index in self.selectionIndexPaths {
-                ruleCollectionViewDelegate?.didDeleteRulePresenter(self, deletedRulePresenter: rulePresenters![index.item])
-            }
-        }
-    }
-    
-    public func copy(event: NSEvent) {
-        if self.selectionIndexPaths.count > 0 {
-            NSPasteboard.generalPasteboard().clearContents()
-            var items = [NSPasteboardWriting]()
-            for index in self.selectionIndexPaths {
-                let item = (self.itemAtIndexPath(index) as! DragDropCopyPasteItem)
-                items.append(item.pasteboardItem())
-            }
-            NSPasteboard.generalPasteboard().clearContents()
-            NSPasteboard.generalPasteboard().writeObjects(items)
-        }
-    }
-    
-    public func paste(event: NSEvent) {
-        if NSPasteboard.generalPasteboard().canReadItemWithDataConformingToTypes([AppConfiguration.UTI.rule]) != true { return }
-        Swift.print("Paste Rule")
-    }
-    
-    override public func mouseDown(theEvent: NSEvent) {
-        super.mouseDown(theEvent)
-        
-        if theEvent.clickCount < 2 { return }
-        if doubleClickDisplaysItemsDetailView == true { return }
-        
-        if self.selectionIndexPaths.count > 0 {
-            let presenter = rulePresenters![self.selectionIndexPaths.first!.item]
-            ruleCollectionViewDelegate?.didDoubleClick(self, selectedRulePresenter: presenter)
-        }
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     
-    //MARK: Datasource
+    //MARK: Datasource -
     
     public func collectionView(collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
         guard rulePresenters != nil else { return 0 }
@@ -106,7 +68,7 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     }
     
     
-    //MARK: Collection View Delegate
+    //MARK: Collection View Delegate -
     
     public func collectionView(collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> NSSize {
         let string:NSString = rulePresenters![indexPath.item].name as NSString
@@ -127,7 +89,7 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     }
     
     
-    // Drop and Drag
+    // Drop and Drag -
     
     public func collectionView(collectionView: NSCollectionView, canDragItemsAtIndexPaths indexPaths: Set<NSIndexPath>, withEvent event: NSEvent) -> Bool {
         return true
@@ -183,12 +145,9 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     }
     
     
-    // Why is this here?!!
     func rulePresenterFromDraggingItem(draggingInfo: NSDraggingInfo) -> RulePresenter? {
-        
         var presenter : RulePresenter?
-        
-        //TODO: Remove this - I hate this thing.
+    
         draggingInfo.enumerateDraggingItemsWithOptions([], forView: self, classes: [NSPasteboardItem.self], searchOptions: [NSPasteboardURLReadingFileURLsOnlyKey: false]) {draggingItem, idx, stop in
             let types = (draggingItem.item as! NSPasteboardItem).types
             if types.count > 0 {
@@ -231,11 +190,53 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     public func collectionView(collectionView: NSCollectionView, didEndDisplayingItem item: NSCollectionViewItem, forRepresentedObjectAtIndexPath indexPath: NSIndexPath) {
     }
     
-    //MARK: First responder
+    
+    //MARK: Events -
+    
+    override public func keyDown(theEvent: NSEvent) {
+        guard allowDeletions == true else { return }
+        if theEvent.keyCode == 51 || theEvent.keyCode == 117  {
+            for index in self.selectionIndexPaths {
+                ruleCollectionViewDelegate?.didDeleteRulePresenter(self, deletedRulePresenter: rulePresenters![index.item])
+            }
+        }
+    }
+    
+    public func copy(event: NSEvent) {
+        if self.selectionIndexPaths.count > 0 {
+            NSPasteboard.generalPasteboard().clearContents()
+            var items = [NSPasteboardWriting]()
+            for index in self.selectionIndexPaths {
+                let item = (self.itemAtIndexPath(index) as! DragDropCopyPasteItem)
+                items.append(item.pasteboardItem())
+            }
+            NSPasteboard.generalPasteboard().clearContents()
+            NSPasteboard.generalPasteboard().writeObjects(items)
+        }
+    }
+    
+    public func paste(event: NSEvent) {
+        if NSPasteboard.generalPasteboard().canReadItemWithDataConformingToTypes([AppConfiguration.UTI.rule]) != true { return }
+        Swift.print("Paste Rule")
+    }
+    
+    override public func mouseDown(theEvent: NSEvent) {
+        super.mouseDown(theEvent)
+        
+        if theEvent.clickCount < 2 { return }
+        if doubleClickDisplaysItemsDetailView == true { return }
+        
+        if self.selectionIndexPaths.count > 0 {
+            let presenter = rulePresenters![self.selectionIndexPaths.first!.item]
+            ruleCollectionViewDelegate?.didDoubleClick(self, selectedRulePresenter: presenter)
+        }
+    }
+    
+    //MARK: First responder -
     
     override public func becomeFirstResponder() -> Bool {
         if let view = self.findSuperViewWithClass(NSTableCellView) {
-            NSNotificationCenter.defaultCenter().postNotificationName("FilamentTableViewSelectCellForView", object: self.superview)
+            NSNotificationCenter.defaultCenter().postNotificationName("ActionsTableViewSelectCellForView", object: self.superview)
             if self.selectionIndexes.count == 0 {
                 self.window?.makeFirstResponder(view)
             }
@@ -246,9 +247,5 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     override public func resignFirstResponder() -> Bool {
         self.deselectAll(self)
         return true
-    }
-    
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 }

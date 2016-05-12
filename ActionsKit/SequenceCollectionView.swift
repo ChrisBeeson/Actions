@@ -373,7 +373,7 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
     
     override public var acceptsFirstResponder: Bool { return true }
     override public func becomeFirstResponder() -> Bool {
-        NSNotificationCenter.defaultCenter().postNotificationName("FilamentTableViewSelectCellForView", object: self.superview)
+        NSNotificationCenter.defaultCenter().postNotificationName("ActionsTableViewSelectCellForView", object: self.superview)
         if self.selectionIndexes.count == 0 {
             self.window?.makeFirstResponder(self.superview?.superview?.superview?.superview?.superview?.superview)
         }

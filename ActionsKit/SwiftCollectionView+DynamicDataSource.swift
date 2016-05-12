@@ -69,7 +69,7 @@ extension SequenceCollectionView {
         case .Date: return makeDateItem(path)
         case .AddButton: return makeAddButton(path)
         case .ActionNode,.TransitionNode: return makeMainTypeNode(path, type:itemTypeAtIndex(path))
-        case .Void: Swift.print("Void") ; return NSCollectionViewItem()
+        case .Void: return NSCollectionViewItem()
         }
     }
     

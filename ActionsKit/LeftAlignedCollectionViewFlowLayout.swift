@@ -48,7 +48,6 @@ class LeftAlignedCollectionViewFlowLayout: NSCollectionViewFlowLayout {
         } else {
             curAttributes!.frame = CGRectMake(sectionInset.left, curFrame.origin.y, curFrame.size.width, curFrame.size.height)
         }
-        
         return curAttributes
     }
 }

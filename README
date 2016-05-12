@@ -1,6 +1,10 @@
 Todo
 -------
 Adding new node when it has an error can sometimes cause a crash - (Model not updated?)
+External calendar change - adds fixed start time
+IAP
+product pricing for non apple
+
 
 
 
@@ -67,14 +71,14 @@ drop rules onto nodes x
 Make a smaller Rule Collection View Item for Sequences x
 Changing any rules, reprocesses all events - avoid calanders x
 Date not being saved x
-Import / Export
+Import / Export x
 Document dirtying x
 When Rule collection view loses focus it should deselect all cells  x
 RuleCollectionView accectDrops from only filtered Rules x
 Sort by current time, desc  x
 changing start time can only be done before start of 1st node
 - changing start ignores calendar event of that seq
-Changing rules, updates nodes only right of that node
+Changing rules, updates nodes only right of that node x
 Recreate calendar Events if they have been deleted.
 
 

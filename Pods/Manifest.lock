@@ -7,9 +7,9 @@ PODS:
   - ObjectMapper (1.2.0)
   - Parse (1.13.0):
     - Bolts/Tasks (~> 1.6)
-  - Stripe (7.0.0):
-    - Stripe/Core (= 7.0.0)
-  - Stripe/Core (7.0.0)
+  - Stripe (7.0.1):
+    - Stripe/Core (= 7.0.1)
+  - Stripe/Core (7.0.1)
   - SwiftyStoreKit (0.2.8)
 
 DEPENDENCIES:
@@ -28,7 +28,7 @@ SPEC CHECKSUMS:
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   ObjectMapper: b1e9c7c8a9f6400b72690c80072c131504caa66f
   Parse: f51c24d2feb412e4b2d6cc73d37cb24e8d0089bc
-  Stripe: 147bbff1ba7cf3422e4ed14f6e1fbbc72471ce6c
+  Stripe: b92298b31cf156fb23a029361b57e2fcb6583d57
   SwiftyStoreKit: 4210ae1ea8ef2743771c1d1ee3673345a8f27e90
 
 COCOAPODS: 0.39.0

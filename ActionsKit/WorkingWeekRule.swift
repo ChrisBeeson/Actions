@@ -12,13 +12,11 @@ import ObjectMapper
 
 class WorkingWeekRule: Rule {
     
-    // This rule sets the duration of an event.
-    // It allows the event to be shortened to a minimum duration if required.
-    
     override var name: String { return "RULE_NAME_WORK_HOURS".localized }
     override var availableToNodeType:NodeType { return [.Generic] }
     override var options: RoleOptions { get { return RoleOptions.RequiresInterestWindow } }
     
+    // Defaults
     var workingDayStartTime =  NSDate(string: "09:00", formatString: "HH:mm")
     var workingDayEndTime = NSDate(string: "17:30", formatString: "HH:mm")
     var workingDayEnabled = true
@@ -38,18 +36,19 @@ class WorkingWeekRule: Rule {
             
             for day in 0...numberOfDays! {
                 let dayNumber = interestPeriod!.StartDate.dateByAddingDays(day).weekday()
+                
                 if enabledDays[dayNumber] == true {
                     
                     if workingDayEnabled == true {
-                        // go from midnight to the working day start Time
+                        
+                        // midnight to the working day start Time
                         let midnight = NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: NSDate(string: "00:00", formatString: "HH:mm"))
                         let startDate = NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: workingDayStartTime)
-                        //  startDate = startDate.dateBySubtractingMinutes(1)
                         let midnightToStart = DTTimePeriod(startDate: midnight, endDate: startDate)
                         let avoidPeriod1 = AvoidPeriod(period: midnightToStart, type: .WorkingWeekMorning, object: nil)
                         periods.append(avoidPeriod1)
                         
-                        // go from workday endtime to midnight
+                        // workday endtime to midnight
                         let workdayEnd = NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: workingDayEndTime)
                         let nearlyMidnight = NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: NSDate(string: "23:59", formatString: "HH:mm"))
                         let endToMidnight = DTTimePeriod(startDate: workdayEnd, endDate: nearlyMidnight)
@@ -58,16 +57,16 @@ class WorkingWeekRule: Rule {
                     }
                     
                     if lunchBreakEnabled == true {
+                        
                         let lunchStart = NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: lunchBreakStartTime)
                         let lunchEnd = NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: lunchBreakEndTime)
-                        // lunchEnd = lunchEnd.dateBySubtractingMinutes(1)
                         let lunch = DTTimePeriod(startDate: lunchStart, endDate: lunchEnd)
                         let avoidPeriod1 = AvoidPeriod(period: lunch, type: .WorkingWeekLunch, object: nil)
                         periods.append(avoidPeriod1)
                     }
                 } else {
                     
-                    // the day isn't enabled - there for we must have the day off - and so we avoid it all
+                    // the day isn't enabled therefore we must have the day off - so avoid it all
                     let midnight = NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: NSDate(string: "00:00", formatString: "HH:mm"))
                     let nearlyMidnight = NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: NSDate(string: "23:59", formatString: "HH:mm"))
                     let dayOff = DTTimePeriod(startDate: midnight, endDate: nearlyMidnight)
@@ -81,6 +80,8 @@ class WorkingWeekRule: Rule {
             self.avoidPeriods = newValue   // For testing only
         }
     }
+    
+    // MARK: - Storage -
     
     // MARK: NSCoding
     
@@ -122,7 +123,7 @@ class WorkingWeekRule: Rule {
         clone.workingDayStartTime = self.workingDayStartTime
         clone.workingDayEndTime = self.workingDayEndTime
         clone.workingDayEnabled = self.workingDayEnabled
-        clone.lunchBreakStartTime =  self.lunchBreakStartTime
+        clone.lunchBreakStartTime = self.lunchBreakStartTime
         clone.lunchBreakEndTime = self.lunchBreakEndTime
         clone.lunchBreakEnabled = self.lunchBreakEnabled
         clone.enabledDays = self.enabledDays

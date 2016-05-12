@@ -2,7 +2,7 @@
 //  RuleTests.swift
 //  Actions
 //
-//  Created by Chris Beeson on 12/09/2015.
+//  Created by Chris Beeson on 12/01/2016.
 //  Copyright © 2015 Andris Ltd. All rights reserved.
 //
 
@@ -24,7 +24,7 @@ class RuleTests: XCTestCase {
     
     //TODO: Need to update these as AvoidPeriod is a new addition
     
-    /*
+
     func testTransitionDurationWithVariance() {
         
         // CalendarEvent starts in 1 hour, give or take 15 min
@@ -82,7 +82,7 @@ class RuleTests: XCTestCase {
         let rule = WorkingWeekRule()
         rule.interestPeriod = DTTimePeriod(startDate: NSDate(string: "2015-01-01 08:00", formatString: "YYYY-MM-DD HH:mm"), endDate:NSDate(string: "2015-01-01 19:00", formatString: "YYYY-MM-DD HH:mm"))
         let avoidPeriods = rule.avoidPeriods
-        print("Working Week Generated Avoid Periods :")
+        //print("Working Week Generated Avoid Periods :")
         //avoidPeriods?.forEach{ print($0.log()) }
         
         XCTAssertNotNil(avoidPeriods)
@@ -90,23 +90,22 @@ class RuleTests: XCTestCase {
         
         let beforeWork = avoidPeriods![0]
         //print("beforeWork: \(beforeWork.log())")
-        XCTAssert(beforeWork.StartDate!.isEqualToDate(NSDate(string: "2015-01-01 00:00", formatString: "YYYY-MM-DD HH:mm")))
-        XCTAssert(beforeWork.EndDate!.isEqualToDate(NSDate(string: "2015-01-01 09:00", formatString: "YYYY-MM-DD HH:mm")))
+        XCTAssert(beforeWork.period.StartDate!.isEqualToDate(NSDate(string: "2015-01-01 00:00", formatString: "YYYY-MM-DD HH:mm")))
+        XCTAssert(beforeWork.period.EndDate!.isEqualToDate(NSDate(string: "2015-01-01 09:00", formatString: "YYYY-MM-DD HH:mm")))
 
         let afterWork = avoidPeriods![1]
         // print("AfterWork:\(afterWork.log())")
-        XCTAssert(afterWork.StartDate!.isEqualToDate(NSDate(string: "2015-01-01 17:30", formatString: "YYYY-MM-DD HH:mm")))
-        XCTAssert(afterWork.EndDate!.isEqualToDate(NSDate(string: "2015-01-01 23:59", formatString: "YYYY-MM-DD HH:mm")))
+        XCTAssert(afterWork.period.StartDate!.isEqualToDate(NSDate(string: "2015-01-01 17:30", formatString: "YYYY-MM-DD HH:mm")))
+        XCTAssert(afterWork.period.EndDate!.isEqualToDate(NSDate(string: "2015-01-01 23:59", formatString: "YYYY-MM-DD HH:mm")))
         
         let lunch = avoidPeriods![2]
         // print(lunch.log())
-        XCTAssert(lunch.StartDate!.isEqualToDate(NSDate(string: "2015-01-01 12:30", formatString: "YYYY-MM-DD HH:mm")))
-        XCTAssert(lunch.EndDate!.isEqualToDate(NSDate(string: "2015-01-01 13:30", formatString: "YYYY-MM-DD HH:mm")))
+        XCTAssert(lunch.period.StartDate!.isEqualToDate(NSDate(string: "2015-01-01 12:30", formatString: "YYYY-MM-DD HH:mm")))
+        XCTAssert(lunch.period.EndDate!.isEqualToDate(NSDate(string: "2015-01-01 13:30", formatString: "YYYY-MM-DD HH:mm")))
         
         let midnightToNextDay = avoidPeriods![3]
         // print(lunch.log())
-        XCTAssert(midnightToNextDay.StartDate!.isEqualToDate(NSDate(string: "2015-01-02 00:00", formatString: "YYYY-MM-DD HH:mm")))
-        XCTAssert(midnightToNextDay.EndDate!.isEqualToDate(NSDate(string: "2015-01-02 09:00", formatString: "YYYY-MM-DD HH:mm")))
+        XCTAssert(midnightToNextDay.period.StartDate!.isEqualToDate(NSDate(string: "2015-01-02 00:00", formatString: "YYYY-MM-DD HH:mm")))
+        XCTAssert(midnightToNextDay.period.EndDate!.isEqualToDate(NSDate(string: "2015-01-02 09:00", formatString: "YYYY-MM-DD HH:mm")))
     }
-    */
 }
