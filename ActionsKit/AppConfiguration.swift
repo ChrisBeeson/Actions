@@ -57,6 +57,8 @@ public class AppConfiguration: NSObject {
             }
             self.commerceManager.update()
         };
+        
+         CalendarManager.sharedInstance // TODO: Request 1st time validation at the right time & handle if user denys
     }
     
     var trialDuration:Int {

@@ -46,13 +46,16 @@ public class RuleCollectionItem : NSCollectionViewItem, DragDropCopyPasteItem {
             switch selected {
             case true:
                 label.textColor = NSColor.whiteColor()
+                label.backgroundColor = AppConfiguration.Palette.tokenBlueSelected
                 ruleTokenView.setColour(AppConfiguration.Palette.tokenBlueSelected.CGColor)
             case false:
                 ruleTokenView.setColour(AppConfiguration.Palette.tokenBlue.CGColor)
+                label.backgroundColor = AppConfiguration.Palette.tokenBlue
                 label.textColor = NSColor.blackColor()
             }
         case .Inactive:
             label.textColor = NSColor.whiteColor()
+            label.backgroundColor = AppConfiguration.Palette.tokenInactive
             ruleTokenView.setColour(AppConfiguration.Palette.tokenInactive.CGColor)
             
         case .Error:

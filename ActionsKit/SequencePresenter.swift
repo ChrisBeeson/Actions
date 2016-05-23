@@ -19,6 +19,7 @@ public class SequencePresenter : NSObject, RuleAvailabiltiy {
     private var _shouldBeDeleted = false
 
     var nodePresenters : [NodePresenter] {
+        guard _sequence != nil else { return [NodePresenter]() }
         return _sequence!.nodeChain().map { nodePresenter($0) }
     }
     

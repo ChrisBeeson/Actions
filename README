@@ -4,7 +4,7 @@ Adding new node when it has an error can sometimes cause a crash - (Model not up
 External calendar change - adds fixed start time
 IAP
 product pricing for non apple
-
+Same user across devices - store User in Keychain.
 
 
 

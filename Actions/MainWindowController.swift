@@ -31,11 +31,6 @@ class MainWindowController: NSWindowController {
         
     }
     
-
-    
-    
-    
-    
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }

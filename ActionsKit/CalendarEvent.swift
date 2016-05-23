@@ -176,19 +176,21 @@ class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
     }
     
     func forceNodeToMatchSystemCalendarEvent() {
-        
         guard let newSystemEvent = findSystemEvent() else { return }
+        if startDate.isEqualToDate(newSystemEvent.startDate) == true && endDate.isEqualToDate(newSystemEvent.endDate) == true { return }
+        print("System Calendar has changed dates for Event \(owner!.title)")
         
         
-        if startDate.isEqualToDate(newSystemEvent.startDate) == false || endDate.isEqualToDate(newSystemEvent.endDate) == false {
-            print("System Calendar has changed dates for Event")
-            
-        }
         
-        // Find system calendar event
-        // Does it match the time we expect
-        // if not add a startTime rule.
+        let fixedRule:EventFixedStartAndEndDate
         
+        if let fR = owner?.rules.filter { $0 is EventFixedStartAndEndDate }
+        
+        fixedRule.startDate = newSystemEvent.startDate
+        fixedRule.endDate = newSystemEvent.endDate
+        owner?.rules.append(fixedRule)
+        startDate = newSystemEvent.startDate
+        endDate = newSystemEvent.endDate
     }
     
     

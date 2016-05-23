@@ -27,16 +27,16 @@ class EventFixedStartAndEndDate : Rule {
     override var eventStartTimeWindow: DTTimePeriod? {
         get {
             guard let startDate = startDate else { return nil }
-            return DTTimePeriod(size:.Hour , amount: 1, startingAt:startDate)
+            return DTTimePeriod(size:.Second , amount: 1, startingAt:startDate)
         }
     }
     
     override var eventPreferedStartDate: NSDate? { return startDate }
     
     override var eventDuration: Timesize? {
-        guard let startDate = startDate, let endDate = endDate else { return nil }
+        guard startDate != nil && endDate != nil else { return nil }
         
-        let seconds = endDate.secondsFrom(startDate)
+        let seconds = endDate!.secondsFrom(startDate)
         return Timesize(unit: .Second, amount:Int(seconds))
     }
     
@@ -67,7 +67,7 @@ class EventFixedStartAndEndDate : Rule {
     // MARK: NSCoding
     
     private struct SerializationKeys {
-        static let startDate = "startDate"
+        static let startDate = "fixedStartDate"
         static let endDate = "minDuration"
         static let createdAutomatically = "createdAutomatically"
     }

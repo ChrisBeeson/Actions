@@ -22,7 +22,6 @@ public class CalendarManager: NSObject {
         super.init()
         verifyUserEventAuthorization()
         retrieveApplicationCalendar()
-        
         NSNotificationCenter.defaultCenter().addObserverForName(EKEventStoreChangedNotification, object: nil, queue: nil) { (notification) -> Void in
             if self.changeCount > 0 {
                 self.changeCount -= 1

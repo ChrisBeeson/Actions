@@ -18,8 +18,17 @@ public class MainTableViewController:  NSViewController, NSTableViewDataSource, 
     private var allDocuments = [ActionsDocument]()
     private var filteredDocuments = [ActionsDocument]()
     private var filter = DocumentFilterType.Active
-    private var availableGenericRulesViewController : AvailableRulesViewController?
     private var displayedPopover:NSPopover?
+    lazy private var availableGenericRulesViewController : AvailableRulesViewController = {
+        if let viewController = AvailableRulesViewController(nibName:"AvailableRulesViewController", bundle:NSBundle(identifier:"com.andris.ActionsKit")) {
+            viewController.availableRules = AppConfiguration.sharedConfiguration.contextPresenter()
+            viewController.displayRulesForNodeType = [.Generic]
+            viewController.collectionViewDelegate = self
+            return viewController
+            
+        } else { fatalError("Could not load AvailableRulesViewController") }
+    }()
+    
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -299,13 +308,6 @@ public class MainTableViewController:  NSViewController, NSTableViewDataSource, 
         popover.behavior = .Transient
         popover.appearance = NSAppearance(named: NSAppearanceNameAqua)
         popover.delegate = self
-        
-        if availableGenericRulesViewController == nil {
-            availableGenericRulesViewController = AvailableRulesViewController(nibName:"AvailableRulesViewController", bundle:NSBundle(identifier:"com.andris.ActionsKit"))
-        }
-        availableGenericRulesViewController!.availableRules = AppConfiguration.sharedConfiguration.contextPresenter()
-        availableGenericRulesViewController!.displayRulesForNodeType = [.Generic]
-        availableGenericRulesViewController!.collectionViewDelegate = self
         popover.contentViewController = availableGenericRulesViewController
         popover.showRelativeToRect(addGenericRuleButton.frame, ofView:self.view.superview!, preferredEdge:.MaxY )
     }
@@ -315,7 +317,7 @@ public class MainTableViewController:  NSViewController, NSTableViewDataSource, 
         let context = AppConfiguration.sharedConfiguration.contextPresenter()
         genericRulesCollectionView.rulePresenters = context.currentRulePresenters()
         genericRulesCollectionView.reloadData()
-        availableGenericRulesViewController?.reloadCollectionView()
+        availableGenericRulesViewController.reloadCollectionView()
     }
     
     

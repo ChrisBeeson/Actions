@@ -23,11 +23,6 @@ class RuleTokenView : NSView {
         self.layer?.addSublayer(pathLayer)
     }
     
-    override func layout() {
-        super.layout()
-        pathLayer.path =  NSBezierPath(roundedRect: self.bounds, xRadius: 4.0, yRadius: 4.0).CGPath(forceClose: false)
-    }
-    
     override func viewWillDraw() {
         super.viewWillDraw()
         pathLayer.path =  NSBezierPath(roundedRect: self.bounds, xRadius: 4.0, yRadius: 4.0).CGPath(forceClose: false)

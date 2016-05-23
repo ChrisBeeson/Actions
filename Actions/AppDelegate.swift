@@ -38,7 +38,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         //[PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
         //[[GAI sharedInstance] trackerWithTrackingId:@"UA-62707376-1"];
         
-        CalendarManager.sharedInstance // TODO: Request 1st time validation at the right time & handle if user denys
+       
         
         //NSDocumentController.sharedDocumentController().clearRecentDocuments(self)
         //CCNStatusItem.sharedInstance().presentStatusItemWithImage(NSImage(named: "SystemTrayIcon"), contentViewController: nil)
