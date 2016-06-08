@@ -1,1 +1,22 @@
-../../../Parse/Parse/Internal/Object/Controller/PFObjectController_Private.h
+/**
+ * Copyright (c) 2015-present, Parse, LLC.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ */
+
+#import "PFObjectController.h"
+
+@class PFRESTCommand;
+
+@interface PFObjectController ()
+
+///--------------------------------------
+#pragma mark - Fetch
+///--------------------------------------
+
+- (BFTask *)_runFetchCommand:(PFRESTCommand *)command forObject:(PFObject *)object;
+
+@end

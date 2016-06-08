@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "473574541B9A687400493CA0"
                BuildableName = "ActionsKit.framework"
-               BlueprintName = "ActionsKit"
+               BlueprintName = "ActionsKit-OSX"
                ReferencedContainer = "container:Actions.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,7 +47,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "473574541B9A687400493CA0"
             BuildableName = "ActionsKit.framework"
-            BlueprintName = "ActionsKit"
+            BlueprintName = "ActionsKit-OSX"
             ReferencedContainer = "container:Actions.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -65,7 +65,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "473574541B9A687400493CA0"
             BuildableName = "ActionsKit.framework"
-            BlueprintName = "ActionsKit"
+            BlueprintName = "ActionsKit-OSX"
             ReferencedContainer = "container:Actions.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
