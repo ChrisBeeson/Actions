@@ -4,13 +4,10 @@ PODS:
     - Fabric (~> 1.6.3)
   - DateTools (1.7.0)
   - Fabric (1.6.7)
-  - ObjectMapper (1.2.0)
+  - ObjectMapper (1.3.0)
   - Parse (1.13.0):
     - Bolts/Tasks (~> 1.6)
-  - Stripe (7.0.1):
-    - Stripe/Core (= 7.0.1)
-  - Stripe/Core (7.0.1)
-  - SwiftyStoreKit (0.2.8)
+  - SwiftyStoreKit (0.2.10)
 
 DEPENDENCIES:
   - Crashlytics
@@ -18,7 +15,6 @@ DEPENDENCIES:
   - Fabric
   - ObjectMapper (~> 1.2)
   - Parse
-  - Stripe
   - SwiftyStoreKit
 
 SPEC CHECKSUMS:
@@ -26,9 +22,10 @@ SPEC CHECKSUMS:
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
-  ObjectMapper: b1e9c7c8a9f6400b72690c80072c131504caa66f
+  ObjectMapper: 4eb08a726e9791a93b2632049951b56a7c17e471
   Parse: f51c24d2feb412e4b2d6cc73d37cb24e8d0089bc
-  Stripe: b92298b31cf156fb23a029361b57e2fcb6583d57
-  SwiftyStoreKit: 4210ae1ea8ef2743771c1d1ee3673345a8f27e90
+  SwiftyStoreKit: 7d129a07cb26ebaeecfafd3ae06d07286d200d9e
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: ac2192345a6e6d86a69a3bfc27bbd2cbc22bd951
+
+COCOAPODS: 1.0.1
