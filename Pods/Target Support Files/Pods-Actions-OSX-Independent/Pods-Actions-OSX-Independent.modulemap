@@ -1,0 +1,6 @@
+framework module Pods_Actions_OSX_Independent {
+  umbrella header "Pods-Actions-OSX-Independent-umbrella.h"
+
+  export *
+  module * { export * }
+}
