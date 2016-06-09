@@ -208,7 +208,6 @@
 		4731BF051D08094700D5C781 /* NSTimer+Closure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4794B99D1C78522B009CE617 /* NSTimer+Closure.swift */; };
 		4731BF061D08094700D5C781 /* DateTimeHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4707377D1C9E0E31008E0FBC /* DateTimeHelpers.swift */; };
 		4731BF081D0811AD00D5C781 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 473EAEE21BA3A91400AFEA2A /* EventKit.framework */; };
-		473574601B9A687400493CA0 /* ActionsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 473574551B9A687400493CA0 /* ActionsKit.framework */; };
 		473574691B9A687400493CA0 /* ActionsKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574681B9A687400493CA0 /* ActionsKitTests.swift */; };
 		473574751B9A689B00493CA0 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574741B9A689B00493CA0 /* Node.swift */; };
 		473574771B9A68AC00493CA0 /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473574761B9A68AC00493CA0 /* Sequence.swift */; };
@@ -304,6 +303,7 @@
 		834F85D11C6ACFA2009CC72F /* AddNewNodeCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 834F85D01C6ACFA2009CC72F /* AddNewNodeCollectionViewItem.xib */; };
 		83511E5C1CC4B9CB0070E5C0 /* NodeCollectionViewItemDesignable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83511E5B1CC4B9CB0070E5C0 /* NodeCollectionViewItemDesignable.swift */; };
 		835289D21C840D8F001CD0DE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 835289D41C840D8F001CD0DE /* Localizable.strings */; };
+		83528C601D092C260079A936 /* Dwifft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475927B01C6C725700D24DE9 /* Dwifft.swift */; };
 		835619CA1C6D6AAA00488E99 /* NodeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835619C91C6D6AAA00488E99 /* NodeDetailViewController.swift */; };
 		835619CC1C6D6AD100488E99 /* NodeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */; };
 		835619CD1C6D6E4B00488E99 /* NodeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835619CB1C6D6AD100488E99 /* NodeDetailViewController.xib */; };
@@ -708,7 +708,6 @@
 		83D6DAB51D090F17006EAE2B /* NSDictionary+Stripe.h in Headers */ = {isa = PBXBuildFile; fileRef = 83AC71B41D07FA38005FC9DA /* NSDictionary+Stripe.h */; };
 		83F399EE1D09257400C31E1D /* Actions-OSX-AppStore.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 83F399ED1D09257400C31E1D /* Actions-OSX-AppStore.entitlements */; };
 		83F399F01D09257F00C31E1D /* Actions-OSX-Independent.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 83F399EF1D09257F00C31E1D /* Actions-OSX-Independent.entitlements */; };
-		83F399F41D09259200C31E1D /* Actions-OSX-Independent-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83F399F21D09259200C31E1D /* Actions-OSX-Independent-Info.plist */; };
 		83F399F71D09277800C31E1D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F399F61D09277800C31E1D /* StoreKit.framework */; };
 		83F6B95D1B994652002A5AAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F6B95C1B994652002A5AAF /* AppDelegate.swift */; };
 		83F6B9611B994652002A5AAF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83F6B9601B994652002A5AAF /* Images.xcassets */; };
@@ -731,13 +730,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 4731BE3F1D0805E100D5C781;
 			remoteInfo = "Actions-iOS";
-		};
-		473574611B9A687400493CA0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83F6B94F1B994652002A5AAF /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 473574541B9A687400493CA0;
-			remoteInfo = FilamentKit;
 		};
 		473574631B9A687400493CA0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1041,7 +1033,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				473574601B9A687400493CA0 /* ActionsKit.framework in Frameworks */,
 				E1036F28E30C792807C3B7C4 /* Pods_ActionsKit_Shared_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1141,7 +1132,7 @@
 			name = "Document Architecture";
 			sourceTree = "<group>";
 		};
-		4731BE411D0805E100D5C781 /* Actions-iOS */ = {
+		4731BE411D0805E100D5C781 /* Actions iOS Application */ = {
 			isa = PBXGroup;
 			children = (
 				4731BE421D0805E100D5C781 /* AppDelegate.swift */,
@@ -1151,6 +1142,7 @@
 				4731BE4B1D0805E100D5C781 /* LaunchScreen.storyboard */,
 				4731BE4E1D0805E100D5C781 /* Info.plist */,
 			);
+			name = "Actions iOS Application";
 			path = "Actions-iOS";
 			sourceTree = "<group>";
 		};
@@ -1767,10 +1759,10 @@
 				83F9E92A1BA18739006282B5 /* .gitignore */,
 				83F6B9791B995683002A5AAF /* Podfile */,
 				83F6B9591B994652002A5AAF /* Actions OSX Application */,
+				4731BE411D0805E100D5C781 /* Actions iOS Application */,
 				473574561B9A687400493CA0 /* ActionsKit Shared */,
 				83AC71941D07F974005FC9DA /* ActionsKit-iOS */,
 				83AC71A21D07F975005FC9DA /* ActionsKit-iOSTests */,
-				4731BE411D0805E100D5C781 /* Actions-iOS */,
 				4731BE561D0805E100D5C781 /* Actions-iOSTests */,
 				83F6B9581B994652002A5AAF /* Products */,
 				2C67F5FA6327C1354E5ACE59 /* Frameworks */,
@@ -1951,7 +1943,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				473574621B9A687400493CA0 /* PBXTargetDependency */,
 				473574641B9A687400493CA0 /* PBXTargetDependency */,
 			);
 			name = "ActionsKit-Shared-Tests";
@@ -2068,7 +2059,7 @@
 					New,
 				);
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Andris Ltd";
 				TargetAttributes = {
 					4731BE3F1D0805E100D5C781 = {
@@ -2329,7 +2320,6 @@
 				83AC716A1D07F931005FC9DA /* AddNewNodeCollectionViewItem.xib in Resources */,
 				83AC71851D07F956005FC9DA /* WorkingWeekViewController.xib in Resources */,
 				83AC71781D07F940005FC9DA /* DateTimePickerViewController.xib in Resources */,
-				83F399F41D09259200C31E1D /* Actions-OSX-Independent-Info.plist in Resources */,
 				83AC72211D07FA38005FC9DA /* stp_card_cvc_amex@2x.png in Resources */,
 				83AC717C1D07F948005FC9DA /* WaitForUserRuleViewController.xib in Resources */,
 				83AC72371D07FA38005FC9DA /* stp_card_mastercard.png in Resources */,
@@ -2829,6 +2819,7 @@
 				4744FBF11CA3D12B00C06123 /* NextUnitRulePresenter.swift in Sources */,
 				47CD21C41BDF7B0C00AF25BE /* GeneralExtensions.swift in Sources */,
 				83CE4A131CA21856005691FD /* ContextPresenter.swift in Sources */,
+				83528C601D092C260079A936 /* Dwifft.swift in Sources */,
 				83CE4A151CA21914005691FD /* RulePresenter.swift in Sources */,
 				83CE4A1C1CA2193F005691FD /* RuleAvailabiltiy.swift in Sources */,
 				83CE4A111CA21786005691FD /* Calendar.swift in Sources */,
@@ -3164,11 +3155,6 @@
 			isa = PBXTargetDependency;
 			target = 4731BE3F1D0805E100D5C781 /* Actions-iOS */;
 			targetProxy = 4731BE541D0805E100D5C781 /* PBXContainerItemProxy */;
-		};
-		473574621B9A687400493CA0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 473574541B9A687400493CA0 /* ActionsKit-OSX */;
-			targetProxy = 473574611B9A687400493CA0 /* PBXContainerItemProxy */;
 		};
 		473574641B9A687400493CA0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

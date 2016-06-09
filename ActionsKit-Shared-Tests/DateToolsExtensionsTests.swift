@@ -9,7 +9,6 @@
 import XCTest
 import Foundation
 import DateTools
-import ActionsKit
 
 class DateToolExtensionsTests: XCTestCase {
 

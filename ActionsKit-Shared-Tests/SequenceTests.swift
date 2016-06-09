@@ -7,7 +7,6 @@
 //
 
 import XCTest
-import ActionsKit
 
 class SequenceTests: XCTestCase {
     
@@ -131,15 +130,14 @@ class SequenceTests: XCTestCase {
     }
     
     func testDecodingSequence() {
+        let actionNodes = [Node(text: "Action 1", type: .Action, rules: nil), Node(text: "Action 2", type: .Action, rules: nil), Node(text: "Action 3", type: .Action, rules: nil)]
+        let sequence = Sequence(name: "Sequence Test", actionNodes: actionNodes)
         
-        let archivedSequenceData = NSKeyedArchiver.archivedDataWithRootObject(sequence!)
+        let archivedSequenceData = NSKeyedArchiver.archivedDataWithRootObject(sequence)
         let unarchivedSequence = NSKeyedUnarchiver.unarchiveObjectWithData(archivedSequenceData) as? Sequence
         
         XCTAssertNotNil(unarchivedSequence)
-        
-        if unarchivedSequence  != nil {
-            XCTAssertEqual(sequence, unarchivedSequence)
-        }
+        XCTAssertEqual(sequence, unarchivedSequence)
     }
     
     

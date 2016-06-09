@@ -8,7 +8,6 @@
 
 import XCTest
 import DateTools
-import ActionsKit
 
 class RuleTests: XCTestCase {
     
