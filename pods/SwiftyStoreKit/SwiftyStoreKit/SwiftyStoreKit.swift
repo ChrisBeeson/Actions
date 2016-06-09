@@ -52,7 +52,7 @@ public class SwiftyStoreKit {
     private var inflightPurchases: [String: InAppProductPurchaseRequest] = [:]
     private var restoreRequest: InAppProductPurchaseRequest?
     private var completeTransactionsObserver: InAppCompleteTransactionsObserver?
-    #if os(iOS)
+    #if os(iOS) || os(tvOS)
     private var receiptRefreshRequest: InAppReceiptRefreshRequest?
     #endif
     // MARK: Enums
@@ -116,15 +116,21 @@ public class SwiftyStoreKit {
         completion(result: RetrieveResults(retrievedProducts: products, invalidProductIDs: [], error: nil))
     }
     
-    public class func purchaseProduct(productId: String, completion: (result: PurchaseResult) -> ()) {
+    /**
+     *  Purchase a product
+     *  - Parameter productId: productId as specified in iTunes Connect
+     *  - Parameter applicationUsername: an opaque identifier for the user’s account on your system
+     *  - Parameter completion: handler for result
+     */
+    public class func purchaseProduct(productId: String, applicationUsername: String = "", completion: (result: PurchaseResult) -> ()) {
         
         if let product = sharedInstance.store.products[productId] {
-            sharedInstance.purchase(product: product, completion: completion)
+            sharedInstance.purchase(product: product, applicationUsername: applicationUsername, completion: completion)
         }
         else {
             retrieveProductsInfo(Set([productId])) { result -> () in
                 if let product = result.retrievedProducts.first {
-                    sharedInstance.purchase(product: product, completion: completion)
+                    sharedInstance.purchase(product: product, applicationUsername: applicationUsername, completion: completion)
                 }
                 else if let error = result.error {
                     completion(result: .Error(error: .Failed(error: error)))
@@ -158,7 +164,42 @@ public class SwiftyStoreKit {
         password: String? = nil,
         session: NSURLSession = NSURLSession.sharedSession(),
         completion:(result: VerifyReceiptResult) -> ()) {
-            InAppReceipt.verify(receiptVerifyURL: url, password: password, session: session, completion: completion)
+        InAppReceipt.verify(receiptVerifyURL: url, password: password, session: session) { result in
+         
+            dispatch_async(dispatch_get_main_queue()) {
+                completion(result: result)
+            }
+        }
+    }
+  
+    /**
+     *  Verify the purchase of a Consumable or NonConsumable product in a receipt
+     *  - Parameter productId: the product id of the purchase to verify
+     *  - Parameter inReceipt: the receipt to use for looking up the purchase
+     *  - return: either NotPurchased or Purchased
+     */
+    public class func verifyPurchase(
+        productId productId: String,
+        inReceipt receipt: ReceiptInfo
+    ) -> VerifyPurchaseResult {
+        return InAppReceipt.verifyPurchase(productId: productId, inReceipt: receipt)
+    }
+  
+    /**
+     *  Verify the purchase of a subscription (auto-renewable, free or non-renewing) in a receipt. This method extracts all transactions mathing the given productId and sorts them by date in descending order, then compares the first transaction expiry date against the validUntil value.
+     *  - Parameter productId: the product id of the purchase to verify
+     *  - Parameter inReceipt: the receipt to use for looking up the subscription
+     *  - Parameter validUntil: date to check against the expiry date of the subscription. If nil, no verification
+     *  - Parameter validDuration: the duration of the subscription. Only required for non-renewable subscription.
+     *  - return: either NotPurchased or Purchased / Expired with the expiry date found in the receipt
+     */
+    public class func verifySubscription(
+        productId productId: String,
+        inReceipt receipt: ReceiptInfo,
+        validUntil date: NSDate = NSDate(),
+        validDuration duration: NSTimeInterval? = nil
+    ) -> VerifySubscriptionResult {
+        return InAppReceipt.verifySubscription(productId: productId, inReceipt: receipt, validUntil: date, validDuration: duration)
     }
 
     #if os(iOS) || os(tvOS)
@@ -188,7 +229,7 @@ public class SwiftyStoreKit {
     #endif
 
     // MARK: private methods
-    private func purchase(product product: SKProduct, completion: (result: PurchaseResult) -> ()) {
+    private func purchase(product product: SKProduct, applicationUsername: String = "", completion: (result: PurchaseResult) -> ()) {
         guard SwiftyStoreKit.canMakePayments else {
             completion(result: .Error(error: .PaymentNotAllowed))
             return
@@ -198,7 +239,7 @@ public class SwiftyStoreKit {
             return
         }
 
-        inflightPurchases[productIdentifier] = InAppProductPurchaseRequest.startPayment(product) { results in
+        inflightPurchases[productIdentifier] = InAppProductPurchaseRequest.startPayment(product, applicationUsername: applicationUsername) { results in
 
             self.inflightPurchases[productIdentifier] = nil
             

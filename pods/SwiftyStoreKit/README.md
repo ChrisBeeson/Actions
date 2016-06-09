@@ -1,5 +1,5 @@
 # SwiftyStoreKit
-SwiftyStoreKit is a lightweight In App Purchases framework for iOS 8.0+ and OSX 9.0+, written in Swift.
+SwiftyStoreKit is a lightweight In App Purchases framework for iOS 8.0+, tvOS 9.0+ and OS X 10.9+, written in Swift.
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat
             )](http://mit-license.org)
@@ -62,7 +62,7 @@ SwiftyStoreKit.restorePurchases() { results in
 }
 ```
 
-### Verify Receipts
+### Verify Receipt
 
 ```swift
 SwiftyStoreKit.verifyReceipt() { result in
@@ -85,23 +85,79 @@ func refreshReceipt() {
 }
 ```
 
+### Verify Purchase
+
+```swift
+SwiftyStoreKit.verifyReceipt() { result in
+    switch result {
+    case .Success(let receipt):
+        // Verify the purchase of Consumable or NonConsumable
+        let purchaseResult = SwiftyStoreKit.verifyPurchase(
+            productId: "com.musevisions.SwiftyStoreKit.Purchase1",
+            inReceipt: receipt
+        )
+        switch purchaseResult {
+        case .Purchased(let expiresDate):
+            print("Product is purchased.")
+        case .NotPurchased:
+            print("The user has never purchased this product")
+        }
+    case .Error(let error):
+        print("Receipt verification failed: \(error)")
+    }
+}
+```
+
+Note that for consumable products, the receipt will only include the information for a couples of minutes after the purchase.
+
+### Verify Subscription
+
+```swift
+SwiftyStoreKit.verifyReceipt() { result in
+    switch result {
+    case .Success(let receipt):
+        // Verify the purchase of a Subscription
+        let purchaseResult = SwiftyStoreKit.verifySubscription(
+            productId: "com.musevisions.SwiftyStoreKit.Subscription",
+            inReceipt: receipt,
+            validUntil: NSDate()
+            validDuration: 3600 * 24 * 30, // Non Renewing Subscription only
+        )
+        switch purchaseResult {
+        case .Purchased(let expiresDate):
+            print("Product is valid until \(expiresDate)")
+        case .Expired(let expiresDate):
+            print("Product is expired since \(expiresDate)")
+        case .NotPurchased:
+            print("The user has never purchased this product")
+        }
+
+    case .Error(let error):
+        print("Receipt verification failed: \(error)")
+    }
+}
+```
+
+
+To test the expiration of a Non Renewing Subscription, you must indicate the `validDuration` time interval in seconds.
+
+
 ### Complete Transactions
 
 This can be used to finish any transactions that were pending in the payment queue after the app has been terminated. Should be called when the app starts.
 
 ```swift
 SwiftyStoreKit.completeTransactions() { completedTransactions in
-    
+
     for completedTransaction in completedTransactions {
-        
+
         if completedTransaction.transactionState == .Purchased || completedTransaction.transactionState == .Restored {
-            
+
             print("purchased: \(completedTransaction.productId)")
         }
     }
 }
 ```
-
 
 **NOTE**:
 The framework provides a simple block based API with robust error handling on top of the existing StoreKit framework. It does **NOT** persist in app purchases data locally. It is up to clients to do this with a storage solution of choice (i.e. NSUserDefaults, CoreData, Keychain).
@@ -136,16 +192,11 @@ Note that the pre-registered in app purchases in the demo apps are for illustrat
 
 #### Features
 - Super easy to use block based API
-- enum-based error handling
-- Support for non-consumable in app purchases
+- Support for consumable, non-consumable in-app purchases
+- Support for free, auto renewable and non renewing subscriptions
 - Receipt verification
-
-#### Missing Features
-- Ask To Buy
-
-#### Untested Features
-- Consumable in app purchases
-- Free subscriptions for Newsstand
+- iOS, tvOS and OS X compatible
+- enum-based error handling
 
 ## Known issues
 
@@ -170,6 +221,18 @@ The user can background the hosting application and change the Apple ID used wit
 
 
 ## Changelog
+
+#### Version 0.2.10
+
+* Added **tvOS** support
+* Faster compilation time for `verifySubscription()` implementation
+
+#### Version 0.2.9
+
+* Added support for verifying purchases and subscriptions. This includes consumable and non consumable purchases, auto-renewing, free and non-renewing subscriptions.
+* The `purchaseProduct()` now takes an optional `applicationUsername` string which can be used to help detect irregular activity on transactions. Read more about this on the [Apple docs](https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/StoreKitGuide/Chapters/RequestPayment.html).
+* Updated `verifyReceipt()` so that the completion block is called on the main thread.
+
 
 #### Version 0.2.8
 
@@ -201,7 +264,7 @@ The user can background the hosting application and change the Apple ID used wit
 In order to make a purchase, two operations are needed:
 
 - Obtain the ```SKProduct``` corresponding to the productId that identifies the app purchase, via ```SKProductRequest```.
- 
+
 - Submit the payment for that product via ```SKPaymentQueue```.
 
 The framework takes care of caching SKProducts so that future requests for the same ```SKProduct``` don't need to perform a new ```SKProductRequest```.
@@ -254,9 +317,3 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
-
-
-
-

@@ -26,7 +26,7 @@
 import StoreKit
 import Foundation
 
-#if os(iOS)
+#if os(iOS) || os(tvOS)
     class InAppReceiptRefreshRequest: NSObject, SKRequestDelegate {
 
         enum ResultType {
@@ -45,7 +45,11 @@ import Foundation
         let refreshReceiptRequest: SKReceiptRefreshRequest
         let callback: RequestCallback
 
-        init(receiptProperties: [String : AnyObject]? = nil, callback: RequestCallback) {
+        deinit {
+            refreshReceiptRequest.delegate = nil
+        }
+
+        private init(receiptProperties: [String : AnyObject]? = nil, callback: RequestCallback) {
             self.callback = callback
             self.refreshReceiptRequest = SKReceiptRefreshRequest(receiptProperties: receiptProperties)
             super.init()

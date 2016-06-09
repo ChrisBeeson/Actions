@@ -8,36 +8,57 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>7</integer>
 		</dict>
 		<key>DateTools.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>8</integer>
 		</dict>
 		<key>ObjectMapper.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>9</integer>
 		</dict>
 		<key>Parse.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>10</integer>
 		</dict>
-		<key>Pods-Actions.xcscheme</key>
+		<key>Pods-Actions-OSX-AppStore.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>11</integer>
 		</dict>
-		<key>Stripe.xcscheme</key>
+		<key>Pods-Actions-OSX-Independent.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>12</integer>
+		</dict>
+		<key>Pods-ActionsKit-Shared-Tests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>13</integer>
 		</dict>
 		<key>SwiftyStoreKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>14</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -62,12 +83,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AFEDA8059B169E4068B6DCC4D2F0B0E9</key>
+		<key>151C0365DAE38DDC31C43558D1B9D8A3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B13B34F7F0007EEF2930CE729B86B389</key>
+		<key>493E7B6DA13352FF86E9F7642AA9FA3D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AFEDA8059B169E4068B6DCC4D2F0B0E9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -87,7 +113,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D4694B94F28E4C8F3480742C73BE5013</key>
+		<key>D5D6200D4BE741574DBD4FB768A6F55B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
