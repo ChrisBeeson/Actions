@@ -4,25 +4,30 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Actions.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
-		</dict>
-		<key>ActionsKit (Shared).xcscheme</key>
+		<key>Actions-OSX-AppStore.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
+		<key>Actions-OSX-Independent.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>Actions-iOS.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
 		<key>ActionsKit OSX.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>4</integer>
 		</dict>
 		<key>ActionsKit-iOS.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>10</integer>
+			<integer>5</integer>
 		</dict>
 		<key>Filament.xcscheme</key>
 		<dict>
@@ -54,6 +59,16 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>4731BE3F1D0805E100D5C781</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4731BE521D0805E100D5C781</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>473574541B9A687400493CA0</key>
 		<dict>
 			<key>primary</key>
@@ -70,6 +85,11 @@
 			<true/>
 		</dict>
 		<key>83AC719B1D07F975005FC9DA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>83BE18841D091D2A00F3EF21</key>
 		<dict>
 			<key>primary</key>
 			<true/>
