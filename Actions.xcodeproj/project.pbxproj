@@ -269,6 +269,10 @@
 		47B881F11CA37FDC00B33BF6 /* GreaterThanLessThanRuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47737EF81CA2A51D0072322D /* GreaterThanLessThanRuleViewController.swift */; };
 		47B881F41CA3C82500B33BF6 /* NextUnitRuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B881F31CA3C82500B33BF6 /* NextUnitRuleViewController.swift */; };
 		47B881F61CA3C83800B33BF6 /* NextUnitRuleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47B881F51CA3C83800B33BF6 /* NextUnitRuleViewController.xib */; };
+		47BB77241D7ED95B004C62F3 /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = 47BB77211D7ED95B004C62F3 /* FontAwesome.otf */; };
+		47BB77251D7ED95B004C62F3 /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = 47BB77211D7ED95B004C62F3 /* FontAwesome.otf */; };
+		47BB77271D800DE4004C62F3 /* FontAwesome.otf in Copy Files - Fonts */ = {isa = PBXBuildFile; fileRef = 47BB77211D7ED95B004C62F3 /* FontAwesome.otf */; };
+		47BB77291D800E8E004C62F3 /* FontAwesome.otf in Copy Font Files */ = {isa = PBXBuildFile; fileRef = 47BB77211D7ED95B004C62F3 /* FontAwesome.otf */; };
 		47CD21BD1BDF373A00AF25BE /* Sequence+EventLogicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CD21BC1BDF373A00AF25BE /* Sequence+EventLogicTests.swift */; };
 		47CD21BF1BDF797B00AF25BE /* GeneralExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CD21BE1BDF797B00AF25BE /* GeneralExtensions.swift */; };
 		47CD21C21BDF7B0400AF25BE /* Sequence+NodeLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CD21C01BDF7A2600AF25BE /* Sequence+NodeLogic.swift */; };
@@ -761,6 +765,31 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		47BB77261D800DA2004C62F3 /* Copy Files - Fonts */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = Fonts;
+			dstSubfolderSpec = 7;
+			files = (
+				47BB77271D800DE4004C62F3 /* FontAwesome.otf in Copy Files - Fonts */,
+			);
+			name = "Copy Files - Fonts";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		47BB77281D800E80004C62F3 /* Copy Font Files */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Fonts;
+			dstSubfolderSpec = 7;
+			files = (
+				47BB77291D800E8E004C62F3 /* FontAwesome.otf in Copy Font Files */,
+			);
+			name = "Copy Font Files";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0727FA78BF2E3BB479E80906 /* Pods_Actions_OSX_Independent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Actions_OSX_Independent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2202598121DE8185D7DE391A /* Pods-Actions-OSX-Independent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Actions-OSX-Independent.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Actions-OSX-Independent/Pods-Actions-OSX-Independent.debug.xcconfig"; sourceTree = "<group>"; };
@@ -852,6 +881,7 @@
 		47B6964A1BE5BC0B00260C2A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		47B881F31CA3C82500B33BF6 /* NextUnitRuleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextUnitRuleViewController.swift; sourceTree = "<group>"; };
 		47B881F51CA3C83800B33BF6 /* NextUnitRuleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NextUnitRuleViewController.xib; sourceTree = "<group>"; };
+		47BB77211D7ED95B004C62F3 /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
 		47CD21BC1BDF373A00AF25BE /* Sequence+EventLogicTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sequence+EventLogicTests.swift"; sourceTree = "<group>"; };
 		47CD21BE1BDF797B00AF25BE /* GeneralExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralExtensions.swift; sourceTree = "<group>"; };
 		47CD21C01BDF7A2600AF25BE /* Sequence+NodeLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sequence+NodeLogic.swift"; sourceTree = "<group>"; usesTabs = 1; };
@@ -1109,6 +1139,7 @@
 		471279BE1C82BAEA0090426C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				47BB77211D7ED95B004C62F3 /* FontAwesome.otf */,
 				471279C11C82BB650090426C /* en.lproj */,
 			);
 			name = Resources;
@@ -1999,6 +2030,7 @@
 				83BE19341D091D2A00F3EF21 /* [CP] Embed Pods Frameworks */,
 				83BE19351D091D2A00F3EF21 /* [CP] Copy Pods Resources */,
 				83BE19361D091D2A00F3EF21 /* Inc Build */,
+				47BB77281D800E80004C62F3 /* Copy Font Files */,
 			);
 			buildRules = (
 			);
@@ -2021,6 +2053,7 @@
 				2D74C9AB3B418C8F055AAC5B /* [CP] Embed Pods Frameworks */,
 				5432F98F7EB08D99D4FCC6C6 /* [CP] Copy Pods Resources */,
 				83BE18831D09163D00F3EF21 /* Inc Build */,
+				47BB77261D800DA2004C62F3 /* Copy Files - Fonts */,
 			);
 			buildRules = (
 			);
@@ -2105,7 +2138,7 @@
 						DevelopmentTeam = AAS99X87A9;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.iCloud = {
 								enabled = 0;
@@ -2197,6 +2230,7 @@
 				83AC72381D07FA38005FC9DA /* stp_card_mastercard.png in Resources */,
 				83CE363C1C84E53F00D3A556 /* RuleCollectionItem.xib in Resources */,
 				833AE32E1C67E463002F35C1 /* DateNodeCollectionViewItem.xib in Resources */,
+				47BB77241D7ED95B004C62F3 /* FontAwesome.otf in Resources */,
 				47737EFB1CA2A7020072322D /* GreaterThanLessThanRuleViewController.xib in Resources */,
 				836896361C80801900F3F547 /* AvailableRulesViewController.xib in Resources */,
 				47B881F61CA3C83800B33BF6 /* NextUnitRuleViewController.xib in Resources */,
@@ -2228,6 +2262,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47BB77251D7ED95B004C62F3 /* FontAwesome.otf in Resources */,
 				83AC71B01D07F9ED005FC9DA /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3288,7 +3323,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -3652,7 +3687,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_EMPTY_BODY = NO;
 				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/Actions-OSX/Actions-OSX-Independent.entitlements";
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3695,7 +3730,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_EMPTY_BODY = NO;
 				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/Actions-OSX/Actions-OSX-Independent.entitlements";
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
