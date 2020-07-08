@@ -28,11 +28,11 @@ class AvoidCalendarEventsViewController : RuleViewController , RulePresenterDele
             }
         } else {
             let textBox = NSTextField()
-            textBox.bordered = false
-            textBox.backgroundColor = NSColor.clearColor()
-            textBox.editable = false
-            textBox.bezeled = false
-            textBox.font = NSFont.systemFontOfSize(12.0)
+            textBox.isBordered = false
+            textBox.backgroundColor = NSColor.clear
+            textBox.isEditable = false
+            textBox.isBezeled = false
+            textBox.font = NSFont.systemFont(ofSize: 12.0)
             textBox.stringValue = "RULE_AVOID_CALS_UNAUTHORIZED".localized
             vertStackView.addArrangedSubview(textBox)
         }
@@ -54,9 +54,9 @@ class AvoidCalendarEventsViewController : RuleViewController , RulePresenterDele
     }
     
     
-    func stackViewForCalendar(calendar:Calendar) -> NSView {
+    func stackViewForCalendar(_ calendar:Calendar) -> NSView {
         let checkbox = NSButton()
-        checkbox.setButtonType(.SwitchButton)
+        checkbox.setButtonType(.switch)
         checkbox.title = ""
         checkbox.state = calendar.avoid ? NSOnState : NSOffState
         checkbox.wantsLayer = true
@@ -70,11 +70,11 @@ class AvoidCalendarEventsViewController : RuleViewController , RulePresenterDele
         calendarCheckboxes[calendar] = checkbox
         
         let textBox = NSTextField()
-        textBox.bordered = false
-        textBox.backgroundColor = NSColor.clearColor()
-        textBox.editable = false
-        textBox.bezeled = false
-        textBox.font = NSFont.systemFontOfSize(12.0)
+        textBox.isBordered = false
+        textBox.backgroundColor = NSColor.clear
+        textBox.isEditable = false
+        textBox.isBezeled = false
+        textBox.font = NSFont.systemFont(ofSize: 12.0)
         
         if let name = calendar.name {
             textBox.stringValue = name

@@ -10,7 +10,7 @@ import Foundation
 import EventKit
 import ObjectMapper
 
-public class Calendar : NSObject, NSCoding, Mappable {
+open class Calendar : NSObject, NSCoding, Mappable {
     
     var identifier : String?
     var name : String?
@@ -31,7 +31,7 @@ public class Calendar : NSObject, NSCoding, Mappable {
 
     // MARK: NSCoding
     
-    private struct SerializationKeys {
+    fileprivate struct SerializationKeys {
         static let identifier = "identifier"
         static let name = "name"
         static let colour = "colour"
@@ -39,18 +39,18 @@ public class Calendar : NSObject, NSCoding, Mappable {
     }
     
     required public init?(coder aDecoder: NSCoder) {
-        identifier = aDecoder.decodeObjectForKey(SerializationKeys.identifier) as? String
-        name = aDecoder.decodeObjectForKey(SerializationKeys.name) as? String
-        colour = aDecoder.decodeObjectForKey(SerializationKeys.colour) as? NSColor
-        avoid  = aDecoder.decodeObjectForKey(SerializationKeys.avoid) as! Bool
+        identifier = aDecoder.decodeObject(forKey: SerializationKeys.identifier) as? String
+        name = aDecoder.decodeObject(forKey: SerializationKeys.name) as? String
+        colour = aDecoder.decodeObject(forKey: SerializationKeys.colour) as? NSColor
+        avoid  = aDecoder.decodeObject(forKey: SerializationKeys.avoid) as! Bool
         super.init()
     }
     
-    public func encodeWithCoder(encoder: NSCoder) {
-        encoder.encodeObject(identifier, forKey: SerializationKeys.identifier)
-        encoder.encodeObject(name, forKey: SerializationKeys.name)
-        encoder.encodeObject(colour, forKey: SerializationKeys.colour)
-        encoder.encodeObject(avoid, forKey: SerializationKeys.avoid)
+    open func encode(with encoder: NSCoder) {
+        encoder.encode(identifier, forKey: SerializationKeys.identifier)
+        encoder.encode(name, forKey: SerializationKeys.name)
+        encoder.encode(colour, forKey: SerializationKeys.colour)
+        encoder.encode(avoid, forKey: SerializationKeys.avoid)
     }
     
     //MARK: Mapping
@@ -59,7 +59,7 @@ public class Calendar : NSObject, NSCoding, Mappable {
         
     }
     
-    public func mapping(map: Map) {
+    open func mapping(_ map: Map) {
         identifier              <- map[SerializationKeys.identifier]
         name                    <- map[SerializationKeys.name]
         // colour                  <- map[SerializationKeys.colour]
@@ -70,7 +70,7 @@ public class Calendar : NSObject, NSCoding, Mappable {
     
     // MARK: Equality
     
-    override  public func isEqual(object: AnyObject?) -> Bool {
+    override  open func isEqual(_ object: Any?) -> Bool {
         
         if let cal = object as? Calendar {
             //   if self.name == cal.name && self.colour!.isEqual(cal.colour) {

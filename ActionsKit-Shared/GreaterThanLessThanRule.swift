@@ -29,13 +29,13 @@ class GreaterThanLessThanRule : Rule {
         guard inputDate != nil else { return nil }
         
         switch timeDirection {
-        case .Forward:
+        case .forward:
             let startTime = inputDate!.dateByAddingTimesize(greaterThan)
             let endTime = inputDate!.dateByAddingTimesize(lessThan)
             let window = DTTimePeriod(startDate: startTime, endDate: endTime)
             return window
             
-        case .Backward:
+        case .backward:
             let startTime = inputDate!.dateBySubtractingTimesize(greaterThan)
             let endTime = inputDate!.dateBySubtractingTimesize(lessThan)
             let window = DTTimePeriod(startDate: startTime, endDate: endTime)
@@ -44,11 +44,11 @@ class GreaterThanLessThanRule : Rule {
         }
     }
     
-    override var eventPreferedStartDate: NSDate? { get {
+    override var eventPreferedStartDate: Date? { get {
         guard inputDate != nil else { return nil }
         
         switch timeDirection {
-        case .Forward:
+        case .forward:
             let startTime = inputDate!.dateByAddingTimesize(greaterThan)
             let endTime = inputDate!.dateByAddingTimesize(lessThan)
             
@@ -56,7 +56,7 @@ class GreaterThanLessThanRule : Rule {
             seconds = seconds / 2
             return startTime.dateByAddingSeconds(Int(seconds))
             
-        case .Backward:
+        case .backward:
             let startTime = inputDate!.dateBySubtractingTimesize(greaterThan)
             let endTime = inputDate!.dateBySubtractingTimesize(lessThan)
             
@@ -73,7 +73,7 @@ class GreaterThanLessThanRule : Rule {
     
     // MARK: NSCoding
     
-    private struct SerializationKeys {
+    fileprivate struct SerializationKeys {
         static let greaterThan = "greaterThan"
         static let lessThan = "lessThan"
     }
@@ -84,7 +84,7 @@ class GreaterThanLessThanRule : Rule {
         lessThan = aDecoder.decodeObjectForKey(SerializationKeys.lessThan) as! Timesize
     }
     
-    override func encodeWithCoder(aCoder: NSCoder) {
+    override func encode(with aCoder: NSCoder) {
         aCoder.encodeObject(greaterThan, forKey:SerializationKeys.greaterThan)
         aCoder.encodeObject(lessThan, forKey:SerializationKeys.lessThan)
     }
@@ -92,7 +92,7 @@ class GreaterThanLessThanRule : Rule {
     
     // MARK: NSCopying
     
-    override func copyWithZone(zone: NSZone) -> AnyObject  {  //TODO: NSCopy
+    override func copy(with zone: NSZone?) -> AnyObject  {  //TODO: NSCopy
         let clone = GreaterThanLessThanRule()
         clone.greaterThan = self.greaterThan
         clone.lessThan = self.lessThan
@@ -106,7 +106,7 @@ class GreaterThanLessThanRule : Rule {
         super.init(map)
     }
     
-    override func mapping(map: Map) {
+    override func mapping(_ map: Map) {
         super.mapping(map)
         greaterThan             <- map[SerializationKeys.greaterThan]
         lessThan                <- map[SerializationKeys.lessThan]

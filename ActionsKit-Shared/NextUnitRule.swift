@@ -11,27 +11,27 @@ import DateTools
 import ObjectMapper
 
 enum NextPreferedTimeType: Int {
-    case Morning = 0
-    case Afternoon
-    case Evening
-    case Night
-    case Anytime
-    case Sametime
-    case TwoHours
+    case morning = 0
+    case afternoon
+    case evening
+    case night
+    case anytime
+    case sametime
+    case twoHours
 }
 
 enum NextUnitType: Int {
-    case Day = 0
-    case Week
-    case Month
-    case Year
+    case day = 0
+    case week
+    case month
+    case year
     
     var unitString: String {
         switch self {
-        case .Day: return "RULE_UNIT_DAY".localized
-        case .Week: return "RULE_UNIT_WEEK".localized
-        case .Month: return "RULE_UNIT_MONTH".localized
-        case .Year:return "RULE_UNIT_YEAR".localized
+        case .day: return "RULE_UNIT_DAY".localized
+        case .week: return "RULE_UNIT_WEEK".localized
+        case .month: return "RULE_UNIT_MONTH".localized
+        case .year:return "RULE_UNIT_YEAR".localized
         }
     }
 }
@@ -48,9 +48,9 @@ class NextUnitRule : Rule {
         super.init()
     }
     
-    var unit = NextUnitType.Day
+    var unit = NextUnitType.day
     var amount = 1
-    var preferedTime = NextPreferedTimeType.Anytime
+    var preferedTime = NextPreferedTimeType.anytime
     
     
     // Rule output
@@ -62,67 +62,67 @@ class NextUnitRule : Rule {
         let period = timePeriod(preferedTime)
         
         // combine the dates and times
-        let startDate = NSDate.combineDateWithTime(date, time: period.period.StartDate!)
-        let endDate = NSDate.combineDateWithTime(date, time: period.period.EndDate!)
-        return DTTimePeriod(startDate: startDate, endDate: endDate)
+        let startDate = Date.combineDateWithTime(date, time: period.period.startDate!)
+        let endDate = Date.combineDateWithTime(date, time: period.period.endDate!)
+        return DTTimePeriod(start: startDate, end: endDate)
         }
     }
     
-    override var eventPreferedStartDate: NSDate? { get {
+    override var eventPreferedStartDate: Date? { get {
         guard inputDate != nil else { return nil }
         let date = calcDate()
         let time = timePeriod(preferedTime).preferedStartDate
-        return (NSDate.combineDateWithTime(date, time: time))
+        return (Date.combineDateWithTime(date, time: time))
         }
     }
     
     
     //MARK: Internal Processing
     
-    func timePeriod(timeType:NextPreferedTimeType) -> (period:DTTimePeriod, preferedStartDate:NSDate) {
+    func timePeriod(_ timeType:NextPreferedTimeType) -> (period:DTTimePeriod, preferedStartDate:Date) {
         guard previousPeriod != nil else { fatalError() }
         
         switch preferedTime {
-        case .Morning:
-            let period = DTTimePeriod(startDate: NSDate(string: "06:00", formatString:"hh:mm"),
-                                      endDate: NSDate(string: "12:00", formatString:"hh:mm"))
-            return (period, NSDate(string: "09:00", formatString: "hh:mm"))
+        case .morning:
+            let period = DTTimePeriod(start: NSDate(string: "06:00", formatString:"hh:mm") as Date!,
+                                      end: NSDate(string: "12:00", formatString:"hh:mm") as Date!)
+            return (period!, NSDate(string: "09:00", formatString: "hh:mm") as Date)
             
-        case .Afternoon:
-            let period = DTTimePeriod(startDate: NSDate(string: "12:00", formatString:"hh:mm"),
-                                      endDate: NSDate(string: "18:00", formatString:"HH:mm"))
-            return (period, NSDate(string: "13:00", formatString: "HH:mm"))
+        case .afternoon:
+            let period = DTTimePeriod(start: NSDate(string: "12:00", formatString:"hh:mm") as Date!,
+                                      end: NSDate(string: "18:00", formatString:"HH:mm") as Date!)
+            return (period!, NSDate(string: "13:00", formatString: "HH:mm") as Date)
             
-        case .Evening:
-            let period = DTTimePeriod(startDate: NSDate(string: "18:00", formatString:"HH:mm"),
-                                      endDate: NSDate(string: "23:59", formatString:"HH:mm"))
-            return (period, NSDate(string: "18:00", formatString: "HH:mm"))
+        case .evening:
+            let period = DTTimePeriod(start: NSDate(string: "18:00", formatString:"HH:mm") as Date!,
+                                      end: NSDate(string: "23:59", formatString:"HH:mm") as Date!)
+            return (period!, NSDate(string: "18:00", formatString: "HH:mm") as Date)
             
-        case .Night:
-            let period = DTTimePeriod(startDate: NSDate(string: "00:00", formatString:"hh:mm"),
-                                      endDate: NSDate(string: "06:00", formatString:"hh:mm"))
-            return (period ,NSDate(string: "01:00", formatString: "hh:mm"))
+        case .night:
+            let period = DTTimePeriod(start: NSDate(string: "00:00", formatString:"hh:mm") as Date!,
+                                      end: NSDate(string: "06:00", formatString:"hh:mm") as Date!)
+            return (period! ,NSDate(string: "01:00", formatString: "hh:mm") as Date)
             
-        case .Sametime:
+        case .sametime:
             // TODO: get the startTime from the previous node.
-            let startTime = previousPeriod!.StartDate
-            let period = DTTimePeriod(startDate: startTime!, endDate:startTime!.dateByAddingMinutes(1))
-            return (period, startTime!)
+            let startTime = previousPeriod!.startDate
+            let period = DTTimePeriod(start: startTime!, end:(startTime! as NSDate).addingMinutes(1))
+            return (period!, startTime!)
             
-        case .Anytime:
-            let period = DTTimePeriod(startDate: NSDate(string: "00:00", formatString: "hh:mm"),
-                                      endDate: NSDate(string: "23:59", formatString: "HH:mm"))
-            return (period, NSDate(string: "10:00", formatString: "hh:mm"))
+        case .anytime:
+            let period = DTTimePeriod(start: NSDate(string: "00:00", formatString: "hh:mm") as Date!,
+                                      end: NSDate(string: "23:59", formatString: "HH:mm") as Date!)
+            return (period!, NSDate(string: "10:00", formatString: "hh:mm") as Date)
             
-        case .TwoHours:
+        case .twoHours:
             // TODO: get the startTime from the previous node.
-            let startTime = previousPeriod!.StartDate
-            let period = DTTimePeriod(startDate: startTime!.dateBySubtractingHours(2), endDate: startTime!.dateByAddingHours(2))
-            return (period, startTime!)
+            let startTime = previousPeriod!.startDate
+            let period = DTTimePeriod(start: (startTime! as NSDate).subtractingHours(2), end: (startTime! as NSDate).addingHours(2))
+            return (period!, startTime!)
         }
     }
     
-    func calcDate() -> NSDate {
+    func calcDate() -> Date {
         //FIXME: lots of fatalErrors() here
         guard let periodUnit = DTTimePeriodSize(rawValue:UInt(unit.rawValue+3)) else { fatalError() }
         let timesize = Timesize(unit: periodUnit, amount: amount)
@@ -140,7 +140,7 @@ class NextUnitRule : Rule {
     
     // MARK: NSCoding
     
-    private struct SerializationKeys {
+    fileprivate struct SerializationKeys {
         static let unit = "unit"
         static let amount = "amount"
         static let preferedTime = "preferedTime"
@@ -148,20 +148,20 @@ class NextUnitRule : Rule {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder:aDecoder)
-        unit = NextUnitType(rawValue: aDecoder.decodeIntegerForKey(SerializationKeys.unit))!
-        amount = aDecoder.decodeIntegerForKey(SerializationKeys.amount)
-        preferedTime = NextPreferedTimeType(rawValue: aDecoder.decodeIntegerForKey(SerializationKeys.preferedTime))!
+        unit = NextUnitType(rawValue: aDecoder.decodeInteger(forKey: SerializationKeys.unit))!
+        amount = aDecoder.decodeInteger(forKey: SerializationKeys.amount)
+        preferedTime = NextPreferedTimeType(rawValue: aDecoder.decodeInteger(forKey: SerializationKeys.preferedTime))!
     }
     
-    override func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeInteger(unit.rawValue, forKey:SerializationKeys.unit)
-        aCoder.encodeInteger(amount, forKey:SerializationKeys.amount)
-        aCoder.encodeInteger(preferedTime.rawValue, forKey:SerializationKeys.preferedTime)
+    override func encode(with aCoder: NSCoder) {
+        aCoder.encode(unit.rawValue, forKey:SerializationKeys.unit)
+        aCoder.encode(amount, forKey:SerializationKeys.amount)
+        aCoder.encode(preferedTime.rawValue, forKey:SerializationKeys.preferedTime)
     }
     
     // MARK: NSCopying
     
-    override func copyWithZone(zone: NSZone) -> AnyObject  {
+    override func copy(with zone: NSZone?) -> AnyObject  {
         let clone = NextUnitRule()
         clone.unit = self.unit
         clone.amount = self.amount
@@ -176,7 +176,7 @@ class NextUnitRule : Rule {
         super.init(map)
     }
     
-    override func mapping(map: Map) {
+    override func mapping(_ map: Map) {
         super.mapping(map)
         unit             <- (map[SerializationKeys.unit], EnumTransform())
         amount           <- map[SerializationKeys.amount]

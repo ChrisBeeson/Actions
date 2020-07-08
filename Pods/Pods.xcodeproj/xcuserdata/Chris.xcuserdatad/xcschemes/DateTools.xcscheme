@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0730"
+   LastUpgradeVersion = "1010"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AFEDA8059B169E4068B6DCC4D2F0B0E9"
+               BlueprintIdentifier = "019B8DD7F9406148F9C695DB96EBC4A3"
                BuildableName = "DateTools.framework"
                BlueprintName = "DateTools"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "AFEDA8059B169E4068B6DCC4D2F0B0E9"
+            BlueprintIdentifier = "019B8DD7F9406148F9C695DB96EBC4A3"
             BuildableName = "DateTools.framework"
             BlueprintName = "DateTools"
             ReferencedContainer = "container:Pods.xcodeproj">

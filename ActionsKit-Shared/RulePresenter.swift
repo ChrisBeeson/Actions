@@ -9,24 +9,24 @@ import Foundation
 import AppKit
 
 public enum RuleState : Int {
-    case Active = 1
-    case Inactive
-    case Error
+    case active = 1
+    case inactive
+    case error
 }
 
-public class RulePresenter : NSObject {
+open class RulePresenter : NSObject {
     
-    private var delegates = [RulePresenterDelegate]()
-    var undoManager: NSUndoManager?
-    public weak var sequencePresenter: SequencePresenter?
+    fileprivate var delegates = [RulePresenterDelegate]()
+    var undoManager: UndoManager?
+    open weak var sequencePresenter: SequencePresenter?
     var ruleViewController : RuleViewController?
     var rule : Rule
     
     var useDetailName = true
     
     var name : NSString {
-        if useDetailName == true {return rule.detailName }
-        else {return rule.name }
+        if useDetailName == true {return rule.detailName as NSString }
+        else {return rule.name as NSString }
     }
     
     var availableToNodeType : NodeType {
@@ -34,13 +34,13 @@ public class RulePresenter : NSObject {
     }
     
     var editable: Bool {
-        return sequencePresenter?.currentState != .Completed
+        return sequencePresenter?.currentState != .completed
     }
     
     var currentState: RuleState {
-        if sequencePresenter == nil { return .Active }
-        if sequencePresenter!.currentState == .Completed { return .Inactive }
-        return .Active
+        if sequencePresenter == nil { return .active }
+        if sequencePresenter!.currentState == .completed { return .inactive }
+        return .active
     }
 
     
@@ -52,8 +52,8 @@ public class RulePresenter : NSObject {
     }
     
     init(pasteboardItem: NSPasteboardItem) {
-        if let data = pasteboardItem.dataForType(AppConfiguration.UTI.rule) {
-            self.rule = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! Rule
+        if let data = pasteboardItem.data(forType: AppConfiguration.UTI.rule) {
+            self.rule = NSKeyedUnarchiver.unarchiveObject(with: data) as! Rule
         } else {
             fatalError("PasteboardItem didn't contain Rule")
         }
@@ -64,7 +64,7 @@ public class RulePresenter : NSObject {
     //MARK: Pasteboard
     
     func pasteboardItem() -> NSPasteboardItem {
-        let data = NSKeyedArchiver.archivedDataWithRootObject(self.rule)
+        let data = NSKeyedArchiver.archivedData(withRootObject: self.rule)
         let item = NSPasteboardItem()
         item.setData(data, forType: AppConfiguration.UTI.rule)
         return item
@@ -73,7 +73,7 @@ public class RulePresenter : NSObject {
     
     //MARK: Factory
     
-    class func makeRulePresenter(rule: Rule) -> RulePresenter {
+    class func makeRulePresenter(_ rule: Rule) -> RulePresenter {
         
         switch rule.className {
         case TransitionDurationWithVariance.className():        return TransitionDurationWithVarianceRulePresenter(rule: rule)
@@ -93,13 +93,13 @@ public class RulePresenter : NSObject {
     
     //MARK: Delegate helpers
     
-    public func addDelegate(delegate:RulePresenterDelegate) {
-        if !delegates.contains({$0 === delegate}) {
+    open func addDelegate(_ delegate:RulePresenterDelegate) {
+        if !delegates.contains(where: {$0 === delegate}) {
             delegates.append(delegate)
         }
     }
     
-    public func removeDelegate(delegate:RulePresenterDelegate) {
+    open func removeDelegate(_ delegate:RulePresenterDelegate) {
         delegates = delegates.filter { return $0 !== delegate }
     }
     
@@ -109,7 +109,7 @@ public class RulePresenter : NSObject {
     
     //MARK: Detail View Controller
     
-    public func detailViewController() -> RuleViewController {
-        return RuleViewController(nibName:"EmptyRuleViewController", bundle: NSBundle(identifier:"com.andris.ActionsKit"))!
+    open func detailViewController() -> RuleViewController {
+        return RuleViewController(nibName:"EmptyRuleViewController", bundle: Bundle(identifier:"com.andris.ActionsKit"))!
     }
 }

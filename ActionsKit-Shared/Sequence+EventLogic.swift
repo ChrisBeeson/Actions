@@ -12,31 +12,31 @@ import EventKit
 
 extension Sequence {
     
-    func SolveSequence(solvedNode:(node:Node, state:NodeState , errors:[SolverError]?) -> Void) -> Bool {
+    func SolveSequence(_ solvedNode:@escaping (_ node:Node, _ state:NodeState , _ errors:[SolverError]?) -> Void) -> Bool {
         guard var time = date else { print("Solver Sequence - no start date set"); return false }
         
         /// Internal Functions
         
-        func SolvedActionNode(node:Node, state:NodeState , errors:[SolverError]?) {
+        func SolvedActionNode(_ node:Node, state:NodeState , errors:[SolverError]?) {
             switch calculateActionNodePosition(node) {
                 
-            case .Action, .StartingAction, .EndingAction:
-                if timeDirection == .Forward {
+            case .action, .startingAction, .endingAction:
+                if timeDirection == .forward {
                     if let transitionNode = node.rightTransitionNode {
-                        if state == .Error { solvedNode(node: transitionNode, state:.InheritedError, errors: nil) } else {
-                            solvedNode(node: transitionNode, state:state, errors: nil)
+                        if state == .error { solvedNode(transitionNode, .inheritedError, nil) } else {
+                            solvedNode(transitionNode, state, nil)
                         }
                     }
-                    solvedNode(node: node, state:state, errors: errors)
+                    solvedNode(node, state, errors)
                     
-                } else if timeDirection == .Backward {
+                } else if timeDirection == .backward {
                     
                     if let transitionNode = node.leftTransitionNode {
-                        if state == .Error { solvedNode(node: transitionNode, state:.InheritedError, errors: nil) } else {
-                            solvedNode(node: transitionNode, state:state, errors: nil)
+                        if state == .error { solvedNode(transitionNode, .inheritedError, nil) } else {
+                            solvedNode(transitionNode, state, nil)
                         }
                     }
-                    solvedNode(node: node, state:state, errors: errors)
+                    solvedNode(node, state, errors)
                 }
             default: print("Found an invaild node")
             }
@@ -45,33 +45,33 @@ extension Sequence {
         // Lets begin
         
         var solvedPeriodsToAvoid = [AvoidPeriod]()
-        let orderedNodes:[Node] = self.timeDirection == .Forward ? self.actionNodes : self.actionNodes.reverse()
+        let orderedNodes:[Node] = self.timeDirection == .forward ? self.actionNodes : self.actionNodes.reversed()
         var failedNode:Node?
         var waitingForUserNode:Node?
 
-        for (index, node) in orderedNodes.enumerate() {
+        for (index, node) in orderedNodes.enumerated() {
             
             var errors = [SolverError]()
             
             // Skip if node is completed
             if node.isCompleted == true {
-                time = (timeDirection == .Forward) ? node.event!.period!.EndDate : node.event!.period!.StartDate
-                SolvedActionNode(node, state:.Completed, errors: nil)
+                time = (timeDirection == .forward) ? node.event!.period!.endDate : node.event!.period!.startDate
+                SolvedActionNode(node, state:.completed, errors: nil)
                 continue
             }
             
             // If we have a failed Node - then lets fail all others
             if failedNode != nil {
-                errors.append(SolverError(errorLevel: .Failed, error: .FollowsFailedNode, object: failedNode, node: node))
-                SolvedActionNode(node, state:.InheritedError, errors: errors)
+                errors.append(SolverError(errorLevel: .failed, error: .followsFailedNode, object: failedNode, node: node))
+                SolvedActionNode(node, state:.inheritedError, errors: errors)
                 continue
             }
             
             // Handle WaitForUser - works in exactly the same way as failedNodes...
 
             if waitingForUserNode != nil {
-                errors.append(SolverError(errorLevel: .Warning, error: .FollowsRequiresUserInput, object: waitingForUserNode, node: node))
-                SolvedActionNode(node, state:.InheritedWait, errors: errors)
+                errors.append(SolverError(errorLevel: .warning, error: .followsRequiresUserInput, object: waitingForUserNode, node: node))
+                SolvedActionNode(node, state:.inheritedWait, errors: errors)
                 continue
             }
             
@@ -82,22 +82,22 @@ extension Sequence {
             var rules = node.rules
             
             // add general sequence Rules
-            rules.appendContentsOf(self.generalRules)
+            rules.append(contentsOf: self.generalRules)
             
             // add generic app wide rules, if the sequence hasn't overruled them
             let genericRules = AppConfiguration.sharedConfiguration.contextPresenter().rules.filter { !self.generalRules.contains($0) }
-            rules.appendContentsOf(genericRules)
+            rules.append(contentsOf: genericRules)
             
             // Add rules unique to the calculateActionNodePosition of the node
             switch calculateActionNodePosition(node) {
                 
-            case .StartingAction:
+            case .startingAction:
                 let startRule = TransitionDurationWithVariance()
                 startRule.eventStartsInDuration = Timesize(unit: .Hour, amount: 0)     /// TODO: This can't be user modified
                 rules.append(startRule)
                 
-            case .Action, .EndingAction:   // add the left hand transistion rules to the rules.
-                let transitionRules = (timeDirection == .Forward) ?  node.leftTransitionNode?.rules :  node.rightTransitionNode?.rules
+            case .action, .endingAction:   // add the left hand transistion rules to the rules.
+                let transitionRules = (timeDirection == .forward) ?  node.leftTransitionNode?.rules :  node.rightTransitionNode?.rules
                 if transitionRules != nil {
                     for rule in transitionRules! {
                         rules.append(rule) }
@@ -108,7 +108,7 @@ extension Sequence {
             
             // Remove any calendar events that are created by this sequence, so it doesn't avoid it's self.
             // This is so past updates are ignored
-            rules.forEach { if $0.isKindOfClass(AvoidCalendarEventsRule) == true {
+            rules.forEach { if $0.isKind(of: AvoidCalendarEventsRule.self) == true {
                 ($0 as! AvoidCalendarEventsRule).ignoreCurrentEventsForSequence = self
                 //($0 as! AvoidCalendarEventsRule).ignoreCurrentEventForNode = node
                 }
@@ -140,7 +140,7 @@ extension Sequence {
             //-------------------------------------------------------------------------------------------------------
             
             solvedPeriod = Solver.calculateEventPeriod(time, direction:timeDirection, node: node, rules:rules)
-            errors.appendContentsOf(solvedPeriod!.errors)
+            errors.append(contentsOf: solvedPeriod!.errors)
             
             //-------------------------------------------------------------------------------------------------------
             
@@ -163,8 +163,8 @@ extension Sequence {
                 for rule in node.rules {
                     if rule is WaitForUserRule {
                         if (rule as! WaitForUserRule).userContinued == false {
-                            errors.append(SolverError(errorLevel: .Warning, error: .RequiresUserInput, object: node, node: node))
-                            SolvedActionNode(node, state:.WaitingForUserInput, errors: errors)
+                            errors.append(SolverError(errorLevel: .warning, error: .requiresUserInput, object: node, node: node))
+                            SolvedActionNode(node, state:.waitingForUserInput, errors: errors)
                             waitingForUserNode = node
                             break
                         } else {
@@ -180,18 +180,18 @@ extension Sequence {
             if solvedPeriod!.solved == false {
                 if failedNode == nil {
                     failedNode = node
-                    SolvedActionNode(node, state:.Error, errors: errors)
+                    SolvedActionNode(node, state:.error, errors: errors)
                     continue
                 }
             }
             
             // Success
             node.setEventPeriod(solvedPeriod!.period!)
-            SolvedActionNode(node, state:.Ready, errors: errors)
+            SolvedActionNode(node, state:.ready, errors: errors)
             
-            solvedPeriodsToAvoid.append(AvoidPeriod(period:solvedPeriod!.period!, type:.Node, object:node))
+            solvedPeriodsToAvoid.append(AvoidPeriod(period:solvedPeriod!.period!, type:.node, object:node))
             
-            time = (timeDirection == .Forward) ? solvedPeriod!.period!.EndDate : solvedPeriod!.period!.StartDate
+            time = (timeDirection == .forward) ? solvedPeriod!.period!.endDate : solvedPeriod!.period!.startDate
         }
         
         processEventsForTransitionPeriods()
@@ -208,19 +208,19 @@ extension Sequence {
             
             // Bit of house keeping... This this really the best place for it?
             
-            if  let index = allNodes.indexOf(node) where index != -1 {
+            if  let index = allNodes.index(of: node) , index != -1 {
                 node.leftTransitionNode = allNodes[index-1]
             }
             
-            if  let index = allNodes.indexOf(node) where index != -1 {
+            if  let index = allNodes.index(of: node) , index != -1 {
                 node.rightTransitionNode = allNodes[index+1]
             }
             
-            let start = node.leftTransitionNode?.event?.endDate.dateByAddingSeconds(1)
-            let end = node.rightTransitionNode?.event?.startDate.dateBySubtractingSeconds(1)
+            let start = ((node.leftTransitionNode?.event?.endDate)! as NSDate).addingSeconds(1)
+            let end = ((node.rightTransitionNode?.event?.startDate)! as NSDate).subtractingSeconds(1)
             
             if start != nil && end != nil {
-                let period = DTTimePeriod(startDate: start, endDate: end)
+                let period = DTTimePeriod(start: start, end: end)
                 node.setEventPeriod(period)
             } else {
                 //Node failed

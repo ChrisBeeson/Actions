@@ -13,7 +13,7 @@ class WaitForUserRuleViewController : RuleViewController {
     
     @IBOutlet weak var continueButton: NSButton!
     
-    @IBAction func ContinueButtonChangedState(sender: AnyObject) {
+    @IBAction func ContinueButtonChangedState(_ sender: AnyObject) {
         
         let presenter = self.rulePresenter as! WaitForUserPresenter
         presenter.completed = continueButton.state == NSOnState ? true : false

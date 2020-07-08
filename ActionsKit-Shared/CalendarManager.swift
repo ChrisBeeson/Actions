@@ -10,64 +10,64 @@ import Foundation
 import EventKit
 import DateTools
 
-public class CalendarManager: NSObject {
+open class CalendarManager: NSObject {
     
-    public static let sharedInstance = CalendarManager()
-    public let store = EKEventStore()
-    public var applicationCalendar: EKCalendar?
-    public var authorized = false
+    open static let sharedInstance = CalendarManager()
+    open let store = EKEventStore()
+    open var applicationCalendar: EKCalendar?
+    open var authorized = false
     var changeCount = 0
     
     override init() {
         super.init()
         verifyUserEventAuthorization()
         retrieveApplicationCalendar()
-        NSNotificationCenter.defaultCenter().addObserverForName(EKEventStoreChangedNotification, object: nil, queue: nil) { (notification) -> Void in
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.EKEventStoreChanged, object: nil, queue: nil) { (notification) -> Void in
             if self.changeCount > 0 {
                 self.changeCount -= 1
             } else {
                  print("Calendar Changed Outside of Actions")
-                NSNotificationCenter.defaultCenter().postNotificationName("SystemCalendarDidChangeExternally", object: self)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "SystemCalendarDidChangeExternally"), object: self)
             }
         }
     }
     
     deinit {
-       NSNotificationCenter.defaultCenter().removeObserver(self)
+       NotificationCenter.default.removeObserver(self)
     }
     
     func calendars() -> [EKCalendar] {
-        return store.calendarsForEntityType(.Event)
+        return store.calendars(for: .event)
     }
     
     func incrementChangeCount() {
         changeCount += 1
     }
     
-    func events(timePeriod: DTTimePeriod, calendars: [Calendar]) -> [EKEvent]? {
+    func events(_ timePeriod: DTTimePeriod, calendars: [Calendar]) -> [EKEvent]? {
 
         let systemCalendars = systemCalendarsForCalendars(calendars)
         
-        let predicate = store.predicateForEventsWithStartDate(timePeriod.StartDate, endDate: timePeriod.EndDate, calendars: systemCalendars)
-        return store.eventsMatchingPredicate(predicate)
+        let predicate = store.predicateForEvents(withStart: timePeriod.startDate, end: timePeriod.endDate, calendars: systemCalendars)
+        return store.events(matching: predicate)
     }
     
     
-    func findEventsInApplicationCalendar(timePeriod: DTTimePeriod) -> [EKEvent]? {
+    func findEventsInApplicationCalendar(_ timePeriod: DTTimePeriod) -> [EKEvent]? {
         guard applicationCalendar != nil else { print("Application Calendar is NULL") ; return nil }
         
-        let predicate = store.predicateForEventsWithStartDate(timePeriod.StartDate, endDate: timePeriod.EndDate, calendars: [applicationCalendar!])
-        return store.eventsMatchingPredicate(predicate)
+        let predicate = store.predicateForEvents(withStart: timePeriod.startDate, end: timePeriod.endDate, calendars: [applicationCalendar!])
+        return store.events(matching: predicate)
     }
     
     
     
     
-    func systemCalendarsForCalendars(calendars: [Calendar]) -> [EKCalendar] {
+    func systemCalendarsForCalendars(_ calendars: [Calendar]) -> [EKCalendar] {
         var systemCalendars = [EKCalendar]()
         for cal in calendars {
             if let id = cal.identifier {
-                if let cal = store.calendarWithIdentifier(id) {
+                if let cal = store.calendar(withIdentifier: id) {
                     systemCalendars.append(cal)
                 }
             }
@@ -76,13 +76,13 @@ public class CalendarManager: NSObject {
     }
     
     func systemCalendarsAsCalendars() -> [Calendar] {
-        return store.calendarsForEntityType(EKEntityType.Event).map{ Calendar(systemCalendar:$0) }
+        return store.calendars(for: EKEntityType.event).map{ Calendar(systemCalendar:$0) }
     }
     
 
     func retrieveApplicationCalendar() {
         if applicationCalendar == nil {
-            let calendars = store.calendarsForEntityType(EKEntityType.Event)
+            let calendars = store.calendars(for: EKEntityType.event)
             for calendar in calendars {
                 if calendar.title ==  AppConfiguration.defaultCalendarName as String {
                     applicationCalendar = calendar
@@ -91,7 +91,7 @@ public class CalendarManager: NSObject {
             }
             
             if applicationCalendar == nil {
-                applicationCalendar = EKCalendar(forEntityType: EKEntityType.Event, eventStore:store)
+                applicationCalendar = EKCalendar(for: EKEntityType.event, eventStore:store)
                 applicationCalendar!.title = AppConfiguration.defaultCalendarName as String
                 applicationCalendar!.color = AppConfiguration.defaultCalendarColour as NSColor
                 applicationCalendar!.source = store.defaultCalendarForNewEvents.source
@@ -107,27 +107,27 @@ public class CalendarManager: NSObject {
     }
     
     
-    public func verifyUserEventAuthorization() {
-        switch EKEventStore.authorizationStatusForEntityType(EKEntityType.Event) {
+    open func verifyUserEventAuthorization() {
+        switch EKEventStore.authorizationStatus(for: EKEntityType.event) {
             
-        case .NotDetermined:
-            store.requestAccessToEntityType(.Event, completion: { granted, error in
+        case .notDetermined:
+            store.requestAccess(to: .event, completion: { granted, error in
                 switch granted {
                 case true: print("Granted Access to calendar")
                 case false: print("NOT Granted Access to calendar") ; self.handleUnauthorizedCalendar()
                 }
             })
-        case .Authorized: print("Access to calendar is Authorized")
+        case .authorized: print("Access to calendar is Authorized")
         authorized = true
-        store.requestAccessToEntityType(.Event, completion: { (success, error) -> Void in
+        store.requestAccess(to: .event, completion: { (success, error) -> Void in
         })
             
-        case .Denied: print("Access to calendar is denied") ; handleUnauthorizedCalendar()
-        case .Restricted: print("Access to calendar is Restricted"); handleUnauthorizedCalendar()
+        case .denied: print("Access to calendar is denied") ; handleUnauthorizedCalendar()
+        case .restricted: print("Access to calendar is Restricted"); handleUnauthorizedCalendar()
         }
     }
     
     func handleUnauthorizedCalendar() {
-        NSNotificationCenter.defaultCenter().postNotificationName("DisplayCannotAccessCalendarAlert",object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "DisplayCannotAccessCalendarAlert"),object: nil)
     }
 }

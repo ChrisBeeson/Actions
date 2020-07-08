@@ -11,8 +11,8 @@ import ObjectMapper
 
 @objc
 public enum TimeDirection: Int {
-    case Forward
-    case Backward
+    case forward
+    case backward
 }
 
 class Sequence: NSObject, NSCopying, NSCoding, Mappable {
@@ -20,10 +20,10 @@ class Sequence: NSObject, NSCopying, NSCoding, Mappable {
     var title: String = ""
     var actionNodes = [Node]()
     var transitionNodes = [Node]()
-    var date: NSDate?
-    var timeDirection = TimeDirection.Forward
+    var date: Date?
+    var timeDirection = TimeDirection.forward
     var generalRules = [Rule]()
-    var uuid:String = NSUUID().UUIDString
+    var uuid:String = UUID().uuidString
 
     // MARK: Initializers
     override init () {
@@ -44,7 +44,7 @@ class Sequence: NSObject, NSCopying, NSCoding, Mappable {
     }
     
     // MARK: NSCoding
-    private struct SerializationKeys {
+    fileprivate struct SerializationKeys {
         static let title = "title"
         static let actionNodes = "actionNodes"
         static let transitionNodes = "transitionNodes"
@@ -56,23 +56,23 @@ class Sequence: NSObject, NSCopying, NSCoding, Mappable {
     }
     
      required init?(coder aDecoder: NSCoder) {
-        title = aDecoder.decodeObjectForKey(SerializationKeys.title) as! String
-        actionNodes = aDecoder.decodeObjectForKey(SerializationKeys.actionNodes) as! [Node]
-        transitionNodes = aDecoder.decodeObjectForKey(SerializationKeys.transitionNodes) as! [Node]
-        date = aDecoder.decodeObjectForKey(SerializationKeys.date) as? NSDate
-        timeDirection = TimeDirection(rawValue: aDecoder.decodeIntegerForKey(SerializationKeys.timeDirection))!
-        uuid = aDecoder.decodeObjectForKey(SerializationKeys.uuid) as! String
-        generalRules = aDecoder.decodeObjectForKey(SerializationKeys.generalRules) as! [Rule]
+        title = aDecoder.decodeObject(forKey: SerializationKeys.title) as! String
+        actionNodes = aDecoder.decodeObject(forKey: SerializationKeys.actionNodes) as! [Node]
+        transitionNodes = aDecoder.decodeObject(forKey: SerializationKeys.transitionNodes) as! [Node]
+        date = aDecoder.decodeObject(forKey: SerializationKeys.date) as? Date
+        timeDirection = TimeDirection(rawValue: aDecoder.decodeInteger(forKey: SerializationKeys.timeDirection))!
+        uuid = aDecoder.decodeObject(forKey: SerializationKeys.uuid) as! String
+        generalRules = aDecoder.decodeObject(forKey: SerializationKeys.generalRules) as! [Rule]
     }
     
-     func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(title, forKey: SerializationKeys.title)
-        aCoder.encodeObject(actionNodes, forKey: SerializationKeys.actionNodes)
-        aCoder.encodeObject(transitionNodes, forKey: SerializationKeys.transitionNodes)
-        aCoder.encodeObject(date, forKey: SerializationKeys.date)
-        aCoder.encodeInteger(timeDirection.rawValue, forKey: SerializationKeys.timeDirection)
-        aCoder.encodeObject(uuid, forKey: SerializationKeys.uuid)
-        aCoder.encodeObject(generalRules, forKey: SerializationKeys.generalRules)
+     func encode(with aCoder: NSCoder) {
+        aCoder.encode(title, forKey: SerializationKeys.title)
+        aCoder.encode(actionNodes, forKey: SerializationKeys.actionNodes)
+        aCoder.encode(transitionNodes, forKey: SerializationKeys.transitionNodes)
+        aCoder.encode(date, forKey: SerializationKeys.date)
+        aCoder.encode(timeDirection.rawValue, forKey: SerializationKeys.timeDirection)
+        aCoder.encode(uuid, forKey: SerializationKeys.uuid)
+        aCoder.encode(generalRules, forKey: SerializationKeys.generalRules)
     }
     
     //MARK: Mapping
@@ -81,7 +81,7 @@ class Sequence: NSObject, NSCopying, NSCoding, Mappable {
         
     }
     
-    func mapping(map: Map) {
+    func mapping(_ map: Map) {
         title           <- map[SerializationKeys.title]
         actionNodes      <- map[SerializationKeys.actionNodes]
         transitionNodes <-  map[SerializationKeys.transitionNodes]
@@ -93,7 +93,7 @@ class Sequence: NSObject, NSCopying, NSCoding, Mappable {
     
     
     // MARK: NSCopying
-     func copyWithZone(zone: NSZone) -> AnyObject  {
+     func copy(with zone: NSZone?) -> Any  {
         let clone = Sequence()
         clone.title = title.copy() as! String
         clone.actionNodes =  NSArray(array:actionNodes, copyItems: true) as! [Node]
@@ -106,7 +106,7 @@ class Sequence: NSObject, NSCopying, NSCoding, Mappable {
     
      var filename: String {
         var filename = uuid
-        filename.appendContentsOf("."+AppConfiguration.applicationFileExtension)
+        filename.append("."+AppConfiguration.applicationFileExtension)
         return filename
     }
     
@@ -116,7 +116,7 @@ class Sequence: NSObject, NSCopying, NSCoding, Mappable {
     }
     
     // MARK: Equality
-    override  func isEqual(object: AnyObject?) -> Bool {
+    override  func isEqual(_ object: Any?) -> Bool {
         if let sequence = object as? Sequence {
             if uuid == sequence.uuid  {
                 return true

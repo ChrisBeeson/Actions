@@ -43,19 +43,19 @@ class AvoidCalendarEventsRule : Rule {
             // 2. Turn each event into a time period.
             var periods = [AvoidPeriod]()
             for event in events {
-                let period = DTTimePeriod(startDate: event.startDate, endDate: event.endDate)
+                let period = DTTimePeriod(start: event.startDate, end: event.endDate)
                 var addPeriod = true
                 
                 if let ignores = ignorePeriods() {
                     for ignore in ignores {
-                        if abs(period.StartDate.secondsFrom(ignore.StartDate!)) < 60 && abs(period.EndDate.secondsFrom(ignore.EndDate!)) < 60 {
+                        if abs(period.startDate.seconds(from: ignore.startDate!)) < 60 && abs(period.endDate.seconds(from: ignore.endDate!)) < 60 {
                             addPeriod = false
                         }
                     }
                 }
                 
                 if addPeriod == true {
-                    let avoidPeriod = AvoidPeriod(period: period, type: .CalendarEvent, object: event)
+                    let avoidPeriod = AvoidPeriod(period: period, type: .calendarEvent, object: event)
                     periods.append(avoidPeriod)
                 }
             }
@@ -73,16 +73,16 @@ class AvoidCalendarEventsRule : Rule {
         
         if ignoreCurrentEventForNode != nil {
             if let event = ignoreCurrentEventForNode!.event {
-                let period = DTTimePeriod(startDate: event.startDate, endDate: event.endDate)
-                periods.append(period)
+                let period = DTTimePeriod(start: event.startDate as Date!, end: event.endDate as Date!)
+                periods.append(period!)
             }
         }
         
         if ignoreCurrentEventsForSequence != nil {
             for node in ignoreCurrentEventsForSequence!.nodeChain() {
                 if let event = node.event {
-                    let period = DTTimePeriod(startDate: event.startDate, endDate: event.endDate)
-                    periods.append(period)
+                    let period = DTTimePeriod(start: event.startDate as Date!, end: event.endDate as Date!)
+                    periods.append(period!)
                 }
             }
         }
@@ -101,9 +101,9 @@ class AvoidCalendarEventsRule : Rule {
         if diff.results.count > 0 {
             let inserts = diff.insertions.map{ $0.value }
             //TODO: Localize this
-            inserts.filter({$0.name!.lowercaseString.containsString("birthday") == true}).forEach {$0.avoid = false }
-            inserts.filter({$0.name!.lowercaseString.containsString("holidays") == true}).forEach {$0.avoid = false }
-            currentCalendars.appendContentsOf(inserts)
+            inserts.filter({$0.name!.lowercased().contains("birthday") == true}).forEach {$0.avoid = false }
+            inserts.filter({$0.name!.lowercased().contains("holidays") == true}).forEach {$0.avoid = false }
+            currentCalendars.append(contentsOf: inserts)
             
             let deletions = diff.deletions.map{ $0.value }
             currentCalendars.removeObjects(deletions)
@@ -116,18 +116,18 @@ class AvoidCalendarEventsRule : Rule {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        calendars = aDecoder.decodeObjectForKey("calendars") as! Array
+        calendars = aDecoder.decodeObject(forKey: "calendars") as! Array
         self.populateCalendars()
     }
     
-    override func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(calendars, forKey:"calendars")
+    override func encode(with aCoder: NSCoder) {
+        aCoder.encode(calendars, forKey:"calendars")
     }
     
     
     // MARK: NSCopying
     
-    override func copyWithZone(zone: NSZone) -> AnyObject {
+    override func copy(with zone: NSZone?) -> AnyObject {
          let clone = AvoidCalendarEventsRule()
          clone.calendars = self.calendars
          return clone
@@ -140,7 +140,7 @@ class AvoidCalendarEventsRule : Rule {
         super.init(map)
     }
     
-    override func mapping(map: Map) {
+    override func mapping(_ map: Map) {
         super.mapping(map)
         calendars        <- map["calendars"]
     }

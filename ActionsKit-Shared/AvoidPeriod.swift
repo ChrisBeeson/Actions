@@ -23,20 +23,20 @@ struct AvoidPeriod {
     
     init (period:DTTimePeriod) {
         self.period = period
-        self.type = .None
+        self.type = .none
     }
     
     var errorDescription: String? {
         switch self.type {
-        case .CalendarEvent:
+        case .calendarEvent:
             if let event = (object as? EKEvent) {
                 return event.title
             } else { return nil }
-        case .WorkingWeekMorning: return "RUlE_WORKING_WEEK_MORNING".localized
-        case .WorkingWeekEvening: return "RUlE_WORKING_WEEK_EVENING".localized
-        case .WorkingWeekLunch: return "RUlE_WORKING_WEEK_LUNCH".localized
-        case .WorkingWeekDayOff: return "RUlE_WORKING_WEEK_DAY_OFF".localized
-        case .Node:
+        case .workingWeekMorning: return "RUlE_WORKING_WEEK_MORNING".localized
+        case .workingWeekEvening: return "RUlE_WORKING_WEEK_EVENING".localized
+        case .workingWeekLunch: return "RUlE_WORKING_WEEK_LUNCH".localized
+        case .workingWeekDayOff: return "RUlE_WORKING_WEEK_DAY_OFF".localized
+        case .node:
             return object != nil ? (object as! Node).title : nil
         default: return nil
         }
@@ -44,11 +44,11 @@ struct AvoidPeriod {
 }
 
 enum AvoidPeriodType {
-    case CalendarEvent
-    case WorkingWeekMorning
-    case WorkingWeekEvening
-    case WorkingWeekLunch
-    case WorkingWeekDayOff
-    case Node
-    case None
+    case calendarEvent
+    case workingWeekMorning
+    case workingWeekEvening
+    case workingWeekLunch
+    case workingWeekDayOff
+    case node
+    case none
 }

@@ -43,7 +43,7 @@ extension RuleAvailabiltiy {
     }
     
     
-    public func wouldAcceptRulePresenter(presenter:RulePresenter, allowDuplicates: Bool) -> Bool {
+    public func wouldAcceptRulePresenter(_ presenter:RulePresenter, allowDuplicates: Bool) -> Bool {
         if presenter.availableToNodeType.contains(type) ==  false { return false }
         if allowDuplicates == false {
             for rule in self.rules {

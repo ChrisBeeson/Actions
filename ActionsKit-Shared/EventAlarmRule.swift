@@ -12,17 +12,17 @@ import EventKit
 import DateTools
 
 enum AlarmType : Int {
-    case None = 0
-    case Message
-    case Email
+    case none = 0
+    case message
+    case email
     //case MessageWithSound
 }
 
 enum AlarmOffset : Int {
-    case OnDate = 0
-    case MinutesBefore
-    case HoursBefore
-    case DaysBefore
+    case onDate = 0
+    case minutesBefore
+    case hoursBefore
+    case daysBefore
 }
 
 class EventAlarmRule : Rule {
@@ -30,8 +30,8 @@ class EventAlarmRule : Rule {
     override var name: String { return "RULE_NAME_ALARM".localized}
     override var availableToNodeType: NodeType { return [.Action] }
     
-    var alarmType : AlarmType = .Message
-    var alarmOffsetUnit : AlarmOffset = .OnDate
+    var alarmType : AlarmType = .message
+    var alarmOffsetUnit : AlarmOffset = .onDate
     var offsetAmount : Int = 1
     var emailAddress : String = ""
     
@@ -40,13 +40,13 @@ class EventAlarmRule : Rule {
     }
     
     func makeAlarm() -> EKAlarm? {
-        guard alarmType != .None else { return nil }
+        guard alarmType != .none else { return nil }
         var offset: Double
         switch alarmOffsetUnit {
-            case .OnDate: offset = 0
-            case .MinutesBefore: offset = Double(Timesize(unit: DTTimePeriodSize.Minute , amount: offsetAmount).inSeconds())
-            case .HoursBefore: offset = Double(Timesize(unit: DTTimePeriodSize.Minute , amount: offsetAmount).inSeconds())
-            case .DaysBefore: offset = Double(Timesize(unit: DTTimePeriodSize.Hour , amount: offsetAmount).inSeconds())
+            case .onDate: offset = 0
+            case .minutesBefore: offset = Double(Timesize(unit: DTTimePeriodSize.Minute , amount: offsetAmount).inSeconds())
+            case .hoursBefore: offset = Double(Timesize(unit: DTTimePeriodSize.Minute , amount: offsetAmount).inSeconds())
+            case .daysBefore: offset = Double(Timesize(unit: DTTimePeriodSize.Hour , amount: offsetAmount).inSeconds())
         }
         
         let alarm = EKAlarm(relativeOffset: (0 - offset))
@@ -61,7 +61,7 @@ class EventAlarmRule : Rule {
     
     // MARK: NSCoding
     
-    private struct SerializationKeys {
+    fileprivate struct SerializationKeys {
         static let alarmType = "alarmType"
         static let alarmOffsetUnit = "alarmOffsetUnit"
         static let offsetAmount = "offsetAmount"
@@ -70,23 +70,23 @@ class EventAlarmRule : Rule {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder:aDecoder)
-        alarmType = AlarmType(rawValue: aDecoder.decodeIntegerForKey(SerializationKeys.alarmType))!
-        alarmOffsetUnit = AlarmOffset(rawValue: aDecoder.decodeIntegerForKey(SerializationKeys.alarmOffsetUnit))!
-        offsetAmount = aDecoder.decodeIntegerForKey(SerializationKeys.offsetAmount)
-        emailAddress = aDecoder.decodeObjectForKey(SerializationKeys.emailAddress) as! String
+        alarmType = AlarmType(rawValue: aDecoder.decodeInteger(forKey: SerializationKeys.alarmType))!
+        alarmOffsetUnit = AlarmOffset(rawValue: aDecoder.decodeInteger(forKey: SerializationKeys.alarmOffsetUnit))!
+        offsetAmount = aDecoder.decodeInteger(forKey: SerializationKeys.offsetAmount)
+        emailAddress = aDecoder.decodeObject(forKey: SerializationKeys.emailAddress) as! String
     }
     
-    override func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeInteger(alarmType.rawValue, forKey:SerializationKeys.alarmType)
-        aCoder.encodeInteger(alarmOffsetUnit.rawValue, forKey:SerializationKeys.alarmOffsetUnit)
-        aCoder.encodeInteger(offsetAmount, forKey:SerializationKeys.offsetAmount)
-        aCoder.encodeObject(emailAddress, forKey:SerializationKeys.emailAddress)
+    override func encode(with aCoder: NSCoder) {
+        aCoder.encode(alarmType.rawValue, forKey:SerializationKeys.alarmType)
+        aCoder.encode(alarmOffsetUnit.rawValue, forKey:SerializationKeys.alarmOffsetUnit)
+        aCoder.encode(offsetAmount, forKey:SerializationKeys.offsetAmount)
+        aCoder.encode(emailAddress, forKey:SerializationKeys.emailAddress)
     }
     
     
     // MARK: NSCopying
     
-    override func copyWithZone(zone: NSZone) -> AnyObject  {  //TODO: NSCopy
+    override func copy(with zone: NSZone?) -> AnyObject  {  //TODO: NSCopy
         let clone = EventAlarmRule()
         clone.alarmType = self.alarmType
         clone.alarmOffsetUnit = self.alarmOffsetUnit
@@ -102,7 +102,7 @@ class EventAlarmRule : Rule {
         super.init(map)
     }
     
-    override func mapping(map: Map) {
+    override func mapping(_ map: Map) {
         super.mapping(map)
         alarmType <- (map[SerializationKeys.alarmType], EnumTransform())
         alarmOffsetUnit <- (map[SerializationKeys.alarmOffsetUnit], EnumTransform())

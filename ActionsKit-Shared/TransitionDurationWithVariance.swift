@@ -39,10 +39,10 @@ class TransitionDurationWithVariance: Rule {
         }
     }
     
-    override var eventPreferedStartDate: NSDate? { get {
+    override var eventPreferedStartDate: Date? { get {
         switch timeDirection {
-        case .Forward: return inputDate?.dateByAddingTimesize(eventStartsInDuration)
-        case .Backward: return inputDate?.dateBySubtractingTimesize(eventStartsInDuration)
+        case .forward: return inputDate?.dateByAddingTimesize(eventStartsInDuration)
+        case .backward: return inputDate?.dateBySubtractingTimesize(eventStartsInDuration)
         }
         }
     }
@@ -54,7 +54,7 @@ class TransitionDurationWithVariance: Rule {
     
     // MARK: NSCoding
     
-    private struct SerializationKeys {
+    fileprivate struct SerializationKeys {
         static let eventStartsInDuration = "eventStartsInDuration"
         static let variance = "variance"
     }
@@ -65,14 +65,14 @@ class TransitionDurationWithVariance: Rule {
         variance = aDecoder.decodeObjectForKey(SerializationKeys.variance) as! Timesize
     }
     
-    override func encodeWithCoder(aCoder: NSCoder) {
+    override func encode(with aCoder: NSCoder) {
         aCoder.encodeObject(eventStartsInDuration, forKey:SerializationKeys.eventStartsInDuration)
         aCoder.encodeObject(variance, forKey:SerializationKeys.variance)
     }
     
     // MARK: NSCopying
     
-    override func copyWithZone(zone: NSZone) -> AnyObject  {
+    override func copy(with zone: NSZone?) -> AnyObject  {
         let clone = TransitionDurationWithVariance()
         clone.eventStartsInDuration = self.eventStartsInDuration
         clone.variance = self.variance
@@ -85,7 +85,7 @@ class TransitionDurationWithVariance: Rule {
         super.init(map)
     }
     
-    override func mapping(map: Map) {
+    override func mapping(_ map: Map) {
         super.mapping(map)
         eventStartsInDuration        <- map[SerializationKeys.eventStartsInDuration]
         variance                     <- map[SerializationKeys.variance]

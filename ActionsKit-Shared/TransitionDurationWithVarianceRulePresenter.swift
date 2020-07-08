@@ -9,7 +9,7 @@
 import Foundation
 import DateTools
 
-public class TransitionDurationWithVarianceRulePresenter : RulePresenter {
+open class TransitionDurationWithVarianceRulePresenter : RulePresenter {
     
     var duration : Int  {
         get {
@@ -17,7 +17,7 @@ public class TransitionDurationWithVarianceRulePresenter : RulePresenter {
         }
         set {
             (rule as! TransitionDurationWithVariance).eventStartsInDuration.amount = newValue
-            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+            sequencePresenter?.representingDocument?.updateChangeCount(.changeDone)
             informDelegatesOfChangesToContent()
         }
     }
@@ -28,7 +28,7 @@ public class TransitionDurationWithVarianceRulePresenter : RulePresenter {
         }
         set {
             (rule as! TransitionDurationWithVariance).eventStartsInDuration.unit = DTTimePeriodSize(rawValue: newValue)!
-            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+            sequencePresenter?.representingDocument?.updateChangeCount(.changeDone)
             informDelegatesOfChangesToContent()
         }
     }
@@ -39,7 +39,7 @@ public class TransitionDurationWithVarianceRulePresenter : RulePresenter {
         }
         set {
             (rule as! TransitionDurationWithVariance).variance.amount = newValue
-            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+            sequencePresenter?.representingDocument?.updateChangeCount(.changeDone)
             informDelegatesOfChangesToContent()
         }
     }
@@ -50,15 +50,15 @@ public class TransitionDurationWithVarianceRulePresenter : RulePresenter {
         }
         set {
             (rule as! TransitionDurationWithVariance).variance.unit = DTTimePeriodSize(rawValue: newValue)!
-            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+            sequencePresenter?.representingDocument?.updateChangeCount(.changeDone)
             informDelegatesOfChangesToContent()
         }
     }
     
-    public override func detailViewController() -> RuleViewController {
+    open override func detailViewController() -> RuleViewController {
         
         if ruleViewController == nil {
-            ruleViewController = DurationWithVarianceViewController(nibName:"DurationWithVarianceViewController", bundle: NSBundle(identifier:"com.andris.ActionsKit"))!
+            ruleViewController = DurationWithVarianceViewController(nibName:"DurationWithVarianceViewController", bundle: Bundle(identifier:"com.andris.ActionsKit"))!
             ruleViewController!.rulePresenter = self
         }
         

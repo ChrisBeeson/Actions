@@ -8,20 +8,20 @@
 
 import Foundation
 
-public class ContextPresenter : NodePresenter {
+open class ContextPresenter : NodePresenter {
     
-    var filePath: NSURL
-    private var context: Context?
+    var filePath: URL
+    fileprivate var context: Context?
     
-    init(filePath: NSURL) {
+    init(filePath: URL) {
         
         self.filePath = filePath
         
         super.init()
         
-        let filemgr = NSFileManager.defaultManager()
-        if filemgr.fileExistsAtPath(filePath.path!) {
-            self.context = NSKeyedUnarchiver.unarchiveObjectWithFile(filePath.path!) as? Context
+        let filemgr = FileManager.default
+        if filemgr.fileExists(atPath: filePath.path) {
+            self.context = NSKeyedUnarchiver.unarchiveObject(withFile: filePath.path) as? Context
         } else {
             self.context = Context()
             let avoidCals = AvoidCalendarEventsRule()
@@ -30,7 +30,7 @@ public class ContextPresenter : NodePresenter {
     }
     
     
-    override public var rules:[Rule] {
+    override open var rules:[Rule] {
         get {
             if let con = context {
                 return con.genericRules
@@ -40,25 +40,25 @@ public class ContextPresenter : NodePresenter {
         }
     }
     
-    override public var type: NodeType { get { return [.Generic] }  set {}}
+    override open var type: NodeType { get { return [.Generic] }  set {}}
     
 
-    public func save() {
+    open func save() {
         
-       NSKeyedArchiver.archiveRootObject(self.context!, toFile: self.filePath.path!)
+       NSKeyedArchiver.archiveRootObject(self.context!, toFile: self.filePath.path)
     }
    
     
-    public func addRulePresenter(rule:RulePresenter, atIndex:Int) {
+    open func addRulePresenter(_ rule:RulePresenter, atIndex:Int) {
         
         guard context != nil else { return }
         guard atIndex > -1 && atIndex <= context!.genericRules.count else { return }
         
-        context?.genericRules.insert(rule.rule, atIndex: atIndex)
+        context?.genericRules.insert(rule.rule, at: atIndex)
         save()
     }
     
-    public func removeRulePresenter(rule:RulePresenter) {
+    open func removeRulePresenter(_ rule:RulePresenter) {
         context?.genericRules.removeObject(rule.rule)
         save()
     }

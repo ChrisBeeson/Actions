@@ -14,7 +14,7 @@ class Context: NSObject, NSCoding {
     
     // MARK: NSCoding
     
-    private struct SerializationKeys {
+    fileprivate struct SerializationKeys {
         static let genericRules = "genericRules"
     }
     
@@ -25,10 +25,10 @@ class Context: NSObject, NSCoding {
     required init?(coder aDecoder: NSCoder) {
         super.init()
         
-        genericRules = aDecoder.decodeObjectForKey(SerializationKeys.genericRules) as! [Rule]
+        genericRules = aDecoder.decodeObject(forKey: SerializationKeys.genericRules) as! [Rule]
     }
     
-    func encodeWithCoder(encoder: NSCoder) {
-        encoder.encodeObject(genericRules, forKey: SerializationKeys.genericRules)
+    func encode(with encoder: NSCoder) {
+        encoder.encode(genericRules, forKey: SerializationKeys.genericRules)
     }
 }

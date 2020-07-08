@@ -10,16 +10,16 @@ import Foundation
 
 public enum SequenceState : Int {
     
-    case NoStartDateSet = 1
-    case WaitingForStart
-    case NewStartDate
-    case Running
-    case Paused
-    case HasFailedNode
-    case Completed
-    case Void
+    case noStartDateSet = 1
+    case waitingForStart
+    case newStartDate
+    case running
+    case paused
+    case hasFailedNode
+    case completed
+    case void
     
-    internal mutating func changeToState(newState: SequenceState, presenter:SequencePresenter, options:[String]?) -> SequenceState {
+    internal mutating func changeToState(_ newState: SequenceState, presenter:SequencePresenter, options:[String]?) -> SequenceState {
         
         // print("Sequence \(presenter.title):  From \(self)  to \(newState)")
         if self == newState {
@@ -32,17 +32,17 @@ public enum SequenceState : Int {
             nodePresenter.currentState.update(nodePresenter)
         }
         
-        NSNotificationCenter.defaultCenter().postNotificationName("RefreshMainTableView", object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "RefreshMainTableView"), object: nil)
         return newState
     }
     
     
-    mutating func update(processEvents: Bool, presenter: SequencePresenter) {
+    mutating func update(_ processEvents: Bool, presenter: SequencePresenter) {
         
         let currentState = calculateSequenceState(presenter, ignoreHasFailedNode: false)
         
-        if currentState == .Completed {
-            toState(.Completed, presenter: presenter)
+        if currentState == .completed {
+            toState(.completed, presenter: presenter)
             return
         }
         
@@ -55,38 +55,38 @@ public enum SequenceState : Int {
     }
     
     
-    mutating func toState(state: SequenceState, presenter: SequencePresenter) -> SequenceState {
+    mutating func toState(_ state: SequenceState, presenter: SequencePresenter) -> SequenceState {
         //if state == self { return self }
         
         switch state {
-        case NoStartDateSet : return toNoStartDateSet(presenter)
-        case NewStartDate : return toNewStartDate(presenter)
-        case WaitingForStart : return toWaitingForStart(presenter, ignoreHasFailedNodes: false)
-        case Running : return toRunning(presenter)
-        case Paused : return toPaused(presenter)
-        case Completed : return toCompleted(presenter)
-        case HasFailedNode : return toHasFailedNode(presenter)
-        case Void : fatalError("Void Sequence State")
+        case .noStartDateSet : return toNoStartDateSet(presenter)
+        case .newStartDate : return toNewStartDate(presenter)
+        case .waitingForStart : return toWaitingForStart(presenter, ignoreHasFailedNodes: false)
+        case .running : return toRunning(presenter)
+        case .paused : return toPaused(presenter)
+        case .completed : return toCompleted(presenter)
+        case .hasFailedNode : return toHasFailedNode(presenter)
+        case .void : fatalError("Void Sequence State")
         }
     }
     
     
-    mutating func toNoStartDateSet(presenter: SequencePresenter) -> SequenceState {
-        guard self != .NoStartDateSet else { return self }
+    mutating func toNoStartDateSet(_ presenter: SequencePresenter) -> SequenceState {
+        guard self != .noStartDateSet else { return self }
         if presenter.date != nil { return toNewStartDate(presenter) }
         
         presenter.nodePresenters.forEach{ $0.currentState.toInactive($0) }
-        return changeToState(NoStartDateSet, presenter: presenter, options: nil)
+        return changeToState(.noStartDateSet, presenter: presenter, options: nil)
     }
     
     
-    mutating func toNewStartDate(presenter: SequencePresenter) -> SequenceState {
+    mutating func toNewStartDate(_ presenter: SequencePresenter) -> SequenceState {
         
         presenter.delegates.forEach { $0.sequencePresenterUpdatedDate(presenter) }
         
         if presenter.date == nil {
             presenter.nodePresenters.forEach { $0.currentState.toInactive($0) }
-            return changeToState(.NoStartDateSet, presenter: presenter, options: nil)
+            return changeToState(.noStartDateSet, presenter: presenter, options: nil)
         }
         
         let result = processCalanderEvents(presenter)
@@ -96,61 +96,61 @@ public enum SequenceState : Int {
     }
     
     
-    mutating func toWaitingForStart(presenter: SequencePresenter, ignoreHasFailedNodes:Bool) -> SequenceState {
-        guard self != .WaitingForStart else { return self }
+    mutating func toWaitingForStart(_ presenter: SequencePresenter, ignoreHasFailedNodes:Bool) -> SequenceState {
+        guard self != .waitingForStart else { return self }
         guard presenter.date != nil else { fatalError("Date is NULL") }
-        if presenter.date!.isEarlierThanOrEqualTo(NSDate()) == true { return toRunning(presenter)}
+        if (presenter.date! as NSDate).isEarlierThanOrEqual(to: Date()) == true { return toRunning(presenter)}
         
         // add timer to refresh on StartDate
-        let secsToStart = presenter.date!.secondsLaterThan(NSDate())
-        NSTimer.schedule(delay: secsToStart+0.1) { timer in
+        let secsToStart = (presenter.date! as NSDate).secondsLaterThan(Date())
+        Timer.schedule(delay: secsToStart+0.1) { timer in
             presenter.updateState(processEvents: true)
         }
-        return changeToState(.WaitingForStart, presenter: presenter, options: nil)
+        return changeToState(.waitingForStart, presenter: presenter, options: nil)
     }
     
     
-    mutating func toRunning(presenter: SequencePresenter) -> SequenceState {
-        guard self != .Running else { return self }
-        if presenter.date!.isLaterThan(NSDate()) == true { return toWaitingForStart(presenter, ignoreHasFailedNodes: false) }
+    mutating func toRunning(_ presenter: SequencePresenter) -> SequenceState {
+        guard self != .running else { return self }
+        if (presenter.date! as NSDate).isLaterThan(Date()) == true { return toWaitingForStart(presenter, ignoreHasFailedNodes: false) }
         if let completeDate = presenter.completionDate {
-            if completeDate.isEarlierThan(NSDate()) == true { return toCompleted(presenter) }
+            if (completeDate as NSDate).isEarlierThan(Date()) == true { return toCompleted(presenter) }
         }
         
-        return changeToState(.Running, presenter:presenter, options: nil)
+        return changeToState(.running, presenter:presenter, options: nil)
     }
     
-    mutating func toPaused(presenter: SequencePresenter) -> SequenceState {
-        guard self != .Paused else { return self }
+    mutating func toPaused(_ presenter: SequencePresenter) -> SequenceState {
+        guard self != .paused else { return self }
         
-        return changeToState(.Paused, presenter:presenter, options: nil)
+        return changeToState(.paused, presenter:presenter, options: nil)
     }
     
     
-    mutating func toCompleted(presenter: SequencePresenter) -> SequenceState {
-        guard self != .Completed else { return self }
+    mutating func toCompleted(_ presenter: SequencePresenter) -> SequenceState {
+        guard self != .completed else { return self }
         
         presenter.nodePresenters.forEach { $0.currentState.toCompleted($0) }
         
         //TODO: Maybe some kinda fancy tick Animation
         
         delay(0.5, closure: {
-            NSNotificationCenter.defaultCenter().postNotificationName("RefreshMainTableView", object: nil)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "RefreshMainTableView"), object: nil)
         })
         
-        return changeToState(.Completed, presenter:presenter, options: nil)
+        return changeToState(.completed, presenter:presenter, options: nil)
     }
     
     
-    mutating func toHasFailedNode(presenter: SequencePresenter) -> SequenceState {
-        guard self != .HasFailedNode else { return self }
+    mutating func toHasFailedNode(_ presenter: SequencePresenter) -> SequenceState {
+        guard self != .hasFailedNode else { return self }
         
-        return changeToState(.HasFailedNode, presenter:presenter, options: nil)
+        return changeToState(.hasFailedNode, presenter:presenter, options: nil)
     }
     
     
-    func processCalanderEvents(presenter: SequencePresenter) -> SequenceState {
-        guard presenter.date != nil else { return .NoStartDateSet }
+    func processCalanderEvents(_ presenter: SequencePresenter) -> SequenceState {
+        guard presenter.date != nil else { return .noStartDateSet }
         
         let result = presenter.sequence.SolveSequence { (node, state, errors) in
             let nodePresenter = presenter.nodePresenter(node)
@@ -161,22 +161,22 @@ public enum SequenceState : Int {
     }
     
     
-    func calculateSequenceState(presenter: SequencePresenter, ignoreHasFailedNode:Bool) -> SequenceState {
+    func calculateSequenceState(_ presenter: SequencePresenter, ignoreHasFailedNode:Bool) -> SequenceState {
         presenter.completionDate = nil
-        guard presenter.date != nil else { return .NoStartDateSet }
+        guard presenter.date != nil else { return .noStartDateSet }
         
         for nodePresenter in presenter.nodePresenters {
-            if nodePresenter.currentState == .Error { return .HasFailedNode }
-            if nodePresenter.currentState == .WaitingForUserInput { return .Paused }
+            if nodePresenter.currentState == .error { return .hasFailedNode }
+            if nodePresenter.currentState == .waitingForUserInput { return .paused }
         }
         
-        var state = SequenceState.Void
+        var state = SequenceState.void
         
-            if presenter.date?.isLaterThan(NSDate()) == true { state = .WaitingForStart }
-            if presenter.date?.isEarlierThan(NSDate()) == true { state = .Running }
+            if (presenter.date as NSDate?)?.isLaterThan(Date()) == true { state = .waitingForStart }
+            if (presenter.date as NSDate?)?.isEarlierThan(Date()) == true { state = .running }
             if let finishDate = presenter.nodes?.last?.event?.endDate {
                 presenter.completionDate = finishDate
-                if finishDate.isEarlierThan(NSDate()) == true { state = .Completed }
+                if (finishDate as NSDate).isEarlierThan(Date()) == true { state = .completed }
             }
         
         return state

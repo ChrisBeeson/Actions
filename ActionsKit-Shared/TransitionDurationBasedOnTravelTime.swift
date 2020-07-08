@@ -20,7 +20,7 @@ class TransitionDurationBasedOnTravelTime: Rule {
     
     // MARK: NSCoding
     
-    private struct SerializationKeys {
+    fileprivate struct SerializationKeys {
         // static let duration = "duration"
     }
     
@@ -29,14 +29,14 @@ class TransitionDurationBasedOnTravelTime: Rule {
         //   calendars = aDecoder.decodeObjectForKey("calendars") as! [EKCalendar]
     }
     
-    override func encodeWithCoder(aCoder: NSCoder) {
+    override func encode(with aCoder: NSCoder) {
         //aCoder.encodeObject(calendars, forKey:"calendars")
     }
     
     
     // MARK: NSCopying
     
-    override func copyWithZone(zone: NSZone) -> AnyObject  {  //TODO: NSCopy
+    override func copy(with zone: NSZone?) -> AnyObject  {  //TODO: NSCopy
         /*
          let clone = Sequence()
          clone.title = title.copy() as! String
@@ -53,7 +53,7 @@ class TransitionDurationBasedOnTravelTime: Rule {
         super.init(map)
     }
     
-    override func mapping(map: Map) {
+    override func mapping(_ map: Map) {
         super.mapping(map)
     }
 }

@@ -23,25 +23,25 @@ class Timesize: NSObject, NSCoding, Mappable  {
     
     func inSeconds() -> Int {
         switch unit {
-        case .Second: return self.amount
-        case .Minute: return self.amount*60
-        case .Hour: return  self.amount*60*60
-        case .Day: return self.amount*60*60*24
-        case .Week: return self.amount*60*60*24*7
-        case .Month: return self.amount*60*60*24*7*(365/12)
-        case .Year:return self.amount*60*60*24*7*52
+        case .second: return self.amount
+        case .minute: return self.amount*60
+        case .hour: return  self.amount*60*60
+        case .day: return self.amount*60*60*24
+        case .week: return self.amount*60*60*24*7
+        case .month: return self.amount*60*60*24*7*(365/12)
+        case .year:return self.amount*60*60*24*7*52
         }
     }
     
     var unitString: String {
         switch unit {
-        case .Second: return "RULE_UNIT_SEC".localized
-        case .Minute: return "RULE_UNIT_MIN".localized
-        case .Hour: return  "RULE_UNIT_HOUR".localized
-        case .Day: return "RULE_UNIT_DAY".localized
-        case .Week: return "RULE_UNIT_WEEK".localized
-        case .Month: return "RULE_UNIT_MONTH".localized
-        case .Year:return "RULE_UNIT_YEAR".localized
+        case .second: return "RULE_UNIT_SEC".localized
+        case .minute: return "RULE_UNIT_MIN".localized
+        case .hour: return  "RULE_UNIT_HOUR".localized
+        case .day: return "RULE_UNIT_DAY".localized
+        case .week: return "RULE_UNIT_WEEK".localized
+        case .month: return "RULE_UNIT_MONTH".localized
+        case .year:return "RULE_UNIT_YEAR".localized
         }
     }
     
@@ -53,18 +53,18 @@ class Timesize: NSObject, NSCoding, Mappable  {
     //MARK:NSCoding
     
     required  init?(coder aDecoder: NSCoder) {
-        unit = DTTimePeriodSize(rawValue: UInt(aDecoder.decodeIntegerForKey("unit")))!
-        amount = aDecoder.decodeIntegerForKey("amount")
+        unit = DTTimePeriodSize(rawValue: UInt(aDecoder.decodeInteger(forKey: "unit")))!
+        amount = aDecoder.decodeInteger(forKey: "amount")
     }
     
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeInteger(Int(unit.rawValue), forKey: "unit")
-        aCoder.encodeInteger(amount, forKey: "amount")
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(Int(unit.rawValue), forKey: "unit")
+        aCoder.encode(amount, forKey: "amount")
     }
     
     //MARK:NSCopying
     
-    func copyWithZone(zone: NSZone) -> AnyObject  {
+    func copyWithZone(_ zone: NSZone?) -> AnyObject  {
         return Timesize(unit:self.unit, amount:self.amount)
     }
     
@@ -75,7 +75,7 @@ class Timesize: NSObject, NSCoding, Mappable  {
         self.amount = map["timeSizeAmount"].valueOr(30)
     }
     
-    func mapping(map: Map) {
+    func mapping(_ map: Map) {
         unit                <- (map["timeSizeUnit"], EnumTransform())
         amount              <- map["timeSizeAmount"]
     }

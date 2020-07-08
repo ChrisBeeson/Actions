@@ -9,7 +9,7 @@
 import Foundation
 import DateTools
 
-public class EventDurationWithMinimumDurationRulePresenter : RulePresenter {
+open class EventDurationWithMinimumDurationRulePresenter : RulePresenter {
     
     var duration : Int  {
         get {
@@ -17,7 +17,7 @@ public class EventDurationWithMinimumDurationRulePresenter : RulePresenter {
         }
         set {
             (rule as! EventDurationWithMinimumDuration).duration.amount = newValue
-            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+            sequencePresenter?.representingDocument?.updateChangeCount(.changeDone)
             informDelegatesOfChangesToContent()
         }
     }
@@ -28,7 +28,7 @@ public class EventDurationWithMinimumDurationRulePresenter : RulePresenter {
         }
         set {
             (rule as! EventDurationWithMinimumDuration).duration.unit = DTTimePeriodSize(rawValue: newValue)!
-            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+            sequencePresenter?.representingDocument?.updateChangeCount(.changeDone)
             informDelegatesOfChangesToContent()
         }
     }
@@ -39,7 +39,7 @@ public class EventDurationWithMinimumDurationRulePresenter : RulePresenter {
         }
         set {
             (rule as! EventDurationWithMinimumDuration).minDuration.amount = newValue
-            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+            sequencePresenter?.representingDocument?.updateChangeCount(.changeDone)
             informDelegatesOfChangesToContent()
         }
     }
@@ -50,15 +50,15 @@ public class EventDurationWithMinimumDurationRulePresenter : RulePresenter {
         }
         set {
             (rule as! EventDurationWithMinimumDuration).minDuration.unit = DTTimePeriodSize(rawValue: newValue)!
-            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+            sequencePresenter?.representingDocument?.updateChangeCount(.changeDone)
             informDelegatesOfChangesToContent()
         }
     }
     
-    public override func detailViewController() -> RuleViewController {
+    open override func detailViewController() -> RuleViewController {
         
         if ruleViewController == nil {
-            ruleViewController = EventDurationWithMinimumDurationViewController(nibName:"EventDurationWithMinimumDurationViewController", bundle: NSBundle(identifier:"com.andris.ActionsKit"))!
+            ruleViewController = EventDurationWithMinimumDurationViewController(nibName:"EventDurationWithMinimumDurationViewController", bundle: Bundle(identifier:"com.andris.ActionsKit"))!
         }
         
         ruleViewController!.rulePresenter = self

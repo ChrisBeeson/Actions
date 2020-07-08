@@ -10,10 +10,10 @@ import Foundation
 import SwiftyStoreKit
 
 public enum ApplicationFeatures {
-    case CreateNewSequence(currentAmountOfSequences:Int)
-    case Export
-    case Import
-    case ShowMainTableViewCells
+    case createNewSequence(currentAmountOfSequences:Int)
+    case export
+    case `import`
+    case showMainTableViewCells
 }
 
 public struct Product {
@@ -40,7 +40,7 @@ public struct CommerceManager {
     
     public init () {
         //TODO: Load from userdefaults while waiting for network.
-        currentLicenceState = .Expired
+        currentLicenceState = .expired
         
         // Load Store 
     }
@@ -50,20 +50,20 @@ public struct CommerceManager {
             
             // This is all so weird.  What the hell am I doing!
             AppConfiguration.sharedConfiguration.commerceManager.currentLicenceState = newState
-            NSNotificationCenter.defaultCenter().postNotificationName("LicenceStateDidChange", object: nil)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "LicenceStateDidChange"), object: nil)
         }
     }
     
-    public func isFeatureActive(feature:ApplicationFeatures) -> Bool {
+    public func isFeatureActive(_ feature:ApplicationFeatures) -> Bool {
         switch currentLicenceState {
-        case .Beta: return true
-        case .Full: return true
-        case .Trial: return true
-        case .Expired: return false
+        case .beta: return true
+        case .full: return true
+        case .trial: return true
+        case .expired: return false
         }
     }
     
-    public func purchaseItem(product:Product) {
+    public func purchaseItem(_ product:Product) {
         
     }
 }

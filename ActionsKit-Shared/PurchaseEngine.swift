@@ -9,11 +9,11 @@
 import Foundation
 
 public enum PurchaseEngineType {
-    case InAppPurchase
-    case Stripe
+    case inAppPurchase
+    case stripe
     
     init() {
-        self = Stripe
+        self = .stripe
     }
 }
 

@@ -8,15 +8,15 @@
 
 import Foundation
 
-extension NSDate {
+extension Date {
     
-    class func combineDateWithTime(date: NSDate, time: NSDate) -> NSDate {
+    static func combineDateWithTime(_ date: Date, time: Date) -> Date {
         
-        let calendar = NSCalendar.currentCalendar()
-        let dateComponents = calendar.components([.Year, .Month, .Day], fromDate: date)
-        let timeComponents = calendar.components([.Hour, .Minute, .Second], fromDate: time)
+        let calendar = Foundation.Calendar.current
+        let dateComponents = (calendar as NSCalendar).components([.year, .month, .day], from: date)
+        let timeComponents = (calendar as NSCalendar).components([.hour, .minute, .second], from: time)
         
-        let components = NSDateComponents()
+        var components = DateComponents()
         components.year = dateComponents.year
         components.month = dateComponents.month
         components.day = dateComponents.day
@@ -24,6 +24,6 @@ extension NSDate {
         components.minute = timeComponents.minute
         components.second = timeComponents.second
         
-        return calendar.dateFromComponents(components)!
+        return calendar.date(from: components)!
     }
 }

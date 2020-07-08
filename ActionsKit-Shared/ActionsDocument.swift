@@ -9,7 +9,7 @@
 import Cocoa
 import ObjectMapper
 
-public class ActionsDocument: NSDocument {
+open class ActionsDocument: NSDocument {
     
     // MARK: Properties
     
@@ -19,7 +19,7 @@ public class ActionsDocument: NSDocument {
     var container : Container?
     weak var _sequencePresenter: SequencePresenter?
     
-    public var sequencePresenter: SequencePresenter? {
+    open var sequencePresenter: SequencePresenter? {
         get {
             if _sequencePresenter == nil {
                 _sequencePresenter = SequencePresenter()
@@ -44,29 +44,29 @@ public class ActionsDocument: NSDocument {
     
     // MARK: Auto Save and Versions
     
-    override public class func autosavesInPlace() -> Bool {
+    override open class func autosavesInPlace() -> Bool {
         return true
     }
     
-    public override class func preservesVersions() -> Bool {
+    open override class func preservesVersions() -> Bool {
         return false
     }
     
     
     // MARK: NSDocument Overrides
     
-    override public func defaultDraftName() -> String {
+    override open func defaultDraftName() -> String {
         return AppConfiguration.defaultDraftName
     }
     
-    public func storageURL() -> NSURL {
+    open func storageURL() -> URL {
         let storageDir = AppConfiguration.sharedConfiguration.storageDirectory
-        let url = storageDir().URLByAppendingPathComponent(container!.filename)
-        return url
+        let url = storageDir().appendingPathComponent(container!.filename)
+        return url!
     }
     
     
-    public class func newDocument(title: String) -> ActionsDocument {
+    open class func newDocument(_ title: String) -> ActionsDocument {
         let newDoc = ActionsDocument()
         let actionNodes = [Node(text: "NEW_DOCUMENT_1ST_ACTION".localized, type: .Action, rules: nil), Node(text:  "NEW_DOCUMENT_2ND_ACTION".localized, type: .Action, rules: nil)]
         let sequence = Sequence(name: title, actionNodes: actionNodes)
@@ -81,31 +81,31 @@ public class ActionsDocument: NSDocument {
     
     //MARK: Load
     
-    public class func newDocumentFromArchive(data: NSData) -> ActionsDocument {
+    open class func newDocumentFromArchive(_ data: Data) -> ActionsDocument {
         let newDoc = ActionsDocument()
-        newDoc.container = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? Container
-        newDoc.container!.uuid =  NSUUID().UUIDString
+        newDoc.container = NSKeyedUnarchiver.unarchiveObject(with: data) as? Container
+        newDoc.container!.uuid =  UUID().uuidString
         saveNewDocument(newDoc)
         return newDoc
     }
     
     
-    public class func saveNewDocument(document: ActionsDocument) {
+    open class func saveNewDocument(_ document: ActionsDocument) {
         let storageDir = AppConfiguration.sharedConfiguration.storageDirectory
-        let url = storageDir().URLByAppendingPathComponent(document.container!.filename)
+        let url = storageDir().appendingPathComponent(document.container!.filename)
         
-        document.saveToURL(url, ofType: AppConfiguration.applicationFileExtension , forSaveOperation:.SaveOperation, completionHandler: { (Err: NSError?) -> Void in
+        document.save(to: url!, ofType: AppConfiguration.applicationFileExtension , for:.saveOperation, completionHandler: { (Err: NSError?) -> Void in
             if Err != nil {
                 print(Err!.localizedDescription)
             }
-        })
+        } as! (Error?) -> Void)
     }
     
-    class public func newDocumentFromJSON(path:NSURL) -> Bool {
+    class open func newDocumentFromJSON(_ path:URL) -> Bool {
         let container:Container?
         
         do {
-            let json = try String(contentsOfURL: path, encoding: NSUTF8StringEncoding)
+            let json = try String(contentsOf: path, encoding: String.Encoding.utf8)
             container = Mapper<Container>().map(json)
         } catch {
             print(error)
@@ -113,7 +113,7 @@ public class ActionsDocument: NSDocument {
         }
         
         if container != nil {
-            container?.uuid = NSUUID().UUIDString
+            container?.uuid = UUID().uuidString
             let newDocument = ActionsDocument()
             newDocument.container = container
             saveNewDocument(newDocument)
@@ -127,11 +127,11 @@ public class ActionsDocument: NSDocument {
     
     //MARK: Save
     
-    public func save() {
+    open func save() {
         let storageDir = AppConfiguration.sharedConfiguration.storageDirectory
-        let url = storageDir().URLByAppendingPathComponent(container!.filename)
+        let url = storageDir().appendingPathComponent(container!.filename)
         do {
-            try self.writeSafelyToURL(url, ofType: AppConfiguration.applicationFileExtension, forSaveOperation: .SaveOperation)
+            try self.writeSafely(to: url!, ofType: AppConfiguration.applicationFileExtension, for: .saveOperation)
         } catch {
             do {
                 print(error)
@@ -140,16 +140,16 @@ public class ActionsDocument: NSDocument {
     }
     
     
-    public override func makeWindowControllers() {
+    open override func makeWindowControllers() {
     }
     
-    public var suggestedExportFilename : String {
-        var filename = sequencePresenter!.title.stringByReplacingOccurrencesOfString(" ", withString: "_", options:NSStringCompareOptions.CaseInsensitiveSearch , range: nil)
-        filename.appendContentsOf("."+AppConfiguration.applicationFileExtension)
+    open var suggestedExportFilename : String {
+        var filename = sequencePresenter!.title.replacingOccurrences(of: " ", with: "_", options:NSString.CompareOptions.caseInsensitive , range: nil)
+        filename.append("."+AppConfiguration.applicationFileExtension)
         return filename
     }
     
-    public func exportWithFilename(filename:NSURL) {
+    open func exportWithFilename(_ filename:URL) {
         /*
          if let JSON = Mapper().toJSONString(container!, prettyPrint: true) {
          do {
@@ -166,7 +166,7 @@ public class ActionsDocument: NSDocument {
         
         if let JSON = Mapper().toJSONString(export, prettyPrint: true) {
             do {
-                try JSON.writeToURL(filename, atomically: true, encoding: NSUTF8StringEncoding )
+                try JSON.writeToURL(filename, atomically: true, encoding: String.Encoding.utf8 )
             } catch {
                 print(error)
             }
@@ -176,9 +176,9 @@ public class ActionsDocument: NSDocument {
     
     // MARK: Serialization / Deserialization
     
-    override public func readFromData(data: NSData, ofType typeName: String) throws {
+    override open func read(from data: Data, ofType typeName: String) throws {
         
-        container = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? Container
+        container = NSKeyedUnarchiver.unarchiveObject(with: data) as? Container
         if container != nil {
             sequencePresenter?.setSequence(container!.sequences[0])
         } else {
@@ -190,9 +190,9 @@ public class ActionsDocument: NSDocument {
     }
     
     
-    override public func dataOfType(typeName: String) throws -> NSData {
+    override open func data(ofType typeName: String) throws -> Data {
         if container != nil {
-            return NSKeyedArchiver.archivedDataWithRootObject(container!)
+            return NSKeyedArchiver.archivedData(withRootObject: container!)
         }
         
         throw NSError(domain: "ListDocumentDomain", code: -1, userInfo: [

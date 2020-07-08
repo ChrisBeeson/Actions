@@ -19,10 +19,10 @@ class Container: NSObject, NSCopying, NSCoding, Mappable {
     // All these are unused at this time
     // ---------------------------------
     var title: String = ""
-    var date: NSDate?
-    var timeDirection = TimeDirection.Forward
+    var date: Date?
+    var timeDirection = TimeDirection.forward
     var generalRules = [Rule]()
-    var uuid:String = NSUUID().UUIDString
+    var uuid:String = UUID().uuidString
     // ---------------------------------
     
     // MARK: Initializers
@@ -42,7 +42,7 @@ class Container: NSObject, NSCopying, NSCoding, Mappable {
     
     
     // MARK: NSCoding
-    private struct SerializationKeys {
+    fileprivate struct SerializationKeys {
         static let version = "version"
         static let title = "title"
         static let date = "date"
@@ -53,23 +53,23 @@ class Container: NSObject, NSCopying, NSCoding, Mappable {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        version = aDecoder.decodeObjectForKey(SerializationKeys.version) as! String
-        title = aDecoder.decodeObjectForKey(SerializationKeys.title) as! String
-        date = aDecoder.decodeObjectForKey(SerializationKeys.date) as? NSDate
-        timeDirection = TimeDirection(rawValue: aDecoder.decodeIntegerForKey(SerializationKeys.timeDirection))!
-        uuid = aDecoder.decodeObjectForKey(SerializationKeys.uuid) as! String
-        generalRules = aDecoder.decodeObjectForKey(SerializationKeys.generalRules) as! [Rule]
-        sequences = aDecoder.decodeObjectForKey(SerializationKeys.sequences) as! [Sequence]
+        version = aDecoder.decodeObject(forKey: SerializationKeys.version) as! String
+        title = aDecoder.decodeObject(forKey: SerializationKeys.title) as! String
+        date = aDecoder.decodeObject(forKey: SerializationKeys.date) as? Date
+        timeDirection = TimeDirection(rawValue: aDecoder.decodeInteger(forKey: SerializationKeys.timeDirection))!
+        uuid = aDecoder.decodeObject(forKey: SerializationKeys.uuid) as! String
+        generalRules = aDecoder.decodeObject(forKey: SerializationKeys.generalRules) as! [Rule]
+        sequences = aDecoder.decodeObject(forKey: SerializationKeys.sequences) as! [Sequence]
     }
     
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(version, forKey: SerializationKeys.version)
-        aCoder.encodeObject(title, forKey: SerializationKeys.title)
-        aCoder.encodeObject(date, forKey: SerializationKeys.date)
-        aCoder.encodeInteger(timeDirection.rawValue, forKey: SerializationKeys.timeDirection)
-        aCoder.encodeObject(uuid, forKey: SerializationKeys.uuid)
-        aCoder.encodeObject(generalRules, forKey: SerializationKeys.generalRules)
-        aCoder.encodeObject(sequences, forKey: SerializationKeys.sequences)
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(version, forKey: SerializationKeys.version)
+        aCoder.encode(title, forKey: SerializationKeys.title)
+        aCoder.encode(date, forKey: SerializationKeys.date)
+        aCoder.encode(timeDirection.rawValue, forKey: SerializationKeys.timeDirection)
+        aCoder.encode(uuid, forKey: SerializationKeys.uuid)
+        aCoder.encode(generalRules, forKey: SerializationKeys.generalRules)
+        aCoder.encode(sequences, forKey: SerializationKeys.sequences)
     }
     
     //MARK: Mapping
@@ -77,7 +77,7 @@ class Container: NSObject, NSCopying, NSCoding, Mappable {
     required init?(_ map: Map) {
     }
     
-     func mapping(map: Map) {
+     func mapping(_ map: Map) {
         version         <- map[SerializationKeys.version]
         title           <- map[SerializationKeys.title]
         date            <- (map[SerializationKeys.date], DateTransform())
@@ -89,7 +89,7 @@ class Container: NSObject, NSCopying, NSCoding, Mappable {
     
     
     // MARK: NSCopying
-    func copyWithZone(zone: NSZone) -> AnyObject  {
+    func copy(with zone: NSZone?) -> Any  {
         let clone = Container()
         clone.title = title.copy() as! String
         clone.date = date
@@ -101,7 +101,7 @@ class Container: NSObject, NSCopying, NSCoding, Mappable {
     
     var filename: String {
         var filename = uuid
-        filename.appendContentsOf("."+AppConfiguration.applicationFileExtension)
+        filename.append("."+AppConfiguration.applicationFileExtension)
         return filename
     }
     
@@ -112,7 +112,7 @@ class Container: NSObject, NSCopying, NSCoding, Mappable {
     
     
     // MARK: Equality
-    override  func isEqual(object: AnyObject?) -> Bool {
+    override  func isEqual(_ object: Any?) -> Bool {
         if let Container = object as? Container {
             if uuid == Container.uuid  {
                 return true

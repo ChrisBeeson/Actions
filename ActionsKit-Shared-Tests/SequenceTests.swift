@@ -34,7 +34,7 @@ class SequenceTests: XCTestCase {
         sequence!.printChain()
         XCTAssert(sequence!.validSequence() == true)
 
-        sequence!.timeDirection = .Backward
+        sequence!.timeDirection = .backward
         sequence!.printChain()
         XCTAssert(sequence!.validSequence() == true)
     }
@@ -52,7 +52,7 @@ class SequenceTests: XCTestCase {
         
         sequence!.printChain()
         
-        sequence!.timeDirection = .Backward
+        sequence!.timeDirection = .backward
         XCTAssert(sequence!.validSequence() == true)
         
     }
@@ -71,7 +71,7 @@ class SequenceTests: XCTestCase {
         nodes[nodes.count-1].leftTransitionNode = nil
         XCTAssert(sequence!.validSequence() == false)
         
-        sequence!.timeDirection = .Backward
+        sequence!.timeDirection = .backward
         XCTAssert(sequence!.validSequence() == false)
     }
     
@@ -89,7 +89,7 @@ class SequenceTests: XCTestCase {
         sequence!.printChain()
         XCTAssert(sequence!.validSequence() == true)
         
-        sequence!.timeDirection = .Backward
+        sequence!.timeDirection = .backward
         XCTAssert(sequence!.validSequence() == true)
     }
     
@@ -100,7 +100,7 @@ class SequenceTests: XCTestCase {
         sequence!.printChain()
         XCTAssert(sequence!.validSequence() == true)
         
-        sequence!.timeDirection = .Backward
+        sequence!.timeDirection = .backward
         XCTAssert(sequence!.validSequence() == true)
     }
     
@@ -125,8 +125,8 @@ class SequenceTests: XCTestCase {
     
     func testEncodingSequence() {
         
-        let archivedSequenceData = NSKeyedArchiver.archivedDataWithRootObject(sequence!)
-        XCTAssertTrue(archivedSequenceData.length > 0)
+        let archivedSequenceData = NSKeyedArchiver.archivedData(withRootObject: sequence!)
+        XCTAssertTrue(archivedSequenceData.count > 0)
     }
     
     func testDecodingSequence() {

@@ -14,13 +14,13 @@ extension Sequence {
 		
 		var nodesToReturn = [Node]()
 		
-		for (index, node) in actionNodes.enumerate() {
+		for (index, node) in actionNodes.enumerated() {
 			nodesToReturn.append(node)
 			
 			var transitionNode:Node?
 			switch timeDirection {
-			case .Forward: transitionNode = node.rightTransitionNode
-			case .Backward:
+			case .forward: transitionNode = node.rightTransitionNode
+			case .backward:
 				if index+1 < actionNodes.count {
 					transitionNode = actionNodes[index+1].leftTransitionNode
 				}
@@ -64,13 +64,13 @@ extension Sequence {
 	}
 	
 	
-	func insertActionNode(node: Node, index:Int? = nil) {
+	func insertActionNode(_ node: Node, index:Int? = nil) {
 		precondition(node.type == .Action, "Trying to insert node into sequence that is not of type .Action")
 		
 		var indexToInsertNode = index ?? self.actionNodes.count
 		if indexToInsertNode > self.actionNodes.count { indexToInsertNode = self.actionNodes.count  }
 		
-		actionNodes.insert(node, atIndex:indexToInsertNode)
+		actionNodes.insert(node, at:indexToInsertNode)
 		
 		node.leftTransitionNode = nil
 		node.rightTransitionNode = nil
@@ -82,9 +82,9 @@ extension Sequence {
 	}
 	
 	
-	func removeActionNode(node:Node) {
+	func removeActionNode(_ node:Node) {
 		
-		let index = actionNodes.indexOf(node)
+		let index = actionNodes.index(of: node)
 		precondition(index != nil, "Cannot remove Node because it doesn't exist in the sequence.")
 		
 		actionNodes.removeObject(node)
@@ -135,7 +135,7 @@ extension Sequence {
 	}
 	
 	
-	private func addTransistionNodeToActionNodes(left: Node, right: Node) {
+	fileprivate func addTransistionNodeToActionNodes(_ left: Node, right: Node) {
 		
 		/// we need to delete transition node from array if we break any transitions
 		/// Could return the deleted ones if we need to be notified about that...
@@ -152,7 +152,7 @@ extension Sequence {
 	
 	
 	func printChain() {
-		for node in nodeChain() { print (String(node.type) + ": " + node.title) }
+		for node in nodeChain() { print (String(describing: node.type) + ": " + node.title) }
 		validSequence() ? print("Sequence is Valid") : print("Sequence is NOT Valid")
 	}
 	
@@ -160,35 +160,35 @@ extension Sequence {
 	// MARK: Position in sequence
 	
 	enum NodePostion {
-		case StartingAction
-		case Transition
-		case Action
-		case EndingAction
-		case None
+		case startingAction
+		case transition
+		case action
+		case endingAction
+		case none
 	}
 	
-	func calculateActionNodePosition(node: Node) -> NodePostion {
-		let index = actionNodes.indexOf(node)
-		guard index != nil else { return .None}
-		guard node.type == .Action else { return .Transition }
+	func calculateActionNodePosition(_ node: Node) -> NodePostion {
+		let index = actionNodes.index(of: node)
+		guard index != nil else { return .none}
+		guard node.type == .Action else { return .transition }
 		
 		var result: NodePostion
 		
 		switch self.timeDirection {
-		case .Forward:
+		case .forward:
 			switch Int(index!) {
-			case 0: result = .StartingAction
-			case let x where x == actionNodes.count-1: result = .EndingAction
-			case let x where x.isEven(): result = .Action
-			default: result = .Action // .Transaction
+			case 0: result = .startingAction
+			case let x where x == actionNodes.count-1: result = .endingAction
+			case let x where x.isEven(): result = .action
+			default: result = .action // .Transaction
 			}
 			
-		case .Backward:
+		case .backward:
 			switch Int(index!) {
-			case 0: result = .EndingAction
-			case let x where x == actionNodes.count-1: result = .StartingAction
-			case let x where x.isEven(): result = .Action
-			default: result = .Action // .Transaction
+			case 0: result = .endingAction
+			case let x where x == actionNodes.count-1: result = .startingAction
+			case let x where x.isEven(): result = .action
+			default: result = .action // .Transaction
 			}
 		}
 		return result

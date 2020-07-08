@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class WaitForUserPresenter : RulePresenter {
+open class WaitForUserPresenter : RulePresenter {
     
     var completed : Bool  {
         get {
@@ -17,15 +17,15 @@ public class WaitForUserPresenter : RulePresenter {
         }
         set {
             (rule as! WaitForUserRule).userContinued = newValue
-            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+            sequencePresenter?.representingDocument?.updateChangeCount(.changeDone)
             informDelegatesOfChangesToContent()
         }
     }
     
     
-    public override func detailViewController() -> RuleViewController {
+    open override func detailViewController() -> RuleViewController {
         if ruleViewController == nil {
-            let bundle = NSBundle(identifier:"com.andris.ActionsKit")
+            let bundle = Bundle(identifier:"com.andris.ActionsKit")
             ruleViewController = WaitForUserRuleViewController(nibName:"WaitForUserRuleViewController", bundle:bundle)!
             ruleViewController!.rulePresenter = self
         }

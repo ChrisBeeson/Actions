@@ -13,39 +13,39 @@ import ObjectMapper
 
 class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
     
-    var startDate: NSDate
-    var endDate: NSDate
+    var startDate: Date
+    var endDate: Date
     var publish = false
     weak var owner: Node?
     var eventId = ""
     var systemEvent:EKEvent?
-    private var processing = false
+    fileprivate var processing = false
     
     var period:DTTimePeriod? {
         willSet {
             guard newValue != nil else { return }
             guard processing != true else { return }
             processing = true
-            self.startDate = newValue!.StartDate
-            self.endDate = newValue!.EndDate
+            self.startDate = newValue!.startDate
+            self.endDate = newValue!.endDate
             synchronizeCalendarEvent()
         }
     }
     
     func timePeriod() -> DTTimePeriod {
-        return DTTimePeriod(startDate: startDate, endDate: endDate)
+        return DTTimePeriod(start: startDate, end: endDate)
     }
     
     override init() {
-        startDate = NSDate.distantPast()
-        endDate = NSDate.distantFuture()
+        startDate = Date.distantPast
+        endDate = Date.distantFuture
         super.init()
     }
     
     
     init(period:DTTimePeriod, owner:Node) {
-        self.startDate = period.StartDate
-        self.endDate = period.EndDate
+        self.startDate = period.startDate
+        self.endDate = period.endDate
         self.owner = owner
         
         super.init()
@@ -66,7 +66,7 @@ class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
         
         self.systemEvent = findSystemEvent()
         
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), {
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async(execute: {
             if self.systemEvent == nil {
                 self.createCalendarEvent()
             } else {
@@ -75,21 +75,21 @@ class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
         })
     }
     
-    private func findSystemEvent() -> EKEvent? {
+    fileprivate func findSystemEvent() -> EKEvent? {
         let store = CalendarManager.sharedInstance.store
-        let items = store.calendarItemsWithExternalIdentifier(eventId)
+        let items = store.calendarItems(withExternalIdentifier: eventId)
         if items.count > 0 { return items[0] as? EKEvent }
         return nil
         // TODO: Look through events with predicate to match them with name and dates.
     }
     
     
-    private func createCalendarEvent() {
+    fileprivate func createCalendarEvent() {
         guard CalendarManager.sharedInstance.authorized == true else { return }
         
         // first lets make sure that an event with same dates and title doesn't already Exist.
         
-        let events = CalendarManager.sharedInstance.findEventsInApplicationCalendar(DTTimePeriod(startDate: self.startDate, endDate: self.endDate))
+        let events = CalendarManager.sharedInstance.findEventsInApplicationCalendar(DTTimePeriod(start: self.startDate, end: self.endDate))
         
         if events != nil && events!.count>0 {
             self.systemEvent = events![0]
@@ -144,13 +144,13 @@ class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
     }
     
     
-    private func saveCalendarEvent() {
+    fileprivate func saveCalendarEvent() {
         guard CalendarManager.sharedInstance.authorized == true else { return }
         guard systemEvent != nil else { return }
         
         do {
             CalendarManager.sharedInstance.incrementChangeCount()
-            try CalendarManager.sharedInstance.store.saveEvent(systemEvent!, span: .ThisEvent, commit: true)
+            try CalendarManager.sharedInstance.store.save(systemEvent!, span: .thisEvent, commit: true)
             self.eventId = systemEvent!.calendarItemExternalIdentifier
             
         } catch let error as NSError {
@@ -166,7 +166,7 @@ class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
         
         do {
             CalendarManager.sharedInstance.incrementChangeCount()
-            try CalendarManager.sharedInstance.store.removeEvent(systemEvent!, span: .ThisEvent, commit: true)
+            try CalendarManager.sharedInstance.store.remove(systemEvent!, span: .thisEvent, commit: true)
             self.eventId = ""
             self.systemEvent = nil
             
@@ -177,7 +177,7 @@ class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
     
     func forceNodeToMatchSystemCalendarEvent() {
         guard let newSystemEvent = findSystemEvent() else { return }
-        if startDate.isEqualToDate(newSystemEvent.startDate) == true && endDate.isEqualToDate(newSystemEvent.endDate) == true { return }
+        if (startDate == newSystemEvent.startDate) == true && (endDate == newSystemEvent.endDate) == true { return }
         print("System Calendar has changed dates for Event \(owner!.title)")
         
         
@@ -200,7 +200,7 @@ class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
     
     // MARK: NSCoding
     
-    private struct SerializationKeys {
+    fileprivate struct SerializationKeys {
         static let startDate = "startDate"
         static let endDate = "endDate"
         static let eventId = "eventId"
@@ -208,17 +208,17 @@ class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        startDate = aDecoder.decodeObjectForKey(SerializationKeys.startDate) as! NSDate
-        endDate = aDecoder.decodeObjectForKey(SerializationKeys.endDate) as! NSDate
-        eventId = aDecoder.decodeObjectForKey(SerializationKeys.eventId) as! String
-        publish = aDecoder.decodeObjectForKey(SerializationKeys.publish) as! Bool
+        startDate = aDecoder.decodeObject(forKey: SerializationKeys.startDate) as! Date
+        endDate = aDecoder.decodeObject(forKey: SerializationKeys.endDate) as! Date
+        eventId = aDecoder.decodeObject(forKey: SerializationKeys.eventId) as! String
+        publish = aDecoder.decodeObject(forKey: SerializationKeys.publish) as! Bool
     }
     
-    func encodeWithCoder(encoder: NSCoder) {
-        encoder.encodeObject(startDate, forKey: SerializationKeys.startDate )
-        encoder.encodeObject(endDate, forKey: SerializationKeys.endDate)
-        encoder.encodeObject(eventId, forKey: SerializationKeys.eventId)
-        encoder.encodeObject(publish, forKey: SerializationKeys.publish)
+    func encode(with encoder: NSCoder) {
+        encoder.encode(startDate, forKey: SerializationKeys.startDate )
+        encoder.encode(endDate, forKey: SerializationKeys.endDate)
+        encoder.encode(eventId, forKey: SerializationKeys.eventId)
+        encoder.encode(publish, forKey: SerializationKeys.publish)
     }
     
     //MARK: Mapping
@@ -228,7 +228,7 @@ class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
         self.endDate = map[SerializationKeys.endDate].valueOr(NSDate.distantFuture())
     }
     
-    func mapping(map: Map) {
+    func mapping(_ map: Map) {
         startDate           <- (map[SerializationKeys.startDate], DateTransform())
         endDate             <- (map[SerializationKeys.endDate], DateTransform())
         eventId             <- map[SerializationKeys.eventId]
@@ -238,7 +238,7 @@ class CalendarEvent : NSObject, NSCoding, NSCopying, Mappable {
     
     // MARK: NSCopying
     
-    func copyWithZone(zone: NSZone) -> AnyObject  {
+    func copy(with zone: NSZone?) -> Any  {
         let clone = CalendarEvent()
         clone.startDate = self.startDate.copy() as! NSDate
         clone.endDate = self.endDate.copy() as! NSDate

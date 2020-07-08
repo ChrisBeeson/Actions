@@ -10,19 +10,19 @@ import Foundation
 
 protocol NodePresenterDelegate : class  {
     
-    func nodePresenterDidChangeTitle(presenter: NodePresenter)
-    func nodePresenterDidChangeNotes(presenter: NodePresenter)
-    func nodePresenterDidChangeRules(presenter: NodePresenter)
-    func nodePresenterDidChangeState(presenter: NodePresenter, toState: NodeState, options:[String]?)
+    func nodePresenterDidChangeTitle(_ presenter: NodePresenter)
+    func nodePresenterDidChangeNotes(_ presenter: NodePresenter)
+    func nodePresenterDidChangeRules(_ presenter: NodePresenter)
+    func nodePresenterDidChangeState(_ presenter: NodePresenter, toState: NodeState, options:[String]?)
 
 }
 
 extension  NodePresenterDelegate {
     
-    func nodePresenterDidChangeTitle(presenter: NodePresenter) {}
-    func nodePresenterDidChangeNotes(presenter: NodePresenter) {}
-    func nodePresenterDidChangeRules(presenter: NodePresenter) {}
-    func nodePresenterDidChangeState(presenter: NodePresenter, toState: NodeState, options:[String]?) {}
+    func nodePresenterDidChangeTitle(_ presenter: NodePresenter) {}
+    func nodePresenterDidChangeNotes(_ presenter: NodePresenter) {}
+    func nodePresenterDidChangeRules(_ presenter: NodePresenter) {}
+    func nodePresenterDidChangeState(_ presenter: NodePresenter, toState: NodeState, options:[String]?) {}
     
     // public func sequencePresenterDidRefreshCompleteLayout(sequencePresenter: SequencePresenter) {}
 }

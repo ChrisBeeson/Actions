@@ -9,7 +9,7 @@
 import Foundation
 import DateTools
 
-public class GreaterThanLessThanRulePresenter : RulePresenter {
+open class GreaterThanLessThanRulePresenter : RulePresenter {
     
     var greaterThan : Int  {
         get {
@@ -17,7 +17,7 @@ public class GreaterThanLessThanRulePresenter : RulePresenter {
         }
         set {
             (rule as! GreaterThanLessThanRule).greaterThan.amount = newValue
-            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+            sequencePresenter?.representingDocument?.updateChangeCount(.changeDone)
             informDelegatesOfChangesToContent()
         }
     }
@@ -28,7 +28,7 @@ public class GreaterThanLessThanRulePresenter : RulePresenter {
         }
         set {
             (rule as! GreaterThanLessThanRule).greaterThan.unit = DTTimePeriodSize(rawValue: newValue)!
-            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+            sequencePresenter?.representingDocument?.updateChangeCount(.changeDone)
             informDelegatesOfChangesToContent()
         }
     }
@@ -39,7 +39,7 @@ public class GreaterThanLessThanRulePresenter : RulePresenter {
         }
         set {
             (rule as! GreaterThanLessThanRule).lessThan.amount = newValue
-            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+            sequencePresenter?.representingDocument?.updateChangeCount(.changeDone)
             informDelegatesOfChangesToContent()
         }
     }
@@ -50,15 +50,15 @@ public class GreaterThanLessThanRulePresenter : RulePresenter {
         }
         set {
             (rule as! GreaterThanLessThanRule).lessThan.unit = DTTimePeriodSize(rawValue: newValue)!
-            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+            sequencePresenter?.representingDocument?.updateChangeCount(.changeDone)
             informDelegatesOfChangesToContent()
         }
     }
     
-    public override func detailViewController() -> RuleViewController {
+    open override func detailViewController() -> RuleViewController {
         
         if ruleViewController == nil {
-            let bundle = NSBundle(identifier:"com.andris.ActionsKit")
+            let bundle = Bundle(identifier:"com.andris.ActionsKit")
             ruleViewController = GreaterThanLessThanRuleViewController(nibName:"GreaterThanLessThanRuleViewController", bundle:bundle)!
             ruleViewController!.rulePresenter = self
         }

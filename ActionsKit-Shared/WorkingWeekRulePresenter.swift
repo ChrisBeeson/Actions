@@ -8,12 +8,12 @@
 
 import Foundation
 
-public class WorkingWeekRulePresenter : RulePresenter {
+open class WorkingWeekRulePresenter : RulePresenter {
     
-    public override func detailViewController() -> RuleViewController {
+    open override func detailViewController() -> RuleViewController {
         
         if ruleViewController == nil {
-            let bundle = NSBundle(identifier:"com.andris.ActionsKit")
+            let bundle = Bundle(identifier:"com.andris.ActionsKit")
             ruleViewController = WorkingWeekViewController(nibName:"WorkingWeekViewController", bundle:bundle)!
             ruleViewController!.rulePresenter = self
         }
@@ -21,26 +21,26 @@ public class WorkingWeekRulePresenter : RulePresenter {
     }
     
     
-    var workingDayStartTime: NSDate {
+    var workingDayStartTime: Date {
         get {
-            return (rule as! WorkingWeekRule).workingDayStartTime
+            return (rule as! WorkingWeekRule).workingDayStartTime as! Date
         }
         
         set {
           (rule as! WorkingWeekRule).workingDayStartTime = newValue
-            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+            sequencePresenter?.representingDocument?.updateChangeCount(.changeDone)
         }
     }
     
     
-    var workingDayEndTime: NSDate {
+    var workingDayEndTime: Date {
         get {
-            return (rule as! WorkingWeekRule).workingDayEndTime
+            return (rule as! WorkingWeekRule).workingDayEndTime as! Date
         }
         
         set {
             (rule as! WorkingWeekRule).workingDayEndTime = newValue
-            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+            sequencePresenter?.representingDocument?.updateChangeCount(.changeDone)
         }
     }
     
@@ -51,30 +51,30 @@ public class WorkingWeekRulePresenter : RulePresenter {
         
         set {
             (rule as! WorkingWeekRule).workingDayEnabled = newValue
-            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+            sequencePresenter?.representingDocument?.updateChangeCount(.changeDone)
         }
     }
     
     
-    var lunchBreakStartTime: NSDate {
+    var lunchBreakStartTime: Date {
         get {
-            return (rule as! WorkingWeekRule).lunchBreakStartTime
+            return (rule as! WorkingWeekRule).lunchBreakStartTime as! Date
         }
         
         set {
             (rule as! WorkingWeekRule).lunchBreakStartTime = newValue
-            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+            sequencePresenter?.representingDocument?.updateChangeCount(.changeDone)
         }
     }
     
-    var  lunchBreakEndTime: NSDate {
+    var  lunchBreakEndTime: Date {
         get {
-            return (rule as! WorkingWeekRule).lunchBreakEndTime
+            return (rule as! WorkingWeekRule).lunchBreakEndTime as! Date
         }
         
         set {
             (rule as! WorkingWeekRule).lunchBreakEndTime = newValue
-            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+            sequencePresenter?.representingDocument?.updateChangeCount(.changeDone)
         }
     }
     
@@ -85,21 +85,21 @@ public class WorkingWeekRulePresenter : RulePresenter {
         
         set {
             (rule as! WorkingWeekRule).lunchBreakEnabled = newValue
-            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+            sequencePresenter?.representingDocument?.updateChangeCount(.changeDone)
         }
     }
 
-    func dayEnabled(day: Int) -> Bool {
+    func dayEnabled(_ day: Int) -> Bool {
         if day > 0 && day < 8 {
         return (rule as! WorkingWeekRule).enabledDays[day]!
         } else { print("illegal weekday number"); return false}
     }
     
-    func setDayEnabled(day: Int, enabled: Bool) {
+    func setDayEnabled(_ day: Int, enabled: Bool) {
         
         if day > 0 && day < 8 {
             (rule as! WorkingWeekRule).enabledDays[day] = enabled
-            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+            sequencePresenter?.representingDocument?.updateChangeCount(.changeDone)
         } else { print("illegal weekday number")}
     }
 }

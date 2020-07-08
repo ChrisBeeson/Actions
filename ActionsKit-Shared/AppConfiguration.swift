@@ -10,18 +10,18 @@ import Foundation
 import AppKit
 import Parse
 
-public class AppConfiguration: NSObject {
+open class AppConfiguration: NSObject {
     
-    public class var sharedConfiguration: AppConfiguration {
+    open class var sharedConfiguration: AppConfiguration {
         struct Singleton {
             static let sharedAppConfiguration = AppConfiguration()
         }
         return Singleton.sharedAppConfiguration
     }
     
-    private var _contextPresenter: ContextPresenter?
-    public var commerceManager: CommerceManager
-    private var parseConfig: PFConfig?
+    fileprivate var _contextPresenter: ContextPresenter?
+    open var commerceManager: CommerceManager
+    fileprivate var parseConfig: PFConfig?
     
     override init() {
         commerceManager = CommerceManager()
@@ -29,7 +29,7 @@ public class AppConfiguration: NSObject {
     }
     
     
-    public func applicationLaunched() {
+    open func applicationLaunched() {
         
         // Parse setup
         Parse.enableLocalDatastore()
@@ -38,18 +38,18 @@ public class AppConfiguration: NSObject {
             $0.clientKey = "76GFDS34juaq43FKG443FDGfds3dvREWYsdfrePZS33"
             $0.server = "https://actions-backend.herokuapp.com/parse"
         }
-        Parse.initializeWithConfiguration(configuration)
+        Parse.initialize(with: configuration)
         PFUser.enableAutomaticUser()
-        PFUser.currentUser()?.saveInBackground()   // Force creation of user
+        PFUser.current()?.saveInBackground()   // Force creation of user
         //PFAnalytics.trackAppOpenedWithLaunchOptions(nil)
         
-        PFConfig.getConfigInBackgroundWithBlock {
+        PFConfig.getInBackground {
             (config: PFConfig?, error: NSError?) -> Void in
             if error == nil {
                 self.parseConfig = config
             } else {
                 print("Failed to fetch. Using Cached Config.")
-                self.parseConfig = PFConfig.currentConfig()
+                self.parseConfig = PFConfig.current()
             }
             self.commerceManager.update()
         };
@@ -71,42 +71,42 @@ public class AppConfiguration: NSObject {
 
     // Names
     
-    public var resourceBundle:NSBundle {
-        return NSBundle.mainBundle()
+    open var resourceBundle:Foundation.Bundle {
+        return Foundation.Bundle.main
         //return NSBundle(identifier:"com.andris.ActionsKit")!
     }
     
-    private struct Defaults {
+    fileprivate struct Defaults {
         static let firstLaunchKey = "Configuration.Defaults.firstLaunchKey"
         static let storageOptionKey = "Configuration.Defaults.storageOptionKey"
         static let storedUbiquityIdentityToken = "Configuration.Defaults.storedUbiquityIdentityToken"
     }
     
     
-    public class var defaultCalendarName : NSString { return "CALENDAR_NAME".localized }
-    public class var defaultCalendarColour : NSColor { return NSColor(calibratedRed: 0.2, green: 0.8, blue: 0.8, alpha: 1.00) }
-    public class var applicationFileExtension: String { return "APPLICATION_FILE_EXTENSION".localized }
-    public class var defaultActionNodeName: String { return "DEFAULT_NODE_NAME".localized }
-    public class var localizedDocumentFolderName: String { return "APPLICATION_FILE_FOLDER_NAME".localized }
-    public class var defaultDraftName: String { return "DEFAULT_DRAFT_NAME".localized }
+    open class var defaultCalendarName : NSString { return "CALENDAR_NAME".localized as NSString }
+    open class var defaultCalendarColour : NSColor { return NSColor(calibratedRed: 0.2, green: 0.8, blue: 0.8, alpha: 1.00) }
+    open class var applicationFileExtension: String { return "APPLICATION_FILE_EXTENSION".localized }
+    open class var defaultActionNodeName: String { return "DEFAULT_NODE_NAME".localized }
+    open class var localizedDocumentFolderName: String { return "APPLICATION_FILE_FOLDER_NAME".localized }
+    open class var defaultDraftName: String { return "DEFAULT_DRAFT_NAME".localized }
     
     // User Defaults
     
-    private var applicationUserDefaults: NSUserDefaults {
-        return NSUserDefaults(suiteName: ApplicationGroups.primary)!
+    fileprivate var applicationUserDefaults: UserDefaults {
+        return UserDefaults(suiteName: ApplicationGroups.primary)!
     }
     
-    public private(set) var isFirstLaunch: Bool {
+    open fileprivate(set) var isFirstLaunch: Bool {
         get {
             registerDefaults()
-            return applicationUserDefaults.boolForKey(Defaults.firstLaunchKey)
+            return applicationUserDefaults.bool(forKey: Defaults.firstLaunchKey)
         }
         set {
-            applicationUserDefaults.setBool(newValue, forKey: Defaults.firstLaunchKey)
+            applicationUserDefaults.set(newValue, forKey: Defaults.firstLaunchKey)
         }
     }
     
-    private func registerDefaults() {
+    fileprivate func registerDefaults() {
         #if os(iOS)
             let defaultOptions: [String: AnyObject] = [
                 Defaults.firstLaunchKey: true,
@@ -118,20 +118,20 @@ public class AppConfiguration: NSObject {
             ]
             #elseif os(OSX)
             let defaultOptions: [String: AnyObject] = [
-                Defaults.firstLaunchKey: true
+                Defaults.firstLaunchKey: true as AnyObject
             ]
         #endif
         
-        applicationUserDefaults.registerDefaults(defaultOptions)
+        applicationUserDefaults.register(defaults: defaultOptions)
     }
     
     // Storage
     
-    public enum Storage: Int { case NotSet = 0, Local, Cloud }
+    public enum Storage: Int { case notSet = 0, local, cloud }
     
-    public var storageOption: Storage {
+    open var storageOption: Storage {
         get {
-            return .Local
+            return .local
             //  let value = applicationUserDefaults.integerForKey(Defaults.storageOptionKey)
             //    return Storage(rawValue: value)!
         }
@@ -142,29 +142,29 @@ public class AppConfiguration: NSObject {
     }
     
     
-    public var isCloudAvailable: Bool {
-        return NSFileManager.defaultManager().ubiquityIdentityToken != nil
+    open var isCloudAvailable: Bool {
+        return FileManager.default.ubiquityIdentityToken != nil
     }
     
     
-    public func storageDirectory() -> NSURL {
+    open func storageDirectory() -> URL {
         switch storageOption {
-        case .Local:
-            var documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-            documentsPath.appendContentsOf("/"+AppConfiguration.localizedDocumentFolderName)
+        case .local:
+            var documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+            documentsPath.append("/"+AppConfiguration.localizedDocumentFolderName)
             
             // create folder if required
             
             do {
-                try NSFileManager.defaultManager().createDirectoryAtPath(documentsPath, withIntermediateDirectories: true, attributes: nil)
+                try FileManager.default.createDirectory(atPath: documentsPath, withIntermediateDirectories: true, attributes: nil)
             } catch {
                 print(error)
             }
             
-            return NSURL(fileURLWithPath: documentsPath)
+            return URL(fileURLWithPath: documentsPath)
             
-        case .Cloud:
-            if let url = NSFileManager.defaultManager().URLForUbiquityContainerIdentifier(nil) {
+        case .cloud:
+            if let url = FileManager.default.url(forUbiquityContainerIdentifier: nil) {
                 return url
             } else {
                 assertionFailure("iCloud Storage url is Nil")
@@ -173,18 +173,18 @@ public class AppConfiguration: NSObject {
         default:
             assertionFailure("No storage option")
         }
-        return NSURL()
+        return URL()
     }
 
     //MARK: Context File
     
-    public func saveContext() {
+    open func saveContext() {
         self._contextPresenter?.save()
     }
     
-    public func contextPresenter() -> ContextPresenter {
+    open func contextPresenter() -> ContextPresenter {
         if self._contextPresenter == nil {
-            let filePath = storageDirectory().URLByAppendingPathComponent("System_Context.plist")
+            let filePath = storageDirectory().appendingPathComponent("System_Context.plist")
             self._contextPresenter =  ContextPresenter(filePath:filePath)
         }
         return self._contextPresenter!
@@ -251,7 +251,7 @@ public class AppConfiguration: NSObject {
 
     // Bundle
     
-    private struct Bundle {
+    fileprivate struct Bundle {
         // static var prefix = NSBundle.mainBundle().objectForInfoDictionaryKey("AAPLListerBundlePrefix") as! String
         static var prefix = "com.andris"
     }
@@ -304,11 +304,11 @@ public class AppConfiguration: NSObject {
     
     // Beta Helpers 
     
-    public class func featureNotYetImplimented() {
+    open class func featureNotYetImplimented() {
         let alert = NSAlert()
         alert.informativeText = "This feature isn't implimented yet"
         alert.showsHelp = false
-        alert.addButtonWithTitle("Ok")
+        alert.addButton(withTitle: "Ok")
         alert.runModal()
     }
     

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class NextUnitRulePresenter : RulePresenter {
+open class NextUnitRulePresenter : RulePresenter {
     
     var amount : Int  {
         get {
@@ -17,7 +17,7 @@ public class NextUnitRulePresenter : RulePresenter {
         set {
             let value = newValue < 0 ? 0 : newValue
             (rule as! NextUnitRule).amount = value
-            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+            sequencePresenter?.representingDocument?.updateChangeCount(.changeDone)
             informDelegatesOfChangesToContent()
         }
     }
@@ -28,7 +28,7 @@ public class NextUnitRulePresenter : RulePresenter {
         }
         set {
             (rule as! NextUnitRule).unit = NextUnitType(rawValue: newValue)!
-            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+            sequencePresenter?.representingDocument?.updateChangeCount(.changeDone)
             informDelegatesOfChangesToContent()
         }
 }
@@ -39,14 +39,14 @@ public class NextUnitRulePresenter : RulePresenter {
         }
         set {
             (rule as! NextUnitRule).preferedTime = NextPreferedTimeType(rawValue: newValue)!
-            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+            sequencePresenter?.representingDocument?.updateChangeCount(.changeDone)
             informDelegatesOfChangesToContent()
         }
     }
     
-    public override func detailViewController() -> RuleViewController {
+    open override func detailViewController() -> RuleViewController {
         if ruleViewController == nil {
-            let bundle = NSBundle(identifier:"com.andris.ActionsKit")
+            let bundle = Bundle(identifier:"com.andris.ActionsKit")
             ruleViewController = GreaterThanLessThanRuleViewController(nibName:"NextUnitRuleViewController", bundle:bundle)!
             ruleViewController!.rulePresenter = self
         }

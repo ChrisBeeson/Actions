@@ -20,14 +20,14 @@ class WaitForUserRule : Rule {
     var userContinued : Bool = false {
         didSet {
             if userContinued == true {
-                actualStartDate = NSDate().dateByAddingSeconds(1)
+                actualStartDate = (Date() as NSDate).addingSeconds(1)
             } else {
                 actualStartDate = nil
             }
         }
     }
     
-    var actualStartDate: NSDate?
+    var actualStartDate: Date?
     var notificaionID: String?
     
     override init() {
@@ -38,23 +38,23 @@ class WaitForUserRule : Rule {
     override var eventStartTimeWindow: DTTimePeriod? {
         get {
             if actualStartDate != nil {
-                return DTTimePeriod(size:.Hour , amount: 1, startingAt:actualStartDate)
+                return DTTimePeriod(size:.hour , amount: 1, startingAt:actualStartDate)
             } else {
                 return nil
             }
         }
     }
     
-    override var eventPreferedStartDate: NSDate? { return actualStartDate }
+    override var eventPreferedStartDate: Date? { return actualStartDate }
     
     
     
-    override func preSolverCodeBlock(rules rules:[Rule]) -> [Rule] {
+    override func preSolverCodeBlock(rules:[Rule]) -> [Rule] {
         if actualStartDate != nil {
             var filteredRules = rules
             for rule in filteredRules {
                 if rule is WaitForUserRule { continue }
-                rule.inputDate = NSDate()   // Pump it with a dummy date to catch it!
+                rule.inputDate = Date()   // Pump it with a dummy date to catch it!
                 if rule.eventStartTimeWindow != nil { filteredRules.removeObject(rule) }
                 if rule.eventPreferedStartDate != nil { filteredRules.removeObject(rule) }
                 rule.inputDate = nil
@@ -73,19 +73,19 @@ class WaitForUserRule : Rule {
         if notificaionID != nil {
             let notif = NSUserNotification()
             notif.identifier = notificaionID
-            NSUserNotificationCenter.defaultUserNotificationCenter().removeScheduledNotification(notif)
+            NSUserNotificationCenter.default.removeScheduledNotification(notif)
         }
         
         // Schedule Notification
         if userContinued == false && solvedPeriod != nil {
-            if let notificationDate = solvedPeriod!.StartDate {
+            if let notificationDate = solvedPeriod!.startDate {
                 let notif = NSUserNotification()
                 notif.title = "RULE_WAIT_FOR_USER_NOTIFICATION_PREFIX".localized + (owner != nil ? owner!.title : "")
                 notif.informativeText = "RULE_WAIT_FOR_USER_NOTIFICATION_TEXT".localized
                 notif.deliveryDate = notificationDate
                 //  notif.deliveryDate = NSDate().dateByAddingSeconds(5)
                 notificaionID = notif.identifier
-                NSUserNotificationCenter.defaultUserNotificationCenter().scheduleNotification(notif)
+                NSUserNotificationCenter.default.scheduleNotification(notif)
             }
         }
     }
@@ -93,7 +93,7 @@ class WaitForUserRule : Rule {
     
     // MARK: NSCoding
     
-    private struct SerializationKeys {
+    fileprivate struct SerializationKeys {
         static let completed = "completed"
         static let actualStartDate = "actualStartDate"
         static let notificaionID = "notificaionID"
@@ -101,21 +101,21 @@ class WaitForUserRule : Rule {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder:aDecoder)
-        userContinued = aDecoder.decodeBoolForKey(SerializationKeys.completed)
-        actualStartDate = aDecoder.decodeObjectForKey(SerializationKeys.actualStartDate) as? NSDate
-        notificaionID = aDecoder.decodeObjectForKey(SerializationKeys.notificaionID) as? String
+        userContinued = aDecoder.decodeBool(forKey: SerializationKeys.completed)
+        actualStartDate = aDecoder.decodeObject(forKey: SerializationKeys.actualStartDate) as? Date
+        notificaionID = aDecoder.decodeObject(forKey: SerializationKeys.notificaionID) as? String
     }
     
-    override func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeBool(userContinued, forKey:SerializationKeys.completed)
-        aCoder.encodeObject(actualStartDate, forKey:SerializationKeys.actualStartDate)
-        aCoder.encodeObject(notificaionID, forKey:SerializationKeys.notificaionID)
+    override func encode(with aCoder: NSCoder) {
+        aCoder.encode(userContinued, forKey:SerializationKeys.completed)
+        aCoder.encode(actualStartDate, forKey:SerializationKeys.actualStartDate)
+        aCoder.encode(notificaionID, forKey:SerializationKeys.notificaionID)
     }
     
     
     // MARK: NSCopying
     
-    override func copyWithZone(zone: NSZone) -> AnyObject  {
+    override func copy(with zone: NSZone?) -> AnyObject  {
         let clone = WaitForUserRule()
         clone.userContinued = self.userContinued
         clone.actualStartDate = self.actualStartDate
@@ -130,7 +130,7 @@ class WaitForUserRule : Rule {
         super.init(map)
     }
     
-    override func mapping(map: Map) {
+    override func mapping(_ map: Map) {
         super.mapping(map)
         userContinued <- map[SerializationKeys.completed]
         actualStartDate <- (map[SerializationKeys.actualStartDate], DateTransform())

@@ -41,7 +41,7 @@ class EventDurationWithMinimumDuration : Rule  {
     
     // MARK: NSCoding
     
-    private struct SerializationKeys {
+    fileprivate struct SerializationKeys {
         static let duration = "duration"
         static let minDuration = "minDuration"
     }
@@ -52,7 +52,7 @@ class EventDurationWithMinimumDuration : Rule  {
         minDuration = aDecoder.decodeObjectForKey(SerializationKeys.minDuration) as! Timesize
     }
     
-    override func encodeWithCoder(aCoder: NSCoder) {
+    override func encode(with aCoder: NSCoder) {
         aCoder.encodeObject(duration, forKey:SerializationKeys.duration)
         aCoder.encodeObject(minDuration, forKey:SerializationKeys.minDuration)
     }
@@ -60,7 +60,7 @@ class EventDurationWithMinimumDuration : Rule  {
     
     // MARK: NSCopying
     
-    override func copyWithZone(zone: NSZone) -> AnyObject  {
+    override func copy(with zone: NSZone?) -> AnyObject  {
         let clone = EventDurationWithMinimumDuration()
         clone.duration = self.duration
         clone.minDuration = self.minDuration
@@ -74,7 +74,7 @@ class EventDurationWithMinimumDuration : Rule  {
         super.init(map)
     }
     
-    override func mapping(map: Map) {
+    override func mapping(_ map: Map) {
         super.mapping(map)
         ruleClass                     <- map["ruleClass"]
         duration        <- map[SerializationKeys.duration]

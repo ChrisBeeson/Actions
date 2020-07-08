@@ -10,7 +10,7 @@ import Foundation
 import DateTools
 import ObjectMapper
 
-struct RoleOptions : OptionSetType {
+struct RoleOptions : OptionSet {
     let rawValue: Int
     init(rawValue:Int) { self.rawValue = rawValue }
     
@@ -29,33 +29,33 @@ protocol RuleType {
     var detailName: String {get}
     
     // Inputs
-    var inputDate: NSDate? {get set}
+    var inputDate: Date? {get set}
     var timeDirection:TimeDirection { get set }
     var interestPeriod: DTTimePeriod? {get set}
     weak var owner: Node? {get set}
     
     // Outputs
     var eventStartTimeWindow: DTTimePeriod? {get}
-    var eventPreferedStartDate: NSDate? {get}
+    var eventPreferedStartDate: Date? {get}
     var eventDuration: Timesize? {get}
     var eventMinDuration: Timesize? {get}
     
     // Interactions
     var avoidPeriods: [AvoidPeriod]? {get set}
     var previousPeriod: DTTimePeriod? {get set}
-    func conflictsWithRule(rule:Rule) -> Bool
+    func conflictsWithRule(_ rule:Rule) -> Bool
     
     // Post Solver
     var solvedPeriod: DTTimePeriod? {get set}
     
-    func preSolverCodeBlock(rules rules:[Rule]) -> [Rule]
+    func preSolverCodeBlock(rules:[Rule]) -> [Rule]
     func postSolverCodeBlock()
     
     func preDeletionCodeBlock()
 }
 
 
- public class Rule: NSObject, RuleType, NSCoding, NSCopying, Mappable {
+ open class Rule: NSObject, RuleType, NSCoding, NSCopying, Mappable {
     
     var name: String {get {return "Not set"} }
     var ruleClass: String { get { return self.className } set {}}
@@ -63,23 +63,23 @@ protocol RuleType {
     var options: RoleOptions {get { return RoleOptions.None } }
     var detailName: String { return name}
     
-    var inputDate: NSDate?
-    var timeDirection = TimeDirection.Forward
+    var inputDate: Date?
+    var timeDirection = TimeDirection.forward
     var interestPeriod: DTTimePeriod?
     weak var owner: Node?
     var eventStartTimeWindow: DTTimePeriod? {get {return nil} }
-    var eventPreferedStartDate: NSDate? {get {return nil} }
+    var eventPreferedStartDate: Date? {get {return nil} }
     var eventDuration: Timesize? { get { return nil } }
     var eventMinDuration: Timesize? { get { return nil } }
     var avoidPeriods: [AvoidPeriod]?
     var previousPeriod: DTTimePeriod?
     var solvedPeriod: DTTimePeriod?
     
-    public func preSolverCodeBlock(rules rules:[Rule]) -> [Rule] { return rules }
-    public func postSolverCodeBlock() {}
-    public func preDeletionCodeBlock() {}
+    open func preSolverCodeBlock(rules:[Rule]) -> [Rule] { return rules }
+    open func postSolverCodeBlock() {}
+    open func preDeletionCodeBlock() {}
     
-    func conflictsWithRule(rule:Rule) -> Bool { return false }
+    func conflictsWithRule(_ rule:Rule) -> Bool { return false }
     
     override init() { super.init() }
 
@@ -101,21 +101,21 @@ protocol RuleType {
     //MARK: NSCoding
     
     required public init?(coder aDecoder: NSCoder) { super.init() }
-    public func encodeWithCoder(aCoder: NSCoder) { fatalError() }
+    open func encode(with aCoder: NSCoder) { fatalError() }
 
     // MARK: NSCopying
     
-    public func copyWithZone(zone: NSZone) -> AnyObject  { fatalError() }
+    open func copy(with zone: NSZone?) -> Any  { fatalError() }
     
     //MARK: JSON Mapping
     
     required public init?(_ map: Map) {}
     
-    public func mapping(map: Map) {
+    open func mapping(_ map: Map) {
         ruleClass <- map["ruleClass"]
     }
     
-    public static func objectForMapping(map: Map) -> Mappable? {
+    open static func objectForMapping(_ map: Map) -> Mappable? {
         if let type: String = map["ruleClass"].value() {
             switch type {
             case TransitionDurationWithVariance.className():        return TransitionDurationWithVariance(map)

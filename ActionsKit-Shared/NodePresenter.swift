@@ -10,13 +10,13 @@ import Foundation
 import EventKit
 import DateTools
 
-public class NodePresenter : NSObject, RuleAvailabiltiy {
+open class NodePresenter : NSObject, RuleAvailabiltiy {
     
-    var undoManager: NSUndoManager?
+    var undoManager: UndoManager?
     weak var sequencePresenter: SequencePresenter?
     var delegates = [NodePresenterDelegate]()
-    var currentState = NodeState.Inactive
-    private var rulePresenters = [RulePresenter]()
+    var currentState = NodeState.inactive
+    fileprivate var rulePresenters = [RulePresenter]()
     var errors: [SolverError]?
     var node: Node
     
@@ -33,8 +33,8 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     }
     
     public init(pasteboardItem: NSPasteboardItem) {
-        if let data = pasteboardItem.dataForType(AppConfiguration.UTI.node) {
-            self.node = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! Node
+        if let data = pasteboardItem.data(forType: AppConfiguration.UTI.node) {
+            self.node = NSKeyedUnarchiver.unarchiveObject(with: data) as! Node
         } else {
             fatalError("PasteboardItem didn't contain Node")
         }
@@ -44,12 +44,12 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     
     //MARK: Properties
 
-    public var title: String {
+    open var title: String {
         get {
             return node.title
         }
         set {
-            undoManager?.prepareWithInvocationTarget(self).renameTitle(node.title)
+            (undoManager?.prepare(withInvocationTarget: self) as AnyObject).renameTitle(node.title)
             let undoActionName = NSLocalizedString("Rename", comment: "")
             undoManager?.setActionName(undoActionName)
             
@@ -57,28 +57,28 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
         }
     }
     
-    public var location: String {
+    open var location: String {
         get {
             return node.location
         }
         set {
             node.location = newValue
-            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+            sequencePresenter?.representingDocument?.updateChangeCount(.changeDone)
         }
     }
     
-    public var notes: String {
+    open var notes: String {
         get {
             // if node.notes.isEmpty { return nil }
             return node.notes
         }
         set {
             node.notes = newValue
-            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+            sequencePresenter?.representingDocument?.updateChangeCount(.changeDone)
         }
     }
     
-    public var type: NodeType {
+    open var type: NodeType {
         get {
             return node.type
         }
@@ -87,7 +87,7 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
         }
     }
     
-    public var rules:[Rule] {
+    open var rules:[Rule] {
         get {
             return node.rules
         }
@@ -99,14 +99,14 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
         }
     }
     
-    public var isCompleted: Bool {
+    open var isCompleted: Bool {
         get {
             return node.isCompleted
         }
         set {
             if node.isCompleted != isCompleted {
                 node.isCompleted = isCompleted
-                sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+                sequencePresenter?.representingDocument?.updateChangeCount(.changeDone)
             }
         }
     }
@@ -114,9 +114,9 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
 
     //MARK: Methods
 
-    func renameTitle(title:String) {
+    func renameTitle(_ title:String) {
         node.title = title
-        sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+        sequencePresenter?.representingDocument?.updateChangeCount(.changeDone)
         node.event?.synchronizeCalendarEvent()
         delegates.forEach { $0.nodePresenterDidChangeTitle(self) }
     }
@@ -125,10 +125,10 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
         currentState.update(self)
     }
     
-    func removeCalandarEvent(updateState updateState:Bool) {
+    func removeCalandarEvent(updateState:Bool) {
         node.event?.owner = nil
         node.deleteEvent()
-        sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+        sequencePresenter?.representingDocument?.updateChangeCount(.changeDone)
         if updateState == true { updateNodeState() }
     }
     
@@ -140,11 +140,11 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     
     //MARK: Rules
     
-    func insertRulePresenter(rulePresenter:RulePresenter, atIndex:Int) {
+    func insertRulePresenter(_ rulePresenter:RulePresenter, atIndex:Int) {
         // -1 means if it's new, put it at the end of the list, if it's not new, overwrite the current... (or update it at least)
         
         if atIndex != -1 {
-            node.rules.insert(rulePresenter.rule, atIndex: atIndex)
+            node.rules.insert(rulePresenter.rule, at: atIndex)
         } else {
             // first do we already have this rule?
             if wouldAcceptRulePresenter(rulePresenter, allowDuplicates: false) == true {
@@ -161,16 +161,16 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
                 }
             }
         }
-        sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+        sequencePresenter?.representingDocument?.updateChangeCount(.changeDone)
         delegates.forEach { $0.nodePresenterDidChangeRules(self) }
         sequencePresenter?.currentState.update(true, presenter: sequencePresenter!) //FIXME: Shouldn't be doing this
     }
     
 
     
-    func deleteRulePresenter(deletedRulePresenter: RulePresenter) {
+    func deleteRulePresenter(_ deletedRulePresenter: RulePresenter) {
         node.rules.removeObject(deletedRulePresenter.rule)
-        sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+        sequencePresenter?.representingDocument?.updateChangeCount(.changeDone)
         delegates.forEach { $0.nodePresenterDidChangeRules(self) }
         sequencePresenter?.currentState.update(true, presenter: sequencePresenter!) //FIXME: Shouldn't be doing this
     }
@@ -186,7 +186,7 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     //MARK: Pasteboard
     
     func pasteboardItem() -> NSPasteboardItem {
-        let data = NSKeyedArchiver.archivedDataWithRootObject(self.node)
+        let data = NSKeyedArchiver.archivedData(withRootObject: self.node)
         let item = NSPasteboardItem()
         item.setData(data, forType: AppConfiguration.UTI.node)
         return item
@@ -195,33 +195,33 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
         
     //MARK: String Generation
     
-    public var statusDescription : String? {
+    open var statusDescription : String? {
         
-        func generateErrorString(errors:[SolverError]) -> String? {
+        func generateErrorString(_ errors:[SolverError]) -> String? {
             var output=""
             for error in errors {
                 if let string = error.errorDescription {
-                    output.appendContentsOf(string + ". ")
+                    output.append(string + ". ")
                 }
             }
             return output
         }
         
-        func generateStringFromEvent(event:CalendarEvent?) -> String? {
+        func generateStringFromEvent(_ event:CalendarEvent?) -> String? {
             if event == nil { return "NODE_EVENT_STRING_NO_EVENT".localized }
-            var string = event!.startDate.formattedDateWithFormat("dd MMMM HH:mm")
-            string.appendContentsOf(" to ")
-            string.appendContentsOf(event!.endDate.formattedDateWithFormat("HH:mm"))
+            var string = (event!.startDate as NSDate).formattedDate(withFormat: "dd MMMM HH:mm")
+            string.append(" to ")
+            string.append((event!.endDate as NSDate).formattedDate(withFormat: "HH:mm"))
             return string
         }
         
-        func generateDurationStringFromEvent(event:CalendarEvent?) -> String? {
+        func generateDurationStringFromEvent(_ event:CalendarEvent?) -> String? {
             guard event != nil else { return nil }
-            let form = NSDateComponentsFormatter()
+            let form = DateComponentsFormatter()
             form.maximumUnitCount = 2
-            form.unitsStyle = .Full
-            form.allowedUnits = [.Year, .Month, .Day, .Hour, .Minute]
-            return form.stringFromDate(event!.startDate, toDate: event!.endDate)
+            form.unitsStyle = .full
+            form.allowedUnits = [.year, .month, .day, .hour, .minute]
+            return form.string(from: event!.startDate as Date, to: event!.endDate as Date)
         }
         
         func generateStringFromNodeRules() -> String? {
@@ -237,7 +237,7 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
         }
         
         switch currentState {
-        case .Ready, .Running, .Completed:
+        case .ready, .running, .completed:
             switch self.type {
                 
             case NodeType.Action:
@@ -248,12 +248,12 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
                     return generateDurationStringFromEvent(self.event!)
                 } else {
                     // calc from the action nodes either side
-                    var startDate: NSDate?
-                    var endDate: NSDate?
+                    var startDate: Date?
+                    var endDate: Date?
                     if let seq = sequencePresenter {
-                        if let indexOfTrans = seq.sequence.nodeChain().indexOf(self.node) {
-                            startDate = seq.sequence.nodeChain()[indexOfTrans-1].event?.startDate
-                            endDate = seq.sequence.nodeChain()[indexOfTrans+1].event?.endDate
+                        if let indexOfTrans = seq.sequence.nodeChain().index(of: self.node) {
+                            startDate = seq.sequence.nodeChain()[indexOfTrans-1].event?.startDate as Date?
+                            endDate = seq.sequence.nodeChain()[indexOfTrans+1].event?.endDate as Date?
                         }
                     }
                     
@@ -269,15 +269,15 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
             default: return "ERROR:Invaid Type"
             }
             
-        case .Inactive:
+        case .inactive:
             return generateStringFromNodeRules()
             
-        case .Error:
+        case .error:
             if self.errors != nil { return generateErrorString(self.errors!) } else {
                 return "SOLVER_ERROR_UNKNOWN".localized
             }
             
-        case .InheritedError:
+        case .inheritedError:
             return "SOLVER_ERROR_FOLLOWS_FAILED_NODE".localized
             
         default:
@@ -287,13 +287,13 @@ public class NodePresenter : NSObject, RuleAvailabiltiy {
     
     // MARK: Delegate management
     
-    func addDelegate(delegate:NodePresenterDelegate) {
-        if !delegates.contains({$0 === delegate}) {
+    func addDelegate(_ delegate:NodePresenterDelegate) {
+        if !delegates.contains(where: {$0 === delegate}) {
             delegates.append(delegate)
         }
     }
     
-    func removeDelegate(delegate:NodePresenterDelegate) {
+    func removeDelegate(_ delegate:NodePresenterDelegate) {
         delegates = delegates.filter { return $0 !== delegate }
     }
 }

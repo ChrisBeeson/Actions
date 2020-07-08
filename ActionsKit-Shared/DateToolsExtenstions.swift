@@ -10,49 +10,49 @@ import Foundation
 import DateTools
 import ObjectMapper
 
-extension NSDate {
+extension Date {
     
-    func dateByAddingTimesize(size: Timesize) -> NSDate {
+    func dateByAddingTimesize(_ size: Timesize) -> Date {
         
         switch size.unit {
-        case .Second: return self.dateByAddingSeconds(size.amount)
-        case .Minute: return self.dateByAddingMinutes(size.amount)
-        case .Hour: return self.dateByAddingHours(size.amount)
-        case .Day: return self.dateByAddingDays(size.amount)
-        case .Week: return self.dateByAddingWeeks(size.amount)
-        case .Month: return self.dateByAddingMonths(size.amount)
-        case .Year:return self.dateByAddingYears(size.amount)
+        case .second: return (self as NSDate).addingSeconds(size.amount)
+        case .minute: return (self as NSDate).addingMinutes(size.amount)
+        case .hour: return (self as NSDate).addingHours(size.amount)
+        case .day: return (self as NSDate).addingDays(size.amount)
+        case .week: return (self as NSDate).addingWeeks(size.amount)
+        case .month: return (self as NSDate).addingMonths(size.amount)
+        case .year:return (self as NSDate).addingYears(size.amount)
         }
     }
     
-    func dateBySubtractingTimesize(size: Timesize) -> NSDate {
+    func dateBySubtractingTimesize(_ size: Timesize) -> Date {
         
         switch size.unit {
-        case .Second: return self.dateBySubtractingSeconds(size.amount)
-        case .Minute: return self.dateBySubtractingMinutes(size.amount)
-        case .Hour: return self.dateBySubtractingHours(size.amount)
-        case .Day: return self.dateBySubtractingDays(size.amount)
-        case .Week: return self.dateBySubtractingWeeks(size.amount)
-        case .Month: return self.dateBySubtractingMonths(size.amount)
-        case .Year:return self.dateBySubtractingYears(size.amount)
+        case .second: return (self as NSDate).subtractingSeconds(size.amount)
+        case .minute: return (self as NSDate).subtractingMinutes(size.amount)
+        case .hour: return (self as NSDate).subtractingHours(size.amount)
+        case .day: return (self as NSDate).subtractingDays(size.amount)
+        case .week: return (self as NSDate).subtractingWeeks(size.amount)
+        case .month: return (self as NSDate).subtractingMonths(size.amount)
+        case .year:return (self as NSDate).subtractingYears(size.amount)
         }
     }
     
-    class func dateFromString(string: String) -> NSDate {
-        let dateFormatter = NSDateFormatter()
+    static func dateFromString(_ string: String) -> Date {
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.timeZone = NSTimeZone(name: "UTC")
-        return dateFormatter.dateFromString(string)!
+        dateFormatter.timeZone = TimeZone(identifier: "UTC")
+        return dateFormatter.date(from: string)!
     }
 }
 
 extension DTTimePeriod {
     
-     override public var description: String { return "\(StartDate) ->  \(EndDate)"}
+     override open var description: String { return "\(startDate) ->  \(endDate)"}
     
     public func log() ->String {
-        let startTime = self.StartDate.formattedDateWithFormat("DD:MM:YY HH:mm")
-        let endTime = self.EndDate.formattedDateWithFormat("DD:MM:YY HH:mm")
+        let startTime = self.startDate.formattedDate(withFormat: "DD:MM:YY HH:mm")
+        let endTime = self.endDate.formattedDate(withFormat: "DD:MM:YY HH:mm")
         return("\(startTime) -> \(endTime)")
     }
 }
@@ -83,40 +83,40 @@ extension DTTimePeriodCollection {
     
         for period in periods {
 
-            guard let periodStart = period.StartDate, let periodEnd = period.EndDate else { continue }
+            guard let periodStart = period.startDate, let periodEnd = period.endDate else { continue }
 
-            if !flatdate.hasStartDate() { flatdate.StartDate = periodStart }
-            if !flatdate.hasEndDate() { flatdate.EndDate = periodEnd }
+            if !flatdate.hasStartDate() { flatdate.startDate = periodStart }
+            if !flatdate.hasEndDate() { flatdate.endDate = periodEnd }
             
-            if periodStart.isEarlierThanOrEqualTo(flatdate.EndDate) && periodEnd.isGreaterThanOrEqualTo(flatdate.EndDate) {
+            if (periodStart as NSDate).isEarlierThanOrEqual(to: flatdate.endDate) && periodEnd.isGreaterThanOrEqual(to: flatdate.endDate) {
                 
-                flatdate.EndDate = periodEnd
+                flatdate.endDate = periodEnd
                 
             } else {
                 
                 flattenedPeriods.append(flatdate.copy())
-                flatdate.StartDate = periodStart
-                flatdate.EndDate = periodEnd
+                flatdate.startDate = periodStart
+                flatdate.endDate = periodEnd
             }
         }
         
         flattenedPeriods.append(flatdate.copy())
         
         // delete all periods
-        for _ in 0  ..< periods.count  { self.removeTimePeriodAtIndex(0) }
+        for _ in 0  ..< periods.count  { self.removeTimePeriod(at: 0) }
         
         // add flattened periods to self
         for flat in flattenedPeriods {
-            self.addTimePeriod(flat)
+            self.add(flat)
         }
     }
 
     
-    func voidPeriods(inPeriod: DTTimePeriod) -> DTTimePeriodCollection {
+    func voidPeriods(_ inPeriod: DTTimePeriod) -> DTTimePeriodCollection {
         
         if self.periods() == nil || self.periods()!.count == 0 {
             let samePeriod = DTTimePeriodCollection()
-            samePeriod.addTimePeriod(inPeriod.copy())
+            samePeriod.add(inPeriod.copy())
             return samePeriod
         }
         
@@ -125,31 +125,31 @@ extension DTTimePeriodCollection {
         
         // First gaps between the edges of the window of interest.
         
-        if inPeriod.StartDate.isEarlierThan(periods[0].StartDate) {
+        if inPeriod.startDate.isEarlierThan(periods[0].startDate) {
             let newVoidPeriod = DTTimePeriod()
-            newVoidPeriod.StartDate = inPeriod.StartDate
-            newVoidPeriod.EndDate = periods[0].StartDate
-            voidPeriods.addTimePeriod(newVoidPeriod)
+            newVoidPeriod.startDate = inPeriod.startDate
+            newVoidPeriod.endDate = periods[0].startDate
+            voidPeriods.add(newVoidPeriod)
         }
         
-        if periods[periods.count-1].EndDate.isEarlierThan(inPeriod.EndDate) {
+        if periods[periods.count-1].endDate.isEarlierThan(inPeriod.endDate) {
             let newVoidPeriod = DTTimePeriod()
-            newVoidPeriod.StartDate = periods[periods.count-1].EndDate
-            newVoidPeriod.EndDate = inPeriod.EndDate
-            voidPeriods.addTimePeriod(newVoidPeriod)
+            newVoidPeriod.startDate = periods[periods.count-1].endDate
+            newVoidPeriod.endDate = inPeriod.endDate
+            voidPeriods.add(newVoidPeriod)
         }
     
         // void periods in between the periods
         
         for i in 0  ..< periods.count  {
             if i < (periods.count - 1) {
-                if periods[i].EndDate!.isEarlierThan(periods[i+1].StartDate!) {
+                if (periods[i].endDate! as NSDate).isEarlierThan(periods[i+1].startDate!) {
                     let voidPeriod = DTTimePeriod()
                     //  voidPeriod.StartDate = periods[i].EndDate!.dateByAddingSeconds(1)
                     //  voidPeriod.EndDate = periods[i+1].StartDate!.dateBySubtractingSeconds(1)
-                    voidPeriod.StartDate = periods[i].EndDate!
-                    voidPeriod.EndDate = periods[i+1].StartDate!
-                    voidPeriods.addTimePeriod(voidPeriod)
+                    voidPeriod.startDate = periods[i].endDate!
+                    voidPeriod.endDate = periods[i+1].startDate!
+                    voidPeriods.add(voidPeriod)
                 }
             }
         }
@@ -157,12 +157,12 @@ extension DTTimePeriodCollection {
         return voidPeriods
     }
     
-     override public var description: String {
+     override open var description: String {
         guard let periods = self.periods() else { return "No Periods" }
         
         var string = String()
         for period in periods {
-            string.appendContentsOf(period.description + "\n")
+            string.append(period.description + "\n")
         }
         return string
     }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class EventAlarmRulePresenter : RulePresenter {
+open class EventAlarmRulePresenter : RulePresenter {
     
     var alarmType : Int {
         get {
@@ -16,7 +16,7 @@ public class EventAlarmRulePresenter : RulePresenter {
         }
         set {
             (rule as! EventAlarmRule).alarmType = AlarmType(rawValue: newValue)!
-            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+            sequencePresenter?.representingDocument?.updateChangeCount(.changeDone)
             informDelegatesOfChangesToContent()
         }
     }
@@ -30,7 +30,7 @@ public class EventAlarmRulePresenter : RulePresenter {
             
             if let offset = AlarmOffset(rawValue:value) {
                 (rule as! EventAlarmRule).alarmOffsetUnit = offset
-                sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+                sequencePresenter?.representingDocument?.updateChangeCount(.changeDone)
                 informDelegatesOfChangesToContent()
             }
         }
@@ -42,7 +42,7 @@ public class EventAlarmRulePresenter : RulePresenter {
         }
         set {
             (rule as! EventAlarmRule).offsetAmount = newValue
-            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+            sequencePresenter?.representingDocument?.updateChangeCount(.changeDone)
             informDelegatesOfChangesToContent()
         }
     }
@@ -53,14 +53,14 @@ public class EventAlarmRulePresenter : RulePresenter {
         }
         set {
             (rule as! EventAlarmRule).emailAddress = newValue
-            sequencePresenter?.representingDocument?.updateChangeCount(.ChangeDone)
+            sequencePresenter?.representingDocument?.updateChangeCount(.changeDone)
             informDelegatesOfChangesToContent()
         }
     }
     
-    public override func detailViewController() -> RuleViewController {
+    open override func detailViewController() -> RuleViewController {
         if ruleViewController == nil {
-            let bundle = NSBundle(identifier:"com.andris.ActionsKit")
+            let bundle = Bundle(identifier:"com.andris.ActionsKit")
             ruleViewController = EventAlarmRuleViewController(nibName:"EventAlarmRuleViewController", bundle:bundle)!
             ruleViewController!.rulePresenter = self
         }

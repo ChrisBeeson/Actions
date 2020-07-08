@@ -30,47 +30,47 @@ class WorkingWeekRule: Rule {
     override var avoidPeriods: [AvoidPeriod]? {
         get {
             if interestPeriod == nil { return nil }
-            var numberOfDays = interestPeriod?.EndDate.daysLaterThan(interestPeriod?.StartDate)
+            var numberOfDays = interestPeriod?.endDate.daysLaterThan(interestPeriod?.startDate)
             numberOfDays! += 1
             var periods = [AvoidPeriod]()
             
             for day in 0...numberOfDays! {
-                let dayNumber = interestPeriod!.StartDate.dateByAddingDays(day).weekday()
+                let dayNumber = interestPeriod!.startDate.addingDays(day).weekday()
                 
                 if enabledDays[dayNumber] == true {
                     
                     if workingDayEnabled == true {
                         
                         // midnight to the working day start Time
-                        let midnight = NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: NSDate(string: "00:00", formatString: "HH:mm"))
-                        let startDate = NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: workingDayStartTime)
-                        let midnightToStart = DTTimePeriod(startDate: midnight, endDate: startDate)
-                        let avoidPeriod1 = AvoidPeriod(period: midnightToStart, type: .WorkingWeekMorning, object: nil)
+                        let midnight = Date.combineDateWithTime(interestPeriod!.startDate.addingDays(day) , time: NSDate(string: "00:00", formatString: "HH:mm"))
+                        let startDate = Date.combineDateWithTime(interestPeriod!.startDate.addingDays(day) , time: workingDayStartTime)
+                        let midnightToStart = DTTimePeriod(start: midnight, end: startDate)
+                        let avoidPeriod1 = AvoidPeriod(period: midnightToStart, type: .workingWeekMorning, object: nil)
                         periods.append(avoidPeriod1)
                         
                         // workday endtime to midnight
-                        let workdayEnd = NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: workingDayEndTime)
-                        let nearlyMidnight = NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: NSDate(string: "23:59", formatString: "HH:mm"))
-                        let endToMidnight = DTTimePeriod(startDate: workdayEnd, endDate: nearlyMidnight)
-                        let avoidPeriod2 = AvoidPeriod(period: endToMidnight, type: .WorkingWeekEvening, object: nil)
+                        let workdayEnd = Date.combineDateWithTime(interestPeriod!.startDate.addingDays(day) , time: workingDayEndTime)
+                        let nearlyMidnight = Date.combineDateWithTime(interestPeriod!.startDate.addingDays(day) , time: NSDate(string: "23:59", formatString: "HH:mm"))
+                        let endToMidnight = DTTimePeriod(start: workdayEnd, end: nearlyMidnight)
+                        let avoidPeriod2 = AvoidPeriod(period: endToMidnight, type: .workingWeekEvening, object: nil)
                         periods.append(avoidPeriod2)
                     }
                     
                     if lunchBreakEnabled == true {
                         
-                        let lunchStart = NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: lunchBreakStartTime)
-                        let lunchEnd = NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: lunchBreakEndTime)
-                        let lunch = DTTimePeriod(startDate: lunchStart, endDate: lunchEnd)
-                        let avoidPeriod1 = AvoidPeriod(period: lunch, type: .WorkingWeekLunch, object: nil)
+                        let lunchStart = Date.combineDateWithTime(interestPeriod!.startDate.addingDays(day) , time: lunchBreakStartTime)
+                        let lunchEnd = Date.combineDateWithTime(interestPeriod!.startDate.addingDays(day) , time: lunchBreakEndTime)
+                        let lunch = DTTimePeriod(start: lunchStart, end: lunchEnd)
+                        let avoidPeriod1 = AvoidPeriod(period: lunch, type: .workingWeekLunch, object: nil)
                         periods.append(avoidPeriod1)
                     }
                 } else {
                     
                     // the day isn't enabled therefore we must have the day off - so avoid it all
-                    let midnight = NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: NSDate(string: "00:00", formatString: "HH:mm"))
-                    let nearlyMidnight = NSDate.combineDateWithTime(interestPeriod!.StartDate.dateByAddingDays(day) , time: NSDate(string: "23:59", formatString: "HH:mm"))
-                    let dayOff = DTTimePeriod(startDate: midnight, endDate: nearlyMidnight)
-                    let avoidPeriod = AvoidPeriod(period: dayOff, type: .WorkingWeekDayOff, object: nil)
+                    let midnight = Date.combineDateWithTime(interestPeriod!.startDate.addingDays(day) , time: NSDate(string: "00:00", formatString: "HH:mm"))
+                    let nearlyMidnight = Date.combineDateWithTime(interestPeriod!.startDate.addingDays(day) , time: NSDate(string: "23:59", formatString: "HH:mm"))
+                    let dayOff = DTTimePeriod(start: midnight, end: nearlyMidnight)
+                    let avoidPeriod = AvoidPeriod(period: dayOff, type: .workingWeekDayOff, object: nil)
                     periods.append(avoidPeriod)
                 }
             }
@@ -85,7 +85,7 @@ class WorkingWeekRule: Rule {
     
     // MARK: NSCoding
     
-    private struct SerializationKeys {
+    fileprivate struct SerializationKeys {
         static let workingDayStartTime = "workingDayStartTime"
         static let workingDayEndTime = "workingDayEndTime"
         static let workingDayEnabled = "workingDayEnabled"
@@ -97,28 +97,28 @@ class WorkingWeekRule: Rule {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder:aDecoder)
-        workingDayStartTime = aDecoder.decodeObjectForKey("workingDayStartTime") as! NSDate
-        workingDayEndTime = aDecoder.decodeObjectForKey("workingDayEndTime") as! NSDate
-        workingDayEnabled = aDecoder.decodeObjectForKey("workingDayEnabled") as! Bool
-        lunchBreakStartTime = aDecoder.decodeObjectForKey("lunchBreakStartTime") as! NSDate
-        lunchBreakEndTime = aDecoder.decodeObjectForKey("lunchBreakEndTime") as! NSDate
-        lunchBreakEnabled = aDecoder.decodeObjectForKey("lunchBreakEnabled") as! Bool
-        enabledDays = aDecoder.decodeObjectForKey("enabledDays") as! Dictionary
+        workingDayStartTime = aDecoder.decodeObject(forKey: "workingDayStartTime") as! Date
+        workingDayEndTime = aDecoder.decodeObject(forKey: "workingDayEndTime") as! Date
+        workingDayEnabled = aDecoder.decodeObject(forKey: "workingDayEnabled") as! Bool
+        lunchBreakStartTime = aDecoder.decodeObject(forKey: "lunchBreakStartTime") as! Date
+        lunchBreakEndTime = aDecoder.decodeObject(forKey: "lunchBreakEndTime") as! Date
+        lunchBreakEnabled = aDecoder.decodeObject(forKey: "lunchBreakEnabled") as! Bool
+        enabledDays = aDecoder.decodeObject(forKey: "enabledDays") as! Dictionary
     }
     
-    override func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(workingDayStartTime, forKey:"workingDayStartTime")
-        aCoder.encodeObject(workingDayEndTime, forKey:"workingDayEndTime")
-        aCoder.encodeObject(workingDayEnabled, forKey:"workingDayEnabled")
-        aCoder.encodeObject(lunchBreakStartTime, forKey:"lunchBreakStartTime")
-        aCoder.encodeObject(lunchBreakEndTime, forKey:"lunchBreakEndTime")
-        aCoder.encodeObject(lunchBreakEnabled, forKey:"lunchBreakEnabled")
-        aCoder.encodeObject(enabledDays, forKey:"enabledDays")
+    override func encode(with aCoder: NSCoder) {
+        aCoder.encode(workingDayStartTime, forKey:"workingDayStartTime")
+        aCoder.encode(workingDayEndTime, forKey:"workingDayEndTime")
+        aCoder.encode(workingDayEnabled, forKey:"workingDayEnabled")
+        aCoder.encode(lunchBreakStartTime, forKey:"lunchBreakStartTime")
+        aCoder.encode(lunchBreakEndTime, forKey:"lunchBreakEndTime")
+        aCoder.encode(lunchBreakEnabled, forKey:"lunchBreakEnabled")
+        aCoder.encode(enabledDays, forKey:"enabledDays")
     }
     
     // MARK: NSCopying
     
-    override func copyWithZone(zone: NSZone) -> AnyObject  {
+    override func copy(with zone: NSZone?) -> AnyObject  {
         let clone = WorkingWeekRule()
         clone.workingDayStartTime = self.workingDayStartTime
         clone.workingDayEndTime = self.workingDayEndTime
@@ -136,7 +136,7 @@ class WorkingWeekRule: Rule {
         super.init(map)
     }
     
-    override func mapping(map: Map) {
+    override func mapping(_ map: Map) {
         super.mapping(map)
         workingDayStartTime      <- (map[SerializationKeys.workingDayStartTime],DateTransform())
         workingDayEndTime        <- (map[SerializationKeys.workingDayEndTime],DateTransform())

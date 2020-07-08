@@ -10,7 +10,7 @@ import Foundation
 import DateTools
 import ObjectMapper
 
-public struct NodeType : OptionSetType {
+public struct NodeType : OptionSet {
     
     public let rawValue : Int
     public init(rawValue:Int){ self.rawValue = rawValue}
@@ -31,7 +31,7 @@ class Node: NSObject, NSCoding, Mappable {
     var type:NodeType = [.Action]
     var leftTransitionNode: Node?
     var rightTransitionNode: Node?
-    var UUID:String = NSUUID().UUIDString
+    var UUID:String = Foundation.UUID().uuidString
     var event: CalendarEvent?
     var isCompleted = false
     
@@ -73,7 +73,7 @@ class Node: NSObject, NSCoding, Mappable {
     
     // MARK: NSCoding
     
-    private struct SerializationKeys {
+    fileprivate struct SerializationKeys {
         static let title = "title"
         static let notes = "notes"
         static let location = "location"
@@ -90,32 +90,32 @@ class Node: NSObject, NSCoding, Mappable {
         
         super.init()
         
-        title = aDecoder.decodeObjectForKey(SerializationKeys.title) as! String
-        notes = aDecoder.decodeObjectForKey(SerializationKeys.notes) as! String
-        location = aDecoder.decodeObjectForKey(SerializationKeys.location) as! String
-        rules = aDecoder.decodeObjectForKey(SerializationKeys.rules) as! [Rule]
-        type = NodeType(rawValue: aDecoder.decodeIntegerForKey(SerializationKeys.type))
-        UUID = aDecoder.decodeObjectForKey(SerializationKeys.uuid) as! String
-        leftTransitionNode = aDecoder.decodeObjectForKey(SerializationKeys.leftTransitionNode) as? Node
-        rightTransitionNode = aDecoder.decodeObjectForKey(SerializationKeys.rightTransitionNode) as? Node
-        event = aDecoder.decodeObjectForKey(SerializationKeys.event) as? CalendarEvent
-        isCompleted = aDecoder.decodeObjectForKey(SerializationKeys.isCompleted) as! Bool
+        title = aDecoder.decodeObject(forKey: SerializationKeys.title) as! String
+        notes = aDecoder.decodeObject(forKey: SerializationKeys.notes) as! String
+        location = aDecoder.decodeObject(forKey: SerializationKeys.location) as! String
+        rules = aDecoder.decodeObject(forKey: SerializationKeys.rules) as! [Rule]
+        type = NodeType(rawValue: aDecoder.decodeInteger(forKey: SerializationKeys.type))
+        UUID = aDecoder.decodeObject(forKey: SerializationKeys.uuid) as! String
+        leftTransitionNode = aDecoder.decodeObject(forKey: SerializationKeys.leftTransitionNode) as? Node
+        rightTransitionNode = aDecoder.decodeObject(forKey: SerializationKeys.rightTransitionNode) as? Node
+        event = aDecoder.decodeObject(forKey: SerializationKeys.event) as? CalendarEvent
+        isCompleted = aDecoder.decodeObject(forKey: SerializationKeys.isCompleted) as! Bool
         
         if event != nil { event!.owner = self }
     }
     
-    func encodeWithCoder(encoder: NSCoder) {
+    func encode(with encoder: NSCoder) {
         
-        encoder.encodeObject(title, forKey: SerializationKeys.title)
-        encoder.encodeObject(notes, forKey: SerializationKeys.notes)
-        encoder.encodeObject(location, forKey: SerializationKeys.location)
-        encoder.encodeObject(rules, forKey: SerializationKeys.rules)
-        encoder.encodeInteger(type.rawValue, forKey: SerializationKeys.type)
-        encoder.encodeObject(UUID, forKey: SerializationKeys.uuid)
-        encoder.encodeObject(leftTransitionNode, forKey: SerializationKeys.leftTransitionNode)
-        encoder.encodeObject(rightTransitionNode, forKey: SerializationKeys.rightTransitionNode)
-        encoder.encodeObject(event, forKey: SerializationKeys.event)
-        encoder.encodeObject(isCompleted, forKey: SerializationKeys.isCompleted)
+        encoder.encode(title, forKey: SerializationKeys.title)
+        encoder.encode(notes, forKey: SerializationKeys.notes)
+        encoder.encode(location, forKey: SerializationKeys.location)
+        encoder.encode(rules, forKey: SerializationKeys.rules)
+        encoder.encode(type.rawValue, forKey: SerializationKeys.type)
+        encoder.encode(UUID, forKey: SerializationKeys.uuid)
+        encoder.encode(leftTransitionNode, forKey: SerializationKeys.leftTransitionNode)
+        encoder.encode(rightTransitionNode, forKey: SerializationKeys.rightTransitionNode)
+        encoder.encode(event, forKey: SerializationKeys.event)
+        encoder.encode(isCompleted, forKey: SerializationKeys.isCompleted)
     }
     
     
@@ -125,7 +125,7 @@ class Node: NSObject, NSCoding, Mappable {
         
     }
     
-    func mapping(map: Map) {
+    func mapping(_ map: Map) {
         title                   <- map[SerializationKeys.title]
         notes                   <- map[SerializationKeys.notes]
         location                <- map[SerializationKeys.location]
@@ -141,7 +141,7 @@ class Node: NSObject, NSCoding, Mappable {
     
     // MARK: NSCopying
     
-    func copyWithZone(zone: NSZone) -> AnyObject  {
+    func copyWithZone(_ zone: NSZone?) -> AnyObject  {
         
         //TODO: can't copy transistions nodes from here as they are meaningless
         
@@ -159,7 +159,7 @@ class Node: NSObject, NSCoding, Mappable {
     
     // MARK: Equality
     
-    override func isEqual(object: AnyObject?) -> Bool {
+    override func isEqual(_ object: Any?) -> Bool {
         if let node = object as? Node {
             if UUID == node.UUID  {
                 return true
@@ -172,11 +172,11 @@ class Node: NSObject, NSCoding, Mappable {
     
     //MARK: CalendarEvent Creation and Maintance
     
-    func setEventPeriod(period: DTTimePeriod) {
+    func setEventPeriod(_ period: DTTimePeriod) {
         if event == nil {
             self.event = CalendarEvent(period:period, owner: self)
         } else {
-            if period.isEqualToPeriod(event!.period) == false {
+            if period.isEqual(to: event!.period) == false {
             event!.period = period
             }
         }

@@ -9,11 +9,11 @@
 import Foundation
 import AppKit
 
-public class RuleViewController : NSViewController, NSMenuDelegate {
+open class RuleViewController : NSViewController, NSMenuDelegate {
     
-    public var rulePresenter: RulePresenter?
+    open var rulePresenter: RulePresenter?
     
-    public override func viewWillDisappear() {
+    open override func viewWillDisappear() {
         updateSequence()
          super.viewWillDisappear()
     }
@@ -23,7 +23,7 @@ public class RuleViewController : NSViewController, NSMenuDelegate {
             seqPresenter.updateState(processEvents: true)
         } else {
             // It's a generic rule so need to update all sequences
-            NSNotificationCenter.defaultCenter().postNotificationName("UpdateAllSequences", object: nil)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "UpdateAllSequences"), object: nil)
         }
     }
     
