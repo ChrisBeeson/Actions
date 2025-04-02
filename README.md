@@ -133,28 +133,8 @@ This is beneficial for maintainability, testability, and reusability across plat
 6. **Potential for Complex Scheduling**  
    - The variety of rule types (`AvoidCalendarEventsRule`, `WorkingWeekRule`, etc.) indicates that the system can handle nontrivial scheduling logic—valuable if the app is intended for real-world tasks, event planning, or user workflows.
 
----
 
-## 5. Potential Drawbacks / Considerations
-
-1. **Complexity of Dependencies**  
-   - The project depends on multiple external libraries (Parse, Stripe, etc.). This is not inherently negative but means that maintainers must keep an eye on updates and potential version conflicts.
-
-2. **Multiple Payment Systems**  
-   - Using Stripe for macOS and SwiftyStoreKit for iOS can add complexity and duplication. Ensuring a cohesive user experience across two platforms may require careful design.
-
-3. **Parse for Backend**  
-   - Parse is convenient but somewhat niche since the official Parse service shut down and went open-source. The project might rely on self-hosted or third-party Parse servers. This can be a plus or minus depending on infrastructure availability.
-
-4. **Cryptographic Keys**  
-   - The presence of `pubkey.pem`, `privkey.pem`, and `dsaparam.pem` suggests some licensing or secure communication. Proper handling and distribution of private keys is crucial for security. If these are included in the repo, that might be a risk unless specifically intended.
-
-5. **Steep Learning Curve**  
-   - The concept of building or customizing “rules” and “nodes” with a solver approach can be powerful, but it might also be challenging for new team members to fully understand or extend.
-
----
-
-## 6. Conclusion
+## 5. Conclusion
 
 “Actions” is a rule-based, cross-platform (iOS and macOS) application that integrates scheduling logic, calendar conflict avoidance, and flexible commerce/licensing features. The code is organized into a shared core library (ActionsKit-Shared) and platform-specific UIs (ActionsKit-iOS, ActionsKit-OSX). Major merits include a clean separation of concerns (model, presenter, view), robust rule abstractions, and test coverage for critical logic.
 
