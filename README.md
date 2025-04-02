@@ -1,3 +1,6 @@
+“Actions” is a cross-platform (macOS/iOS) project that organizes tasks into rules (e.g., avoid calendar conflicts, wait for user approval) and executes them via a central solver. Its design cleanly separates shared logic from platform-specific UI, includes tests for reliability, and integrates payment and backend solutions, making it flexible and extensible.
+
+---
 Below is a high-level technical report based on a review of the “Actions” project structure and source files. This report focuses on how the project is organized, what it appears to do, how its major components work, and the overall merits of its design.
 
 ---
