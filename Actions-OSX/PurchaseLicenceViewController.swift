@@ -34,7 +34,7 @@ class PurchaseLicenceViewController : NSViewController, NSTextFieldDelegate {
     var purchasing = false
     var selectedPurchaseItem = 1
     
-    var cardParams = STPCardParams() //Stripe Handling
+   // var cardParams = STPCardParams() //Stripe Handling
     
     //MARK: Methods
     
@@ -46,7 +46,7 @@ class PurchaseLicenceViewController : NSViewController, NSTextFieldDelegate {
         cvcTextField.delegate = self
         
         #if OSX_INDEPENDENT
-            purchaseDetailsStackView.hidden = false
+        purchaseDetailsStackView.isHidden = false
         #else
             purchaseDetailsStackView.hidden = true
         #endif
@@ -73,11 +73,11 @@ class PurchaseLicenceViewController : NSViewController, NSTextFieldDelegate {
     
     //MARK: Stripe Handling
     // TextField Delegate
-    
+    /*
     override func controlTextDidChange(obj: NSNotification) {
         guard let textField = (obj.object as? NSTextField) else { return }
         
-        var validState: STPCardValidationState = .Incomplete
+        var validState: STPCardValidationState = .incomplete
         
         switch textField {
         case  cardNumberTextField:
@@ -187,5 +187,6 @@ class PurchaseLicenceViewController : NSViewController, NSTextFieldDelegate {
         alert.runModal()
         self.dismissViewController(self)
     }
+ */
 }
 

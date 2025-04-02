@@ -1,5 +1,13 @@
 #ifdef __OBJC__
 #import <Cocoa/Cocoa.h>
+#else
+#ifndef FOUNDATION_EXPORT
+#if defined(__cplusplus)
+#define FOUNDATION_EXPORT extern "C"
+#else
+#define FOUNDATION_EXPORT extern
+#endif
+#endif
 #endif
 
 #import "Parse.h"
@@ -14,15 +22,20 @@
 #import "PFConfig+Synchronous.h"
 #import "PFConfig.h"
 #import "PFConstants.h"
-#import "PFFile+Deprecated.h"
-#import "PFFile+Synchronous.h"
-#import "PFFile.h"
+#import "PFDecoder.h"
+#import "PFEncoder.h"
+#import "PFFileObject+Deprecated.h"
+#import "PFFileObject+Synchronous.h"
+#import "PFFileObject.h"
+#import "PFFileUploadController.h"
+#import "PFFileUploadResult.h"
 #import "PFGeoPoint.h"
 #import "PFInstallation.h"
 #import "PFObject+Deprecated.h"
 #import "PFObject+Subclass.h"
 #import "PFObject+Synchronous.h"
 #import "PFObject.h"
+#import "PFPolygon.h"
 #import "PFPush+Deprecated.h"
 #import "PFPush+Synchronous.h"
 #import "PFPush.h"

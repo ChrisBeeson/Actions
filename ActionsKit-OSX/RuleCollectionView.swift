@@ -50,7 +50,7 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default().removeObserver(self)
     }
     
     
@@ -237,7 +237,7 @@ public class RuleCollectionView : NSCollectionView, NSCollectionViewDataSource, 
     
     override public func becomeFirstResponder() -> Bool {
         if let view = self.findSuperViewWithClass(NSTableCellView) {
-            NSNotificationCenter.defaultCenter().postNotificationName("ActionsTableViewSelectCellForView", object: self.superview)
+            NotificationCenter.default().postNotificationName("ActionsTableViewSelectCellForView", object: self.superview)
             if self.selectionIndexes.count == 0 {
                 self.window?.makeFirstResponder(view)
             }

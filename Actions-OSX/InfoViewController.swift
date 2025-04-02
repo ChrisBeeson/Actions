@@ -15,7 +15,7 @@ class InfoViewController : NSViewController {
     @IBOutlet weak var licenceStatusTextfield: NSTextField!
     
     var version: String {
-        let dictionary = NSBundle.mainBundle().infoDictionary!
+        let dictionary = Bundle.main.infoDictionary!
         let version = dictionary["CFBundleShortVersionString"] as! String
         let build = dictionary["CFBundleVersion"] as! String
         return "\(version) build \(build)"
@@ -28,7 +28,7 @@ class InfoViewController : NSViewController {
         
         update()
         
-        NSNotificationCenter.defaultCenter().addObserverForName("LicenceStateDidChange", object: nil, queue: nil) { (notification) -> Void in
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "LicenceStateDidChange"), object: nil, queue: nil) { (notification) -> Void in
             self.update()
         }
     }
@@ -41,8 +41,8 @@ class InfoViewController : NSViewController {
         licenceStatusTextfield.stringValue = licenceState.humanReadableState()
         
         switch (licenceState ) {
-        case .Expired, .Trial : upgradeButton.hidden = false
-        default: upgradeButton.hidden = true
+        case .Expired, .Trial : upgradeButton.isHidden = false
+        default: upgradeButton.isHidden = true
         }
         
     }

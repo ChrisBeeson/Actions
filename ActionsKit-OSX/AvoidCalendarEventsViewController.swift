@@ -29,7 +29,7 @@ class AvoidCalendarEventsViewController : RuleViewController , RulePresenterDele
         } else {
             let textBox = NSTextField()
             textBox.isBordered = false
-            textBox.backgroundColor = NSColor.clear
+         //   textBox.backgroundColor = NSColor.clear
             textBox.isEditable = false
             textBox.isBezeled = false
             textBox.font = NSFont.systemFont(ofSize: 12.0)
@@ -45,7 +45,7 @@ class AvoidCalendarEventsViewController : RuleViewController , RulePresenterDele
             let presenter = rulePresenter as! AvoidCalendarEventsPresenter
             
             for cal in calendarCheckboxes {
-                let state = (cal.1.state == NSOnState) ? true : false
+                let state = (cal.1.state == NSControlStateValueOn) ? true : false
                 presenter.setCalendarAvoidState(cal.0, avoid:state)
             }
             if saveToContext == true { AppConfiguration.sharedConfiguration.saveContext() }
@@ -58,7 +58,7 @@ class AvoidCalendarEventsViewController : RuleViewController , RulePresenterDele
         let checkbox = NSButton()
         checkbox.setButtonType(.switch)
         checkbox.title = ""
-        checkbox.state = calendar.avoid ? NSOnState : NSOffState
+        checkbox.state = calendar.avoid ? NSControlStateValueOn : NSControlStateValueOff
         checkbox.wantsLayer = true
         checkbox.layerUsesCoreImageFilters = true
         let filter = CIFilter(name: "CIColorMonochrome")
@@ -71,7 +71,7 @@ class AvoidCalendarEventsViewController : RuleViewController , RulePresenterDele
         
         let textBox = NSTextField()
         textBox.isBordered = false
-        textBox.backgroundColor = NSColor.clear
+       // textBox.backgroundColor = NSColor.clear
         textBox.isEditable = false
         textBox.isBezeled = false
         textBox.font = NSFont.systemFont(ofSize: 12.0)

@@ -2,9 +2,9 @@
 use_frameworks!
 
 def shared_pods
-    pod 'DateTools', '~> 1.7'
-    pod 'ObjectMapper', '~> 1.2'
-    pod 'SwiftyStoreKit'
+    pod 'DateTools'
+    pod 'ObjectMapper', '3.3.0'
+    pod 'SwiftyStoreKit','0.14.0'
     pod 'Parse'
     pod 'Fabric'
     pod 'Crashlytics'

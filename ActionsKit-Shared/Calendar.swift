@@ -8,7 +8,7 @@
 
 import Foundation
 import EventKit
-import ObjectMapper
+//import ObjectMapper
 
 open class Calendar : NSObject, NSCoding, Mappable {
     
@@ -58,7 +58,7 @@ open class Calendar : NSObject, NSCoding, Mappable {
     required public init?(_ map: Map) {
         
     }
-    
+    /*
     open func mapping(_ map: Map) {
         identifier              <- map[SerializationKeys.identifier]
         name                    <- map[SerializationKeys.name]
@@ -67,7 +67,7 @@ open class Calendar : NSObject, NSCoding, Mappable {
         avoid                   <- map[SerializationKeys.avoid]
 
     }
-    
+    */
     // MARK: Equality
     
     override  open func isEqual(_ object: Any?) -> Bool {

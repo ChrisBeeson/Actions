@@ -18,11 +18,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         
         #if OSX_INDEPENDENT
-            Stripe.setDefaultPublishableKey("pk_test_CrzZEhVuOZXgWJIQyuGHi2qW")
+          //  Stripe.setDefaultPublishableKey("pk_test_CrzZEhVuOZXgWJIQyuGHi2qW")
         #endif
 
-        NSUserDefaults.standardUserDefaults().registerDefaults(["NSApplicationCrashOnExceptions" : true])
-        Fabric.with([Crashlytics.self])
+        UserDefaults.standard.register(defaults: ["NSApplicationCrashOnExceptions" : true])
+       // Fabric.with([Crashlytics.self])
     
         AppConfiguration.sharedConfiguration.applicationLaunched()
         
@@ -42,7 +42,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         //NSDocumentController.sharedDocumentController().clearRecentDocuments(self)
         //CCNStatusItem.sharedInstance().presentStatusItemWithImage(NSImage(named: "SystemTrayIcon"), contentViewController: nil)
         
-        NSUserNotificationCenter.defaultUserNotificationCenter().delegate = self
+        NSUserNotificationCenter.default.delegate = self
     }
     
     /*
@@ -59,22 +59,22 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         AppConfiguration.sharedConfiguration.saveContext()
     }
     
-    func applicationShouldTerminateAfterLastWindowClosed(sender: NSApplication) -> Bool {
+    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         return true
     }
     
-    func applicationDidBecomeActive(notification: NSNotification) {
+    func applicationDidBecomeActive(_ notification: Notification) {
         
-        //NSNotificationCenter.defaultCenter().postNotificationName("RefreshMainTableView", object: nil)
+        //NotificationCenter.default().postNotificationName("RefreshMainTableView", object: nil)
     }
     
-    func applicationDidUnhide(notification: NSNotification) {
+    func applicationDidUnhide(_ notification: Notification) {
     }
     
     
     //MARK: NSUserNotificationCenterDelegate
     
-    func userNotificationCenter(center: NSUserNotificationCenter, shouldPresentNotification notification: NSUserNotification) -> Bool {
+    func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
         return true
     }
     

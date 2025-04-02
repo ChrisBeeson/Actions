@@ -12,35 +12,35 @@ class MainWindowController: NSWindowController {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        addObserver(self, forKeyPath: "self.window.firstResponder", options: [.Initial, .Old, .New], context: nil)
+        addObserver(self, forKeyPath: "self.window.firstResponder", options: [.initial, .old, .new], context: nil)
     }
     
     override func  windowDidLoad() {
         super.windowDidLoad()
-         self.window!.titleVisibility = NSWindowTitleVisibility.Hidden
+        self.window!.titleVisibility = NSWindowTitleVisibility.hidden
         
-        NSNotificationCenter.defaultCenter().addObserverForName("DisplayCannotAccessCalendarAlert", object: nil, queue: nil) { (notification) -> Void in
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "DisplayCannotAccessCalendarAlert"), object: nil, queue: nil) { (notification) -> Void in
             let alert = NSAlert()
             alert.informativeText = "MAINWINDOW_CALENDAR_UNAUTHORIZED_BODY".localized
             alert.messageText = "MAINWINDOW_CALENDAR_UNAUTHORIZED_TITLE".localized
             alert.showsHelp = false
-            alert.addButtonWithTitle("MAINWINDOW_CALENDAR_UNAUTHORIZED_OK".localized)
+            alert.addButton(withTitle: "MAINWINDOW_CALENDAR_UNAUTHORIZED_OK".localized)
             alert.runModal()
         }
         
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
-    
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String: AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        self.window!.title = "Actions - " + window!.firstResponder.className
+    /* fix:
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String: AnyObject]?, context: UnsafeMutableRawPointer) {
+        self.window!.title = "Actions - " + (window!.firstResponder?.className)!
     }
-    
-    
+    */
+
     @IBAction func segmentedControlAction(sender: NSSegmentedControl) {
-        (self.contentViewController as! MainTableViewController).setTableViewFilter(DocumentFilterType(rawValue: sender.selectedSegment)!)
+        (self.contentViewController as! MainTableViewController).setTableViewFilter(filter: DocumentFilterType(rawValue: sender.selectedSegment)!)
     }
 }

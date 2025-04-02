@@ -65,19 +65,19 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
         //self.collectionViewLayout = LeftAlignedSequenceFlowLayout()
         //self.wantsLayer = true
         
-        let nib = NSNib(nibNamed: "DateNodeCollectionViewItem", bundle: NSBundle(identifier:"com.andris.ActionsKit"))
-        self.registerNib(nib, forItemWithIdentifier: "DateNodeCollectionViewItem")
+        let nib = NSNib(nibNamed: "DateNodeCollectionViewItem", bundle: Bundle(identifier:"com.andris.ActionsKit"))
+        self.register(nib, forItemWithIdentifier: "DateNodeCollectionViewItem")
         
-        let actionNib = NSNib(nibNamed: "ActionNodeCollectionViewItem", bundle: NSBundle(identifier:"com.andris.ActionsKit"))
-        self.registerNib(actionNib, forItemWithIdentifier: "ActionNodeCollectionViewItem")
+        let actionNib = NSNib(nibNamed: "ActionNodeCollectionViewItem", bundle: Bundle(identifier:"com.andris.ActionsKit"))
+        self.register(actionNib, forItemWithIdentifier: "ActionNodeCollectionViewItem")
         
-        let transNib = NSNib(nibNamed: "TransitionNodeCollectionViewItem", bundle: NSBundle(identifier:"com.andris.ActionsKit"))
-        self.registerNib(transNib, forItemWithIdentifier: "TransitionNodeCollectionViewItem")
+        let transNib = NSNib(nibNamed: "TransitionNodeCollectionViewItem", bundle: Bundle(identifier:"com.andris.ActionsKit"))
+        self.register(transNib, forItemWithIdentifier: "TransitionNodeCollectionViewItem")
         
-        let addNib = NSNib(nibNamed: "AddNewNodeCollectionViewItem", bundle: NSBundle(identifier:"com.andris.ActionsKit"))
-        self.registerNib(addNib, forItemWithIdentifier: "AddNewNodeCollectionViewItem")
+        let addNib = NSNib(nibNamed: "AddNewNodeCollectionViewItem", bundle: Bundle(identifier:"com.andris.ActionsKit"))
+        self.register(addNib, forItemWithIdentifier: "AddNewNodeCollectionViewItem")
         
-        self.registerForDraggedTypes([AppConfiguration.UTI.dateNode, AppConfiguration.UTI.node, AppConfiguration.UTI.rule])
+        self.register(forDraggedTypes: [AppConfiguration.UTI.dateNode, AppConfiguration.UTI.node, AppConfiguration.UTI.rule])
     }
     
     deinit {
@@ -92,10 +92,10 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
         dragDropInPlaceView?.removeFromSuperview() ; dragDropInPlaceView = nil
 
         if insertedNodes.count > 0 {
-            self.animator().insertItemsAtIndexPaths(dynamicIndexForNodeIndex(insertedNodes))
+            self.animator().insertItemsAtIndexPaths(dynamicIndexForNodeIndex(indexPaths: insertedNodes))
             
             let delay = 0.1
-            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC))) // Hate this syntax
+            let time = DispatchTime.now(dispatch_time_t(DISPATCH_TIME_NOW), Int64(delay * Double(NSEC_PER_SEC))) // Hate this syntax
             dispatch_after(time, dispatch_get_main_queue(), { [weak self] in
                 if self != nil {
                 self!.animator().scrollToItemsAtIndexPaths(self!.dynamicIndexForNodeIndex(insertedNodes), scrollPosition: .CenteredHorizontally)
@@ -125,7 +125,7 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
         self.animator().reloadData()
     }
     
-    public func sequencePresenterDidChangeState(sequencePresenter: SequencePresenter, toState:SequenceState){
+    public func sequencePresenterDidChangeState(_ sequencePresenter: SequencePresenter, toState:SequenceState){
     }
     
     
@@ -134,15 +134,15 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
     public func copy(event: NSEvent) {
         var items = [NSPasteboardWriting]()
         for indexPath in self.selectionIndexPaths {
-            if let object = self.itemAtIndexPath(indexPath) {
+            if let object = self.item(at: indexPath) {
                 if object.isKindOfClass(NodeCollectionViewItem) {
                     items.append((object as! NodeCollectionViewItem).pasteboardItem())
                     Swift.print("Copied Node")
                 }
             }
         }
-        NSPasteboard.generalPasteboard().clearContents()
-        NSPasteboard.generalPasteboard().writeObjects(items)
+        NSPasteboard.general().clearContents()
+        NSPasteboard.general().writeObjects(items)
     }
     
     public func paste(event: NSEvent) {
@@ -181,7 +181,7 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
     public func delete(theEvent: NSEvent) {
         var nodesToDelete = [Node]()
         for indexPath in self.selectionIndexPaths {
-            if let object = self.itemAtIndexPath(indexPath) {
+            if let object = self.item(at: indexPath) {
                 if object.isKindOfClass(NodeCollectionViewItem) {
                     let item = object as! NodeCollectionViewItem
                     if item.presenter!.type == .Action {
@@ -212,7 +212,7 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
         }
     }
     
-    public func collectionView(collectionView: NSCollectionView, itemForRepresentedObjectAtIndexPath indexPath: NSIndexPath) -> NSCollectionViewItem {
+    public func collectionView(collectionView: NSCollectionView, itemForRepresentedObjectAtIndexPath indexPath: IndexPath) -> NSCollectionViewItem {
         return itemForIndexPath(indexPath)
     }
     
@@ -374,7 +374,7 @@ public class SequenceCollectionView : NSCollectionView, NSCollectionViewDataSour
     
     override public var acceptsFirstResponder: Bool { return true }
     override public func becomeFirstResponder() -> Bool {
-        NSNotificationCenter.defaultCenter().postNotificationName("ActionsTableViewSelectCellForView", object: self.superview)
+        NotificationCenter.default().postNotificationName("ActionsTableViewSelectCellForView", object: self.superview)
         if self.selectionIndexes.count == 0 {
             self.window?.makeFirstResponder(self.superview?.superview?.superview?.superview?.superview?.superview)
         }

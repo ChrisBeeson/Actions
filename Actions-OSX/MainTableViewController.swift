@@ -20,7 +20,7 @@ public class MainTableViewController:  NSViewController, NSTableViewDataSource, 
     private var filter = DocumentFilterType.Active
     private var displayedPopover:NSPopover?
     lazy private var availableGenericRulesViewController : AvailableRulesViewController = {
-        if let viewController = AvailableRulesViewController(nibName:"AvailableRulesViewController", bundle:NSBundle(identifier:"com.andris.ActionsKit")) {
+        if let viewController = AvailableRulesViewController(nibName:"AvailableRulesViewController", bundle:Bundle(identifier:"com.andris.ActionsKit")) {
             viewController.availableRules = AppConfiguration.sharedConfiguration.contextPresenter()
             viewController.displayRulesForNodeType = [.Generic]
             viewController.collectionViewDelegate = self
@@ -42,23 +42,23 @@ public class MainTableViewController:  NSViewController, NSTableViewDataSource, 
         genericRulesCollectionView.allowDeletions = true
         
         let nib =  NSNib(nibNamed: "MainTableViewCell", bundle: nil)
-        self.tableView.registerNib(nib, forIdentifier: "MainTableCellView")
+        self.tableView.register(nib, forIdentifier: "MainTableCellView")
         
-        NSNotificationCenter.defaultCenter().addObserverForName("ActionsTableViewSelectCellForView", object: nil, queue: nil) { (notification) -> Void in
-            let row = self.tableView.rowForView(notification.object as! NSView)
-            self.tableView.selectRowIndexes((NSIndexSet(index: row)), byExtendingSelection: false)
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "ActionsTableViewSelectCellForView"), object: nil, queue: nil) { (notification) -> Void in
+            let row = self.tableView.row(for: notification.object as! NSView)
+            self.tableView.selectRowIndexes((NSIndexSet(index: row) as IndexSet), byExtendingSelection: false)
         }
         
-        NSNotificationCenter.defaultCenter().addObserverForName("RefreshMainTableView", object: nil, queue: nil) { (notification) -> Void in
-            self.updateTableViewContent(true)
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "RefreshMainTableView"), object: nil, queue: nil) { (notification) -> Void in
+            self.updateTableViewContent(animated: true)
         }
         
-        NSNotificationCenter.defaultCenter().addObserverForName("LicenceStateDidChange", object: nil, queue: nil) { (notification) -> Void in
+        NotificationCenter.default.addObserverForName(NSNotification.Name(rawValue: "LicenceStateDidChange"), object: nil, queue: nil) { (notification) -> Void in
             
             func presentLicenceController() {
                 let storyboard = NSStoryboard(name: "Main", bundle: nil)
-                let vc = storyboard.instantiateControllerWithIdentifier(
-                    "PurchaseLicence") as! NSViewController
+                let vc = storyboard.instantiateController(
+                    withIdentifier: "PurchaseLicence") as! NSViewController
                 self.presentViewControllerAsModalWindow(vc)
             }
             
@@ -78,7 +78,7 @@ public class MainTableViewController:  NSViewController, NSTableViewDataSource, 
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default().removeObserver(self)
     }
     
     
@@ -326,13 +326,13 @@ public class MainTableViewController:  NSViewController, NSTableViewDataSource, 
     public func didAcceptDrop(collectionView: RuleCollectionView, droppedRulePresenter: RulePresenter, atIndex: Int) {
         AppConfiguration.sharedConfiguration.contextPresenter().addRulePresenter(droppedRulePresenter, atIndex: atIndex)
         refreshGenericRulesCollectionView()
-        NSNotificationCenter.defaultCenter().postNotificationName("UpdateAllSequences", object: nil)
+        NotificationCenter.default().postNotificationName("UpdateAllSequences", object: nil)
     }
     
     public func didDeleteRulePresenter(collectionView: RuleCollectionView, deletedRulePresenter: RulePresenter) {
         AppConfiguration.sharedConfiguration.contextPresenter().removeRulePresenter(deletedRulePresenter)
         refreshGenericRulesCollectionView()
-        NSNotificationCenter.defaultCenter().postNotificationName("UpdateAllSequences", object: nil)
+        NotificationCenter.default().postNotificationName("UpdateAllSequences", object: nil)
     }
     
     public func didDoubleClick(collectionView: RuleCollectionView, selectedRulePresenter: RulePresenter) {

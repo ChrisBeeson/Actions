@@ -249,7 +249,6 @@
 		477C2CB31C409C660071467C /* ActionNodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477C2CB21C409C660071467C /* ActionNodeView.swift */; };
 		477C2CB51C40B3AD0071467C /* TransitionNodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477C2CB41C40B3AD0071467C /* TransitionNodeView.swift */; };
 		477F4A9D1CCCB17E00022113 /* MainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477F4A9C1CCCB17E00022113 /* MainTableViewCell.xib */; };
-		477FBDD61CD5CFE30043E52D /* PurchaseLicenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477FBDD51CD5CFE30043E52D /* PurchaseLicenceViewController.swift */; };
 		4794B99E1C78522B009CE617 /* NSTimer+Closure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4794B99D1C78522B009CE617 /* NSTimer+Closure.swift */; };
 		47967FF01C895C7200358199 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47967FEF1C895C7200358199 /* Context.swift */; };
 		47967FF21C895F5400358199 /* ContextPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47967FF11C895F5400358199 /* ContextPresenter.swift */; };
@@ -291,6 +290,8 @@
 		830B29F81CC735200029E712 /* EventAlarmRuleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 830B29F71CC735200029E712 /* EventAlarmRuleViewController.xib */; };
 		830B29FA1CC739DC0029E712 /* EventAlarmRuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830B29F91CC739DC0029E712 /* EventAlarmRuleViewController.swift */; };
 		830B29FC1CC782530029E712 /* EventAlarmRulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830B29FB1CC782530029E712 /* EventAlarmRulePresenter.swift */; };
+		8321A43B24B5DD65005276C0 /* PurchaseLicenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477FBDD51CD5CFE30043E52D /* PurchaseLicenceViewController.swift */; };
+		8321A43C24B5DD65005276C0 /* PurchaseLicenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477FBDD51CD5CFE30043E52D /* PurchaseLicenceViewController.swift */; };
 		83260A341C856C6700F74DBD /* RuleTokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83260A331C856C6700F74DBD /* RuleTokenView.swift */; };
 		8329DE9B1C63DF10001B3A2F /* SequenceCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8329DE9A1C63DF10001B3A2F /* SequenceCollectionView.swift */; };
 		832BA20A1C740686004331A7 /* NodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832BA2091C740686004331A7 /* NodeView.swift */; };
@@ -530,7 +531,6 @@
 		83BE18A31D091D2A00F3EF21 /* AvoidCalendarEventsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47967FFA1C8ABC4F00358199 /* AvoidCalendarEventsPresenter.swift */; };
 		83BE18A41D091D2A00F3EF21 /* AvailableRulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836896331C807FEF00F3F547 /* AvailableRulesViewController.swift */; };
 		83BE18A51D091D2A00F3EF21 /* DateTimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4720B5071C6F00B300229734 /* DateTimePickerViewController.swift */; };
-		83BE18A61D091D2A00F3EF21 /* PurchaseLicenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477FBDD51CD5CFE30043E52D /* PurchaseLicenceViewController.swift */; };
 		83BE18A71D091D2A00F3EF21 /* Solver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F2FBC31BA8CFEE0041B291 /* Solver.swift */; };
 		83BE18A81D091D2A00F3EF21 /* TransitionNodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477C2CB41C40B3AD0071467C /* TransitionNodeView.swift */; };
 		83BE18A91D091D2A00F3EF21 /* STPAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AC71EB1D07FA38005FC9DA /* STPAPIClient.m */; };
@@ -1969,7 +1969,6 @@
 				4735745C1B9A687400493CA0 /* Frameworks */,
 				4735745D1B9A687400493CA0 /* Resources */,
 				D018CAEB6B72C01363E887FA /* [CP] Embed Pods Frameworks */,
-				BD3C0ECBDAB8F9D3E06B99F3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2028,7 +2027,6 @@
 				83BE18FC1D091D2A00F3EF21 /* Resources */,
 				83BE19331D091D2A00F3EF21 /* Run Script */,
 				83BE19341D091D2A00F3EF21 /* [CP] Embed Pods Frameworks */,
-				83BE19351D091D2A00F3EF21 /* [CP] Copy Pods Resources */,
 				83BE19361D091D2A00F3EF21 /* Inc Build */,
 				47BB77281D800E80004C62F3 /* Copy Font Files */,
 			);
@@ -2051,7 +2049,6 @@
 				83F6B9551B994652002A5AAF /* Resources */,
 				4794B9981C75D499009CE617 /* Run Script */,
 				2D74C9AB3B418C8F055AAC5B /* [CP] Embed Pods Frameworks */,
-				5432F98F7EB08D99D4FCC6C6 /* [CP] Copy Pods Resources */,
 				83BE18831D09163D00F3EF21 /* Inc Build */,
 				47BB77261D800DA2004C62F3 /* Copy Files - Fonts */,
 			);
@@ -2105,7 +2102,7 @@
 					};
 					473574541B9A687400493CA0 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = AAS99X87A9;
+						DevelopmentTeam = F8J6NSQ48T;
 					};
 					4735745E1B9A687400493CA0 = {
 						CreatedOnToolsVersion = 6.4;
@@ -2114,14 +2111,14 @@
 					};
 					83AC71921D07F974005FC9DA = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = AAS99X87A9;
+						DevelopmentTeam = F8J6NSQ48T;
 					};
 					83AC719B1D07F975005FC9DA = {
 						CreatedOnToolsVersion = 7.3;
 						TestTargetID = 83F6B9561B994652002A5AAF;
 					};
 					83BE18841D091D2A00F3EF21 = {
-						DevelopmentTeam = AAS99X87A9;
+						DevelopmentTeam = F8J6NSQ48T;
 						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
@@ -2137,7 +2134,7 @@
 					};
 					83F6B9561B994652002A5AAF = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = AAS99X87A9;
+						DevelopmentTeam = F8J6NSQ48T;
 						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
@@ -2416,13 +2413,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Actions-OSX-Independent-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		196F2BB79A0B386E6AA57226 /* [CP] Check Pods Manifest.lock */ = {
@@ -2431,13 +2431,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ActionsKit-Shared-Tests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		2D74C9AB3B418C8F055AAC5B /* [CP] Embed Pods Frameworks */ = {
@@ -2446,13 +2449,24 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Actions-OSX-Independent/Pods-Actions-OSX-Independent-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/DateTools/DateTools.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Parse/Parse.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyStoreKit/SwiftyStoreKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DateTools.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Parse.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyStoreKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Actions-OSX-Independent/Pods-Actions-OSX-Independent-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Actions-OSX-Independent/Pods-Actions-OSX-Independent-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4794B9981C75D499009CE617 /* Run Script */ = {
@@ -2468,21 +2482,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" bcb4591994f24a0487765c1fef9db4c2bf4b89dc 07adb4ff55666a6428a00106f77b018742675b05efd53fd76f0e88af29d6c2ee";
-		};
-		5432F98F7EB08D99D4FCC6C6 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Actions-OSX-Independent/Pods-Actions-OSX-Independent-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		83BE18831D09163D00F3EF21 /* Inc Build */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2504,13 +2503,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Actions-OSX-AppStore-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		83BE19331D091D2A00F3EF21 /* Run Script */ = {
@@ -2533,28 +2535,24 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Actions-OSX-AppStore/Pods-Actions-OSX-AppStore-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/DateTools/DateTools.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Parse/Parse.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyStoreKit/SwiftyStoreKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DateTools.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Parse.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyStoreKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Actions-OSX-AppStore/Pods-Actions-OSX-AppStore-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		83BE19351D091D2A00F3EF21 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Actions-OSX-AppStore/Pods-Actions-OSX-AppStore-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Actions-OSX-AppStore/Pods-Actions-OSX-AppStore-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		83BE19361D091D2A00F3EF21 /* Inc Build */ = {
@@ -2571,34 +2569,30 @@
 			shellPath = /bin/sh;
 			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/Actions-OSX/Actions-OSX-AppStore-Info.plist\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/Actions-OSX/Actions-OSX-AppStore-Info.plist\"";
 		};
-		BD3C0ECBDAB8F9D3E06B99F3 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ActionsKit-Shared-Tests/Pods-ActionsKit-Shared-Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		D018CAEB6B72C01363E887FA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ActionsKit-Shared-Tests/Pods-ActionsKit-Shared-Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/DateTools/DateTools.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Parse/Parse.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyStoreKit/SwiftyStoreKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DateTools.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Parse.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyStoreKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ActionsKit-Shared-Tests/Pods-ActionsKit-Shared-Tests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ActionsKit-Shared-Tests/Pods-ActionsKit-Shared-Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2972,7 +2966,6 @@
 				83BE18A31D091D2A00F3EF21 /* AvoidCalendarEventsPresenter.swift in Sources */,
 				83BE18A41D091D2A00F3EF21 /* AvailableRulesViewController.swift in Sources */,
 				83BE18A51D091D2A00F3EF21 /* DateTimePickerViewController.swift in Sources */,
-				83BE18A61D091D2A00F3EF21 /* PurchaseLicenceViewController.swift in Sources */,
 				83BE18A71D091D2A00F3EF21 /* Solver.swift in Sources */,
 				83BE18A81D091D2A00F3EF21 /* TransitionNodeView.swift in Sources */,
 				83BE18A91D091D2A00F3EF21 /* STPAPIClient.m in Sources */,
@@ -3029,6 +3022,7 @@
 				83BE18DC1D091D2A00F3EF21 /* TransitionDurationWithVarianceRulePresenter.swift in Sources */,
 				83BE18DD1D091D2A00F3EF21 /* Context.swift in Sources */,
 				83BE18DE1D091D2A00F3EF21 /* EventAlarmRule.swift in Sources */,
+				8321A43C24B5DD65005276C0 /* PurchaseLicenceViewController.swift in Sources */,
 				83BE18DF1D091D2A00F3EF21 /* AppDelegate.swift in Sources */,
 				83BE18E01D091D2A00F3EF21 /* STPBankAccountParams.m in Sources */,
 				83BE18E11D091D2A00F3EF21 /* TransitionDurationBasedOnTravelTime.swift in Sources */,
@@ -3093,7 +3087,6 @@
 				4731BE741D0808E700D5C781 /* AvoidCalendarEventsPresenter.swift in Sources */,
 				83AC71791D07F944005FC9DA /* AvailableRulesViewController.swift in Sources */,
 				83AC71771D07F940005FC9DA /* DateTimePickerViewController.swift in Sources */,
-				477FBDD61CD5CFE30043E52D /* PurchaseLicenceViewController.swift in Sources */,
 				4731BEB61D08091500D5C781 /* Solver.swift in Sources */,
 				83AC716E1D07F935005FC9DA /* TransitionNodeView.swift in Sources */,
 				83AC72531D07FA38005FC9DA /* STPAPIClient.m in Sources */,
@@ -3150,6 +3143,7 @@
 				4731BE721D0808E700D5C781 /* TransitionDurationWithVarianceRulePresenter.swift in Sources */,
 				4731BEA81D08090E00D5C781 /* Context.swift in Sources */,
 				4731BED21D08091E00D5C781 /* EventAlarmRule.swift in Sources */,
+				8321A43B24B5DD65005276C0 /* PurchaseLicenceViewController.swift in Sources */,
 				83F6B95D1B994652002A5AAF /* AppDelegate.swift in Sources */,
 				83AC725A1D07FA38005FC9DA /* STPBankAccountParams.m in Sources */,
 				4731BECD1D08091E00D5C781 /* TransitionDurationBasedOnTravelTime.swift in Sources */,
@@ -3256,9 +3250,9 @@
 				DEVELOPMENT_TEAM = F8J6NSQ48T;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "Actions-iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.andris.Actions-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.christopher.actionsiOS;
 				PRODUCT_NAME = Actions;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -3277,9 +3271,9 @@
 				DEVELOPMENT_TEAM = F8J6NSQ48T;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "Actions-iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.andris.Actions-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.christopher.actionsiOS;
 				PRODUCT_NAME = Actions;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -3335,6 +3329,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = F8J6NSQ48T;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -3371,6 +3366,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = F8J6NSQ48T;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -3445,6 +3441,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = F8J6NSQ48T;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -3470,6 +3467,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = F8J6NSQ48T;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -3530,6 +3528,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = F8J6NSQ48T;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -3553,7 +3552,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DOSX_INDEPENDENT";
-				PRODUCT_BUNDLE_IDENTIFIER = com.andris.Actions;
+				PRODUCT_BUNDLE_IDENTIFIER = com.christopher.actions;
 				PRODUCT_NAME = Actions;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Actions-OSX/Actions-Bridging-Header.h";
@@ -3574,6 +3573,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = F8J6NSQ48T;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -3597,7 +3597,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DOSX_INDEPENDENT";
-				PRODUCT_BUNDLE_IDENTIFIER = com.andris.Actions;
+				PRODUCT_BUNDLE_IDENTIFIER = com.christopher.actions;
 				PRODUCT_NAME = Actions;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Actions-OSX/Actions-Bridging-Header.h";
@@ -3642,12 +3642,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -3681,10 +3682,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = macosx;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -3700,6 +3702,7 @@
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = F8J6NSQ48T;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -3723,7 +3726,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DOSX_INDEPENDENT";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.andris.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.christopher.actions;
 				PRODUCT_NAME = Actions;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Actions-OSX/Actions-Bridging-Header.h";
@@ -3744,6 +3747,7 @@
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = F8J6NSQ48T;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -3767,7 +3771,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DOSX_INDEPENDENT";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.andris.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.christopher.actions;
 				PRODUCT_NAME = Actions;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Actions-OSX/Actions-Bridging-Header.h";

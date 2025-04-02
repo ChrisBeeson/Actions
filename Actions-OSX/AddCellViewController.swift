@@ -12,11 +12,11 @@ class AddCellViewController: NSViewController {
 
     @IBAction func textChanged(textField: NSTextField) {
         
-        let cleansedString = textField.stringValue.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        //fix:  let cleansedString = textField.stringValue.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         
         if !cleansedString.isEmpty {
             ActionsDocument.newDocument(cleansedString)
         }
-        presentingViewController?.dismissViewController(self)
+        presenting?.dismissViewController(self)
     }
 }
